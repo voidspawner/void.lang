@@ -1,9 +1,11 @@
 # V O I D spawner lang
 
-### About
-**V O I D spawner lang** is a language for rapidly creating applications in the **JSON format**. It is used as a replacement for both the standard Bash/CMD/etc. languages and for writing **UI Applications**, **Servers** and **Games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one JSON file**. Since the code is presented as data, applications can be easily automatically generated, updated, installed and launched remotely.
+## About
+**⌜ V O I D spawner lang ⌟** is a language for rapidly creating applications in the **JSON format**. It is used as a replacement for both the standard Bash/CMD/etc. languages and for writing **UI Applications**, **Servers** and **Games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one JSON file**. Since the **code is presented as data**, applications can be easily automatically generated, updated, installed and launched remotely.
 
-### Preinstalled Language
+<img src="https://i.imgur.com/gMwOOh9.jpg" width="100%">
+
+## Preinstalled Language
 
 - **Python** ⌜CLI App | Web Server | API Server | Game (with Godot)⌟
 - **PHP** ⌜CLI App | Web Server | API Server⌟
@@ -12,7 +14,7 @@
 - **Java** ⌜Android App | Linux App | Windows App | Web Server | API Server | Game (with Godot) | Game (with UE5) | Game Native⌟
 - **C#** ⌜Windows App | Web Server | API Server | Game (with Godot) | Game (with UE5) | Game Native⌟
 
-### Example
+## Example
 ##### Simple
 ```javascript
 {
@@ -27,7 +29,7 @@
     [".", "Hello World!"]
 ]
 ```
-##### Multilanguage
+##### Multilanguage Text
 ```javascript
 {
   "run": [
@@ -78,7 +80,7 @@
 {
   "web": {
     "route": [
-      ["/", web.home"],
+      ["/", "web.home"],
       ["/hello", "web.hello"]
     ]
   },
@@ -113,3 +115,37 @@
   }
 }
 ```
+
+## How To Use
+
+1. Download **void.lang**
+2. Create your first app in JSON file
+3. Launch app with **void.lang**
+   ```console
+   python3 python/void.py myfirstapp.json
+   php php/void.php myfirstapp.json
+   ```
+
+   ##### Or Even Without JSON File At All
+   ```console
+   python3 python/void.py '[[".", "Hello World!"]]'
+   ```
+
+## How To Add Comments
+All code is data. So just add the property "description", "//" and so on.
+```javascript
+{
+  "description": "App Description. But you can write more in version",
+  "version": {
+    "number": 1,
+    "name": "First App"
+  },
+  "run": [
+    [".", "Hello World!"],
+    ["//", "This line will be ignored"]
+  ]
+}
+```
+
+## When Will It Be Available
+The language was created for my own needs, so as not to write the same code repeatedly. Several versions for PHP and Python languages were created. Now I bring the code to the form that can be published. There are plans to integrate **Social Network and Trading Platforms API, Convert Videos, Images and Music, create Games and work with AI**.
