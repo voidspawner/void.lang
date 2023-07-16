@@ -41,7 +41,13 @@
       "zh": "你好世界",
       "fr": "Bonjour le monde",
       "es": "Hola Mundo",
-      "jp": "こんにちは世界"
+      "pt": "Olá Mundo",
+      "it": "Ciao mondo",
+      "de": "Hallo Welt",
+      "jp": "こんにちは世界",
+      "ru": "Привет, мир",
+      "ar": "مرحبا بالعالم",
+      "hi": "हैलो वर्ल्ड"
     }
   }
 }
@@ -149,3 +155,92 @@ All code is data. So just add the property "description", "//" and so on.
 
 ## When Will It Be Available
 The language was created for my own needs, so as not to write the same code repeatedly. Several versions for PHP and Python languages were created. Now I bring the code to the form that can be published. There are plans to integrate **Social Networks and Trading Platforms API, convert Videos, Images and Music, create Games and work with AI**.
+
+## Actions
+The code is presented as **action name** and **action parameters**.
+```javascript
+[
+    [".", "Hello World!"]
+]
+```
+```
+Action name: "."
+Action parameters: ["Hello World!"]
+```
+
+```javascript
+[
+    ["=", "value", 1, "+", 1]
+]
+```
+```
+Action name: "="
+Action parameters: ["value", 1, "+", 1]
+```
+
+```javascript
+[
+    ["url", "http://sitename.com", {
+      "post": {
+        "name1": "value1",
+        "name2": "value2"
+      },
+      "header": {
+        "header1": "value1"
+      }
+    }, [
+      [".", "OK : {code}"]
+    ]]
+]
+```
+```
+Action name: "url"
+Action parameters: ["http://sitename.com", {
+                     "post": {
+                       "name1": "value1",
+                       "name2": "value2"
+                     },
+                     "header": {
+                       "header1": "value1"
+                     }
+                   }, [
+                     [".", "OK : {code}"]
+                   ]]
+```
+
+
+#### Value
+
+#### Control
+
+#### Math
+
+#### String
+
+#### Array
+
+#### Format
+
+#### Crypto
+
+#### File
+
+#### URL
+
+#### Server
+
+#### CLI
+
+#### UI
+
+#### DB
+
+#### Device
+
+#### Social
+
+#### Trade
+
+#### Game
+
+#### AI
