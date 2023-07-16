@@ -148,4 +148,4 @@ All code is data. So just add the property "description", "//" and so on.
 ```
 
 ## When Will It Be Available
-The language was created for my own needs, so as not to write the same code repeatedly. Several versions for PHP and Python languages were created. Now I bring the code to the form that can be published. There are plans to integrate **Social Network and Trading Platforms API, Convert Videos, Images and Music, create Games and work with AI**.
+The language was created for my own needs, so as not to write the same code repeatedly. Several versions for PHP and Python languages were created. Now I bring the code to the form that can be published. There are plans to integrate **Social Networks and Trading Platforms API, convert Videos, Images and Music, create Games and work with AI**.
