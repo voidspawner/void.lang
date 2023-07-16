@@ -1,7 +1,7 @@
 # V O I D spawner lang
 
 ### About
-**V O I D spawner lang** is a language for rapidly creating applications in the JSON format. It is used as a replacement for both the standard Bash/CMD/etc. languages and for writing **UI Applications**, **Servers** and **Games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one json file**.
+**V O I D spawner lang** is a language for rapidly creating applications in the **JSON format**. It is used as a replacement for both the standard Bash/CMD/etc. languages and for writing **UI Applications**, **Servers** and **Games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one JSON file**. Since the code is presented as data, applications can be easily automatically generated, updated, installed and launched remotely.
 
 ### Preinstalled Language
 
@@ -78,13 +78,13 @@
 {
   "web": {
     "route": [
-      ["/", "home.start"],
-      ["/hello", "home.hello"]
+      ["/", web.home"],
+      ["/hello", "web.hello"]
     ]
   },
   "action": {
-    "home": {
-      "start": [
+    "web": {
+      "home": [
         ["ui.title", "{void.text.hello}"],
         ["ui.content", [
           ["button", "{void.text.hello}", [
