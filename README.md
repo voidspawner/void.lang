@@ -157,6 +157,13 @@ All code is data. So just add the property "description", "//" and so on.
 The language was created for my own needs, so as not to write the same code repeatedly. Several versions for PHP and Python languages were created. Now I bring the code to the form that can be published. There are plans to integrate **Social Networks and Trading Platforms API, convert Videos, Images and Music, create Games and work with AI**.
 
 ## Actions
+
+| [Value](#value) | [Control](#control) | [Math](#math) | [String](#string) | [Array](#array) |
+| --- | --- | --- | --- | --- |
+| [Format](#format) | [Crypto](#crypto) | [File](#file) | [URL](#url) | [Server](#server) |
+| [Cache](#cache) | [CLI](#cli) | [UI](#ui) | [DB](#db) | [Device](#device) |
+| [Social](#social) | [Trade](#trade) | [Game](#game) | [AI](#ai) | |
+
 The code is presented as **action name** and **action parameters**.
 ```javascript
 [
@@ -343,29 +350,69 @@ Action parameters: []
 ### Array
 
 ### Format
+##### JSON
+##### CSV
+##### YAML
+##### INI
+##### Image
+##### Video
+##### Sound
 
 ### Crypto
 
 ### File
+##### File
+##### Dir
+##### Link
+##### Volume
 
 ### URL
 
 ### Server
+##### Web
+##### API
+##### Socket
+##### Mail
+##### Cloud
+##### Game
+
+### Cache
+##### File
+##### Memory
 
 ### CLI
 
 ### UI
 
 ### DB
+##### JSON
+##### MySQL
 
 ### Device
 
-### Media
-
 ### Social
+##### YouTube
+##### TikTok
+##### Twitter
+##### Facebook
+##### Instagram
+##### Weibo
+##### Telegram
+##### WhatsApp
+##### WeChat
 
 ### Trade
+##### Yahoo
+##### Interactive Brokers
+##### Binance
 
 ### Game
+##### VisualNovel
+##### RPG
+##### Platformer
+##### Shooter
+##### 3D
+##### 2D
+##### 2.5D
 
 ### AI
