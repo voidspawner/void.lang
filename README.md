@@ -162,6 +162,7 @@ I make changes every day. Later, a social network will be launched, the entire w
 | --- | --- | --- |
 | <p align="center">✅</p> | void.lang.python | <p align="center">Beta |
 | <p align="center">✅</p> | void.lang.php | <p align="center">Beta</p> |
+| <p align="center">✅</p> | void.web | <p align="center">Beta</p> |
 | <p align="center">▶️</p> | Language description on GitHub | <p align="center">1</p> |
 | <p align="center">▶️</p> | void.web | <p align="center">1</p> |
 | <p align="center">▶️</p> | void.lang.python | <p align="center">1</p> |
