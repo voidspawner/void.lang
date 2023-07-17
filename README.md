@@ -156,25 +156,26 @@ All code is data. So just add the property "description", "//" and so on.
 ## When Will It Be Available
 The language was created for my own needs, so as not to write the same code repeatedly. Several versions for PHP and Python languages were created. Now I bring the code to the form that can be published. There are plans to integrate **Social Networks and Trading Platforms API, convert Videos, Images and Music, create Games and work with AI**.
 
-I make changes every day. Later, a social network will be launched, the entire work process will be transferred there.
+Changes are made every day. Later, a social network will be launched, the entire work process will be transferred there.
 
 | Progress | Description | Version |
 | --- | --- | --- |
-| <p align="center">✅</p> | void.lang.python | <p align="center">Beta |
-| <p align="center">✅</p> | void.lang.php | <p align="center">Beta</p> |
-| <p align="center">✅</p> | void.web | <p align="center">Beta</p> |
-| <p align="center">▶️</p> | Language description on GitHub | <p align="center">1</p> |
-| <p align="center">▶️</p> | void.web | <p align="center">1</p> |
-| <p align="center">▶️</p> | void.lang.python | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.php | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.js | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.swift | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.java | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.cs | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.app | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.game | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.ai | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.parts | <p align="center">1</p> |
+| <p align="center">✅</p> | void.lang.python | void.lang in Python language | <p align="center">Beta |
+| <p align="center">✅</p> | void.lang.php | void.lang in PHP language | <p align="center">Beta</p> |
+| <p align="center">✅</p> | void.web | Social web application | <p align="center">Beta</p> |
+| <p align="center">▶️</p> | void.lang.github | void.lang description on GitHub | <p align="center">1</p> |
+| <p align="center">▶️</p> | void.web | Social web application | <p align="center">1</p> |
+| <p align="center">▶️</p> | void.lang.python | void.lang in Python language | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.lang.php | void.lang in PHP language | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.lang.js | void.lang in JavaScript language | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.lang.swift | void.lang in Swift language | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.lang.java | void.lang in Java language | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.lang.cs | void.lang in C# language | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.app | Social mobile and desktop application | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.game | Games constructor | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.ai | Multipurpose AI | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.parts | Robot parts and components | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.voids | Digital currency | <p align="center">1</p> |
 
 ## Actions
 
