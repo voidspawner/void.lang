@@ -8,7 +8,7 @@
 ## Preinstalled Language
 
 - **Python** ⌜CLI App | Web Server | API Server | Game (with Godot)⌟
-- **PHP** ⌜CLI App | Web Server | API Server⌟
+- **PHP** ⌜CLI App | Web Server | API Server | Game (with Godot)⌟
 - **JS** ⌜Web App | Web Server (with NodeJS) | API Server (with NodeJS) | CLI App (with NodeJS)⌟
 - **Swift** ⌜macOS App | iOS App | iPadOS App | watchOS App | tvOS App | Linux App | Windows App | Web Server | API Server | Game (with Godot) | Game (with UE5) | Game Native⌟
 - **Java** ⌜Android App | Linux App | Windows App | Web Server | API Server | Game (with Godot) | Game (with UE5) | Game Native⌟
@@ -402,12 +402,12 @@ Action parameters: []
 ##### WeChat
 
 ### Trade
-##### Yahoo
+##### Yahoo! Finance
 ##### Interactive Brokers
 ##### Binance
 
 ### Game
-##### VisualNovel
+##### Visual Novel
 ##### RPG
 ##### Platformer
 ##### Shooter
