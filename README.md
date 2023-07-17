@@ -308,7 +308,7 @@ Action parameters: []
 ]
 ```
 
-##### For / Repeat / While
+##### For / Foreach / While
 ```javascript
 [
   ["...", ["value", 1, 10], [
@@ -360,6 +360,58 @@ Action parameters: []
   ["...", true, [
     [".", "infinite"]
   ]]
+]
+```
+
+##### Continue / Break / Repeat
+```javascript
+[
+  ["...", ["i", 10], [
+    ["?", ["{i}", "%", 2], [
+      [".", "continue on {i}"],
+      ">>>"
+    ]],
+    ["?", ["{i}", "=", 7], [
+      [".", "break on {i}"],
+      "x"
+    ]],
+    ["?", ["{i}", "=", 5], [
+      [".", "repeat 3 times on {i}"],
+      ["<<<", 3]
+    ]]
+  ]]
+]
+```
+
+##### Exit
+```javascript
+[
+  ["X", 1, "Exit with code 1"]
+]
+```
+
+##### Error
+```javascript
+[
+  ["error", 404, "Error happens", {"data": "value"}]
+]
+```
+```javascript
+{
+  "action": {
+    "error": [
+      [".", "Override error"]
+    ]
+  }
+}
+```
+
+##### Shell
+```javascript
+[
+  ["shell", "whoami", true],
+  ["=", "name", ["shell", "whoami"]],
+  [".", "{name}"]
 ]
 ```
 
