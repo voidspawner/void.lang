@@ -171,6 +171,10 @@ I make changes every day. Later, a social network will be launched, the entire w
 | <p align="center">⏳</p> | void.lang.swift | <p align="center">1</p> |
 | <p align="center">⏳</p> | void.lang.java | <p align="center">1</p> |
 | <p align="center">⏳</p> | void.lang.cs | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.app | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.game | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.ai | <p align="center">1</p> |
+| <p align="center">⏳</p> | void.parts | <p align="center">1</p> |
 
 ## Actions
 
