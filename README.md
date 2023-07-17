@@ -179,11 +179,10 @@ Changes are made every day. Later, a social network will be launched, the entire
 
 ## Actions
 
-| [Value](#value) | [Control](#control) | [Math](#math) | [String](#string) | [Array](#array) |
-| --- | --- | --- | --- | --- |
-| [Format](#format) | [Crypto](#crypto) | [File](#file) | [URL](#url) | [Server](#server) |
-| [Cache](#cache) | [CLI](#cli) | [UI](#ui) | [DB](#db) | [Device](#device) |
-| [Social](#social) | [Trade](#trade) | [Game](#game) | [AI](#ai) | |
+| [Value](#value) | [Control](#control) | [Math](#math) | [String](#string) | [Array](#array) | [Format](#format) | [Crypto](#crypto) |
+| --- | --- | --- | --- | --- | --- | --- |
+| [File](#file) | [URL](#url) | [Server](#server) | [Cache](#cache) | [CLI](#cli) | [UI](#ui) | [DB](#db) |
+| [Device](#device) | [Social](#social) | [Trade](#trade) | [Game](#game) | [AI](#ai) | | |
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
