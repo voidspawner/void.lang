@@ -360,75 +360,352 @@ Action parameters: []
 ```
 
 ### Math
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### String
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### Array
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### Format
 ##### JSON
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### CSV
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### YAML
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### INI
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Image
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Video
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Sound
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### Crypto
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### File
 ##### File
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Dir
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Link
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Volume
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### URL
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### Server
 ##### Web
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### API
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Socket
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Mail
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Cloud
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Game
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### Cache
 ##### File
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Memory
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### CLI
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### UI
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### DB
 ##### JSON
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### MySQL
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### Device
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### Social
 ##### YouTube
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### TikTok
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Twitter
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Facebook
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Instagram
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Weibo
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Telegram
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### WhatsApp
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### WeChat
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### Trade
 ##### Yahoo! Finance
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Interactive Brokers
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Binance
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### Game
 ##### Visual Novel
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### RPG
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Platformer
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Shooter
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### 3D
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### 2D
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### 2.5D
+```javascript
+[
+  [".", "in progress"]
+]
+```
 
 ### AI
+```javascript
+[
+  [".", "in progress"]
+]
+```
