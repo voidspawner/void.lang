@@ -158,8 +158,8 @@ The language was created for my own needs, so as not to write the same code repe
 
 Changes are made every day. Later, a social network will be launched, the entire work process will be transferred there.
 
-| Progress | Description | Version |
-| --- | --- | --- |
+| Progress | Name | Description | Version |
+| --- | --- | --- | --- |
 | <p align="center">✅</p> | void.lang.python | void.lang in Python language | <p align="center">Beta |
 | <p align="center">✅</p> | void.lang.php | void.lang in PHP language | <p align="center">Beta</p> |
 | <p align="center">✅</p> | void.web | Social web application | <p align="center">Beta</p> |
