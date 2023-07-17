@@ -207,40 +207,163 @@ Action parameters: ["http://sitename.com", {
                      [".", "OK : {code}"]
                    ]]
 ```
+```javascript
+[
+  "."
+]
+```
+```
+Action name: "."
+Action parameters: []
+```
 
+### Value
+##### Set / Get
+```javascript
+[
+  ["=", "i", 10],
+  ["=", "name.subname", 10],
+  ["=", "name.text", "name"],
+  ["=", "value", 1, "+", 1, "*", 2],
+  ["[=", "name.arr", [1, 2, 3]],
+  ["=", "rnd", ["random", 1, 100]],
+  ["=", "name.dict", {"rnd": "{rnd}"}],
+  ["=", "name.escaped", {"rnd": "{rnd}"}, true],
+  ["[=", "{name.text}.escaped.arr", ["{rnd}"], true],
+  [".", "{i}"],
+  [".", "{name.subname}"],
+  [".", "{name}"],
+  [".", "{value}"],
+  [".", "{name.arr}"],
+  [".", "{rnd}"],
+  [".", "{name}"]
+]
+```
+##### Remove
+```javascript
+[
+  ["=", "dict", {"name1": "value1", "name2": "value2"}],
+  ["=", "i", 10],
+  ["-", "dict.name1"],
+  ["-", "i"],
+  [".", "{dict}"],
+  [".", "{i}"]
+]
+```
 
-#### Value
+### Control
+##### If / Switch
+```javascript
+[
+  ["=", "i", 10],
+  ["?", ["{i}", ">=", 10], [
+    [".", "True"]
+  ], [
+    [".", "False"]
+  ]],
 
-#### Control
+  ["?=", "n", ["{i}", "<", 10], true, false],
+  [".", "{n}"],
 
-#### Math
+  ["??", "{i}", [
+    [1, [
+      [".", 1]
+    ]],
+    [[2, 10], [
+      [".", "From 2 to 10"]
+    ]],
+    ["?", ["{i}", "=", 100], [
+      [".", 100]
+    ]]
+  ], [
+    [".", "default"]
+  ]]
+]
+```
 
-#### String
+##### For / Repeat / While
+```javascript
+[
+  ["...", ["value", 1, 10], [
+    [".", "{value}"]
+  ]],
 
-#### Array
+  ["...", ["value", 10], [
+    [".", "{value}"]
+  ]],
 
-#### Format
+  ["...", ["value", 1, 10, 0.1], [
+    [".", "{value}"]
+  ]],
 
-#### Crypto
+  ["...", ["letter", "text"], [
+    [".", "{letter}"]
+  ]],
 
-#### File
+  ["...", ["value", [1, 2, 3, 5]], [
+    [".", "{value}"]
+  ]],
 
-#### URL
+  ["...", ["index", "value", {"name1": 1, "name2": 2}], [
+    [".", "{index} : {value}"]
+  ]],
 
-#### Server
+  ["=", "dict",  {"name1": 1, "name2": 2}],
+  ["...", ["index", "value", "{dict}"], [
+    [".", "{index} : {value}"]
+  ]],
 
-#### CLI
+  ["...", ["time", 1000], [
+    [".", "repeat 1 sec"],
+  ]],
 
-#### UI
+  ["=", "i", 0],
+  ["...", ["?", ["{i}", "<", 100]], [
+    [".", "{i}"],
+    ["++=", "i"]
+  ]],
 
-#### DB
+  ["=", "i", 0],
+  ["...", ["fps", 10], [
+    [".", "{i}"],
+    ["++=", "i"],
+    ["?", ["i", ">", 100], ["x"]]
+  ]],
 
-#### Device
+  ["...", true, [
+    [".", "infinite"]
+  ]]
+]
+```
 
-#### Social
+### Math
 
-#### Trade
+### String
 
-#### Game
+### Array
 
-#### AI
+### Format
+
+### Crypto
+
+### File
+
+### URL
+
+### Server
+
+### CLI
+
+### UI
+
+### DB
+
+### Device
+
+### Social
+
+### Trade
+
+### Game
+
+### AI
