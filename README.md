@@ -546,7 +546,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ```
 
 ### Action
-##### Action
+##### Run
 ```javascript
 [
   ["action", ".", "text"],
@@ -586,7 +586,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 }
 ```
 
-##### List Actions
+##### List
 ```javascript
 [
   [".", "List actions"],
@@ -597,7 +597,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
-##### Search Actions
+##### Search
 ```javascript
 [
   [".", "Search actions locally and remotely"],
@@ -608,7 +608,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
-##### Test Actions
+##### Test
 ```javascript
 [
   [".", "Run all tests"],
@@ -628,7 +628,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
-##### Update / Install Actions
+##### Update / Install
 ```javascript
 [
   [".", "Update all actions"],
