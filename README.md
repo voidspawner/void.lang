@@ -389,6 +389,40 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
+##### Set with Check
+```javascript
+[
+  ["=", "list", ["text", 12, true]]
+  [":", [
+    ["value1", "text"],
+    ["value2", "number"],
+    ["value3", "boolean"]
+  ], "{list}"]
+  [".", "{value1} {value2} {value3}"],
+
+  ["?", [[":", [
+    ["value1", "text"],
+    ["value2", "number"],
+    ["value3", "boolean"]
+  ], "{list}", true]], [
+    [".", "Values checked"]
+  ]],
+
+  ["=", "dict", {
+    "value1": "text",
+    "value2": 12,
+    "value3": true
+  }],
+  ["?", [[":", [
+    ["value1", "text"],
+    ["value2", "number"],
+    ["value3", "boolean"]
+  ], "{dict}", true]], [
+    [".", "Values checked"]
+  ]]
+]
+```
+
 ### Control
 ##### If / Switch
 ```javascript
@@ -561,6 +595,8 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
   [".", "{n}"]
 ]
 ```
+
+##### Create
 ```javascript
 {
   "run": [
