@@ -646,7 +646,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
-##### Remove Actions
+##### Remove
 ```javascript
 [
   [".", "Remove specified actions"],
