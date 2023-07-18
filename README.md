@@ -906,13 +906,6 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
-##### Landscape / Object / Furniture / Human / Animal / Plant
-```javascript
-[
-  [".", "in progress"]
-]
-```
-
 ##### Movie
 ```javascript
 [
@@ -928,6 +921,12 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ```
 
 ##### Animation
+```javascript
+[
+  [".", "in progress"]
+]
+```
+##### Landscape / Object / Furniture / Human / Animal / Plant
 ```javascript
 [
   [".", "in progress"]
