@@ -838,6 +838,63 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ```
 
 ### AI
+##### Data
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Voice
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Image
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Video
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Sound
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Music
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Movie
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Anime
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Animation
 ```javascript
 [
   [".", "in progress"]
