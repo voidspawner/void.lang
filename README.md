@@ -180,10 +180,10 @@ Changes are made every day. Later, a social network will be launched, the entire
 
 ## Actions
 
-| [Value](#value) | [Control](#control) | [Math](#math) | [String](#string) | [Array](#array) | [Date](#date) | [Format](#format) |
+| <p align="center">[Value](#value)</p> | <p align="center">[Control](#control)</p> | <p align="center">[Action](#action)</p> | <p align="center">[Math](#math)</p> | <p align="center">[String](#string)</p> | <p align="center">[Array](#array)</p> | <p align="center">[Date](#date)</p> |
 | --- | --- | --- | --- | --- | --- | --- |
-| [Crypto](#crypto) | [File](#file) | [URL](#url) | [Server](#server) | [Cache](#cache) | [CLI](#cli) | [UI](#ui) |
-| [DB](#db) | [Device](#device) | [Social](#social) | [Trade](#trade) | [Game](#game) | [AI](#ai) | |
+| <p align="center">[Format](#format)</p> | <p align="center">[Crypto](#crypto)</p> | <p align="center">[File](#file)</p> | <p align="center">[URL](#url)</p> | <p align="center">[Server](#server)</p> | <p align="center">[Cache](#cache)</p> | <p align="center">[CLI](#cli)</p> |
+| <p align="center">[UI](#ui)</p> | <p align="center">[DB](#db)</p> | <p align="center">[Device](#device)</p> | <p align="center">[Social](#social)</p> | <p align="center">[Trade](#trade)</p> | <p align="center">[Game](#game)</p> | <p align="center">[AI](#ai)</p> |
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
@@ -522,6 +522,30 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 }
 ```
 
+##### Print / Println / Echo
+```javascript
+[
+  ["=", "---", "text"],
+  [".", "Print this {---} with newline"],
+  [".", "Print this {---} without newline", true],
+  [".", [1, 2, 3, true, null, "{---}"]],
+  [".", {
+    "name1": "value",
+    "name2": "{---}"
+  }]
+]
+```
+
+##### Shell
+```javascript
+[
+  ["shell", "whoami", true],
+  ["=", "name", ["shell", "whoami"]],
+  [".", "{name}"]
+]
+```
+
+### Action
 ##### Action
 ```javascript
 [
@@ -562,26 +586,78 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 }
 ```
 
-##### Shell
+##### List Actions
 ```javascript
 [
-  ["shell", "whoami", true],
-  ["=", "name", ["shell", "whoami"]],
-  [".", "{name}"]
+  [".", "List actions"],
+  ["action.list"]
+
+  ["=", "list", ["action.list", true]],
+  [".", "{list}"]
 ]
 ```
 
-##### Print / Println / Echo
+##### Search Actions
 ```javascript
 [
-  ["=", "---", "text"],
-  [".", "Print this {---} with newline"],
-  [".", "Print this {---} without newline", true],
-  [".", [1, 2, 3, true, null, "{---}"]],
-  [".", {
-    "name1": "value",
-    "name2": "{---}"
-  }]
+  [".", "Search actions locally and remotely"],
+  ["action.search", "pdf"],
+
+  ["=", "search", ["action.search", "pdf", true]],
+  [".", "{search}"]
+]
+```
+
+##### Test Actions
+```javascript
+[
+  [".", "Run all tests"],
+  ["action.test"],
+
+  [".", "Run tests on specified actions"],
+  ["action.test", "sin"],
+  ["action.test", ["sin", "cos", "tan"]],
+  ["action.test", "void.lang.action.math"],
+
+  ["=", "test", ["action.test", "cos", true]],
+  ["?", "{test}", [
+    [".", "Test : ok"]
+  ], [
+    [".", "Test : failed"]
+  ]]
+]
+```
+
+##### Update / Install Actions
+```javascript
+[
+  [".", "Update all actions"],
+  ["action.get"],
+
+  [".", "Update / install specified actions"],
+  ["action.get", ["void.lang.action.math", "void.lang.action.format", "void.lang.action.ai"]],
+
+  ["=", "update", ["action.get", "void.lang.action.format.pdf", true]],
+  ["?", "{update}", [
+    [".", "Update / install : ok"]
+  ], [
+    [".", "Update / install : failed"]
+  ]]
+]
+```
+
+##### Remove Actions
+```javascript
+[
+  [".", "Remove specified actions"],
+  ["action.remove", ["void.lang.action.format.pdf", "void.lang.action.format.xls"]],
+
+  ["=", "remove", ["action.get", "void.lang.format.pdf", true]],
+  ["?", "{remove}", [
+    [".", "Remove : ok"]
+  ], [
+    [".", "Remove : failed"]
+  ]]
 ]
 ```
 
