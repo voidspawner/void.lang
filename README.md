@@ -158,24 +158,24 @@ The language was created for my own needs, so as not to write the same code repe
 
 Changes are made every day. Later, a social network will be launched, the entire work process will be transferred there.
 
-| Progress | Name | Description | Version |
-| --- | --- | --- | --- |
-| <p align="center">✅</p> | void.lang.python | void.lang in Python language | <p align="center">Beta |
-| <p align="center">✅</p> | void.lang.php | void.lang in PHP language | <p align="center">Beta</p> |
-| <p align="center">✅</p> | void.web | Social web application | <p align="center">Beta</p> |
-| <p align="center">▶️</p> | void.lang.github | void.lang description on GitHub | <p align="center">1</p> |
-| <p align="center">▶️</p> | void.web | Social web application | <p align="center">1</p> |
-| <p align="center">▶️</p> | void.lang.python | void.lang in Python language | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.php | void.lang in PHP language | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.js | void.lang in JavaScript language | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.swift | void.lang in Swift language | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.java | void.lang in Java language | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.lang.cs | void.lang in C# language | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.app | Social mobile and desktop application | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.game | Games constructor | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.ai | Multipurpose AI | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.parts | Robot parts and components | <p align="center">1</p> |
-| <p align="center">⏳</p> | void.voids | Digital currency | <p align="center">1</p> |
+| Progress | Name | Description | Version | Date |
+| --- | --- | --- | --- | --- |
+| <p align="center">✅</p> | void.lang.python | void.lang in Python language | <p align="center">Beta | <p align="center">2022</p> |
+| <p align="center">✅</p> | void.lang.php | void.lang in PHP language | <p align="center">Beta</p> | <p align="center">2022</p> |
+| <p align="center">✅</p> | void.web | Social web application | <p align="center">Beta</p> | <p align="center">2022</p> |
+| <p align="center">▶️</p> | void.lang.github | void.lang description on GitHub | <p align="center">1</p> | <p align="center">Aug 2023</p> |
+| <p align="center">▶️</p> | void.web | Social web application | <p align="center">1</p> | <p align="center">Sep 2023</p> |
+| <p align="center">▶️</p> | void.lang.python | void.lang in Python language | <p align="center">1</p> | <p align="center">Aug 2023</p> |
+| <p align="center">⏳</p> | void.lang.php | void.lang in PHP language | <p align="center">1</p> | <p align="center">Sep 2023</p> |
+| <p align="center">⏳</p> | void.lang.js | void.lang in JavaScript language | <p align="center">1</p> | <p align="center">Late 2023</p> |
+| <p align="center">⏳</p> | void.lang.swift | void.lang in Swift language | <p align="center">1</p> | <p align="center">Late 2023</p> |
+| <p align="center">⏳</p> | void.lang.java | void.lang in Java language | <p align="center">1</p> | <p align="center">2024</p> |
+| <p align="center">⏳</p> | void.lang.cs | void.lang in C# language | <p align="center">1</p> | <p align="center">2024</p> |
+| <p align="center">⏳</p> | void.app | Social mobile and desktop application | <p align="center">1</p> | <p align="center">Late 2023</p> |
+| <p align="center">⏳</p> | void.game | Games constructor | <p align="center">1</p> | <p align="center">Late 2023</p> |
+| <p align="center">⏳</p> | void.ai | Multipurpose AI | <p align="center">1</p> | <p align="center">2024</p> |
+| <p align="center">⏳</p> | void.parts | Robot parts and components | <p align="center">1</p> | <p align="center">2024</p> |
+| <p align="center">⏳</p> | void.voids | Digital currency | <p align="center">1</p> | <p align="center">2024</p> |
 
 ## Actions
 
@@ -252,17 +252,27 @@ Action parameters: []
   ["=", "name.subname", 10],
   ["=", "name.text", "name"],
   ["=", "value", 1, "+", 1, "*", 2],
-  ["[=", "name.arr", [1, 2, 3]],
-  ["=", "rnd", ["random", 1, 100]],
-  ["=", "name.dict", {"rnd": "{rnd}"}],
-  ["=", "name.escaped", {"rnd": "{rnd}"}, true],
-  ["[=", "{name.text}.escaped.arr", ["{rnd}"], true],
+  ["=", "random", ["random", 1, 100]],
+  ["=", "name.dict", {
+    "value1": [1, "+", 1],
+    "value2": ["cos", 2],
+    "value3": "{value}",
+    "random": "{random}"
+  }],
+  ["[=", "name.array", [1, 2, "{random}"]],
+  ["[=", "name.dict.more", {
+    "array": [1, 2, "{random}"],
+    "round": "{random}"
+  }],
+  ["[]=", "{name.text}.escaped.array", ["{random}"]],
+  ["[]=", "name.escaped.dict", {
+    "random": "{random}"
+  }],
   [".", "{i}"],
   [".", "{name.subname}"],
-  [".", "{name}"],
   [".", "{value}"],
-  [".", "{name.arr}"],
-  [".", "{rnd}"],
+  [".", "{name.array}"],
+  [".", "{random}"],
   [".", "{name}"]
 ]
 ```
@@ -393,14 +403,19 @@ Action parameters: []
 ##### Error
 ```javascript
 [
-  ["error", 404, "Error happens", {"data": "value"}]
+  ["xx", 500, "Error happens", {"data": "value"}]
 ]
 ```
 ```javascript
 {
   "action": {
-    "error": [
-      [".", "Override error"]
+    "xx": [
+      [":", [
+        ["code", "number"],
+        ["message", "text"]
+      ]],
+      [".", "Override error | code : {code} | message : {message}"],
+      "X"
     ]
   }
 }
@@ -418,7 +433,28 @@ Action parameters: []
 ### Math
 ```javascript
 [
-  [".", "in progress"]
+  ["=", "math", {
+    "sin": ["sin", 3],
+    "cos": ["cos", 3],
+    "tan": ["tan", 3],
+    "sinh": ["sinh", 3],
+    "cosh": ["cosh", 3],
+    "tanh": ["tanh", 3],
+    "asin": ["asin", 0.5],
+    "acos": ["acos", 0.5],
+    "atan": ["atan", 0.5],
+    "asinh": ["asinh", 3],
+    "acosh": ["acosh", 3],
+    "atanh": ["atanh", 0.5],
+    "round": ["round", 2.546, 2],
+    "floor": ["floor", 2.546, 2],
+    "ceil": ["ceil", 2.542, 2],
+    "ln": ["log", 3],
+    "log10": ["log", 3, 10],
+    "log2": ["log", 3, 2],
+    "abs": ["abs, -10]
+  }],
+  [".", "{math}"]
 ]
 ```
 
