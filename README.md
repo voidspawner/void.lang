@@ -250,6 +250,11 @@ Action parameters: []
 ```javascript
 [
   ["=", "i", 10],
+  [".", "{i}"]
+]
+```
+```javascript
+[
   ["=", "name.subname", 10],
   ["=", "name.text", "name"],
   ["=", "expression", 1, "+", 1, "*", [4, "+", 1]],
@@ -270,7 +275,6 @@ Action parameters: []
   ["[]=", "name.totallescaped.dict", {
     "{name}": [1, "+", "{random}"]
   }],
-  [".", "{i}"],
   [".", "{expression}"],
   [".", "{random}"],
   [".", "{name.subname}"],
