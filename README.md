@@ -436,7 +436,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
         ["message", "text"]
       ]],
       [".", "Override error | code : {code} | message : {message}"],
-      "X"
+      ["X", "{code}"]
     ]
   }
 }
@@ -461,8 +461,34 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     [".", "text"]
   ]],
   ["action", "=", "i", 1, "+", 1],
-  [".", "{i}"]
+  ["action", "=", ["n", 1, "+", 1]],
+  [".", "{i}"],
+  [".", "{n}"],
 ]
+```
+```javascript
+{
+  "run": [
+    ["=", "sum1", ["sum", 1, 4]],
+    ["=", "sum2", ["sum", 1, 4, 5, 6]],
+    [".", "{sum1}"],
+    [".", "{sum2}"]
+  ],
+  "action": {
+    "sum": [
+      [":", [
+        ["number1", "number", true],
+        ["number2", "number", true],
+        ["other", ["number", "..."], false]
+      ]],
+      ["=", "result", "{number1}", "+", "{number2}"],
+      ["...", ["number", "{other}"], [
+        ["+=", "result", "{number}"]
+      ]],
+      ["->", "{result}"]
+    ]
+  }
+}
 ```
 
 ### Math
@@ -487,7 +513,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     "ln": ["log", 3],
     "log10": ["log", 3, 10],
     "log2": ["log", 3, 2],
-    "abs": ["abs, -10]
+    "abs": ["abs", -10]
   }],
   [".", "{math}"]
 ]
