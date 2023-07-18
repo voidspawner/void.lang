@@ -518,15 +518,6 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 }
 ```
 
-##### Shell
-```javascript
-[
-  ["shell", "whoami", true],
-  ["=", "name", ["shell", "whoami"]],
-  [".", "{name}"]
-]
-```
-
 ##### Action
 ```javascript
 [
@@ -565,6 +556,29 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     ]
   }
 }
+```
+
+##### Shell
+```javascript
+[
+  ["shell", "whoami", true],
+  ["=", "name", ["shell", "whoami"]],
+  [".", "{name}"]
+]
+```
+
+##### Print / Println / Echo
+```javascript
+[
+  ["=", "---", "text"],
+  [".", "Print this {---} with newline"],
+  [".", "Print this {---} without newline", true],
+  [".", [1, 2, 3, true, null, "{---}"]],
+  [".", {
+    "name1": "value",
+    "name2": "{---}"
+  }]
+]
 ```
 
 ### Math
