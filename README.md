@@ -305,13 +305,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
   ["=", "dictionary", {
     "name1": "value1",
     "name2": "value2"
-  }],
-  ["action", [
-    [".", "text"],
-    [".", "text"]
-  ]],
-  ["action", "=", "i", 1, "+", 1],
-  [".", "{i}"]
+  }]
 ]
 ```
 
