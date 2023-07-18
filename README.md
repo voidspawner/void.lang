@@ -880,6 +880,20 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
+##### Landscape
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Object / Furniture / Animal
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
 ##### Movie
 ```javascript
 [
