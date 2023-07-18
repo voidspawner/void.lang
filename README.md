@@ -906,14 +906,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
-##### Landscape
-```javascript
-[
-  [".", "in progress"]
-]
-```
-
-##### Object / Furniture / Human / Animal / Plant
+##### Landscape / Object / Furniture / Human / Animal / Plant
 ```javascript
 [
   [".", "in progress"]
