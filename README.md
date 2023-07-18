@@ -325,7 +325,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     "<=": ["2", "<=", 3],
     ">": ["2", ">", 1],
     "<": ["2", "<", 3],
-    "&&": [true, "&&", true],
+    "&&": [true, "&&", false],
     "||": [true, "||", false],
     "!.boolean": ["!", true],
     "!.number": ["!", 0],
@@ -334,10 +334,10 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     "^": [2, "^", 3],
     ">>": [2, ">>", 1],
     "<<": ["1", "<<", 1],
-    "in.array": [2, "<>", [1, 2, 3]],
-    "!in.array": [2, "!<>", [1, 2, 3]],
-    "in.dict": [2, "<>", {1: 0, 2: 0, 3: 0}],
-    "!in.dict": [2, "!<>", {1: 0, 2: 0, 3: 0}]
+    "in.array": [2, "><", [1, 2, 3]],
+    "!in.array": [2, "<>", [1, 2, 3]],
+    "in.dict": [2, "><", {1: 0, 2: 0, 3: 0}],
+    "!in.dict": [2, "<>", {1: 0, 2: 0, 3: 0}]
   }],
   [".", "{expression}"]
 ```
