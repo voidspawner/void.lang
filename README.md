@@ -262,7 +262,7 @@ Action parameters: []
   ["[=", "name.array", [1, 2, "{random}"]],
   ["[=", "name.dict.more", {
     "array": [1, 2, "{random}"],
-    "round": "{random}"
+    "random": "{random}"
   }],
   ["[]=", "{name.text}.escaped.array", ["{random}"]],
   ["[]=", "name.escaped.dict", {
