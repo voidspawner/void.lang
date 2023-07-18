@@ -180,10 +180,10 @@ Changes are made every day. Later, a social network will be launched, the entire
 
 ## Actions
 
-| [Value](#value) | [Control](#control) | [Math](#math) | [String](#string) | [Array](#array) | [Format](#format) | [Crypto](#crypto) |
+| [Value](#value) | [Control](#control) | [Math](#math) | [String](#string) | [Array](#array) | [Date](#date) | [Format](#format) |
 | --- | --- | --- | --- | --- | --- | --- |
-| [File](#file) | [URL](#url) | [Server](#server) | [Cache](#cache) | [CLI](#cli) | [UI](#ui) | [DB](#db) |
-| [Device](#device) | [Social](#social) | [Trade](#trade) | [Game](#game) | [AI](#ai) | | |
+| [Crypto](#crypto) | [File](#file) | [URL](#url) | [Server](#server) | [Cache](#cache) | [CLI](#cli) | [UI](#ui) |
+| [DB](#db) | [Device](#device) | [Social](#social) | [Trade](#trade) | [Game](#game) | [AI](#ai) | |
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
@@ -310,6 +310,10 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     "name1": "value1",
     "name2": "value2"
   }]
+```
+```javascript
+  ["=", "type", ["type", "Text"]],
+  [".", "{type}"]
 ]
 ```
 
@@ -603,7 +607,20 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     "ln": ["log", 3],
     "log10": ["log", 3, 10],
     "log2": ["log", 3, 2],
-    "abs": ["abs", -10]
+    "abs": ["abs", -10],
+    "min": ["min", 1, 10, 2, 5, -2],
+    "max": ["max", 1, 10, 2, 5, -2],
+    "random.0-1": ["random"],
+    "random.0-100": ["random", 100],
+    "random.10-100": ["random", 10, 100],
+    "average": ["average", 1, 5, 7, 3],
+    "average.array": ["average", [1, 5, 7, 3]],
+    "factorial": ["factorial", 10],
+    "convert.dec->hex": ["convert", "dec", "hex", 10],
+    "convert.dec->oct": ["convert", "dec", "oct", 10],
+    "convert.dec->bin": ["convert", "dec", "bin", 10],
+    "convert.hex->dec": ["convert", "hex", "dec", "A0"],
+    "convert.grad->rad": ["convert", "grad", "rad", 180]
   }],
   [".", "{math}"]
 ]
@@ -617,6 +634,13 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ```
 
 ### Array
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+### Date
 ```javascript
 [
   [".", "in progress"]
