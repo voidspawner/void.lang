@@ -432,7 +432,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
   "action": {
     "xx": [
       [":", [
-        ["code", "number"],
+        ["code", "number", false, 500],
         ["message", "text"]
       ]],
       [".", "Override error | code : {code} | message : {message}"],
@@ -463,7 +463,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
   ["action", "=", "i", 1, "+", 1],
   ["action", "=", ["n", 1, "+", 1]],
   [".", "{i}"],
-  [".", "{n}"],
+  [".", "{n}"]
 ]
 ```
 ```javascript
