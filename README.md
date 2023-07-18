@@ -176,6 +176,7 @@ Changes are made every day. Later, a social network will be launched, the entire
 | <p align="center">⏳</p> | void.ai | Multipurpose AI | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">⏳</p> | void.parts | Robot parts and components | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">⏳</p> | void.voids | Digital currency | <p align="center">1</p> | <p align="center">2024</p> |
+| <p align="center">⏳</p> | void.ai.movie | Create movie / anime / animation with void.ai | <p align="center">1</p> | <p align="center">2025</p> |
 
 ## Actions
 
@@ -284,6 +285,32 @@ Action parameters: []
   ["-", "dict.name1"],
   ["-", "i"],
   [".", "{dict}"],
+  [".", "{i}"]
+]
+```
+##### Types
+
+The types are similar to JSON types. Minor changes only in the names. **Text** instead of **String**. And **Dictionary** instead of **Object**.
+
+```javascript
+[
+  ["=", "text", "text\r\n\t\"\\\/\b\f\u30AB"],
+  ["=", "number", 1],
+  ["=", "number", -1.2],
+  ["=", "number", 1e+10],
+  ["=", "boolean", true],
+  ["=", "boolean", false],
+  ["=", "null", null],
+  ["=", "array", [1, 2, 3]],
+  ["=", "dictionary", {
+    "name1": "value1",
+    "name2": "value2"
+  }],
+  ["action", [
+    [".", "text"],
+    [".", "text"]
+  ]],
+  ["action", "=", "i", 1, "+", 1],
   [".", "{i}"]
 ]
 ```
@@ -430,6 +457,20 @@ Action parameters: []
 ]
 ```
 
+##### Action
+```javascript
+[
+  ["action", ".", "text"],
+  ["action", ".", ["text"]],
+  ["action", [
+    [".", "text"],
+    [".", "text"]
+  ]],
+  ["action", "=", "i", 1, "+", 1],
+  [".", "{i}"]
+]
+```
+
 ### Math
 ```javascript
 [
@@ -552,6 +593,13 @@ Action parameters: []
 ```
 
 ##### Volume
+```javascript
+[
+  [".", "in progress"]
+]
+```
+
+##### Zip
 ```javascript
 [
   [".", "in progress"]
