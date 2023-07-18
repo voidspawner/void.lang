@@ -251,28 +251,28 @@ Action parameters: []
   ["=", "i", 10],
   ["=", "name.subname", 10],
   ["=", "name.text", "name"],
-  ["=", "value", 1, "+", 1, "*", 2],
+  ["=", "expression", 1, "+", 1, "*", [4, "+", 1]],
   ["=", "random", ["random", 1, 100]],
-  ["=", "name.dict", {
+  ["=", "{name.text}.expression.array", [1, 2, [1, "+", 2]]],
+  ["=", "{name.text}.expression.dict", {
     "value1": [1, "+", 1],
     "value2": ["cos", 2],
     "value3": "{value}",
+    "array": [1, 2, 3],
     "random": "{random}"
   }],
-  ["[=", "name.array", [1, 2, "{random}"]],
-  ["[=", "name.dict.more", {
-    "array": [1, 2, "{random}"],
-    "random": "{random}"
+  ["[=", "name.nonexpression.array", [1, "+", 2, "{random}"]],
+  ["[=", "name.nonexpression.dict", {
+    "{name}": [1, "+", "{random}"]
   }],
-  ["[]=", "{name.text}.escaped.array", ["{random}"]],
-  ["[]=", "name.escaped.dict", {
-    "random": "{random}"
+  ["[]=", "name.totallescaped.array", [1, "+", 2, "{random}"]],
+  ["[]=", "name.totallescaped.dict", {
+    "{name}": [1, "+", "{random}"]
   }],
   [".", "{i}"],
-  [".", "{name.subname}"],
-  [".", "{value}"],
-  [".", "{name.array}"],
+  [".", "{expression}"],
   [".", "{random}"],
+  [".", "{name.subname}"],
   [".", "{name}"]
 ]
 ```
