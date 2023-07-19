@@ -950,9 +950,20 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ```
 
 ##### YAML
+YAML is more advanced format than JSON. Has a simplified syntax and more elegant, but has more rules.
 ```javascript
 [
-  [".", "in progress"]
+  ["=", "data", {
+    "name1": "value1",
+    "name2": "value2",
+    "name3": [1,2,3],
+    "name4": {
+      "name5": true,
+      "name6": null
+    }
+  }],
+  ["yaml.write", "./file.yaml", "{data}"],
+  ["=", "data", ["yaml.read", "./file.yaml"]]
 ]
 ```
 
