@@ -180,7 +180,7 @@ Changes are made every day. Later, a social network will be launched, the entire
 
 ## Actions
 
-| <p align="center">[Value](#value)</p> | <p align="center">[Control](#control)</p> | <p align="center">[Action](#action)</p> | <p align="center">[Math](#math)</p> | <p align="center">[String](#string)</p> | <p align="center">[Array](#array)</p> | <p align="center">[Date](#date)</p> |
+| <p align="center">[Value](#value)</p> | <p align="center">[Control](#control)</p> | <p align="center">[Action](#action)</p> | <p align="center">[Math](#math)</p> | <p align="center">[String](#string)</p> | <p align="center">[Array](#array)</p> | <p align="center">[Time](#time)</p> |
 | --- | --- | --- | --- | --- | --- | --- |
 | <p align="center">[Format](#format)</p> | <p align="center">[Crypto](#crypto)</p> | <p align="center">[File](#file)</p> | <p align="center">[URL](#url)</p> | <p align="center">[Server](#server)</p> | <p align="center">[Cache](#cache)</p> | <p align="center">[CLI](#cli)</p> |
 | <p align="center">[UI](#ui)</p> | <p align="center">[DB](#db)</p> | <p align="center">[Device](#device)</p> | <p align="center">[Social](#social)</p> | <p align="center">[Trade](#trade)</p> | <p align="center">[Game](#game)</p> | <p align="center">[AI](#ai)</p> |
@@ -708,10 +708,10 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
   ["action.get"],
 
   [".", "Update / install specified actions"],
-  ["action.get", ["void.lang.action.math", "void.lang.action.format", "void.lang.action.ai"]],
+  ["action.get", ["void.lang.action.math", "void.lang.action.format"]],
 
   [".", "Update / install specified actions without notification"],
-  ["action.get", ["void.lang.action.math", "void.lang.action.format", "void.lang.action.ai"], true]
+  ["action.get", ["void.lang.action.math", "void.lang.action.format"], true]
 ]
 ```
 
@@ -801,10 +801,50 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
-### Date
+### Time
+##### Wait
 ```javascript
 [
-  [".", "in progress"]
+  ["wait", 1000],
+  [".", "After waiting 1 second"]
+```
+
+##### Timer
+```javascript
+[
+  ["timer", 10000, [
+    [".", "After waiting 10 seconds"]
+  ]],
+
+  ["timer", 1000, [
+    [".", "Repeat every 1 second"]
+  ], true],
+
+  ["timer", ["8:00", "mon"], [
+    [".", "Every Monday at 8:00"]
+  ], true, "monday alarm"],
+
+  [".", ["timer.list"]],
+
+  ["timer.remove", "monday alarm"],
+  ["timer.clear"]
+]
+```
+
+##### Speed / Stopwatch
+```javascript
+[
+  ["speed.start", "db load remotely"],
+  ["wait", 1000],
+  ["speed.check", "db load remotely"],
+  ["wait", 2000],
+  ["speed.check", "db load remotely", "wait more"],
+  [".", "{speed.db load remotely.list}"],
+  [".", "{speed.db load remotely.total}"],
+  [".", "{speed.db load remotely.last}"],
+  [".", "{speed.db load remotely.start}"],
+  [".", "{speed.db load remotely.wait more}],
+  ["speed.stop", "db load remotely"]
 ]
 ```
 
