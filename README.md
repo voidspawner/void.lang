@@ -311,7 +311,23 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
   ["=", "dictionary", {
     "name1": "value1",
     "name2": "value2"
-  }]
+  }],
+
+  ["=", "number", ["num", "-1.234"]],
+  ["=", "number", ["num", "100_000"]],
+  ["=", "number", ["num", "100'000"]],
+  ["=", "number", ["num", "100,000,000"]],
+  ["=", "number", ["num", "123'456,34", ",", "'"]],
+  ["=", "number", ["num", "1e10"]],
+  ["=", "number", ["num", "1m"]],
+  ["=", "number", ["num", "1kb"]],
+  ["=", "number", ["num", "1G"]],
+  ["=", "boolean", ["bool", null]],
+  ["=", "boolean", ["bool", 1]],
+  ["=", "boolean", ["bool", "yes"]],
+  ["=", "text", ["text", "{number}"]],
+  ["=", "text", "", "+", "{number}"],
+  ["=", "array", ["{number}"]]
 ]
 ```
 ```javascript
@@ -497,13 +513,13 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
   ["=", "i", 0],
   ["...", ["?", ["{i}", "<", 100]], [
     [".", "{i}"],
-    ["++=", "i"]
+    ["++", "i"]
   ]],
 
   ["=", "i", 0],
   ["...", ["fps", 10], [
     [".", "{i}"],
-    ["++=", "i"],
+    ["++", "i"],
     ["?", ["i", ">", 100], ["x"]]
   ]],
 
