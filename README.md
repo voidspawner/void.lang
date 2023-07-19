@@ -820,10 +820,26 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     "split": ["split", "a b c", " "],
     "join": ["join", [1, 2, 3], "/"],
     "trim.both": ["trim", " text "],
-    "trim.start": ["trim", ". . . text ", ". ", true, false],
+    "trim.start": ["trim.start", ". . . text ", ". "],
+    "trim.end": ["trim.end", "text ", " "],
     "search": ["search", "text", "x"],
     "count.array": ["count", [1, 2, 3]],
-    "count.letters": ["count", "text"]
+    "count.letters": ["count", "text"],
+    "pad.spaces": ["pad", "Text", 10],
+    "pad.start": ["pad.start", "Text", 10, "."],
+    "pad.center": ["pad.center", "Text", 10, "."],
+    "convert.charset": ["convert", null, "utf16", "text"],
+    "replace": ["replace", "text", "x", "*"],
+    "regex.search": ["regex", "text", "/[x]/"],
+    "regex.replace": ["regex", "text", "/[x]/", "*"],
+    "escape.html": ["escape.html", "<div></div>"],
+    "escape.json": ["escape.json", "text\n"],
+    "escape.url": ["escape.url", "text="],
+    "escape.sql": ["escape.sql", "text'"],
+    "sarts": ["starts", "text", "t"],
+    "ends": ["ends", "text", "t"],
+    "search": ["search", "text", "e"],
+    "part": ["text", 1, 2]
   }],
   [".", "{text}"]
 ]
@@ -832,7 +848,36 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ### Array
 ```javascript
 [
-  [".", "in progress"]
+  ["=", "array", {
+    "add": [[1, 2, 3], "+" 4],
+    "add.to position": ["add", [1, 2, 3], 4, 2],
+    "add.first": ["add", [1, 2, 3], 4, 0],
+    "add.last": ["add", [1, 2, 3], 4, -1],
+    "merge": ["merge", [1, 2, 3], [4, 5, 6]],
+    "merge.dict": ["merge", {"name1": "value1"}, {"name2": "value2"}],
+    "remove": ["-", [1, 2, 3], 1],
+    "remove.first": ["-", [1, 2, 3], 0],
+    "remove.last": ["-", [1, 2, 3], -1],
+    "remove.and extract": ["-", [1, 2, 3], -1, true],
+    "shuffle": ["shuffle", [1, 2, 3]],
+    "reverse": ["reverse", [1, 2, 3]],
+    "part": ["part", [1, 2, 3, 4, 5], 1, 2],
+    "unique": ["unique", [1, 2, 2, 3, 1, 2, 5]],
+    "search": ["search", [1, 2, 3], 2],
+    "search.dict": ["search", {"name1": "value1", "name2": "value2"}, "value2"],
+    "names": ["names", {"name1": "value1", "name2": "value2"}],
+    "values": ["values", {"name1": "value1", "name2": "value2"}],
+    "map.simple": ["map", [1, 2, 3], ["{value}", "+", 1]],
+    "map.complex": ["map", [1, 2, 3], [
+      ["=", "{result}", "{value}", "+", 1],
+      ["->", "{result}"]
+    ]],
+    "filter": [],
+    "reduce": [],
+    "flat": [],
+    "associate": []
+  }],
+  [".", "{array}"]
 ]
 ```
 
@@ -1002,6 +1047,14 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ]
 ```
 
+##### HTML
+```javascript
+[
+  ["html.encode"],
+  ["html.decode"]
+]
+```
+
 ##### Image
 ```javascript
 [
@@ -1078,6 +1131,8 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ```javascript
 [
   [".", "in progress"]
+  ["web.content"],
+  ["web.redirect"]
 ]
 ```
 
@@ -1098,21 +1153,21 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Mail
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Cloud
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Game
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
@@ -1157,13 +1212,20 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ```javascript
 [
   [".", "in progress"]
+  ["sql.open"],
+  ["sql.close"],
+  ["sql.query"],
+  ["sql.list"],
+  ["sql.db.open"],
+  ["sql.fetch.one"],
+  ["sql.fetch.all"]
 ]
 ```
 
 ### Device
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
@@ -1171,63 +1233,63 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### YouTube
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### TikTok
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Twitter
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Facebook
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Instagram
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Weibo
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Telegram
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### WhatsApp
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### WeChat
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
@@ -1235,21 +1297,21 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Yahoo! Finance
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Interactive Brokers
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Binance
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
@@ -1257,49 +1319,49 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Visual Novel
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### RPG
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2024"]
 ]
 ```
 
 ##### Platformer
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2024"]
 ]
 ```
 
 ##### Shooter
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2024"]
 ]
 ```
 
 ##### 3D
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2024"]
 ]
 ```
 
 ##### 2D
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2024"]
 ]
 ```
 
 ##### 2.5D
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2024"]
 ]
 ```
 
@@ -1307,68 +1369,68 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Data
 ```javascript
 [
-  [".", "in progress"]
+   [".", "in progress : will be available in 2024"]
 ]
 ```
 
 ##### Voice
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2024"]
 ]
 ```
 
 ##### Image
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2024"]
 ]
 ```
 
 ##### Video
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2025"]
 ]
 ```
 
 ##### Sound
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2025"]
 ]
 ```
 
 ##### Music
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2025"]
 ]
 ```
 
 ##### Movie
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2025"]
 ]
 ```
 
 ##### Anime
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2025"]
 ]
 ```
 
 ##### Animation
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2025"]
 ]
 ```
 ##### Landscape / Object / Furniture / Human / Animal / Plant
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in 2025"]
 ]
 ```
