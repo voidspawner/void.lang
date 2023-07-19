@@ -874,15 +874,79 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ##### JSON
 ```javascript
 [
-  [".", "in progress"]
+  [".", "Write JSON pretty"],
+  ["json.write", "./file.json", [1,2,3,null,{"name": "value"}], true],
+
+  ["=", "data", ["json.read", "./file.json"]],
+  [".", "{data}"],
+
+  [".", "Check data"],
+  ["=", "result", ["json.check", "./file.json"]],
+  ["?", ["{result}", "!=", true], [
+    [".", "{result}"]
+  ], [
+    [".", "ok"]
+  ]]
 ]
+```
+```javascript
+{
+  "json": {
+    "pretty": true
+  },
+  "run": [
+    [".", "Write JSON pretty by default"],
+    ["json.write", "./file.json", [1,2,3,null,{"name": "value"}]]
+  ]
+}
 ```
 
 ##### CSV
 ```javascript
 [
-  [".", "in progress"]
+  ["=", "data", [
+    [1, 2, "text1"],
+    [3, 4, "text2"]
+  ]],
+  [".", "Write with header. Separator ';'"],
+  ["csv.write", "./file.csv", "{data}", ["header1", "header2", "header3"], ";"],
+
+  ["=", "data", [
+    {
+      "header1": 1,
+      "header2": 2,
+      "header3": "Text1"
+    },
+    {
+      "header1": 3,
+      "header2": 4,
+      "header3": "Text2"
+    }
+  ]],
+  [".", "Ignore header"],
+  ["csv.write", "./file.csv", "{data}", true],
+
+  [".", "Write with header"],
+  ["csv.write", "./file.csv", "{data}"],
+
+  [".", "Read data and ignore header. Separator ','. Read data as array"],
+  ["=", "data", ["csv.read", "./file.csv", true, ","]],
+
+  [".", "Read data as dictionary"],
+  ["=", "data", ["csv.read", "./file.csv", null]]
 ]
+```
+```javascript
+{
+  "csv": {
+    "separator": ';'
+  },
+  "run": [
+    [".", "Read data with separator ';' by default"],
+    ["=", "data", ["csv.read", "./file.csv"]],
+    [".", "{data}"]
+  ]
+}
 ```
 
 ##### YAML
