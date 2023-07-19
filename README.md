@@ -933,7 +933,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
   ["=", "data", ["csv.read", "./file.csv", true, ","]],
 
   [".", "Read data as dictionary"],
-  ["=", "data", ["csv.read", "./file.csv", null]]
+  ["=", "data", ["csv.read", "./file.csv", null, null, true]]
 ]
 ```
 ```javascript
@@ -959,7 +959,17 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ##### INI
 ```javascript
 [
-  [".", "in progress"]
+  ["=", "data", {
+    "section1": {
+      "name1": "value1",
+      "name2": "value2"
+    },
+    "section2": {
+      "name3": [1,2,3]
+    }
+  }],
+  ["ini.write", "./file.ini", "{data}"],
+  ["=", "data", ["ini.read", "./file.ini"]]
 ]
 ```
 
