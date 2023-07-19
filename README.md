@@ -182,7 +182,7 @@ Changes are made every day. Later, a social network will be launched, the entire
 
 ## Actions
 
-| <p align="center">[Value](#value)</p> | <p align="center">[Control](#control)</p> | <p align="center">[Action](#action)</p> | <p align="center">[Math](#math)</p> | <p align="center">[String](#string)</p> | <p align="center">[Array](#array)</p> | <p align="center">[Time](#time)</p> |
+| <p align="center">[Value](#value)</p> | <p align="center">[Control](#control)</p> | <p align="center">[Action](#action)</p> | <p align="center">[Math](#math)</p> | <p align="center">[Text](#text)</p> | <p align="center">[Array](#array)</p> | <p align="center">[Time](#time)</p> |
 | --- | --- | --- | --- | --- | --- | --- |
 | <p align="center">[Format](#format)</p> | <p align="center">[Crypto](#crypto)</p> | <p align="center">[File](#file)</p> | <p align="center">[URL](#url)</p> | <p align="center">[Server](#server)</p> | <p align="center">[Cache](#cache)</p> | <p align="center">[CLI](#cli)</p> |
 | <p align="center">[UI](#ui)</p> | <p align="center">[DB](#db)</p> | <p align="center">[Device](#device)</p> | <p align="center">[Social](#social)</p> | <p align="center">[Trade](#trade)</p> | <p align="center">[Game](#game)</p> | <p align="center">[AI](#ai)</p> |
@@ -808,10 +808,24 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
-### String
+### Text
 ```javascript
 [
-  [".", "in progress"]
+  ["=", "text", {
+    "upper": ["upper", "text"],
+    "lower": ["lower", "Text"],
+    "date.date": ["date", null, "00.00.0000"],
+    "date.time": ["date", null, "00:00"],
+    "date.datetime from timestamp": ["date", 123456, "Y-m-d H:i:s"],
+    "split": ["split", "a b c", " "],
+    "join": ["join", [1, 2, 3], "/"],
+    "trim.both": ["trim", " text "],
+    "trim.start": ["trim", ". . . text ", ". ", true, false],
+    "search": ["search", "text", "x"],
+    "count.array": ["count", [1, 2, 3]],
+    "count.letters": ["count", "text"]
+  }],
+  [".", "{text}"]
 ]
 ```
 
@@ -931,9 +945,11 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 
   [".", "Read data and ignore header. Separator ','. Read data as array"],
   ["=", "data", ["csv.read", "./file.csv", true, ","]],
+  [".", "{data}"],
 
   [".", "Read data as dictionary"],
-  ["=", "data", ["csv.read", "./file.csv", null, null, true]]
+  ["=", "data", ["csv.read", "./file.csv", null, null, true]],
+  [".", "{data}"]
 ]
 ```
 ```javascript
@@ -963,7 +979,8 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     }
   }],
   ["yaml.write", "./file.yaml", "{data}"],
-  ["=", "data", ["yaml.read", "./file.yaml"]]
+  ["=", "data", ["yaml.read", "./file.yaml"]],
+  [".", "{data}"]
 ]
 ```
 
@@ -980,7 +997,8 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     }
   }],
   ["ini.write", "./file.ini", "{data}"],
-  ["=", "data", ["ini.read", "./file.ini"]]
+  ["=", "data", ["ini.read", "./file.ini"]],
+  [".", "{data}"]
 ]
 ```
 
