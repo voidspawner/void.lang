@@ -812,6 +812,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 [
   ["wait", 1000],
   [".", "After waiting 1 second"]
+]
 ```
 
 ##### Timer
