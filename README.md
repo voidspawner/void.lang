@@ -843,7 +843,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
   [".", "{speed.db load remotely.total}"],
   [".", "{speed.db load remotely.last}"],
   [".", "{speed.db load remotely.start}"],
-  [".", "{speed.db load remotely.wait more}],
+  [".", "{speed.db load remotely.wait more}"],
   ["speed.stop", "db load remotely"]
 ]
 ```
