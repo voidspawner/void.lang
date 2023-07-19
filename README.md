@@ -570,10 +570,10 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
-##### Log
+##### Log / Notification
 ```javascript
 {
-  "log": {
+  "notification": {
     "info": [
       {
         "path": "./app.log",
@@ -701,6 +701,31 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
+##### Update / Install
+```javascript
+[
+  [".", "Update actions"],
+  ["action.get"],
+
+  [".", "Update / install specified actions"],
+  ["action.get", ["void.lang.action.math", "void.lang.action.format", "void.lang.action.ai"]],
+
+  [".", "Update / install specified actions without notification"],
+  ["action.get", ["void.lang.action.math", "void.lang.action.format", "void.lang.action.ai"], true]
+]
+```
+
+##### Remove
+```javascript
+[
+  [".", "Remove specified actions"],
+  ["action.remove", ["void.lang.action.format.pdf", "void.lang.action.format.xls"]],
+
+  [".", "Remove specified actions without notification"],
+  ["action.remove", "void.lang.action.format.pdf", true]
+]
+```
+
 ##### Test
 ```javascript
 [
@@ -717,39 +742,6 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     [".", "Test : ok"]
   ], [
     [".", "Test : failed"]
-  ]]
-]
-```
-
-##### Update / Install
-```javascript
-[
-  [".", "Update all actions"],
-  ["action.get"],
-
-  [".", "Update / install specified actions"],
-  ["action.get", ["void.lang.action.math", "void.lang.action.format", "void.lang.action.ai"]],
-
-  ["=", "update", ["action.get", "void.lang.action.format.pdf", true]],
-  ["?", "{update}", [
-    [".", "Update / install : ok"]
-  ], [
-    [".", "Update / install : failed"]
-  ]]
-]
-```
-
-##### Remove
-```javascript
-[
-  [".", "Remove specified actions"],
-  ["action.remove", ["void.lang.action.format.pdf", "void.lang.action.format.xls"]],
-
-  ["=", "remove", ["action.get", "void.lang.format.pdf", true]],
-  ["?", "{remove}", [
-    [".", "Remove : ok"]
-  ], [
-    [".", "Remove : failed"]
   ]]
 ]
 ```
