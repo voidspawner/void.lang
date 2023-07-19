@@ -570,6 +570,63 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ]
 ```
 
+##### Log
+```javascript
+{
+  "log": {
+    "info": [
+      {
+        "path": "./app.log",
+        "text": "{date} {time} : {message}",
+        "size": "1m",
+        "count": 5,
+        "zip": true
+      },
+      {
+        "path": "./log.json",
+        "data": {
+          "date": "{date}",
+          "time": "{time}",
+          "message": "{message}"
+        },
+        "count": 100000
+      },
+      {
+        "db": "log",
+        "table": "info",
+        "user": "log",
+        "password": "",
+        "data": {
+          "date": "{date}",
+          "time": "{time}",
+          "message": "{message}"
+        },
+        "count": 100000
+      },
+      {
+        "mail": "log@site.com",
+        "title": "Log",
+        "text": "{date} {time} : {message}",
+      }
+    ],
+    "me": [
+      {
+        "sms": "+123456789",
+        "text": "{date} {time} : {message}",
+      },
+      {
+        "telegram": "+123456789",
+        "text": "{date} {time} : {message}",
+      }
+    ]
+  },
+  "run": [
+    ["..", "app started"],
+    ["..", "app started", "me"]
+  ]
+}
+```
+
 ##### Shell
 ```javascript
 [
@@ -716,9 +773,9 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     "round": ["round", 2.546, 2],
     "floor": ["floor", 2.546, 2],
     "ceil": ["ceil", 2.542, 2],
-    "ln": ["log", 3],
-    "log10": ["log", 3, 10],
-    "log2": ["log", 3, 2],
+    "log.ln": ["log", 3],
+    "log.log10": ["log", 3, 10],
+    "log.log2": ["log", 3, 2],
     "abs": ["abs", -10],
     "min": ["min", 1, 10, 2, 5, -2],
     "max": ["max", 1, 10, 2, 5, -2],
