@@ -1293,7 +1293,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     "location": "Kuala Lumpur"
   }],
 
-  ["=", "tweets", ["twitter.tweets", ""https://twitter.com/ABCDEF"]],
+  ["=", "tweets", ["twitter.tweets", "https://twitter.com/ABCDEF"]],
   [".", "{tweets}"],
 
   ["=", "search", ["twitter.search", "keywords"]],
