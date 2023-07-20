@@ -944,8 +944,13 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ##### JSON
 ```javascript
 [
+  ["=", "data", [1, 2, 3, null, {"name": "value"}]],
+
+  ["=", "json", ["json.encode", "{data}", true]],
+  ["=", "data", ["json.decode", "{json}"]],
+
   [".", "Write JSON pretty"],
-  ["json.write", "./file.json", [1,2,3,null,{"name": "value"}], true],
+  ["json.write", "./file.json", "{data}", true],
 
   ["=", "data", ["json.read", "./file.json"]],
   [".", "{data}"],
@@ -978,6 +983,10 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     [1, 2, "text1"],
     [3, 4, "text2"]
   ]],
+
+  ["=", "csv", ["csv.encode", "{data}", null, ";"]],
+  ["=", "data", ["csv.decode", "{csv}", null, ";"]],
+
   [".", "Write with header. Separator ';'"],
   ["csv.write", "./file.csv", "{data}", ["header1", "header2", "header3"], ";"],
 
@@ -1034,10 +1043,30 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
       "name6": null
     }
   }],
+
+  ["=", "yaml", ["yaml.encode", "{data}"]],
+  ["=", "data", ["yaml.decode", "{yaml}"]],
+
+  [".", "Write pretty by default"],
   ["yaml.write", "./file.yaml", "{data}"],
+
+  [".", "Write compact"],
+  ["yaml.write", "./file.yaml", "{data}", false],
+
   ["=", "data", ["yaml.read", "./file.yaml"]],
   [".", "{data}"]
 ]
+```
+```javascript
+{
+  "yaml": {
+    "pretty": false
+  },
+  "run": [
+    [".", "Write compact by default"],
+    ["yaml.write", "./file.yaml", [1, 2, 3, {"name": "value"}]]
+  ]
+}
 ```
 
 ##### INI
@@ -1052,15 +1081,15 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
       "name3": [1,2,3]
     }
   }],
+
+
   [".", "Encode ini with array separator ','"]
   ["=", "ini", ["ini.encode", "{data}", ","]],
   ["=", "data", ["ini.decode", "{ini}", ","]],
   
-
   ["ini.write", "./file.ini", "{data}", ","],
   ["=", "data", ["ini.read", "./file.ini", ","]],
-  [".", "{data}"],
-
+  [".", "{data}"]
 ]
 ```
 
