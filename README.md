@@ -1050,8 +1050,28 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### HTML
 ```javascript
 [
-  ["html.encode"],
-  ["html.decode"]
+  ["=", "html", ["html.encode", [
+    ["doctype", "html"],
+    ["html", {"lang": "en"}],
+    ["head", [
+      ["meta", {"charset": "utf-8"}],
+      ["meta", {"name": "viewport", "content": {"width": "device-width", "initial-scale": 1}}],
+      ["meta", {"name": "description", "content": "description text"}],
+      ["meta", {"name": "keywords", "content"=["keyword1", "keyword2", "keyword3"]}],
+      ["meta", {"name": "author", "content": "author name"}],
+      ["comment", "comment text"],
+      ["link", {"href": "../css/style.css", "rel": "stylesheet"}],
+      ["icon", "/favicons/favicon_bash.png"],
+      ["script", "../js/script.js"]
+    ]],
+    ["body", [
+      ["div", {"class": "content"}, [
+        "..."
+      ]]
+    ]]
+  ]]],
+  ["=", "html", ["html.decode", "{html}"]],
+  [".", "{html}"]
 ]
 ```
 
