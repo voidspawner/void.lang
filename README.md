@@ -1179,15 +1179,15 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     "sha512": ["sha512", "text"],
     "crc32": ["crc32", "text"],
     "base64.encode": ["base64.encode", "text"],
-    "base64.decode": ["base64.encode", "dGV4dA=="],
     "gzip.encode": ["gzip.encode", "text"],
     "ssl.encode": ["ssl.encode", "text", "aes-128-ctr", "passphrase"],
-    "bcrypt.encode": ["bcrypt.encode", "text", 10],
-    "bcrypt.check": ["bcrypt.check", "text", "$2a$10$UhgDFIgHyH0PjtazHG.8H.XbYpe1ydl3iKIyjiUdxEWFyvvsJhZMS"]
+    "bcrypt.encode": ["bcrypt.encode", "text", 10]
   }],
   ["+=", "crypto", {
+    "base64.decode": ["base64.encode", "{crypto.base64.encode}"],
     "gzip.decode": ["gzip.decode", "{crypto.gzip.encode}"],
-    "ssl.decode": ["ssl.decode", "{crypto.ssl.text}", "aes-128-ctr", "passphrase", "{crypto.ssl.vector}"],
+    "ssl.decode": ["ssl.decode", "{crypto.ssl.encode.text}","{crypto.ssl.encode.cypher}", "passphrase", "{crypto.ssl.encode.vector}"],
+    "bcrypt.check": ["bcrypt.check", "text", "{bcrypt.encode}"]
   }],
 
   ["=", "crypto.rsa.key", ["rsa.key", 512]],
