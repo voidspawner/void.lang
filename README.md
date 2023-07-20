@@ -1082,8 +1082,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     }
   }],
 
-
-  [".", "Encode ini with array separator ','"]
+  [".", "Encode ini with array separator ','"],
   ["=", "ini", ["ini.encode", "{data}", ","]],
   ["=", "data", ["ini.decode", "{ini}", ","]],
   
