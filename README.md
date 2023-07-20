@@ -867,15 +867,26 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     "search.dict": ["search", {"name1": "value1", "name2": "value2"}, "value2"],
     "names": ["names", {"name1": "value1", "name2": "value2"}],
     "values": ["values", {"name1": "value1", "name2": "value2"}],
-    "map.simple": ["map", [1, 2, 3], ["{value}", "+", 1]],
-    "map.complex": ["map", [1, 2, 3], [
-      ["=", "{result}", "{value}", "+", 1],
+    "map.simple": ["map", [1, 2, 3], null, ["{value}", "+", 1]],
+    "map.complex": ["map", [1, 2, 3], "val", [
+      ["=", "{result}", "{val}", "+", 1],
       ["->", "{result}"]
     ]],
-    "filter": [],
-    "reduce": [],
-    "flat": [],
-    "associate": []
+    "filter.simple": ["filter", [1, 2, 3], "i", ["{i}", ">", 2]],
+    "filter.complex": ["filter", [1, 2, 3], null, [
+      ["?", ["{value}", ">", 2], [
+        ["->", "{value}"]
+      ]]
+    ]],
+    "reduce.simple": ["reduce", [1, 2, 5, 7, 3], null, ["{first}", ">", "{second}"]],
+    "reduce.complex": ["reduce", [1, 2, 5, 7, 3], ["a", "b"], [
+      ["?", ["{a}", ">", "{b}"], [
+        ["->", "{a}"]
+      ], [
+        ["->", "{b}"]
+      ]]
+    ]],
+    "flat": ["flat", [1, 2, [3, 4, [5]]]]
   }],
   [".", "{array}"]
 ]
