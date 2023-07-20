@@ -1052,9 +1052,15 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
       "name3": [1,2,3]
     }
   }],
-  ["ini.write", "./file.ini", "{data}"],
-  ["=", "data", ["ini.read", "./file.ini"]],
-  [".", "{data}"]
+  [".", "Encode ini with array separator ','"]
+  ["=", "ini", ["ini.encode", "{data}", ","]],
+  ["=", "data", ["ini.decode", "{ini}", ","]],
+  
+
+  ["ini.write", "./file.ini", "{data}", ","],
+  ["=", "data", ["ini.read", "./file.ini", ","]],
+  [".", "{data}"],
+
 ]
 ```
 
