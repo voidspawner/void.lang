@@ -853,9 +853,9 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
     "add.to position": ["add", [1, 2, 3], 4, 2],
     "add.first": ["add", [1, 2, 3], 4, 0],
     "add.last": ["add", [1, 2, 3], 4, -1],
-    "merge": ["merge", [1, 2, 3], [4, 5, 6]],
-    "merge.dict": ["merge", {"name1": "value1"}, {"name2": "value2"}],
-    "remove": ["-", [1, 2, 3], 1],
+    "merge.array": [[1, 2, 3], "+", [4, 5, 6]],
+    "merge.dict": [{"name1": "value1"}, "+", {"name2": "value2"}],
+    "remove.index": ["-", [1, 2, 3], 1],
     "remove.first": ["-", [1, 2, 3], 0],
     "remove.last": ["-", [1, 2, 3], -1],
     "remove.and extract": ["-", [1, 2, 3], -1, true],
@@ -1167,7 +1167,34 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ### Crypto
 ```javascript
 [
-  [".", "in progress"]
+  ["=", "crypto", {
+    "hash": ["hash", 10],
+    "hash.numbers": ["hash", 10, ["number"]],
+    "hash.letters": ["hash", 10, ["letter"]],
+    "hash.number+symbols": ["hash", 10, ["number", "*.-", "#", "%"]],
+    "uuid": ["uuid"],
+    "md5": ["md5", "text"],
+    "sha1": ["sha1", "text"],
+    "sha256": ["sha256", "text"],
+    "sha512": ["sha512", "text"],
+    "crc32": ["crc32", "text"],
+    "base64.encode": ["base64.encode", "text"],
+    "base64.decode": ["base64.encode", "dGV4dA=="],
+    "gzip.encode": ["gzip.encode", "text"],
+    "ssl.encode": ["ssl.encode", "text", "aes-128-ctr", "passphrase"],
+    "bcrypt.encode": ["bcrypt.encode", "text", 10],
+    "bcrypt.check": ["bcrypt.check", "text", "$2a$10$UhgDFIgHyH0PjtazHG.8H.XbYpe1ydl3iKIyjiUdxEWFyvvsJhZMS"]
+  }],
+  ["+=", "crypto", {
+    "gzip.decode": ["gzip.decode", "{crypto.gzip.encode}"],
+    "ssl.decode": ["ssl.decode", "{crypto.ssl.text}", "aes-128-ctr", "passphrase", "{crypto.ssl.vector}"],
+  }],
+
+  ["=", "crypto.rsa.key", ["rsa.key", 512]],
+  ["=", "rsa", ["rsa.encode", "text", "{crypto.rsa.key.public}"]],
+  ["=", "crypto.rsa", ["rsa.decode", "{rsa}", "{crypto.rsa.key.private}"]],
+    
+  [".", "{crypto}"]
 ]
 ```
 
