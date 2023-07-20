@@ -1082,6 +1082,10 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     ]]
   ]]],
   ["=", "html", ["html.decode", "{html}"]],
+  [".", "{html}"],
+
+  ["html.write", "./file.html", "{html}],
+  ["=", "html", ["html.read", "./file.html"]],
   [".", "{html}"]
 ]
 ```
