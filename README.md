@@ -1,7 +1,7 @@
 # V O I D spawner lang
 
 ## About
-**⌜ V O I D spawner lang ⌟** is a language for rapidly creating applications in the **JSON format**. It is used as a replacement for both the standard Bash/CMD/etc. languages and for writing **UI Applications**, **Servers** and **Games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one JSON file**. Since the **code is presented as data**, applications can be easily automatically generated, updated, installed and launched remotely.
+**⌜ V O I D spawner lang ⌟** is a language for rapidly creating applications in the **JSON format**. It is used as a replacement for both the standard Bash/CMD/etc. languages and for writing **UI Applications**, **Servers** and **Games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one JSON file**. Since the **code is presented as data**, applications can be easily automatically generated with AI, updated, installed and launched remotely.
 
 <img src="https://i.imgur.com/kx2UcUh.jpg" width="100%">
 
@@ -1233,7 +1233,39 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### YouTube
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2023"],
+
+  ["youtube.download", "https://www.youtube.com/watch?v=y6120QOlsfU", "./", 720],
+  ["youtube.download", "https://www.youtube.com/watch?v=y6120QOlsfU", "./", 1080],
+  ["youtube.download", "https://www.youtube.com/watch?v=y6120QOlsfU", "./", "hd"],
+
+  ["=", "info", ["youtube.info", "y6120QOlsfU"]],
+  [".", "video info : {info}"],
+
+  ["=", "info", ["youtube.info", "https://www.youtube.com/channel/UCvxu4st8jt0Li69hAh_nqQg"]],
+  ["=", "info", ["youtube.info", "darude"]],
+  [".", "channel info : {info}],
+
+  ["=", "videos", ["youtube.videos", "darude"]],
+  ["=", "videos", ["youtube.videos", "https://www.youtube.com/channel/UCvxu4st8jt0Li69hAh_nqQg"],
+  ["=", "videos", ["youtube.videos", "https://www.youtube.com/playlist?list=PLD8GFRgnUxHbI-ZbQIJCS2Q1kJ86I0caG"]],
+
+  ["=", "shorts", ["youtube.shorts", "darude"]],
+  ["=", "streams", ["youtube.streams", "darude"]],
+  ["=", "playslists", ["youtube.playslists", "darude"]],
+  ["=", "releases", ["youtube.playslists", "darude"]],
+  ["=", "channels", ["youtube.channels", "darude"]],
+  ["=", "community", ["youtube.community", "darude"]],
+
+  ["youtube.upload", "./movie.mp4", {
+    "title": "Title",
+    "description": "Description"    
+  }],
+
+  ["youtube.edit", "y6120QOlsfU", {
+    "title": "New Title",
+    "description": "New Description"
+  }]
 ]
 ```
 
@@ -1248,6 +1280,24 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ```javascript
 [
   [".", "in progress : will be available in late 2023"]
+
+  ["twitter.send", "New tweet"],
+  ["twitter.send", "New tweet", "https://twitter.com/ABCDEF/status/ABCDEF"],
+  ["twitter.send", {
+    "text": "tweet",
+    "image": "./image.jpg"
+  }],
+  ["twitter.send", {
+    "text": "tweet",
+    "video": "./video.mp4",
+    "location": "Kuala Lumpur"
+  }],
+
+  ["=", "tweets", ["twitter.tweets", ""https://twitter.com/ABCDEF"]],
+  [".", "{tweets}"],
+
+  ["=", "search", ["twitter.search", "keywords"]],
+  [".", "{search}"]
 ]
 ```
 
