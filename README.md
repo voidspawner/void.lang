@@ -1089,21 +1089,40 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Image
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"],
+
+  ["convert", "./image.jpg", "./image.png"],
+  ["convert", "./image.png", "./image.jpg", {
+    "quality": 0.9,
+    "progressive": true
+  }],
+
+  ["image", [
+    ["load", "./image.png"],
+    ["resize", {"width": 1080}],
+    ["rectangle", {"x": 10, "y": 10, "width": 200, "height": 40, "color": "c2f542"}],
+    ["text", "Text on image", {
+      "size": 20,
+      "font": "Arial",
+      "bold": true,
+      "color": "white"
+    }],
+    ["save", "./image.jpg", {"quality": 0.9}]
+  ]]
 ]
 ```
 
 ##### Video
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
 ##### Sound
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
