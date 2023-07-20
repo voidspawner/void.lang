@@ -1261,7 +1261,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Socket
 ```javascript
 [
-  [".", "in progress"]
+  [".", "in progress : will be available in late 2023"]
 ]
 ```
 
