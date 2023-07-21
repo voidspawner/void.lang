@@ -1646,21 +1646,87 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Yahoo! Finance
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2023"],
+
+  [".", "Gathering tickers by 3 lettters"],
+  ["=", "tickers", ["yahoo.tickers", 3]],
+  [".", "{tickers}"],
+
+  ["=", "info", ["yahoo.info", "aapl"]],
+  [".", "{info}"],
+
+  ["=", "history", ["yahoo.history", "aapl", "1y", "1m"]],
+  [".", "{history}"],
+
+  ["=", "price", ["yahoo.price", "aapl"]],
+  [".", "{price}"],
+
+  ["=", "options", ["yahoo.options", "aapl"]],
+  [".", "{options}"],
+
+  ["=", "history", ["yahoo.history", "AAPL230721C00192500", "1y", "1m"]],
+  [".", "{history}"]
 ]
 ```
 
 ##### Interactive Brokers
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2023"],
+
+  ["=", "tickers", ["ib.tickers"]],
+  [".", "{tickers}"],
+
+  ["=", "info", ["ib.info", "aapl"]],
+  [".", "{info}"],
+
+  ["=", "price", ["ib.price", "aapl"]],
+  [".", "{price}"],
+
+  ["=", "history", ["ib.history", "aapl", "1y", "1m"]],
+  [".", "{history}"],
+
+  ["=", "price", ["ib.price", "aapl"]],
+  [".", "{price}"],
+
+  ["=", "options", ["ib.options", "aapl"]],
+  [".", "{options}"],
+
+  ["ib.buy", "aapl", 1],
+  ["ib.buy", "AAPL230721C00192500", 1],
+  ["ib.sell", "aapl", 1],
+  ["ib.sell", "AAPL230721C00192500", 1],
+
+  ["=", "portfolio", ["ib.portfolio"]],
+  [".", "{portfolio}"]
 ]
 ```
 
 ##### Binance
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2023"],
+
+  ["=", "coins", ["binance.coins", 3]],
+  [".", "{coins}"],
+
+  ["=", "pairs", ["binance.pairs", "eth"]],
+  [".", "{pairs}"],
+  
+  ["=", "info", ["binance.info", "eth"]],
+  [".", "{info}"],
+
+  ["=", "history", ["binance.history", "eth", "usdt", "1y", "1m"]],
+  [".", "{history}"],
+
+  ["=", "price", ["binance.price", "eth", "usdt"]],
+  [".", "{price}"],
+
+  [".", "Buy ETH with USDT"],
+  ["binance.buy", "eth", "usdt", 1],
+
+  ["=", "wallet", ["binance.wallet"]],
+  [".", "wallet"]
 ]
 ```
 
