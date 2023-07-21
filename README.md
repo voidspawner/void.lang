@@ -1253,7 +1253,58 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Dir
 ```javascript
 [
-  [".", "in progress"]
+  ["dir.create", "new/dir/path"],
+  ["?", [["dir.exists", "new/dir"]], [
+    [".", "Dir exists"]
+  ], [
+    [".", "Dir not exists"]
+  ]],
+
+  ["=", ["dir.info", "new"]],
+  ["dir.info", "new", {
+    "owner": "user",
+    "chmod": 777,
+    "recursive": true
+  }],
+
+  ["file.write", "new/dir/file.txt", "text"],
+  ["=", "size", ["dir.size", "new"]],
+  [".", "Size recursive: {size}"],
+
+  ["=", "size", ["dir.size", "new", false]],
+  [".", "Size one dir only: {size}"],
+
+  ["=", "path", ["dir.path"]],
+  [".", "Current dir: {path}"],
+
+  ["=", "list", ["dir.list", "new"]],
+  [".", "{list}"],
+  ["=", "list", ["dir.list", "new", {
+    "recursive": true,
+    "size": true,
+    "chmod": true,
+    "owner": true,
+    "file": true,
+    "dir": true,
+    "link": true
+  }]],
+  [".", "{list}"],
+
+  ["dir.copy", "new/dir", "new", {
+    "name": "dir2",
+    "overwrite": true
+  }],
+  ["dir.duplicate, "new/dir", "dir3"],
+  ["dir.move", "new/dir3", "new/dir", {
+    "overwrite": true
+  }]
+
+  ["dir.change", "new"],
+  ["=", "path", ["dir.path"]],
+  [".", "Changed dir: {path}"],
+  ["dir.change", ".."],
+
+  ["dir.remove", "new"]
 ]
 ```
 
