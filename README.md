@@ -1371,7 +1371,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 
   ["=", "size", ["volume.size"]],
   [".", "Size: {size}"],
-  ["=", "free", ["volume.free", ""/Volumes/ssd]],
+  ["=", "free", ["volume.free", "/Volumes/ssd"]],
   [".", "Free: {free}"],
 
   ["=", "list", ["volume.list"]],
@@ -1385,7 +1385,36 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Zip
 ```javascript
 [
-  [".", "in progress"]
+  ["zip.create", "file.zip", "./dir", {
+    "compress": 0.5
+  }],
+  ["zip.add", "file.zip", "file.txt"],
+  ["zip.remove", "file.zip", "file.txt"],
+  ["=", "list", ["zip.list", "file.zip"]],
+  [".", "{list}"],
+  ["=", "info", ["zip.info", "file.zip"]],
+  [".", "{info}"],
+  ["zip.extract", "file.zip", "./dir2"],
+
+  ["gzip.create", "file.gz", "file.txt"],
+  ["gzip.extract", "file.gz", "./dir3"],
+  ["=", "info", ["gzip.info", "file.gz"]],
+  [".", "{info}"],
+
+  ["tar.create", "file.tar", "./dir"],
+  ["tar.create", "file.tar.gz", "./dir"],
+  ["tar.add", "file.tar", "file.txt"],
+  ["tar.remove", "file.tar", "file.txt"],
+  ["=", "list", ["tar.list", "file.tar"]],
+  [".", "{list}"],
+  ["=", "info", ["tar.info", "file.tar"]],
+  [".", "{info}"],
+
+  ["=", "list", ["rar.list", "file.rar"]],
+  [".", "{list}"],
+  ["=", "info", ["rar.info", "file.rar"]],
+  [".", "{info}"],
+  ["rar.extract", "./file.rar", "./dir4"]
 ]
 ```
 
