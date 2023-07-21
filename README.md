@@ -1246,6 +1246,15 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     [".", "file not exists"]
   ]],
 
+  ["file.copy", "file.txt", "newfile.txt"],
+  ["file.duplicate, "file.txt"],
+  ["file.duplicate, "file.txt", "file3.txt"],
+  ["file.move", "file2.txt", "new/dir"],
+  ["file.move", "file3.txt", "new/dir", {
+    "name": "file2.txt",
+    "overwrite": true
+  }],
+
   ["file.remove", "file.txt"]
 ]
 ```
@@ -1294,10 +1303,11 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     "name": "dir2",
     "overwrite": true
   }],
-  ["dir.duplicate, "new/dir", "dir3"],
-  ["dir.move", "new/dir3", "new/dir", {
+  ["dir.duplicate, "new/dir"],
+  ["dir.duplicate, "new/dir", "dir4"],
+  ["dir.move", "new/dir4", "new/dir", {
     "overwrite": true
-  }]
+  }],
 
   ["dir.change", "new"],
   ["=", "path", ["dir.path"]],
