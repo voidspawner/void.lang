@@ -1303,8 +1303,8 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     "name": "dir2",
     "overwrite": true
   }],
-  ["dir.duplicate, "new/dir"],
-  ["dir.duplicate, "new/dir", "dir4"],
+  ["dir.duplicate", "new/dir"],
+  ["dir.duplicate", "new/dir", "dir4"],
   ["dir.move", "new/dir4", "new/dir", {
     "overwrite": true
   }],
