@@ -1361,7 +1361,24 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Volume
 ```javascript
 [
-  [".", "in progress"]
+  ["=", "current", ["volume.current"]],
+  [".", "{current}"],
+  ["volume.change", "/Volumes/ssd"],
+
+  ["=", "info", ["volume.info"]],
+  ["=", "info", ["volume.info", "/Volumes/flash"]],
+  [".", "Path: {info.path} | Name: {info.name} | Size: {info.size} | Free: {info.free} | Used: {info.used}"],
+
+  ["=", "size", ["volume.size"]],
+  [".", "Size: {size}"],
+  ["=", "free", ["volume.free", ""/Volumes/ssd]],
+  [".", "Free: {free}"],
+
+  ["=", "list", ["volume.list"]],
+  [".", "{list}"],
+
+  ["volume.rename", "/Volumes/flash", "/Volumes/backup"],
+  ["volume.eject", "/Volumes/ssd"]
 ]
 ```
 
