@@ -1473,9 +1473,37 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ### Cache
 ##### File
 ```javascript
-[
-  [".", "in progress"]
-]
+{
+  "cache": {
+    "file": "./cache",
+    "memory": "memory"
+  },
+  "run": [
+    ["=", "cache", ["cache.get", "file", "name", "default"]],
+    [".", "{cache}"],
+
+    ["cache.set", "file", "name", "value"],
+
+    ["=", "list", ["cache.list", "file"]],
+    [".", "{list}"],
+
+    ["=", "info", ["cache.info", "file", "name"]],
+    [".", "{info}"],
+
+    ["cache.remove", "file", "name"],
+    [cache.clear],
+
+    ["cache.set", "memory", "name", "value"],
+    ["cache.remove", "memory", "name"],
+
+    ["=", "cache.file.name", "value"],
+    ["-", "cache.file.name"],
+
+    ["=", "cache.memory.name", "value"],
+    [".", "{cache.memory.name}"],
+    ["-", "cache.memory.name"]
+  ]
+}
 ```
 
 ##### Memory
