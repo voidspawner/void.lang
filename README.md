@@ -1202,7 +1202,51 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### File
 ```javascript
 [
-  [".", "in progress"]
+  ["file.write", "./file.txt", "Text"],
+  ["file.write", "./file.txt", "Text", {
+    "append": true,
+    "lock": true,
+    "owner": "user",
+    "chmod": 777,
+    "date": {
+      "create": "2100/01/01",
+      "update": "2100/01/01"
+    },
+    "encode": "utf8"
+  }],
+  ["file.write", "./file.json", ["write array as JSON", 1, 2, 3]],
+  ["file.write", "./file.json.gz", ["write array as JSON and gzip", 1, 2, 3]],
+  ["file.write", "./file.csv", [["Write as CSV", 1, 2, 3], ["Text", 3, 4, 5]]],
+
+  ["=", "text", ["file.read", "file.txt"]],
+  ["=", "text", ["file.read", "file.txt"], {
+    "lock": true,
+    "encode", "utf8"
+  }],
+  ["=", "json", ["file.read", "file.json", {
+    "format": "json"
+  }]],
+  ["=", "json", ["file.read", "file.json.gz", {
+    "format": "auto"
+  }],
+
+  ["=", "info", ["file.info", "file.txt"]],
+  [".", "Size: {info.size} | Chmod: {info.chmod} | Owner: {info.owner} | Created: {info.created.date}"],
+  [".", "{info}"],
+  ["file.info", "file.txt", {
+    "chmod": 777,
+    "date": {
+      "create": "2100/01/01"
+    }
+  }],
+
+  ["?", [["file.exists", "file.txt"]], [
+    [".", "file exists"]
+  ], [
+    [".", "file not exists"]
+  ]],
+
+  ["file.remove", "file.txt"]
 ]
 ```
 
