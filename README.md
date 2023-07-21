@@ -1309,6 +1309,8 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     "overwrite": true
   }],
 
+  ["dir.rename", "new/dir", "dir5"],
+
   ["dir.change", "new"],
   ["=", "path", ["dir.path"]],
   [".", "Changed dir: {path}"],
@@ -1321,7 +1323,38 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Link
 ```javascript
 [
-  [".", "in progress"]
+  ["file.create", "file.txt", "text"],
+  ["dir.create", "./dir"],
+
+  ["link.create", "./file.txt", "./file2.txt"],
+  ["link.create", "./dir", "./dir2"],
+
+  ["=", "info", ["link.info", "file2.txt"],
+  [".", "{info}"],
+
+  ["=", "info", ["link.info", "dir2"],
+  [".", "{info}"],
+
+  ["link.info", "file2.txt", {
+    "owner": "user",
+    "chmod": 777
+  }],
+
+  ["?", [["link.exists", "file2.txt"]], [
+    [".", "link exists"]
+  ], [
+    [".", "link not exists"]
+  ]],
+
+  ["link.copy", "file2.txt", "./file3.txt"],
+  ["link.duplicate, "file2.txt"],
+  ["link.duplicate, "file2.txt", "file4.txt"],
+
+  ["link.rename", "./file2.txt", "file22.txt"],
+  ["link.move", "file22.txt", "./file2.txt"],
+
+  ["link.remove", "file2.txt"],
+  ["link.remove", "dir2"]
 ]
 ```
 
