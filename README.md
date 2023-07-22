@@ -223,7 +223,7 @@ Action name: "url"
 Action parameters: ["google.com", [
                      [".", "Response code: {code}"],
                      [".", "{text}"]
-                   ]]]
+                   ]]
 ```
 ```javascript
 [
