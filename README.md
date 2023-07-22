@@ -1434,7 +1434,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
       "name1": "value1",
       "name2": "value2"
     },
-    "coockie": {
+    "cookie": {
       "name1": {
         "text": "value1",
         "domain": "/",
@@ -1463,7 +1463,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Web
 ```javascript
 [
-  ["server.http", {
+  ["server.web", {
     "route": [
       ["/", "home"]
     ]
@@ -1471,10 +1471,28 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ```
 ```javascript
 [
-  ["server.http", {
+  ["server.web", {
     "route": [
       ["/", [
-        ["=", "response.text", "<h1>Text</h1>"]
+        ["=", "response.text", "<h1>Text</h1>"],
+        ["=", "response.code", 200],
+        ["response.redirect", "/article/permanent.redirect", true],
+        ["response.content", "<h1>text"</h1>],
+        ["response.code", 200],
+        ["response.header", "name1", "value1"],
+        ["response.header", {
+          "name1": "value1",
+          "name2": "value2"
+        }],
+        ["response.cookie", "name", "value", "1d", "/"],
+        ["response.cookie", {
+          "name1": {
+            "value": "value1",
+            "expire": "1d",
+            "domain": "/"
+          },
+          "name2": "value2"
+        }]
       ]]
     ]
   }]
