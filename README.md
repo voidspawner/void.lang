@@ -142,7 +142,7 @@
    alias void="python3 /path/to/python/void.py"
    ```
    ```console
-   void '[[".", "Hello World!"]]'
+   void myfirstapp.json
    ```
 
 ## How To Add Comments
