@@ -1604,12 +1604,12 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     ["cache.set", "memory", "name", "value"],
     ["cache.remove", "memory", "name"],
 
-    ["=", "cache.file.name", "value"],
-    ["-", "cache.file.name"],
+    ["=", "cache.file.data.name", "value"],
+    ["-", "cache.file.data.name"],
 
-    ["=", "cache.memory.name", "value"],
-    [".", "{cache.memory.name}"],
-    ["-", "cache.memory.name"]
+    ["=", "cache.memory.data.name", "value"],
+    [".", "{cache.memory.data.name}"],
+    ["-", "cache.memory.data.name"]
   ]
 }
 ```
@@ -1645,29 +1645,92 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ### UI
 ```javascript
 [
-  [".", "in progress"]
+  ["ui", [
+    ["title", "App Title"],
+    ["text", "Text", {
+      "size": 20,
+      "font": "Arial",
+      "bold": 300,
+      "color": "green"
+    }],
+    ["button", "Press", {
+      "size": 10,
+      "background": "blue",
+      "color": "white"
+    }, [
+    ]]
+  ]]
 ]
 ```
 
 ### DB
 ##### JSON
 ```javascript
-[
-  [".", "in progress"]
-]
+{
+  "db": {
+    "json1": {
+      "path": "./db.json"
+    }
+  },
+  "run": [
+    ["json.db.set", "json1", "data", [1, 2, 3]],
+    ["=", "value", ["json.db.get", "data.1"]],
+    [".", "{value}"],
+  
+    ["json.db.remove", "data"],
+  
+    ["=", "db.json1.data.name", {
+      "name1": [1, 2, 3],
+      "name2": "value2",
+      "name3": "value3",
+      "name4": 1,
+      "name5": [
+        {"a": 1, "b": 1},
+        {"a": 1, "b": 2},
+        {"a": 2, "b": 1},
+        {"a": 2, "b": 2},
+        {"a": 3, "b": 3}
+      ]
+    }],
+    ["=", "value", "{db.json1.data.name.name4}"],
+    [".", "{value}"],
+
+    ["-", "db.json1.data.name.name3"]
+  ]
+}
 ```
 
 ##### MySQL
 ```javascript
-[
-  [".", "in progress"]
-  ["sql.open"],
-  ["sql.close"],
-  ["sql.query"],
-  ["sql.list"],
-  ["sql.db.open"],
-  ["sql.fetch.one"],
-  ["sql.fetch.all"]
+{
+  "db": {
+    "sql1": {
+      "server": "local",
+      "user": "guest",
+      "password": null
+    }
+  },
+  "run": [
+    ["sql.open", "sql1"],
+    ["sql.open", "sql1", {
+      "server": "server.com",
+      "port": 3306,
+      "user": "backup",
+      "password": "HMB2vm2xjd",
+      "database": "db1"
+    }],
+    ["sql.query", "sql1", "SELECT * FROM table1"],
+    ["sql.list", "sql1", "table1"],
+    ["sql.db.open", "sql1", "db2"],
+  
+    ["=", "row", ["sql.fetch.one", "sql1", "table1"]],
+    [".", "{row}"],
+  
+    ["=", "list", ["sql.fetch.all", "sql1", "table1", ["[name]", "=", "value"], 10, 100]],
+    [".", "{list}"],
+  
+    ["sql.close", "database"]
+  ]
 ]
 ```
 
