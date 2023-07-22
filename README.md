@@ -139,7 +139,7 @@
 
    ##### Tip for *nix (add to ~/.bashrc | ~/.zshrc)
    ```console
-   alias void="python3 python/void.py"
+   alias void="python3 /path/to/python/void.py"
    ```
    ```console
    void '[[".", "Hello World!"]]'
