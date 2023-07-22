@@ -1617,8 +1617,29 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ### CLI
 ```javascript
 [
-  [".", "in progress"]
+  ["cli", {
+    "title": "App Title",
+    "help": true,
+    "command": [
+      ["get", "app.get", "Get data"],
+      ["set", "app.set", "Set data with params", [
+        ["text", "Text description, required", "text", true],
+        ["count", "Count, default: 1", "number", false, 1]
+      ]]
+    ]
+  }]
 ]
+```
+```javascript
+{
+  "cli": {
+    "title": "App Title",
+    "command": [
+      [null, "app.home", "Without command"],
+      ["get", "app.get", "Get data"]
+    ]
+  }
+}
 ```
 
 ### UI
