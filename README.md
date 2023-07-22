@@ -137,6 +137,12 @@
    python3 python/void.py '[[".", "Hello World!"]]'
    ```
 
+   ##### Tip for *nix (add to ~/.bashrc | ~/.zshrc)
+   ```console
+   alias void="python3 python/void.py"
+   void '[[".", "Hello World!"]]'
+   ```
+
 ## How To Add Comments
 All code is data. So just add the property "description", "//" and so on.
 ```javascript
