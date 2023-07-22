@@ -190,7 +190,7 @@ Changes are made every day. Later, a social network will be launched, the entire
 The code is presented as **action name** and **action parameters**.
 ```javascript
 [
-    [".", "Hello World!"]
+  [".", "Hello World!"]
 ]
 ```
 ```
@@ -200,7 +200,7 @@ Action parameters: ["Hello World!"]
 
 ```javascript
 [
-    ["=", "value", 1, "+", 1]
+  ["=", "value", 1, "+", 1]
 ]
 ```
 ```
@@ -210,32 +210,18 @@ Action parameters: ["value", 1, "+", 1]
 
 ```javascript
 [
-    ["url", "http://sitename.com", {
-      "post": {
-        "name1": "value1",
-        "name2": "value2"
-      },
-      "header": {
-        "header1": "value1"
-      }
-    }, [
-      [".", "OK : {code}"]
-    ]]
+  ["url", "google.com", [
+    [".", "Response code: {code}"],
+    [".", "{text}"]
+  ]]
 ]
 ```
 ```
 Action name: "url"
-Action parameters: ["http://sitename.com", {
-                     "post": {
-                       "name1": "value1",
-                       "name2": "value2"
-                     },
-                     "header": {
-                       "header1": "value1"
-                     }
-                   }, [
-                     [".", "OK : {code}"]
-                   ]]
+Action parameters: ["google.com", [
+                     [".", "Response code: {code}"],
+                     [".", "{text}"]
+                   ]]]
 ```
 ```javascript
 [
@@ -1421,7 +1407,55 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ### URL
 ```javascript
 [
-  [".", "in progress"]
+  ["=", "text", ["url", "http://google.com"]],
+  [".", "{text}"],
+
+  ["url", "google.com", [
+    [".", "Response code: {code}"],
+    [".", "{text}"]
+  ]],
+
+  ["url", "google.com", [
+    [".", "Response code: {code}"],
+    [".", "{text}"]
+  ], [
+    [".", "Error | Code: {code}"],
+    [".", "{response.code}"],
+    [".", "{response.text}"],
+    [".", "{response.header}"]
+  ]],
+
+  ["url", "site.com", {
+    "post": {
+      "name1": "value1",
+      "name2": "value2"
+    },
+    "header": {
+      "name1": "value1",
+      "name2": "value2"
+    },
+    "coockie": {
+      "name1": {
+        "text": "value1",
+        "domain": "/",
+        "expire": "10d"
+      },
+      "name2": "value2"
+    }
+  }, [
+    [".", "{response.text}"]
+  ]],
+
+  ["url", "site.com", {
+    "scheme": "https",
+    "path": ["user", "article"],
+    "get": {
+      "id": 1234
+    },
+    "method": "delete"
+  }, [
+    [".", "Article [https://site.com/user/article?id=1234] deleted"]
+  ]]
 ]
 ```
 
