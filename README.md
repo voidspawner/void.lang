@@ -1463,17 +1463,74 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Web
 ```javascript
 [
-  [".", "in progress"]
-  ["web.content"],
-  ["web.redirect"]
+  ["server.http", {
+    "route": [
+      ["/", "home"]
+    ]
+  }]
+```
+```javascript
+[
+  ["server.http", {
+    "route": [
+      ["/", [
+        ["=", "response.text", "<h1>Text</h1>"]
+      ]]
+    ]
+  }]
 ]
 ```
-
+```javascript
+{
+  "web": {
+    "host": "domain.com",
+    "port": 443,
+    "https": true,
+    "ssl": {
+      "certificate": "...",
+      "protocol": "tls"
+    },
+    "route": [
+      ["/", "home"],
+      ["/article", "delete", "article.delete"],
+      ["/article", "post", "article.send"]
+    ]
+  }
+}
+```
 ##### API
 ```javascript
 [
-  [".", "in progress"]
+  ["server.api", {
+    "host": "api.domain.com",
+    "port": 8080,
+    "format": "json",
+    "pretty": false,
+    "route": [
+      ["/", "api.list"],
+      ["/article", "api.article.list"],
+      ["/article", {
+        "path": [
+          ["id", "int", true]
+        ]
+      }, "api.article.get"],
+      ["/article/send", "post", "api.article.send"],
+      ["/article/delete", "api.article.delete"]
+    ]
+  }]
 ]
+```
+```javascript
+{
+  "api": {
+    "host": "api.domain.com",
+    "port": 8080,
+    "route": [
+      ["/", "api.list"],
+      ["/article", "api.article.list"]
+    ]
+  }
+}
 ```
 
 ##### Socket
@@ -1505,7 +1562,6 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ```
 
 ### Cache
-##### File
 ```javascript
 {
   "cache": {
@@ -1538,13 +1594,6 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     ["-", "cache.memory.name"]
   ]
 }
-```
-
-##### Memory
-```javascript
-[
-  [".", "in progress"]
-]
 ```
 
 ### CLI
