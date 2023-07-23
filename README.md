@@ -189,7 +189,7 @@ Changes are made every day. Later, a social network will be launched, the entire
 | <p align="center">⏳</p> | void.blade | void.ai generated social media content | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">⏳</p> | void.ai.movie | Movie / anime / animation constructor with void.ai | <p align="center">1</p> | <p align="center">2025</p> |
 | <p align="center">⏳</p> | void.booster | Space rocket to deliver cargo<br>to orbit and other planets, operated by void.ai | <p align="center">1</p> | <p align="center">2040</p> |
-| <p align="center">⏳</p> | void.spawner | ??? | <p align="center">1</p> | <p align="center">2100</p> |
+| <p align="center">⏳</p> | void.spawner | Description will be available on void.web / void.app | <p align="center">1</p> | <p align="center">2100</p> |
 
 ## Actions
 
