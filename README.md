@@ -137,7 +137,7 @@
    python3 python/void.py '[[".", "Hello World!"]]'
    ```
 
-   ##### Tip for *nix (add to ~/.bashrc | ~/.zshrc | ~/.bash_profile)
+   ##### Tip for *nix (add to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile)
    ```console
    alias void="python3 /path/to/python/void.py"
    ```
