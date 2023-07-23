@@ -184,7 +184,7 @@ Changes are made every day. Later, a social network will be launched, the entire
 | <p align="center">▶️</p> | void.ai | Multipurpose AI | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">▶️</p> | void.voids | Digital currency | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">⏳</p> | void.lang.wiki | void.lang description on Wikipedia | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">⏳</p> | void.lang.cs | void.lang in C# language | <p align="center">1</p> | <p align="center">2024</p> |
+| <p align="center">⏳</p> | void.lang.csharp | void.lang in C# language | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">⏳</p> | void.parts | Robot parts and components | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">⏳</p> | void.blade | void.ai generated social media content | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">⏳</p> | void.ai.movie | Movie / anime / animation constructor with void.ai | <p align="center">1</p> | <p align="center">2025</p> |
