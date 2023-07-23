@@ -1616,7 +1616,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     [".", "{info}"],
 
     ["cache.remove", "file", "name"],
-    [cache.clear],
+    ["cache.clear"],
 
     ["cache.set", "memory", "name", "value"],
     ["cache.remove", "memory", "name"],
