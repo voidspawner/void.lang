@@ -648,7 +648,10 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ##### Shell
 ```javascript
 [
-  ["shell", "whoami", true],
+  ["shell", "mkdir", "./site"],
+  ["shell", "wget", ["mirror", "p", "convert-links", ["P", "./site"], ["http://site.com"]]],
+  [".", "Run command with output"],
+  ["shell", "whoami", null, true],
   ["=", "name", ["shell", "whoami"]],
   [".", "{name}"]
 ]
