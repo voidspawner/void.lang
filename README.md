@@ -662,7 +662,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 ##### Code / Eval
 ```javascript
 [
-  ["code", "print('print() in Python')"]
+  ["code", "print('call print() function in Python')"]
 ]
 ```
 
