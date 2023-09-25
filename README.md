@@ -173,18 +173,16 @@ Changes are made every day. Later, a social network will be launched, the entire
 | <p align="center">✅</p> | void.web | Social web application | <p align="center">Beta</p> | <p align="center">2022</p> |
 | <p align="center">✅</p> | void.lang.github | void.lang description on GitHub | <p align="center">1</p> | <p align="center">Jul 2023</p> |
 | <p align="center">✅</p> | void.app | V O I D spawner is the social mobile and desktop application | <p align="center">Beta</p> | <p align="center">Sep 2023</p> |
-| <p align="center">✅</p> | void.game | void.game as part of V O I D spawner | <p align="center">Beta</p> | <p align="center">Sep 2023</p> |
+| <p align="center">✅</p> | void.game | Game constructor as part of V O I D spawner | <p align="center">Beta</p> | <p align="center">Sep 2023</p> |
 | <p align="center">✅</p> | [void.format](https://github.com/voidspawner/void.format) | void.format description on GitHub | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.app | V O I D spawner is the social mobile and desktop application | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.game | void.game as part of V O I D spawner | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.web | Social web application | <p align="center">1</p> | <p align="center">Late 2023</p> |
+| <p align="center">▶️</p> | void.app | V O I D spawner is the social mobile, web and desktop application | <p align="center">1</p> | <p align="center">Late 2023</p> |
+| <p align="center">▶️</p> | void.game | Game constructor as part of V O I D spawner | <p align="center">1</p> | <p align="center">Late 2023</p> |
 | <p align="center">▶️</p> | void.lang.python | void.lang in Python language | <p align="center">1</p> | <p align="center">Late 2023</p> |
 | <p align="center">▶️</p> | void.lang.js | void.lang in JavaScript language | <p align="center">1</p> | <p align="center">Late 2023</p> |
 | <p align="center">▶️</p> | void.lang.swift | void.lang in Swift language | <p align="center">1</p> | <p align="center">Late 2023</p> |
 | <p align="center">▶️</p> | void.lang.java | void.lang in Java language | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">▶️</p> | void.lang.php | void.lang in PHP language | <p align="center">1</p> | <p align="center">Late 2023</p> |
 | <p align="center">▶️</p> | void.lang.help | void.lang description HTML+JSON file | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.game | Games constructor | <p align="center">1</p> | <p align="center">Late 2023</p> |
 | <p align="center">▶️</p> | void.ai | Multipurpose AI | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">▶️</p> | void.voids | Digital currency | <p align="center">1</p> | <p align="center">2024</p> |
 | <p align="center">⏳</p> | void.lang.wiki | void.lang description on Wikipedia | <p align="center">1</p> | <p align="center">Late 2023</p> |
