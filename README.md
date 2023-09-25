@@ -2092,3 +2092,6 @@ To use **void.ai**, you will need to pay for a **subscription** (limited number 
 But the fact is that the currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
 
 Will be available in 2024.
+
+## V O I D format
+**[⌜ V O I D format ⌟](https://github.com/voidspawner/void.format)** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by humans and by programs.
