@@ -161,38 +161,6 @@ All code is data. So just add the property "description", "//" and so on.
 }
 ```
 
-## When Will It Be Available
-The language was created for my own needs, so as not to write the same code repeatedly. Several versions for PHP and Python languages were created. Now I bring the code to the form that can be published. There are plans to integrate **Social Networks and Trading Platforms API, convert Videos, Images and Music, create Games and work with AI**. And we need to find people who can make it happen.
-
-Changes are made every day. Later, a social network will be launched, the entire work process will be transferred there.
-
-| Progress | Name | Description | Version | Date |
-| --- | --- | --- | --- | --- |
-| <p align="center">✅</p> | void.lang.python | void.lang in Python language | <p align="center">Beta | <p align="center">2022</p> |
-| <p align="center">✅</p> | void.lang.php | void.lang in PHP language | <p align="center">Beta</p> | <p align="center">2022</p> |
-| <p align="center">✅</p> | void.web | Social web application | <p align="center">Beta</p> | <p align="center">2022</p> |
-| <p align="center">✅</p> | void.lang.github | void.lang description on GitHub | <p align="center">1</p> | <p align="center">Jul 2023</p> |
-| <p align="center">✅</p> | void.app | V O I D spawner is the social mobile and desktop application | <p align="center">Beta</p> | <p align="center">Sep 2023</p> |
-| <p align="center">✅</p> | void.game | Game constructor as part of V O I D spawner | <p align="center">Beta</p> | <p align="center">Sep 2023</p> |
-| <p align="center">✅</p> | [void.format](https://github.com/voidspawner/void.format) | void.format description on GitHub | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.app | V O I D spawner is the social mobile, web and desktop application | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.game | Game constructor as part of V O I D spawner | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.lang.python | void.lang in Python language | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.lang.js | void.lang in JavaScript language | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.lang.swift | void.lang in Swift language | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.lang.java | void.lang in Java language | <p align="center">1</p> | <p align="center">2024</p> |
-| <p align="center">▶️</p> | void.lang.php | void.lang in PHP language | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.lang.help | void.lang description HTML+JSON file | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">▶️</p> | void.ai | Multipurpose AI | <p align="center">1</p> | <p align="center">2024</p> |
-| <p align="center">▶️</p> | void.voids | Digital currency | <p align="center">1</p> | <p align="center">2024</p> |
-| <p align="center">⏳</p> | void.lang.wiki | void.lang description on Wikipedia | <p align="center">1</p> | <p align="center">Late 2023</p> |
-| <p align="center">⏳</p> | void.lang.csharp | void.lang in C# language | <p align="center">1</p> | <p align="center">2024</p> |
-| <p align="center">⏳</p> | void.parts | Robot parts and components | <p align="center">1</p> | <p align="center">2024</p> |
-| <p align="center">⏳</p> | void.blade | void.ai generated social media content | <p align="center">1</p> | <p align="center">2024</p> |
-| <p align="center">⏳</p> | void.ai.movie | Movie・anime・animation constructor with void.ai | <p align="center">1</p> | <p align="center">2025</p> |
-| <p align="center">⏳</p> | void.booster | Space rocket to deliver cargo<br>to orbit and other planets, operated by void.ai | <p align="center">1</p> | <p align="center">2040</p> |
-| <p align="center">⏳</p> | void.spawner | Description will be available on<br>void.web・void.app | <p align="center">1</p> | <p align="center">2100</p> |
-
 ## Actions
 
 | <p align="center">[Value](#value)</p> | <p align="center">[Control](#control)</p> | <p align="center">[Action](#action)</p> | <p align="center">[Math](#math)</p> | <p align="center">[Text](#text)</p> | <p align="center">[Array](#array)</p> | <p align="center">[Time](#time)</p> |
