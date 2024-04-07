@@ -14,7 +14,7 @@
 - **Java** ⌜Android App・Linux App・Windows App・Web Server・API Server・Game Native⌟
 - **C#** ⌜Windows App・Web Server・API Server・Game Native⌟
 
-## V O I D spawner game 
+## V O I D game 
 
 This is a compiled game/application for rapidly creating games/applications in **V O I D lang**. The game/application will use multiple game engines:
 
