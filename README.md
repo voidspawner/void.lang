@@ -552,7 +552,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 }
 ```
 
-##### Print / Println / Echo
+##### Print
 ```javascript
 [
   ["=", "---", "text"],
