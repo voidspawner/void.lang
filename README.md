@@ -1951,11 +1951,11 @@ To use **V O I D ai** and generate **images・videos・texts・assets** you will
 Will be available in 2024.
 
 ## V O I D voids
-Digital currency used in the V O I D ecosystem.
+Digital currency used in the **V O I D ecosystem**.
 
 - Name ```voids```
 - Symbol ```⦵```
-- Exchange rate ```⦵ 1``` = ```$ 1``` = ```1 USD₮```
+- Exchange rate ```⦵ 1``` = ```$ 1``` = ```USD₮ 1```
 
 The currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
 
