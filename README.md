@@ -1946,9 +1946,18 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ```
 
 ## V O I D ai
-To use **V O I D ai** you will need to **pay** with **⦵ voids** digital currency.
+To use **V O I D ai** and generate **images・videos・texts・assets** you will need to **pay** with **⦵ voids** digital currency.
 
-But the fact is that the currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
+Will be available in 2024.
+
+## V O I D voids
+Digital currency used in the V O I D ecosystem.
+
+- Name ```voids```
+- Symbol ```⦵```
+- Exchange rate ```⦵ 1``` = ```$ 1``` = ```1 USD₮```
+
+The currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
 
 Will be available in 2024.
 
