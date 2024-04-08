@@ -41,10 +41,10 @@ This is a compiled game/application for rapidly creating games/applications in *
 ```javascript
 {
   "run": [
-    [".", "{void.text.hello}!"]
+    [".", "{text.hello}!"]
   ],
   "text": {
-    "void.text.hello": {
+    "hello": {
       "en": "Hello World",
       "zh": "你好世界",
       "fr": "Bonjour le monde",
@@ -101,9 +101,9 @@ This is a compiled game/application for rapidly creating games/applications in *
   "action": {
     "web": {
       "home": [
-        ["ui.title", "{void.text.hello}"],
+        ["ui.title", "{text.hello}"],
         ["ui.content", [
-          ["button", "{void.text.hello}", [
+          ["button", "{text.hello}", [
             ["go", "/hello"]
           ], {
             "color": "white",
@@ -113,9 +113,9 @@ This is a compiled game/application for rapidly creating games/applications in *
         ]]
       ],
       "hello": [
-        ["ui.title", "{void.text.hello}"],
+        ["ui.title", "{text.hello}"],
         ["ui.content", [
-          ["text", "{void.text.hello}", {
+          ["text", "{text.hello}", {
             "color": "white",
             "background": "green",
             "size": 20
@@ -125,7 +125,7 @@ This is a compiled game/application for rapidly creating games/applications in *
     }
   },
   "text": {
-    "void.text.hello": "Hello World!"
+    "hello": "Hello World!"
   }
 }
 ```
