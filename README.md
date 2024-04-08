@@ -159,6 +159,7 @@ All code is data. So just add the property "description", "//" and so on.
 {
   "description": "App Description. But you can write more in version",
   "version": {
+    "description": "Comment",
     "number": 1,
     "name": "First App"
   },
