@@ -175,7 +175,7 @@ All code is data. So just add the property "description", "//" and so on.
 | <p align="center">[Value](#value)</p> | <p align="center">[Control](#control)</p> | <p align="center">[Action](#action)</p> | <p align="center">[Math](#math)</p> | <p align="center">[Text](#text)</p> | <p align="center">[Array](#array)</p> | <p align="center">[Time](#time)</p> |
 | --- | --- | --- | --- | --- | --- | --- |
 | <p align="center">[Format](#format)</p> | <p align="center">[Crypto](#crypto)</p> | <p align="center">[File](#file)</p> | <p align="center">[URL](#url)</p> | <p align="center">[Server](#server)</p> | <p align="center">[Cache](#cache)</p> | <p align="center">[CLI](#cli)</p> |
-| <p align="center">[UI](#ui)</p> | <p align="center">[DB](#db)</p> | <p align="center">[Device](#device)</p> | <p align="center">[Social](#social)</p> | <p align="center">[Trade](#trade)</p> | <p align="center">[Game](#game)</p> | <p align="center">[AI](#ai)</p> |
+| <p align="center">[UI](#ui)</p> | <p align="center">[DB](#db)</p> | <p align="center">[Device](#device)</p> | <p align="center">[Social](#social)</p> | <p align="center">[Trade](#trade)</p> | <p align="center">[Game](#game)</p> | <p align="center">[AI](#v-o-i-d-ai)</p> |
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
