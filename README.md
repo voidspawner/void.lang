@@ -1946,7 +1946,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ```
 
 ## V O I D ai
-To use **V O I D ai** and generate **images・videos・texts・assets** you will need to **pay** with **⦵ voids** digital currency.
+Generate **images・videos・texts・assets**. To use **V O I D ai** you will need to **pay** with **⦵ voids** digital currency.
 
 Will be available in 2024.
 
