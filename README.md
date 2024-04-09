@@ -3,16 +3,26 @@
 ## About
 **⌜ V O I D lang ⌟** is the language for rapidly creating applications in the **JSON format**. It is used as a replacement for both the standard Bash/CMD/etc. languages and for writing **UI Applications**, **Servers** and **Games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one JSON file**. Since the **code is presented as data**, applications can be easily generated with **AI**, updated, installed and launched remotely.
 
+**The project is in the process of development. Code and description are subject to change and inconsistency.**
+
 <img src="https://i.imgur.com/kx2UcUh.jpg" width="100%">
 
 ## Preinstalled Language
 
-- **Python** ⌜CLI App・Web Server・API Server
-- **PHP** ⌜CLI App・Web Server・API Server
-- **JS** ⌜Web App・Web Server (with NodeJS)・API Server (with NodeJS)・CLI App (with NodeJS)⌟
+- **Python** ⌜CLI App・Web Server・API Server⌟
+- **PHP** ⌜CLI App・Web Server・API Server⌟
+- **JavaScript** ⌜Web App・Web Server (with NodeJS)・API Server (with NodeJS)・CLI App (with NodeJS)⌟
 - **Swift** ⌜macOS App・iOS App・iPadOS App・watchOS App・tvOS App・Linux App・Windows App・Web Server・API Server・Game Native⌟
 - **Java** ⌜Android App・Linux App・Windows App・Web Server・API Server・Game Native⌟
 - **C#** ⌜Windows App・Web Server・API Server・Game Native⌟
+
+## V O I D game 
+
+This is a compiled game/application for rapidly creating games/applications in **V O I D lang**. The game/application will use multiple game engines:
+
+- **Godot Engine**
+- **Unreal 5 Engine**
+- **V O I D engine**
 
 ## Example
 ##### Simple
@@ -33,10 +43,10 @@
 ```javascript
 {
   "run": [
-    [".", "{void.text.hello}!"]
+    [".", "{text.hello}!"]
   ],
   "text": {
-    "void.text.hello": {
+    "hello": {
       "en": "Hello World",
       "zh": "你好世界",
       "fr": "Bonjour le monde",
@@ -93,9 +103,9 @@
   "action": {
     "web": {
       "home": [
-        ["ui.title", "{void.text.hello}"],
+        ["ui.title", "{text.hello}"],
         ["ui.content", [
-          ["button", "{void.text.hello}", [
+          ["button", "{text.hello}", [
             ["go", "/hello"]
           ], {
             "color": "white",
@@ -105,9 +115,9 @@
         ]]
       ],
       "hello": [
-        ["ui.title", "{void.text.hello}"],
+        ["ui.title", "{text.hello}"],
         ["ui.content", [
-          ["text", "{void.text.hello}", {
+          ["text", "{text.hello}", {
             "color": "white",
             "background": "green",
             "size": 20
@@ -117,7 +127,7 @@
     }
   },
   "text": {
-    "void.text.hello": "Hello World!"
+    "hello": "Hello World!"
   }
 }
 ```
@@ -151,6 +161,7 @@ All code is data. So just add the property "description", "//" and so on.
 {
   "description": "App Description. But you can write more in version",
   "version": {
+    "description": "Comment",
     "number": 1,
     "name": "First App"
   },
@@ -166,7 +177,7 @@ All code is data. So just add the property "description", "//" and so on.
 | <p align="center">[Value](#value)</p> | <p align="center">[Control](#control)</p> | <p align="center">[Action](#action)</p> | <p align="center">[Math](#math)</p> | <p align="center">[Text](#text)</p> | <p align="center">[Array](#array)</p> | <p align="center">[Time](#time)</p> |
 | --- | --- | --- | --- | --- | --- | --- |
 | <p align="center">[Format](#format)</p> | <p align="center">[Crypto](#crypto)</p> | <p align="center">[File](#file)</p> | <p align="center">[URL](#url)</p> | <p align="center">[Server](#server)</p> | <p align="center">[Cache](#cache)</p> | <p align="center">[CLI](#cli)</p> |
-| <p align="center">[UI](#ui)</p> | <p align="center">[DB](#db)</p> | <p align="center">[Device](#device)</p> | <p align="center">[Social](#social)</p> | <p align="center">[Trade](#trade)</p> | <p align="center">[Game](#game)</p> | <p align="center">[AI](#ai)</p> |
+| <p align="center">[UI](#ui)</p> | <p align="center">[DB](#db)</p> | <p align="center">[Device](#device)</p> | <p align="center">[Social](#social)</p> | <p align="center">[Trade](#trade)</p> | <p align="center">[Game](#game)</p> | <p align="center">[AI](#v-o-i-d-ai)</p> |
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
@@ -544,7 +555,7 @@ The types are similar to JSON types. Minor changes only in the names. **Text** i
 }
 ```
 
-##### Print / Println / Echo
+##### Print
 ```javascript
 [
   ["=", "---", "text"],
@@ -1106,7 +1117,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Image
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"],
+  [".", "in progress : will be available in late 2024"],
 
   ["convert", "./image.jpg", "./image.png"],
   ["convert", "./image.png", "./image.jpg", {
@@ -1132,14 +1143,14 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Video
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
 ##### Sound
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
@@ -1547,28 +1558,28 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Socket
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
 ##### Mail
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
 ##### Cloud
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
 ##### Game
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
@@ -1730,7 +1741,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ### Device
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
@@ -1738,7 +1749,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### YouTube
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"],
+  [".", "in progress : will be available in late 2024"],
 
   ["youtube.download", "https://www.youtube.com/watch?v=y6120QOlsfU", "./", 720],
   ["youtube.download", "https://www.youtube.com/watch?v=y6120QOlsfU", "./", 1080],
@@ -1777,14 +1788,14 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### TikTok
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
-##### Twitter
+##### X
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 
   ["twitter.send", "New tweet"],
   ["twitter.send", "New tweet", "https://twitter.com/ABCDEF/status/ABCDEF"],
@@ -1809,42 +1820,42 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Facebook
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
 ##### Instagram
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
 ##### Weibo
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
 ##### Telegram
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
 ##### WhatsApp
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
 ##### WeChat
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"]
+  [".", "in progress : will be available in late 2024"]
 ]
 ```
 
@@ -1852,7 +1863,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Yahoo! Finance
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"],
+  [".", "in progress : will be available in late 2024"],
 
   [".", "Gathering tickers by 3 lettters"],
   ["=", "tickers", ["yahoo.tickers", 3]],
@@ -1878,7 +1889,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Interactive Brokers
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"],
+  [".", "in progress : will be available in late 2024"],
 
   ["=", "tickers", ["ib.tickers"]],
   [".", "{tickers}"],
@@ -1911,7 +1922,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ##### Binance
 ```javascript
 [
-  [".", "in progress : will be available in late 2023"],
+  [".", "in progress : will be available in late 2024"],
 
   ["=", "coins", ["binance.coins", 3]],
   [".", "{coins}"],
@@ -1936,132 +1947,21 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ]
 ```
 
-### Game
-##### Visual Novel
-```javascript
-[
-  [".", "in progress : will be available in late 2023"]
-]
-```
+## V O I D ai
+Generate **images・videos・texts・assets**. To use **V O I D ai** you will need to **pay** with **⦵ voids** digital currency.
 
-##### RPG
-```javascript
-[
-  [".", "in progress : will be available in 2024"]
-]
-```
+Will be available in 2024.
 
-##### Platformer
-```javascript
-[
-  [".", "in progress : will be available in 2024"]
-]
-```
+## V O I D voids
+Digital currency used in the **V O I D ecosystem**.
 
-##### Shooter
-```javascript
-[
-  [".", "in progress : will be available in 2024"]
-]
-```
+- Name ```voids```
+- Symbol ```⦵```
+- Exchange rate ```⦵ 1``` = ```$ 1``` = ```USD₮ 1```
 
-##### 3D
-```javascript
-[
-  [".", "in progress : will be available in 2024"]
-]
-```
-
-##### 2D
-```javascript
-[
-  [".", "in progress : will be available in 2024"]
-]
-```
-
-##### 2.5D
-```javascript
-[
-  [".", "in progress : will be available in 2024"]
-]
-```
-
-### AI
-##### Data
-```javascript
-[
-   [".", "in progress : will be available in 2024"]
-]
-```
-
-##### Voice
-```javascript
-[
-  [".", "in progress : will be available in 2024"]
-]
-```
-
-##### Image
-```javascript
-[
-  [".", "in progress : will be available in 2024"]
-]
-```
-
-##### Video
-```javascript
-[
-  [".", "in progress : will be available in 2025"]
-]
-```
-
-##### Sound
-```javascript
-[
-  [".", "in progress : will be available in 2025"]
-]
-```
-
-##### Music
-```javascript
-[
-  [".", "in progress : will be available in 2025"]
-]
-```
-
-##### Movie
-```javascript
-[
-  [".", "in progress : will be available in 2025"]
-]
-```
-
-##### Anime
-```javascript
-[
-  [".", "in progress : will be available in 2025"]
-]
-```
-
-##### Animation
-```javascript
-[
-  [".", "in progress : will be available in 2025"]
-]
-```
-##### Landscape / Object / Furniture / Human / Animal / Plant
-```javascript
-[
-  [".", "in progress : will be available in 2025"]
-]
-```
-
-## AI
-To use **void.ai**, you will need to pay for a **subscription** (limited number of uses per day) or **pay** with voids digital currency.
-
-But the fact is that the currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
+The currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
 
 Will be available in 2024.
 
 ## V O I D format
-**[⌜ V O I D format ⌟](https://github.com/voidspawner/void.format)** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by humans and by programs.
+**[⌜ V O I D format ⌟](https://github.com/voidspawner/void.format)** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by human and by program.
