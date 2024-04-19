@@ -2017,35 +2017,35 @@ Utilizes one the game engine to create 2D and 3D applications and games.
 
 #### Say text
 ```javascript
-["vn.say", "Text"]
+["vn.say", null, "Text"]
 ```
 #### Character say
 ```javascript
-["vn.character.say", "character name", "Text"]
+["vn.say", "character name", "Text"]
 ```
 #### Character come
 ```javascript
-["vn.character.come", "character name", "left", "fade"]
+["vn.come", "character name", "left", "fade"]
 ```
 #### Character leave
 ```javascript
-["vn.character.leave", "character name", "slide left"]
+["vn.leave", "character name", "slide left"]
 ```
 #### Character pose
 ```javascript
-["vn.character.pose", "character name", "shrug"]
+["vn.pose", "character name", "shrug"]
 ```
 #### Character emotion
 ```javascript
-["vn.character.emotion", "character name", "surprise", "fade"]
+["vn.emotion", "character name", "surprise", "fade"]
 ```
 #### Character outfit
 ```javascript
-["vn.character.outfit", "character name", "hat", "butterfly tie", "tuxedo"]
+["vn.outfit", "character name", ["hat", "butterfly tie", "tuxedo"], "fade"]
 ```
 #### Character effect
 ```javascript
-["vn.character.effect", "character name", "shake"]
+["vn.effect", "character name", "shake"]
 ```
 #### Character
 ```javascript
