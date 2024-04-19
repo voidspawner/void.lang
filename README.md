@@ -1949,6 +1949,150 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 
 ## V O I D engine
 
+#### Background
+```javascript
+["bg", "image.webp"],
+["bg", "sky", "fade"]
+```
+
+#### Background animation
+```javascript
+["bg.animation", "sakura leaves", "fade"],
+["bg.animation.speed", 1.2],
+["bg.animation.rotate", 10]
+```
+
+#### Effect
+```javascript
+["effect", {
+  "name": "speed fade",
+  "effect": "fade",
+  "speed": 2.1
+}]
+```
+
+#### Music
+```javascript
+["music", "chillout.mp3"],
+["music", "chillout"],
+["music.play"],
+["music.stop", "fade"],
+["music.pause"]
+```
+
+#### Sound
+```javascript
+["sound", "chillout.mp3"],
+["sound", "chillout"],
+["sound.play"],
+["sound.stop", "fade"],
+["sound.pause"]
+```
+
+#### Volume
+```javascript
+["volume", 0.9],
+["volume", "90%"],
+["music.volume", "10%"],
+["music.volume", 0.1],
+["sound.volume", "30%"],
+["sound.volume", 0.3]
+```
+
+### Visual Novel
+
+#### Say text
+```javascript
+["vn.say", "Text"]
+```
+#### Character say
+```javascript
+["vn.character.say", "character name", "Text"]
+```
+#### Character come
+```javascript
+["vn.character.come", "character name", "left", "fade"]
+```
+#### Character leave
+```javascript
+["vn.character.leave", "character name", "slide left"]
+```
+#### Character pose
+```javascript
+["vn.character.pose", "character name", "shrug"]
+```
+#### Character emotion
+```javascript
+["vn.character.emotion", "character name", "surprise", "fade"]
+```
+#### Character outfit
+```javascript
+["vn.character.outfit", "character name", "hat", "butterfly tie", "tuxedo"]
+```
+#### Character effect
+```javascript
+["vn.character.effect", "character name", "shake"]
+```
+#### Character
+```javascript
+["vn.character", {
+  "name": "character name",
+  "image": {
+    "normal": "char_normal",
+    "surprise": "char_normal",
+    "laugh": "char_laugh"
+  },
+  "pose": {
+    "normal": "char_normal",
+    "shrug": "char_shrug"
+  },
+  "emotion": {
+    "normal": "char_emotion_normal",
+    "surprise": "char_emotion_surprise",
+    "laugh": "char_emotion_laugh"
+  },
+  "outfit": {
+    "hat": {
+       "pose": "normal",
+       "image": "hat",
+       "position": [30, 20],
+       "scale": 0.8,
+       "rotate": 20
+    }
+  }
+}]
+```
+#### Textbar
+```javascript
+["vn.bar", {
+  "image": "bar",
+  "position": {
+    "bottom": 100,
+    "left": 0,
+    "right": 0,
+    "height": 100,
+    "aspect": "fill"
+  },
+  "text": {
+    "left": 10,
+    "right": 10,
+    "top": 20,
+    "bottom": 20,
+    "font": "regular",
+    "size": 12,
+    "color": white,
+    "autoscroll": true
+  },
+  "button": {
+    "save": {},
+    "load": {},
+    "autoscroll": {}
+    "skip": {}
+    "exit": {}
+  }
+}]
+```
+
 ### V O I D engine godot
 
 ### V O I D engine unreal
