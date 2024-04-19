@@ -1948,6 +1948,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ```
 
 ## V O I D engine
+Utilizes one the game engine to create 2D and 3D applications and games.
 
 #### Background
 ```javascript
@@ -2010,6 +2011,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 #### Window Alert
 
 #### Fullscreen
+
 
 ### Visual Novel
 
@@ -2128,12 +2130,14 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 
 ### 3D
 
-### V O I D engine godot
+## V O I D engine godot
+Utilizes the **Godot Engine** free game engine to create 2D and 3D applications and games.
 
-### V O I D engine unreal
+## V O I D engine unreal
+Utilizes the **Unreal Engine 5.4** commercial game engine to create 2D and 3D applications and games.
 
 ## V O I D ai
-Generate **images・videos・texts・assets**. To use **V O I D ai** you will need to **pay** with **⦵ voids** digital currency.
+Generate **images・videos・texts・assets**. A limited number of uses are available for free. To use extra **V O I D ai** you can **pay** with **⦵ voids** digital currency.
 
 Will be available in 2024.
 
@@ -2146,7 +2150,8 @@ Digital currency used in the **V O I D ecosystem**.
 
 The currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
 
-Will be available in 2024.
-
 ## V O I D format
 **[⌜ V O I D format ⌟](https://github.com/voidspawner/void.format)** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by human and by program.
+
+## V O I D os
+**[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create games and applications.
