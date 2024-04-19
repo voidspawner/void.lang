@@ -18,7 +18,7 @@
 
 ## V O I D game 
 
-This is a compiled game/application for rapidly creating games/applications in **V O I D lang**. It will use multiple game engines:
+This is a compiled game for rapidly creating games and applications in **V O I D lang**. It will use multiple game engines:
 
 - **Godot Engine**
 - **Unreal 5 Engine**
@@ -141,6 +141,21 @@ This is a compiled game/application for rapidly creating games/applications in *
    ```
    ```console
    void myfirstapp.json
+   ```
+
+   ##### Run with game engine
+   ```console
+   void.exe game.json
+   ```
+
+   ##### The archive contains run.json and all game files
+   ```console
+   void.exe game.zip
+   ```
+
+   ##### The execution directory contains run.json and all game files or contains run.zip file
+   ```console
+   void.exe
    ```
 
 ## How To Add Comments
