@@ -2084,11 +2084,26 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     "autoscroll": true
   },
   "button": {
-    "save": {},
-    "load": {},
-    "autoscroll": {}
-    "skip": {}
-    "exit": {}
+    "save": {
+      "image": "icon_save",
+      "position": [100, 20]
+    },
+    "load": {
+      "image": "icon_load",
+      "position": [140, 20]
+    },
+    "autoscroll": {
+      "image": "icon_autoscroll",
+      "position": [180, 20]
+    }
+    "skip": {
+      "image": "icon_skip",
+      "position": [220, 20]
+    }
+    "exit": {
+      "image": "icon_exit",
+      "position": [220, 20]
+    }
   }
 }]
 ```
