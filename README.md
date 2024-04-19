@@ -145,9 +145,12 @@ This is a compiled game for rapidly creating games and applications in **V O I D
 
 ## How To Use Game Engine
 
-1. Buy **V O I D spawner** game on **Steam**.
-2. Create your first app in JSON file
-3. Launch app with **void.lang**
+1. Buy **V O I D spawner** game on **Steam**
+2. Create your first game in **run.json** file
+3. Copy the **void.exe** file from the **V O I D spawner** game
+4. Place the **run.json** file in the same directory as **void.exe**
+5. Sell your game or share with friends
+6. Profit
 
    ##### Run with game engine
    ```console
