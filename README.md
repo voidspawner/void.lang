@@ -130,7 +130,7 @@ This is a compiled game/application for rapidly creating games/applications in *
    php php/void.php myfirstapp.json
    ```
 
-   ##### Or Even Without JSON File At All
+   ##### Or even without JSON file at all
    ```console
    python python/void.py '[[".", "Hi World!"]]'
    ```
