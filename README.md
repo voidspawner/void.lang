@@ -147,10 +147,8 @@ This is a compiled game for rapidly creating games and applications in **V O I D
 
 1. Buy **V O I D spawner** game on **Steam**
 2. Create your first game in **run.json** file
-3. Copy the **void.exe** file from the **V O I D spawner** game
-4. Place the **run.json** file in the same directory as **void.exe**
-5. Sell your game or share with friends
-6. Profit
+3. Copy the **void.exe** file from the **V O I D spawner** game to the same directory as **run.json**
+4. Sell your game or share with friends
 
    ##### Run with game engine
    ```console
