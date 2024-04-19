@@ -1999,6 +1999,18 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ["sound.volume", 0.3]
 ```
 
+#### Title
+
+#### Icon
+
+#### Window Size
+
+#### Window Position
+
+#### Window Alert
+
+#### Fullscreen
+
 ### Visual Novel
 
 #### Say text
@@ -2095,11 +2107,11 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     "autoscroll": {
       "image": "icon_autoscroll",
       "position": [180, 20]
-    }
+    },
     "skip": {
       "image": "icon_skip",
       "position": [220, 20]
-    }
+    },
     "exit": {
       "image": "icon_exit",
       "position": [260, 20]
