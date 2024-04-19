@@ -1948,7 +1948,7 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
 ```
 
 ## V O I D engine
-Utilizes one the game engine to create 2D and 3D applications and games.
+A game engine for creating 2D and 3D applications and games.
 
 #### Background
 ```javascript
