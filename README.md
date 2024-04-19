@@ -2069,10 +2069,10 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
   "position": {
     "bottom": 100,
     "left": 0,
-    "right": 0,
-    "height": 100,
-    "aspect": "fill"
+    "right": 0
   },
+  "height": 100,
+  "aspect": "fill",
   "text": {
     "left": 10,
     "right": 10,
@@ -2102,11 +2102,19 @@ YAML is more advanced format than JSON. Has a simplified syntax and more elegant
     }
     "exit": {
       "image": "icon_exit",
-      "position": [220, 20]
+      "position": [260, 20]
     }
   }
 }]
 ```
+
+### RPG
+
+### Clicker
+
+### 2D
+
+### 3D
 
 ### V O I D engine godot
 
