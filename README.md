@@ -18,7 +18,7 @@
 
 ## V O I D game 
 
-This is a compiled game/application for rapidly creating games/applications in **V O I D lang**. The game/application will use multiple game engines:
+This is a compiled game/application for rapidly creating games/applications in **V O I D lang**. It will use multiple game engines:
 
 - **Godot Engine**
 - **Unreal 5 Engine**
