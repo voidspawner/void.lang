@@ -24,8 +24,6 @@ This is a compiled game for rapidly creating games and applications in **V O I D
 - **Unreal 5 Engine**
 - **V O I D engine**
 
-Buy **V O I D spawner** game on **Steam**.
-
 ## Example
 ##### Simple
 ```javascript
@@ -144,6 +142,12 @@ Buy **V O I D spawner** game on **Steam**.
    ```console
    void myfirstapp.json
    ```
+
+## How To Use Game Engine
+
+1. Buy **V O I D spawner** game on **Steam**.
+2. Create your first app in JSON file
+3. Launch app with **void.lang**
 
    ##### Run with game engine
    ```console
