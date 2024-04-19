@@ -29,25 +29,25 @@ This is a compiled game/application for rapidly creating games/applications in *
 ```javascript
 {
   "run": [
-    [".", "Hello World!"]
+    [".", "Hi World!"]
   ]
 }
 ```
 ##### Even Simpler
 ```javascript
 [
-    [".", "Hello World!"]
+    [".", "Hi World!"]
 ]
 ```
 ##### Multilanguage Text
 ```javascript
 {
   "run": [
-    [".", "{text.hello}!"]
+    [".", "{text.hi}!"]
   ],
   "text": {
-    "hello": {
-      "en": "Hello World",
+    "hi": {
+      "en": "Hi World",
       "zh": "你好世界",
       "fr": "Bonjour le monde",
       "es": "Hola Mundo",
@@ -74,7 +74,7 @@ This is a compiled game/application for rapidly creating games/applications in *
   ],
   "action": {
     "home": [
-      ["=", "response.text", "<h1>Hello World!</h1>"]
+      ["=", "response.text", "<h1>Hi World!</h1>"]
     ]
   }
 }
@@ -85,7 +85,7 @@ This is a compiled game/application for rapidly creating games/applications in *
   "web": {
     "route": [
       ["/", [
-        ["=", "response.text", "<h1>Hello World!</h1>"]
+        ["=", "response.text", "<h1>Hi World!</h1>"]
       ]]
     ]
   }
@@ -96,28 +96,16 @@ This is a compiled game/application for rapidly creating games/applications in *
 {
   "web": {
     "route": [
-      ["/", "web.home"],
-      ["/hello", "web.hello"]
+      ["/", "web.home"]
     ]
   },
   "action": {
     "web": {
       "home": [
-        ["ui.title", "{text.hello}"],
+        ["ui.title", "{text.hi}"],
         ["ui.content", [
-          ["button", "{text.hello}", [
-            ["go", "/hello"]
-          ], {
-            "color": "white",
-            "background": "blue",
-            "size": 20
-          }]
-        ]]
-      ],
-      "hello": [
-        ["ui.title", "{text.hello}"],
-        ["ui.content", [
-          ["text", "{text.hello}", {
+          ["text", {
+            "text": "{text.hi}",
             "color": "white",
             "background": "green",
             "size": 20
@@ -127,7 +115,7 @@ This is a compiled game/application for rapidly creating games/applications in *
     }
   },
   "text": {
-    "hello": "Hello World!"
+    "hi": "Hi World!"
   }
 }
 ```
@@ -138,18 +126,18 @@ This is a compiled game/application for rapidly creating games/applications in *
 2. Create your first app in JSON file
 3. Launch app with **void.lang**
    ```console
-   python3 python/void.py myfirstapp.json
+   python python/void.py myfirstapp.json
    php php/void.php myfirstapp.json
    ```
 
    ##### Or Even Without JSON File At All
    ```console
-   python3 python/void.py '[[".", "Hello World!"]]'
+   python python/void.py '[[".", "Hi World!"]]'
    ```
 
    ##### Tip for *nix (add to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile)
    ```console
-   alias void="python3 /path/to/python/void.py"
+   alias void="python /path/to/python/void.py"
    ```
    ```console
    void myfirstapp.json
@@ -166,7 +154,7 @@ All code is data. So just add the property "description", "//" and so on.
     "name": "First App"
   },
   "run": [
-    [".", "Hello World!"],
+    [".", "Hi World!"],
     ["//", "This line will be ignored"]
   ]
 }
@@ -182,12 +170,12 @@ All code is data. So just add the property "description", "//" and so on.
 The code is presented as **action name** and **action parameters**.
 ```javascript
 [
-  [".", "Hello World!"]
+  [".", "Hi World!"]
 ]
 ```
 ```
 Action name: "."
-Action parameters: ["Hello World!"]
+Action parameters: ["Hi World!"]
 ```
 
 ```javascript
@@ -200,21 +188,6 @@ Action name: "="
 Action parameters: ["value", 1, "+", 1]
 ```
 
-```javascript
-[
-  ["url", "google.com", [
-    [".", "Response code: {code}"],
-    [".", "{text}"]
-  ]]
-]
-```
-```
-Action name: "url"
-Action parameters: ["google.com", [
-                     [".", "Response code: {code}"],
-                     [".", "{text}"]
-                   ]]
-```
 ```javascript
 [
   "."
