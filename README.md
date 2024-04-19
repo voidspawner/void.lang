@@ -2047,6 +2047,13 @@ A game engine for creating 2D and 3D applications and games.
 ```javascript
 ["vn.effect", "character name", "shake"]
 ```
+#### Select route
+```javascript
+["vn.ask", [
+  ["Do something 1", "action 1"],
+  ["Do something 2", "action 2"]
+]]
+```
 #### Character
 ```javascript
 ["vn.character", {
