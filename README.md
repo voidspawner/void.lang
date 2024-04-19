@@ -147,7 +147,7 @@ This is a compiled game for rapidly creating games and applications in **V O I D
 
 1. Buy **V O I D spawner** game on **Steam**
 2. Create your first game in **run.json** file
-3. Copy the **void.exe** file from the **V O I D spawner** game to the same directory as **run.json**
+3. Copy the **void.exe** file from the **V O I D spawner** game to the same directory as **run.json** file
 4. Sell your game or share with friends
 
    ##### Run with game engine
@@ -184,10 +184,27 @@ All code is data. So just add the property "description", "//" and so on.
 
 ## Actions
 
-| <p align="center">[Value](#value)</p> | <p align="center">[Control](#control)</p> | <p align="center">[Action](#action)</p> | <p align="center">[Math](#math)</p> | <p align="center">[Text](#text)</p> | <p align="center">[Array](#array)</p> | <p align="center">[Time](#time)</p> |
-| --- | --- | --- | --- | --- | --- | --- |
-| <p align="center">[Format](#format)</p> | <p align="center">[Crypto](#crypto)</p> | <p align="center">[File](#file)</p> | <p align="center">[URL](#url)</p> | <p align="center">[Server](#server)</p> | <p align="center">[Cache](#cache)</p> | <p align="center">[CLI](#cli)</p> |
-| <p align="center">[UI](#ui)</p> | <p align="center">[DB](#db)</p> | <p align="center">[Device](#device)</p> | <p align="center">[Social](#social)</p> | <p align="center">[Trade](#trade)</p> | <p align="center">[Game](#game)</p> | <p align="center">[AI](#v-o-i-d-ai)</p> |
+[Value](#value) 
+[Control](#control)
+[Action](#action)
+[Math](#math)
+[Text](#text)
+[Array](#array)
+[Time](#time)
+[Format](#format)
+[Crypto](#crypto)
+[File](#file)
+[URL](#url)
+[Server](#server)
+[Cache](#cache)
+[CLI](#cli)
+[UI](#ui)
+[DB](#db)
+[Device](#device)
+[Social](#social)
+[Trade](#trade)
+[Game](#game)
+[AI](#v-o-i-d-ai)
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
@@ -199,7 +216,7 @@ The code is presented as **action name** and **action parameters**.
 Action name: "."
 Action parameters: ["Hi World!"]
 ```
-
+#####
 ```javascript
 [
   ["=", "value", 1, "+", 1]
@@ -209,7 +226,7 @@ Action parameters: ["Hi World!"]
 Action name: "="
 Action parameters: ["value", 1, "+", 1]
 ```
-
+#####
 ```javascript
 [
   "."
