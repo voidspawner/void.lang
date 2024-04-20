@@ -165,7 +165,7 @@ This is a compiled **V O I D spawner** game for rapidly creating games and appli
    void.exe
    ```
 
-   Or you can use the **Exporter** inside the **V O I D spawner** game to export your game to all platforms ⌜Windows・macOS・Linux・Android・iOS・Web・Xbox・Switch・PlayStation⌟
+   Or you can use the **Exporter** inside the **V O I D spawner** game to export your game to all platforms ⌜**Windows**・**macOS**・**Linux**・**Android**・**iOS**・**Web**・**Xbox**・**Switch**・**PlayStation**⌟
 
 ## How To Add Comments
 All code is data. So just add the property "description", "//" and so on.
