@@ -16,9 +16,9 @@
 - **Java** ⌜Android App・Linux App・Windows App・Web Server・API Server・Game Native⌟
 - **C#** ⌜Windows App・Web Server・API Server・Game Native⌟
 
-## V O I D game 
+## Game Engine
 
-This is a compiled game for rapidly creating games and applications in **V O I D lang**. It will use multiple game engines:
+This is a compiled **V O I D spawner** game for rapidly creating games and applications in **V O I D lang**. It use multiple game engines:
 
 - **Godot Engine**
 - **Unreal 5 Engine**
@@ -164,6 +164,8 @@ This is a compiled game for rapidly creating games and applications in **V O I D
    ```console
    void.exe
    ```
+
+   Or you can use the **Exporter** inside the **V O I D spawner** game to export your game to all platforms ⌜Windows・macOS・Linux・Android・iOS・Web・Xbox・Switch・PlayStation⌟
 
 ## How To Add Comments
 All code is data. So just add the property "description", "//" and so on.
