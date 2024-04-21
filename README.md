@@ -307,6 +307,18 @@ Action parameters: []
 ```javascript
 ["yaml.decode", "{\"text\": \"Text to decode\"}"]
 ```
+##### HTML encode
+```javascript
+```
+##### HTML decode
+```javascript
+```
+##### XML encode
+```javascript
+```
+##### XML decode
+```javascript
+```
 
 ### Crypto
 ##### Hash
@@ -338,19 +350,94 @@ Action parameters: []
 ### Drive
 
 ### Request
+
 ### Server
+##### HTTP
+##### HTTPS
+##### API
+##### Mail
+##### Cloud
+##### V O I D server
+
 ### Cache
+
+##### Set
+##### Get
+##### Remove
+##### List
 
 ### DB
 
 ### Device
+##### Camera
+##### Gallery
+##### Calendar
+##### GPS
+##### Compass
+##### Speed
+##### Tilt
+##### Light
+##### Health
 
 ### UI
+##### Text
+```javascript
+["ui.text", ""]
+```
+##### Edit
+```javascript
+["ui.edit", ""]
+```
+##### Image
+```javascript
+["ui.image", ""]
+```
+##### Button
+```javascript
+["ui.button", ""]
+```
+##### Slider
+```javascript
+["ui.slider", ""]
+```
+##### Progress
+```javascript
+["ui.progress", ""]
+```
+##### Switch
+```javascript
+["ui.switch", ""]
+```
+##### Drop
+```javascript
+["ui.drop", ""]
+```
+##### Menu
+##### List
+##### Tile
+##### Video
+##### Sound
+##### Draw
+##### View
 
-
+### HTML
+##### head
+##### script
+##### style
+##### meta
+##### body
 
 ## V O I D engine
 A game engine for creating 2D and 3D applications and games.
+
+##### Title
+```javascript
+["title", "App title"]
+```
+##### Icon
+```javascript
+["icon", "icon.webp"]
+```
 
 #### Background
 ```javascript
@@ -402,18 +489,27 @@ A game engine for creating 2D and 3D applications and games.
 ["sound.volume", 0.3]
 ```
 
-#### Title
-
-#### Icon
-
 #### Window Size
+```javascript
+["size", 1000, 800]
+```
 
 #### Window Position
+```javascript
+["position", 100, 200]
+```
 
-#### Window Alert
+#### Window Attention
+```javascript
+["attention"]
+```
 
-#### Fullscreen
-
+#### Fullscreen Toggle / On / Off
+```javascript
+["fullscreen"],
+["fullscreen", true],
+["fullscreen", false]
+```
 
 ### Visual Novel
 
