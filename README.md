@@ -323,18 +323,30 @@ Action parameters: []
 ### Crypto
 ##### Hash
 ```javascript
-["json", {"text": "With tab indent"}],
-["json", {"text": "With tab indent"}, true],
-["json", {"text": "Simple form without indent"}, null],
-["json", {"text": "Simple form without indent"}, false],
-["json", {"text": "With two spaces indent"}, "  "],
-["json", {"text": "With two spaces indent"}, 2]
+["hash"],
+["hash", 32, ["letter", "number", "symbol"]],
+["hash", 32, "ABCDEF0123456789"]
 ```
 ##### UUID
+```javascript
+["uuid"]
+```
 ##### MD5
+```javascript
+["md5", "Text"]
+```
 ##### SHA1
+```javascript
+["sha1", "Text"]
+```
 ##### SHA256
+```javascript
+["sha256", "Text"]
+```
 ##### SHA512
+```javascript
+["sha512", "Text"]
+```
 ##### RSA encode
 ##### RSA decode
 ##### RSA check
@@ -504,7 +516,7 @@ A game engine for creating 2D and 3D applications and games.
 ["attention"]
 ```
 
-#### Fullscreen Toggle / On / Off
+#### Fullscreen
 ```javascript
 ["fullscreen"],
 ["fullscreen", true],
