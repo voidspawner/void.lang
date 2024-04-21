@@ -254,6 +254,22 @@ Action parameters: []
 ```
 
 ### Control
+##### Action
+```javascript
+["action", [
+  [".", "Hi World"]
+]]
+```
+##### Action switch
+```javascript
+["vn.say", "Hi"],
+["action.switch", "vn"],
+["say", "Hi"],
+["action.switch", ["vn", "rpg"]],
+["action.switch", "vn", "visual novel"],
+["visual novel.say", "Hi"],
+["action.switch", false]
+```
 
 ### Math
 
