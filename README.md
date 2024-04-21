@@ -122,9 +122,9 @@ This is a compiled **V O I D spawner** game for rapidly creating games and appli
 
 ## How To Use
 
-1. Download **void.lang**
+1. Download **V O I D lang**
 2. Create your first app in JSON file
-3. Launch app with **void.lang**
+3. Launch app with **V O I D lang**
    ```console
    python python/void.py myfirstapp.json
    php php/void.php myfirstapp.json
@@ -135,9 +135,14 @@ This is a compiled **V O I D spawner** game for rapidly creating games and appli
    python python/void.py '[[".", "Hi World!"]]'
    ```
 
-   ##### Tip for *nix (add to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile)
+   ##### Tip for Linux / macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile
    ```console
    alias void="python /path/to/python/void.py"
+   ```
+
+   ##### Tip for Windows: use alias in command line
+   ```console
+   doskey void=python /path/to/python/void.py
    ```
    ```console
    void myfirstapp.json
@@ -186,25 +191,28 @@ All code is data. So just add the property "description", "//" and so on.
 
 ## Actions
 
-[Value](#value) 
-[Control](#control)
-[Math](#math)
-[Text](#text)
-[List](#array)
-[Time](#time)
-[Format](#format)
-[Crypto](#crypto)
-[File](#file)
-[Dir](#file)
-[Link](#file)
-[Drive](#file)
-[Request](#url)
-[Server](#server)
-[Cache](#cache)
-[DB](#db)
-[Device](#device)
-[UI](#ui)
-[Engine](#v-o-i-d-engine)
+[Value](#value)・
+[Control](#control)・
+[Math](#math)・
+[Text](#text)・
+[List](#list)・
+[Time](#time)・
+[Format](#format)・
+[Crypto](#crypto)・
+[File](#file)・
+[Dir](#file)・
+[Link](#file)・
+[Drive](#file)・
+[Request](#request)・
+[Server](#server)・
+[Cache](#cache)・
+[DB](#db)・
+[Device](#device)・
+[UI](#ui)・
+[Engine](#v-o-i-d-engine)・
+[AI](#v-o-i-d-ai)・
+[Voids](#v-o-i-d-voids)・
+[Social](#v-o-i-d-social)
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
@@ -244,6 +252,102 @@ Action parameters: []
 ```javascript
 ["-", "i"]
 ```
+
+### Control
+
+### Math
+
+### Text
+
+### List
+
+### Time
+
+### Format
+##### JSON encode
+```javascript
+["json", {"text": "With tab indent"}],
+["json", {"text": "With tab indent"}, true],
+["json", {"text": "Short form without indent"}, null],
+["json", {"text": "Short form without indent"}, false],
+["json", {"text": "With two spaces indent"}, "  "],
+["json", {"text": "With two spaces indent"}, 2]
+```
+##### JSON decode
+```javascript
+["json.decode", "{\"text\": \"Text to decode\"}"]
+```
+##### V O I D format encode
+```javascript
+["void.encode", {"text": "Text to encode"}],
+["void.encode.short", {"text": "Short form without indent"}],
+["void.encode.binary", {"text": "Short form with binary data", "binary": "\u0003\u0004\u0005"}]
+```
+##### V O I D format decode
+```javascript
+["void.decode", "|text:Text\\ to\\ decode|"]
+```
+##### CSV encode
+```javascript
+["csv", [["Text",1],["With comma separator",2]]],
+["csv", [["Text",1],["With tab separator",2]], "\t"]
+```
+##### CSV decode
+```javascript
+["csv.decode", "\"Text\",1\n\"With comma separator\",2"],
+["csv.decode", "\"Text\"\t1\n\"With tab separator\"\t2", "\t"]
+```
+##### YAML encode
+```javascript
+["yaml", {"text": "With tab indent"}],
+["yaml", {"text": "Simple form without indent"}, null],
+["yaml", {"text": "With two spaces indent"}, 2]
+```
+##### YAML decode
+```javascript
+["yaml.decode", "{\"text\": \"Text to decode\"}"]
+```
+
+### Crypto
+##### Hash
+```javascript
+["json", {"text": "With tab indent"}],
+["json", {"text": "With tab indent"}, true],
+["json", {"text": "Simple form without indent"}, null],
+["json", {"text": "Simple form without indent"}, false],
+["json", {"text": "With two spaces indent"}, "  "],
+["json", {"text": "With two spaces indent"}, 2]
+```
+##### UUID
+##### MD5
+##### SHA1
+##### SHA256
+##### SHA512
+##### RSA encode
+##### RSA decode
+##### RSA check
+##### CRC32
+##### BASE64 encode
+##### BASE64 decode
+##### Gzip encode
+##### Gzip decode
+
+### File
+### Dir
+### Link
+### Drive
+
+### Request
+### Server
+### Cache
+
+### DB
+
+### Device
+
+### UI
+
+
 
 ## V O I D engine
 A game engine for creating 2D and 3D applications and games.
@@ -435,6 +539,10 @@ Will be available in 2024.
 
 Will be available in 2024.
 
+### Microsession
+
+Will be available in 2024.
+
 ### 2D
 
 Will be available in 2024.
@@ -462,6 +570,8 @@ Digital currency used in the **V O I D ecosystem**.
 - Exchange rate ```⦵ 1``` = ```$ 1``` = ```USD₮ 1```
 
 The currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
+
+## V O I D social
 
 ## V O I D format
 **[⌜ V O I D format ⌟](https://github.com/voidspawner/void.format)** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by human and by program.
