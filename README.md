@@ -378,14 +378,27 @@ Action parameters: []
 ### Time
 ##### Timestamp
 ```javascript
-["timestamp"],
+["timestamp"]
+```
+##### Timestamp with microseconds
+```javascript
 ["timestamp.micro"]
 ```
 ##### Timepast
 ```javascript
 ["timepast"],
-["timepast", "{timestamp}"],
-["timepast.reset"],
+["timepast", "{timestamp}"]
+```
+##### Timepast check
+```javascript
+["timepast.check"]
+```
+##### Timepast reset
+```javascript
+["timepast.reset"]
+```
+##### Timepast total
+```javascript
 ["timepast.total"]
 ```
 ##### Wait seconds
@@ -397,17 +410,26 @@ Action parameters: []
 ```javascript
 ["timer", 10, [
   [".", "10 seconds have passed"]
-]],
+]]
+```
+##### Timer call
+```javascript
 ["timer", 10, [
   [".", "Call"]
 ], "name"],
-["timer.run", "name"],
+["timer.run", "name"]
+```
+##### Timer repeat
+```javascript
 ["timer.repeat", 10, [
   [".", "Infinite"]
 ], "name"],
 ["timer.repeat", 10, [
   [".", "3 times"]
-], "name", 3],
+], "name", 3]
+```
+##### Timer remove
+```javascript
 ["timer.remove", "name"]
 ```
 
