@@ -252,6 +252,32 @@ Action parameters: []
 ```javascript
 ["-", "i"]
 ```
+##### Alias
+```javascript
+{
+  "alias": {
+    "name": "long name"
+  },
+  "run": [
+    ["=", "long name", 123], 
+    [".", "{name}"]
+  ]
+}
+```
+##### Translate
+```javascript
+{
+  "run": [
+    [".", "{text.hi}"]
+  ],
+  "text": {
+    "hi": 
+      "en": "Hi World",
+      "zh": "你好世界"
+    }
+  }
+}
+```
 
 ### Control
 ##### Action
@@ -260,7 +286,23 @@ Action parameters: []
   [".", "Hi World"]
 ]]
 ```
-##### Action switch
+##### Action list
+```javascript
+{
+  "run": ["action_name"],
+  "action": {
+    "action_name": [[".", "action from action list"]]
+  }
+}
+```
+##### Load action
+```javascript
+["action.load", "file.json"],
+["action.load", "file.json", "action_to_load"],
+["action.load", "file.json", ["action 1", "action 2"]],
+["action.load", "file.json", "action_to_load", "action_alias"]
+```
+##### Switch action
 ```javascript
 ["vn.say", "Hi"],
 ["action.switch", "vn"],
@@ -293,10 +335,19 @@ Action parameters: []
 ```javascript
 ["json.decode", "{\"text\": \"Text to decode\"}"]
 ```
+##### JSON load
+```javascript
+["json.load", "file.json"]
+```
+##### JSON save
+```javascript
+["json.save", "file.json", {"text": "Save with indent"}],
+["json.save", "file.json", {"text": "Short form"}, false]
+```
 ##### V O I D format encode
 ```javascript
 ["void.encode", {"text": "Text to encode"}],
-["void.encode.short", {"text": "Short form without indent"}],
+["void.encode.short", {"text": "Short form without indent and binary to base64 encoding", "binary": "\u0003\u0004\u0005"}],
 ["void.encode.binary", {"text": "Short form with binary data", "binary": "\u0003\u0004\u0005"}]
 ```
 ##### V O I D format decode
