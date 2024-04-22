@@ -945,8 +945,6 @@ Utilizes the **Unreal Engine 5.4** commercial game engine to create 2D and 3D ap
 ## V O I D ai
 Generate **images・videos・texts・assets**. A limited number of uses are available for free. To use extra **V O I D ai** you can **pay** with **⦵ voids** digital currency.
 
-Will be available in 2024
-
 ## V O I D voids
 Digital currency used in the **V O I D ecosystem**.
 
