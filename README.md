@@ -641,18 +641,13 @@ Action parameters: []
 ### Request
 
 ### Server
+Will be available in 2024
 ##### HTTP
-Will be available in 2024
 ##### HTTPS
-Will be available in 2024
 ##### API
-Will be available in 2024
 ##### Mail
-Will be available in 2024
 ##### Cloud
-Will be available in 2024
 ##### V O I D server
-Will be available in 2024
 
 ### Cache
 
@@ -665,56 +660,34 @@ Will be available in 2024
 Will be available in 2024
 
 ### Device
+Will be available in 2024
 ##### Camera
-Will be available in 2024
 ##### Gallery
-Will be available in 2024
 ##### Calendar
-Will be available in 2024
 ##### GPS
-Will be available in 2024
 ##### Compass
-Will be available in 2024
 ##### Speed
-Will be available in 2024
 ##### Tilt
-Will be available in 2024
 ##### Light
-Will be available in 2024
 ##### Health
-Will be available in 2024
 
 ### UI
+Will be available in 2024
 ##### Text
-Will be available in 2024
 ##### Edit
-Will be available in 2024
 ##### Image
-Will be available in 2024
 ##### Button
-Will be available in 2024
 ##### Slider
-Will be available in 2024
 ##### Progress
-Will be available in 2024
 ##### Switch
-Will be available in 2024
 ##### Drop
-Will be available in 2024
 ##### Menu
-Will be available in 2024
 ##### List
-Will be available in 2024
 ##### Tile
-Will be available in 2024
 ##### Video
-Will be available in 2024
 ##### Sound
-Will be available in 2024
 ##### Draw
-Will be available in 2024
 ##### View
-Will be available in 2024
 
 ## Engine
 A game engine for creating 2D and 3D apps and games.
@@ -917,23 +890,18 @@ A game engine for creating 2D and 3D apps and games.
 ```
 
 ### RPG
-
 Will be available in 2024
 
 ### Clicker
-
 Will be available in 2024
 
 ### Microsession
-
 Will be available in 2024
 
 ### 2D
-
 Will be available in 2024
 
 ### 3D
-
 Will be available in 2024
 
 ## V O I D engine godot
