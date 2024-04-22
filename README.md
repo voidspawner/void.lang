@@ -541,11 +541,11 @@ Action parameters: []
 ```
 ##### RSA decode
 ```javascript
-["rsa.decode", "{rsa data}", "rsa key"]
+["rsa.decode", "{rsa data}", "{rsa key]"]
 ```
 ##### RSA check
 ```javascript
-["rsa.check", "{rsa data}", "rsa key", "{rsa signature}"]
+["rsa.check", "{rsa data}", "{rsa key}", "{rsa signature}"]
 ```
 ##### Base64 encode
 ```javascript
