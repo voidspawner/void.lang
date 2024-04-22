@@ -252,18 +252,6 @@ Action parameters: []
 ```javascript
 ["-", "i"]
 ```
-##### Alias
-```javascript
-{
-  "alias": {
-    "name": "long name"
-  },
-  "run": [
-    ["=", "long name", 123], 
-    [".", "{name}"]
-  ]
-}
-```
 ##### Translate
 ```javascript
 {
@@ -278,7 +266,19 @@ Action parameters: []
   }
 }
 ```
-##### Binary data
+##### Alias
+```javascript
+{
+  "alias": {
+    "name": "long name"
+  },
+  "run": [
+    ["=", "long name", 123], 
+    [".", "{name}"]
+  ]
+}
+```
+##### Binary data in Base64 with or without Gzip
 ```javascript
 {
   "data": {
