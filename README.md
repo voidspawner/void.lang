@@ -566,6 +566,7 @@ Action parameters: []
 
 ### File
 ##### File exists
+
 ### Dir
 ##### Dir exists
 ```javascript
@@ -641,11 +642,17 @@ Action parameters: []
 
 ### Server
 ##### HTTP
+Will be available in 2024
 ##### HTTPS
+Will be available in 2024
 ##### API
+Will be available in 2024
 ##### Mail
+Will be available in 2024
 ##### Cloud
+Will be available in 2024
 ##### V O I D server
+Will be available in 2024
 
 ### Cache
 
@@ -655,65 +662,59 @@ Action parameters: []
 ##### List
 
 ### DB
+Will be available in 2024
 
 ### Device
 ##### Camera
+Will be available in 2024
 ##### Gallery
+Will be available in 2024
 ##### Calendar
+Will be available in 2024
 ##### GPS
+Will be available in 2024
 ##### Compass
+Will be available in 2024
 ##### Speed
+Will be available in 2024
 ##### Tilt
+Will be available in 2024
 ##### Light
+Will be available in 2024
 ##### Health
+Will be available in 2024
 
 ### UI
 ##### Text
-```javascript
-["ui.text", ""]
-```
+Will be available in 2024
 ##### Edit
-```javascript
-["ui.edit", ""]
-```
+Will be available in 2024
 ##### Image
-```javascript
-["ui.image", ""]
-```
+Will be available in 2024
 ##### Button
-```javascript
-["ui.button", ""]
-```
+Will be available in 2024
 ##### Slider
-```javascript
-["ui.slider", ""]
-```
+Will be available in 2024
 ##### Progress
-```javascript
-["ui.progress", ""]
-```
+Will be available in 2024
 ##### Switch
-```javascript
-["ui.switch", ""]
-```
+Will be available in 2024
 ##### Drop
-```javascript
-["ui.drop", ""]
-```
+Will be available in 2024
 ##### Menu
+Will be available in 2024
 ##### List
+Will be available in 2024
 ##### Tile
+Will be available in 2024
 ##### Video
+Will be available in 2024
 ##### Sound
+Will be available in 2024
 ##### Draw
+Will be available in 2024
 ##### View
-
-### HTML
-##### head
-##### script
-##### style
-##### meta
-##### body
+Will be available in 2024
 
 ## V O I D engine
 A game engine for creating 2D and 3D apps and games.
@@ -917,23 +918,23 @@ A game engine for creating 2D and 3D apps and games.
 
 ### RPG
 
-Will be available in 2024.
+Will be available in 2024
 
 ### Clicker
 
-Will be available in 2024.
+Will be available in 2024
 
 ### Microsession
 
-Will be available in 2024.
+Will be available in 2024
 
 ### 2D
 
-Will be available in 2024.
+Will be available in 2024
 
 ### 3D
 
-Will be available in 2024.
+Will be available in 2024
 
 ## V O I D engine godot
 Utilizes the **Godot Engine** free game engine to create 2D and 3D apps and games.
@@ -944,7 +945,7 @@ Utilizes the **Unreal Engine 5.4** commercial game engine to create 2D and 3D ap
 ## V O I D ai
 Generate **images・videos・texts・assets**. A limited number of uses are available for free. To use extra **V O I D ai** you can **pay** with **⦵ voids** digital currency.
 
-Will be available in 2024.
+Will be available in 2024
 
 ## V O I D voids
 Digital currency used in the **V O I D ecosystem**.
