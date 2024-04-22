@@ -291,6 +291,15 @@ Action parameters: []
 ```
 
 ### Control
+##### Print
+```javascript
+[".", "Text"],
+[".", "Count", ": ", 12],
+[".", [1, 2, 3]],
+".",
+[".!", "Print "],
+[".!", "without new line"]
+```
 ##### Action run
 ```javascript
 ["action", [
@@ -302,7 +311,7 @@ Action parameters: []
 {
   "run": ["action_name"],
   "action": {
-    "action_name": [[".", "action from action list"]]
+    "action_name": [[".", "Hi World"]]
   }
 }
 ```
@@ -329,6 +338,36 @@ Action parameters: []
 ["X", 500],
 ["X", 500, "Exit with code 500 and print message before exit"]
 ```
+##### Open in the standard way
+```javascript
+["open", "https://voidsp.com"],
+["open", "mailto://hi@voidsp.com"],
+["open", "c:\\Windows\\System32\\calc.exe"],
+["open", "c:\\"]
+```
+##### Run shell command
+```javascript
+["shell", "dir"],
+["shell", "ls"]
+```
+##### Log Ok
+```javascript
+["ok"],
+["ok", 200],
+["ok", 200, "Something done"]
+```
+##### Log Warning
+```javascript
+["warning"],
+["warning", 300],
+["warning", 300, "Something need attention"]
+```
+##### Log Error
+```javascript
+["error"],
+["error", 500],
+["error", 500, "Something went wrong"]
+```
 
 ### Math
 
@@ -337,6 +376,40 @@ Action parameters: []
 ### List
 
 ### Time
+##### Timestamp
+```javascript
+["timestamp"],
+["timestamp.micro"]
+```
+##### Timepast
+```javascript
+["timepast"],
+["timepast", "{timestamp}"],
+["timepast.reset"],
+["timepast.total"]
+```
+##### Wait seconds
+```javascript
+["wait", 1],
+["wait", 0.2]
+```
+##### Timer
+```javascript
+["timer", 10, [
+  [".", "10 seconds have passed"]
+]],
+["timer", 10, [
+  [".", "Call"]
+], "name"],
+["timer.run", "name"],
+["timer.repeat", 10, [
+  [".", "Infinite"]
+], "name"],
+["timer.repeat", 10, [
+  [".", "3 times"]
+], "name", 3],
+["timer.remove", "name"]
+```
 
 ### Format
 ##### JSON encode
@@ -452,11 +525,11 @@ Action parameters: []
 ```javascript
 ["rsa.check", "{rsa data}", "rsa key", "{rsa signature}"]
 ```
-##### BASE64 encode
+##### Base64 encode
 ```javascript
 ["base64", "Text"]
 ```
-##### BASE64 decode
+##### Base64 decode
 ```javascript
 ["base64.decode", "VGV4dA=="]
 ```
@@ -535,7 +608,11 @@ Action parameters: []
 ```
 ##### Drive unmount
 ```javascript
-["drive.size", "drive name"]
+["drive.unmout", "drive name"]
+```
+##### Drive rename
+```javascript
+["drive.rename", "drive name", "new name"]  
 ```
 
 ### Request
