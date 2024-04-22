@@ -18,7 +18,7 @@
 
 ## Game Engine
 
-This is a compiled **V O I D spawner** game for rapidly creating games and applications in **V O I D lang**. It use multiple game engines:
+This is a compiled **V O I D spawner** game for rapidly creating apps and games in **V O I D lang**. It use multiple game engines:
 
 - **Godot Engine**
 - **Unreal 5 Engine**
@@ -716,7 +716,7 @@ Action parameters: []
 ##### body
 
 ## V O I D engine
-A game engine for creating 2D and 3D applications and games.
+A game engine for creating 2D and 3D apps and games.
 
 ##### Title
 ```javascript
@@ -936,10 +936,10 @@ Will be available in 2024.
 Will be available in 2024.
 
 ## V O I D engine godot
-Utilizes the **Godot Engine** free game engine to create 2D and 3D applications and games.
+Utilizes the **Godot Engine** free game engine to create 2D and 3D apps and games.
 
 ## V O I D engine unreal
-Utilizes the **Unreal Engine 5.4** commercial game engine to create 2D and 3D applications and games.
+Utilizes the **Unreal Engine 5.4** commercial game engine to create 2D and 3D apps and games.
 
 ## V O I D ai
 Generate **images・videos・texts・assets**. A limited number of uses are available for free. To use extra **V O I D ai** you can **pay** with **⦵ voids** digital currency.
@@ -956,9 +956,10 @@ Digital currency used in the **V O I D ecosystem**.
 The currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
 
 ## V O I D social
+**[⌜ V O I D social ⌟](https://voidsp.com)** is a **social network** for messaging, sharing apps, games, images, videos and other content. You can transfer **V O I D voids** to each other.
 
 ## V O I D format
 **[⌜ V O I D format ⌟](https://github.com/voidspawner/void.format)** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by human and by program.
 
 ## V O I D os
-**[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create games and applications.
+**[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create apps and games.
