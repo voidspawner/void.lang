@@ -956,7 +956,7 @@ Digital currency used in the **V O I D ecosystem**.
 The currency is also a **spawner**. Every month the profit is distributed among the **voids** holders. The number of voids increases proportionally and can be withdrawn to other digital currencies.
 
 ## V O I D social
-**[⌜ V O I D social ⌟](https://voidsp.com)** is a **social network** for messaging, sharing apps, games, images, videos and other content. You can transfer **V O I D voids** to each other.
+**[⌜ V O I D social ⌟](https://voidsp.com)** is a **social network** for messaging, sharing apps, games, images, videos and other content. Buy and sell, find job, crypto exchange, transfer **V O I D voids** and more other.
 
 ## V O I D format
 **[⌜ V O I D format ⌟](https://github.com/voidspawner/void.format)** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by human and by program.
