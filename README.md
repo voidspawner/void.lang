@@ -387,19 +387,16 @@ Action parameters: []
 ##### Timepast
 ```javascript
 ["timepast"],
-["timepast", "{timestamp}"]
+["timepast", "name"]
 ```
 ##### Timepast check
 ```javascript
-["timepast.check"]
+["timepast.check"],
+["timepast.check", "name"]
 ```
-##### Timepast reset
+##### Timepast remove
 ```javascript
-["timepast.reset"]
-```
-##### Timepast total
-```javascript
-["timepast.total"]
+["timepast.remove", "name"]
 ```
 ##### Wait seconds
 ```javascript
