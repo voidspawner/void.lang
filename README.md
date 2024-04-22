@@ -364,7 +364,7 @@ Action parameters: []
 ##### V O I D format encode
 ```javascript
 ["void.encode", {"text": "Text to encode"}],
-["void.encode.short", {"text": "Short form without indent and binary to base64 encoding", "binary": "\u0003\u0004\u0005"}],
+["void.encode.short", {"text": "Short form without indent"}],
 ["void.encode.binary", {"text": "Short form with binary data", "binary": "\u0003\u0004\u0005"}]
 ```
 ##### V O I D format decode
