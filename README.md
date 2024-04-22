@@ -278,6 +278,17 @@ Action parameters: []
   }
 }
 ```
+##### Binary data
+```javascript
+{
+  "data": {
+    "image": "H4sIAD22JWYC/+1YezhU6xp..."
+  },
+  "run": [
+    ["file.write", "image.png", "{data.image}"]
+  ]
+}
+```
 
 ### Control
 ##### Action
