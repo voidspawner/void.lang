@@ -431,19 +431,112 @@ Action parameters: []
 ```javascript
 ["sha512", "Text"]
 ```
-##### RSA encode
-##### RSA decode
-##### RSA check
 ##### CRC32
+```javascript
+["crc32", "Text"]
+```
+##### RSA encode
+```javascript
+["rsa", "Text"],
+["rsa", "Text", "key"],
+["rsa", "Text", null, {
+  "company": "Company",
+  "domain": "domain.com"
+}]
+```
+##### RSA decode
+```javascript
+["rsa.decode", "{rsa data}", "rsa key"]
+```
+##### RSA check
+```javascript
+["rsa.check", "{rsa data}", "rsa key", "{rsa signature}"]
+```
 ##### BASE64 encode
+```javascript
+["base64", "Text"]
+```
 ##### BASE64 decode
+```javascript
+["base64.decode", "VGV4dA=="]
+```
 ##### Gzip encode
+```javascript
+["gzip", "Text"]
+```
 ##### Gzip decode
+```javascript
+["gzip.decode", "{gzip data}"]
+```
 
 ### File
+##### File exists
 ### Dir
+##### Dir exists
+```javascript
+["dir.exists", "path/to/dir"]
+```
+##### Dir create
+```javascript
+["dir.create", "path/to/dir"]
+```
+##### Dir remove
+```javascript
+["dir.remove", "path/to/dir"]
+```
+##### Dir info
+```javascript
+["dir.info", "path/to/dir"]
+```
+##### Dir size
+```javascript
+["dir.size", "path/to/dir"],
+["dir.size.current", "path/to/dir"]
+```
+
 ### Link
+##### Link exists
+```javascript
+["link.exists", "path/to/link"]
+```
+##### Link create
+```javascript
+["link.create", "link name", "path/to/file"]
+```
+##### Link remove
+```javascript
+["link.remove", "path/to/link"]
+```
+
 ### Drive
+##### Drive list
+```javascript
+["drive.list"]
+```
+##### Drive size
+```javascript
+["drive.size", "drive name"]
+```
+##### Drive free
+```javascript
+["drive.free", "drive name"]
+```
+##### Drive used
+```javascript
+["drive.used", "drive name"]
+```
+##### Drive info
+```javascript
+["drive.info", "drive name"]
+```
+##### Drive mount
+```javascript
+["drive.mount", "drive id"]
+```
+##### Drive unmount
+```javascript
+["drive.size", "drive name"]
+```
 
 ### Request
 
