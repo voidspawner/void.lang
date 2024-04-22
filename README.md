@@ -291,7 +291,7 @@ Action parameters: []
 ```
 
 ### Control
-##### Action
+##### Action run
 ```javascript
 ["action", [
   [".", "Hi World"]
