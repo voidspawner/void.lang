@@ -297,7 +297,7 @@ Action parameters: []
   [".", "Hi World"]
 ]]
 ```
-##### Action list
+##### Action call
 ```javascript
 {
   "run": ["action_name"],
@@ -306,14 +306,14 @@ Action parameters: []
   }
 }
 ```
-##### Load action
+##### Action load
 ```javascript
 ["action.load", "file.json"],
 ["action.load", "file.json", "action_to_load"],
 ["action.load", "file.json", ["action 1", "action 2"]],
 ["action.load", "file.json", "action_to_load", "action_alias"]
 ```
-##### Switch action
+##### Action switch
 ```javascript
 ["vn.say", "Hi"],
 ["action.switch", "vn"],
@@ -322,6 +322,12 @@ Action parameters: []
 ["action.switch", "vn", "visual novel"],
 ["visual novel.say", "Hi"],
 ["action.switch", false]
+```
+##### Exit
+```javascript
+["X"],
+["X", 500],
+["X", 500, "Exit with code 500 and print message before exit"]
 ```
 
 ### Math
