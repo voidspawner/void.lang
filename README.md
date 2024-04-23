@@ -309,9 +309,9 @@ Action parameters: []
 ##### Action call
 ```javascript
 {
-  "run": ["action_name"],
+  "run": ["action name"],
   "action": {
-    "action_name": [[".", "Hi World"]]
+    "action name": [[".", "Hi World"]]
   }
 }
 ```
