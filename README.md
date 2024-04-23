@@ -487,6 +487,19 @@ Action parameters: []
 ```javascript
 ["yaml.decode", "{\"text\": \"Text to decode\"}"]
 ```
+##### INI encode
+```javascript
+["ini.encode", {
+  "section": {
+    "name": "value",
+    "list": [1,2,3]
+  }
+}, ";"]
+```
+##### INI decode
+```javascript
+["ini.decode", "[section]\nname=value\nlist=1;2;3", ";"]
+```
 ##### HTML encode
 ```javascript
 ["html", [
