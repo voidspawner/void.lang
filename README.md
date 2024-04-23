@@ -615,14 +615,49 @@ Action parameters: []
 ```javascript
 ["dir.remove", "path/to/dir"]
 ```
-##### Dir info
+##### Dir clear
 ```javascript
-["dir.info", "path/to/dir"]
+["dir.clear", "path/to/dir"]
+```
+##### Dir copy
+```javascript
+["dir.copy", "path/to/dir", "path/destination"]
+```
+##### Dir move
+```javascript
+["dir.move", "path/to/dir", "path/destination"]
+```
+##### Dir rename
+```javascript
+["dir.rename", "path/to/dir", "new name"]
 ```
 ##### Dir size
 ```javascript
-["dir.size", "path/to/dir"],
+["dir.size", "path/to/dir"]
+```
+##### Current dir size
+```javascript
 ["dir.size.current", "path/to/dir"]
+```
+##### Dir permission
+```javascript
+["dir.permission", "path/to/dir", 777]
+```
+##### Dir readonly
+```javascript
+["dir.readonly", "path/to/dir", true]
+```
+##### Dir hidden
+```javascript
+["dir.hidden", "path/to/dir", true]
+```
+##### Dir modified
+```javascript
+["dir.modified", "path/to/dir"]
+```
+##### Dir zip
+```javascript
+["dir.zip", "path/to/dir"]
 ```
 
 ### Link
