@@ -598,6 +598,10 @@ Action parameters: []
 ```javascript
 ["dir.exists", "path/to/dir"]
 ```
+##### Dir list
+```javascript
+["dir.list", "path/to/dir"]
+```
 ##### Dir create
 ```javascript
 ["dir.create", "path/to/dir"]
@@ -631,6 +635,10 @@ Action parameters: []
 ```
 
 ### Drive
+##### Drive exists
+```javascript
+["dir.exists", "drive name"]
+```
 ##### Drive list
 ```javascript
 ["drive.list"]
