@@ -672,7 +672,7 @@ Will be available in 2024
 ##### V O I D server
 
 ### Cache
-##### Shared cache access by name
+##### Access by name
 ```javascript
 {
   "cache": {
