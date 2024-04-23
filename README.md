@@ -384,6 +384,10 @@ Action parameters: []
 ```javascript
 ["timestamp.micro"]
 ```
+##### Timestamp with microseconds as float
+```javascript
+["timestamp.float"]
+```
 ##### Timepast
 ```javascript
 ["timepast"],
