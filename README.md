@@ -647,11 +647,62 @@ Will be available in 2024
 ##### V O I D server
 
 ### Cache
-
-##### Set
+##### Shared cache access by name
+```javascript
+{
+  "cache": {
+    "name": "cache in memory",
+    "file": {
+      "path": "/cache",
+      "name": "cache in file"
+    },
+    "url": {
+      "url": "https://cache.com",
+      "header": {
+        "key": "server key"
+      },
+      "name": "cache in net"
+    }
+  },
+  "run": [
+    [".", "{cache.name}"],
+    ["=", "cache.name", "new value"],
+    ["=", "cache.file.name", "new value"],
+    ["=", "cache.url.name", "new value"]
+  ]
+}
+```
 ##### Get
+```javascript
+["cache", "name"],
+["cache", "file.name"],
+["cache", "url.name"]
+```
+##### Set
+```javascript
+["cache", "name", "value"],
+["cache", "file.name", "value", {
+  "path": "/cache"
+}],
+["cache", "url.name", "value", {
+  "url": "https://cache.com",
+  "header": {
+    "key": "server key"
+  }
+}]
+```
 ##### Remove
+```javascript
+["cache.remove", "name"],
+["cache.remove", "file.name"],
+["cache.remove", "url.name"]
+```
 ##### List
+```javascript
+["cache.list", "name"],
+["cache.list", "file.name"],
+["cache.list", "url.name"]
+```
 
 ### DB
 Will be available in 2024
