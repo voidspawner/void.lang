@@ -124,7 +124,7 @@ This is a compiled **V O I D spawner** game for rapidly creating apps and games 
 
    ##### Or even without JSON file at all
    ```console
-   python python/void.py '[[".", "Hi World 😄"]]'
+   python python/void.py '[[".", "Hi World :)"]]'
    ```
 
    ##### Tip for Linux / macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile
