@@ -485,15 +485,40 @@ Action parameters: []
 ```
 ##### HTML encode
 ```javascript
+["html", [
+  ["head", [
+    ["title", "Hi World"],
+    ["script", "hi.js"],
+    ["style", "hi.css"],
+    ["icon", "favicon.png"]
+  ]],
+  ["body", [
+    ["div", [
+      "Hi World"
+    ], {"style": {"background-color": "lightgreen"}}]
+  ]]
+], {"lang": "en"}],
+["html", [
+  ["div", ["Hi World"], {"class": "text"}]
+]]
 ```
 ##### HTML decode
 ```javascript
+["html.decode", "<html lang=\"en\"><body>Hi World</body></html>"]
 ```
 ##### XML encode
 ```javascript
+["xml", [
+  ["file", [
+    ["path", "/path/to/file"],
+    ["size": 1234],
+    ["read only", true]
+  ]]
+]]
 ```
 ##### XML decode
 ```javascript
+["xml.decode", "<file><path>/path/to/file</path>..."]
 ```
 
 ### Crypto
