@@ -489,7 +489,7 @@ Action parameters: []
 ```
 ##### INI encode
 ```javascript
-["ini.encode", {
+["ini", {
   "section": {
     "name": "value",
     "list": [1,2,3]
