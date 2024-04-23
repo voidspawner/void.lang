@@ -29,21 +29,21 @@ This is a compiled **V O I D spawner** game for rapidly creating apps and games 
 ```javascript
 {
   "run": [
-    [".", "Hi World!"]
+    [".", "Hi World"]
   ]
 }
 ```
 ##### Even Simpler
 ```javascript
 [
-    [".", "Hi World!"]
+    [".", "Hi World"]
 ]
 ```
 ##### Multilanguage Text
 ```javascript
 {
   "run": [
-    [".", "{text.hi}!"]
+    [".", "{text.hi}"]
   ],
   "text": {
     "hi": {
@@ -74,7 +74,7 @@ This is a compiled **V O I D spawner** game for rapidly creating apps and games 
   ],
   "action": {
     "home": [
-      ["=", "response.text", "<h1>Hi World!</h1>"]
+      ["=", "response.text", "<h1>Hi World</h1>"]
     ]
   }
 }
@@ -85,7 +85,7 @@ This is a compiled **V O I D spawner** game for rapidly creating apps and games 
   "web": {
     "route": [
       ["/", [
-        ["=", "response.text", "<h1>Hi World!</h1>"]
+        ["=", "response.text", "<h1>Hi World</h1>"]
       ]]
     ]
   }
@@ -96,26 +96,18 @@ This is a compiled **V O I D spawner** game for rapidly creating apps and games 
 {
   "web": {
     "route": [
-      ["/", "web.home"]
+      ["/", [
+        ["title", "{text.hi}"],
+        ["text", "{text.hi}", {
+          "color": "white",
+          "background": "green",
+          "size": 20
+        }]
+      ]]
     ]
   },
-  "action": {
-    "web": {
-      "home": [
-        ["ui.title", "{text.hi}"],
-        ["ui.content", [
-          ["text", {
-            "text": "{text.hi}",
-            "color": "white",
-            "background": "green",
-            "size": 20
-          }]
-        ]]
-      ]
-    }
-  },
   "text": {
-    "hi": "Hi World!"
+    "hi": "Hi World"
   }
 }
 ```
@@ -132,7 +124,7 @@ This is a compiled **V O I D spawner** game for rapidly creating apps and games 
 
    ##### Or even without JSON file at all
    ```console
-   python python/void.py '[[".", "Hi World!"]]'
+   python python/void.py '[[".", "Hi World"]]'
    ```
 
    ##### Tip for Linux / macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile
@@ -183,7 +175,7 @@ All code is data. So just add the property "description", "//" and so on.
     "name": "First App"
   },
   "run": [
-    [".", "Hi World!"],
+    [".", "Hi World"],
     ["//", "This line will be ignored"]
   ]
 }
@@ -216,11 +208,11 @@ All code is data. So just add the property "description", "//" and so on.
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
-[".", "Hi World!"]
+[".", "Hi World"]
 ```
 ```
 Action name: "."
-Action parameters: ["Hi World!"]
+Action parameters: ["Hi World"]
 ```
 #####
 ```javascript
