@@ -518,7 +518,7 @@ Action parameters: []
 ```
 ##### XML decode
 ```javascript
-["xml.decode", "<file><path>/path/to/file</path>..."]
+["xml.decode", "<file><path>/path/to/file</path></file>"]
 ```
 
 ### Crypto
