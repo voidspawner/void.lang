@@ -597,6 +597,71 @@ Action parameters: []
 
 ### File
 ##### File exists
+```javascript
+["file.exists", "path/to/file"]
+```
+##### File read
+```javascript
+["file.read", "path/to/file"]
+```
+##### File write
+```javascript
+["file.write", "path/to/file", "Text"]
+```
+##### File append
+```javascript
+["file.append", "path/to/file", "Text"]
+```
+##### File remove
+```javascript
+["file.remove", "path/to/file"]
+```
+##### File remove to trash
+```javascript
+["file.trash", "path/to/file"]
+```
+##### File copy
+```javascript
+["file.copy", "path/to/file", "path/destination"],
+["file.copy", "path/to/file", "path/destination", "new name"],
+["file.copy", "path/to/file", "path/destination/change name if exists", true]
+```
+##### File move
+```javascript
+["file.move", "path/to/file", "path/destination"]
+["file.move", "path/to/file", "path/destination", "new name"],
+["file.copy", "path/to/file", "path/destination/change name if exists", true]
+```
+##### File rename
+```javascript
+["file.rename", "path/to/file", "new name"]
+```
+##### File size
+```javascript
+["file.size", "path/to/file"]
+```
+##### File info
+```javascript
+["file.info", "path/to/file"]
+```
+##### File permissions
+```javascript
+["file.permissions", "path/to/file", "path/destination"]
+```
+##### File owner
+##### File readonly
+##### File hidden
+##### File modified time
+##### File SHA256
+##### File CRC32
+##### File Zip
+##### File Zip exists
+##### File Zip read
+##### File Zip add
+##### File Zip remove
+##### File Unzip
+##### File Gzip
+##### File Ungzip
 
 ### Dir
 ##### Dir exists
@@ -614,6 +679,10 @@ Action parameters: []
 ##### Dir remove
 ```javascript
 ["dir.remove", "path/to/dir"]
+```
+##### Dir remove to trash
+```javascript
+["dir.trash", "path/to/dir"]
 ```
 ##### Dir clear
 ```javascript
@@ -641,23 +710,33 @@ Action parameters: []
 ```
 ##### Dir permission
 ```javascript
+["dir.permission", "path/to/dir"],
 ["dir.permission", "path/to/dir", 777]
+```
+##### Dir owner
+```javascript
+["dir.owner"]
+["dir.owner", "user"]
 ```
 ##### Dir readonly
 ```javascript
+["dir.readonly", "path/to/dir"]
 ["dir.readonly", "path/to/dir", true]
 ```
 ##### Dir hidden
 ```javascript
+["dir.hidden", "path/to/dir"]
 ["dir.hidden", "path/to/dir", true]
 ```
-##### Dir modified
+##### Dir modified time
 ```javascript
-["dir.modified", "path/to/dir"]
+["dir.modified", "path/to/dir"],
+["dir.modified", "path/to/dir", "{timestamp}"]
 ```
 ##### Dir zip
 ```javascript
-["dir.zip", "path/to/dir"]
+["dir.zip", "path/to/dir"],
+["dir.zip", "path/to/dir", "name.zip"]
 ```
 
 ### Link
