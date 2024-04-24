@@ -1205,6 +1205,19 @@ Will be available in 2024
 ```
 
 ## Social
+### SMS
+```javascript
+["sms", "{number}", "Text"]
+```
+### Phone call
+```javascript
+["phone", "{number}", "Text"]
+```
+### Mail
+```javascript
+["mail", "{email}", "Subject", "Text", "path/to/attach 1", "path/to/attach 2"],
+["mail", ["{email 1}", "{email 2}"], "Subject", "Text"]
+```
 ### V O I D social
 Will be available in 2024
 ### YouTube
@@ -1217,6 +1230,7 @@ Will be available in 2024
 Will be available in 2024
 ### WeChat
 Will be available in 2024
+
 
 ## V O I D engine godot
 Utilizes the **Godot Engine** free game engine to create 2D and 3D apps and games.
