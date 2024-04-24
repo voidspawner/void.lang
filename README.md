@@ -1165,7 +1165,44 @@ Will be available in 2024
 Will be available in 2024
 
 ## Voids
-Will be available in 2024
+#### Wallet
+```javascript
+["voids"]
+```
+#### Buy
+```javascript
+["voids.buy", 100, "usdt"]
+```
+#### Sell
+```javascript
+["voids.sell", 100, "usdt"]
+```
+#### Send
+```javascript
+["voids.send", 100, "friend name"]
+```
+#### Crypto exchange
+```javascript
+["voids.exchange", {
+  "from": "usdt",
+  "to": "btc",
+  "count": 100,
+  "addreess": "{wallet address}"
+}],
+["voids.exchange", {
+  "from": "usdt",
+  "to": "btc",
+  "btc": 0.001,
+  "addreess": "{wallet address}"
+}]
+```
+#### Crypto send
+```javascript
+["voids.send", {
+  "btc": 100,
+  "address", "{wallet address}"
+}]
+```
 
 ## Social
 ### V O I D social
