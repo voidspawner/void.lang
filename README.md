@@ -201,10 +201,10 @@ All code is data. So just add the property "description", "//" and so on.
 [DB](#db)・
 [Device](#device)・
 [UI](#ui)・
-[Engine](#v-o-i-d-engine)・
-[AI](#v-o-i-d-ai)・
-[Voids](#v-o-i-d-voids)・
-[Social](#v-o-i-d-social)
+[Engine](#engine)・
+[AI](#ai)・
+[Voids](#voids)・
+[Social](#social)
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
@@ -1159,6 +1159,26 @@ Will be available in 2024
 Will be available in 2024
 
 ### 3D
+Will be available in 2024
+
+## AI
+Will be available in 2024
+
+## Voids
+Will be available in 2024
+
+## Social
+### V O I D social
+Will be available in 2024
+### YouTube
+Will be available in 2024
+### TikTok
+Will be available in 2024
+### X
+Will be available in 2024
+### Telegram
+Will be available in 2024
+### WeChat
 Will be available in 2024
 
 ## V O I D engine godot
