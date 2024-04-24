@@ -630,7 +630,7 @@ Action parameters: []
 ```javascript
 ["file.move", "path/to/file", "path/destination"]
 ["file.move", "path/to/file", "path/destination", "new name"],
-["file.copy", "path/to/file", "path/destination/change name if exists", true]
+["file.move", "path/to/file", "path/destination/change name if exists", true]
 ```
 ##### File rename
 ```javascript
@@ -644,24 +644,77 @@ Action parameters: []
 ```javascript
 ["file.info", "path/to/file"]
 ```
-##### File permissions
+##### File permission
 ```javascript
-["file.permissions", "path/to/file", "path/destination"]
+["file.permission", "path/to/file"],
+["file.permission", "path/to/file", 777]
 ```
 ##### File owner
+```javascript
+["file.owner", "path/to/file"],
+["file.owner", "path/to/file", "user"]
+```
 ##### File readonly
+```javascript
+["file.readonly", "path/to/file"],
+["file.readonly", "path/to/file", true]
+```
 ##### File hidden
+```javascript
+["file.hidden", "path/to/file"],
+["file.hidden", "path/to/file", true]
+```
 ##### File modified time
+```javascript
+["file.modified", "path/to/file"],
+["file.modified", "path/to/file", "{timestamp}"]
+```
 ##### File SHA256
+```javascript
+["file.sha256", "path/to/file"]
+```
 ##### File CRC32
+```javascript
+["file.crc32", "path/to/file"]
+```
 ##### File Zip
+```javascript
+["file.zip", "path/to/file"],
+["file.zip", "path/to/file", "name.zip"],
+["file.zip.exists", "path/to/file.zip", null, "file/in/zip"]
+```
 ##### File Zip exists
+```javascript
+["file.zip.exists", "path/to/file.zip", "file/in/zip"]
+```
 ##### File Zip read
+```javascript
+["file.zip.read", "path/to/file.zip", "file/in/zip"]
+```
 ##### File Zip add
+```javascript
+["file.zip.exists", "path/to/file.zip", "path/add/file"],
+["file.zip.exists", "path/to/file.zip", "path/add/file", "file/in/zip"]
+```
 ##### File Zip remove
+```javascript
+["file.zip.remove", "path/to/file.zip", "file/in/zip"]
+```
 ##### File Unzip
+```javascript
+["file.unzip", "path/to/file.zip", "path/destination"],
+["file.unzip", "path/to/file.zip", "path/destination", "file/in/zip"]
+```
 ##### File Gzip
+```javascript
+["file.gzip", "path/to/file"],
+["file.gzip", "path/to/file", "file name.gz"]
+```
 ##### File Ungzip
+```javascript
+["file.ungzip", "path/to/file.gz"],
+["file.ungzip", "path/to/file.gz", "file name"]
+```
 
 ### Dir
 ##### Dir exists
