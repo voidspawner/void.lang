@@ -1199,7 +1199,7 @@ Will be available in 2024
 #### Crypto send
 ```javascript
 ["voids.send", {
-  "btc": 100,
+  "btc": 0.001,
   "address", "{wallet address}"
 }]
 ```
