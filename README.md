@@ -29,21 +29,21 @@ This is a compiled **V O I D spawner** game for rapidly creating apps and games 
 ```javascript
 {
   "run": [
-    [".", "Hi World 😄"]
+    [".", "Hi World :D"]
   ]
 }
 ```
 ##### Even Simpler
 ```javascript
 [
-    [".", "Hi World 😄"]
+    [".", "Hi World :D"]
 ]
 ```
 ##### Multilanguage Text
 ```javascript
 {
   "run": [
-    [".", "{text.hi} 😄"]
+    [".", "{text.hi} :D"]
   ],
   "text": {
     "hi": {
