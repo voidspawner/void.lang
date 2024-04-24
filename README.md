@@ -681,7 +681,7 @@ Action parameters: []
 ```javascript
 ["file.zip", "path/to/file"],
 ["file.zip", "path/to/file", "name.zip"],
-["file.zip.exists", "path/to/file.zip", null, "file/in/zip"]
+["file.zip", "path/to/file", null, "file/in/zip"]
 ```
 ##### File Zip exists
 ```javascript
