@@ -691,10 +691,14 @@ Action parameters: []
 ```javascript
 ["file.zip.read", "path/to/file.zip", "file/in/zip"]
 ```
+##### File Zip write
+```javascript
+["file.zip.write", "path/to/file.zip", "file/in/zip", "Text"]
+```
 ##### File Zip add
 ```javascript
-["file.zip.exists", "path/to/file.zip", "path/add/file"],
-["file.zip.exists", "path/to/file.zip", "path/add/file", "file/in/zip"]
+["file.zip.add", "path/to/file.zip", "path/add/file"],
+["file.zip.add", "path/to/file.zip", "path/add/file", "file/in/zip"]
 ```
 ##### File Zip remove
 ```javascript
