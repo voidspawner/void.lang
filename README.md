@@ -300,7 +300,7 @@ Action parameters: []
 ```javascript
 ["??", "{value}", [
   [1, [[".", 1]]],
-  [100: [[".", 100]]],
+  [100, [[".", 100]]],
   [[["{value}", ">", 10], "and", ["{value}", "<", 20]], [[".", "10-20"]]], 
   [null, [[".", "other"]]]
 ]]
@@ -310,12 +310,12 @@ Action parameters: []
 ["..", "value", 10, [[".", "{value}"]]],
 ["..", "value", [10, 20], [[".", "from 10 to 20"]]],
 ["..", "letter", "Text", [[".", "{letter}"]]],
-["..", null, 10, [[".", "count"]]],
 ["..", "value", "{list}", [[".", "{value}"]]],
 ["..", ["value"], [1, 2, 3], [[".", "{value}"]]],
 ["..", ["name", "value"], "{dict}", [[".", "{name}: {value}"]]],
-["..", null, null, [[".", "infinite"]]],
-["..", null, ["{value}", ">", 10], [[".", "while"]]]
+["..", 10, [[".", "count"]]],
+["..", [[".", "infinite"]]],
+["..", ["{value}", ">", 10], [[".", "while"]]]
 ```
 ##### Loop break
 ```javascript
