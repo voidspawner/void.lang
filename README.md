@@ -1225,6 +1225,11 @@ Will be available in 2024
 ["ai.repaint", "path/to/video"],
 ["ai.repaint", "{image}", "{model}"]
 ```
+#### Image and video combine
+```javascript
+["ai.combine", "{image 1}", "{image 2}"],
+["ai.combine", "path/to/video 1", "path/to/video 2"]
+```
 
 ## Voids
 #### Wallet
