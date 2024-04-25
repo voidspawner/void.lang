@@ -292,6 +292,46 @@ Action parameters: []
 [".!", "Print "],
 [".!", "without new line"]
 ```
+##### If
+```javascript
+["?", ["{value}", ">", 2], [[".", ">2"]], [[".", "<=2"]]]
+```
+##### Case / Match
+```javascript
+["??", "{value}", [
+  [1, [[".", 1]]],
+  [100: [[".", 100]]],
+  [[["{value}", ">", 10], "and", ["{value}", "<", 20]], [[".", "10-20"]]], 
+  [null, [[".", "other"]]]
+]]
+```
+##### Loop
+```javascript
+["..", "value", 10, [[".", "{value}"]]],
+["..", "value", [10, 20], [[".", "from 10 to 20"]]],
+["..", "letter", "Text", [[".", "{letter}"]]],
+["..", null, 10, [[".", "count"]]],
+["..", "value", "{list}", [[".", "{value}"]]],
+["..", ["value"], [1, 2, 3], [[".", "{value}"]]],
+["..", ["name", "value"], "{dict}", [[".", "{name}: {value}"]]],
+["..", null, null, [[".", "infinite"]]],
+["..", null, ["{value}", ">", 10], [[".", "while"]]]
+```
+##### Loop break
+```javascript
+["x"],
+["x", 2]
+```
+##### Loop continue
+```javascript
+[">>>"],
+[">>>", 2]
+```
+##### Loop repeat
+```javascript
+["<<<"],
+["<<<", 2]
+```
 ##### Action run
 ```javascript
 ["action", [
@@ -341,6 +381,10 @@ Action parameters: []
 ```javascript
 ["shell", "dir"],
 ["shell", "ls"]
+```
+##### Native code
+```javascript
+["code", "print('Python code')"]
 ```
 ##### Log Ok
 ```javascript
@@ -930,6 +974,15 @@ Will be available in 2024
 ##### Tilt
 ##### Light
 ##### Health
+##### Notification send
+```javascript
+["notification.send", "{token}", "Text"],
+["notification.send", "{token}", "Text", "{image}", "{badge}"]
+```
+##### Notification token
+```javascript
+["notification.token"]
+```
 
 ### UI
 Will be available in 2024
