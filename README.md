@@ -1252,9 +1252,9 @@ Will be available in 2024
 ```
 #### Sell
 ```javascript
-["exchange.sell", "aapl", 10],
-["exchange.sell", "AAPL240426C00167500", 10],
-["exchange.sell", "eur", 10]
+["voids.sell", "aapl", 10],
+["voids.sell", "AAPL240426C00167500", 10],
+["voids.sell", "eur", 10]
 ```
 ## Social
 ### SMS
