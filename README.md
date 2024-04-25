@@ -1192,20 +1192,20 @@ Will be available in 2024
   "from": "usdt",
   "to": "btc",
   "count": 100,
-  "addreess": "{wallet address}"
+  "wallet": "{wallet address}"
 }],
 ["voids.crypto", {
   "from": "usdt",
   "to": "btc",
   "btc": 0.001,
-  "addreess": "{wallet address}"
+  "wallet": "{wallet address}"
 }]
 ```
 #### Crypto send
 ```javascript
 ["voids.send", {
   "btc": 0.001,
-  "address", "{wallet address}"
+  "wallet", "{wallet address}"
 }]
 ```
 ### Exchange
@@ -1221,6 +1221,7 @@ Will be available in 2024
 #### Options
 ```javascript
 ["voids.option", "aapl"]
+["voids.option", "AAPL240426C00167500"]
 ```
 #### Futures
 ```javascript
@@ -1251,9 +1252,9 @@ Will be available in 2024
 ```
 #### Sell
 ```javascript
-["exchange.sell", "aapl"],
-["exchange.sell", "AAPL240426C00167500"],
-["exchange.sell", "eur"]
+["exchange.sell", "aapl", 10],
+["exchange.sell", "AAPL240426C00167500", 10],
+["exchange.sell", "eur", 10]
 ```
 ## Social
 ### SMS
