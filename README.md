@@ -354,20 +354,26 @@ Action parameters: []
 ```
 ##### Action load
 ```javascript
-["action.load", "file.json"],
-["action.load", "file.json", "action_to_load"],
-["action.load", "file.json", ["action 1", "action 2"]],
-["action.load", "file.json", "action_to_load", "action_alias"]
+["action.load", "file.json", "name"],
+["action.load", "file.json", "name", "action to load"],
+["action.load", "file.json", "name", ["action to load"]],
+["action.load", "file.json", "name", ["action 1", "action 2"]]
 ```
-##### Action switch
+##### Action alias
 ```javascript
+["action.alias", "say", "speach"],
+["speach", "Hi"],
 ["vn.say", "Hi"],
-["action.switch", "vn"],
+["action.alias", "vn"],
 ["say", "Hi"],
-["action.switch", ["vn", "rpg"]],
-["action.switch", "vn", "visual novel"],
-["visual novel.say", "Hi"],
-["action.switch", false]
+["action.alias", ["vn", "rpg"]],
+["action.alias", "vn", "visual novel"],
+["visual novel.say", "Hi"]
+```
+##### Action alias remove
+```javascript
+["action.alias.remove", "vn"],
+["action.alias.remove"]
 ```
 ##### Exit
 ```javascript
