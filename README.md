@@ -856,8 +856,7 @@ Will be available in 2024
 ##### HTTPS
 ##### API
 ##### Mail
-##### Cloud
-##### V O I D server
+##### V O I D cloud
 
 ### Cache
 ##### Access by name
