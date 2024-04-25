@@ -1166,7 +1166,66 @@ Will be available in 2024
 Will be available in 2024
 
 ## AI
-Will be available in 2024
+#### Generate text
+```javascript
+["ai.text", "Description"],
+["ai.text", "Description", "{model}"]
+```
+#### Generate image
+```javascript
+["ai.image", "Description"],
+["ai.image", "Description", "{model}"]
+```
+#### Generate video
+```javascript
+["ai.video", "Description"],
+["ai.video", "Description", "{model}"]
+```
+#### Generate sound
+```javascript
+["ai.sound", "Description"],
+["ai.sound", "Description", "{model}"]
+```
+#### Generate speach
+```javascript
+["ai.speach", "Text to say"],
+["ai.speach", "Text to say", "{model}"],
+["ai.speach", "path/to/speach", "{model}"]
+```
+#### Generate asset
+```javascript
+["ai.asset", "Description"],
+["ai.asset", "Description", "{model}"]
+```
+#### Image and video scale
+```javascript
+["ai.scale", "{image}", 4.0],
+["ai.scale", "path/to/video", "4k"]
+```
+#### Image clean
+```javascript
+["ai.clean", "{image}", "{x}", "{y}", "{radius}"]
+```
+#### Image remove background
+```javascript
+["ai.bg", "{image}"]
+```
+#### Image and video colorize
+```javascript
+["ai.color", "{image}"],
+["ai.color", "path/to/video"]
+```
+#### Image and video improve
+```javascript
+["ai.improve", "{image}"],
+["ai.improve", "path/to/video"]
+```
+#### Image and video repaint
+```javascript
+["ai.repaint", "{image}"],
+["ai.repaint", "path/to/video"],
+["ai.repaint", "{image}", "{model}"]
+```
 
 ## Voids
 #### Wallet
@@ -1184,6 +1243,11 @@ Will be available in 2024
 #### Send
 ```javascript
 ["voids.send", "friend name", 100]
+```
+#### History
+```javascript
+["voids.history"],
+["voids.history", "{from timestamp}", "{to timestamp}"]
 ```
 ### Crypto
 #### Crypto exchange
