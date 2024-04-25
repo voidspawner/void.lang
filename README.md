@@ -332,6 +332,11 @@ Action parameters: []
 ["<<<"],
 ["<<<", 2]
 ```
+##### Return value
+```javascript
+["_"],
+["_", "Result"]
+```
 ##### Action run
 ```javascript
 ["action", [
@@ -406,6 +411,18 @@ Action parameters: []
 ```
 
 ### Math
+##### Sine
+```javascript
+["sin", 0]
+```
+##### Cosine
+```javascript
+["cos", 0]
+```
+##### Tangent
+```javascript
+["tan", 0]
+```
 
 ### Text
 
