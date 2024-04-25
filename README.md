@@ -1175,25 +1175,26 @@ Will be available in 2024
 ```
 #### Buy
 ```javascript
-["voids.buy", 100, "usdt"]
+["voids.buy", "usdt", 100]
 ```
 #### Sell
 ```javascript
-["voids.sell", 100, "usdt"]
+["voids.sell", "usdt", 100]
 ```
 #### Send
 ```javascript
-["voids.send", 100, "friend name"]
+["voids.send", "friend name", 100]
 ```
+### Crypto
 #### Crypto exchange
 ```javascript
-["voids.exchange", {
+["voids.crypto", {
   "from": "usdt",
   "to": "btc",
   "count": 100,
   "addreess": "{wallet address}"
 }],
-["voids.exchange", {
+["voids.crypto", {
   "from": "usdt",
   "to": "btc",
   "btc": 0.001,
@@ -1207,7 +1208,53 @@ Will be available in 2024
   "address", "{wallet address}"
 }]
 ```
-
+### Exchange
+#### Trading exchange list
+```javascript
+["voids.exchange"]
+```
+#### Stocks
+```javascript
+["voids.stock"],
+["voids.stock", "aapl"]
+```
+#### Options
+```javascript
+["voids.option", "aapl"]
+```
+#### Futures
+```javascript
+["voids.future"]
+```
+#### Indexes
+```javascript
+["voids.index"]
+```
+#### ETF
+```javascript
+["voids.etf"],
+["voids.etf", "bnd"]
+```
+#### Currency
+```javascript
+["voids.currency"]
+```
+#### Bonds
+```javascript
+["voids.bond"]
+```
+#### Buy
+```javascript
+["voids.buy", "aapl", 10],
+["voids.buy", "AAPL240426C00167500", 10],
+["voids.buy", "eur", 10]
+```
+#### Sell
+```javascript
+["exchange.sell", "aapl"],
+["exchange.sell", "AAPL240426C00167500"],
+["exchange.sell", "eur"]
+```
 ## Social
 ### SMS
 ```javascript
