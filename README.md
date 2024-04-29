@@ -393,6 +393,11 @@ Action parameters: []
 ["shell", "dir"],
 ["shell", "ls"]
 ```
+##### Run shell command in new window
+```javascript
+["shell.open", "dir"],
+["shell.open", "ls"]
+```
 ##### Native code
 ```javascript
 ["code", "print('Python code')"]
