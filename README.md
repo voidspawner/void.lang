@@ -11,7 +11,7 @@
 
 - **Python** ⌜CLI・Server⌟
 - **PHP** ⌜CLI・Server⌟
-- **JavaScript** ⌜Web・CLI (with NodeJS)・Server (with NodeJS)⌟
+- **JavaScript** ⌜Web・CLI (with NodeJS)・Server (with NodeJS)・Game⌟
 - **Swift** ⌜macOS・iOS・iPadOS・watchOS・tvOS・Windows・Linux・Server・Game⌟
 - **Java** ⌜Android・macOS・Windows・Linux・Server・Game⌟
 - **C#** ⌜Windows・Server・Game⌟
