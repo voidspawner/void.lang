@@ -19,7 +19,7 @@
 
 ## Game Engine
 
-This is a compiled **V O I D spawner** game for rapidly creating apps and games in **V O I D lang**. It use multiple game engines:
+This is a pre-compiled **V O I D spawner** game for rapidly creating games, apps and animation in **V O I D lang**. It uses multiple game engines:
 
 - **Godot Engine**
 - **Unreal 5 Engine**
