@@ -9,12 +9,13 @@
 
 ## Preinstalled Language
 
-- **Python** ⌜CLI App・Web Server・API Server⌟
-- **PHP** ⌜CLI App・Web Server・API Server⌟
-- **JavaScript** ⌜Web App・Web Server (with NodeJS)・API Server (with NodeJS)・CLI App (with NodeJS)⌟
-- **Swift** ⌜macOS App・iOS App・iPadOS App・watchOS App・tvOS App・Linux App・Windows App・Web Server・API Server・Game Native⌟
-- **Java** ⌜Android App・Linux App・Windows App・Web Server・API Server・Game Native⌟
-- **C#** ⌜Windows App・Web Server・API Server・Game Native⌟
+- **Python** ⌜CLI・Server⌟
+- **PHP** ⌜CLI・Server⌟
+- **JavaScript** ⌜Web・CLI (with NodeJS)・Server (with NodeJS)⌟
+- **Swift** ⌜macOS・iOS・iPadOS・watchOS・tvOS・Windows・Linux・Server・Game⌟
+- **Java** ⌜Android・Windows・Linux・Server・Game⌟
+- **C#** ⌜Windows・Server・Game⌟
+- **C++** ⌜macOS・Windows・Linux・Server・Game⌟
 
 ## Game Engine
 
