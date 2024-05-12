@@ -13,7 +13,7 @@
 - **PHP** ⌜CLI・Server⌟
 - **JavaScript** ⌜Web・CLI (with NodeJS)・Server (with NodeJS)⌟
 - **Swift** ⌜macOS・iOS・iPadOS・watchOS・tvOS・Windows・Linux・Server・Game⌟
-- **Java** ⌜Android・Windows・Linux・Server・Game⌟
+- **Java** ⌜Android・macOS・Windows・Linux・Server・Game⌟
 - **C#** ⌜Windows・Server・Game⌟
 - **C++** ⌜macOS・Windows・Linux・Server・Game⌟
 
