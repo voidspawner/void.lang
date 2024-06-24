@@ -186,23 +186,30 @@ All code is data. So just add the property "description", "//" and so on.
 
 [Value](#value)・
 [Control](#control)・
-[Math](#math)・
 [Text](#text)・
 [List](#list)・
+[Math](#math)・
 [Time](#time)・
-[Format](#format)・
 [Crypto](#crypto)・
+[Format](#format)・
 [File](#file)・
-[Dir](#file)・
-[Link](#file)・
-[Drive](#file)・
-[Request](#request)・
 [Server](#server)・
+[Request](#request)・
 [Cache](#cache)・
-[DB](#db)・
+[Data](#data)・
+[OS](#os)・
 [Device](#device)・
+[Clipboard](#clipboard)・
+[Say](#say)・
+[Image](#image)・
+[Video](#video)・
+[Sound](#sound)・
+[Music](#music)・
+[Screen](#screen)・
 [UI](#ui)・
-[Engine](#engine)・
+[Visual Novel](#visual-novel)・
+[2D](#ui)・
+[3D](#ui)・
 [AI](#ai)・
 [Voids](#voids)・
 [Social](#social)
@@ -232,1213 +239,1682 @@ Action name: "."
 Action parameters: []
 ```
 
+
 ### Value
-##### Set
+
+#### =
+Setting the vlue with an expression
 ```javascript
 ["=", "i", 10]
 ```
-##### Get
+```javascript
+["=", "i", 1, "+", 1, "*", 2]
+```
+```javascript
+["=", "i", 1, "+", [1, "*", 2]]
+```
+```javascript
+["=", "i", ["sin", 0.5]]
+```
+```javascript
+["=", "i", [[1, 2, "{value}"]]]
+```
+```javascript
+["=", "i", [{"index": "{value}"}]]
+```
+
+#### =!
+Setting the value without an expression
+```javascript
+["=!", "i", ["A", "B", "{value without parsing}"]]
+```
+
+#### Get
+Get the value
 ```javascript
 [".", "{i}"]
 ```
-##### Remove
+
+#### Remove
+Remove the value
 ```javascript
 ["-", "i"]
 ```
-##### Translate
+
+#### type
+Get the value type
+
+#### text
+Convert the value to the text type
+
+#### number
+Convert the value to the number type
+
+#### list
+Convert the value to the list type
+
+#### bool
+Convert the value to the bool type
+
+#### Translate
+Translate the text
 ```javascript
-{
-  "run": [
-    [".", "{text.hi}"]
-  ],
-  "text": {
-    "hi": 
-      "en": "Hi World",
-      "zh": "你好世界"
-    }
-  }
-}
-```
-##### Alias
-```javascript
-{
-  "alias": {
-    "name": "long name"
-  },
-  "run": [
-    ["=", "long name", 123], 
-    [".", "{name}"]
-  ]
-}
-```
-##### Binary data in Base64 with or without Gzip
-```javascript
-{
-  "data": {
-    "image": "H4sIAD22JWYC/+1YezhU6xp..."
-  },
-  "run": [
-    ["file.write", "image.png", "{data.image}"]
-  ]
-}
+{"run": [[".", "{text.title}"], [".", "{text.title.zh}"]], "text": {"title": {"en": "Title", "zh": "\u6a19\u984c"}}}
 ```
 
-### Control
-##### Print
+#### Binary
+Binary data in Base64 with or without Gzip
 ```javascript
-[".", "Text"],
-[".", "Count", ": ", 12],
-[".", [1, 2, 3]],
-".",
-[".!", "Print "],
-[".!", "without new line"]
+{"data": {"image": "R0lGODlhPwA/AKEAAAAAAP..."}, "run": [["file.write", "image.gif", "{data.image}"]]}
 ```
-##### If
+
+#### alias
+Action alias
+```javascript
+["alias", "vn.say", "say"]
+```
+```javascript
+["alias", {"vn.say": "say", "vn.remove": "x"}]
+```
+```javascript
+["=", "alias.'vn.say'", "say"]
+```
+
+#### +
+Summarize the values
+
+#### -
+Subtract the values
+
+#### \*
+Multiply the values
+
+#### /
+Divide the values
+
+#### %
+Remainder of a divided
+
+#### ~
+Incrementing a value to a power
+
+#### !
+Not operation for one or two values
+
+#### &
+And operation for two values
+
+#### |
+Or operation for two values
+
+#### ^
+Xor operation for two values
+
+#### >>
+Bit shift to the right
+
+#### <<
+Bit shift to the left
+
+#### +=
+Setting the value with a sum
+
+#### -=
+Setting the value with a substract
+
+#### \*=
+Setting the value with a multiply
+
+#### /=
+Setting the value with a divide
+
+#### %=
+Setting the value with a reminder
+
+#### ~=
+Setting the value with a power
+
+#### !=
+Setting the value with a not
+
+#### &=
+Setting the value with a add
+
+#### |=
+Setting the value with a or
+
+#### ^=
+Setting the value with a xor
+
+#### >>=
+Setting the value with a right shift
+
+#### <<=
+Setting the value with a left shift
+
+### Control
+
+#### .
+Print text or data
+```javascript
+[[".", "Text"]]
+```
+```javascript
+[[".", "Count", ": ", 12]]
+```
+```javascript
+[[".", [1, 2, 3]]]
+```
+```javascript
+["."]
+```
+
+#### .!
+Print text or data without newline at the end
+```javascript
+[[".!", "Print "]]
+```
+```javascript
+[[".!", "without new line"]]
+```
+
+#### ?
+If statement
 ```javascript
 ["?", ["{value}", ">", 2], [[".", ">2"]], [[".", "<=2"]]]
 ```
-##### Case / Match
+
+#### ??
+Case / Match statement
 ```javascript
-["??", "{value}", [
-  [1, [[".", 1]]],
-  [100, [[".", 100]]],
-  [[["{value}", ">", 10], "and", ["{value}", "<", 20]], [[".", "10-20"]]], 
-  [null, [[".", "other"]]]
-]]
-```
-##### Loop
-```javascript
-["..", "value", 10, [[".", "{value}"]]],
-["..", "value", [10, 20], [[".", "from 10 to 20"]]],
-["..", "letter", "Text", [[".", "{letter}"]]],
-["..", "value", "{list}", [[".", "{value}"]]],
-["..", ["value"], [1, 2, 3], [[".", "{value}"]]],
-["..", ["name", "value"], "{dict}", [[".", "{name}: {value}"]]],
-["..", 10, [[".", "count"]]],
-["..", [[".", "infinite"]]],
-["..", ["{value}", ">", 10], [[".", "while"]]]
-```
-##### Loop break
-```javascript
-["x"],
-["x", 2]
-```
-##### Loop continue
-```javascript
-[">>>"],
-[">>>", 2]
-```
-##### Loop repeat
-```javascript
-["<<<"],
-["<<<", 2]
-```
-##### Return value
-```javascript
-["_"],
-["_", "Result"]
-```
-##### Action run
-```javascript
-["action", [
-  [".", "Hi World"]
-]]
-```
-##### Action call
-```javascript
-{
-  "run": ["action name"],
-  "action": {
-    "action name": [[".", "Hi World"]]
-  }
-}
-```
-##### Action load
-```javascript
-["action.load", "file.json", "name"],
-["action.load", "file.json", "name", "action to load"],
-["action.load", "file.json", "name", ["action to load"]],
-["action.load", "file.json", "name", ["action 1", "action 2"]]
-```
-##### Action alias
-```javascript
-["action.alias", "say", "speach"],
-["speach", "Hi"],
-["vn.say", "Hi"],
-["action.alias", "vn"],
-["say", "Hi"],
-["action.alias", ["vn", "rpg"]],
-["action.alias", "vn", "visual novel"],
-["visual novel.say", "Hi"]
-```
-##### Action alias remove
-```javascript
-["action.alias.remove", "vn"],
-["action.alias.remove"]
-```
-##### Exit
-```javascript
-["X"],
-["X", 500],
-["X", 500, "Exit with code 500 and print message before exit"]
-```
-##### Open in the standard way
-```javascript
-["open", "https://voidsp.com"],
-["open", "mailto://hi@voidsp.com"],
-["open", "c:\\Windows\\System32\\calc.exe"],
-["open", "c:\\"]
-```
-##### Run shell command
-```javascript
-["shell", "dir"],
-["shell", "ls"]
-```
-##### Run shell command in new window
-```javascript
-["shell.open", "dir"],
-["shell.open", "ls"]
-```
-##### Native code
-```javascript
-["code", "print('Python code')"]
-```
-##### Log Ok
-```javascript
-["ok"],
-["ok", 200],
-["ok", 200, "Something done"]
-```
-##### Log Warning
-```javascript
-["warning"],
-["warning", 300],
-["warning", 300, "Something need attention"]
-```
-##### Log Error
-```javascript
-["error"],
-["error", 500],
-["error", 500, "Something went wrong"]
+["??", "{value}", [[1, [[".", 1]]], [100, [[".", 100]]], [[["{value}", ">", 10], "and", ["{value}", "<", 20]], [[".", "10-20"]]], [null, [[".", "other"]]]]]
 ```
 
-### Math
-##### Sine
-```javascript
-["sin", 0]
-```
-##### Cosine
-```javascript
-["cos", 0]
-```
-##### Tangent
-```javascript
-["tan", 0]
-```
+#### ..
+For / Each / Repeat / While statement
+
+#### x
+Break loop
+
+#### >>>
+Continue loop
+
+#### <<<
+Repeat loop iteration
+
+#### _
+Return value
+
+#### action
+Run action
+
+#### action.load
+Load external action
+
+#### X
+Exit application or game
+
+#### open
+Open in the standard way
+
+#### shell
+Run shell command
+
+#### shell.open
+Run shell command in new window
+
+#### code
+Run native code
+
+#### ok
+Log ok messge with data
+
+#### warning
+Log warning message with data
+
+#### error
+Log error message with data
+
+#### export
+Export game or app
+
+#### debug
+Show / Hide debug info
+
+#### fps
+Show / Hide FPS
 
 ### Text
 
+#### number
+Convert number to text or text to the number
+
+#### date
+Convert date to text or text to the timestamp / date
+
+#### path_dir
+Extract directory from the path
+
+#### path_name
+Extract filename from the path
+
+#### path_extension
+Extract extension from path
+
+#### path_basename
+Extract basename from the path
+
+#### path_drive
+Extract drive from the path
+
+#### lower
+Text to lower
+
+#### upper
+Text to upper
+
+#### strip
+Strip the text
+
+#### strip.begin
+Strip begin of the text
+
+#### strip.end
+Strip end of the text
+
+#### replace
+Replace subtext with another
+
+#### find
+Find subtext in the text
+
+#### part
+Get part of the text or the list
+
+#### split
+Split the text or the list
+
+#### join
+Join the list with subtext or multiple lists
+
+#### regex
+Find text with regular expression
+
+#### regex.replace
+Replace text with regular expression
+
+#### escape
+Escape text with pattern
+
+#### escape.html
+Escape HTML text
+
+#### escape.sql
+Escape SQL query text
+
+#### escape.url
+Escape URL text
+
+#### escape.json
+Escape JSON text
+
+#### unescape
+Unescape text with pattern
+
+#### unescape.html
+Unscape HTML text
+
+#### unescape.sql
+Unscape SQL query text
+
+#### unescape.url
+Unscape URL text
+
+#### unescape.json
+Unscape JSON text
+
 ### List
 
-### Time
-##### Timestamp
-```javascript
-["timestamp"]
-```
-##### Timestamp with microseconds
-```javascript
-["timestamp.micro"]
-```
-##### Timestamp with microseconds as float
-```javascript
-["timestamp.float"]
-```
-##### Timepast
-```javascript
-["timepast"],
-["timepast", "name"]
-```
-##### Timepast check
-```javascript
-["timepast.check"],
-["timepast.check", "name"]
-```
-##### Timepast remove
-```javascript
-["timepast.remove", "name"]
-```
-##### Wait seconds
-```javascript
-["wait", 1],
-["wait", 0.2]
-```
-##### Timer
-```javascript
-["timer", 10, [
-  [".", "10 seconds have passed"]
-]]
-```
-##### Timer call
-```javascript
-["timer", 10, [
-  [".", "Call"]
-], "name"],
-["timer.run", "name"]
-```
-##### Timer repeat
-```javascript
-["timer.repeat", 10, [
-  [".", "Infinite"]
-], "name"],
-["timer.repeat", 10, [
-  [".", "3 times"]
-], "name", 3]
-```
-##### Timer remove
-```javascript
-["timer.remove", "name"]
-```
+#### push
+Push value to the list
 
-### Format
-##### JSON encode
-```javascript
-["json", {"text": "With tab indent"}],
-["json", {"text": "With tab indent"}, true],
-["json", {"text": "Short form without indent"}, null],
-["json", {"text": "Short form without indent"}, false],
-["json", {"text": "With two spaces indent"}, "  "],
-["json", {"text": "With two spaces indent"}, 2]
-```
-##### JSON decode
-```javascript
-["json.decode", "{\"text\": \"Text to decode\"}"]
-```
-##### JSON load
-```javascript
-["json.load", "file.json"]
-```
-##### JSON save
-```javascript
-["json.save", "file.json", {"text": "Save with indent"}],
-["json.save", "file.json", {"text": "Short form"}, false]
-```
-##### V O I D format encode
-```javascript
-["void.encode", {"text": "Text to encode"}],
-["void.encode.short", {"text": "Short form without indent"}],
-["void.encode.binary", {"text": "Short form with binary data", "binary": "\u0003\u0004\u0005"}]
-```
-##### V O I D format decode
-```javascript
-["void.decode", "|text:Text\\ to\\ decode|"]
-```
-##### CSV encode
-```javascript
-["csv", [["Text",1],["With comma separator",2]]],
-["csv", [["Text",1],["With tab separator",2]], "\t"]
-```
-##### CSV decode
-```javascript
-["csv.decode", "\"Text\",1\n\"With comma separator\",2"],
-["csv.decode", "\"Text\"\t1\n\"With tab separator\"\t2", "\t"]
-```
-##### YAML encode
-```javascript
-["yaml", {"text": "With tab indent"}],
-["yaml", {"text": "Simple form without indent"}, null],
-["yaml", {"text": "With two spaces indent"}, 2]
-```
-##### YAML decode
-```javascript
-["yaml.decode", "{\"text\": \"Text to decode\"}"]
-```
-##### INI encode
-```javascript
-["ini", {
-  "section": {
-    "name": "value",
-    "list": [1,2,3]
-  }
-}, ";"]
-```
-##### INI decode
-```javascript
-["ini.decode", "[section]\nname=value\nlist=1;2;3", ";"]
-```
-##### HTML encode
-```javascript
-["html", [
-  ["head", [
-    ["title", "Hi World"],
-    ["script", "hi.js"],
-    ["style", "hi.css"],
-    ["icon", "favicon.png"]
-  ]],
-  ["body", [
-    ["div", [
-      "Hi World"
-    ], {"style": {"background-color": "lightgreen"}}]
-  ]]
-], {"lang": "en"}],
-["html", [
-  ["div", ["Hi World"], {"class": "text"}]
-]]
-```
-##### HTML decode
-```javascript
-["html.decode", "<html lang=\"en\"><body>Hi World</body></html>"]
-```
-##### XML encode
-```javascript
-["xml", [
-  ["file", [
-    ["path", "/path/to/file"],
-    ["size": 1234],
-    ["read only", true]
-  ]]
-]]
-```
-##### XML decode
-```javascript
-["xml.decode", "<file><path>/path/to/file</path></file>"]
-```
+#### pop
+Pop value from the list
+
+#### reverse
+Reverse the list
+
+#### shuffle
+Shuffle the list
+
+### Math
+
+#### sin
+Sine value
+
+#### cos
+Cosine value
+
+#### tan
+Hyperbolic value
+
+#### sinh
+Hyperbolic sine value
+
+#### cosh
+Hyperbolic cosine value
+
+#### tanh
+Hyperbolic tangent value
+
+#### asin
+Arcsine value
+
+#### acos
+Arcosine value
+
+#### atan
+Arctangent value
+
+#### asinh
+Hyperbolic arcsine value
+
+#### acosh
+Hyperbolic arccosine value
+
+#### atanh
+Hyperbolic arctangent value
+
+#### round
+Round value
+
+#### floor
+Floor value
+
+#### ceil
+Ceil value
+
+#### log
+Logarithm value
+
+#### pow
+Power value
+
+#### factorial
+Factorial value
+
+#### abs
+Absolute value
+
+#### min
+Minimum value
+
+#### max
+Maximum value
+
+#### avg
+Average value
+
+#### hex
+Convert value to hexadecimal
+
+#### bin
+Convert value to binary
+
+#### dec
+Convert value to decimal
+
+#### rad
+Convert value to radian
+
+#### deg
+Convert value to degree
+
+#### random
+Random value
+
+#### random.new
+Create random seed
+
+#### random.seed
+Get / Set seed
+
+### Time
+
+#### time
+Get timestamp with microseconds
+
+#### time.milli
+Get timestamp with milliseconds
+
+#### time.seconds
+Get timestamp with seconds
+
+#### time.float
+Get timestamp with seconds as float value
+
+#### wait
+Wait actions with seconds
+
+#### timepast
+Start / Check timepast
+
+#### timer
+Create timer with seconds
+
+#### timer.remove
+Remove timer by name
 
 ### Crypto
-##### Hash
-```javascript
-["hash"],
-["hash", 32, ["letter", "number", "symbol"]],
-["hash", 32, "ABCDEF0123456789"]
-```
-##### UUID
-```javascript
-["uuid"]
-```
-##### MD5
-```javascript
-["md5", "Text"]
-```
-##### SHA1
-```javascript
-["sha1", "Text"]
-```
-##### SHA256
-```javascript
-["sha256", "Text"]
-```
-##### SHA512
-```javascript
-["sha512", "Text"]
-```
-##### CRC32
-```javascript
-["crc32", "Text"]
-```
-##### RSA encode
-```javascript
-["rsa", "Text"],
-["rsa", "Text", "key"],
-["rsa", "Text", null, {
-  "company": "Company",
-  "domain": "domain.com"
-}]
-```
-##### RSA decode
-```javascript
-["rsa.decode", "{rsa data}", "{rsa key]"]
-```
-##### RSA check
-```javascript
-["rsa.check", "{rsa data}", "{rsa key}", "{rsa signature}"]
-```
-##### Base64 encode
-```javascript
-["base64", "Text"]
-```
-##### Base64 decode
-```javascript
-["base64.decode", "VGV4dA=="]
-```
-##### Gzip encode
-```javascript
-["gzip", "Text"]
-```
-##### Gzip decode
-```javascript
-["gzip.decode", "{gzip data}"]
-```
+
+#### hash
+Generate hash
+
+#### uuid
+UUID unique value
+
+#### md5
+MD5 hash
+
+#### sha1
+SHA1 hash
+
+#### sha256
+SHA256 hash
+
+#### sha512
+SHA512 hash
+
+#### crc32
+CRC32 hash
+
+#### base64.encode
+Encode data with Base64
+
+#### base64.decode
+Decode Base64 data
+
+#### gzip
+Encode data with Gzip
+
+#### gzip.decode
+Decode Gzip data
+
+#### rsa
+Encode data with RSA
+
+#### rsa.decode
+Decode RSA data
+
+#### rsa.key.public
+Get RSA public key
+
+#### rsa.key.private
+Get RSA private key
+
+#### ssl
+Encode SSL data
+
+#### ssl.decode
+Decode SSL data
+
+#### ssl.check
+Check SSL data
+
+#### bcrypt
+Encode data with Bcrypt
+
+#### bcrypt.check
+Check Bcrypt data
+
+### Format
+
+#### json
+Encode JSON format
+
+#### json.decode
+Decode JSON format
+
+#### yaml
+Encode YAML format
+
+#### yaml.decode
+Decode YAML format
+
+#### csv
+Encode CSV format
+
+#### csv.decode
+Decode CSV format
+
+#### ini
+Encode INI format
+
+#### ini.decode
+Decode INI format
+
+#### html
+Encode HTML format
+
+#### html.decode
+Decode HTML format
+
+#### xml
+Encode XML format
+
+#### xml.decode
+Decode XML format
+
+#### css
+Encode CSS format
+
+#### css.decode
+Decode CSS format
+
+#### robots
+Encode Robots format
+
+#### robots.decode
+Decode Robots format
+
+#### sitemap
+Encode Sitemap format
+
+#### sitemap.decode
+Decode Sitemap format
 
 ### File
-##### File exists
-```javascript
-["file.exists", "path/to/file"]
-```
-##### File read
-```javascript
-["file.read", "path/to/file"]
-```
-##### File write
-```javascript
-["file.write", "path/to/file", "Text"]
-```
-##### File append
-```javascript
-["file.append", "path/to/file", "Text"]
-```
-##### File remove
-```javascript
-["file.remove", "path/to/file"]
-```
-##### File remove to trash
-```javascript
-["file.trash", "path/to/file"]
-```
-##### File copy
-```javascript
-["file.copy", "path/to/file", "path/destination"],
-["file.copy", "path/to/file", "path/destination", "new name"],
-["file.copy", "path/to/file", "path/destination/change name if exists", true]
-```
-##### File move
-```javascript
-["file.move", "path/to/file", "path/destination"]
-["file.move", "path/to/file", "path/destination", "new name"],
-["file.move", "path/to/file", "path/destination/change name if exists", true]
-```
-##### File rename
-```javascript
-["file.rename", "path/to/file", "new name"]
-```
-##### File size
-```javascript
-["file.size", "path/to/file"]
-```
-##### File info
-```javascript
-["file.info", "path/to/file"]
-```
-##### File permission
-```javascript
-["file.permission", "path/to/file"],
-["file.permission", "path/to/file", 777]
-```
-##### File owner
-```javascript
-["file.owner", "path/to/file"],
-["file.owner", "path/to/file", "user"]
-```
-##### File readonly
-```javascript
-["file.readonly", "path/to/file"],
-["file.readonly", "path/to/file", true]
-```
-##### File hidden
-```javascript
-["file.hidden", "path/to/file"],
-["file.hidden", "path/to/file", true]
-```
-##### File modified time
-```javascript
-["file.modified", "path/to/file"],
-["file.modified", "path/to/file", "{timestamp}"]
-```
-##### File SHA256
-```javascript
-["file.sha256", "path/to/file"]
-```
-##### File CRC32
-```javascript
-["file.crc32", "path/to/file"]
-```
-##### File Zip
-```javascript
-["file.zip", "path/to/file"],
-["file.zip", "path/to/file", "name.zip"],
-["file.zip", "path/to/file", null, "file/in/zip"]
-```
-##### File Zip exists
-```javascript
-["file.zip.exists", "path/to/file.zip", "file/in/zip"]
-```
-##### File Zip read
-```javascript
-["file.zip.read", "path/to/file.zip", "file/in/zip"]
-```
-##### File Zip write
-```javascript
-["file.zip.write", "path/to/file.zip", "file/in/zip", "Text"]
-```
-##### File Zip add
-```javascript
-["file.zip.add", "path/to/file.zip", "path/add/file"],
-["file.zip.add", "path/to/file.zip", "path/add/file", "file/in/zip"]
-```
-##### File Zip remove
-```javascript
-["file.zip.remove", "path/to/file.zip", "file/in/zip"]
-```
-##### File Unzip
-```javascript
-["file.unzip", "path/to/file.zip", "path/destination"],
-["file.unzip", "path/to/file.zip", "path/destination", "file/in/zip"]
-```
-##### File Gzip
-```javascript
-["file.gzip", "path/to/file"],
-["file.gzip", "path/to/file", "file name.gz"]
-```
-##### File Ungzip
-```javascript
-["file.ungzip", "path/to/file.gz"],
-["file.ungzip", "path/to/file.gz", "file name"]
-```
 
-### Dir
-##### Dir exists
-```javascript
-["dir.exists", "path/to/dir"]
-```
-##### Dir list
-```javascript
-["dir.list", "path/to/dir"]
-```
-##### Dir create
-```javascript
-["dir.create", "path/to/dir"]
-```
-##### Dir remove
-```javascript
-["dir.remove", "path/to/dir"]
-```
-##### Dir remove to trash
-```javascript
-["dir.trash", "path/to/dir"]
-```
-##### Dir clear
-```javascript
-["dir.clear", "path/to/dir"]
-```
-##### Dir copy
-```javascript
-["dir.copy", "path/to/dir", "path/destination"]
-```
-##### Dir move
-```javascript
-["dir.move", "path/to/dir", "path/destination"]
-```
-##### Dir rename
-```javascript
-["dir.rename", "path/to/dir", "new name"]
-```
-##### Dir size
-```javascript
-["dir.size", "path/to/dir"]
-```
-##### Current dir size
-```javascript
-["dir.size.current", "path/to/dir"]
-```
-##### Dir permission
-```javascript
-["dir.permission", "path/to/dir"],
-["dir.permission", "path/to/dir", 777]
-```
-##### Dir owner
-```javascript
-["dir.owner"]
-["dir.owner", "user"]
-```
-##### Dir readonly
-```javascript
-["dir.readonly", "path/to/dir"]
-["dir.readonly", "path/to/dir", true]
-```
-##### Dir hidden
-```javascript
-["dir.hidden", "path/to/dir"]
-["dir.hidden", "path/to/dir", true]
-```
-##### Dir modified time
-```javascript
-["dir.modified", "path/to/dir"],
-["dir.modified", "path/to/dir", "{timestamp}"]
-```
-##### Dir zip
-```javascript
-["dir.zip", "path/to/dir"],
-["dir.zip", "path/to/dir", "name.zip"]
-```
+#### file.exists
+Checking file existence
 
-### Link
-##### Link exists
-```javascript
-["link.exists", "path/to/link"]
-```
-##### Link create
-```javascript
-["link.create", "link name", "path/to/file"]
-```
-##### Link remove
-```javascript
-["link.remove", "path/to/link"]
-```
+#### file.write
+Write data to file
 
-### Drive
-##### Drive exists
-```javascript
-["dir.exists", "drive name"]
-```
-##### Drive list
-```javascript
-["drive.list"]
-```
-##### Drive size
-```javascript
-["drive.size", "drive name"]
-```
-##### Drive free
-```javascript
-["drive.free", "drive name"]
-```
-##### Drive used
-```javascript
-["drive.used", "drive name"]
-```
-##### Drive info
-```javascript
-["drive.info", "drive name"]
-```
-##### Drive mount
-```javascript
-["drive.mount", "drive id"]
-```
-##### Drive unmount
-```javascript
-["drive.unmout", "drive name"]
-```
-##### Drive rename
-```javascript
-["drive.rename", "drive name", "new name"]  
-```
+#### file.read
+Read data from file
+
+#### file.remove
+Remove file
+
+#### file.move
+Move file
+
+#### file.copy
+Copy file
+
+#### file.rename
+Rename file
+
+#### file.info
+Get file info
+
+#### file.size
+Get file size
+
+#### file.permissions
+Get / Set file permissions
+
+#### file.modified
+Get / Set file modified time
+
+#### file.sha256
+Get SHA256 file hash
+
+#### file.zip
+Zip file / Add file to zip archive
+
+#### file.zip.list
+Get list of the zip archive
+
+#### file.zip.exists
+Checking path existence in the zip archive
+
+#### file.zip.read
+Read file from the zip archive
+
+#### file.zip.remove
+Remove path from the zip archive
+
+#### file.unzip
+Unzip archive
+
+#### file.gzip
+Gzip file
+
+#### file.ungzip
+Ungzip archive
+
+#### file.link
+Create symlink
+
+#### file.link.exists
+Checking link existence
+
+#### dir.exists
+Checking directory existence
+
+#### dir.create
+Create directory
+
+#### dir.copy
+Copy directory
+
+#### dir.move
+Move directory
+
+#### dir.rename
+Rename directory
+
+#### dir.remove
+Remove directory
+
+#### dir.list
+Get directory content
+
+#### dir.clear
+Clear directory
+
+#### dir.info
+Get directory info
+
+#### dir.size
+Get directory size
+
+#### dir.permissions
+Get directory permissions
+
+#### dir.modified
+Get / Set directory modified time
+
+#### dir.zip
+Zip directory
+
+#### drive.list
+Get list of the drives
+
+#### drive.name
+Get / Set drive name
+
+#### drive.size
+Get drive size
+
+#### drive.free
+Get drive free space
+
+#### drive.mount
+Mount the drive
+
+#### drive.unmount
+Unmount the drive
+
+### Server
+
+#### server
+Start / Get server
+
+#### server.stop
+Stop server
+
+#### socket
+Start Socket server
+
+#### http
+Start HTTP server
+
+#### https
+Start HTTP server
+
+#### server.mail
+Start Mail server
+
+#### cloud
+Start Cloud server
 
 ### Request
 
-### Server
-Will be available in 2024
-##### HTTP
-##### HTTPS
-##### API
-##### Mail
-##### V O I D cloud
+#### request
+Make network request
+
+#### request.post
+Make POST request
+
+#### request.put
+Make PUT request
+
+#### request.delete
+Make DELETE request
 
 ### Cache
-##### Access by name
-```javascript
-{
-  "cache": {
-    "name": "cache in memory",
-    "file": {
-      "path": "/cache",
-      "name": "cache in file"
-    },
-    "url": {
-      "url": "https://cache.com",
-      "header": {
-        "key": "server key"
-      },
-      "name": "cache in net"
-    }
-  },
-  "run": [
-    [".", "{cache.name}"],
-    ["=", "cache.name", "new value"],
-    ["=", "cache.file.name", "new value"],
-    ["=", "cache.url.name", "new value"]
-  ]
-}
-```
-##### Get
-```javascript
-["cache", "name"],
-["cache", "file.name"],
-["cache", "url.name"]
-```
-##### Set
-```javascript
-["cache", "name", "value"],
-["cache", "file.name", "value", {
-  "path": "/cache"
-}],
-["cache", "url.name", "value", {
-  "url": "https://cache.com",
-  "header": {
-    "key": "server key"
-  }
-}]
-```
-##### Remove
-```javascript
-["cache.remove", "name"],
-["cache.remove", "file.name"],
-["cache.remove", "url.name"]
-```
-##### List
-```javascript
-["cache.list", "name"],
-["cache.list", "file.name"],
-["cache.list", "url.name"]
-```
 
-### DB
-Will be available in 2024
+#### cache
+Get / Set cache by name
+
+#### cache.list
+Get list of the cache
+
+#### cache.info
+Get info of the cache by name
+
+#### cache.remove
+Remove cache by name
+
+#### cache.clear
+Clear all cache
+
+### Data
+
+#### sql
+Raw SQL querry
+
+#### sql.connect
+Connect to the SQL server
+
+#### sql.disconnet
+Disconnect from the SQL server
+
+#### sql.user
+Get / Set user
+
+#### sql.user.list
+Get list of users
+
+#### sql.user.remove
+Remove user
+
+#### sql.db
+Get / Set database
+
+#### sql.db.list
+Get list of databases
+
+#### sql.db.remove
+Remove the database
+
+#### sql.db.size
+Get size of the database
+
+#### sql.table
+Get / Set table
+
+#### sql.table.list
+Get list of tables
+
+#### sql.table.remove
+Remove table
+
+#### sql.field
+Get / Set field
+
+#### sql.field.list
+Get list of fields
+
+#### sql.field.remove
+Rmove the field
+
+#### sql.index
+Get / Set index
+
+#### sql.index.list
+Get list of indexes
+
+#### sql.index.remove
+Remove index
+
+#### sql.function
+Get / Set function
+
+#### sql.function.list
+Get list of functions
+
+#### sql.function.remove
+Remove function
+
+#### sql.view
+Get / Set view
+
+#### sql.view.list
+Get list of views
+
+#### sql.view.remove
+Remove view
+
+#### sql.one
+Fetch one result
+
+#### sql.all
+Fetch all results
+
+#### sql.cursor
+Get / Set cursor position
+
+#### sql.transaction
+Start transaction
+
+#### sql.commit
+Commit transaction
+
+#### sql.rollback
+Rollback transaction
+
+### OS
+
+#### os.name
+Get OS name
+
+#### os.version
+Get OS version
+
+#### os.username
+Get username
+
+#### os.desktop
+Check whether the OS is desktop
+
+#### os.mobile
+Check whether the OS is mobile
+
+#### os.web
+Check whether the OS is web
+
+#### os.windows
+Check whether the OS is Windows
+
+#### os.macos
+Check whether the OS is macOS
+
+#### os.ios
+Check whether the OS is iOS
+
+#### os.ipados
+Check whether the OS is ipadOS
+
+#### os.watchos
+Check whether the OS is watchOS
+
+#### os.tvos
+Check whether the OS is tvOS
+
+#### os.android
+Check whether the OS is Android
+
+#### os.linux
+Check whether the OS is Linux
 
 ### Device
-Will be available in 2024
-##### Camera
-##### Gallery
-##### Calendar
-##### GPS
-##### Compass
-##### Speed
-##### Tilt
-##### Light
-##### Health
-##### Notification send
-```javascript
-["notification.send", "{token}", "Text"],
-["notification.send", "{token}", "Text", "{image}", "{badge}"]
-```
-##### Notification token
-```javascript
-["notification.token"]
-```
+
+#### cpu.name
+Get CPU name
+
+#### cpu.cores
+Get the number of CPU cores
+
+#### gps
+Get GPS position
+
+#### speed
+Get speed
+
+#### tilt
+Get the device tilt
+
+#### compass
+Get a compass direction
+
+#### motion
+Get the device motion
+
+#### photo
+Get photos from the gallery
+
+#### contacts
+Get the device contacts
+
+#### calendar
+Accessing the calendar
+
+#### light
+Turn the flashlight On / Off
+
+#### health
+Access to health data
+
+#### camera
+Access to the camera
+
+#### mic
+Access to the microphone
+
+#### notification
+Send a notification
+
+#### notification.token
+Get a notification token
+
+#### key
+Bind the action to the key
+
+#### key.remove
+Unbind the action from the key
+
+#### key.press
+Key press imitation
+
+#### key.enable
+Enable the key
+
+#### key.disable
+Disable the key
+
+#### keyboard
+Show / Hide the virtual keyboard
+
+#### keyboard.height
+Get the height of the virtual keyboard
+
+#### mouse
+Show / Hide the mouse
+
+#### mouse.lock
+Lock the mouse position
+
+#### mouse.position
+Get / Set the mouse position
+
+#### mouse.capture
+Capture the mouse
+
+#### mouse.confine
+Confine the mouse
+
+#### mouse.shape
+Get / Set the mouse shape
+
+#### gamepad.axis
+Get axis of the gamepad
+
+#### gamepad.vibrate
+Gamepad vibration
+
+### Clipboard
+
+#### clipboard
+Get / Set the clipboard
+
+#### clipboard.clear
+Clear the clipboard
+
+### Say
+
+#### say
+Say the text
+
+#### say.list
+Get the list of the voices
+
+#### say.name
+Get / Set the voice
+
+#### say.stop
+Stop the speech
+
+#### say.pause
+Pause / Continue the speech
+
+### Image
+
+#### image
+Create the image
+
+#### image.size
+Resize the image
+
+#### image.crop
+Crop the image
+
+#### image.square
+Crop the image to the square shape
+
+#### image.rotate
+Rotate the image
+
+#### image.flip.h
+Flip the horizontally
+
+#### image.flip.v
+Flip the image vertically
+
+#### image.tint
+Tint the image
+
+#### image.gray
+Grayscale the image
+
+### Video
+
+#### video
+Create the video
+
+#### video.size
+Resize the video
+
+#### video.rotate
+Rotate the video
+
+#### video.flip.h
+Flip the video horizontally
+
+#### video.flip.v
+Flip the video vertically
+
+#### video.clip
+Clip the video
+
+#### video.speed
+Change the speed of the video
+
+#### video.reverse
+Reverse the video
+
+### Sound
+
+#### volume
+Change master volume
+
+#### sound
+Play the sound
+
+#### sound.list
+Get the list of the sounds
+
+#### sound.remove
+Remove the sound
+
+#### sound.volume
+Change the sound volume
+
+#### sound.speed
+Change the sound speed
+
+#### sound.clip
+Clip the sound
+
+### Music
+
+#### music
+Play the music
+
+#### music.stop
+Stop the music
+
+#### music.pause
+Pause / Resume the music
+
+#### music.volume
+Change the music volume
+
+### Screen
+
+#### screen.count
+Get screens count
+
+#### screen.list
+Get the list of screens
+
+#### size
+Get the screen size
+
+#### screen.name
+Get the screen name
+
+#### orientation
+Get / Set / Flip the orientation
+
+#### landscape
+Landscape orientation
+
+#### portrait
+Portrait orientation
+
+#### rate
+Get the refresh rate of the screen
+
+#### pixel
+Get the pixel on the screen
+
+#### screen.info
+Get the screen info
+
+#### dpi
+Get the screen DPI
+
+#### dark
+Get / Set the dark mode
+
+#### touchscreen
+Check if the screen is touchscreen
 
 ### UI
-Will be available in 2024
-##### Text
-##### Edit
-##### Image
-##### Button
-##### Slider
-##### Progress
-##### Switch
-##### Drop
-##### Menu
-##### List
-##### Tile
-##### Video
-##### Sound
-##### Draw
-##### View
 
-## Engine
-A game engine for creating 2D and 3D apps and games.
+#### ui
+Create / Edit the UI container
 
-##### Title
-```javascript
-["title", "App title"]
-```
-##### Icon
-```javascript
-["icon", "icon.webp"]
-```
+#### title
+Get / Set the window title
 
-#### Background
-```javascript
-["bg", "image.webp"],
-["bg", "sky", "fade"]
-```
+#### icon
+Get / Set the window icon
 
-#### Background animation
-```javascript
-["bg.animation", "sakura leaves", "fade"],
-["bg.animation.speed", 1.2],
-["bg.animation.rotate", 10]
-```
+#### bg
+Get / Set the window background
 
-#### Effect
-```javascript
-["effect", {
-  "name": "speed fade",
-  "effect": "fade",
-  "speed": 2.1
-}]
-```
+#### size
+Get / Set the window size
 
-#### Music
-```javascript
-["music", "chillout.mp3"],
-["music", "chillout"],
-["music.play"],
-["music.stop", "fade"],
-["music.pause"]
-```
+#### max
+Get / Set the window maximum size
 
-#### Sound
-```javascript
-["sound", "chillout.mp3"],
-["sound", "chillout"],
-["sound.play"],
-["sound.stop", "fade"],
-["sound.pause"]
-```
+#### size.min
+Get / Set the window minimum size
 
-#### Volume
-```javascript
-["volume", 0.9],
-["volume", "90%"],
-["music.volume", "10%"],
-["music.volume", 0.1],
-["sound.volume", "30%"],
-["sound.volume", 0.3]
-```
+#### position
+Get / Set the window position
 
-#### Window Size
-```javascript
-["size", 1000, 800]
-```
+#### direction
+Get / Set the window writing direction
 
-#### Window Position
-```javascript
-["position", 100, 200]
-```
+#### attention
+Pay attention to the window
 
-#### Window Attention
-```javascript
-["attention"]
-```
+#### on
+Make the window on top
 
-#### Fullscreen
-```javascript
-["fullscreen"],
-["fullscreen", true],
-["fullscreen", false]
-```
+#### foreground
+Make the window foreground
+
+#### unfocusable
+Make the window unfocusable
+
+#### unresizble
+Make the window unresizable
+
+#### center
+Center the window to the screen
+
+#### fullscreen
+Toggle fullscreen mode
+
+#### drop
+Drag & Drop event of the window
+
+#### border
+Get / Set the border of the screen
+
+#### show
+Show the UI element
+
+#### hide
+Hide the UI element
+
+#### focus
+Focus the UI element
+
+#### enable
+Enable the UI element
+
+#### disable
+Disable the UI element
+
+#### visible
+Get / Set the visibility of the UI element
+
+#### enabled
+Get / Set the activity of the UI element
+
+#### scale
+Scale the UI element
+
+#### maximized
+Get / Set maximized mode
+
+#### minimized
+Get / Set minimized mode
+
+#### exclusive
+Get / Set exclusive mode
+
+#### vsync
+Get / Set vertical synchronization
+
+#### ui.text
+Create 'text' UI element
+
+#### ui.image
+Create 'image' UI element
+
+#### ui.button
+Create 'button' UI element
+
+#### ui.video
+Create 'video' UI element
+
+#### ui.select
+Create 'select' UI element
+
+#### ui.switch
+Create 'switch' UI element
+
+#### ui.progress
+Create 'progress' UI element
+
+#### ui.slider
+Create 'slider' UI element
+
+#### ui.edit
+Create 'edit' UI element
+
+#### ui.split.h
+Create 'split horizontally' UI element
+
+#### ui.split.v
+Create 'split vertically' UI element
+
+#### ui.list
+Create 'list' UI element
+
+#### ui.tile
+Create 'tile' UI element
+
+#### ui.color
+Create 'color' UI element
+
+#### ui.date
+Create 'date' UI element
+
+#### ui.drop
+Create 'drag & drop' UI element
+
+#### ui.menu
+Create 'system menu' UI element
+
+#### ui.menu.context
+Create 'context menu' UI element
+
+#### ui.window
+Create 'window' UI element
+
+#### window.list
+Get the list of windows
+
+#### dialog.file
+Show `select file` dialog
+
+#### dialog.color
+Show `select color` dialog
+
+#### dialoog.date
+Show `select date` dialog
+
+#### dialog.select
+Show `select` dialog
+
+#### effect
+Add the effect to the UI element
+
+#### effect.list
+List all effects of the UI element
+
+#### effect.clear
+Remove all effects from the UI element
+
+#### effect.remove
+Remove the effect from the UI element
+
+#### game
+Initialize / Run the game
+
+#### menu
+Create / Show / Hide the game menu
 
 ### Visual Novel
 
-#### Say text
-```javascript
-["vn.say", null, "Text"]
-```
-#### Character say
-```javascript
-["vn.say", "character name", "Text"]
-```
-#### Character come
-```javascript
-["vn.come", "character name", "left", "fade"]
-```
-#### Character leave
-```javascript
-["vn.leave", "character name", "slide left"]
-```
-#### Character pose
-```javascript
-["vn.pose", "character name", "shrug"]
-```
-#### Character emotion
-```javascript
-["vn.emotion", "character name", "surprise", "fade"]
-```
-#### Character outfit
-```javascript
-["vn.outfit", "character name", ["hat", "butterfly tie", "tuxedo"], "fade"]
-```
-#### Character effect
-```javascript
-["vn.effect", "character name", "shake"]
-```
-#### Select route
-```javascript
-["vn.ask", [
-  ["Do something 1", "action 1"],
-  ["Do something 2", "action 2"]
-]]
-```
-#### Character
-```javascript
-["vn.character", {
-  "name": "character name",
-  "image": {
-    "normal": "char_normal",
-    "surprise": "char_normal",
-    "laugh": "char_laugh"
-  },
-  "pose": {
-    "normal": "char_normal",
-    "shrug": "char_shrug"
-  },
-  "emotion": {
-    "normal": "char_emotion_normal",
-    "surprise": "char_emotion_surprise",
-    "laugh": "char_emotion_laugh"
-  },
-  "outfit": {
-    "hat": {
-       "pose": "normal",
-       "image": "hat",
-       "position": [30, 20],
-       "scale": 0.8,
-       "rotate": 20
-    }
-  }
-}]
-```
-#### Textbar
-```javascript
-["vn.bar", {
-  "image": "bar",
-  "position": {
-    "bottom": 100,
-    "left": 0,
-    "right": 0
-  },
-  "height": 100,
-  "aspect": "fill",
-  "text": {
-    "left": 10,
-    "right": 10,
-    "top": 20,
-    "bottom": 20,
-    "font": "regular",
-    "size": 12,
-    "color": white,
-    "autoscroll": true
-  },
-  "button": {
-    "save": {
-      "image": "icon_save",
-      "position": [100, 20]
-    },
-    "load": {
-      "image": "icon_load",
-      "position": [140, 20]
-    },
-    "autoscroll": {
-      "image": "icon_autoscroll",
-      "position": [180, 20]
-    },
-    "skip": {
-      "image": "icon_skip",
-      "position": [220, 20]
-    },
-    "exit": {
-      "image": "icon_exit",
-      "position": [260, 20]
-    }
-  }
-}]
-```
+#### vn
+Show / Hide the visual novel
 
-### RPG
-Will be available in 2024
+#### vn.clear
+Reset the visual novel to the initial state
 
-### Clicker
-Will be available in 2024
+#### vn.say
+Say the text of the visual novel
 
-### Microsession
-Will be available in 2024
+#### vn.skip
+Skip the text of the visual novel
+
+#### vn.route
+Make the route selection of the visual novel
+
+#### vn.route.remove
+Remove the route selection of the visual novel
+
+#### vn.route.check
+Check the route selection of the visual novel
+
+#### vn.route.select
+Select the route of the visual novel
+
+#### vn.route.repeat
+Repeat the route selection of the visual novel
+
+#### vn.route.skip
+Skip the route selection of the visual novel
+
+#### vn.character
+Get / Set / Change the character of the visual novel
+
+#### vn.come
+Character comes in the visual novel
+
+#### vn.leave
+Character leaves in the visual novel
 
 ### 2D
-Will be available in 2024
+
+#### 2d
+Show / Hide the 2D game
+
+#### 2d.bg
+Create the 2D background with parallax effect
+
+#### 2d.map
+Create the 2D map
+
+#### 2d.character
+Create the 2D character
+
+#### 2d.object
+Create the 2D object
+
+#### 2d.npc
+Create the 2D NPC character
+
+#### 2d.enemy
+Create the 2D enemy character
+
+#### 2d.shoot
+Create the 2D shoot event
+
+#### 2d.jump
+Create the 2D jump event
+
+#### 2d.drop
+Create the 2D drop event
+
+#### 2d.look
+Create the 2D look event
+
+#### 2d.inventory
+Create the 2D inventory
+
+#### 2d.hud
+Create the 2D HUD
+
+#### 2d.sound
+Create the 2D sound
+
+#### 2d.light
+Create the 2D source of light
+
+#### 2d.camera
+Create the 2D camera
+
+#### klicker
+Create / Show / Hide 2D clicker or idle game
 
 ### 3D
-Will be available in 2024
 
-## AI
-#### Generate text
-```javascript
-["ai.text", "Description"],
-["ai.text", "Description", "{model}"]
-```
-#### Generate image
-```javascript
-["ai.image", "Description"],
-["ai.image", "Description", "{model}"]
-```
-#### Generate video
-```javascript
-["ai.video", "Description"],
-["ai.video", "Description", "{model}"]
-```
-#### Generate sound
-```javascript
-["ai.sound", "Description"],
-["ai.sound", "Description", "{model}"]
-```
-#### Generate speach
-```javascript
-["ai.speach", "Text to say"],
-["ai.speach", "Text to say", "{model}"],
-["ai.speach", "path/to/speach", "{model}"]
-```
-#### Generate asset
-```javascript
-["ai.asset", "Description"],
-["ai.asset", "Description", "{model}"]
-```
-#### Image and video scale
-```javascript
-["ai.scale", "{image}", 4.0],
-["ai.scale", "path/to/video", "4k"]
-```
-#### Image clean
-```javascript
-["ai.clean", "{image}", "{x}", "{y}", "{radius}"]
-```
-#### Image remove background
-```javascript
-["ai.bg", "{image}"]
-```
-#### Image and video colorize
-```javascript
-["ai.color", "{image}"],
-["ai.color", "path/to/video"]
-```
-#### Image and video improve
-```javascript
-["ai.improve", "{image}"],
-["ai.improve", "path/to/video"]
-```
-#### Image and video repaint
-```javascript
-["ai.repaint", "{image}"],
-["ai.repaint", "path/to/video"],
-["ai.repaint", "{image}", "{model}"]
-```
-#### Image and video combine
-```javascript
-["ai.combine", "{image 1}", "{image 2}"],
-["ai.combine", "path/to/video 1", "path/to/video 2"]
-```
+#### 3d
+Show / Hide the 3D game
 
-## Voids
-#### Wallet
-```javascript
-["voids"]
-```
-#### Buy
-```javascript
-["voids.buy", "usdt", 100]
-```
-#### Sell
-```javascript
-["voids.sell", "usdt", 100]
-```
-#### Send
-```javascript
-["voids.send", "friend name", 100]
-```
-#### History
-```javascript
-["voids.history"],
-["voids.history", "{from timestamp}", "{to timestamp}"]
-```
-### Crypto
-#### Crypto exchange
-```javascript
-["voids.crypto", {
-  "from": "usdt",
-  "to": "btc",
-  "count": 100,
-  "wallet": "{wallet address}"
-}],
-["voids.crypto", {
-  "from": "usdt",
-  "to": "btc",
-  "btc": 0.001,
-  "wallet": "{wallet address}"
-}]
-```
-#### Crypto send
-```javascript
-["voids.send", {
-  "btc": 0.001,
-  "wallet", "{wallet address}"
-}]
-```
-### Exchange
-#### Trading exchange list
-```javascript
-["voids.exchange"]
-```
-#### Stocks
-```javascript
-["voids.stock"],
-["voids.stock", "aapl"]
-```
-#### Options
-```javascript
-["voids.option", "aapl"]
-["voids.option", "AAPL240426C00167500"]
-```
-#### Futures
-```javascript
-["voids.future"]
-```
-#### Indexes
-```javascript
-["voids.index"]
-```
-#### ETF
-```javascript
-["voids.etf"],
-["voids.etf", "bnd"]
-```
-#### Currency
-```javascript
-["voids.currency"]
-```
-#### Bonds
-```javascript
-["voids.bond"]
-```
-#### Buy
-```javascript
-["voids.buy", "aapl", 10],
-["voids.buy", "AAPL240426C00167500", 10],
-["voids.buy", "eur", 10]
-```
-#### Sell
-```javascript
-["voids.sell", "aapl", 10],
-["voids.sell", "AAPL240426C00167500", 10],
-["voids.sell", "eur", 10]
-```
-## Social
-### SMS
-```javascript
-["sms", "{number}", "Text"]
-```
-### Phone call
-```javascript
-["phone", "{number}", "Text"]
-```
-### Mail
-```javascript
-["mail", "{email}", "Subject", "Text", "path/to/attach 1", "path/to/attach 2"],
-["mail", ["{email 1}", "{email 2}"], "Subject", "Text"]
-```
-### V O I D social
-Will be available in 2024
-### YouTube
-Will be available in 2024
-### TikTok
-Will be available in 2024
-### X
-Will be available in 2024
-### Telegram
-Will be available in 2024
-### WeChat
-Will be available in 2024
+#### 3d.bg
+Create the 3D background
 
+#### 3d.map
+Create the 3D map
 
-## V O I D engine godot
-Utilizes the **Godot Engine** free game engine to create 2D and 3D apps and games.
+#### 3d.character
+Create the 3D character
 
-## V O I D engine unreal
-Utilizes the **Unreal Engine 5.4** commercial game engine to create 2D and 3D apps and games.
+#### 3d.object
+Create the 3D object
+
+#### 3d.npc
+Create the 3D NPC
+
+#### 3d.enemy
+Create the 3D enemy
+
+#### 3d.shoot
+Create the 3D shoot event
+
+#### 3d.jump
+Create the 3D jump event
+
+#### 3d.drop
+Create the 3D drop event
+
+#### 3d.look
+Create the 3D look event
+
+#### 3d.hud
+Create the 3D HUD
+
+#### 3d.inventory
+Create the 3D inventory
+
+#### 3d.sound
+Create the 3D sound
+
+#### 3d.light
+Create the 3D source of light
+
+#### 3d.camera
+Create the 3D camera
+
+### AI
+
+#### ai.text
+Create the AI text
+
+#### ai.image
+Create the AI image
+
+#### ai.video
+Create the AI video
+
+#### ai.music
+Create the AI music
+
+#### ai.sound
+Create the AI sound
+
+#### ai.say
+Create the AI speech
+
+#### ai.2d
+Create the AI 2D asset
+
+#### ai.3d
+Create the AI 3D asset
+
+#### ai.character
+Create the AI character
+
+#### ai.clean
+Clean the image or the video with the AI
+
+#### ai.resize
+Resize the image or the video with the AI
+
+#### ai.color
+Recolor the image or the video with the AI
+
+#### ai.style
+Restyle the image or the video with the AI
+
+#### ai.translate
+Translate the text with the AI
+
+#### ai.capture.voice
+Capture the voice with the AI
+
+#### ai.capture.object
+Capture the object with the AI
+
+#### ai.capture.motion
+Capture the motion with the AI
+
+### Voids
+
+#### voids
+Get the Voids wallet
+
+#### buy
+Buy the currency or other asset
+
+#### sell
+Sell the currency or other asset
+
+#### send
+Send the currency or other asset
+
+#### crypto
+Get crypto currencies info
+
+#### currency
+Get currencies info
+
+#### stocks
+Get stocks info
+
+#### futures
+Get futures info
+
+#### options
+Get options info
+
+#### bonds
+Get bonds info
+
+#### etf
+Get etfs info
+
+#### exchange
+Get exchanges info
+
+#### exchange.crypto
+Get crypto exchanges info
+
+#### token
+Get the token info
+
+#### token.list
+Get the list of tokens
+
+#### token.add
+Add the tokens
+
+#### token.remove
+Remove the tokens
+
+### Social
+
+#### void.chat
+Get / Set / Send the chat message
+
+#### void.chat.list
+Get the list of the chat messages
+
+#### void.chat.remove
+Remove the chat message
+
+#### void.contact
+Create / Get / Set the contact
+
+#### void.contact.list
+Get the list of the contacts
+
+#### void.contact.remove
+Remove the contact
+
+#### void.image
+Create / Get / Set the image
+
+#### void.image.list
+Get the list of the images
+
+#### void.image.remove
+Remove the image
+
+#### void.video
+Create / Get / Set the video
+
+#### void.video.list
+Get the list of the videos
+
+#### void.video.remove
+Remove the video
+
+#### void.text
+Create / Get / Set the text
+
+#### void.text.list
+Get the list of the texts
+
+#### void.text.remove
+Remove the text
+
+#### void.site
+Create / Get / Set the site
+
+#### void.site.list
+Get the list of the sites
+
+#### void.site.remove
+Remove the site
+
+#### void.data
+Create / Get / Set the data
+
+#### void.data.list
+Get the list of the data
+
+#### void.data.remove
+Remove the data
+
+#### void.app
+Create / Get / Set the app
+
+#### void.app.run
+Run the app
+
+#### void.app.list
+Get the list of the apps
+
+#### void.app.remove
+Remove the app
+
+#### void.game
+Create / Get / Set the game
+
+#### void.game.run
+Run the game
+
+#### void.game.list
+Get the list of the games
+
+#### void.game.remove
+Remove the game
+
 
 ## V O I D format
 **[⌜ V O I D format ⌟](https://github.com/voidspawner/void.format)** is the data format that inherits the best features of **JSON**, **YAML**, **CSV** formats. Makes it easier to write and read data, both by human and by program.
