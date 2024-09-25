@@ -89,18 +89,18 @@
 ```javascript
 {
   "run": [
-	  ["cloud.web": {
-	    "route": [
-	      ["/", [
-	        ["title", "{text.hi}"],
-	        ["text", "{text.hi}", {
-	          "color": "white",
-	          "background": "green",
-	          "size": 20
-	        }]
-	      ]]
-	    ]
-	  }]
+    ["cloud.web": {
+      "route": [
+        ["/", [
+          ["title", "{text.hi}"],
+          ["text", "{text.hi}", {
+            "color": "white",
+            "background": "green",
+            "size": 20
+          }]
+        ]]
+      ]
+    }]
   ],
   "text": {
     "hi": "Hi World 😄"
