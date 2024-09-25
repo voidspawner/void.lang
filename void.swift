@@ -1,7 +1,4 @@
-//
-// V O I D spawner lang swift
-// void.lang.swift
-//
+// V O I D lang
 
 import Foundation
 
