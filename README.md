@@ -79,7 +79,7 @@
   ["cloud.web": {
     "route": [
       ["/", [
-        ["=", "response", "<h1>Hi World 😄</h1>"]
+        ["response", "<h1>Hi World 😄</h1>"]
       ]]
     ]
   }]
