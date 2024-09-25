@@ -9,21 +9,14 @@
 
 ## Preinstalled Language
 
-- **Python** ⌜CLI・Server⌟
-- **PHP** ⌜CLI・Server⌟
-- **JavaScript** ⌜Web・CLI (with NodeJS)・Server (with NodeJS)・Game⌟
-- **Swift** ⌜macOS・iOS・iPadOS・watchOS・tvOS・Windows・Linux・Server・Game⌟
-- **Java** ⌜Android・macOS・Windows・Linux・Server・Game⌟
-- **C#** ⌜Windows・Server・Game⌟
-- **C++** ⌜macOS・Windows・Linux・Server・Game⌟
-
-## Game Engine
-
-This is a pre-compiled **V O I D spawner** game for rapidly creating games, apps and animation in **V O I D lang**. It uses multiple game engines:
-
-- **Godot Engine**
-- **Unreal 5 Engine**
-- **V O I D engine**
+| <p align="center">**Language**</p>   | <p align="center">**Game Engine**</p>   | <p align="center">**CLI**</p>        | <p align="center">**Server**</p>     | <p align="center">**Mobile**</p> | <p align="center">**Windows**</p> | <p align="center">**Apple**</p> | <p align="center">**Linux**</p> | <p align="center">**Xbox**</p> | <p align="center">**Switch**</p> | <p align="center">**Steam Deck**</p> | <p align="center">**PS5**</p> |
+| ---------- | ------------- | ---------- | ---------- | ------ | ------- | ----- | ----- | ---- | ------ | ---------- | --- |
+| Python     | <p align="center">-</p>             | <p align="center">+</p>          | <p align="center">+</p>          | <p align="center">-</p>      | <p align="center">+</p>       | <p align="center">+</p>     | <p align="center">+</p>     | <p align="center">-</p>    | <p align="center">-</p>      | <p align="center">-</p>          | <p align="center">-</p>   |
+| JavaScript | <p align="center">-</p>             | <p align="center">+ (NodeJS)</p> | <p align="center">+ (NodeJS)</p> | <p align="center">-</p>      | <p align="center">+</p>       | <p align="center">+</p>     | <p align="center">+</p>     | <p align="center">-</p>    | <p align="center">-</p>      | <p align="center">-</p>          | <p align="center">-</p>   |
+| Swift      | <p align="center">-</p>             | <p align="center">+</p>          | <p align="center">+</p>          | <p align="center">+</p>      | <p align="center">-</p>       | <p align="center">+</p>     | <p align="center">-</p>     | <p align="center">-</p>    | <p align="center">-</p>      | <p align="center">-</p>          | <p align="center">-</p>   |
+| Kotlin     | <p align="center">-</p>             | <p align="center">+</p>          | <p align="center">+</p>          | <p align="center">+</p>      | <p align="center">-</p>       | <p align="center">-</p>     | <p align="center">-</p>     | <p align="center">-</p>    | <p align="center">-</p>      | <p align="center">-</p>          | <p align="center">-</p>   |
+| GDScript   | <p align="center">Godot</p>         | <p align="center">+</p>          | <p align="center">+</p>          | <p align="center">+</p>      | <p align="center">+</p>       | <p align="center">+</p>     | <p align="center">+</p>     | <p align="center">+</p>    | <p align="center">+</p>      | <p align="center">+</p>          | <p align="center">+</p>   |
+| C++        | <p align="center">Unreal Engine</p> | <p align="center">+</p>          | <p align="center">+</p>          | <p align="center">+</p>      | <p align="center">+</p>       | <p align="center">+</p>     | <p align="center">+</p>     | <p align="center">+</p>    | <p align="center">+</p>      | <p align="center">+</p>          | <p align="center">+</p>   |
 
 ## Example
 ##### Simple
@@ -37,7 +30,7 @@ This is a pre-compiled **V O I D spawner** game for rapidly creating games, apps
 ##### Even Simpler
 ```javascript
 [
-    [".", "Hi World :D"]
+  [".", "Hi World :D"]
 ]
 ```
 ##### Multilanguage Text
@@ -117,18 +110,12 @@ This is a pre-compiled **V O I D spawner** game for rapidly creating games, apps
 
 1. Download **V O I D lang**
 2. Create your first app in JSON file
-3. Launch app with **V O I D lang**
+3. Launch vapp with **V O I D lang**
    ```console
    python python/void.py myfirstapp.json
-   php php/void.php myfirstapp.json
    ```
 
-   ##### Or even without JSON file at all
-   ```console
-   python python/void.py '[[".", "Hi World :)"]]'
-   ```
-
-   ##### Tip for Linux / macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile
+   ##### Tip for Linux / macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile (macOS)
    ```console
    alias void="python /path/to/python/void.py"
    ```
@@ -163,7 +150,15 @@ This is a pre-compiled **V O I D spawner** game for rapidly creating games, apps
    void.exe
    ```
 
-   Or you can use the **Exporter** inside the **V O I D spawner** game to export your game to all platforms ⌜**Windows**・**macOS**・**Linux**・**Android**・**iOS**・**Web**・**Xbox**・**Switch**・**PlayStation**⌟
+   You can use the **Exporter** inside the **V O I D spawner** game to export your game to all platforms ⌜**Windows**・**macOS**・**Linux**・**Android**・**iOS**・**Web**・**Xbox**・**Switch**・**PlayStation**⌟
+
+Alternative:
+
+1. Download **V O I D lang**
+2. Import **void.gd** / **void.cpp** into the Game Engine (**Godot** / **Unreal Engine**)
+3. Create your first game in **run.json** file
+4. Export the game to available platforms
+5. Sell your game or share with friends
 
 ## How To Add Comments
 All code is data. So just add the property "description", "//" and so on.
