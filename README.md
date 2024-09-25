@@ -60,7 +60,7 @@
 ```javascript
 {
   "run": [
-    ["server.http", {
+    ["cloud.web", {
       "route": [
         ["/", "home"]
       ]
@@ -68,38 +68,40 @@
   ],
   "action": {
     "home": [
-      ["=", "response.text", "<h1>Hi World 😄</h1>"]
+      ["response", "<h1>Hi World 😄</h1>"]
     ]
   }
 }
 ```
 ##### Web Server Simpler
 ```javascript
-{
-  "web": {
+[
+  ["cloud.web": {
     "route": [
       ["/", [
-        ["=", "response.text", "<h1>Hi World 😄</h1>"]
+        ["=", "response", "<h1>Hi World 😄</h1>"]
       ]]
     ]
-  }
-}
+  }]
+]
 ```
 ##### Web App with UI
 ```javascript
 {
-  "web": {
-    "route": [
-      ["/", [
-        ["title", "{text.hi}"],
-        ["text", "{text.hi}", {
-          "color": "white",
-          "background": "green",
-          "size": 20
-        }]
-      ]]
-    ]
-  },
+  "run": [
+	  ["cloud.web": {
+	    "route": [
+	      ["/", [
+	        ["title", "{text.hi}"],
+	        ["text", "{text.hi}", {
+	          "color": "white",
+	          "background": "green",
+	          "size": 20
+	        }]
+	      ]]
+	    ]
+	  }]
+  ],
   "text": {
     "hi": "Hi World 😄"
   }
