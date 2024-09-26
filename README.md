@@ -114,7 +114,7 @@
 2. Create your first vapp in **run.json** or other JSON file
 3. Launch vapp with **V O I D lang**
    ```console
-   python python/void.py vapp.json
+   python void.py vapp.json
    ```
 
    ##### Tip for Linux / macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile (macOS)
