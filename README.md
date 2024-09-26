@@ -111,10 +111,10 @@
 ## How To Use
 
 1. Download **V O I D lang**
-2. Create your first app in **run.json** file
+2. Create your first vapp in **run.json** or other JSON file
 3. Launch vapp with **V O I D lang**
    ```console
-   python python/void.py myfirstapp.json
+   python python/void.py myfirstvapp.json
    ```
 
    ##### Tip for Linux / macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile (macOS)
