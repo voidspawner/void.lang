@@ -241,5 +241,67 @@ Action name: "."
 Action parameters: []
 ```
 
+## Progress
+
+| **Name**           | **vapp** | **Python** |  **JS**    | **Swift** | **Kotlin** | **GDScript** |  **C++**  |
+| -------------- | ---- | ------ | ------ | ----- | ------ | -------- | ----- |
+| run            |      |   ✔    | work   | work  |  work  |     ✔    | task  |
+| value          |      |   ✔    | work   | work  |  work  |   work   | task  |
+| expression     |      |  work  | work   | work  |  work  |   work   | task  |
+| control        |      |  work  | work   | work  |  work  |   work   | task  |
+| text           |      |  work  | work   | work  |  work  |   work   | task  |
+| list           |      |  work  | work   | work  |  work  |   work   | task  |
+| math           |      |  work  | work   | work  |  work  |   work   | task  |
+| time           |      |  work  | work   | work  |  work  |   work   | task  |
+| crypto         |      |  work  | work   | work  |  work  |   work   | task  |
+| format         |      |        |        |       |        |          |       |
+| ・ json         |      |   ✔    | work   | work  |  work  |   work   | task  |
+| ・ yaml         |      |  work  | task   | task  |  task  |   work   | task  |
+| ・ csv          |      |  work  | task   | task  |  task  |   work   | task  |
+| ・ other        | task |  vapp  | vapp   | vapp  |  vapp  |   vapp   | vapp  |
+| file           |      |  work  | task   | task  |  task  |   work   | task  |
+| cloud          |      |  work  | task   | task  |  task  |   work   | task  |
+| bot            |      |  task  | task   | task  |  task  |   task   | task  |
+| request        |      |  work  | task   | task  |  task  |   work   | task  |
+| cookie         |      |  work  | work   | task  |  task  |   work   | task  |
+| sql            |      |  work  | task   | task  |  task  |   work   | task  |
+| os             |      |  work  | task   | task  |  task  |   work   | task  |
+| device         |      |  -     | -      | task  |  task  |   work   | task  |
+| gps            |      |  -     | -      | task  |  task  |   work   | task  |
+| sensor         |      |  -     | -      | task  |  task  |   work   | task  |
+| photo          |      |  -     | -      | task  |  task  |   work   | task  |
+| contacts       |      |  -     | -      | task  |  task  |   work   | task  |
+| calendar       |      |  -     | -      | task  |  task  |   work   | task  |
+| flashlight     |      |  -     | -      | task  |  task  |   work   | task  |
+| health         |      |  -     | -      | task  |  task  |   work   | task  |
+| microphone     |      |  -     | -      | task  |  task  |   work   | task  |
+| notification   |      |  work  | task   | task  |  task  |   work   | task  |
+| key            |      |  -     | -      | task  |  task  |   work   | task  |
+| keyboard       |      |  -     | -      | task  |  task  |   work   | task  |
+| mouse          |      |  -     | -      | task  |  task  |   work   | task  |
+| gamepad        |      |  -     | -      | task  |  task  |   work   | task  |
+| clipboard      |      |  -     | -      | task  |  task  |   work   | task  |
+| say            |      |  -     | -      | task  |  task  |   work   | task  |
+| convert        | work |  vapp  | vapp   | vapp  |  vapp  |   vapp   | vapp  |
+| video          |      |  task  | task   | task  |  task  |   work   | task  |
+| model          |      |  task  | task   | task  |  task  |   work   | task  |
+| sound          |      |  task  | task   | task  |  task  |   work   | task  |
+| music          |      |  -     | -      | task  |  task  |   work   | task  |
+| volume         |      |  -     | -      | task  |  task  |   work   | task  |
+| screen         |      |  -     | -      | task  |  task  |   work   | task  |
+| ui             |      |        |        |       |        |          |       |
+| ・ graphic      |      |  -     | -      | task  |  task  |   work   | task  |
+| ・ cli          |      |  work  | task   | task  |  task  |   work   | task  |
+| window         |      |  -     | -      | task  |  task  |   work   | task  |
+| dialog         |      |  -     | -      | task  |  task  |   work   | task  |
+| effect         |      |  -     | -      | task  |  task  |   work   | task  |
+| game           | work |  vapp  | vapp   | vapp  |  vapp  |   vapp   | vapp  |
+| vn             | work |  vapp  | vapp   | vapp  |  vapp  |   vapp   | vapp  |
+| 2d             |      |  -     | -      | task  |  task  |   work   | task  |
+| 3d             |      |  -     | -      | task  |  task  |   work   | task  |
+| ai             |      |  work  | python | task  |  task  |  python  | task  |
+| social         | work |  vapp  | vapp   | vapp  |  vapp  |  vapp    | vapp  |
+| tech           | wait |  vapp  | vapp   | vapp  |  vapp  |  vapp    | vapp  |
+
 ## V O I D os
 **[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
