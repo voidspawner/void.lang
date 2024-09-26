@@ -295,8 +295,8 @@ Action parameters: []
 | window         |      |  -     | -      | task  |  task  |   work   | task  |
 | dialog         |      |  -     | -      | task  |  task  |   work   | task  |
 | effect         |      |  -     | -      | task  |  task  |   work   | task  |
-| game           | work |  vapp  | vapp   | vapp  |  vapp  |   vapp   | vapp  |
-| vn             | work |  vapp  | vapp   | vapp  |  vapp  |   vapp   | vapp  |
+| game           | work |  -     | -      | vapp  |  vapp  |   vapp   | vapp  |
+| vn             | work |  -     | -      | vapp  |  vapp  |   vapp   | vapp  |
 | 2d             |      |  -     | -      | task  |  task  |   work   | task  |
 | 3d             |      |  -     | -      | task  |  task  |   work   | task  |
 | ai             |      |  work  | python | task  |  task  |  python  | task  |
