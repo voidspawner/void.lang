@@ -123,7 +123,7 @@
    python void.py vapp.json
    ```
 
-   ##### Tip for Linux / macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile (macOS)
+   ##### Tip for Linux・macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile (macOS)
    ```console
    alias void="python /path/to/void.py"
    ```
