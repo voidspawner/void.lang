@@ -325,5 +325,57 @@ Action parameters: []
 | social         | work |  vapp  | vapp   | vapp  |  vapp  |  vapp    | vapp  |
 | tech           | wait |  vapp  | vapp   | vapp  |  vapp  |  vapp    | vapp  |
 
+### value
+### expression
+### control
+### text
+### list
+### math
+### time
+### crypto
+### format
+### file
+### cloud
+### bot
+### request
+### cookie
+### sql
+### os
+### device
+### gps
+### sensor
+### photo
+### contacts
+### calendar
+### flashlight
+### health
+### microphone
+### notification
+### key
+### keyboard
+### mouse
+### gamepad
+### clipboard
+### say
+### convert
+### image
+### video
+### model
+### sound
+### music
+### volume
+### screen
+### ui
+### window
+### dialog
+### effect
+### game
+### vn
+### 2d
+### 3d
+### ai
+### social
+### tech
+
 ## V O I D os
 **[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
