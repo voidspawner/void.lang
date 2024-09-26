@@ -136,7 +136,7 @@
    void vapp.json
    ```
 
-   ##### Compile Swift・Kotlin・C++ to executable++
+   ##### Tip for compile Swift・Kotlin・C++ to executable
    ```console
    swiftc void.swift
    ```
