@@ -107,7 +107,7 @@
   }
 }
 ```
-##### Web Share Files
+##### File Sharing
 ```javascript
 [
   ["cloud.file": "/path/to/share"]
