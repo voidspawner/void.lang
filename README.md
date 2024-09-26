@@ -336,6 +336,10 @@ Action parameters: []
 | social         | work |  vapp  | vapp   | vapp  |  vapp  |  vapp    | vapp  |
 | tech           | wait |  vapp  | vapp   | vapp  |  vapp  |  vapp    | vapp  |
 
+```
+Actions count: 604
+```
+
 ## Detail・Examples
 
 ### value
