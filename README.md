@@ -125,12 +125,12 @@
 
    ##### Tip for Linux / macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile (macOS)
    ```console
-   alias void="python /path/to/python/void.py"
+   alias void="python /path/to/void.py"
    ```
 
    ##### Tip for Windows: use alias in command line
    ```console
-   doskey void=python /path/to/python/void.py
+   doskey void=python /path/to/void.py
    ```
    ```console
    void vapp.json
