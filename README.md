@@ -325,6 +325,8 @@ Action parameters: []
 | social         | work |  vapp  | vapp   | vapp  |  vapp  |  vapp    | vapp  |
 | tech           | wait |  vapp  | vapp   | vapp  |  vapp  |  vapp    | vapp  |
 
+## Detail・Examples
+
 ### value
 ### expression
 ### control
