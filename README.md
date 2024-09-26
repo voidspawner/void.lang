@@ -173,8 +173,7 @@ All code is data. So just add the property "description", "//" and so on.
     "name": "First App"
   },
   "run": [
-    [".", "Hi World"],
-    ["//", "This line will be ignored"]
+    [".", "Hi World"]
   ]
 }
 ```
