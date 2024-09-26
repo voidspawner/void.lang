@@ -136,6 +136,17 @@
    void vapp.json
    ```
 
+   ##### Compile Swift・Kotlin・C++ to executable++
+   ```console
+   swiftc void.swift
+   ```
+   ```console
+   kotlinc void.kt
+   ```
+   ```console
+   clang++ void.cpp -o void.exe
+   ```
+
 ## How To Use Game Engine
 
 1. Buy **V O I D spawner** game on **Steam**
