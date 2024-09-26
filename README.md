@@ -337,7 +337,7 @@ Action parameters: []
 | tech           | wait |  vapp  | vapp   | vapp  |  vapp  |  vapp    | vapp  |
 
 ```
-Actions count: 604
+Actions count: **604**
 ```
 
 ## Detail・Examples
