@@ -174,7 +174,7 @@
 Alternative:
 
 1. Download **V O I D lang**
-2. Import **void.gd**・**void.cpp** into the Game Engine (**Godot**・**Unreal Engine**)
+2. Import **void.gd**・**void.cpp** into the **Godot**・**Unreal Engine**
 3. Create your first game in **run.json** file
 4. Export the game to available platforms
 5. Sell your game or share with friends
