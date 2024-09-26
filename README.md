@@ -1,7 +1,7 @@
 # V O I D lang
 
 ## About
-**⌜ V O I D lang ⌟** is the language for rapidly creating applications and games in the **V O I D** or **JSON format**. It is used as a replacement for the standard Bash / CMD / etc. languages and for writing **applications**, **servers** and **games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one V O I D or JSON file**. Since the **code is presented as data**, applications can be easily generated with **AI**, updated, installed and launched remotely.
+**⌜ V O I D lang ⌟** is the language for rapidly creating applications and games in the **V O I D** or **JSON format**. It is used as a replacement for the standard Bash・CMD・etc. languages and for writing **applications**, **servers** and **games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one V O I D or JSON file**. Since the **code is presented as data**, applications can be easily generated with **AI**, updated, installed and launched remotely.
 
 **The project is in the process of development.**
 
@@ -163,7 +163,7 @@
 Alternative:
 
 1. Download **V O I D lang**
-2. Import **void.gd** / **void.cpp** into the Game Engine (**Godot** / **Unreal Engine**)
+2. Import **void.gd**・**void.cpp** into the Game Engine (**Godot**・**Unreal Engine**)
 3. Create your first game in **run.json** file
 4. Export the game to available platforms
 5. Sell your game or share with friends
