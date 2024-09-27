@@ -130,8 +130,8 @@
 ##### Use loop and conditions
 ```javascript
 [
-  ["=", "var", "Text"],
-  ["o", "letter", "{var}", [
+  ["=", "word", "Text"],
+  ["o", "letter", "{word}", [
     ["?", ["{letter}", "=", "t"], [
       ["..", "T"]
     ], [
