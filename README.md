@@ -27,13 +27,13 @@
   ]
 }
 ```
-##### Even Simpler
+##### Even simpler
 ```javascript
 [
   [".", "Hi World :D"]
 ]
 ```
-##### Multilanguage Text
+##### Multilanguage text
 ```javascript
 {
   "run": [
@@ -56,7 +56,7 @@
   }
 }
 ```
-##### Web Server
+##### Web server
 ```javascript
 {
   "run": [
@@ -73,7 +73,7 @@
   }
 }
 ```
-##### Web Server Simpler
+##### Web server simpler
 ```javascript
 [
   ["cloud.web": {
@@ -85,7 +85,7 @@
   }]
 ]
 ```
-##### Web App with UI
+##### Web app with UI
 ```javascript
 {
   "run": [
@@ -107,17 +107,53 @@
   }
 }
 ```
-##### File Sharing
+##### File sharing
 ```javascript
 [
   ["cloud.file": "/path/to/share"]
 ]
 ```
+##### Add comments
+```javascript
+{
+  "description": "All code is data. So just add the property 'description', '//' and so on.",
+  "version": {
+    "description": "Version description",
+    "number": 1,
+    "name": "First"
+  },
+  "run": [
+    [".", "Hi World"]
+  ]
+}
+```
+##### Use loop and conditions
+```javascript
+[
+  ["=", "var", "Text"],
+  ["o", "letter", "{var}", [
+    ["?", ["{letter}", "=", "t"], [
+      ["..", "T"]
+    ], [
+      ["..", "{letter}"]
+    ]]
+  ]]
+]
+```
+##### Get the last result without using variables
+```javascript
+[
+ ["replace", "text", "t", "T"],
+ [".", "{}"],
+ "upper",
+ [".", "{}"]
+]
+```
 
-## How To Use
+## How to Use
 
 1. Download **V O I D lang**
-2. Create your first vapp in **run.json** or other JSON file
+2. Create your first vapp (V O I D app) in **run.json** or other JSON file
 3. Launch vapp with **V O I D lang**
    ```console
    python void.py vapp.json
@@ -147,7 +183,8 @@
    clang++ void.cpp -o void.exe
    ```
 
-## How To Use Game Engine
+
+## How to Use Game Engine
 
 1. Buy **V O I D spawner** game on **Steam**
 2. Create your first game in **run.json** file
@@ -178,22 +215,6 @@ Alternative:
 3. Create your first game in **run.json** file
 4. Export the game to available platforms
 5. Sell your game or share with friends
-
-## How To Add Comments
-All code is data. So just add the property "description", "//" and so on.
-```javascript
-{
-  "description": "App Description. But you can write more in version",
-  "version": {
-    "description": "Comment",
-    "number": 1,
-    "name": "First App"
-  },
-  "run": [
-    [".", "Hi World"]
-  ]
-}
-```
 
 ## Actions
 
