@@ -370,7 +370,7 @@ Action parameters: []
 | tech           | wait |  <p align="center">vapp</p>  | <p align="center">vapp</p>   | <p align="center">vapp</p>  |  <p align="center">vapp</p>  |  <p align="center">vapp</p>    | <p align="center">vapp</p>  |
 
 ```
-Actions count: 604
+Count of actions: 604
 ```
 
 ## Detail・Examples
