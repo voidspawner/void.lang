@@ -123,17 +123,17 @@
     "name": "First"
   },
   "run": [
-    [".", "Hi World"]
+    [".", "Hi World :D"]
   ]
 }
 ```
 ##### Use loop and conditions
 ```javascript
 [
-  ["=", "word", "Text"],
+  ["=", "word", "Hi World :D"],
   ["o", "letter", "{word}", [
-    ["?", ["{letter}", "=", "t"], [
-      ["..", "T"]
+    ["?", ["{letter}", "=", "i"], [
+      ["..", "i!"]
     ], [
       ["..", "{letter}"]
     ]]
@@ -143,10 +143,22 @@
 ##### Get the last result without using variables
 ```javascript
 [
- ["replace", "text", "t", "T"],
- [".", "{}"],
- "upper",
- [".", "{}"]
+  ["replace", "Hi World :D", "i", "i!"],
+  [".", "{}"],
+  "upper",
+  [".", "{}"]
+]
+```
+##### Run native code
+```python
+# crypto.py
+encrypted = void.encrypt('Hi World :D')
+print(void.decrypt(encrypted.text, encrypted.key))
+```
+```javascript
+[
+  ["file.read", "crypto.py"]
+  "code"
 ]
 ```
 
