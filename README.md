@@ -116,7 +116,7 @@
 ##### Add comments
 ```javascript
 {
-  "description": "All code is data. So just add the property 'description', '//' and so on.",
+  "description": "All code is data. So just add the property 'description', '//' and so on",
   "version": {
     "description": "Version description",
     "number": 1,
