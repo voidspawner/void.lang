@@ -284,11 +284,11 @@ Alternative:
 
 The code is presented as **action name** and **action parameters**.
 ```javascript
-[".", "Hi World"]
+[".", "Hi World :D"]
 ```
 ```
 Action name: "."
-Action parameters: ["Hi World"]
+Action parameters: ["Hi World :D"]
 ```
 #####
 ```javascript
