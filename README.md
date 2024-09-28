@@ -373,7 +373,7 @@ Action parameters: []
 Count of actions: 604
 ```
 
-## Detail・More Examples
+## Detail
 
 ### value
 
