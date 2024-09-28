@@ -3275,6 +3275,9 @@ name
 other name
   123
 ```
+```
+[name:text other\ name:123
+```
 
 </td>
 <td>
@@ -3332,7 +3335,7 @@ code
     [= var 123
     [. {var}
 base64
-  ViBPIEkgRCBmb3JtYXQ=
+  b64: ViBPIEkgRCBmb3JtYXQ=
 binary
   3: ☺☺☺
 ```
