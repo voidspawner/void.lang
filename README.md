@@ -3316,6 +3316,35 @@ other name
 <td>
 
 ```
+middle dot (·)
+  base64 auto decoding
+    b64·ViBPIEkgRCBmb3JtYXQ=
+  base64 + gzip
+    b64·eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
+  size before binary data
+    3·☺☺☺
+```
+
+</td>
+<td>
+
+```json
+{
+  "middle dot (·)": {
+    "base64 auto decoding": "ViBPIEkgRCBmb3JtYXQ=",
+    "base64 + gzip": "eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==",
+    "size before binary data": "\u0001\u0001\u0001"
+  }
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
 text
   text
 multiline text
