@@ -3365,7 +3365,7 @@ text in a line
 escape
   "\n\t\r\b\u1234\"\\"
 int
-  123_000
+  123 000
 float
   1.23
 bool
