@@ -2899,13 +2899,13 @@ Count of actions: 604
 
 ```
 extension
-  void
-  txt
+  .void
+  .txt
 influenced by
   json
   yaml
   csv
-  txt
+  plain text
 mime type
   application/void
 value type
