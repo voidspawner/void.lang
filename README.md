@@ -3350,10 +3350,9 @@ dictionary
   name 2
     true
 code
-  [
-    [. "Hi World :D
-    [= var 123
-    [. {var}
+  [. "Hi World :D
+  [= var 123
+  [. {var}
 base64
   b64·ViBPIEkgRCBmb3JtYXQ=
 binary
