@@ -2977,25 +2977,6 @@ text\ with\ space
 <td>
 
 ```
-'
-  long
-  long
-  text
-```
-
-</td>
-<td>
-
-```json
-"longlongtext"
-```
-
-</td>
-</tr>
-<tr>
-<td>
-
-```
 "
   multiline
   text
@@ -3006,6 +2987,27 @@ text\ with\ space
 
 ```json
 "multiline\ntext"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+'
+  text
+  in
+  a
+  line
+```
+
+</td>
+<td>
+
+```json
+"textinaline"
 ```
 
 </td>
@@ -3032,14 +3034,14 @@ c:\Users\name\Desktop
 <td>
 
 ```
-"\r\n\t\b\u1234\"\\"
+"\n\t\r\b\u1234\"\\"
 ```
 
 </td>
 <td>
 
 ```json
-"\r\n\t\b\u1234\"\\"
+"\n\t\r\b\u1234\"\\"
 ```
 
 </td>
@@ -3248,7 +3250,7 @@ null
 ```
 [
   [1 12.34 Name
-  [2 56.78 Other\ name
+  [2 56.78 "Other name
 ```
 
 </td>
@@ -3263,6 +3265,109 @@ null
 
 </td>
 </tr>
+
+<tr>
+<td>
+
+```
+name
+  text
+other name
+  123
+```
+
+</td>
+<td>
+
+```json
+{
+  "name": "text",
+  "other name": 123
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+text
+  text
+multiline text
+  "
+    multiline
+    text
+text in line
+  '
+    text
+    in
+    a
+    line
+escape
+  "\n\t\r\b\u1234\"\\"
+int
+  123_000
+float
+  1.23
+bool
+  true
+empty
+  null
+list
+  text
+  1
+  true
+  false
+  null
+dictionary
+  name 1
+    true
+  name 2
+    true
+code
+  [
+    [. "Hi World :D
+    [= var 123
+    [. {var}
+base64
+  ViBPIEkgRCBmb3JtYXQ=
+binary
+  3: ☺☺☺
+```
+
+</td>
+<td>
+
+```json
+{
+  "text": "text",
+  "multiline text": "multiline\ntext",
+  "text in a line": "textinaline",
+  "escape": "\n\t\r\b\u1234\"\\",
+  "int": 123000,
+  "float": 1.23,
+  "bool": true,
+  "empty": null,
+  "list": ["text", 1, true, false, null],
+  "dictionary": {
+    "name 1": true,
+    "name 2": true
+  },
+  "code": [
+    [".", "Hi World :D"],
+    ["=", "var", 123],
+    [".", "{var}"]
+  ],
+  "base64": "ViBPIEkgRCBmb3JtYXQ="
+  "binary": "\u0001\u0001\u0001"
+}
+```
+
+</td>
+</tr>
+
 </table>
 
 ## V O I D os
