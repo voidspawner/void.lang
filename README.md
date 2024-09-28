@@ -157,7 +157,7 @@ print(void.decrypt(encrypted.text, encrypted.key))
 ```
 ```javascript
 [
-  ["file.read", "crypto.py"]
+  ["file.read", "crypto.py"],
   "code"
 ]
 ```
