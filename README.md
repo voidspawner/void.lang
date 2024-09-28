@@ -2895,7 +2895,651 @@ Count of actions: 604
 ```
 
 ## V O I D format
+**⌜ V O I D format ⌟** is the data format that inherits the best features of [**JSON**](https://en.wikipedia.org/wiki/JSON), [**YAML**](https://en.wikipedia.org/wiki/YAML), [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) and [**plain text**](https://en.wikipedia.org/wiki/Plain_text) formats. Makes it easier to write and read data, both by human and by program.
 
+```
+extension
+  void
+  txt
+influenced by
+  json
+  yaml
+  csv
+  txt
+mime type
+  application/void
+value type
+  text
+  number
+  boolean
+  list
+  dictionary
+  null
+  binary
+indent
+  tab
+    \t
+separator
+  space
+    " "
+```
+<table>
+<tr>
+<th>V O I D format</th>
+<th>JSON</th>
+</tr>
+</tr>
+  
+<tr>
+<td>
+
+```
+text
+```
+
+</td>
+<td>
+
+```json
+"text"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+text\ with\ space
+```
+
+</td>
+<td>
+
+```json
+"text with space"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+"text with space"
+```
+
+</td>
+<td>
+
+```json
+"text with space"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+text with space
+```
+
+</td>
+<td>
+
+```json
+"text with space"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+'
+very 
+very 
+very long text
+```
+
+</td>
+<td>
+
+```json
+"very very very long text"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+"
+multiline
+text
+```
+
+</td>
+<td>
+
+```json
+"multiline\ntext"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+c:\Users\name\Desktop
+```
+
+</td>
+<td>
+
+```json
+"c:\\Users\\name\\Desktop"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+"text\r\n\t\u1234\"\\"
+```
+
+</td>
+<td>
+
+```json
+"text\r\n\t\u1234\"\\"
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+123
+```
+
+</td>
+<td>
+
+```json
+123
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+-123
+```
+
+</td>
+<td>
+
+```json
+-123
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+0.123
+```
+
+</td>
+<td>
+
+```json
+0.123
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+100_000_000
+```
+
+</td>
+<td>
+
+```json
+100000000
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+100 000 000
+```
+
+</td>
+<td>
+
+```json
+100000000
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+0.1e2
+```
+
+</td>
+<td>
+
+```json
+0.1e2
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+h0A
+```
+
+</td>
+<td>
+
+```json
+10
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+b1001
+```
+
+</td>
+<td>
+
+```json
+9
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+true
+```
+
+</td>
+<td>
+
+```json
+true
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+false
+```
+
+</td>
+<td>
+
+```json
+false
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+null
+```
+
+</td>
+<td>
+
+```json
+null
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+1
+text
+true
+false
+null
+```
+
+</td>
+<td>
+
+```json
+[1, "text", true, false, null]
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+:
+1 12.34 Name
+2 56.78 Other\ name
+```
+
+</td>
+<td>
+
+```json
+[
+  [1, 12.34, "Name"],
+  [2, 56.78, "Other name"]
+]
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+:,
+1,12.34,Comma separator
+2,56.78,Other name
+```
+
+</td>
+<td>
+
+```json
+[
+  [1, 12.34, "Comma separator"],
+  [2, 56.78, "Other name"]
+]
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+name
+  text
+other name
+  123
+```
+
+</td>
+<td>
+
+```json
+{
+  "name": "text",
+  "other name": 123
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+name
+  text
+multiline text "
+  text
+  next
+  line
+text in line '
+  text
+  in
+  line
+bool
+  true
+empty list:
+with empty value
+  |""|
+list
+  1
+  2
+  3
+table:
+  1 12.34 Name
+  2 56.78 Other\ name
+dictionary
+  name
+    value
+  other name
+    other value
+code:
+  . Hi\ World
+  = expr 1 + 1 * 2 * |cos 0.5|
+  request
+    url
+      https://site.com
+    header
+      User
+        12345
+      Key
+        12345
+    param
+      id
+        12345
+    done:
+      . {text}
+      . {code}
+```
+
+</td>
+<td>
+
+```json
+{
+  "name": "text",
+  "multiline text": "text\nnext\nline",
+  "text in line": "textinline",
+  "bool": true,
+  "empty list": [],
+  "with empty value": [""],
+  "list": [1, 2, 3],
+  "table": [
+    [1, 12.34, "Name"]
+    [2, 56.78, "Other name"]
+  ],
+  "dictionary": {
+    "name": "value",
+    "other name": "other value"
+  },
+  "code": [
+    [".", "Hi World"],
+    ["=", "expr", 1, "+", 1, "*", 2, "*", ["cos", 0.5]],
+    ["request", {
+      "url": "https://site.com",
+      "header": {
+        "User": 12345,
+        "Key": 12345
+      },
+      "param": {
+        "id": 12345
+      },
+      "done": [
+        [".", "{text}"],
+        [".", "{code}"]
+      ]
+    }]
+  ]
+}
+```
+
+</td>
+</tr>
+
+</tr>
+
+<tr>
+<td>
+
+```
+binary data length 10
+  :10 
+```
+
+</td>
+<td>
+
+```json
+{
+  "binary data length 10": "\u0003..."
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+gzip + base64
+  :eNoDAAAAAAE=
+```
+
+</td>
+<td>
+
+```json
+{
+  "gzip + base64": "text text text ..."
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+base64
+  :dGV4dCB0ZXh0IHRle...
+```
+
+</td>
+<td>
+
+```json
+{
+  "base64": "text text text text ..."
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+reference
+  :{dictionary.other name}
+```
+
+</td>
+<td>
+
+```json
+{
+  "reference": "other value"
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+|short\ form 1 2 3|name:value||
+```
+
+</td>
+<td>
+
+```json
+["short form",1,2,3,{"name":"value"}]
+```
+
+</td>
+</tr>
+
+</table>
 
 ## V O I D os
 **[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
