@@ -2928,112 +2928,89 @@ newline
 ```
 
 <table>
-  <tr>
-    <th>V O I D format</th>
-    <th>JSON</th>
-  </tr>
-  <tr>
-    <td>
+<tr>
+<th align="center"><img width="441" height="1"><p>V O I D format</p></th>
+<th align="center"><img width="441" height="1"><p>JSON</p></th>
+</tr>
+<tr>
+<td>
 
-      ```
-      text
-      ```
+```
+text
+```
 
-    </td>
-    <td>
+</td>
+<td>
 
-      ```json
-      "text"
-      ```
+```json
+"text"
+```
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+</td>
+</tr>
 
-      ```
-      text with space
-      ```
+<tr>
+<td>
 
-    </td>
-    <td>
+```
+text with space
+```
+```
+"text with space"
+```
+```
+text\ with\ space
+```
 
-      ```json
-      text\ with\ space
-      ```
+</td>
+<td>
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+```json
+"text with space"
+```
 
-      ```
-      "text with space"
-      ```
+</td>
+</tr>
 
-    </td>
-    <td>
+<tr>
+<td>
 
-      ```json
-      "text with space"
-      ```
+```
+'
+  long
+  long
+  text
+```
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+</td>
+<td>
 
-      ```
-      text with space
-      ```
+```json
+"longlongtext"
+```
 
-    </td>
-    <td>
+</td>
+</tr>
+<tr>
+<td>
 
-      ```json
-      "text with space"
-      ```
+```
+"
+  multiline
+  text
+```
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+</td>
+<td>
 
-      ```
-      '
-        long
-        long
-        text
-      ```
+```json
+"multiline\ntext"
+```
 
-    </td>
-    <td>
-
-      ```json
-      "longlongtext"
-      ```
-
-    </td>
-  </tr>
-  <tr>
-    <td>
-
-      ```
-      "
-        multiline
-        text
-      ```
-
-    </td>
-    <td>
-
-      ```json
-      "multiline\ntext"
-      ```
-      
-    </td>
-  </tr>
+</td>
+</tr>
 </table>
+
 
 ## V O I D os
 **[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
