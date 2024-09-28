@@ -3232,7 +3232,13 @@ null
 <td>
 
 ```json
-[1, "text", true, false, null]
+[
+  1,
+  "text",
+  true,
+  false,
+  null
+]
 ```
 
 </td>
@@ -3275,9 +3281,6 @@ name
 other name
   123
 ```
-```
-[name:text other\ name:123
-```
 
 </td>
 <td>
@@ -3287,6 +3290,23 @@ other name
   "name": "text",
   "other name": 123
 }
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+[name:text other\ name:123
+```
+
+</td>
+<td>
+
+```json
+{"name": "text", "other name": 123}
 ```
 
 </td>
@@ -3335,9 +3355,9 @@ code
     [= var 123
     [. {var}
 base64
-  b64: ViBPIEkgRCBmb3JtYXQ=
+  b64:ViBPIEkgRCBmb3JtYXQ=
 binary
-  3: ☺☺☺
+  3:☺☺☺
 ```
 
 </td>
