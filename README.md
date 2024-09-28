@@ -3355,9 +3355,9 @@ code
     [= var 123
     [. {var}
 base64
-  b64|ViBPIEkgRCBmb3JtYXQ=
+  b64·ViBPIEkgRCBmb3JtYXQ=
 binary
-  3|☺☺☺
+  3·☺☺☺
 ```
 
 </td>
