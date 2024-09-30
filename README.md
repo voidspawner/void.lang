@@ -3208,11 +3208,11 @@ null
 <td>
 
 ```
-  1
-  text
-  true
-  false
-  null
+1
+text
+true
+false
+null
 ```
 
 </td>
