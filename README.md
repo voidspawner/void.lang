@@ -2942,9 +2942,9 @@ newline
 ```
 
 ```
-void [1 2 3 4
+void [1 2 3
 .
-void.decode "[1 2 3 4
+void.decode "[1 2 3
 .
 void.write path/to/file.void
 void.read path/to/file.void
