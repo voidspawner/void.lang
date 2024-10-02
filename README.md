@@ -216,29 +216,30 @@ python void.py vapp.json
 3. Copy the **void.exe** file from the **V O I D spawner** game to the same directory as **run.json** file
 4. Sell your game or share with friends
 
-   ##### Run with game engine
-   ```console
-   void.exe game.json
-   ```
-
-   ##### The archive contains run.json and all game files
-   ```console
-   void.exe game.zip
-   ```
-
-   ##### The execution directory contains run.json and all game files or contains run.zip file
-   ```console
-   void.exe
-   ```
-
-   You can use the **Exporter** inside the **V O I D spawner** game to export your game to all platforms ⌜**Windows**・**macOS**・**Linux**・**Android**・**iOS**・**Web**・**Xbox**・**Switch**・**PlayStation**⌟
+> [!NOTE]
+> **Run with game engine**
+> ```console
+> void.exe game.json
+> ```
+>
+> **The archive contains run.json and all game files**
+> ```console
+> void.exe game.zip
+> ```
+>
+> **The execution directory contains run.json and all game files or contains run.zip file**
+> ```console
+> void.exe
+> ```
+>
+> You can use the **Exporter** inside the **V O I D spawner** game to export your game to all platforms ⌜**Windows**・**macOS**・**Linux**・**Android**・**iOS**・**Web**・**Xbox**・**Switch**・**PlayStation**⌟
 
 **Alternative**
 
 1. Download **V O I D lang**
 2. Import **void.gd**・**void.cpp** into the **Godot**・**Unreal Engine**
 3. Create your first game in **run.json** file
-4. Export the game to available platforms
+4. Export the game in the engine itself to the available platforms
 5. Sell your game or share with friends
 
 ## Actions
