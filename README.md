@@ -167,10 +167,10 @@ print(void.decrypt(encrypted.text, encrypted.key))
 1. Download **V O I D lang**
 2. Create your first vapp (V O I D app) in **run.json** or other JSON file
 3. Launch vapp with **V O I D lang**
-   
-   ```console
-   python void.py vapp.json
-   ```
+ 
+```console
+python void.py vapp.json
+```
 
 > [!TIP]
 > **Tip for Linux・macOS**: Add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile (macOS)
