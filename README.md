@@ -3434,4 +3434,5 @@ binary
 ## V O I D work
 > [!IMPORTANT]
 > By adding your code to a repository, you transfer the rights to the uploaded code to the owner of that repository **V O I D spawner**.
-> Find out current tasks and payment at [**voidsp.com/task**](https://voidsp.com/task)
+
+Find out current **tasks** and **payment** at [**voidsp.com/task**](https://voidsp.com/task)
