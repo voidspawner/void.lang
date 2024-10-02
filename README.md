@@ -2941,6 +2941,16 @@ newline
     \n
 ```
 
+```
+void [1 2 3 4
+.
+void.decode "[1 2 3 4
+.
+void.write path/to/file.void
+void.read path/to/file.void
+.
+```
+
 <table>
 <tr>
 <th align="center"><img width="441" height="1"><p>V O I D format</p></th>
