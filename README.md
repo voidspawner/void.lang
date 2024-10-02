@@ -186,7 +186,7 @@ print(void.decrypt(encrypted.text, encrypted.key))
 > void vapp.json
 > ```
 > 
-> **Tip for Swift・Kotlin・C++**: embed the vapp in it and compile it into an executable
+> **Tip for Swift・Kotlin・C++**: embed the vapp in the source code and compile it into an executable
 > ```console
 > swiftc void.swift
 > ```
