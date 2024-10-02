@@ -221,7 +221,7 @@ python void.py vapp.json
 
    You can use the **Exporter** inside the **V O I D spawner** game to export your game to all platforms ⌜**Windows**・**macOS**・**Linux**・**Android**・**iOS**・**Web**・**Xbox**・**Switch**・**PlayStation**⌟
 
-Alternative:
+**Alternative**
 
 1. Download **V O I D lang**
 2. Import **void.gd**・**void.cpp** into the **Godot**・**Unreal Engine**
