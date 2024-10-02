@@ -3417,3 +3417,6 @@ binary
 
 ## V O I D os
 **[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
+
+## V O I D work
+By adding your code to a repository, you transfer the rights to the uploaded code to the owner of that repository **V O I D spawner**.
