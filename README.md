@@ -5,7 +5,8 @@
 [**How to Use Game Engine**](#how-to-use-game-engine)・
 [**Actions**](#actions)・
 [**Progress**](#progress)・
-[**Detail**](#detail) [**V O I D os**](#v-o-i-d-os)・
+[**Detail**](#detail)・
+[**V O I D os**](#v-o-i-d-os)・
 [**V O I D work**](#v-o-i-d-work)
 
 # V O I D lang
