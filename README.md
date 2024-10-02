@@ -3,7 +3,8 @@
 ## About
 **⌜ V O I D lang ⌟** is the language for rapidly creating applications and games in the **V O I D** or **JSON format**. It is used as a replacement for the standard Bash・CMD・etc. languages and for writing **applications**, **servers** and **games**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one V O I D or JSON file**. Since the **code is presented as data**, applications can be easily generated with **AI**, updated, installed and launched remotely.
 
-**The project is in the process of development.**
+> [!IMPORTANT]
+> **The project is in the process of development.**
 
 <img src="https://i.imgur.com/kx2UcUh.jpg" width="100%">
 
