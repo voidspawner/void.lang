@@ -167,34 +167,35 @@ print(void.decrypt(encrypted.text, encrypted.key))
 1. Download **V O I D lang**
 2. Create your first vapp (V O I D app) in **run.json** or other JSON file
 3. Launch vapp with **V O I D lang**
+   
    ```console
    python void.py vapp.json
    ```
 
-   ##### Tip for Linux・macOS: add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile (macOS)
-   ```console
-   alias void="python /path/to/void.py"
-   ```
-
-   ##### Tip for Windows: use alias in command line
-   ```console
-   doskey void=python /path/to/void.py
-   ```
-   ```console
-   void vapp.json
-   ```
-
-   ##### Tip for Swift・Kotlin・C++: embed the vapp in it and compile it into an executable
-   ```console
-   swiftc void.swift
-   ```
-   ```console
-   kotlinc void.kt
-   ```
-   ```console
-   clang++ void.cpp -o void.exe
-   ```
-
+> [!TIP]
+> **Tip for Linux・macOS**: Add alias to ~/.bashrc ・ ~/.zshrc ・ ~/.bash_profile (macOS)
+> ```console
+> alias void="python /path/to/void.py"
+> ```
+> 
+> **Tip for Windows**: use alias in command line
+> ```console
+> doskey void=python /path/to/void.py
+> ```
+> ```console
+> void vapp.json
+> ```
+> 
+> **Tip for Swift・Kotlin・C++**: embed the vapp in it and compile it into an executable
+> ```console
+> swiftc void.swift
+> ```
+> ```console
+> kotlinc void.kt
+> ```
+> ```console
+> clang++ void.cpp -o void.exe
+> ```
 
 ## How to Use Game Engine
 
@@ -3419,4 +3420,5 @@ binary
 **[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
 
 ## V O I D work
-By adding your code to a repository, you transfer the rights to the uploaded code to the owner of that repository **V O I D spawner**.
+> [!IMPORTANT]
+> By adding your code to a repository, you transfer the rights to the uploaded code to the owner of that repository **V O I D spawner**.
