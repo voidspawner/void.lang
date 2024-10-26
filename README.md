@@ -18,7 +18,7 @@
 [**Detail**](#detail)・
 [**V O I D format**](#v-o-i-d-format)・
 [**V O I D os**](#v-o-i-d-os)・
-[**V O I D ideology**](#v-o-i-d-ideology)
+[**V O I D ideology**](#v-o-i-d-ideology)・
 [**V O I D work**](#v-o-i-d-work)
 
 ## Preinstalled Language
