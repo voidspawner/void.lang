@@ -172,6 +172,7 @@
 ##### Run Python code
 ```python
 # crypto.py
+exec(open('void.py').read()) # if executed in another language
 encrypted = void.encrypt('Hi World :D')
 print(void.decrypt(encrypted.text, encrypted.key))
 ```
