@@ -399,3089 +399,4856 @@ Count of actions: 589
 
 ### value
 
-#### get ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### get
 Get value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["get"]
 ```
-#### set ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### set
 Set value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["set"]
 ```
-#### remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### remove
 Delete value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["remove"]
 ```
-#### type ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### type
 Get value type
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["type"]
 ```
-#### bool ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bool
 Convert value to boolean
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bool"]
 ```
-#### number ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### number
 Translate value to a number
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["number"]
 ```
-#### text ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### text
 Translate value to text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["text"]
 ```
-#### list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### list
 Translate value into a list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["list"]
 ```
-#### alias ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### alias
 Assign an alias to an action
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["alias"]
 ```
-#### compare ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### compare
 Compare values
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["compare"]
 ```
 
 ### expression
 
-#### + ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### +
 Add
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["+"]
 ```
-#### - ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### -
 Subtract
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["-"]
 ```
-#### * ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### *
 Multiply
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["*"]
 ```
-#### / ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### /
 Divide
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["/"]
 ```
-#### % ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### %
 Remainder of division
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["%"]
 ```
-#### ** ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### **
 Elevate
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["**"]
 ```
-#### ! ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### !
 NOT bitwise operator
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["!"]
 ```
-#### & ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### &
 AND bitwise operator
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["&"]
 ```
-#### | ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### |
 OR bitwise operator
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["|"]
 ```
-#### ^ ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ^
 XOR bitwise operator
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["^"]
 ```
-#### >> ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### >>
 Right shift
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 [">>"]
 ```
-#### << ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### <<
 Left shift
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["<<"]
 ```
-#### += ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### +=
 Add to value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["+="]
 ```
-#### -= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### -=
 Subtract from value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["-="]
 ```
-#### *= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### *=
 Multiply the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["*="]
 ```
-#### /= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### /=
 Divide the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["/="]
 ```
-#### %= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### %=
 Residue from dividing the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["%="]
 ```
-#### **= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### **=
 Increment the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["**="]
 ```
-#### != ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### !=
 NOT bitwise operator of the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["!="]
 ```
-#### &= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### &=
 AND bitwise operator of the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["&="]
 ```
-#### |= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### |=
 OR bitwise operator of the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["|="]
 ```
-#### ^= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ^=
 XOR bitwise operator of the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["^="]
 ```
-#### >>= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### >>=
 Shift to the right of the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 [">>="]
 ```
-#### <<= ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### <<=
 Shift to the left of the value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["<<="]
 ```
-#### not ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### not
 Negation (inversion)
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["not"]
 ```
-#### and ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### and
 Conjunction (and)
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["and"]
 ```
-#### or ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### or
 Disjunction (or)
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["or"]
 ```
-#### xor ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### xor
 Exclusive disjunction (exclusive or)
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["xor"]
 ```
-#### in ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### in
 A value in an array or a name in a dictionary
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["in"]
 ```
-#### not in ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### not in
 Value not in array or name not in dictionary
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["not in"]
 ```
-#### is ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### is
 Value type match
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["is"]
 ```
-#### not is ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### not is
 Value type mismatch
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["not is"]
 ```
 
 ### control
 
-#### ? ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ?
 IF check
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["?"]
 ```
-#### ?? ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ??
 MATCH check
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["??"]
 ```
-#### o ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### o
 FOR, WHILE loop
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["o"]
 ```
-#### x ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### x
 Exit loop BREAK
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["x"]
 ```
-#### >>> ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### >>>
 Continue loop CONTINUE
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 [">>>"]
 ```
-#### <<< ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### <<<
 Repeat loop iteration
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["<<<"]
 ```
-#### _ ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### _
 Return action value RETURN
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["_"]
 ```
-#### . ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### .
 Print text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["."]
 ```
-#### .. ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ..
 Print text without a new line
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 [".."]
 ```
-#### ... ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ...
 Enter text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["..."]
 ```
-#### action ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### action
 Execute action
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["action"]
 ```
-#### action.open ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### action.open
 Execute an action from a file
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["action.open"]
 ```
-#### X ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### X
 End vapp
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["X"]
 ```
-#### xx ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### xx
 Error
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["xx"]
 ```
-#### open ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### open
 Execute system action
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["open"]
 ```
-#### shell ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### shell
 Execute a command line command
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["shell"]
 ```
-#### shell.open ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### shell.open
 Open a terminal and execute the command
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["shell.open"]
 ```
-#### code ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### code
 Execute native code
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["code"]
 ```
-#### python ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### python
 Execute Python code
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["python"]
 ```
-#### compile ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### compile
 Compile code for a specific platform
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["compile"]
 ```
-#### i ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### i
 Info logging
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["i"]
 ```
-#### w ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### w
 Warning logging
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["w"]
 ```
-#### e ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### e
 Error logging
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["e"]
 ```
-#### d ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### d
 Debug logging
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["d"]
 ```
-#### t ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### t
 Time logging
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["t"]
 ```
-#### export ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### export
 Export vapp for selected platforms
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["export"]
 ```
-#### update ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### update
 Update script
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["update"]
 ```
-#### test ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### test
 Test script
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["test"]
 ```
-#### help ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### help
 Display language hint
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["help"]
 ```
-#### debug ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### debug
 Display debug information
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["debug"]
 ```
-#### debug.fps ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### debug.fps
 Display FPS
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["debug.fps"]
 ```
 
 ### text
 
-#### lower ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### lower
 Convert text to lower case
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["lower"]
 ```
-#### upper ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### upper
 Convert text to uppercase
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["upper"]
 ```
-#### starts ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### starts
 Starts with text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["starts"]
 ```
-#### ends ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ends
 Ends with text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ends"]
 ```
-#### strip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### strip
 Trim text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["strip"]
 ```
-#### strip.start ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### strip.start
 Trim the beginning of text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["strip.start"]
 ```
-#### strip.end ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### strip.end
 Trim the end of text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["strip.end"]
 ```
-#### replace ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### replace
 Replace text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["replace"]
 ```
-#### find ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### find
 Find position in text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["find"]
 ```
-#### similar ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### similar
 Compare texts
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["similar"]
 ```
-#### part ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### part
 Get a part of text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["part"]
 ```
-#### split ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### split
 Split text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["split"]
 ```
-#### join ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### join
 Join text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["join"]
 ```
-#### regex ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### regex
 Find in text using regular expression
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["regex"]
 ```
-#### regex.replace ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### regex.replace
 Replace text using a regular expression
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["regex.replace"]
 ```
-#### escape ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### escape
 Escape text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["escape"]
 ```
-#### escape.html ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### escape.html
 Escape HTML text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["escape.html"]
 ```
-#### escape.sql ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### escape.sql
 Escape SQL text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["escape.sql"]
 ```
-#### escape.url ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### escape.url
 Escape text URL
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["escape.url"]
 ```
-#### escape.json ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### escape.json
 Escape text JSON
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["escape.json"]
 ```
-#### escape.void ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### escape.void
 Escape text V O I D
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["escape.void"]
 ```
-#### unescape ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### unescape
 Unescape text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["unescape"]
 ```
-#### unescape.html ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### unescape.html
 Unescape HTML text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["unescape.html"]
 ```
-#### unescape.sql ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### unescape.sql
 Unescape text SQL
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["unescape.sql"]
 ```
-#### unescape.url ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### unescape.url
 Unescape text URL
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["unescape.url"]
 ```
-#### unescape.json ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### unescape.json
 Unescape JSON text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["unescape.json"]
 ```
-#### unescape.void ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### unescape.void
 Unescape V O I D text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["unescape.void"]
 ```
-#### date ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### date
 Convert text to timestamp, or timestamp to text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["date"]
 ```
-#### letters ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### letters
 Number of letters in the text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["letters"]
 ```
-#### words ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### words
 Number of words in the text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["words"]
 ```
-#### sentences ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sentences
 Number of sentences in the text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sentences"]
 ```
-#### lines ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### lines
 Number of lines in the text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["lines"]
 ```
 
 ### list
 
-#### push ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### push
 Add to list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["push"]
 ```
-#### pop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### pop
 Extract from the list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["pop"]
 ```
-#### reverse ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### reverse
 Invert order in the list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["reverse"]
 ```
-#### shuffle ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### shuffle
 Shuffle the list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["shuffle"]
 ```
-#### sort ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sort
 Sort the list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sort"]
 ```
-#### fill ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### fill
 Fill the list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["fill"]
 ```
-#### map ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### map
 Map the list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["map"]
 ```
-#### reduce ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### reduce
 Reduce the list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["reduce"]
 ```
-#### names ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### names
 Dictionary or list names
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["names"]
 ```
-#### values ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### values
 Dictionary values
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["values"]
 ```
 
 ### math
 
-#### sin ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sin
 Sine
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sin"]
 ```
-#### cos ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cos
 Cosine
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cos"]
 ```
-#### tan ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### tan
 Tangent
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["tan"]
 ```
-#### sinh ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sinh
 Hyperbolic sine
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sinh"]
 ```
-#### cosh ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cosh
 Hyperbolic cosine
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cosh"]
 ```
-#### tanh ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### tanh
 Hyperbolic tangent
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["tanh"]
 ```
-#### asin ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### asin
 Arcsine
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["asin"]
 ```
-#### acos ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### acos
 Arccosine
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["acos"]
 ```
-#### atan ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### atan
 Arctangent
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["atan"]
 ```
-#### asinh ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### asinh
 Hyperbolic arcsine
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["asinh"]
 ```
-#### acosh ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### acosh
 Hyperbolic arccosine
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["acosh"]
 ```
-#### atanh ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### atanh
 Hyperbolic arctangent
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["atanh"]
 ```
-#### round ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### round
 Round a number
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["round"]
 ```
-#### floor ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### floor
 Round a number down
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["floor"]
 ```
-#### ceil ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ceil
 Round a number up
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ceil"]
 ```
-#### log ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### log
 Logarithm
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["log"]
 ```
-#### log.e ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### log.e
 Hyperbolic logarithm
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["log.e"]
 ```
-#### log.n ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### log.n
 Natural logarithm
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["log.n"]
 ```
-#### fa ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### fa
 Factorial
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["fa"]
 ```
-#### fib ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### fib
 Fibonacci
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["fib"]
 ```
-#### abs ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### abs
 Absolute value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["abs"]
 ```
-#### min ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### min
 Minimum value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["min"]
 ```
-#### max ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### max
 Maximum value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["max"]
 ```
-#### avg ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### avg
 Average value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["avg"]
 ```
-#### sum ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sum
 Sum of values
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sum"]
 ```
-#### hex ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### hex
 Hexadecimal value to byte
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["hex"]
 ```
-#### hex.dec ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### hex.dec
 Hexadecimal value to decimal
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["hex.dec"]
 ```
-#### bin ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bin
 Binary value to byte
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bin"]
 ```
-#### bin.dec ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bin.dec
 Binary value to decimal
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bin.dec"]
 ```
-#### dec ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dec
 Decimal value to byte
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dec"]
 ```
-#### dec.hex ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dec.hex
 Decimal value to hexadecimal
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dec.hex"]
 ```
-#### dec.bin ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dec.bin
 Decimal value to binary
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dec.bin"]
 ```
-#### rad ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### rad
 Degree to radian
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["rad"]
 ```
-#### deg ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### deg
 Radian to degree
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["deg"]
 ```
-#### random ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### random
 Random value
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["random"]
 ```
-#### random.reseed ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### random.reseed
 Re-create random seed
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["random.reseed"]
 ```
-#### random.seed ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### random.seed
 Get random seed
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["random.seed"]
 ```
 
 ### time
 
-#### time ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### time
 Time stamp in microseconds
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["time"]
 ```
-#### time.ms ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### time.ms
 Time stamp in milliseconds
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["time.ms"]
 ```
-#### time.s ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### time.s
 Timestamp in seconds
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["time.s"]
 ```
-#### timer ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### timer
 Set timer
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["timer"]
 ```
-#### timer.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### timer.remove
 Remove timer
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["timer.remove"]
 ```
-#### wait ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### wait
 Wait time in seconds
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["wait"]
 ```
 
 ### crypto
 
-#### encrypt ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### encrypt
 Encode text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["encrypt"]
 ```
-#### decrypt ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### decrypt
 Decode text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["decrypt"]
 ```
-#### hash ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### hash
 Random hash
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["hash"]
 ```
-#### uuid ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### uuid
 Random UUID
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["uuid"]
 ```
-#### md5 ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### md5
 MD5 hash
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["md5"]
 ```
-#### sha1 ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sha1
 SHA1 hash
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sha1"]
 ```
-#### sha256 ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sha256
 SHA256 hash
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sha256"]
 ```
-#### sha512 ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sha512
 SHA512 hash
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sha512"]
 ```
-#### crc32 ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### crc32
 CRC32 hash
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["crc32"]
 ```
-#### base64 ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### base64
 Base64 hash
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["base64"]
 ```
-#### base64.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### base64.decode
 Decode Base64
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["base64.decode"]
 ```
-#### gzip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### gzip
 Gzip text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["gzip"]
 ```
-#### gzip.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### gzip.decode
 Decode Gzip
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["gzip.decode"]
 ```
-#### rsa ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### rsa
 Encode text with RSA
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["rsa"]
 ```
-#### rsa.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### rsa.decode
 Decode RSA
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["rsa.decode"]
 ```
-#### rsa.key.public ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### rsa.key.public
 Get RSA public key
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["rsa.key.public"]
 ```
-#### rsa.key.private ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### rsa.key.private
 Get RSA private key
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["rsa.key.private"]
 ```
-#### ssl ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ssl
 Encode text with SSL
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ssl"]
 ```
-#### ssl.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ssl.decode
 Decode SSL
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ssl.decode"]
 ```
-#### ssl.check ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ssl.check
 Verify SSL
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ssl.check"]
 ```
-#### bcrypt ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bcrypt
 Encode text with Bcrypt
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bcrypt"]
 ```
-#### bcrypt.check ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bcrypt.check
 Verify Bcrypt
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bcrypt.check"]
 ```
 
 ### format
 
-#### void ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### void
 Encode to V O I D
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["void"]
 ```
-#### void.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### void.decode
 Decode V O I D
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["void.decode"]
 ```
-#### void.read ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### void.read
 Read V O I D file
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["void.read"]
 ```
-#### void.write ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### void.write
 Write V O I D file
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["void.write"]
 ```
-#### json ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### json
 Encode to JSON
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["json"]
 ```
-#### json.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### json.decode
 Decode JSON
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["json.decode"]
 ```
-#### json.read ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### json.read
 Read JSON file
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["json.read"]
 ```
-#### json.write ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### json.write
 Write JSON file
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["json.write"]
 ```
-#### yaml ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### yaml
 Encode YAML
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["yaml"]
 ```
-#### yaml.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### yaml.decode
 Decode YAML
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["yaml.decode"]
 ```
-#### csv ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### csv
 Encode CSV
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["csv"]
 ```
-#### csv.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### csv.decode
 Decode CSV
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["csv.decode"]
 ```
-#### ini ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ini
 Encode INI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ini"]
 ```
-#### ini.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ini.decode
 Decode INI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ini.decode"]
 ```
-#### html ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### html
 Encode HTML
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["html"]
 ```
-#### html.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### html.decode
 Decode HTML
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["html.decode"]
 ```
-#### xml ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### xml
 Encode XML
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["xml"]
 ```
-#### xml.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### xml.decode
 Decode XML
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["xml.decode"]
 ```
-#### css ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### css
 Encode CSS
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["css"]
 ```
-#### css.decode ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### css.decode
 Decode CSS
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["css.decode"]
 ```
 
 ### file
 
-#### file.exists ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.exists
 File exists
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.exists"]
 ```
-#### file.write ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.write
 Write to file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.write"]
 ```
-#### file.read ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.read
 Read file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.read"]
 ```
-#### file.read.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.read.list
 Read lines from file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.read.list"]
 ```
-#### file.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.remove
 Remove file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.remove"]
 ```
-#### file.move ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.move
 Move file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.move"]
 ```
-#### file.copy ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.copy
 Copy file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.copy"]
 ```
-#### file.rename ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.rename
 Rename file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.rename"]
 ```
-#### file.info ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.info
 File information
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.info"]
 ```
-#### file.size ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.size
 File size
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.size"]
 ```
-#### file.permissions ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.permissions
 File permissions
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.permissions"]
 ```
-#### file.readonly ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.readonly
 Read-only file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.readonly"]
 ```
-#### file.hidden ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.hidden
 Hidden file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.hidden"]
 ```
-#### file.modified ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.modified
 File modification time
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.modified"]
 ```
-#### file.sha256 ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.sha256
 SHA256 file hash
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.sha256"]
 ```
-#### file.crc32 ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.crc32
 CRC32 file hash
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.crc32"]
 ```
-#### file.base64 ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.base64
 Base64 file hash
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.base64"]
 ```
-#### file.zip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.zip
 Compress a file into a Zip archive
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.zip"]
 ```
-#### file.zip.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.zip.list
 List of files in Zip archive
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.zip.list"]
 ```
-#### file.zip.exists ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.zip.exists
 File exists in Zip archive
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.zip.exists"]
 ```
-#### file.zip.read ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.zip.read
 Read file from Zip archive
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.zip.read"]
 ```
-#### file.zip.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.zip.remove
 Remove file from Zip archive
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.zip.remove"]
 ```
-#### file.unzip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.unzip
 Extract Zip archive
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.unzip"]
 ```
-#### file.gzip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.gzip
 Compress file with Gzip
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.gzip"]
 ```
-#### file.ungzip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.ungzip
 Extract Gzip file
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.ungzip"]
 ```
-#### file.link ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.link
 Create a symbolic link
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.link"]
 ```
-#### file.link.exists ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.link.exists
 Symbolic link exists
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.link.exists"]
 ```
-#### file.backup ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### file.backup
 Backup files
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["file.backup"]
 ```
-#### dir.exists ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.exists
 Directory exists
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.exists"]
 ```
-#### dir.create ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.create
 Create directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.create"]
 ```
-#### dir.copy ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.copy
 Copy directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.copy"]
 ```
-#### dir.move ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.move
 Move directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.move"]
 ```
-#### dir.rename ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.rename
 Rename directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.rename"]
 ```
-#### dir.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.remove
 Remove directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.remove"]
 ```
-#### dir.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.list
 List of files in a directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.list"]
 ```
-#### dir.clear ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.clear
 Clear directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.clear"]
 ```
-#### dir.info ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.info
 Directory information
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.info"]
 ```
-#### dir.size ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.size
 Directory size
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.size"]
 ```
-#### dir.permissions ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.permissions
 Directory permissions
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.permissions"]
 ```
-#### dir.readonly ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.readonly
 Read-only directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.readonly"]
 ```
-#### dir.hidden ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.hidden
 Hidden directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.hidden"]
 ```
-#### dir.modified ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.modified
 Directory modification time
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.modified"]
 ```
-#### dir.zip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dir.zip
 Compress directory
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dir.zip"]
 ```
-#### drive.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drive.list
 List of volumes
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drive.list"]
 ```
-#### drive.name ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drive.name
 Volume name
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drive.name"]
 ```
-#### drive.size ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drive.size
 Volume size
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drive.size"]
 ```
-#### drive.used ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drive.used
 Volume space used
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drive.used"]
 ```
-#### drive.free ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drive.free
 Volume free space
+
+⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drive.free"]
 ```
-#### drive.mount ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drive.mount
 Mount volume
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drive.mount"]
 ```
-#### drive.unmount ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drive.unmount
 Unmount volume
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drive.unmount"]
 ```
-#### drive.format ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drive.format
 Format volume
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drive.format"]
 ```
-#### path.drive ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### path.drive
 Get volume from path
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["path.drive"]
 ```
-#### path.dir ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### path.dir
 Get directory from path
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["path.dir"]
 ```
-#### path.file ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### path.file
 Get file from path
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["path.file"]
 ```
-#### path.name ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### path.name
 Get filename from path
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["path.name"]
 ```
-#### path.extension ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### path.extension
 Get extension from path
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["path.extension"]
 ```
-#### path.extension.strip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### path.extension.strip
 Trim extension from path
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["path.extension.strip"]
 ```
 
 ### cloud
 
-#### cloud.file ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cloud.file
 File server
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cloud.file"]
 ```
-#### cloud.web ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cloud.web
 Web server
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cloud.web"]
 ```
-#### cloud.api ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cloud.api
 API server
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cloud.api"]
 ```
-#### cloud.socket ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cloud.socket
 Socket server
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cloud.socket"]
 ```
-#### cloud.websocket ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cloud.websocket
 Websocket server
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cloud.websocket"]
 ```
-#### cloud.mail ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cloud.mail
 Mail server
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cloud.mail"]
 ```
-#### cloud.game ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cloud.game
 Game server
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cloud.game"]
 ```
-#### cloud.social ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cloud.social
 Social server
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cloud.social"]
 ```
-#### cloud.live ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cloud.live
 Streaming server
+
+⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cloud.live"]
 ```
 
 ### bot
 
-#### bot.telegram ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bot.telegram
 Telegram bot
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bot.telegram"]
 ```
-#### bot.wechat ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bot.wechat
 Wechat bot
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bot.wechat"]
 ```
-#### bot.x ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bot.x
 X bot
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bot.x"]
 ```
-#### bot.youtube ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bot.youtube
 YouTube bot
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bot.youtube"]
 ```
-#### bot.tiktok ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bot.tiktok
 TikTok bot
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bot.tiktok"]
 ```
-#### bot.steam ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bot.steam
 Steam bot
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bot.steam"]
 ```
-#### bot.binance ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bot.binance
 Binance bot
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bot.binance"]
 ```
-#### bot.ib ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bot.ib
 Interactive Brokers bot
+
+⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bot.ib"]
 ```
 
 ### request
 
-#### request ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### request
 Web request
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["request"]
 ```
-#### request.post ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### request.post
 Post Web request
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["request.post"]
 ```
-#### request.put ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### request.put
 Put Web request
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["request.put"]
 ```
-#### request.delete ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### request.delete
 Delete Web request
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["request.delete"]
 ```
-#### request.head ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### request.head
 Head Web request
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["request.head"]
 ```
 
 ### cookie
 
-#### cookie ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cookie
 Get Web cookies
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cookie"]
 ```
-#### cookie.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cookie.remove
 Delete Web cookies
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cookie.remove"]
 ```
 
 ### sql
 
-#### sql ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql
 SQL query
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql"]
 ```
-#### sql.connect ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.connect
 Connect to SQL server
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.connect"]
 ```
-#### sql.disconnet ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.disconnet
 Disconnect from SQL server
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.disconnet"]
 ```
-#### sql.user ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.user
 SQL user
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.user"]
 ```
-#### sql.user.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.user.list
 SQL user list
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.user.list"]
 ```
-#### sql.user.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.user.remove
 SQL remove user
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.user.remove"]
 ```
-#### sql.db ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.db
 SQL database
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.db"]
 ```
-#### sql.db.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.db.list
 SQL database list
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.db.list"]
 ```
-#### sql.db.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.db.remove
 SQL remove database
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.db.remove"]
 ```
-#### sql.db.size ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.db.size
 SQL database size
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.db.size"]
 ```
-#### sql.table ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.table
 SQL table
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.table"]
 ```
-#### sql.table.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.table.list
 SQL table list
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.table.list"]
 ```
-#### sql.table.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.table.remove
 SQL remove table
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.table.remove"]
 ```
-#### sql.field ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.field
 SQL field
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.field"]
 ```
-#### sql.field.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.field.list
 SQL field list
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.field.list"]
 ```
-#### sql.field.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.field.remove
 SQL remove field
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.field.remove"]
 ```
-#### sql.index ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.index
 SQL index
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.index"]
 ```
-#### sql.index.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.index.list
 SQL index list
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.index.list"]
 ```
-#### sql.index.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.index.remove
 SQL remove index
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.index.remove"]
 ```
-#### sql.function ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.function
 SQL function
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.function"]
 ```
-#### sql.function.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.function.list
 SQL function list
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.function.list"]
 ```
-#### sql.function.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.function.remove
 SQL remove function
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.function.remove"]
 ```
-#### sql.view ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.view
 SQL view
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.view"]
 ```
-#### sql.view.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.view.list
 SQL view list
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.view.list"]
 ```
-#### sql.view.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.view.remove
 SQL remove a view
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.view.remove"]
 ```
-#### sql.get ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.get
 SQL get one result
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.get"]
 ```
-#### sql.all ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.all
 SQL get all results
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.all"]
 ```
-#### sql.cursor ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.cursor
 SQL cursor
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.cursor"]
 ```
-#### sql.transaction ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.transaction
 SQL start transaction
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.transaction"]
 ```
-#### sql.commit ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.commit
 SQL send transaction
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.commit"]
 ```
-#### sql.rollback ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sql.rollback
 SQL cancel transaction
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sql.rollback"]
 ```
 
 ### os
 
-#### os.name ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.name
 Operating system name
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.name"]
 ```
-#### os.version ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.version
 Operating system version
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.version"]
 ```
-#### os.username ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.username
 User name
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.username"]
 ```
-#### os.desktop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.desktop
 Check that it’s desktop
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.desktop"]
 ```
-#### os.mobile ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.mobile
 Check that it’s mobile device
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.mobile"]
 ```
-#### os.web ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.web
 Check that it’s Web
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.web"]
 ```
-#### os.windows ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.windows
 Check that it’s Windows
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.windows"]
 ```
-#### os.macos ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.macos
 Check that it's macOS
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.macos"]
 ```
-#### os.ios ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.ios
 Check that it's iOS
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.ios"]
 ```
-#### os.ipados ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.ipados
 Check that it's iPadOS
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.ipados"]
 ```
-#### os.watchos ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.watchos
 Check that it's watchOS
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.watchos"]
 ```
-#### os.tvos ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.tvos
 Check that it's tvOS
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.tvos"]
 ```
-#### os.android ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.android
 Check that it's Android
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.android"]
 ```
-#### os.nix ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### os.nix
 Check that it’s Unix-like
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["os.nix"]
 ```
 
 ### device
 
-#### cpu.name ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cpu.name
 Processor name
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cpu.name"]
 ```
-#### cpu.cores ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cpu.cores
 Number of processor cores
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cpu.cores"]
 ```
-#### memory.size ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### memory.size
 Memory size
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["memory.size"]
 ```
-#### memory.free ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### memory.free
 Memory Free
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["memory.free"]
 ```
-#### memory.used ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### memory.used
 Memory used
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["memory.used"]
 ```
-#### memory.available ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### memory.available
 Memory available
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["memory.available"]
 ```
 
 ### gps
 
-#### gps ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### gps
 Get GPS coordinates
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["gps"]
 ```
 
 ### sensor
 
-#### speed ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### speed
 Get speed
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["speed"]
 ```
-#### tilt ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### tilt
 Get tilt
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["tilt"]
 ```
-#### compass ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### compass
 Get compass direction
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["compass"]
 ```
-#### motion ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### motion
 Get motion type
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["motion"]
 ```
 
 ### camera
 
-#### camera ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### camera
 Get camera image
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["camera"]
 ```
-#### gallery ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### gallery
 Get gallery image
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["gallery"]
 ```
 
 ### contacts
 
-#### contacts ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### contacts
 Get contacts
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["contacts"]
 ```
 
 ### calendar
 
-#### calendar ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### calendar
 Get calendar
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["calendar"]
 ```
 
 ### health
 
-#### health ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### health
 Get health data
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["health"]
 ```
 
 ### flashlight
 
-#### flashlight ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### flashlight
 Flashlight
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["flashlight"]
 ```
 
 ### mic
 
-#### mic ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### mic
 Microphone
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["mic"]
 ```
 
 ### notification
 
-#### notification ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### notification
 Receive notifications
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["notification"]
 ```
-#### notification.token ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### notification.token
 Notification token
+
+⌜ ask・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["notification.token"]
 ```
-#### notification.send ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### notification.send
 Send notification
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["notification.send"]
 ```
 
 ### key
 
-#### key ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### key
 Assign key action
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["key"]
 ```
-#### key.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### key.remove
 Delete a key action
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["key.remove"]
 ```
-#### key.press ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### key.press
 Start a key action
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["key.press"]
 ```
-#### key.enable ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### key.enable
 Enable key action
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["key.enable"]
 ```
-#### key.disable ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### key.disable
 Disable key action
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["key.disable"]
 ```
 
 ### keyboard
 
-#### keyboard ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### keyboard
 On-screen keyboard
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["keyboard"]
 ```
-#### keyboard.height ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### keyboard.height
 Screen keyboard height
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["keyboard.height"]
 ```
 
 ### mouse
 
-#### mouse ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### mouse
 Show mouse
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["mouse"]
 ```
-#### mouse.hide ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### mouse.hide
 Hide mouse
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["mouse.hide"]
 ```
-#### mouse.lock ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### mouse.lock
 Lock mouse
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["mouse.lock"]
 ```
-#### mouse.capture ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### mouse.capture
 Capture mouse
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["mouse.capture"]
 ```
-#### mouse.confine ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### mouse.confine
 Limit mouse movement
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["mouse.confine"]
 ```
-#### mouse.position ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### mouse.position
 Get mouse coordinates
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["mouse.position"]
 ```
-#### mouse.shape ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### mouse.shape
 Mouse pointer shape
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["mouse.shape"]
 ```
 
 ### gamepad
 
-#### gamepad.axis ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### gamepad.axis
 Gamepad stick deflection
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["gamepad.axis"]
 ```
-#### gamepad.vibrate ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### gamepad.vibrate
 Gamepad vibration
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["gamepad.vibrate"]
 ```
 
 ### clipboard
 
-#### clipboard ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### clipboard
 Clipboard
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["clipboard"]
 ```
-#### clipboard.clear ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### clipboard.clear
 Clear clipboard
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["clipboard.clear"]
 ```
 
 ### voice
 
-#### voice ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### voice
 Read text with voice
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["voice"]
 ```
-#### voice.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### voice.list
 Voice list
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["voice.list"]
 ```
-#### voice.stop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### voice.stop
 Stop text reading
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["voice.stop"]
 ```
-#### voice.pause ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### voice.pause
 Pause / continue text reading
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["voice.pause"]
 ```
 
 ### convert
 
-#### convert ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### convert
 Convert from one format to another
+
+⌜ vapp・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["convert"]
 ```
 
 ### image
 
-#### image ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image
 Create image
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image"]
 ```
-#### image.read ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.read
 Read image from file
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.read"]
 ```
-#### image.write ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.write
 Write image to file
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.write"]
 ```
-#### image.size ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.size
 Resize image
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.size"]
 ```
-#### image.crop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.crop
 Crop image
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.crop"]
 ```
-#### image.square ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.square
 Crop image to square
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.square"]
 ```
-#### image.rotate ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.rotate
 Rotate image
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.rotate"]
 ```
-#### image.flip.h ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.flip.h
 Reflect image horizontally
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.flip.h"]
 ```
-#### image.flip.v ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.flip.v
 Reflect image vertically
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.flip.v"]
 ```
-#### image.tint ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.tint
 Tint the image
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.tint"]
 ```
-#### image.gray ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.gray
 Convert image to grayscale
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.gray"]
 ```
-#### image.text ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.text
 Add text to image
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.text"]
 ```
-#### image.image ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.image
 Add image to image
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.image"]
 ```
-#### image.draw ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### image.draw
 Add drawing to image
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["image.draw"]
 ```
 
 ### video
 
-#### video ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video
 Create video
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video"]
 ```
-#### video.read ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.read
 Read video from file
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.read"]
 ```
-#### video.write ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.write
 Write video to file
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.write"]
 ```
-#### video.size ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.size
 Video size
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.size"]
 ```
-#### video.rate ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.rate
 Video frame rate
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.rate"]
 ```
-#### video.rotate ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.rotate
 Rotate video
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.rotate"]
 ```
-#### video.flip.h ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.flip.h
 Reflect video horizontally
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.flip.h"]
 ```
-#### video.flip.v ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.flip.v
 Reflect video vertically
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.flip.v"]
 ```
-#### video.clip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.clip
 Video clip
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.clip"]
 ```
-#### video.speed ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.speed
 Video speed
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.speed"]
 ```
-#### video.reverse ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.reverse
 Change video direction
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.reverse"]
 ```
-#### video.text ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.text
 Add text to video
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.text"]
 ```
-#### video.image ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.image
 Add image to video
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.image"]
 ```
-#### video.sound ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.sound
 Add sound to video
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.sound"]
 ```
-#### video.video ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### video.video
 Add video to video
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["video.video"]
 ```
 
 ### model
 
-#### model ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### model
 Create 3D model
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["model"]
 ```
-#### model.read ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### model.read
 Read 3D model from file
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["model.read"]
 ```
-#### model.write ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### model.write
 Write 3D model to file
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["model.write"]
 ```
-#### model.animate ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### model.animate
 Animate 3D model
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["model.animate"]
 ```
-#### model.texture ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### model.texture
 Apply texture to 3D model
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["model.texture"]
 ```
 
 ### sound
 
-#### sound ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sound
 Create sound
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sound"]
 ```
-#### sound.read ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sound.read
 Read sound from file
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sound.read"]
 ```
-#### sound.write ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sound.write
 Write sound to file
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sound.write"]
 ```
-#### sound.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sound.list
 Current played sounds
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sound.list"]
 ```
-#### sound.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sound.remove
 Remove sound
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sound.remove"]
 ```
-#### sound.volume ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sound.volume
 Sound volume
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sound.volume"]
 ```
-#### sound.speed ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sound.speed
 Sound playback speed
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sound.speed"]
 ```
-#### sound.clip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sound.clip
 Sound clip
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sound.clip"]
 ```
-#### sound.sound ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### sound.sound
 Add sound to sound
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["sound.sound"]
 ```
 
 ### music
 
-#### music ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### music
 Add music
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["music"]
 ```
-#### music.stop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### music.stop
 Stop music
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["music.stop"]
 ```
-#### music.pause ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### music.pause
 Pause / continue music
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["music.pause"]
 ```
-#### music.volume ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### music.volume
 Music sound volume
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["music.volume"]
 ```
 
 ### volume
 
-#### volume ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### volume
 Master volume
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["volume"]
 ```
 
 ### screen
 
-#### screen.count ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### screen.count
 Number of screens
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["screen.count"]
 ```
-#### screen.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### screen.list
 List of screens
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["screen.list"]
 ```
-#### screen.info ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### screen.info
 Screen information
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["screen.info"]
 ```
-#### size ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### size
 Screen size
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["size"]
 ```
-#### orientation ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### orientation
 Screen orientation
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["orientation"]
 ```
-#### landscape ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### landscape
 Landscape orientation
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["landscape"]
 ```
-#### portrait ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### portrait
 Portrait orientation
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["portrait"]
 ```
-#### rate ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### rate
 Screen frame rate
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["rate"]
 ```
-#### pixel ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### pixel
 Get screen pixel color
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["pixel"]
 ```
-#### symbol ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### symbol
 Get screen symbol
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["symbol"]
 ```
-#### dpi ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dpi
 Dots per inch
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dpi"]
 ```
-#### dark ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dark
 Dark mode
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dark"]
 ```
-#### touch ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### touch
 Touchscreen
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["touch"]
 ```
-#### screenshot ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### screenshot
 Screenshot
+
+⌜ safe・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["screenshot"]
 ```
-#### screen.record ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### screen.record
 Record screen
+
+⌜ safe・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["screen.record"]
 ```
-#### screen.stop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### screen.stop
 Stop screen recording
+
+⌜ safe・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["screen.stop"]
 ```
 
 ### ui
 
-#### ui ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui
 UI element
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui"]
 ```
-#### bg ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### bg
 Background
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["bg"]
 ```
-#### show ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### show
 Show UI
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["show"]
 ```
-#### hide ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### hide
 Hide UI
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["hide"]
 ```
-#### visible ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### visible
 UI visibility
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["visible"]
 ```
-#### enable ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### enable
 Enable UI
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["enable"]
 ```
-#### disable ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### disable
 Disable UI
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["disable"]
 ```
-#### enabled ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### enabled
 Check if UI is enabled
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["enabled"]
 ```
-#### focus ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### focus
 Move focus to UI
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["focus"]
 ```
-#### scale ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### scale
 Scale UI
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["scale"]
 ```
-#### ui.text ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.text
 UI text
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.text"]
 ```
-#### ui.image ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.image
 UI image
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.image"]
 ```
-#### ui.button ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.button
 UI button
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.button"]
 ```
-#### ui.divider ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.divider
 UI separator
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.divider"]
 ```
-#### ui.video ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.video
 UI video
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.video"]
 ```
-#### ui.select ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.select
 UI selection
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.select"]
 ```
-#### ui.switch ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.switch
 UI switch
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.switch"]
 ```
-#### ui.progress ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.progress
 UI progress bar
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.progress"]
 ```
-#### ui.slider ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.slider
 UI slider
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.slider"]
 ```
-#### ui.edit ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.edit
 UI text editor
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.edit"]
 ```
-#### ui.chart ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.chart
 UI chart
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.chart"]
 ```
-#### ui.split.h ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.split.h
 UI horizontal separator
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.split.h"]
 ```
-#### ui.split.v ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.split.v
 UI vertical separator
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.split.v"]
 ```
-#### ui.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.list
 UI list
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.list"]
 ```
-#### ui.tile ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.tile
 UI tile
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.tile"]
 ```
-#### ui.color ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.color
 UI color
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.color"]
 ```
-#### ui.date ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.date
 UI date
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.date"]
 ```
-#### ui.drop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.drop
 UI drop down content
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.drop"]
 ```
-#### ui.menu ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.menu
 UI menu
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.menu"]
 ```
-#### ui.menu.context ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ui.menu.context
 UI context menu
+
+⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ui.menu.context"]
 ```
 
 ### window
 
-#### window ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### window
 Create window
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["window"]
 ```
-#### window.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### window.list
 Window list
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["window.list"]
 ```
-#### window.info ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### window.info
 Window information
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["window.info"]
 ```
-#### title ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### title
 Window title
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["title"]
 ```
-#### icon ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### icon
 Window icon
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["icon"]
 ```
-#### size ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### size
 Window size
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["size"]
 ```
-#### size.max ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### size.max
 Maximum window size
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["size.max"]
 ```
-#### size.min ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### size.min
 Minimum window size
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["size.min"]
 ```
-#### position ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### position
 Window position
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["position"]
 ```
-#### direction ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### direction
 Window text direction
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["direction"]
 ```
-#### attention ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### attention
 Window attention
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["attention"]
 ```
-#### top ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### top
 Top of all windows
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["top"]
 ```
-#### foreground ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### foreground
 Foreground window
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["foreground"]
 ```
-#### unfocusable ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### unfocusable
 Do not take the focus of the window
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["unfocusable"]
 ```
-#### unresizable ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### unresizable
 Do not resize window
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["unresizable"]
 ```
-#### center ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### center
 Center the window on the screen
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["center"]
 ```
-#### fullscreen ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### fullscreen
 Full screen window
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["fullscreen"]
 ```
-#### drop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drop
 Drop content to window
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drop"]
 ```
-#### border ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### border
 Window border
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["border"]
 ```
-#### maximized ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### maximized
 Maximize window
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["maximized"]
 ```
-#### minimized ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### minimized
 Minimize window
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["minimized"]
 ```
-#### exclusive ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### exclusive
 Make window exclusive
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["exclusive"]
 ```
-#### vsync ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### vsync
 Vertical window synchronization
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["vsync"]
 ```
-#### fps ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### fps
 Window FPS
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["fps"]
 ```
 
 ### dialog
 
-#### dialog.file ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dialog.file
 File selection
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dialog.file"]
 ```
-#### dialog.color ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dialog.color
 Color selection
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dialog.color"]
 ```
-#### dialog.date ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dialog.date
 Date selection
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dialog.date"]
 ```
-#### dialog.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dialog.list
 Select from list
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dialog.list"]
 ```
 
 ### effect
 
-#### effect ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### effect
 Add effect
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["effect"]
 ```
-#### effect.list ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### effect.list
 List of effects
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["effect.list"]
 ```
-#### effect.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### effect.remove
 Remove effect
+
+⌜ safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["effect.remove"]
 ```
 
 ### game
 
-#### vn ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### vn
 Create visual novel
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["vn"]
 ```
-#### 2d ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### 2d
 Create 2D game
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["2d"]
 ```
-#### 3d ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### 3d
 Create 3D game
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["3d"]
 ```
-#### menu ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### menu
 Create game menu
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["menu"]
 ```
-#### say ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### say
 Say text
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["say"]
 ```
-#### say.skip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### say.skip
 Skip text
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["say.skip"]
 ```
-#### route ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### route
 Offer to select a root
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["route"]
 ```
-#### route.remove ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### route.remove
 Remove root selection
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["route.remove"]
 ```
-#### route.check ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### route.check
 Check root
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["route.check"]
 ```
-#### route.select ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### route.select
 Select root
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["route.select"]
 ```
-#### route.repeat ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### route.repeat
 Repeat root selection
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["route.repeat"]
 ```
-#### route.skip ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### route.skip
 Skip root selection
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["route.skip"]
 ```
-#### character ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### character
 Create a character
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["character"]
 ```
-#### come ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### come
 Character arrived
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["come"]
 ```
-#### leave ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### leave
 Character left
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["leave"]
 ```
-#### change ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### change
 Character changed
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["change"]
 ```
-#### object ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### object
 Add an object to the map
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["object"]
 ```
-#### shoot ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### shoot
 Character shot
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["shoot"]
 ```
-#### move ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### move
 Character movement
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["move"]
 ```
-#### jump ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### jump
 Jump
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["jump"]
 ```
-#### crouch ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### crouch
 Crouch
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["crouch"]
 ```
-#### drop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### drop
 Drop
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["drop"]
 ```
-#### look ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### look
 Look around
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["look"]
 ```
-#### hud ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### hud
 Interface
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["hud"]
 ```
-#### hud.map ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### hud.map
 Map
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["hud.map"]
 ```
-#### hud.inventory ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### hud.inventory
 Inventory
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["hud.inventory"]
 ```
-#### snd ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### snd
 Spatial sound
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["snd"]
 ```
-#### light ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### light
 Spatial light
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["light"]
 ```
-#### cam ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### cam
 Spatial camera
+
+⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["cam"]
 ```
 
 ### ai
 
-#### ai.chat ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.chat
 Communicate with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.chat"]
 ```
-#### ai.image ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.image
 Create AI image
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.image"]
 ```
-#### ai.video ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.video
 Create AI video
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.video"]
 ```
-#### ai.music ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.music
 Create AI music
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.music"]
 ```
-#### ai.sound ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.sound
 Create AI sound
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.sound"]
 ```
-#### ai.say ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.say
 Create AI speech
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.say"]
 ```
-#### ai.2d ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.2d
 Create AI 2D asset
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.2d"]
 ```
-#### ai.3d ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.3d
 Create AI 3D asset
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.3d"]
 ```
-#### ai.character ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.character
 Create AI character
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.character"]
 ```
-#### ai.clean ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.clean
 Clean up image with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.clean"]
 ```
-#### ai.resize ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.resize
 Resize image with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.resize"]
 ```
-#### ai.color ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.color
 Colorize image with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.color"]
 ```
-#### ai.style ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.style
 Change image style with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.style"]
 ```
-#### ai.translate ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.translate
 Translate text with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.translate"]
 ```
-#### ai.recognize.text ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.recognize.text
 Recognize text with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.recognize.text"]
 ```
-#### ai.recognize.image ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.recognize.image
 Recognize image with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.recognize.image"]
 ```
-#### ai.recognize.video ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.recognize.video
 Recognize video with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.recognize.video"]
 ```
-#### ai.recognize.motion ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.recognize.motion
 Recognize motion with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.recognize.motion"]
 ```
-#### ai.capture.voice ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.capture.voice
 Capture voice with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.capture.voice"]
 ```
-#### ai.capture.face ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.capture.face
 Capture facial expressions with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.capture.face"]
 ```
-#### ai.capture.motion ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### ai.capture.motion
 Capture motion with AI
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["ai.capture.motion"]
 ```
 
 ### social
 
-#### social.signin ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### social.signin
 Authorization
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["social.signin"]
 ```
-#### social.signup ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### social.signup
 Registration
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["social.signup"]
 ```
-#### social.signout ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### social.signout
 Logout
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["social.signout"]
 ```
-#### social.restore ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### social.restore
 Restore login
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["social.restore"]
 ```
-#### social ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### social
 Social content
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["social"]
 ```
-#### social.send ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### social.send
 Send content
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["social.send"]
 ```
-#### social.buy ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### social.buy
 Purchase
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["social.buy"]
 ```
 
 ### tech
 
-#### light.on ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### light.on
 Turn lamp on
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["light.on"]
 ```
-#### light.off ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### light.off
 Turn lamp off
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["light.off"]
 ```
-#### power.on ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### power.on
 Power on
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["power.on"]
 ```
-#### power.off ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### power.off
 Turn power off
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["power.off"]
 ```
-#### power.timer ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### power.timer
 Set timer for power
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["power.timer"]
 ```
-#### lock.open ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### lock.open
 Open the lock
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["lock.open"]
 ```
-#### lock.close ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### lock.close
 Close the lock
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["lock.close"]
 ```
-#### lock.code ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### lock.code
 Set the code on the lock
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["lock.code"]
 ```
-#### dron.move ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.move
 Drone movement
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.move"]
 ```
-#### dron.up ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.up
 Raise the drone
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.up"]
 ```
-#### dron.down ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.down
 Lower the drone
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.down"]
 ```
-#### dron.left ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.left
 Move the drone to the left
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.left"]
 ```
-#### dron.right ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.right
 Move the drone to the right
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.right"]
 ```
-#### dron.go ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.go
 Move the drone forward
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.go"]
 ```
-#### dron.stop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.stop
 Stop drone movement
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.stop"]
 ```
-#### dron.jump ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.jump
 Jump the drone
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.jump"]
 ```
-#### dron.crouch ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.crouch
 Crouch the drone
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.crouch"]
 ```
-#### dron.open ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.open
 Open the drone
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.open"]
 ```
-#### dron.close ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.close
 Close the drone
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.close"]
 ```
-#### dron.rotate ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.rotate
 Turn the drone
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.rotate"]
 ```
-#### dron.camera ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.camera
 Drone camera
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.camera"]
 ```
-#### dron.camera.rotate ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.camera.rotate
 Rotate drone camera
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.camera.rotate"]
 ```
-#### dron.camera.on ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.camera.on
 Turn drone camera on
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.camera.on"]
 ```
-#### dron.camera.off ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.camera.off
 Turn drone camera off
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.camera.off"]
 ```
-#### dron.camera.record ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.camera.record
 Record drone camera video
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.camera.record"]
 ```
-#### dron.camera.record.stop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.camera.record.stop
 Stop drone camera recording
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.camera.record.stop"]
 ```
-#### dron.hand.open ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.hand.open
 Open the drone arm
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.hand.open"]
 ```
-#### dron.hand.close ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.hand.close
 Close the drone arm
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.hand.close"]
 ```
-#### dron.hand.move ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.hand.move
 Drone hand movement
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.hand.move"]
 ```
-#### dron.hand.gesture ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.hand.gesture
 Drone hand gesture
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.hand.gesture"]
 ```
-#### dron.sound ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.sound
 Drone speaker
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.sound"]
 ```
-#### dron.volume ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.volume
 Drone speaker sound volume
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.volume"]
 ```
-#### dron.mic ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.mic
 Drone microphone
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.mic"]
 ```
-#### dron.mic.on ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.mic.on
 Drone microphone on
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.mic.on"]
 ```
-#### dron.mic.off ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.mic.off
 Drone microphone off
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.mic.off"]
 ```
-#### dron.mic.record ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.mic.record
 Drone microphone audio recording
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.mic.record"]
 ```
-#### dron.mic.record.stop ⌜<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/scroll.svg" width="14" height="14" title="vapp"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/lock.svg" width="14" height="14" title="safe"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/python.svg" width="14" height="14" title="python"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/js.svg" width="14" height="14" title="javascript"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/apple.svg" width="14" height="14" title="swift"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/android.svg" width="14" height="14" title="kotlin"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/gamepad.svg" width="14" height="14" title="godot"> <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/c.svg" width="14" height="14" title="c++">⌟ 
+#### dron.mic.record.stop
 Stop recording drone microphone audio
+
+⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+
 ```javascript
 ["dron.mic.record.stop"]
 ```
