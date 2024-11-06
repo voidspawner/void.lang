@@ -170,17 +170,17 @@
 ]
 ```
 ##### Run Python code
-```python
-# crypto.py
-exec(open('void.py').read()) # if executed in another language
-encrypted = void.encrypt('Hi World :D')
-print(void.decrypt(encrypted.text, encrypted.key))
-```
 ```javascript
 [
-  ["file.read", "crypto.py"],
-  "python"
+  ["python", "for i in range(10):print(i)"]
 ]
+```
+##### Import void.py
+```python
+# crypto.py
+exec(open('void.py').read())
+encrypted = void.encrypt('Hi World :D')
+print(void.decrypt(encrypted.text, encrypted.key))
 ```
 
 ## How to Use
