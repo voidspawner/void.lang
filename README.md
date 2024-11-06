@@ -164,6 +164,12 @@
 ]
 ```
 ##### Run native code
+```javascript
+[
+  ["code", "for i in range(10):print(i)"]
+]
+```
+##### Run Python code
 ```python
 # crypto.py
 encrypted = void.encrypt('Hi World :D')
@@ -172,7 +178,7 @@ print(void.decrypt(encrypted.text, encrypted.key))
 ```javascript
 [
   ["file.read", "crypto.py"],
-  "code"
+  "python"
 ]
 ```
 
@@ -324,6 +330,9 @@ Action parameters: []
 ```
 
 ## Progress
+```
+Count of actions: 604
+```
 
 | **Name**           | **vapp** | **Python** |  **JS**    | **Swift** | **Kotlin** | **GDScript** |  **C++**  |
 | -------------- | ---- | ------ | ------ | ----- | ------ | -------- | ----- |
@@ -384,10 +393,6 @@ Action parameters: []
 | ai             |      |  <p align="center">work</p>  | <p align="center">python</p> | <p align="center">task</p>  |  <p align="center">task</p>  |  <p align="center">python</p>  | <p align="center">task</p>  |
 | social         | <p align="center">work</p> |  <p align="center">vapp</p>  | <p align="center">vapp</p>   | <p align="center">vapp</p>  |  <p align="center">vapp</p>  |  <p align="center">vapp</p>    | <p align="center">vapp</p>  |
 | tech           | wait |  <p align="center">vapp</p>  | <p align="center">vapp</p>   | <p align="center">vapp</p>  |  <p align="center">vapp</p>  |  <p align="center">vapp</p>    | <p align="center">vapp</p>  |
-
-```
-Count of actions: 604
-```
 
 ## Detail
 
