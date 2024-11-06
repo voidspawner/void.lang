@@ -397,2521 +397,3092 @@ Count of actions: 604
 
 ## Detail
 
+
 ### value
 
 #### get
+Get value
 ```javascript
 ["get"]
 ```
 #### set
+Set value
 ```javascript
 ["set"]
 ```
 #### remove
+Delete value
 ```javascript
 ["remove"]
 ```
 #### type
+Get value type
 ```javascript
 ["type"]
 ```
 #### bool
+Convert value to boolean
 ```javascript
 ["bool"]
 ```
 #### number
+Translate value to a number
 ```javascript
 ["number"]
 ```
 #### text
+Translate value to text
 ```javascript
 ["text"]
 ```
 #### list
+Translate value into a list
 ```javascript
 ["list"]
 ```
 #### alias
+Assign an alias to an action
 ```javascript
 ["alias"]
 ```
+#### compare
+Compare values
+```javascript
+["compare"]
+```
+
 ### expression
 
 #### +
+Add
 ```javascript
 ["+"]
 ```
 #### -
+Subtract
 ```javascript
 ["-"]
 ```
 #### *
+Multiply
 ```javascript
 ["*"]
 ```
 #### /
+Divide
 ```javascript
 ["/"]
 ```
-#### //
-```javascript
-["//"]
-```
 #### %
+Remainder of division
 ```javascript
 ["%"]
 ```
 #### **
+Elevate
 ```javascript
 ["**"]
 ```
 #### !
+NOT bitwise operator
 ```javascript
 ["!"]
 ```
 #### &
+AND bitwise operator
 ```javascript
 ["&"]
 ```
 #### |
+OR bitwise operator
 ```javascript
 ["|"]
 ```
 #### ^
+XOR bitwise operator
 ```javascript
 ["^"]
 ```
 #### >>
+Right shift
 ```javascript
 [">>"]
 ```
 #### <<
+Left shift
 ```javascript
 ["<<"]
 ```
 #### +=
+Add to value
 ```javascript
 ["+="]
 ```
 #### -=
+Subtract from value
 ```javascript
 ["-="]
 ```
 #### *=
+Multiply the value
 ```javascript
 ["*="]
 ```
 #### /=
+Divide the value
 ```javascript
 ["/="]
 ```
-#### //=
-```javascript
-["//="]
-```
 #### %=
+Residue from dividing the value
 ```javascript
 ["%="]
 ```
 #### **=
+Increment the value
 ```javascript
 ["**="]
 ```
 #### !=
+NOT bitwise operator of the value
 ```javascript
 ["!="]
 ```
 #### &=
+AND bitwise operator of the value
 ```javascript
 ["&="]
 ```
 #### |=
+OR bitwise operator of the value
 ```javascript
 ["|="]
 ```
 #### ^=
+XOR bitwise operator of the value
 ```javascript
 ["^="]
 ```
 #### >>=
+Shift to the right of the value
 ```javascript
 [">>="]
 ```
 #### <<=
+Shift to the left of the value
 ```javascript
 ["<<="]
 ```
+#### not
+Negation (inversion)
+```javascript
+["not"]
+```
 #### and
+Conjunction (and)
 ```javascript
 ["and"]
 ```
 #### or
+Disjunction (or)
 ```javascript
 ["or"]
 ```
 #### xor
+Exclusive disjunction (exclusive or)
 ```javascript
 ["xor"]
 ```
-#### not
-```javascript
-["not"]
-```
 #### in
+A value in an array or a name in a dictionary
 ```javascript
 ["in"]
 ```
 #### not in
+Value not in array or name not in dictionary
 ```javascript
 ["not in"]
 ```
 #### is
+Value type match
 ```javascript
 ["is"]
 ```
 #### not is
+Value type mismatch
 ```javascript
 ["not is"]
 ```
+
 ### control
 
 #### ?
+IF check
 ```javascript
 ["?"]
 ```
 #### ??
+MATCH check
 ```javascript
 ["??"]
 ```
 #### o
+FOR, WHILE loop
 ```javascript
 ["o"]
 ```
 #### x
+Exit loop BREAK
 ```javascript
 ["x"]
 ```
 #### >>>
+Continue loop CONTINUE
 ```javascript
 [">>>"]
 ```
 #### <<<
+Repeat loop iteration
 ```javascript
 ["<<<"]
 ```
 #### _
+Return action value RETURN
 ```javascript
 ["_"]
 ```
 #### .
+Print text
 ```javascript
 ["."]
 ```
 #### ..
+Print text without a new line
 ```javascript
 [".."]
 ```
+#### ...
+Enter text
+```javascript
+["..."]
+```
 #### action
+Execute action
 ```javascript
 ["action"]
 ```
 #### action.open
+Execute an action from a file
 ```javascript
 ["action.open"]
 ```
 #### X
+End vapp
 ```javascript
 ["X"]
 ```
 #### xx
+Error
 ```javascript
 ["xx"]
 ```
 #### open
+Execute system action
 ```javascript
 ["open"]
 ```
 #### shell
+Execute a command line command
 ```javascript
 ["shell"]
 ```
 #### shell.open
+Open a terminal and execute the command
 ```javascript
 ["shell.open"]
 ```
 #### code
+Execute native code
 ```javascript
 ["code"]
 ```
-#### code.python
+#### python
+Execute Python code
 ```javascript
-["code.python"]
+["python"]
+```
+#### compile
+Compile code for a specific platform
+```javascript
+["compile"]
 ```
 #### i
+Info logging
 ```javascript
 ["i"]
 ```
 #### w
+Warning logging
 ```javascript
 ["w"]
 ```
 #### e
+Error logging
 ```javascript
 ["e"]
 ```
 #### d
+Debug logging
 ```javascript
 ["d"]
 ```
 #### t
+Time logging
 ```javascript
 ["t"]
 ```
 #### export
+Export vapp for selected platforms
 ```javascript
 ["export"]
 ```
 #### update
+Update script
 ```javascript
 ["update"]
 ```
 #### test
+Test script
 ```javascript
 ["test"]
 ```
+#### help
+Display language hint
+```javascript
+["help"]
+```
+#### debug
+Display debug information
+```javascript
+["debug"]
+```
+#### debug.fps
+Display FPS
+```javascript
+["debug.fps"]
+```
+
 ### text
 
 #### lower
+Convert text to lower case
 ```javascript
 ["lower"]
 ```
 #### upper
+Convert text to uppercase
 ```javascript
 ["upper"]
 ```
 #### starts
+Starts with text
 ```javascript
 ["starts"]
 ```
 #### ends
+Ends with text
 ```javascript
 ["ends"]
 ```
 #### strip
+Trim text
 ```javascript
 ["strip"]
 ```
-#### strip.begin
+#### strip.start
+Trim the beginning of text
 ```javascript
-["strip.begin"]
+["strip.start"]
 ```
 #### strip.end
+Trim the end of text
 ```javascript
 ["strip.end"]
 ```
 #### replace
+Replace text
 ```javascript
 ["replace"]
 ```
 #### find
+Find position in text
 ```javascript
 ["find"]
 ```
 #### similar
+Compare texts
 ```javascript
 ["similar"]
 ```
 #### part
+Get a part of text
 ```javascript
 ["part"]
 ```
 #### split
+Split text
 ```javascript
 ["split"]
 ```
 #### join
+Join text
 ```javascript
 ["join"]
 ```
 #### regex
+Find in text using regular expression
 ```javascript
 ["regex"]
 ```
 #### regex.replace
+Replace text using a regular expression
 ```javascript
 ["regex.replace"]
 ```
 #### escape
+Escape text
 ```javascript
 ["escape"]
 ```
 #### escape.html
+Escape HTML text
 ```javascript
 ["escape.html"]
 ```
 #### escape.sql
+Escape SQL text
 ```javascript
 ["escape.sql"]
 ```
 #### escape.url
+Escape text URL
 ```javascript
 ["escape.url"]
 ```
 #### escape.json
+Escape text JSON
 ```javascript
 ["escape.json"]
 ```
 #### escape.void
+Escape text V O I D
 ```javascript
 ["escape.void"]
 ```
 #### unescape
+Unescape text
 ```javascript
 ["unescape"]
 ```
 #### unescape.html
+Unescape HTML text
 ```javascript
 ["unescape.html"]
 ```
 #### unescape.sql
+Unescape text SQL
 ```javascript
 ["unescape.sql"]
 ```
 #### unescape.url
+Unescape text URL
 ```javascript
 ["unescape.url"]
 ```
 #### unescape.json
+Unescape JSON text
 ```javascript
 ["unescape.json"]
 ```
 #### unescape.void
+Unescape V O I D text
 ```javascript
 ["unescape.void"]
 ```
-#### num
-```javascript
-["num"]
-```
-#### pad
-```javascript
-["pad"]
-```
 #### date
+Convert text to timestamp, or timestamp to text
 ```javascript
 ["date"]
 ```
 #### letters
+Number of letters in the text
 ```javascript
 ["letters"]
 ```
 #### words
+Number of words in the text
 ```javascript
 ["words"]
 ```
 #### sentences
+Number of sentences in the text
 ```javascript
 ["sentences"]
 ```
 #### lines
+Number of lines in the text
 ```javascript
 ["lines"]
 ```
+
 ### list
 
 #### push
+Add to list
 ```javascript
 ["push"]
 ```
 #### pop
+Extract from the list
 ```javascript
 ["pop"]
 ```
-#### insert
-```javascript
-["insert"]
-```
 #### reverse
+Invert order in the list
 ```javascript
 ["reverse"]
 ```
 #### shuffle
+Shuffle the list
 ```javascript
 ["shuffle"]
 ```
 #### sort
+Sort the list
 ```javascript
 ["sort"]
 ```
+#### fill
+Fill the list
+```javascript
+["fill"]
+```
 #### map
+Map the list
 ```javascript
 ["map"]
 ```
 #### reduce
+Reduce the list
 ```javascript
 ["reduce"]
 ```
 #### names
+Dictionary or list names
 ```javascript
 ["names"]
 ```
 #### values
+Dictionary values
 ```javascript
 ["values"]
 ```
-#### clear
-```javascript
-["clear"]
-```
+
 ### math
 
 #### sin
+Sine
 ```javascript
 ["sin"]
 ```
 #### cos
+Cosine
 ```javascript
 ["cos"]
 ```
 #### tan
+Tangent
 ```javascript
 ["tan"]
 ```
 #### sinh
+Hyperbolic sine
 ```javascript
 ["sinh"]
 ```
 #### cosh
+Hyperbolic cosine
 ```javascript
 ["cosh"]
 ```
 #### tanh
+Hyperbolic tangent
 ```javascript
 ["tanh"]
 ```
 #### asin
+Arcsine
 ```javascript
 ["asin"]
 ```
 #### acos
+Arccosine
 ```javascript
 ["acos"]
 ```
 #### atan
+Arctangent
 ```javascript
 ["atan"]
 ```
 #### asinh
+Hyperbolic arcsine
 ```javascript
 ["asinh"]
 ```
 #### acosh
+Hyperbolic arccosine
 ```javascript
 ["acosh"]
 ```
 #### atanh
+Hyperbolic arctangent
 ```javascript
 ["atanh"]
 ```
 #### round
+Round a number
 ```javascript
 ["round"]
 ```
 #### floor
+Round a number down
 ```javascript
 ["floor"]
 ```
 #### ceil
+Round a number up
 ```javascript
 ["ceil"]
 ```
 #### log
+Logarithm
 ```javascript
 ["log"]
 ```
-#### pow
+#### log.e
+Hyperbolic logarithm
 ```javascript
-["pow"]
+["log.e"]
 ```
-#### fac
+#### log.n
+Natural logarithm
 ```javascript
-["fac"]
+["log.n"]
+```
+#### fa
+Factorial
+```javascript
+["fa"]
 ```
 #### fib
+Fibonacci
 ```javascript
 ["fib"]
 ```
 #### abs
+Absolute value
 ```javascript
 ["abs"]
 ```
 #### min
+Minimum value
 ```javascript
 ["min"]
 ```
 #### max
+Maximum value
 ```javascript
 ["max"]
 ```
 #### avg
+Average value
 ```javascript
 ["avg"]
 ```
 #### sum
+Sum of values
 ```javascript
 ["sum"]
 ```
 #### hex
+Hexadecimal value to byte
 ```javascript
 ["hex"]
 ```
+#### hex.dec
+Hexadecimal value to decimal
+```javascript
+["hex.dec"]
+```
 #### bin
+Binary value to byte
 ```javascript
 ["bin"]
 ```
+#### bin.dec
+Binary value to decimal
+```javascript
+["bin.dec"]
+```
 #### dec
+Decimal value to byte
 ```javascript
 ["dec"]
 ```
+#### dec.hex
+Decimal value to hexadecimal
+```javascript
+["dec.hex"]
+```
+#### dec.bin
+Decimal value to binary
+```javascript
+["dec.bin"]
+```
 #### rad
+Degree to radian
 ```javascript
 ["rad"]
 ```
 #### deg
+Radian to degree
 ```javascript
 ["deg"]
 ```
 #### random
+Random value
 ```javascript
 ["random"]
 ```
 #### random.reseed
+Re-create random seed
 ```javascript
 ["random.reseed"]
 ```
 #### random.seed
+Get random seed
 ```javascript
 ["random.seed"]
 ```
+
 ### time
 
 #### time
+Time stamp in microseconds
 ```javascript
 ["time"]
 ```
 #### time.ms
+Time stamp in milliseconds
 ```javascript
 ["time.ms"]
 ```
 #### time.s
+Timestamp in seconds
 ```javascript
 ["time.s"]
 ```
 #### timer
+Set timer
 ```javascript
 ["timer"]
 ```
 #### timer.remove
+Remove timer
 ```javascript
 ["timer.remove"]
 ```
-#### timepast
-```javascript
-["timepast"]
-```
 #### wait
+Wait time in seconds
 ```javascript
 ["wait"]
 ```
+
 ### crypto
 
 #### encrypt
+Encode text
 ```javascript
 ["encrypt"]
 ```
 #### decrypt
+Decode text
 ```javascript
 ["decrypt"]
 ```
 #### hash
+Random hash
 ```javascript
 ["hash"]
 ```
 #### uuid
+Random UUID
 ```javascript
 ["uuid"]
 ```
 #### md5
+MD5 hash
 ```javascript
 ["md5"]
 ```
 #### sha1
+SHA1 hash
 ```javascript
 ["sha1"]
 ```
 #### sha256
+SHA256 hash
 ```javascript
 ["sha256"]
 ```
 #### sha512
+SHA512 hash
 ```javascript
 ["sha512"]
 ```
 #### crc32
+CRC32 hash
 ```javascript
 ["crc32"]
 ```
 #### base64
+Base64 hash
 ```javascript
 ["base64"]
 ```
 #### base64.decode
+Decode Base64
 ```javascript
 ["base64.decode"]
 ```
 #### gzip
+Gzip text
 ```javascript
 ["gzip"]
 ```
 #### gzip.decode
+Decode Gzip
 ```javascript
 ["gzip.decode"]
 ```
 #### rsa
+Encode text with RSA
 ```javascript
 ["rsa"]
 ```
 #### rsa.decode
+Decode RSA
 ```javascript
 ["rsa.decode"]
 ```
 #### rsa.key.public
+Get RSA public key
 ```javascript
 ["rsa.key.public"]
 ```
 #### rsa.key.private
+Get RSA private key
 ```javascript
 ["rsa.key.private"]
 ```
 #### ssl
+Encode text with SSL
 ```javascript
 ["ssl"]
 ```
 #### ssl.decode
+Decode SSL
 ```javascript
 ["ssl.decode"]
 ```
 #### ssl.check
+Verify SSL
 ```javascript
 ["ssl.check"]
 ```
 #### bcrypt
+Encode text with Bcrypt
 ```javascript
 ["bcrypt"]
 ```
 #### bcrypt.check
+Verify Bcrypt
 ```javascript
 ["bcrypt.check"]
 ```
+
 ### format
 
 #### void
+Encode to V O I D
 ```javascript
 ["void"]
 ```
 #### void.decode
+Decode V O I D
 ```javascript
 ["void.decode"]
 ```
 #### void.read
+Read V O I D file
 ```javascript
 ["void.read"]
 ```
 #### void.write
+Write V O I D file
 ```javascript
 ["void.write"]
 ```
 #### json
+Encode to JSON
 ```javascript
 ["json"]
 ```
 #### json.decode
+Decode JSON
 ```javascript
 ["json.decode"]
 ```
 #### json.read
+Read JSON file
 ```javascript
 ["json.read"]
 ```
 #### json.write
+Write JSON file
 ```javascript
 ["json.write"]
 ```
 #### yaml
+Encode YAML
 ```javascript
 ["yaml"]
 ```
 #### yaml.decode
+Decode YAML
 ```javascript
 ["yaml.decode"]
 ```
 #### csv
+Encode CSV
 ```javascript
 ["csv"]
 ```
 #### csv.decode
+Decode CSV
 ```javascript
 ["csv.decode"]
 ```
 #### ini
+Encode INI
 ```javascript
 ["ini"]
 ```
 #### ini.decode
+Decode INI
 ```javascript
 ["ini.decode"]
 ```
 #### html
+Encode HTML
 ```javascript
 ["html"]
 ```
 #### html.decode
+Decode HTML
 ```javascript
 ["html.decode"]
 ```
 #### xml
+Encode XML
 ```javascript
 ["xml"]
 ```
 #### xml.decode
+Decode XML
 ```javascript
 ["xml.decode"]
 ```
 #### css
+Encode CSS
 ```javascript
 ["css"]
 ```
 #### css.decode
+Decode CSS
 ```javascript
 ["css.decode"]
 ```
-#### robots
-```javascript
-["robots"]
-```
-#### sitemap
-```javascript
-["sitemap"]
-```
+
 ### file
 
 #### file.exists
+File exists
 ```javascript
 ["file.exists"]
 ```
 #### file.write
+Write to file
 ```javascript
 ["file.write"]
 ```
 #### file.read
+Read file
 ```javascript
 ["file.read"]
 ```
+#### file.read.list
+Read lines from file
+```javascript
+["file.read.list"]
+```
 #### file.remove
+Remove file
 ```javascript
 ["file.remove"]
 ```
 #### file.move
+Move file
 ```javascript
 ["file.move"]
 ```
 #### file.copy
+Copy file
 ```javascript
 ["file.copy"]
 ```
 #### file.rename
+Rename file
 ```javascript
 ["file.rename"]
 ```
 #### file.info
+File information
 ```javascript
 ["file.info"]
 ```
 #### file.size
+File size
 ```javascript
 ["file.size"]
 ```
 #### file.permissions
+File permissions
 ```javascript
 ["file.permissions"]
 ```
 #### file.readonly
+Read-only file
 ```javascript
 ["file.readonly"]
 ```
 #### file.hidden
+Hidden file
 ```javascript
 ["file.hidden"]
 ```
 #### file.modified
+File modification time
 ```javascript
 ["file.modified"]
 ```
 #### file.sha256
+SHA256 file hash
 ```javascript
 ["file.sha256"]
 ```
 #### file.crc32
+CRC32 file hash
 ```javascript
 ["file.crc32"]
 ```
 #### file.base64
+Base64 file hash
 ```javascript
 ["file.base64"]
 ```
 #### file.zip
+Compress a file into a Zip archive
 ```javascript
 ["file.zip"]
 ```
 #### file.zip.list
+List of files in Zip archive
 ```javascript
 ["file.zip.list"]
 ```
 #### file.zip.exists
+File exists in Zip archive
 ```javascript
 ["file.zip.exists"]
 ```
 #### file.zip.read
+Read file from Zip archive
 ```javascript
 ["file.zip.read"]
 ```
 #### file.zip.remove
+Remove file from Zip archive
 ```javascript
 ["file.zip.remove"]
 ```
 #### file.unzip
+Extract Zip archive
 ```javascript
 ["file.unzip"]
 ```
 #### file.gzip
+Compress file with Gzip
 ```javascript
 ["file.gzip"]
 ```
 #### file.ungzip
+Extract Gzip file
 ```javascript
 ["file.ungzip"]
 ```
 #### file.link
+Create a symbolic link
 ```javascript
 ["file.link"]
 ```
 #### file.link.exists
+Symbolic link exists
 ```javascript
 ["file.link.exists"]
 ```
 #### file.backup
+Backup files
 ```javascript
 ["file.backup"]
 ```
 #### dir.exists
+Directory exists
 ```javascript
 ["dir.exists"]
 ```
 #### dir.create
+Create directory
 ```javascript
 ["dir.create"]
 ```
 #### dir.copy
+Copy directory
 ```javascript
 ["dir.copy"]
 ```
 #### dir.move
+Move directory
 ```javascript
 ["dir.move"]
 ```
 #### dir.rename
+Rename directory
 ```javascript
 ["dir.rename"]
 ```
 #### dir.remove
+Remove directory
 ```javascript
 ["dir.remove"]
 ```
 #### dir.list
+List of files in a directory
 ```javascript
 ["dir.list"]
 ```
 #### dir.clear
+Clear directory
 ```javascript
 ["dir.clear"]
 ```
 #### dir.info
+Directory information
 ```javascript
 ["dir.info"]
 ```
 #### dir.size
+Directory size
 ```javascript
 ["dir.size"]
 ```
 #### dir.permissions
+Directory permissions
 ```javascript
 ["dir.permissions"]
 ```
 #### dir.readonly
+Read-only directory
 ```javascript
 ["dir.readonly"]
 ```
 #### dir.hidden
+Hidden directory
 ```javascript
 ["dir.hidden"]
 ```
 #### dir.modified
+Directory modification time
 ```javascript
 ["dir.modified"]
 ```
 #### dir.zip
+Compress directory
 ```javascript
 ["dir.zip"]
 ```
 #### drive.list
+List of volumes
 ```javascript
 ["drive.list"]
 ```
 #### drive.name
+Volume name
 ```javascript
 ["drive.name"]
 ```
 #### drive.size
+Volume size
 ```javascript
 ["drive.size"]
 ```
 #### drive.used
+Volume space used
 ```javascript
 ["drive.used"]
 ```
 #### drive.free
+Volume free space
 ```javascript
 ["drive.free"]
 ```
 #### drive.mount
+Mount volume
 ```javascript
 ["drive.mount"]
 ```
 #### drive.unmount
+Unmount volume
 ```javascript
 ["drive.unmount"]
 ```
+#### drive.format
+Format volume
+```javascript
+["drive.format"]
+```
 #### path.drive
+Get volume from path
 ```javascript
 ["path.drive"]
 ```
 #### path.dir
+Get directory from path
 ```javascript
 ["path.dir"]
 ```
 #### path.file
+Get file from path
 ```javascript
 ["path.file"]
 ```
 #### path.name
+Get filename from path
 ```javascript
 ["path.name"]
 ```
 #### path.extension
+Get extension from path
 ```javascript
 ["path.extension"]
 ```
 #### path.extension.strip
+Trim extension from path
 ```javascript
 ["path.extension.strip"]
 ```
+
 ### cloud
 
 #### cloud.file
+File server
 ```javascript
 ["cloud.file"]
 ```
 #### cloud.web
+Web server
 ```javascript
 ["cloud.web"]
 ```
 #### cloud.api
+API server
 ```javascript
 ["cloud.api"]
 ```
 #### cloud.socket
+Socket server
 ```javascript
 ["cloud.socket"]
 ```
 #### cloud.websocket
+Websocket server
 ```javascript
 ["cloud.websocket"]
 ```
 #### cloud.mail
+Mail server
 ```javascript
 ["cloud.mail"]
 ```
 #### cloud.game
+Game server
 ```javascript
 ["cloud.game"]
 ```
 #### cloud.social
+Social server
 ```javascript
 ["cloud.social"]
 ```
-#### cloud.coin
+#### cloud.live
+Streaming server
 ```javascript
-["cloud.coin"]
+["cloud.live"]
 ```
+
 ### bot
 
 #### bot.telegram
+Telegram bot
 ```javascript
 ["bot.telegram"]
 ```
 #### bot.wechat
+Wechat bot
 ```javascript
 ["bot.wechat"]
 ```
 #### bot.x
+X bot
 ```javascript
 ["bot.x"]
 ```
 #### bot.youtube
+YouTube bot
 ```javascript
 ["bot.youtube"]
 ```
 #### bot.tiktok
+TikTok bot
 ```javascript
 ["bot.tiktok"]
 ```
 #### bot.steam
+Steam bot
 ```javascript
 ["bot.steam"]
 ```
+#### bot.binance
+Binance bot
+```javascript
+["bot.binance"]
+```
+#### bot.ib
+Interactive Brokers bot
+```javascript
+["bot.ib"]
+```
+
 ### request
 
 #### request
+Web request
 ```javascript
 ["request"]
 ```
 #### request.post
+Post Web request
 ```javascript
 ["request.post"]
 ```
 #### request.put
+Put Web request
 ```javascript
 ["request.put"]
 ```
 #### request.delete
+Delete Web request
 ```javascript
 ["request.delete"]
 ```
 #### request.head
+Head Web request
 ```javascript
 ["request.head"]
 ```
+
 ### cookie
 
 #### cookie
+Get Web cookies
 ```javascript
 ["cookie"]
 ```
 #### cookie.remove
+Delete Web cookies
 ```javascript
 ["cookie.remove"]
 ```
+
 ### sql
 
 #### sql
+SQL query
 ```javascript
 ["sql"]
 ```
 #### sql.connect
+Connect to SQL server
 ```javascript
 ["sql.connect"]
 ```
 #### sql.disconnet
+Disconnect from SQL server
 ```javascript
 ["sql.disconnet"]
 ```
 #### sql.user
+SQL user
 ```javascript
 ["sql.user"]
 ```
 #### sql.user.list
+SQL user list
 ```javascript
 ["sql.user.list"]
 ```
 #### sql.user.remove
+SQL remove user
 ```javascript
 ["sql.user.remove"]
 ```
 #### sql.db
+SQL database
 ```javascript
 ["sql.db"]
 ```
 #### sql.db.list
+SQL database list
 ```javascript
 ["sql.db.list"]
 ```
 #### sql.db.remove
+SQL remove database
 ```javascript
 ["sql.db.remove"]
 ```
 #### sql.db.size
+SQL database size
 ```javascript
 ["sql.db.size"]
 ```
 #### sql.table
+SQL table
 ```javascript
 ["sql.table"]
 ```
 #### sql.table.list
+SQL table list
 ```javascript
 ["sql.table.list"]
 ```
 #### sql.table.remove
+SQL remove table
 ```javascript
 ["sql.table.remove"]
 ```
 #### sql.field
+SQL field
 ```javascript
 ["sql.field"]
 ```
 #### sql.field.list
+SQL field list
 ```javascript
 ["sql.field.list"]
 ```
 #### sql.field.remove
+SQL remove field
 ```javascript
 ["sql.field.remove"]
 ```
 #### sql.index
+SQL index
 ```javascript
 ["sql.index"]
 ```
 #### sql.index.list
+SQL index list
 ```javascript
 ["sql.index.list"]
 ```
 #### sql.index.remove
+SQL remove index
 ```javascript
 ["sql.index.remove"]
 ```
 #### sql.function
+SQL function
 ```javascript
 ["sql.function"]
 ```
 #### sql.function.list
+SQL function list
 ```javascript
 ["sql.function.list"]
 ```
 #### sql.function.remove
+SQL remove function
 ```javascript
 ["sql.function.remove"]
 ```
 #### sql.view
+SQL view
 ```javascript
 ["sql.view"]
 ```
 #### sql.view.list
+SQL view list
 ```javascript
 ["sql.view.list"]
 ```
 #### sql.view.remove
+SQL remove a view
 ```javascript
 ["sql.view.remove"]
 ```
 #### sql.get
+SQL get one result
 ```javascript
 ["sql.get"]
 ```
 #### sql.all
+SQL get all results
 ```javascript
 ["sql.all"]
 ```
 #### sql.cursor
+SQL cursor
 ```javascript
 ["sql.cursor"]
 ```
 #### sql.transaction
+SQL start transaction
 ```javascript
 ["sql.transaction"]
 ```
 #### sql.commit
+SQL send transaction
 ```javascript
 ["sql.commit"]
 ```
 #### sql.rollback
+SQL cancel transaction
 ```javascript
 ["sql.rollback"]
 ```
+
 ### os
 
-#### os
-```javascript
-["os"]
-```
 #### os.name
+Operating system name
 ```javascript
 ["os.name"]
 ```
 #### os.version
+Operating system version
 ```javascript
 ["os.version"]
 ```
 #### os.username
+User name
 ```javascript
 ["os.username"]
 ```
 #### os.desktop
+Check that it’s desktop
 ```javascript
 ["os.desktop"]
 ```
 #### os.mobile
+Check that it’s mobile device
 ```javascript
 ["os.mobile"]
 ```
 #### os.web
+Check that it’s Web
 ```javascript
 ["os.web"]
 ```
 #### os.windows
+Check that it’s Windows
 ```javascript
 ["os.windows"]
 ```
 #### os.macos
+Check that it's macOS
 ```javascript
 ["os.macos"]
 ```
 #### os.ios
+Check that it's iOS
 ```javascript
 ["os.ios"]
 ```
 #### os.ipados
+Check that it's iPadOS
 ```javascript
 ["os.ipados"]
 ```
 #### os.watchos
+Check that it's watchOS
 ```javascript
 ["os.watchos"]
 ```
 #### os.tvos
+Check that it's tvOS
 ```javascript
 ["os.tvos"]
 ```
 #### os.android
+Check that it's Android
 ```javascript
 ["os.android"]
 ```
-#### os.linux
+#### os.nix
+Check that it’s Unix-like
 ```javascript
-["os.linux"]
+["os.nix"]
 ```
+
 ### device
 
 #### cpu.name
+Processor name
 ```javascript
 ["cpu.name"]
 ```
 #### cpu.cores
+Number of processor cores
 ```javascript
 ["cpu.cores"]
 ```
 #### memory.size
+Memory size
 ```javascript
 ["memory.size"]
 ```
 #### memory.free
+Memory Free
 ```javascript
 ["memory.free"]
 ```
 #### memory.used
+Memory used
 ```javascript
 ["memory.used"]
 ```
 #### memory.available
+Memory available
 ```javascript
 ["memory.available"]
 ```
+
 ### gps
 
 #### gps
+Get GPS coordinates
 ```javascript
 ["gps"]
 ```
+
 ### sensor
 
 #### speed
+Get speed
 ```javascript
 ["speed"]
 ```
 #### tilt
+Get tilt
 ```javascript
 ["tilt"]
 ```
 #### compass
+Get compass direction
 ```javascript
 ["compass"]
 ```
 #### motion
+Get motion type
 ```javascript
 ["motion"]
 ```
-### photo
+
+### camera
 
 #### camera
+Get camera image
 ```javascript
 ["camera"]
 ```
 #### gallery
+Get gallery image
 ```javascript
 ["gallery"]
 ```
+
 ### contacts
 
 #### contacts
+Get contacts
 ```javascript
 ["contacts"]
 ```
+
 ### calendar
 
 #### calendar
+Get calendar
 ```javascript
 ["calendar"]
 ```
-### flashlight
 
-#### flashlight
-```javascript
-["flashlight"]
-```
 ### health
 
 #### health
+Get health data
 ```javascript
 ["health"]
 ```
-### microphone
+
+### flashlight
+
+#### flashlight
+Flashlight
+```javascript
+["flashlight"]
+```
+
+### mic
 
 #### mic
+Microphone
 ```javascript
 ["mic"]
 ```
+
 ### notification
 
 #### notification
+Receive notifications
 ```javascript
 ["notification"]
 ```
 #### notification.token
+Notification token
 ```javascript
 ["notification.token"]
 ```
 #### notification.send
+Send notification
 ```javascript
 ["notification.send"]
 ```
+
 ### key
 
 #### key
+Assign key action
 ```javascript
 ["key"]
 ```
 #### key.remove
+Delete a key action
 ```javascript
 ["key.remove"]
 ```
 #### key.press
+Start a key action
 ```javascript
 ["key.press"]
 ```
 #### key.enable
+Enable key action
 ```javascript
 ["key.enable"]
 ```
 #### key.disable
+Disable key action
 ```javascript
 ["key.disable"]
 ```
+
 ### keyboard
 
 #### keyboard
+On-screen keyboard
 ```javascript
 ["keyboard"]
 ```
 #### keyboard.height
+Screen keyboard height
 ```javascript
 ["keyboard.height"]
 ```
+
 ### mouse
 
 #### mouse
+Show mouse
 ```javascript
 ["mouse"]
 ```
+#### mouse.hide
+Hide mouse
+```javascript
+["mouse.hide"]
+```
 #### mouse.lock
+Lock mouse
 ```javascript
 ["mouse.lock"]
 ```
-#### mouse.position
-```javascript
-["mouse.position"]
-```
 #### mouse.capture
+Capture mouse
 ```javascript
 ["mouse.capture"]
 ```
 #### mouse.confine
+Limit mouse movement
 ```javascript
 ["mouse.confine"]
 ```
+#### mouse.position
+Get mouse coordinates
+```javascript
+["mouse.position"]
+```
 #### mouse.shape
+Mouse pointer shape
 ```javascript
 ["mouse.shape"]
 ```
+
 ### gamepad
 
 #### gamepad.axis
+Gamepad stick deflection
 ```javascript
 ["gamepad.axis"]
 ```
 #### gamepad.vibrate
+Gamepad vibration
 ```javascript
 ["gamepad.vibrate"]
 ```
+
 ### clipboard
 
 #### clipboard
+Clipboard
 ```javascript
 ["clipboard"]
 ```
 #### clipboard.clear
+Clear clipboard
 ```javascript
 ["clipboard.clear"]
 ```
-### say
 
-#### say
+### voice
+
+#### voice
+Read text with voice
 ```javascript
-["say"]
+["voice"]
 ```
-#### say.list
+#### voice.list
+Voice list
 ```javascript
-["say.list"]
+["voice.list"]
 ```
-#### say.stop
+#### voice.stop
+Stop text reading
 ```javascript
-["say.stop"]
+["voice.stop"]
 ```
-#### say.pause
+#### voice.pause
+Pause / continue text reading
 ```javascript
-["say.pause"]
+["voice.pause"]
 ```
+
 ### convert
 
 #### convert
+Convert from one format to another
 ```javascript
 ["convert"]
 ```
+
 ### image
 
 #### image
+Create image
 ```javascript
 ["image"]
 ```
 #### image.read
+Read image from file
 ```javascript
 ["image.read"]
 ```
 #### image.write
+Write image to file
 ```javascript
 ["image.write"]
 ```
 #### image.size
+Resize image
 ```javascript
 ["image.size"]
 ```
 #### image.crop
+Crop image
 ```javascript
 ["image.crop"]
 ```
 #### image.square
+Crop image to square
 ```javascript
 ["image.square"]
 ```
 #### image.rotate
+Rotate image
 ```javascript
 ["image.rotate"]
 ```
 #### image.flip.h
+Reflect image horizontally
 ```javascript
 ["image.flip.h"]
 ```
 #### image.flip.v
+Reflect image vertically
 ```javascript
 ["image.flip.v"]
 ```
 #### image.tint
+Tint the image
 ```javascript
 ["image.tint"]
 ```
 #### image.gray
+Convert image to grayscale
 ```javascript
 ["image.gray"]
 ```
 #### image.text
+Add text to image
 ```javascript
 ["image.text"]
 ```
 #### image.image
+Add image to image
 ```javascript
 ["image.image"]
 ```
 #### image.draw
+Add drawing to image
 ```javascript
 ["image.draw"]
 ```
+
 ### video
 
 #### video
+Create video
 ```javascript
 ["video"]
 ```
 #### video.read
+Read video from file
 ```javascript
 ["video.read"]
 ```
 #### video.write
+Write video to file
 ```javascript
 ["video.write"]
 ```
 #### video.size
+Video size
 ```javascript
 ["video.size"]
 ```
+#### video.rate
+Video frame rate
+```javascript
+["video.rate"]
+```
 #### video.rotate
+Rotate video
 ```javascript
 ["video.rotate"]
 ```
 #### video.flip.h
+Reflect video horizontally
 ```javascript
 ["video.flip.h"]
 ```
 #### video.flip.v
+Reflect video vertically
 ```javascript
 ["video.flip.v"]
 ```
 #### video.clip
+Video clip
 ```javascript
 ["video.clip"]
 ```
 #### video.speed
+Video speed
 ```javascript
 ["video.speed"]
 ```
 #### video.reverse
+Change video direction
 ```javascript
 ["video.reverse"]
 ```
 #### video.text
+Add text to video
 ```javascript
 ["video.text"]
 ```
 #### video.image
+Add image to video
 ```javascript
 ["video.image"]
 ```
 #### video.sound
+Add sound to video
 ```javascript
 ["video.sound"]
 ```
 #### video.video
+Add video to video
 ```javascript
 ["video.video"]
 ```
+
 ### model
 
 #### model
+Create 3D model
 ```javascript
 ["model"]
 ```
 #### model.read
+Read 3D model from file
 ```javascript
 ["model.read"]
 ```
 #### model.write
+Write 3D model to file
 ```javascript
 ["model.write"]
 ```
 #### model.animate
+Animate 3D model
 ```javascript
 ["model.animate"]
 ```
 #### model.texture
+Apply texture to 3D model
 ```javascript
 ["model.texture"]
 ```
+
 ### sound
 
 #### sound
+Create sound
 ```javascript
 ["sound"]
 ```
 #### sound.read
+Read sound from file
 ```javascript
 ["sound.read"]
 ```
 #### sound.write
+Write sound to file
 ```javascript
 ["sound.write"]
 ```
 #### sound.list
+Current played sounds
 ```javascript
 ["sound.list"]
 ```
 #### sound.remove
+Remove sound
 ```javascript
 ["sound.remove"]
 ```
 #### sound.volume
+Sound volume
 ```javascript
 ["sound.volume"]
 ```
 #### sound.speed
+Sound playback speed
 ```javascript
 ["sound.speed"]
 ```
 #### sound.clip
+Sound clip
 ```javascript
 ["sound.clip"]
 ```
 #### sound.sound
+Add sound to sound
 ```javascript
 ["sound.sound"]
 ```
+
 ### music
 
 #### music
+Add music
 ```javascript
 ["music"]
 ```
 #### music.stop
+Stop music
 ```javascript
 ["music.stop"]
 ```
 #### music.pause
+Pause / continue music
 ```javascript
 ["music.pause"]
 ```
 #### music.volume
+Music sound volume
 ```javascript
 ["music.volume"]
 ```
+
 ### volume
 
 #### volume
+Master volume
 ```javascript
 ["volume"]
 ```
+
 ### screen
 
 #### screen.count
+Number of screens
 ```javascript
 ["screen.count"]
 ```
 #### screen.list
+List of screens
 ```javascript
 ["screen.list"]
 ```
 #### screen.info
+Screen information
 ```javascript
 ["screen.info"]
 ```
 #### size
+Screen size
 ```javascript
 ["size"]
 ```
 #### orientation
+Screen orientation
 ```javascript
 ["orientation"]
 ```
 #### landscape
+Landscape orientation
 ```javascript
 ["landscape"]
 ```
 #### portrait
+Portrait orientation
 ```javascript
 ["portrait"]
 ```
 #### rate
+Screen frame rate
 ```javascript
 ["rate"]
 ```
 #### pixel
+Get screen pixel color
 ```javascript
 ["pixel"]
 ```
 #### symbol
+Get screen symbol
 ```javascript
 ["symbol"]
 ```
 #### dpi
+Dots per inch
 ```javascript
 ["dpi"]
 ```
 #### dark
+Dark mode
 ```javascript
 ["dark"]
 ```
-#### touchscreen
+#### touch
+Touchscreen
 ```javascript
-["touchscreen"]
+["touch"]
 ```
+#### screenshot
+Screenshot
+```javascript
+["screenshot"]
+```
+#### screen.record
+Record screen
+```javascript
+["screen.record"]
+```
+#### screen.stop
+Stop screen recording
+```javascript
+["screen.stop"]
+```
+
 ### ui
 
 #### ui
+UI element
 ```javascript
 ["ui"]
 ```
 #### bg
+Background
 ```javascript
 ["bg"]
 ```
 #### show
+Show UI
 ```javascript
 ["show"]
 ```
 #### hide
+Hide UI
 ```javascript
 ["hide"]
 ```
 #### visible
+UI visibility
 ```javascript
 ["visible"]
 ```
 #### enable
+Enable UI
 ```javascript
 ["enable"]
 ```
 #### disable
+Disable UI
 ```javascript
 ["disable"]
 ```
 #### enabled
+Check if UI is enabled
 ```javascript
 ["enabled"]
 ```
 #### focus
+Move focus to UI
 ```javascript
 ["focus"]
 ```
 #### scale
+Scale UI
 ```javascript
 ["scale"]
 ```
 #### ui.text
+UI text
 ```javascript
 ["ui.text"]
 ```
 #### ui.image
+UI image
 ```javascript
 ["ui.image"]
 ```
 #### ui.button
+UI button
 ```javascript
 ["ui.button"]
 ```
 #### ui.divider
+UI separator
 ```javascript
 ["ui.divider"]
 ```
 #### ui.video
+UI video
 ```javascript
 ["ui.video"]
 ```
 #### ui.select
+UI selection
 ```javascript
 ["ui.select"]
 ```
 #### ui.switch
+UI switch
 ```javascript
 ["ui.switch"]
 ```
 #### ui.progress
+UI progress bar
 ```javascript
 ["ui.progress"]
 ```
 #### ui.slider
+UI slider
 ```javascript
 ["ui.slider"]
 ```
 #### ui.edit
+UI text editor
 ```javascript
 ["ui.edit"]
 ```
+#### ui.chart
+UI chart
+```javascript
+["ui.chart"]
+```
 #### ui.split.h
+UI horizontal separator
 ```javascript
 ["ui.split.h"]
 ```
 #### ui.split.v
+UI vertical separator
 ```javascript
 ["ui.split.v"]
 ```
 #### ui.list
+UI list
 ```javascript
 ["ui.list"]
 ```
 #### ui.tile
+UI tile
 ```javascript
 ["ui.tile"]
 ```
 #### ui.color
+UI color
 ```javascript
 ["ui.color"]
 ```
 #### ui.date
+UI date
 ```javascript
 ["ui.date"]
 ```
 #### ui.drop
+UI drop down content
 ```javascript
 ["ui.drop"]
 ```
 #### ui.menu
+UI menu
 ```javascript
 ["ui.menu"]
 ```
 #### ui.menu.context
+UI context menu
 ```javascript
 ["ui.menu.context"]
 ```
-#### ui.window
-```javascript
-["ui.window"]
-```
-#### ui.debug
-```javascript
-["ui.debug"]
-```
-#### ui.fps
-```javascript
-["ui.fps"]
-```
+
 ### window
 
+#### window
+Create window
+```javascript
+["window"]
+```
 #### window.list
+Window list
 ```javascript
 ["window.list"]
 ```
 #### window.info
+Window information
 ```javascript
 ["window.info"]
 ```
 #### title
+Window title
 ```javascript
 ["title"]
 ```
 #### icon
+Window icon
 ```javascript
 ["icon"]
 ```
 #### size
+Window size
 ```javascript
 ["size"]
 ```
 #### size.max
+Maximum window size
 ```javascript
 ["size.max"]
 ```
 #### size.min
+Minimum window size
 ```javascript
 ["size.min"]
 ```
 #### position
+Window position
 ```javascript
 ["position"]
 ```
 #### direction
+Window text direction
 ```javascript
 ["direction"]
 ```
 #### attention
+Window attention
 ```javascript
 ["attention"]
 ```
 #### top
+Top of all windows
 ```javascript
 ["top"]
 ```
 #### foreground
+Foreground window
 ```javascript
 ["foreground"]
 ```
 #### unfocusable
+Do not take the focus of the window
 ```javascript
 ["unfocusable"]
 ```
 #### unresizable
+Do not resize window
 ```javascript
 ["unresizable"]
 ```
 #### center
+Center the window on the screen
 ```javascript
 ["center"]
 ```
 #### fullscreen
+Full screen window
 ```javascript
 ["fullscreen"]
 ```
 #### drop
+Drop content to window
 ```javascript
 ["drop"]
 ```
 #### border
+Window border
 ```javascript
 ["border"]
 ```
 #### maximized
+Maximize window
 ```javascript
 ["maximized"]
 ```
 #### minimized
+Minimize window
 ```javascript
 ["minimized"]
 ```
 #### exclusive
+Make window exclusive
 ```javascript
 ["exclusive"]
 ```
 #### vsync
+Vertical window synchronization
 ```javascript
 ["vsync"]
 ```
 #### fps
+Window FPS
 ```javascript
 ["fps"]
 ```
+
 ### dialog
 
 #### dialog.file
+File selection
 ```javascript
 ["dialog.file"]
 ```
 #### dialog.color
+Color selection
 ```javascript
 ["dialog.color"]
 ```
 #### dialog.date
+Date selection
 ```javascript
 ["dialog.date"]
 ```
-#### dialog.select
+#### dialog.list
+Select from list
 ```javascript
-["dialog.select"]
+["dialog.list"]
 ```
+
 ### effect
 
 #### effect
+Add effect
 ```javascript
 ["effect"]
 ```
 #### effect.list
+List of effects
 ```javascript
 ["effect.list"]
 ```
-#### effect.clear
-```javascript
-["effect.clear"]
-```
 #### effect.remove
+Remove effect
 ```javascript
 ["effect.remove"]
 ```
+
 ### game
 
-#### game
-```javascript
-["game"]
-```
-#### menu
-```javascript
-["menu"]
-```
-### vn
-
 #### vn
+Create visual novel
 ```javascript
 ["vn"]
 ```
-#### vn.clear
-```javascript
-["vn.clear"]
-```
-#### vn.say
-```javascript
-["vn.say"]
-```
-#### vn.skip
-```javascript
-["vn.skip"]
-```
-#### vn.route
-```javascript
-["vn.route"]
-```
-#### vn.route.remove
-```javascript
-["vn.route.remove"]
-```
-#### vn.route.check
-```javascript
-["vn.route.check"]
-```
-#### vn.route.select
-```javascript
-["vn.route.select"]
-```
-#### vn.route.repeat
-```javascript
-["vn.route.repeat"]
-```
-#### vn.route.skip
-```javascript
-["vn.route.skip"]
-```
-#### vn.character
-```javascript
-["vn.character"]
-```
-#### vn.come
-```javascript
-["vn.come"]
-```
-#### vn.leave
-```javascript
-["vn.leave"]
-```
-#### vn.change
-```javascript
-["vn.change"]
-```
-#### vn.env
-```javascript
-["vn.env"]
-```
-#### vn.env.change
-```javascript
-["vn.env.change"]
-```
-### 2d
-
 #### 2d
+Create 2D game
 ```javascript
 ["2d"]
 ```
-#### 2d.bg
-```javascript
-["2d.bg"]
-```
-#### 2d.map
-```javascript
-["2d.map"]
-```
-#### 2d.character
-```javascript
-["2d.character"]
-```
-#### 2d.object
-```javascript
-["2d.object"]
-```
-#### 2d.npc
-```javascript
-["2d.npc"]
-```
-#### 2d.enemy
-```javascript
-["2d.enemy"]
-```
-#### 2d.shoot
-```javascript
-["2d.shoot"]
-```
-#### 2d.jump
-```javascript
-["2d.jump"]
-```
-#### 2d.drop
-```javascript
-["2d.drop"]
-```
-#### 2d.look
-```javascript
-["2d.look"]
-```
-#### 2d.inventory
-```javascript
-["2d.inventory"]
-```
-#### 2d.hud
-```javascript
-["2d.hud"]
-```
-#### 2d.sound
-```javascript
-["2d.sound"]
-```
-#### 2d.light
-```javascript
-["2d.light"]
-```
-#### 2d.camera
-```javascript
-["2d.camera"]
-```
-### 3d
-
 #### 3d
+Create 3D game
 ```javascript
 ["3d"]
 ```
-#### 3d.bg
+#### menu
+Create game menu
 ```javascript
-["3d.bg"]
+["menu"]
 ```
-#### 3d.map
+#### say
+Say text
 ```javascript
-["3d.map"]
+["say"]
 ```
-#### 3d.character
+#### say.skip
+Skip text
 ```javascript
-["3d.character"]
+["say.skip"]
 ```
-#### 3d.object
+#### route
+Offer to select a root
 ```javascript
-["3d.object"]
+["route"]
 ```
-#### 3d.npc
+#### route.remove
+Remove root selection
 ```javascript
-["3d.npc"]
+["route.remove"]
 ```
-#### 3d.enemy
+#### route.check
+Check root
 ```javascript
-["3d.enemy"]
+["route.check"]
 ```
-#### 3d.shoot
+#### route.select
+Select root
 ```javascript
-["3d.shoot"]
+["route.select"]
 ```
-#### 3d.jump
+#### route.repeat
+Repeat root selection
 ```javascript
-["3d.jump"]
+["route.repeat"]
 ```
-#### 3d.drop
+#### route.skip
+Skip root selection
 ```javascript
-["3d.drop"]
+["route.skip"]
 ```
-#### 3d.look
+#### character
+Create a character
 ```javascript
-["3d.look"]
+["character"]
 ```
-#### 3d.hud
+#### come
+Character arrived
 ```javascript
-["3d.hud"]
+["come"]
 ```
-#### 3d.inventory
+#### leave
+Character left
 ```javascript
-["3d.inventory"]
+["leave"]
 ```
-#### 3d.sound
+#### change
+Character changed
 ```javascript
-["3d.sound"]
+["change"]
 ```
-#### 3d.light
+#### object
+Add an object to the map
 ```javascript
-["3d.light"]
+["object"]
 ```
-#### 3d.camera
+#### shoot
+Character shot
 ```javascript
-["3d.camera"]
+["shoot"]
 ```
+#### move
+Character movement
+```javascript
+["move"]
+```
+#### jump
+Jump
+```javascript
+["jump"]
+```
+#### crouch
+Crouch
+```javascript
+["crouch"]
+```
+#### drop
+Drop
+```javascript
+["drop"]
+```
+#### look
+Look around
+```javascript
+["look"]
+```
+#### hud
+Interface
+```javascript
+["hud"]
+```
+#### hud.map
+Map
+```javascript
+["hud.map"]
+```
+#### hud.inventory
+Inventory
+```javascript
+["hud.inventory"]
+```
+#### snd
+Spatial sound
+```javascript
+["snd"]
+```
+#### light
+Spatial light
+```javascript
+["light"]
+```
+#### cam
+Spatial camera
+```javascript
+["cam"]
+```
+
 ### ai
 
-#### ai.text
+#### ai.chat
+Communicate with AI
 ```javascript
-["ai.text"]
+["ai.chat"]
 ```
 #### ai.image
+Create AI image
 ```javascript
 ["ai.image"]
 ```
 #### ai.video
+Create AI video
 ```javascript
 ["ai.video"]
 ```
 #### ai.music
+Create AI music
 ```javascript
 ["ai.music"]
 ```
 #### ai.sound
+Create AI sound
 ```javascript
 ["ai.sound"]
 ```
 #### ai.say
+Create AI speech
 ```javascript
 ["ai.say"]
 ```
 #### ai.2d
+Create AI 2D asset
 ```javascript
 ["ai.2d"]
 ```
 #### ai.3d
+Create AI 3D asset
 ```javascript
 ["ai.3d"]
 ```
 #### ai.character
+Create AI character
 ```javascript
 ["ai.character"]
 ```
 #### ai.clean
+Clean up image with AI
 ```javascript
 ["ai.clean"]
 ```
 #### ai.resize
+Resize image with AI
 ```javascript
 ["ai.resize"]
 ```
 #### ai.color
+Colorize image with AI
 ```javascript
 ["ai.color"]
 ```
 #### ai.style
+Change image style with AI
 ```javascript
 ["ai.style"]
 ```
 #### ai.translate
+Translate text with AI
 ```javascript
 ["ai.translate"]
 ```
 #### ai.recognize.text
+Recognize text with AI
 ```javascript
 ["ai.recognize.text"]
 ```
 #### ai.recognize.image
+Recognize image with AI
 ```javascript
 ["ai.recognize.image"]
 ```
 #### ai.recognize.video
+Recognize video with AI
 ```javascript
 ["ai.recognize.video"]
 ```
 #### ai.recognize.motion
+Recognize motion with AI
 ```javascript
 ["ai.recognize.motion"]
 ```
 #### ai.capture.voice
+Capture voice with AI
 ```javascript
 ["ai.capture.voice"]
 ```
 #### ai.capture.face
+Capture facial expressions with AI
 ```javascript
 ["ai.capture.face"]
 ```
 #### ai.capture.motion
+Capture motion with AI
 ```javascript
 ["ai.capture.motion"]
 ```
+
 ### social
 
-#### social.auth
+#### social.signin
+Authorization
 ```javascript
-["social.auth"]
+["social.signin"]
 ```
-#### social.auth.signin
+#### social.signup
+Registration
 ```javascript
-["social.auth.signin"]
+["social.signup"]
 ```
-#### social.auth.signup
+#### social.signout
+Logout
 ```javascript
-["social.auth.signup"]
+["social.signout"]
 ```
-#### social.auth.signout
+#### social.restore
+Restore login
 ```javascript
-["social.auth.signout"]
-```
-#### social.auth.restore
-```javascript
-["social.auth.restore"]
-```
-#### social.auth.restore.code
-```javascript
-["social.auth.restore.code"]
+["social.restore"]
 ```
 #### social
+Social content
 ```javascript
 ["social"]
 ```
 #### social.send
+Send content
 ```javascript
 ["social.send"]
 ```
-#### social.profile
-```javascript
-["social.profile"]
-```
 #### social.buy
+Purchase
 ```javascript
 ["social.buy"]
 ```
+
 ### tech
 
 #### light.on
+Turn lamp on
 ```javascript
 ["light.on"]
 ```
 #### light.off
+Turn lamp off
 ```javascript
 ["light.off"]
 ```
 #### power.on
+Power on
 ```javascript
 ["power.on"]
 ```
 #### power.off
+Turn power off
 ```javascript
 ["power.off"]
 ```
 #### power.timer
+Set timer for power
 ```javascript
 ["power.timer"]
 ```
-#### door.open
+#### lock.open
+Open the lock
 ```javascript
-["door.open"]
+["lock.open"]
 ```
-#### door.close
+#### lock.close
+Close the lock
 ```javascript
-["door.close"]
+["lock.close"]
 ```
-#### door.code
+#### lock.code
+Set the code on the lock
 ```javascript
-["door.code"]
+["lock.code"]
 ```
 #### dron.move
+Drone movement
 ```javascript
 ["dron.move"]
 ```
 #### dron.up
+Raise the drone
 ```javascript
 ["dron.up"]
 ```
 #### dron.down
+Lower the drone
 ```javascript
 ["dron.down"]
 ```
 #### dron.left
+Move the drone to the left
 ```javascript
 ["dron.left"]
 ```
 #### dron.right
+Move the drone to the right
 ```javascript
 ["dron.right"]
 ```
 #### dron.go
+Move the drone forward
 ```javascript
 ["dron.go"]
 ```
 #### dron.stop
+Stop drone movement
 ```javascript
 ["dron.stop"]
 ```
 #### dron.jump
+Jump the drone
 ```javascript
 ["dron.jump"]
 ```
 #### dron.crouch
+Crouch the drone
 ```javascript
 ["dron.crouch"]
 ```
 #### dron.open
+Open the drone
 ```javascript
 ["dron.open"]
 ```
 #### dron.close
+Close the drone
 ```javascript
 ["dron.close"]
 ```
 #### dron.rotate
+Turn the drone
 ```javascript
 ["dron.rotate"]
 ```
 #### dron.camera
+Drone camera
 ```javascript
 ["dron.camera"]
 ```
 #### dron.camera.rotate
+Rotate drone camera
 ```javascript
 ["dron.camera.rotate"]
 ```
 #### dron.camera.on
+Turn drone camera on
 ```javascript
 ["dron.camera.on"]
 ```
 #### dron.camera.off
+Turn drone camera off
 ```javascript
 ["dron.camera.off"]
 ```
 #### dron.camera.record
+Record drone camera video
 ```javascript
 ["dron.camera.record"]
 ```
 #### dron.camera.record.stop
+Stop drone camera recording
 ```javascript
 ["dron.camera.record.stop"]
 ```
 #### dron.hand.open
+Open the drone arm
 ```javascript
 ["dron.hand.open"]
 ```
 #### dron.hand.close
+Close the drone arm
 ```javascript
 ["dron.hand.close"]
 ```
 #### dron.hand.move
+Drone hand movement
 ```javascript
 ["dron.hand.move"]
 ```
 #### dron.hand.gesture
+Drone hand gesture
 ```javascript
 ["dron.hand.gesture"]
 ```
 #### dron.sound
+Drone speaker
 ```javascript
 ["dron.sound"]
 ```
 #### dron.volume
+Drone speaker sound volume
 ```javascript
 ["dron.volume"]
 ```
 #### dron.mic
+Drone microphone
 ```javascript
 ["dron.mic"]
 ```
 #### dron.mic.on
+Drone microphone on
 ```javascript
 ["dron.mic.on"]
 ```
 #### dron.mic.off
+Drone microphone off
 ```javascript
 ["dron.mic.off"]
 ```
 #### dron.mic.record
+Drone microphone audio recording
 ```javascript
 ["dron.mic.record"]
 ```
 #### dron.mic.record.stop
+Stop recording drone microphone audio
 ```javascript
 ["dron.mic.record.stop"]
 ```
