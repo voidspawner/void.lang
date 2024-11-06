@@ -160,7 +160,7 @@
   ["replace", "Hi World :D", "i", "i!"],
   [".", "{}"],
   "upper",
-  [".", "{}"]
+  "."
 ]
 ```
 ##### Run native code
