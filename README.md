@@ -331,9 +331,8 @@ Action parameters: []
 ```
 
 ## Progress
-```
-Count of actions: 589
-```
+
+> Count of actions ・ **589**
 
 | **Name**           | **vapp** | **Python** |  **JS**    | **Swift** | **Kotlin** | **GDScript** |  **C++**  |
 | -------------- | ---- | ------ | ------ | ----- | ------ | -------- | ----- |
@@ -396,6 +395,13 @@ Count of actions: 589
 | tech           | wait |  <p align="center">vapp</p>  | <p align="center">vapp</p>   | <p align="center">vapp</p>  |  <p align="center">vapp</p>  |  <p align="center">vapp</p>    | <p align="center">vapp</p>  |
 
 ## Detail
+
+```diff
++ vapp ・ code created as an action
++ safe ・ can be used in a social network
++ local ・ can be used in self-starting
++ ask ・ ask permission before use
+```
 
 ### value
 
