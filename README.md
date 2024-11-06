@@ -34,7 +34,7 @@
 
 ## Example
 ##### Simple
-```javascript
+```js
 {
   "run": [
     [".", "Hi World :D"]
@@ -42,13 +42,13 @@
 }
 ```
 ##### Even simpler
-```javascript
+```js
 [
   [".", "Hi World :D"]
 ]
 ```
 ##### Multilanguage text
-```javascript
+```js
 {
   "run": [
     [".", "{text.hi} :D"]
@@ -71,7 +71,7 @@
 }
 ```
 ##### Web server
-```javascript
+```js
 {
   "run": [
     ["cloud.web", {
@@ -88,7 +88,7 @@
 }
 ```
 ##### Web server simpler
-```javascript
+```js
 [
   ["cloud.web": {
     "route": [
@@ -100,7 +100,7 @@
 ]
 ```
 ##### Web app with UI
-```javascript
+```js
 {
   "run": [
     ["cloud.web": {
@@ -122,13 +122,13 @@
 }
 ```
 ##### File sharing
-```javascript
+```js
 [
   ["cloud.file": "/path/to/share"]
 ]
 ```
 ##### Add comments
-```javascript
+```js
 {
   "description": "All code is data. So just add the property 'description', '//' and so on",
   "version": {
@@ -142,7 +142,7 @@
 }
 ```
 ##### Use loop and conditions
-```javascript
+```js
 [
   ["=", "word", "Hi World :D"],
   ["o", "letter", "{word}", [
@@ -155,7 +155,7 @@
 ]
 ```
 ##### Get the last result without using variables
-```javascript
+```js
 [
   ["replace", "Hi World :D", "i", "i!"],
   [".", "{}"],
@@ -164,13 +164,13 @@
 ]
 ```
 ##### Run native code
-```javascript
+```js
 [
   ["code", "for i in range(10):print(i)"]
 ]
 ```
 ##### Run Python code
-```javascript
+```js
 [
   ["python", "for i in range(10):print(i)"]
 ]
@@ -306,7 +306,7 @@ python void.py vapp.json
 [**tech**](#tech)
 
 The code is presented as **action name** and **action parameters**.
-```javascript
+```js
 [".", "Hi World :D"]
 ```
 ```
@@ -314,7 +314,7 @@ Action name: "."
 Action parameters: ["Hi World :D"]
 ```
 #####
-```javascript
+```js
 ["=", "value", 1, "+", 1]
 ```
 ```
@@ -322,7 +322,7 @@ Action name: "="
 Action parameters: ["value", 1, "+", 1]
 ```
 #####
-```javascript
+```js
 "."
 ```
 ```
@@ -400,4856 +400,6034 @@ Count of actions: 589
 ### value
 
 #### get
-Get value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["get"]
 ```
 #### set
-Set value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Set value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["set"]
 ```
 #### remove
-Delete value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Delete value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["remove"]
 ```
 #### type
-Get value type
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get value type
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["type"]
 ```
 #### bool
-Convert value to boolean
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Convert value to boolean
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bool"]
 ```
 #### number
-Translate value to a number
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Translate value to a number
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["number"]
 ```
 #### text
-Translate value to text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Translate value to text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["text"]
 ```
 #### list
-Translate value into a list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Translate value into a list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["list"]
 ```
 #### alias
-Assign an alias to an action
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Assign an alias to an action
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["alias"]
 ```
 #### compare
-Compare values
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Compare values
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["compare"]
 ```
 
 ### expression
 
 #### +
-Add
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["+"]
 ```
 #### -
-Subtract
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Subtract
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["-"]
 ```
 #### *
-Multiply
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Multiply
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["*"]
 ```
 #### /
-Divide
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Divide
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["/"]
 ```
 #### %
-Remainder of division
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Remainder of division
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["%"]
 ```
 #### **
-Elevate
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Elevate
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["**"]
 ```
 #### !
-NOT bitwise operator
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! NOT bitwise operator
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["!"]
 ```
 #### &
-AND bitwise operator
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! AND bitwise operator
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["&"]
 ```
 #### |
-OR bitwise operator
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! OR bitwise operator
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["|"]
 ```
 #### ^
-XOR bitwise operator
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! XOR bitwise operator
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["^"]
 ```
 #### >>
-Right shift
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Right shift
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 [">>"]
 ```
 #### <<
-Left shift
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Left shift
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["<<"]
 ```
 #### +=
-Add to value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add to value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["+="]
 ```
 #### -=
-Subtract from value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Subtract from value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["-="]
 ```
 #### *=
-Multiply the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Multiply the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["*="]
 ```
 #### /=
-Divide the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Divide the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["/="]
 ```
 #### %=
-Residue from dividing the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Residue from dividing the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["%="]
 ```
 #### **=
-Increment the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Increment the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["**="]
 ```
 #### !=
-NOT bitwise operator of the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! NOT bitwise operator of the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["!="]
 ```
 #### &=
-AND bitwise operator of the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! AND bitwise operator of the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["&="]
 ```
 #### |=
-OR bitwise operator of the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! OR bitwise operator of the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["|="]
 ```
 #### ^=
-XOR bitwise operator of the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! XOR bitwise operator of the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["^="]
 ```
 #### >>=
-Shift to the right of the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Shift to the right of the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 [">>="]
 ```
 #### <<=
-Shift to the left of the value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Shift to the left of the value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["<<="]
 ```
 #### not
-Negation (inversion)
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Negation (inversion)
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["not"]
 ```
 #### and
-Conjunction (and)
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Conjunction (and)
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["and"]
 ```
 #### or
-Disjunction (or)
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Disjunction (or)
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["or"]
 ```
 #### xor
-Exclusive disjunction (exclusive or)
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Exclusive disjunction (exclusive or)
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["xor"]
 ```
 #### in
-A value in an array or a name in a dictionary
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! A value in an array or a name in a dictionary
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["in"]
 ```
 #### not in
-Value not in array or name not in dictionary
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Value not in array or name not in dictionary
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["not in"]
 ```
 #### is
-Value type match
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Value type match
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["is"]
 ```
 #### not is
-Value type mismatch
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Value type mismatch
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["not is"]
 ```
 
 ### control
 
 #### ?
-IF check
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! IF check
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["?"]
 ```
 #### ??
-MATCH check
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! MATCH check
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["??"]
 ```
 #### o
-FOR, WHILE loop
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! FOR, WHILE loop
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["o"]
 ```
 #### x
-Exit loop BREAK
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Exit loop BREAK
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["x"]
 ```
 #### >>>
-Continue loop CONTINUE
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Continue loop CONTINUE
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 [">>>"]
 ```
 #### <<<
-Repeat loop iteration
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Repeat loop iteration
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["<<<"]
 ```
 #### _
-Return action value RETURN
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Return action value RETURN
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["_"]
 ```
 #### .
-Print text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Print text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["."]
 ```
 #### ..
-Print text without a new line
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Print text without a new line
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 [".."]
 ```
 #### ...
-Enter text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Enter text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["..."]
 ```
 #### action
-Execute action
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Execute action
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["action"]
 ```
 #### action.open
-Execute an action from a file
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Execute an action from a file
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["action.open"]
 ```
 #### X
-End vapp
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! End vapp
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["X"]
 ```
 #### xx
-Error
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Error
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["xx"]
 ```
 #### open
-Execute system action
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Execute system action
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["open"]
 ```
 #### shell
-Execute a command line command
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Execute a command line command
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["shell"]
 ```
 #### shell.open
-Open a terminal and execute the command
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Open a terminal and execute the command
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["shell.open"]
 ```
 #### code
-Execute native code
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Execute native code
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["code"]
 ```
 #### python
-Execute Python code
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Execute Python code
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["python"]
 ```
 #### compile
-Compile code for a specific platform
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Compile code for a specific platform
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["compile"]
 ```
 #### i
-Info logging
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Info logging
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["i"]
 ```
 #### w
-Warning logging
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Warning logging
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["w"]
 ```
 #### e
-Error logging
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Error logging
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["e"]
 ```
 #### d
-Debug logging
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Debug logging
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["d"]
 ```
 #### t
-Time logging
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Time logging
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["t"]
 ```
 #### export
-Export vapp for selected platforms
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Export vapp for selected platforms
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["export"]
 ```
 #### update
-Update script
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Update script
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["update"]
 ```
 #### test
-Test script
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Test script
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["test"]
 ```
 #### help
-Display language hint
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Display language hint
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["help"]
 ```
 #### debug
-Display debug information
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Display debug information
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["debug"]
 ```
 #### debug.fps
-Display FPS
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Display FPS
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["debug.fps"]
 ```
 
 ### text
 
 #### lower
-Convert text to lower case
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Convert text to lower case
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["lower"]
 ```
 #### upper
-Convert text to uppercase
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Convert text to uppercase
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["upper"]
 ```
 #### starts
-Starts with text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Starts with text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["starts"]
 ```
 #### ends
-Ends with text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Ends with text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ends"]
 ```
 #### strip
-Trim text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Trim text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["strip"]
 ```
 #### strip.start
-Trim the beginning of text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Trim the beginning of text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["strip.start"]
 ```
 #### strip.end
-Trim the end of text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Trim the end of text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["strip.end"]
 ```
 #### replace
-Replace text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Replace text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["replace"]
 ```
 #### find
-Find position in text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Find position in text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["find"]
 ```
 #### similar
-Compare texts
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Compare texts
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["similar"]
 ```
 #### part
-Get a part of text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get a part of text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["part"]
 ```
 #### split
-Split text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Split text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["split"]
 ```
 #### join
-Join text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Join text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["join"]
 ```
 #### regex
-Find in text using regular expression
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Find in text using regular expression
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["regex"]
 ```
 #### regex.replace
-Replace text using a regular expression
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Replace text using a regular expression
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["regex.replace"]
 ```
 #### escape
-Escape text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Escape text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["escape"]
 ```
 #### escape.html
-Escape HTML text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Escape HTML text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["escape.html"]
 ```
 #### escape.sql
-Escape SQL text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Escape SQL text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["escape.sql"]
 ```
 #### escape.url
-Escape text URL
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Escape text URL
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["escape.url"]
 ```
 #### escape.json
-Escape text JSON
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Escape text JSON
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["escape.json"]
 ```
 #### escape.void
-Escape text V O I D
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Escape text V O I D
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["escape.void"]
 ```
 #### unescape
-Unescape text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Unescape text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["unescape"]
 ```
 #### unescape.html
-Unescape HTML text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Unescape HTML text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["unescape.html"]
 ```
 #### unescape.sql
-Unescape text SQL
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Unescape text SQL
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["unescape.sql"]
 ```
 #### unescape.url
-Unescape text URL
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Unescape text URL
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["unescape.url"]
 ```
 #### unescape.json
-Unescape JSON text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Unescape JSON text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["unescape.json"]
 ```
 #### unescape.void
-Unescape V O I D text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Unescape V O I D text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["unescape.void"]
 ```
 #### date
-Convert text to timestamp, or timestamp to text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Convert text to timestamp, or timestamp to text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["date"]
 ```
 #### letters
-Number of letters in the text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Number of letters in the text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["letters"]
 ```
 #### words
-Number of words in the text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Number of words in the text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["words"]
 ```
 #### sentences
-Number of sentences in the text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Number of sentences in the text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sentences"]
 ```
 #### lines
-Number of lines in the text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Number of lines in the text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["lines"]
 ```
 
 ### list
 
 #### push
-Add to list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add to list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["push"]
 ```
 #### pop
-Extract from the list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Extract from the list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["pop"]
 ```
 #### reverse
-Invert order in the list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Invert order in the list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["reverse"]
 ```
 #### shuffle
-Shuffle the list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Shuffle the list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["shuffle"]
 ```
 #### sort
-Sort the list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Sort the list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sort"]
 ```
 #### fill
-Fill the list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Fill the list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["fill"]
 ```
 #### map
-Map the list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Map the list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["map"]
 ```
 #### reduce
-Reduce the list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Reduce the list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["reduce"]
 ```
 #### names
-Dictionary or list names
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Dictionary or list names
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["names"]
 ```
 #### values
-Dictionary values
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Dictionary values
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["values"]
 ```
 
 ### math
 
 #### sin
-Sine
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Sine
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sin"]
 ```
 #### cos
-Cosine
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Cosine
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cos"]
 ```
 #### tan
-Tangent
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Tangent
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["tan"]
 ```
 #### sinh
-Hyperbolic sine
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hyperbolic sine
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sinh"]
 ```
 #### cosh
-Hyperbolic cosine
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hyperbolic cosine
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cosh"]
 ```
 #### tanh
-Hyperbolic tangent
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hyperbolic tangent
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["tanh"]
 ```
 #### asin
-Arcsine
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Arcsine
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["asin"]
 ```
 #### acos
-Arccosine
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Arccosine
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["acos"]
 ```
 #### atan
-Arctangent
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Arctangent
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["atan"]
 ```
 #### asinh
-Hyperbolic arcsine
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hyperbolic arcsine
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["asinh"]
 ```
 #### acosh
-Hyperbolic arccosine
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hyperbolic arccosine
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["acosh"]
 ```
 #### atanh
-Hyperbolic arctangent
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hyperbolic arctangent
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["atanh"]
 ```
 #### round
-Round a number
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Round a number
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["round"]
 ```
 #### floor
-Round a number down
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Round a number down
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["floor"]
 ```
 #### ceil
-Round a number up
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Round a number up
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ceil"]
 ```
 #### log
-Logarithm
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Logarithm
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["log"]
 ```
 #### log.e
-Hyperbolic logarithm
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hyperbolic logarithm
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["log.e"]
 ```
 #### log.n
-Natural logarithm
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Natural logarithm
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["log.n"]
 ```
 #### fa
-Factorial
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Factorial
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["fa"]
 ```
 #### fib
-Fibonacci
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Fibonacci
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["fib"]
 ```
 #### abs
-Absolute value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Absolute value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["abs"]
 ```
 #### min
-Minimum value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Minimum value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["min"]
 ```
 #### max
-Maximum value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Maximum value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["max"]
 ```
 #### avg
-Average value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Average value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["avg"]
 ```
 #### sum
-Sum of values
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Sum of values
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sum"]
 ```
 #### hex
-Hexadecimal value to byte
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hexadecimal value to byte
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["hex"]
 ```
 #### hex.dec
-Hexadecimal value to decimal
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hexadecimal value to decimal
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["hex.dec"]
 ```
 #### bin
-Binary value to byte
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Binary value to byte
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bin"]
 ```
 #### bin.dec
-Binary value to decimal
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Binary value to decimal
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bin.dec"]
 ```
 #### dec
-Decimal value to byte
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decimal value to byte
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dec"]
 ```
 #### dec.hex
-Decimal value to hexadecimal
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decimal value to hexadecimal
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dec.hex"]
 ```
 #### dec.bin
-Decimal value to binary
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decimal value to binary
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dec.bin"]
 ```
 #### rad
-Degree to radian
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Degree to radian
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["rad"]
 ```
 #### deg
-Radian to degree
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Radian to degree
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["deg"]
 ```
 #### random
-Random value
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Random value
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["random"]
 ```
 #### random.reseed
-Re-create random seed
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Re-create random seed
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["random.reseed"]
 ```
 #### random.seed
-Get random seed
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get random seed
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["random.seed"]
 ```
 
 ### time
 
 #### time
-Time stamp in microseconds
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Time stamp in microseconds
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["time"]
 ```
 #### time.ms
-Time stamp in milliseconds
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Time stamp in milliseconds
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["time.ms"]
 ```
 #### time.s
-Timestamp in seconds
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Timestamp in seconds
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["time.s"]
 ```
 #### timer
-Set timer
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Set timer
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["timer"]
 ```
 #### timer.remove
-Remove timer
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Remove timer
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["timer.remove"]
 ```
 #### wait
-Wait time in seconds
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Wait time in seconds
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["wait"]
 ```
 
 ### crypto
 
 #### encrypt
-Encode text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["encrypt"]
 ```
 #### decrypt
-Decode text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["decrypt"]
 ```
 #### hash
-Random hash
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Random hash
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["hash"]
 ```
 #### uuid
-Random UUID
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Random UUID
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["uuid"]
 ```
 #### md5
-MD5 hash
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! MD5 hash
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["md5"]
 ```
 #### sha1
-SHA1 hash
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SHA1 hash
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sha1"]
 ```
 #### sha256
-SHA256 hash
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SHA256 hash
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sha256"]
 ```
 #### sha512
-SHA512 hash
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SHA512 hash
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sha512"]
 ```
 #### crc32
-CRC32 hash
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! CRC32 hash
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["crc32"]
 ```
 #### base64
-Base64 hash
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Base64 hash
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["base64"]
 ```
 #### base64.decode
-Decode Base64
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode Base64
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["base64.decode"]
 ```
 #### gzip
-Gzip text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Gzip text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["gzip"]
 ```
 #### gzip.decode
-Decode Gzip
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode Gzip
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["gzip.decode"]
 ```
 #### rsa
-Encode text with RSA
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode text with RSA
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["rsa"]
 ```
 #### rsa.decode
-Decode RSA
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode RSA
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["rsa.decode"]
 ```
 #### rsa.key.public
-Get RSA public key
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get RSA public key
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["rsa.key.public"]
 ```
 #### rsa.key.private
-Get RSA private key
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get RSA private key
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["rsa.key.private"]
 ```
 #### ssl
-Encode text with SSL
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode text with SSL
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ssl"]
 ```
 #### ssl.decode
-Decode SSL
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode SSL
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ssl.decode"]
 ```
 #### ssl.check
-Verify SSL
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Verify SSL
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ssl.check"]
 ```
 #### bcrypt
-Encode text with Bcrypt
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode text with Bcrypt
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bcrypt"]
 ```
 #### bcrypt.check
-Verify Bcrypt
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Verify Bcrypt
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bcrypt.check"]
 ```
 
 ### format
 
 #### void
-Encode to V O I D
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode to V O I D
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["void"]
 ```
 #### void.decode
-Decode V O I D
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode V O I D
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["void.decode"]
 ```
 #### void.read
-Read V O I D file
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read V O I D file
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["void.read"]
 ```
 #### void.write
-Write V O I D file
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Write V O I D file
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["void.write"]
 ```
 #### json
-Encode to JSON
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode to JSON
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["json"]
 ```
 #### json.decode
-Decode JSON
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode JSON
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["json.decode"]
 ```
 #### json.read
-Read JSON file
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read JSON file
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["json.read"]
 ```
 #### json.write
-Write JSON file
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Write JSON file
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["json.write"]
 ```
 #### yaml
-Encode YAML
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode YAML
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["yaml"]
 ```
 #### yaml.decode
-Decode YAML
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode YAML
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["yaml.decode"]
 ```
 #### csv
-Encode CSV
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode CSV
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["csv"]
 ```
 #### csv.decode
-Decode CSV
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode CSV
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["csv.decode"]
 ```
 #### ini
-Encode INI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode INI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ini"]
 ```
 #### ini.decode
-Decode INI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode INI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ini.decode"]
 ```
 #### html
-Encode HTML
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode HTML
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["html"]
 ```
 #### html.decode
-Decode HTML
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode HTML
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["html.decode"]
 ```
 #### xml
-Encode XML
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode XML
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["xml"]
 ```
 #### xml.decode
-Decode XML
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode XML
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["xml.decode"]
 ```
 #### css
-Encode CSS
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Encode CSS
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["css"]
 ```
 #### css.decode
-Decode CSS
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Decode CSS
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["css.decode"]
 ```
 
 ### file
 
 #### file.exists
-File exists
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! File exists
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.exists"]
 ```
 #### file.write
-Write to file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Write to file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.write"]
 ```
 #### file.read
-Read file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.read"]
 ```
 #### file.read.list
-Read lines from file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read lines from file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.read.list"]
 ```
 #### file.remove
-Remove file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Remove file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.remove"]
 ```
 #### file.move
-Move file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Move file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.move"]
 ```
 #### file.copy
-Copy file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Copy file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.copy"]
 ```
 #### file.rename
-Rename file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Rename file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.rename"]
 ```
 #### file.info
-File information
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! File information
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.info"]
 ```
 #### file.size
-File size
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! File size
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.size"]
 ```
 #### file.permissions
-File permissions
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! File permissions
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.permissions"]
 ```
 #### file.readonly
-Read-only file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read-only file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.readonly"]
 ```
 #### file.hidden
-Hidden file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hidden file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.hidden"]
 ```
 #### file.modified
-File modification time
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! File modification time
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.modified"]
 ```
 #### file.sha256
-SHA256 file hash
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SHA256 file hash
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.sha256"]
 ```
 #### file.crc32
-CRC32 file hash
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! CRC32 file hash
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.crc32"]
 ```
 #### file.base64
-Base64 file hash
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Base64 file hash
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.base64"]
 ```
 #### file.zip
-Compress a file into a Zip archive
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Compress a file into a Zip archive
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.zip"]
 ```
 #### file.zip.list
-List of files in Zip archive
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! List of files in Zip archive
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.zip.list"]
 ```
 #### file.zip.exists
-File exists in Zip archive
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! File exists in Zip archive
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.zip.exists"]
 ```
 #### file.zip.read
-Read file from Zip archive
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read file from Zip archive
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.zip.read"]
 ```
 #### file.zip.remove
-Remove file from Zip archive
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Remove file from Zip archive
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.zip.remove"]
 ```
 #### file.unzip
-Extract Zip archive
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Extract Zip archive
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.unzip"]
 ```
 #### file.gzip
-Compress file with Gzip
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Compress file with Gzip
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.gzip"]
 ```
 #### file.ungzip
-Extract Gzip file
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Extract Gzip file
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.ungzip"]
 ```
 #### file.link
-Create a symbolic link
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create a symbolic link
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.link"]
 ```
 #### file.link.exists
-Symbolic link exists
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Symbolic link exists
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.link.exists"]
 ```
 #### file.backup
-Backup files
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Backup files
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["file.backup"]
 ```
 #### dir.exists
-Directory exists
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Directory exists
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.exists"]
 ```
 #### dir.create
-Create directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.create"]
 ```
 #### dir.copy
-Copy directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Copy directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.copy"]
 ```
 #### dir.move
-Move directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Move directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.move"]
 ```
 #### dir.rename
-Rename directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Rename directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.rename"]
 ```
 #### dir.remove
-Remove directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Remove directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.remove"]
 ```
 #### dir.list
-List of files in a directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! List of files in a directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.list"]
 ```
 #### dir.clear
-Clear directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Clear directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.clear"]
 ```
 #### dir.info
-Directory information
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Directory information
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.info"]
 ```
 #### dir.size
-Directory size
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Directory size
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.size"]
 ```
 #### dir.permissions
-Directory permissions
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Directory permissions
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.permissions"]
 ```
 #### dir.readonly
-Read-only directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read-only directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.readonly"]
 ```
 #### dir.hidden
-Hidden directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hidden directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.hidden"]
 ```
 #### dir.modified
-Directory modification time
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Directory modification time
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.modified"]
 ```
 #### dir.zip
-Compress directory
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Compress directory
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dir.zip"]
 ```
 #### drive.list
-List of volumes
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! List of volumes
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drive.list"]
 ```
 #### drive.name
-Volume name
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Volume name
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drive.name"]
 ```
 #### drive.size
-Volume size
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Volume size
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drive.size"]
 ```
 #### drive.used
-Volume space used
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Volume space used
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drive.used"]
 ```
 #### drive.free
-Volume free space
 
-⌜ ask・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Volume free space
++ ask・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drive.free"]
 ```
 #### drive.mount
-Mount volume
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Mount volume
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drive.mount"]
 ```
 #### drive.unmount
-Unmount volume
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Unmount volume
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drive.unmount"]
 ```
 #### drive.format
-Format volume
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Format volume
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drive.format"]
 ```
 #### path.drive
-Get volume from path
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get volume from path
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["path.drive"]
 ```
 #### path.dir
-Get directory from path
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get directory from path
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["path.dir"]
 ```
 #### path.file
-Get file from path
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get file from path
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["path.file"]
 ```
 #### path.name
-Get filename from path
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get filename from path
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["path.name"]
 ```
 #### path.extension
-Get extension from path
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get extension from path
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["path.extension"]
 ```
 #### path.extension.strip
-Trim extension from path
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Trim extension from path
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["path.extension.strip"]
 ```
 
 ### cloud
 
 #### cloud.file
-File server
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! File server
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cloud.file"]
 ```
 #### cloud.web
-Web server
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Web server
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cloud.web"]
 ```
 #### cloud.api
-API server
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! API server
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cloud.api"]
 ```
 #### cloud.socket
-Socket server
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Socket server
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cloud.socket"]
 ```
 #### cloud.websocket
-Websocket server
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Websocket server
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cloud.websocket"]
 ```
 #### cloud.mail
-Mail server
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Mail server
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cloud.mail"]
 ```
 #### cloud.game
-Game server
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Game server
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cloud.game"]
 ```
 #### cloud.social
-Social server
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Social server
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cloud.social"]
 ```
 #### cloud.live
-Streaming server
 
-⌜ local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Streaming server
++ local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cloud.live"]
 ```
 
 ### bot
 
 #### bot.telegram
-Telegram bot
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Telegram bot
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bot.telegram"]
 ```
 #### bot.wechat
-Wechat bot
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Wechat bot
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bot.wechat"]
 ```
 #### bot.x
-X bot
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! X bot
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bot.x"]
 ```
 #### bot.youtube
-YouTube bot
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! YouTube bot
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bot.youtube"]
 ```
 #### bot.tiktok
-TikTok bot
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! TikTok bot
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bot.tiktok"]
 ```
 #### bot.steam
-Steam bot
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Steam bot
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bot.steam"]
 ```
 #### bot.binance
-Binance bot
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Binance bot
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bot.binance"]
 ```
 #### bot.ib
-Interactive Brokers bot
 
-⌜ vapp・local・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Interactive Brokers bot
++ vapp・local・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bot.ib"]
 ```
 
 ### request
 
 #### request
-Web request
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Web request
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["request"]
 ```
 #### request.post
-Post Web request
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Post Web request
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["request.post"]
 ```
 #### request.put
-Put Web request
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Put Web request
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["request.put"]
 ```
 #### request.delete
-Delete Web request
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Delete Web request
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["request.delete"]
 ```
 #### request.head
-Head Web request
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Head Web request
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["request.head"]
 ```
 
 ### cookie
 
 #### cookie
-Get Web cookies
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get Web cookies
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cookie"]
 ```
 #### cookie.remove
-Delete Web cookies
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Delete Web cookies
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cookie.remove"]
 ```
 
 ### sql
 
 #### sql
-SQL query
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL query
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql"]
 ```
 #### sql.connect
-Connect to SQL server
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Connect to SQL server
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.connect"]
 ```
 #### sql.disconnet
-Disconnect from SQL server
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Disconnect from SQL server
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.disconnet"]
 ```
 #### sql.user
-SQL user
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL user
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.user"]
 ```
 #### sql.user.list
-SQL user list
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL user list
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.user.list"]
 ```
 #### sql.user.remove
-SQL remove user
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL remove user
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.user.remove"]
 ```
 #### sql.db
-SQL database
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL database
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.db"]
 ```
 #### sql.db.list
-SQL database list
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL database list
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.db.list"]
 ```
 #### sql.db.remove
-SQL remove database
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL remove database
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.db.remove"]
 ```
 #### sql.db.size
-SQL database size
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL database size
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.db.size"]
 ```
 #### sql.table
-SQL table
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL table
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.table"]
 ```
 #### sql.table.list
-SQL table list
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL table list
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.table.list"]
 ```
 #### sql.table.remove
-SQL remove table
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL remove table
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.table.remove"]
 ```
 #### sql.field
-SQL field
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL field
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.field"]
 ```
 #### sql.field.list
-SQL field list
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL field list
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.field.list"]
 ```
 #### sql.field.remove
-SQL remove field
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL remove field
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.field.remove"]
 ```
 #### sql.index
-SQL index
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL index
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.index"]
 ```
 #### sql.index.list
-SQL index list
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL index list
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.index.list"]
 ```
 #### sql.index.remove
-SQL remove index
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL remove index
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.index.remove"]
 ```
 #### sql.function
-SQL function
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL function
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.function"]
 ```
 #### sql.function.list
-SQL function list
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL function list
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.function.list"]
 ```
 #### sql.function.remove
-SQL remove function
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL remove function
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.function.remove"]
 ```
 #### sql.view
-SQL view
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL view
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.view"]
 ```
 #### sql.view.list
-SQL view list
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL view list
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.view.list"]
 ```
 #### sql.view.remove
-SQL remove a view
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL remove a view
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.view.remove"]
 ```
 #### sql.get
-SQL get one result
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL get one result
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.get"]
 ```
 #### sql.all
-SQL get all results
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL get all results
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.all"]
 ```
 #### sql.cursor
-SQL cursor
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL cursor
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.cursor"]
 ```
 #### sql.transaction
-SQL start transaction
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL start transaction
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.transaction"]
 ```
 #### sql.commit
-SQL send transaction
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL send transaction
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.commit"]
 ```
 #### sql.rollback
-SQL cancel transaction
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! SQL cancel transaction
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sql.rollback"]
 ```
 
 ### os
 
 #### os.name
-Operating system name
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Operating system name
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.name"]
 ```
 #### os.version
-Operating system version
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Operating system version
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.version"]
 ```
 #### os.username
-User name
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! User name
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.username"]
 ```
 #### os.desktop
-Check that it’s desktop
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it’s desktop
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.desktop"]
 ```
 #### os.mobile
-Check that it’s mobile device
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it’s mobile device
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.mobile"]
 ```
 #### os.web
-Check that it’s Web
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it’s Web
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.web"]
 ```
 #### os.windows
-Check that it’s Windows
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it’s Windows
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.windows"]
 ```
 #### os.macos
-Check that it's macOS
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it's macOS
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.macos"]
 ```
 #### os.ios
-Check that it's iOS
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it's iOS
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.ios"]
 ```
 #### os.ipados
-Check that it's iPadOS
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it's iPadOS
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.ipados"]
 ```
 #### os.watchos
-Check that it's watchOS
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it's watchOS
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.watchos"]
 ```
 #### os.tvos
-Check that it's tvOS
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it's tvOS
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.tvos"]
 ```
 #### os.android
-Check that it's Android
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it's Android
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.android"]
 ```
 #### os.nix
-Check that it’s Unix-like
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check that it’s Unix-like
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["os.nix"]
 ```
 
 ### device
 
 #### cpu.name
-Processor name
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Processor name
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cpu.name"]
 ```
 #### cpu.cores
-Number of processor cores
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Number of processor cores
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cpu.cores"]
 ```
 #### memory.size
-Memory size
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Memory size
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["memory.size"]
 ```
 #### memory.free
-Memory Free
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Memory Free
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["memory.free"]
 ```
 #### memory.used
-Memory used
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Memory used
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["memory.used"]
 ```
 #### memory.available
-Memory available
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Memory available
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["memory.available"]
 ```
 
 ### gps
 
 #### gps
-Get GPS coordinates
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get GPS coordinates
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["gps"]
 ```
 
 ### sensor
 
 #### speed
-Get speed
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get speed
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["speed"]
 ```
 #### tilt
-Get tilt
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get tilt
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["tilt"]
 ```
 #### compass
-Get compass direction
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get compass direction
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["compass"]
 ```
 #### motion
-Get motion type
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get motion type
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["motion"]
 ```
 
 ### camera
 
 #### camera
-Get camera image
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get camera image
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["camera"]
 ```
 #### gallery
-Get gallery image
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get gallery image
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["gallery"]
 ```
 
 ### contacts
 
 #### contacts
-Get contacts
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get contacts
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["contacts"]
 ```
 
 ### calendar
 
 #### calendar
-Get calendar
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get calendar
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["calendar"]
 ```
 
 ### health
 
 #### health
-Get health data
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Get health data
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["health"]
 ```
 
 ### flashlight
 
 #### flashlight
-Flashlight
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Flashlight
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["flashlight"]
 ```
 
 ### mic
 
 #### mic
-Microphone
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Microphone
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["mic"]
 ```
 
 ### notification
 
 #### notification
-Receive notifications
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Receive notifications
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["notification"]
 ```
 #### notification.token
-Notification token
 
-⌜ ask・swift・kotlin・godot・c++ ⌟
+```diff
+! Notification token
++ ask・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["notification.token"]
 ```
 #### notification.send
-Send notification
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Send notification
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["notification.send"]
 ```
 
 ### key
 
 #### key
-Assign key action
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Assign key action
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["key"]
 ```
 #### key.remove
-Delete a key action
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Delete a key action
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["key.remove"]
 ```
 #### key.press
-Start a key action
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Start a key action
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["key.press"]
 ```
 #### key.enable
-Enable key action
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Enable key action
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["key.enable"]
 ```
 #### key.disable
-Disable key action
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Disable key action
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["key.disable"]
 ```
 
 ### keyboard
 
 #### keyboard
-On-screen keyboard
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! On-screen keyboard
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["keyboard"]
 ```
 #### keyboard.height
-Screen keyboard height
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Screen keyboard height
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["keyboard.height"]
 ```
 
 ### mouse
 
 #### mouse
-Show mouse
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Show mouse
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["mouse"]
 ```
 #### mouse.hide
-Hide mouse
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hide mouse
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["mouse.hide"]
 ```
 #### mouse.lock
-Lock mouse
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Lock mouse
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["mouse.lock"]
 ```
 #### mouse.capture
-Capture mouse
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Capture mouse
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["mouse.capture"]
 ```
 #### mouse.confine
-Limit mouse movement
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Limit mouse movement
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["mouse.confine"]
 ```
 #### mouse.position
-Get mouse coordinates
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get mouse coordinates
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["mouse.position"]
 ```
 #### mouse.shape
-Mouse pointer shape
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Mouse pointer shape
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["mouse.shape"]
 ```
 
 ### gamepad
 
 #### gamepad.axis
-Gamepad stick deflection
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Gamepad stick deflection
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["gamepad.axis"]
 ```
 #### gamepad.vibrate
-Gamepad vibration
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Gamepad vibration
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["gamepad.vibrate"]
 ```
 
 ### clipboard
 
 #### clipboard
-Clipboard
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Clipboard
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["clipboard"]
 ```
 #### clipboard.clear
-Clear clipboard
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Clear clipboard
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["clipboard.clear"]
 ```
 
 ### voice
 
 #### voice
-Read text with voice
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read text with voice
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["voice"]
 ```
 #### voice.list
-Voice list
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Voice list
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["voice.list"]
 ```
 #### voice.stop
-Stop text reading
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Stop text reading
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["voice.stop"]
 ```
 #### voice.pause
-Pause / continue text reading
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Pause / continue text reading
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["voice.pause"]
 ```
 
 ### convert
 
 #### convert
-Convert from one format to another
 
-⌜ vapp・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Convert from one format to another
++ vapp・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["convert"]
 ```
 
 ### image
 
 #### image
-Create image
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create image
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image"]
 ```
 #### image.read
-Read image from file
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read image from file
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.read"]
 ```
 #### image.write
-Write image to file
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Write image to file
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.write"]
 ```
 #### image.size
-Resize image
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Resize image
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.size"]
 ```
 #### image.crop
-Crop image
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Crop image
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.crop"]
 ```
 #### image.square
-Crop image to square
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Crop image to square
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.square"]
 ```
 #### image.rotate
-Rotate image
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Rotate image
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.rotate"]
 ```
 #### image.flip.h
-Reflect image horizontally
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Reflect image horizontally
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.flip.h"]
 ```
 #### image.flip.v
-Reflect image vertically
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Reflect image vertically
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.flip.v"]
 ```
 #### image.tint
-Tint the image
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Tint the image
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.tint"]
 ```
 #### image.gray
-Convert image to grayscale
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Convert image to grayscale
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.gray"]
 ```
 #### image.text
-Add text to image
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add text to image
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.text"]
 ```
 #### image.image
-Add image to image
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add image to image
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.image"]
 ```
 #### image.draw
-Add drawing to image
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add drawing to image
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["image.draw"]
 ```
 
 ### video
 
 #### video
-Create video
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create video
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video"]
 ```
 #### video.read
-Read video from file
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read video from file
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.read"]
 ```
 #### video.write
-Write video to file
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Write video to file
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.write"]
 ```
 #### video.size
-Video size
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Video size
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.size"]
 ```
 #### video.rate
-Video frame rate
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Video frame rate
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.rate"]
 ```
 #### video.rotate
-Rotate video
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Rotate video
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.rotate"]
 ```
 #### video.flip.h
-Reflect video horizontally
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Reflect video horizontally
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.flip.h"]
 ```
 #### video.flip.v
-Reflect video vertically
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Reflect video vertically
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.flip.v"]
 ```
 #### video.clip
-Video clip
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Video clip
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.clip"]
 ```
 #### video.speed
-Video speed
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Video speed
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.speed"]
 ```
 #### video.reverse
-Change video direction
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Change video direction
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.reverse"]
 ```
 #### video.text
-Add text to video
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add text to video
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.text"]
 ```
 #### video.image
-Add image to video
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add image to video
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.image"]
 ```
 #### video.sound
-Add sound to video
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add sound to video
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.sound"]
 ```
 #### video.video
-Add video to video
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add video to video
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["video.video"]
 ```
 
 ### model
 
 #### model
-Create 3D model
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create 3D model
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["model"]
 ```
 #### model.read
-Read 3D model from file
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read 3D model from file
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["model.read"]
 ```
 #### model.write
-Write 3D model to file
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Write 3D model to file
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["model.write"]
 ```
 #### model.animate
-Animate 3D model
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Animate 3D model
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["model.animate"]
 ```
 #### model.texture
-Apply texture to 3D model
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Apply texture to 3D model
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["model.texture"]
 ```
 
 ### sound
 
 #### sound
-Create sound
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create sound
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sound"]
 ```
 #### sound.read
-Read sound from file
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Read sound from file
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sound.read"]
 ```
 #### sound.write
-Write sound to file
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Write sound to file
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sound.write"]
 ```
 #### sound.list
-Current played sounds
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Current played sounds
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sound.list"]
 ```
 #### sound.remove
-Remove sound
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Remove sound
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sound.remove"]
 ```
 #### sound.volume
-Sound volume
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Sound volume
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sound.volume"]
 ```
 #### sound.speed
-Sound playback speed
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Sound playback speed
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sound.speed"]
 ```
 #### sound.clip
-Sound clip
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Sound clip
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sound.clip"]
 ```
 #### sound.sound
-Add sound to sound
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add sound to sound
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["sound.sound"]
 ```
 
 ### music
 
 #### music
-Add music
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add music
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["music"]
 ```
 #### music.stop
-Stop music
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Stop music
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["music.stop"]
 ```
 #### music.pause
-Pause / continue music
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Pause / continue music
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["music.pause"]
 ```
 #### music.volume
-Music sound volume
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Music sound volume
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["music.volume"]
 ```
 
 ### volume
 
 #### volume
-Master volume
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Master volume
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["volume"]
 ```
 
 ### screen
 
 #### screen.count
-Number of screens
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Number of screens
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["screen.count"]
 ```
 #### screen.list
-List of screens
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! List of screens
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["screen.list"]
 ```
 #### screen.info
-Screen information
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Screen information
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["screen.info"]
 ```
 #### size
-Screen size
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Screen size
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["size"]
 ```
 #### orientation
-Screen orientation
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Screen orientation
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["orientation"]
 ```
 #### landscape
-Landscape orientation
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Landscape orientation
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["landscape"]
 ```
 #### portrait
-Portrait orientation
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Portrait orientation
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["portrait"]
 ```
 #### rate
-Screen frame rate
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Screen frame rate
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["rate"]
 ```
 #### pixel
-Get screen pixel color
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get screen pixel color
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["pixel"]
 ```
 #### symbol
-Get screen symbol
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Get screen symbol
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["symbol"]
 ```
 #### dpi
-Dots per inch
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Dots per inch
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dpi"]
 ```
 #### dark
-Dark mode
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Dark mode
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dark"]
 ```
 #### touch
-Touchscreen
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Touchscreen
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["touch"]
 ```
 #### screenshot
-Screenshot
 
-⌜ safe・swift・kotlin・godot・c++ ⌟
+```diff
+! Screenshot
++ safe・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["screenshot"]
 ```
 #### screen.record
-Record screen
 
-⌜ safe・swift・kotlin・godot・c++ ⌟
+```diff
+! Record screen
++ safe・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["screen.record"]
 ```
 #### screen.stop
-Stop screen recording
 
-⌜ safe・swift・kotlin・godot・c++ ⌟
+```diff
+! Stop screen recording
++ safe・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["screen.stop"]
 ```
 
 ### ui
 
 #### ui
-UI element
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI element
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui"]
 ```
 #### bg
-Background
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Background
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["bg"]
 ```
 #### show
-Show UI
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Show UI
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["show"]
 ```
 #### hide
-Hide UI
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Hide UI
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["hide"]
 ```
 #### visible
-UI visibility
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI visibility
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["visible"]
 ```
 #### enable
-Enable UI
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Enable UI
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["enable"]
 ```
 #### disable
-Disable UI
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Disable UI
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["disable"]
 ```
 #### enabled
-Check if UI is enabled
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check if UI is enabled
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["enabled"]
 ```
 #### focus
-Move focus to UI
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Move focus to UI
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["focus"]
 ```
 #### scale
-Scale UI
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Scale UI
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["scale"]
 ```
 #### ui.text
-UI text
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI text
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.text"]
 ```
 #### ui.image
-UI image
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI image
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.image"]
 ```
 #### ui.button
-UI button
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI button
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.button"]
 ```
 #### ui.divider
-UI separator
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI separator
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.divider"]
 ```
 #### ui.video
-UI video
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI video
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.video"]
 ```
 #### ui.select
-UI selection
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI selection
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.select"]
 ```
 #### ui.switch
-UI switch
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI switch
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.switch"]
 ```
 #### ui.progress
-UI progress bar
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI progress bar
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.progress"]
 ```
 #### ui.slider
-UI slider
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI slider
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.slider"]
 ```
 #### ui.edit
-UI text editor
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI text editor
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.edit"]
 ```
 #### ui.chart
-UI chart
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI chart
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.chart"]
 ```
 #### ui.split.h
-UI horizontal separator
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI horizontal separator
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.split.h"]
 ```
 #### ui.split.v
-UI vertical separator
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI vertical separator
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.split.v"]
 ```
 #### ui.list
-UI list
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI list
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.list"]
 ```
 #### ui.tile
-UI tile
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI tile
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.tile"]
 ```
 #### ui.color
-UI color
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI color
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.color"]
 ```
 #### ui.date
-UI date
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI date
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.date"]
 ```
 #### ui.drop
-UI drop down content
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI drop down content
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.drop"]
 ```
 #### ui.menu
-UI menu
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI menu
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.menu"]
 ```
 #### ui.menu.context
-UI context menu
 
-⌜ safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! UI context menu
++ safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ui.menu.context"]
 ```
 
 ### window
 
 #### window
-Create window
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create window
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["window"]
 ```
 #### window.list
-Window list
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window list
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["window.list"]
 ```
 #### window.info
-Window information
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window information
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["window.info"]
 ```
 #### title
-Window title
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window title
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["title"]
 ```
 #### icon
-Window icon
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window icon
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["icon"]
 ```
 #### size
-Window size
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window size
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["size"]
 ```
 #### size.max
-Maximum window size
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Maximum window size
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["size.max"]
 ```
 #### size.min
-Minimum window size
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Minimum window size
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["size.min"]
 ```
 #### position
-Window position
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window position
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["position"]
 ```
 #### direction
-Window text direction
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window text direction
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["direction"]
 ```
 #### attention
-Window attention
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window attention
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["attention"]
 ```
 #### top
-Top of all windows
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Top of all windows
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["top"]
 ```
 #### foreground
-Foreground window
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Foreground window
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["foreground"]
 ```
 #### unfocusable
-Do not take the focus of the window
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Do not take the focus of the window
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["unfocusable"]
 ```
 #### unresizable
-Do not resize window
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Do not resize window
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["unresizable"]
 ```
 #### center
-Center the window on the screen
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Center the window on the screen
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["center"]
 ```
 #### fullscreen
-Full screen window
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Full screen window
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["fullscreen"]
 ```
 #### drop
-Drop content to window
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drop content to window
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drop"]
 ```
 #### border
-Window border
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window border
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["border"]
 ```
 #### maximized
-Maximize window
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Maximize window
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["maximized"]
 ```
 #### minimized
-Minimize window
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Minimize window
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["minimized"]
 ```
 #### exclusive
-Make window exclusive
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Make window exclusive
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["exclusive"]
 ```
 #### vsync
-Vertical window synchronization
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Vertical window synchronization
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["vsync"]
 ```
 #### fps
-Window FPS
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Window FPS
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["fps"]
 ```
 
 ### dialog
 
 #### dialog.file
-File selection
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! File selection
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dialog.file"]
 ```
 #### dialog.color
-Color selection
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Color selection
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dialog.color"]
 ```
 #### dialog.date
-Date selection
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Date selection
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dialog.date"]
 ```
 #### dialog.list
-Select from list
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Select from list
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dialog.list"]
 ```
 
 ### effect
 
 #### effect
-Add effect
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add effect
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["effect"]
 ```
 #### effect.list
-List of effects
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! List of effects
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["effect.list"]
 ```
 #### effect.remove
-Remove effect
 
-⌜ safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Remove effect
++ safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["effect.remove"]
 ```
 
 ### game
 
 #### vn
-Create visual novel
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create visual novel
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["vn"]
 ```
 #### 2d
-Create 2D game
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create 2D game
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["2d"]
 ```
 #### 3d
-Create 3D game
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create 3D game
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["3d"]
 ```
 #### menu
-Create game menu
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create game menu
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["menu"]
 ```
 #### say
-Say text
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Say text
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["say"]
 ```
 #### say.skip
-Skip text
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Skip text
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["say.skip"]
 ```
 #### route
-Offer to select a root
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Offer to select a root
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["route"]
 ```
 #### route.remove
-Remove root selection
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Remove root selection
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["route.remove"]
 ```
 #### route.check
-Check root
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Check root
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["route.check"]
 ```
 #### route.select
-Select root
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Select root
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["route.select"]
 ```
 #### route.repeat
-Repeat root selection
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Repeat root selection
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["route.repeat"]
 ```
 #### route.skip
-Skip root selection
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Skip root selection
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["route.skip"]
 ```
 #### character
-Create a character
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create a character
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["character"]
 ```
 #### come
-Character arrived
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Character arrived
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["come"]
 ```
 #### leave
-Character left
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Character left
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["leave"]
 ```
 #### change
-Character changed
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Character changed
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["change"]
 ```
 #### object
-Add an object to the map
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Add an object to the map
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["object"]
 ```
 #### shoot
-Character shot
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Character shot
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["shoot"]
 ```
 #### move
-Character movement
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Character movement
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["move"]
 ```
 #### jump
-Jump
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Jump
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["jump"]
 ```
 #### crouch
-Crouch
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Crouch
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["crouch"]
 ```
 #### drop
-Drop
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drop
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["drop"]
 ```
 #### look
-Look around
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Look around
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["look"]
 ```
 #### hud
-Interface
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Interface
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["hud"]
 ```
 #### hud.map
-Map
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Map
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["hud.map"]
 ```
 #### hud.inventory
-Inventory
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Inventory
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["hud.inventory"]
 ```
 #### snd
-Spatial sound
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Spatial sound
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["snd"]
 ```
 #### light
-Spatial light
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Spatial light
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["light"]
 ```
 #### cam
-Spatial camera
 
-⌜ vapp・safe・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Spatial camera
++ vapp・safe・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["cam"]
 ```
 
 ### ai
 
 #### ai.chat
-Communicate with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Communicate with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.chat"]
 ```
 #### ai.image
-Create AI image
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create AI image
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.image"]
 ```
 #### ai.video
-Create AI video
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create AI video
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.video"]
 ```
 #### ai.music
-Create AI music
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create AI music
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.music"]
 ```
 #### ai.sound
-Create AI sound
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create AI sound
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.sound"]
 ```
 #### ai.say
-Create AI speech
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create AI speech
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.say"]
 ```
 #### ai.2d
-Create AI 2D asset
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create AI 2D asset
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.2d"]
 ```
 #### ai.3d
-Create AI 3D asset
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create AI 3D asset
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.3d"]
 ```
 #### ai.character
-Create AI character
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Create AI character
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.character"]
 ```
 #### ai.clean
-Clean up image with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Clean up image with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.clean"]
 ```
 #### ai.resize
-Resize image with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Resize image with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.resize"]
 ```
 #### ai.color
-Colorize image with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Colorize image with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.color"]
 ```
 #### ai.style
-Change image style with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Change image style with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.style"]
 ```
 #### ai.translate
-Translate text with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Translate text with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.translate"]
 ```
 #### ai.recognize.text
-Recognize text with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Recognize text with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.recognize.text"]
 ```
 #### ai.recognize.image
-Recognize image with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Recognize image with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.recognize.image"]
 ```
 #### ai.recognize.video
-Recognize video with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Recognize video with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.recognize.video"]
 ```
 #### ai.recognize.motion
-Recognize motion with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Recognize motion with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.recognize.motion"]
 ```
 #### ai.capture.voice
-Capture voice with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Capture voice with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.capture.voice"]
 ```
 #### ai.capture.face
-Capture facial expressions with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Capture facial expressions with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.capture.face"]
 ```
 #### ai.capture.motion
-Capture motion with AI
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Capture motion with AI
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["ai.capture.motion"]
 ```
 
 ### social
 
 #### social.signin
-Authorization
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Authorization
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["social.signin"]
 ```
 #### social.signup
-Registration
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Registration
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["social.signup"]
 ```
 #### social.signout
-Logout
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Logout
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["social.signout"]
 ```
 #### social.restore
-Restore login
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Restore login
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["social.restore"]
 ```
 #### social
-Social content
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Social content
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["social"]
 ```
 #### social.send
-Send content
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Send content
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["social.send"]
 ```
 #### social.buy
-Purchase
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Purchase
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["social.buy"]
 ```
 
 ### tech
 
 #### light.on
-Turn lamp on
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Turn lamp on
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["light.on"]
 ```
 #### light.off
-Turn lamp off
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Turn lamp off
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["light.off"]
 ```
 #### power.on
-Power on
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Power on
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["power.on"]
 ```
 #### power.off
-Turn power off
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Turn power off
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["power.off"]
 ```
 #### power.timer
-Set timer for power
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Set timer for power
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["power.timer"]
 ```
 #### lock.open
-Open the lock
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Open the lock
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["lock.open"]
 ```
 #### lock.close
-Close the lock
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Close the lock
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["lock.close"]
 ```
 #### lock.code
-Set the code on the lock
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Set the code on the lock
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["lock.code"]
 ```
 #### dron.move
-Drone movement
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone movement
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.move"]
 ```
 #### dron.up
-Raise the drone
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Raise the drone
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.up"]
 ```
 #### dron.down
-Lower the drone
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Lower the drone
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.down"]
 ```
 #### dron.left
-Move the drone to the left
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Move the drone to the left
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.left"]
 ```
 #### dron.right
-Move the drone to the right
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Move the drone to the right
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.right"]
 ```
 #### dron.go
-Move the drone forward
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Move the drone forward
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.go"]
 ```
 #### dron.stop
-Stop drone movement
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Stop drone movement
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.stop"]
 ```
 #### dron.jump
-Jump the drone
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Jump the drone
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.jump"]
 ```
 #### dron.crouch
-Crouch the drone
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Crouch the drone
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.crouch"]
 ```
 #### dron.open
-Open the drone
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Open the drone
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.open"]
 ```
 #### dron.close
-Close the drone
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Close the drone
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.close"]
 ```
 #### dron.rotate
-Turn the drone
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Turn the drone
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.rotate"]
 ```
 #### dron.camera
-Drone camera
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone camera
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.camera"]
 ```
 #### dron.camera.rotate
-Rotate drone camera
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Rotate drone camera
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.camera.rotate"]
 ```
 #### dron.camera.on
-Turn drone camera on
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Turn drone camera on
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.camera.on"]
 ```
 #### dron.camera.off
-Turn drone camera off
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Turn drone camera off
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.camera.off"]
 ```
 #### dron.camera.record
-Record drone camera video
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Record drone camera video
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.camera.record"]
 ```
 #### dron.camera.record.stop
-Stop drone camera recording
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Stop drone camera recording
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.camera.record.stop"]
 ```
 #### dron.hand.open
-Open the drone arm
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Open the drone arm
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.hand.open"]
 ```
 #### dron.hand.close
-Close the drone arm
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Close the drone arm
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.hand.close"]
 ```
 #### dron.hand.move
-Drone hand movement
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone hand movement
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.hand.move"]
 ```
 #### dron.hand.gesture
-Drone hand gesture
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone hand gesture
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.hand.gesture"]
 ```
 #### dron.sound
-Drone speaker
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone speaker
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.sound"]
 ```
 #### dron.volume
-Drone speaker sound volume
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone speaker sound volume
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.volume"]
 ```
 #### dron.mic
-Drone microphone
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone microphone
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.mic"]
 ```
 #### dron.mic.on
-Drone microphone on
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone microphone on
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.mic.on"]
 ```
 #### dron.mic.off
-Drone microphone off
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone microphone off
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.mic.off"]
 ```
 #### dron.mic.record
-Drone microphone audio recording
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Drone microphone audio recording
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.mic.record"]
 ```
 #### dron.mic.record.stop
-Stop recording drone microphone audio
 
-⌜ vapp・safe・python・js・swift・kotlin・godot・c++ ⌟
+```diff
+! Stop recording drone microphone audio
++ vapp・safe・python・js・swift・kotlin・godot・c++
+```
 
-```javascript
+```js
 ["dron.mic.record.stop"]
 ```
 
