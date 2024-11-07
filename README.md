@@ -496,16 +496,6 @@ Action parameters: []
 ```json
 ["alias"]
 ```
-#### compare
-
-```diff
-! Compare values
-+ vapp・safe・python・js・swift・kotlin・godot・c++
-```
-
-```json
-["compare"]
-```
 
 ### expression
 
@@ -752,7 +742,7 @@ Action parameters: []
 #### not
 
 ```diff
-! Negation (inversion)
+! Negation (not)
 + safe・python・js・swift・kotlin・godot・c++
 ```
 
@@ -835,7 +825,7 @@ Action parameters: []
 #### ?
 
 ```diff
-! IF check
+! Check an expression for truth (IF)
 + safe・python・js・swift・kotlin・godot・c++
 ```
 
@@ -845,7 +835,7 @@ Action parameters: []
 #### ??
 
 ```diff
-! MATCH check
+! Multiple expression check (MATCH, SWITCH)
 + safe・python・js・swift・kotlin・godot・c++
 ```
 
@@ -855,7 +845,7 @@ Action parameters: []
 #### o
 
 ```diff
-! FOR, WHILE loop
+! Loop (FOR, WHILE)
 + safe・python・js・swift・kotlin・godot・c++
 ```
 
@@ -865,7 +855,7 @@ Action parameters: []
 #### x
 
 ```diff
-! Exit loop BREAK
+! Exit loop (BREAK)
 + safe・python・js・swift・kotlin・godot・c++
 ```
 
@@ -875,7 +865,7 @@ Action parameters: []
 #### >>>
 
 ```diff
-! Continue loop CONTINUE
+! Continue loop (CONTINUE)
 + safe・python・js・swift・kotlin・godot・c++
 ```
 
@@ -895,7 +885,7 @@ Action parameters: []
 #### _
 
 ```diff
-! Return action value RETURN
+! Return action value (RETURN)
 + safe・python・js・swift・kotlin・godot・c++
 ```
 
@@ -2030,7 +2020,7 @@ Action parameters: []
 #### hash
 
 ```diff
-! Random hash
+! Get a numeric hash of the text or a random hash
 + safe・python・js・swift・kotlin・godot・c++
 ```
 
@@ -2713,6 +2703,16 @@ Action parameters: []
 ```json
 ["file.backup"]
 ```
+#### file.compare
+
+```diff
+! Compare files
++ ask・python・js・swift・kotlin・godot・c++
+```
+
+```json
+["file.compare"]
+```
 #### dir.exists
 
 ```diff
@@ -2862,6 +2862,26 @@ Action parameters: []
 
 ```json
 ["dir.zip"]
+```
+#### dir.backup
+
+```diff
+! Backup directory
++ ask・python・js・swift・kotlin・godot・c++
+```
+
+```json
+["dir.backup"]
+```
+#### dir.compare
+
+```diff
+! Compare directories
++ ask・python・js・swift・kotlin・godot・c++
+```
+
+```json
+["dir.compare"]
 ```
 #### drive.list
 
