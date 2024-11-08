@@ -333,7 +333,7 @@ Action parameters: []
 
 ## Progress
 
-> Count of actions ・ **589**
+> Count of actions ・ **591**
 
 | **Name**           | **vapp** | **Python** |  **JS**    | **Swift** | **Kotlin** | **GDScript** |  **C++**  |
 | -------------- | ---- | ------ | ------ | ----- | ------ | -------- | ----- |
