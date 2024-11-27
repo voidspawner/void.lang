@@ -6991,9 +6991,9 @@ binary
 </table>
 
 ## V O I D license
-**⌜ V O I D license ⌟** is a license to distribute digital content and goods. Expressed in a single sentence.
+**⌜ V O I D license ⌟** is a license to distribute digital content and goods. Expressed in a single sentence:
 
-> Do what you want.
+> **DO WHAT YOU WANT**
 
 You can use it in both **private** and **open source**, embed it in **free** or **paid** products. **Modify**. Create your **own solutions** based on it. **No need to specify the author**.
 
