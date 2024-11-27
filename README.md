@@ -17,6 +17,7 @@
 [**Progress**](#progress)・
 [**Detail**](#detail)・
 [**V O I D format**](#v-o-i-d-format)・
+[**V O I D license**](#v-o-i-d-license)・
 [**V O I D os**](#v-o-i-d-os)・
 [**V O I D tech**](#v-o-i-d-tech)・
 [**V O I D ideology**](#v-o-i-d-ideology)・
@@ -6988,6 +6989,13 @@ binary
 </tr>
 
 </table>
+
+## V O I D license
+**⌜ V O I D license ⌟** is a license to distribute digital content and goods. Expressed in a single sentence.
+
+> Do what you want.
+
+You can use it in both **private** and **open source**, embed it in **free** or **paid** products. **Modify**. Create your **own solutions** based on it. **No need to specify the author**.
 
 ## V O I D os
 **[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
