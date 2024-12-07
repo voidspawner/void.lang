@@ -6934,9 +6934,9 @@ binary
         ☺☺☺
 binary in hex
     "b
-        A1 B2 C3 D4
-        E5 F6 F7 F8
-        F9 F0
+        56 20 4F 20 49
+        20 44 20 66 6F
+        72 6D 61 74
 ```
 
 </td>
