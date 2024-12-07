@@ -6962,6 +6962,10 @@ binary
         ["=", "var", 123],
         [".", "{var}"]
     ],
+    "json": {
+        "name 1": true,
+        "name 2": false
+    },
     "base64": "V O I D format",
     "base64 + gzip": "V O I D format",
     "binary": "with base64 only"
