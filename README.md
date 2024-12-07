@@ -6606,14 +6606,14 @@ c:\Users\name\Desktop
 <td>
 
 ```
-"\n\t\r\b\"\\"
+"\t\n\r\"\\"
 ```
 
 </td>
 <td>
 
 ```json
-"\n\t\r\b\"\\"
+"\t\n\r\"\\"
 ```
 
 </td>
@@ -6890,7 +6890,7 @@ text in a line
         a
         line
 escape
-    "\n\t\r\b\u1234\"\\"
+    "\t\n\r\"\\"
 int
     123 000
 float
@@ -6941,7 +6941,7 @@ binary
     "text": "text",
     "multiline text": "multiline\ntext",
     "text in a line": "textinaline",
-    "escape": "\n\t\r\b\u1234\"\\",
+    "escape": "\t\n\r\"\\",
     "int": 123000,
     "float": 1.23,
     "bool": true,
