@@ -6464,32 +6464,32 @@ Action parameters: []
 
 ```
 extension
-  .void
-  .txt
+    .void
+    .txt
 influenced by
-  json
-  yaml
-  csv
-  plain text
+    json
+    yaml
+    csv
+    plain text
 mime type
-  application/void
+    application/void
 value type
-  text
-  number
-  boolean
-  list
-  dictionary
-  null
-  binary
+    text
+    number
+    boolean
+    list
+    dictionary
+    null
+    binary
 indent
-  tab
-    \t
+    tab
+      \t
 separator
-  space
-    " "
+    space
+      " "
 newline
-  line feed
-    \n
+    line feed
+      \n
 ```
 
 ```
