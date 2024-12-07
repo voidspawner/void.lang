@@ -21,7 +21,7 @@
 [**V O I D os**](#v-o-i-d-os)・
 [**V O I D tech**](#v-o-i-d-tech)・
 [**V O I D ideology**](#v-o-i-d-ideology)・
-[**V O I D work**](#v-o-i-d-work)
+[**V O I D task**](#v-o-i-d-task)
 
 ## Preinstalled Language
 
