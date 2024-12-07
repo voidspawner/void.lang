@@ -6486,7 +6486,7 @@ indent
         \t
 separator
     space
-      " "
+        " "
 newline
     line feed
         \n
