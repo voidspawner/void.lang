@@ -6993,8 +6993,8 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D ideology
 **[⌜V O I D⌟](https://github.com/voidspawner/void.ideology)**  is not only about compact technologies, but also an **ideology** that shows where these technologies are taking us.
 
-## V O I D work
+## V O I D task
 > [!IMPORTANT]
 > By adding your code to a repository, you transfer the rights to the uploaded code to the owner of that repository **V O I D spawner**.
 
-Find out current **tasks** and **payment** at [**voidsp.com/task**](https://voidsp.com/task)
+Find out current **tasks** and **payment** at [**V O I D task**](https://github.com/voidspawner/void.task)
