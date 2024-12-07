@@ -6848,6 +6848,35 @@ other name
 <td>
 
 ```
+[
+    name
+        text
+
+    other name
+        123
+```
+
+</td>
+<td>
+
+```json
+[
+    {
+        "name": "text"
+    },
+    {
+        "other name": 123
+    }
+]
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
 text
     text
 multiline text
@@ -6917,7 +6946,13 @@ binary
     "float": 1.23,
     "bool": true,
     "empty": null,
-    "list": ["text", 1, true, false, null],
+    "list": [
+        "text",
+        1,
+        true,
+        false,
+        null
+    ],
     "dictionary": {
         "name 1": true,
         "name 2": true
