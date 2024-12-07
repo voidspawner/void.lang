@@ -6483,23 +6483,20 @@ value type
     binary
 indent
     tab
-      \t
+        \t
 separator
     space
       " "
 newline
     line feed
-      \n
+        \n
 ```
 
 ```
-void [1 2 3
-.
-void.decode "[1 2 3
-.
+void [1 2 3]
+void.decode "[1 2 3]"
 void.write path/to/file.void
 void.read path/to/file.void
-.
 ```
 
 <table>
@@ -6518,7 +6515,7 @@ text
 </td>
 <td>
 
-```jsonon
+```json
 "text"
 ```
 
@@ -6541,7 +6538,7 @@ text\ with\ space
 </td>
 <td>
 
-```jsonon
+```json
 "text with space"
 ```
 
@@ -6553,14 +6550,14 @@ text\ with\ space
 
 ```
 "
-  multiline
-  text
+    multiline
+    text
 ```
 
 </td>
 <td>
 
-```jsonon
+```json
 "multiline\ntext"
 ```
 
@@ -6572,16 +6569,16 @@ text\ with\ space
 
 ```
 '
-  text
-  in
-  a
-  line
+    text
+    in
+    a
+    line
 ```
 
 </td>
 <td>
 
-```jsonon
+```json
 "textinaline"
 ```
 
@@ -6598,7 +6595,7 @@ c:\Users\name\Desktop
 </td>
 <td>
 
-```jsonon
+```json
 "c:\\Users\\name\\Desktop"
 ```
 
@@ -6609,14 +6606,14 @@ c:\Users\name\Desktop
 <td>
 
 ```
-"\n\t\r\b\u1234\"\\"
+"\n\t\r\b\"\\"
 ```
 
 </td>
 <td>
 
-```jsonon
-"\n\t\r\b\u1234\"\\"
+```json
+"\n\t\r\b\"\\"
 ```
 
 </td>
@@ -6632,7 +6629,7 @@ c:\Users\name\Desktop
 </td>
 <td>
 
-```jsonon
+```json
 123
 ```
 
@@ -6649,7 +6646,7 @@ c:\Users\name\Desktop
 </td>
 <td>
 
-```jsonon
+```json
 -123
 ```
 
@@ -6666,7 +6663,7 @@ c:\Users\name\Desktop
 </td>
 <td>
 
-```jsonon
+```json
 0.123
 ```
 
@@ -6687,7 +6684,7 @@ c:\Users\name\Desktop
 </td>
 <td>
 
-```jsonon
+```json
 100000
 ```
 
@@ -6698,47 +6695,13 @@ c:\Users\name\Desktop
 <td>
 
 ```
-h0A
-```
-
-</td>
-<td>
-
-```jsonon
-10
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-b1010
-```
-
-</td>
-<td>
-
-```jsonon
-10
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
 true
 ```
 
 </td>
 <td>
 
-```jsonon
+```json
 true
 ```
 
@@ -6755,7 +6718,7 @@ false
 </td>
 <td>
 
-```jsonon
+```json
 false
 ```
 
@@ -6766,13 +6729,13 @@ false
 <td>
 
 ```
-null
+none
 ```
 
 </td>
 <td>
 
-```jsonon
+```json
 null
 ```
 
@@ -6787,13 +6750,13 @@ null
 text
 true
 false
-null
+none
 ```
 
 </td>
 <td>
 
-```jsonon
+```json
 [
   1,
   "text",
@@ -6811,30 +6774,30 @@ null
 
 ```
 [
-  [1 12.34 Name]
-  [2 56.78 Other\ name]
+    [1 12.34 Name]
+    [2 56.78 Other\ name]
 ]
 ```
 
 ```
 [
-  [1 12.34 Name
-  [2 56.78 "Other name
+    [1 12.34 Name
+    [2 56.78 "Other name
 ```
 
 ```
 []
-  1 12.34 Name
-  2 56.78 "Other name
+    1 12.34 Name
+    2 56.78 "Other name
 ```
 
 </td>
 <td>
 
-```jsonon
+```json
 [
-  [1, 12.34, "Name"],
-  [2, 56.78, "Other name"]
+    [1, 12.34, "Name"],
+    [2, 56.78, "Other name"]
 ]
 ```
 
@@ -6846,18 +6809,18 @@ null
 
 ```
 name
-  text
+    text
 other name
-  123
+    123
 ```
 
 </td>
 <td>
 
-```jsonon
+```json
 {
-  "name": "text",
-  "other name": 123
+    "name": "text",
+    "other name": 123
 }
 ```
 
@@ -6874,7 +6837,7 @@ other name
 </td>
 <td>
 
-```jsonon
+```json
 {"name": "text", "other name": 123}
 ```
 
@@ -6885,103 +6848,88 @@ other name
 <td>
 
 ```
-middle dot (·)
-  base64 auto decoding
-    b64·ViBPIEkgRCBmb3JtYXQ=
-  base64 + gzip
-    b64·eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
-  size before binary data
-    3·☺☺☺
-```
-
-</td>
-<td>
-
-```jsonon
-{
-  "middle dot (·)": {
-    "base64 auto decoding": "ViBPIEkgRCBmb3JtYXQ=",
-    "base64 + gzip": "eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==",
-    "size before binary data": "\u0001\u0001\u0001"
-  }
-}
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
 text
-  text
+    text
 multiline text
-  "
-    multiline
-    text
+    "
+        multiline
+        text
 text in a line
-  '
-    text
-    in
-    a
-    line
+    '
+        text
+        in
+        a
+        line
 escape
-  "\n\t\r\b\u1234\"\\"
+    "\n\t\r\b\u1234\"\\"
 int
-  123 000
+    123 000
 float
-  1.23
+    1.23
 bool
-  true
+    true
 empty
-  null
+    none
 list
-  text
-  1
-  true
-  false
-  null
+    text
+    1
+    true
+    false
+    none
 dictionary
-  name 1
-    true
-  name 2
-    true
+    name 1
+        true
+    name 2
+        true
 code
-  [. "Hi World :D
-  [= var 123
-  [. {var}
+    []
+        . "Hi World :D
+        = var 123
+        . {var}
+json
+    "json
+        {
+            "name 1": true,
+            "name 2": false
+        }
 base64
-  b64·ViBPIEkgRCBmb3JtYXQ=
+    "b
+        ViBPIEkgRCBmb3JtYXQ=
+base64 + gzip
+    "b
+        eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
 binary
-  3·☺☺☺
+    "b
+        3
+        ☺☺☺
 ```
 
 </td>
 <td>
 
-```jsonon
+```json
 {
-  "text": "text",
-  "multiline text": "multiline\ntext",
-  "text in a line": "textinaline",
-  "escape": "\n\t\r\b\u1234\"\\",
-  "int": 123000,
-  "float": 1.23,
-  "bool": true,
-  "empty": null,
-  "list": ["text", 1, true, false, null],
-  "dictionary": {
-    "name 1": true,
-    "name 2": true
-  },
-  "code": [
-    [".", "Hi World :D"],
-    ["=", "var", 123],
-    [".", "{var}"]
-  ],
-  "base64": "ViBPIEkgRCBmb3JtYXQ="
-  "binary": "\u0001\u0001\u0001"
+    "text": "text",
+    "multiline text": "multiline\ntext",
+    "text in a line": "textinaline",
+    "escape": "\n\t\r\b\u1234\"\\",
+    "int": 123000,
+    "float": 1.23,
+    "bool": true,
+    "empty": null,
+    "list": ["text", 1, true, false, null],
+    "dictionary": {
+        "name 1": true,
+        "name 2": true
+    },
+    "code": [
+        [".", "Hi World :D"],
+        ["=", "var", 123],
+        [".", "{var}"]
+    ],
+    "base64": "V O I D format",
+    "base64 + gzip": "V O I D format",
+    "binary": "with base64 only"
 }
 ```
 
