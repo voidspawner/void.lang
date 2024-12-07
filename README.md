@@ -6932,6 +6932,11 @@ binary
     "b
         3
         ☺☺☺
+binary in hex
+    "b
+        A1 B2 C3 D4
+        E5 F6 F7 F8
+        F9 F0
 ```
 
 </td>
@@ -6967,9 +6972,10 @@ binary
         "name 1": true,
         "name 2": false
     },
-    "base64": "V O I D format",
-    "base64 + gzip": "V O I D format",
-    "binary": "with base64 only"
+    "base64": "impossible to convert automatically",
+    "base64 + gzip": "impossible to convert automatically",
+    "binary": "impossible to convert automatically",
+    "binary in hex": "impossible to convert automatically"
 }
 ```
 
