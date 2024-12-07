@@ -6479,7 +6479,7 @@ value type
     boolean
     list
     dictionary
-    null
+    none
     binary
 indent
     tab
