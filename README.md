@@ -6470,6 +6470,7 @@ influenced by
     json
     yaml
     csv
+    python
     plain text
 mime type
     application/void
