@@ -6972,10 +6972,10 @@ binary in hex
         "name 1": true,
         "name 2": false
     },
-    "base64": "impossible",
-    "base64 + gzip": "impossible",
+    "base64": "need to convert",
+    "base64 + gzip": "need to convert",
     "binary": "impossible",
-    "binary in hex": "impossible"
+    "binary in hex": "need to convert"
 }
 ```
 
