@@ -6431,14 +6431,12 @@ separator
 newline
     line feed
         \n
-```
-
-```
-[]
-    void [1 2 3]
-    void.decode "[1 2 3]"
-    void.write path/to/file.void [1 2 3]
-    void.read path/to/file.void
+code
+    []
+        void [1 2 3]
+        void.decode "[1 2 3]"
+        void.write path/to/file.void [1 2 3]
+        void.read path/to/file.void
 ```
 
 <table>
