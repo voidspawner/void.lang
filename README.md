@@ -6877,6 +6877,9 @@ binary in hex
         56 20 4F 20 49
         20 44 20 66 6F
         72 6D 61 74
+binary in bin
+    "b
+        0000 1000 1111 0001
 ```
 
 </td>
@@ -6915,7 +6918,8 @@ binary in hex
     "base64": "need to convert",
     "base64 + gzip": "need to convert",
     "binary": "impossible",
-    "binary in hex": "need to convert"
+    "binary in hex": "need to convert",
+    "binary in bin": "need to convert"
 }
 ```
 
