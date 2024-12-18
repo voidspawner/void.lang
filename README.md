@@ -6856,12 +6856,6 @@ code
         . "Hi World :D
         = var 123
         . {var}
-json
-    "json
-        {
-            "name 1": true,
-            "name 2": false
-        }
 base64
     "b
         ViBPIEkgRCBmb3JtYXQ=
@@ -6911,10 +6905,6 @@ binary in bin
         ["=", "var", 123],
         [".", "{var}"]
     ],
-    "json": {
-        "name 1": true,
-        "name 2": false
-    },
     "base64": "need to convert",
     "base64 + gzip": "need to convert",
     "binary": "impossible",
