@@ -6411,6 +6411,7 @@ influenced by
     yaml
     csv
     python
+    assembly
     plain text
 mime type
     application/void
