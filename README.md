@@ -6936,6 +6936,6 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 
 ## V O I D task
 > [!IMPORTANT]
-> By adding your code to a repository, you transfer the rights to the uploaded code to the owner of that repository **V O I D spawner**.
+> By adding your code to the repository, you are publishing it under the **V O I D licence**
 
 Find out current **tasks** and **payment** at [**V O I D task**](https://github.com/voidspawner/void.task)
