@@ -6,7 +6,7 @@
 > [!IMPORTANT]
 > **The project is in the process of development.**
 
-<img src="https://i.imgur.com/kx2UcUh.jpg" width="100%">
+<img src="https://github.com/voidspawner/void.ideology/blob/main/asset/image/logo.jpg" width="100%">
 
 > [**About**](#about)・
 [**Preinstalled Language**](#preinstalled-language)・
