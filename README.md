@@ -6433,11 +6433,10 @@ newline
     line feed
         \n
 code
-    []
-        void [1 2 3]
-        void.decode "[1 2 3]"
-        void.write path/to/file.void [1 2 3]
-        void.read path/to/file.void
+    [void [1 2 3]]
+    [void.decode "[1 2 3]"]
+    [void.write path/to/file.void [1 2 3]]
+    [void.read path/to/file.void]
 ```
 
 <table>
