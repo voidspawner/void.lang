@@ -6845,6 +6845,8 @@ list
     true
     false
     none
+short list
+    [text 1 true false none]
 dictionary
     name 1
         true
@@ -6895,6 +6897,7 @@ binary in bin
         false,
         null
     ],
+    "short list": ["text", 1, true, false, null],
     "dictionary": {
         "name 1": true,
         "name 2": true
