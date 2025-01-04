@@ -6856,22 +6856,22 @@ code
         = var 123
         . {var}
 base64
-    "b
+    :
         ViBPIEkgRCBmb3JtYXQ=
 base64 + gzip
-    "b
+    :
         eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
 binary
-    "b
+    :
         3
         ☺☺☺
 binary in hex
-    "b
+    :
         56 20 4F 20 49
         20 44 20 66 6F
         72 6D 61 74
 binary in bin
-    "b
+    :
         0000 1000 1111 0001
 ```
 
