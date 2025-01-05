@@ -15,6 +15,8 @@
 [**How to Use Game Engine**](#how-to-use-game-engine)・
 [**Actions**](#actions)・
 [**V O I D format**](#v-o-i-d-format)・
+[**V O I D db**](#v-o-i-d-db)・
+[**V O I D ai**](#v-o-i-d-ai)・
 [**V O I D license**](#v-o-i-d-license)・
 [**V O I D os**](#v-o-i-d-os)・
 [**V O I D tech**](#v-o-i-d-tech)・
@@ -6950,6 +6952,10 @@ binary in bin
 > **V O I D format [highlighting](https://raw.githubusercontent.com/voidspawner/void.ideology/refs/heads/main/asset/settings/void.sublime-syntax)** for **[Sublime Text](https://sublimetext.com)**.
 >
 > ``Tools`` → ``Developer`` → ``New Syntax…`` → ``Copy · Paste`` → ``Save as void.sublime-syntax``
+
+## V O I D db
+
+## V O I D ai
 
 ## V O I D license
 **⌜ V O I D license ⌟** is a license to distribute digital content and goods. Expressed in a single sentence:
