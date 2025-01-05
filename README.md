@@ -6406,6 +6406,8 @@ The code is presented as **action name** and **action parameters**.
 extension
     .void
     .txt
+mime type
+    application/void
 influenced by
     json
     yaml
@@ -6425,8 +6427,6 @@ container
     subtitles
     font
     file
-mime type
-    application/void
 value type
     text
     number
