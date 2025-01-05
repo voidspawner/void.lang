@@ -6945,6 +6945,8 @@ binary in bin
 
 </table>
 
+**V O I D format [highlighting](https://raw.githubusercontent.com/voidspawner/void.ideology/refs/heads/main/asset/settings/void.sublime-syntax)** for **[Sublime Text](https://sublimetext.com)**.
+
 ## V O I D license
 **⌜ V O I D license ⌟** is a license to distribute digital content and goods. Expressed in a single sentence:
 
