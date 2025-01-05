@@ -6413,6 +6413,15 @@ influenced by
     python
     assembly
     plain text
+container
+    text
+    code
+    data
+    image
+    video
+    sound
+    3d
+    font
 mime type
     application/void
 value type
@@ -6433,10 +6442,24 @@ newline
     line feed
         \n
 code
-    [void [1 2 3]]
-    [void.decode "[1 2 3]"]
-    [void.write path/to/file.void [1 2 3]]
-    [void.read path/to/file.void]
+    encode
+        [void [1 2 3]]
+        .
+    decode
+        [void.decode "[1 2 3]"]
+        .
+    write
+        [void.write path/to/file.void [1 2 3]]
+        .
+    read
+        [void.read path/to/file.void]
+        .
+    compress
+        [file.void path/to/file]
+        [dir.void path/to/dir]
+    decompress
+        [unvoid path/to/file.void]
+        .
 ```
 
 <table>
