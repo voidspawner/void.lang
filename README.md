@@ -6421,8 +6421,8 @@ container
     image
     video
     sound
-    subtitles
     3d
+    subtitles
     font
     file
 mime type
