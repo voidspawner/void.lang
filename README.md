@@ -307,6 +307,8 @@ python void.py vapp.json
 [**social**](#social)・
 [**tech**](#tech)
 
+> Count of actions **``591``**
+
 The code is presented as **action name** and **action parameters**.
 
 > ```json
@@ -342,10 +344,6 @@ The code is presented as **action name** and **action parameters**.
 > **``local``** can be used in self-starting
 > 
 > **``ask``** ask permission before use
-
-####
-
-> Count of actions **``591``**
 
 ### value
 
