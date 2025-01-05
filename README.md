@@ -6422,6 +6422,7 @@ container
     sound
     3d
     font
+    file
 mime type
     application/void
 value type
