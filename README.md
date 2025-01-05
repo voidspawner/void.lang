@@ -6421,6 +6421,7 @@ container
     image
     video
     sound
+    subtitles
     3d
     font
     file
