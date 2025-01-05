@@ -6414,6 +6414,7 @@ influenced by
     assembly
     plain text
 container
+    settings
     text
     code
     data
