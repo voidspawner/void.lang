@@ -6947,13 +6947,13 @@ binary in bin
 </table>
 
 > [!TIP]
-> **V O I D format [highlighting](https://raw.githubusercontent.com/voidspawner/void.ideology/refs/heads/main/asset/settings/void.sublime-syntax)** for **[Sublime Text](https://sublimetext.com)**.
+> Use **V O I D format [highlighting 📃](https://raw.githubusercontent.com/voidspawner/void.ideology/refs/heads/main/asset/settings/void.sublime-syntax)** for **[Sublime Text](https://sublimetext.com)**.
 >
 > ``Tools`` → ``Developer`` → ``New Syntax…`` → ``Copy · Paste`` → ``Save as void.sublime-syntax``
 >
 > You can change the **color scheme** to alternate sections.
 > 
-> ``Preferences`` → ``Customize Color Scheme`` → ``New``
+> ``Preferences`` → ``Customize Color Scheme``
 >
 > ```json
 > {
