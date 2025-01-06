@@ -6892,7 +6892,10 @@ base64 + gzip
 binary
     *
         3
-        ☺☺☺
+        <00 01 02>
+binary jpeg
+    *
+        <FF D8 FF E0 00…>
 binary in hex
     *
         56 20 4F 20 49
@@ -6936,6 +6939,7 @@ binary in bin
     "base64": "need to convert",
     "base64 + gzip": "need to convert",
     "binary": "impossible",
+    "binary jpeg": "impossible",
     "binary in hex": "need to convert",
     "binary in bin": "need to convert"
 }
