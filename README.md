@@ -6976,6 +6976,42 @@ binary in bin
 > ```
 
 ## V O I D db
+A database that uses **V O I D** · **JSON** · **CSV** files for storage directly. Data is **cached**, **indexed** and **saved** automatically. **Easy access** to data without the need to create complex constructs.
+
+> **data.json**
+> ```json
+> {
+>   "name": {
+>     "subname": "value"
+>   },
+>   "list": [
+>     {
+>       "index": 1,
+>       "value": 1
+>     },
+>     {
+>       "index": 2,
+>       "value": 2
+>     }
+>   ]
+> }
+> ```
+>
+> ```
+> . {data.json/name.subname}
+> . {data.json/list.index.2.value}
+>```
+
+> **data.csv**
+> ```csv
+> index,text,value
+> 1,text 1,value 1
+> 2,text 2,value 2
+> ```
+>
+> ```
+> . {data.csv/index.2.value}
+>```
 
 ## V O I D ai
 
