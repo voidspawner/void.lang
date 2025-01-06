@@ -7017,18 +7017,31 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 **[Artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence)** that makes it easier to work with data. Third-party AI is currently connected.
 
 > **ChatGPT**
+> 
 >     talk, translate, generate text, generate code, generate image, image recognition
+>
 > **Stable Diffusion**
+>
 >     generate image and video, edit and resize image and video
+>
 > **TRELLIS**
+> 
 >     generate 3D objects
+> 
 > **Voice Cloning**
+> 
 >     generate voice
+> 
 > **speechrecognition**
+> 
 >     speech recognition
+> 
 > **gTTS**
+> 
 >     generate speech
+> 
 > **DeepL**
+> 
 >     translate text
 
 Work is underway to develop a custom AI that will run on a **[V O I D chip](https://github.com/voidspawner/void.tech#chip)**.
