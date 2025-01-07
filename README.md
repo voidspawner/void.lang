@@ -6964,11 +6964,11 @@ binary in bin
 >   "rules":
 >	  [
 >	    {
->	      "scope": "variable.odd",
+>	      "scope": "variable.void.odd",
 >	      "foreground": "hsl(185, 100%, 50%)"
 >	    },
 >	    {
->	      "scope": "variable.even",
+>	      "scope": "variable.void.even",
 >	      "foreground": "hsl(185, 100%, 80%)"
 >	    }
 >	  ]
