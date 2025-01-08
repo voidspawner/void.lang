@@ -7055,10 +7055,10 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > **Voice Cloning**
 >
 > ```
-> voice my-voice.mp3
 > say "Hi world :D"
+> voice
 > voice duck duck-voice.mp3
-> say.voice duck
+> voice duck
 > say "Hi world :D"
 > revoice my-voice.mp3 talk.mp3 my-talk.mp3
 > revoice duck talk.mp3 duck-talk.mp3
@@ -7067,17 +7067,17 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > **speechrecognition**
 >
 > ```
-> voice.recognize
-> voice.recognize talk.mp3
-> voice.recognize video.mp4
+> voice.text
+> voice.text talk.mp3
+> voice.text video.mp4
 > ```
 > 
 > **gTTS**
 >
 > ```
 > say "Hi world :D"
-> say.voice
-> say.voice name
+> voice
+> voice name
 > ```
 > 
 > **DeepL**
