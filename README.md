@@ -7034,16 +7034,16 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > ```
 > image "playing cats on the lawn" cats.jpg
 > video "playing cats on the lawn" cats.mp4
-> image.edit "remove the cat in the center and add more grass" cats.jpg cats-edited.jpg
-> image.color dogs.jpg dogs-colorized.jpg
-> image.style "cyberpunk" cats.jpg cats-cyberpunk.jpg
-> image.style "Van Gogh" cats.jpg cats-vangogh.jpg
-> image.nobg cats.jpg cats-without-background.png
+> fix "remove the cat in the center and add more grass" cats.jpg cats-edited.jpg
+> recolor dogs.jpg dogs-colorized.jpg
+> restyle "cyberpunk" cats.jpg cats-cyberpunk.jpg
+> restyle "Van Gogh" cats.jpg cats-vangogh.jpg
+> nobg cats.jpg cats-without-background.png
 > 2x cats.jpg cats-resize-2x.jpg
 > 4x cats.jpg cats-resize-4x.jpg
+> reface man.jpg child.jpg man-to-child.jpg
 > asset.character "a girl in a tight space suit without a helmet smiles welcomingly" girl.jpg
 > asset.pixel "brick walls 32x32" wall.png
-> face man.jpg child.jpg man-to-child.jpg
 > ```
 > 
 > **TRELLIS**
@@ -7053,20 +7053,34 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > ```
 > 
 > **Voice Cloning**
-> 
->     generate voice
+>
+> ```
+> voice my-voice.mp3
+> say "Hi world :D"
+> voice duck-voice.mp3 duck
+> say "Hi world :D" duck
+> revoice my-voice.mp3 talk.mp3 my-talk.mp3
+> ```
 > 
 > **speechrecognition**
-> 
->     speech recognition
+>
+> ```
+> recognize.speech
+> recognize.speech talk.mp3
+> recognize.speech video.mp4
+> ```
 > 
 > **gTTS**
-> 
->     generate speech
+>
+> ```
+> say "Hi world :D"
+> ```
 > 
 > **DeepL**
-> 
->     translate text
+>
+> ```
+> translate "你好，世界 :D"
+> ```
 
 Work is underway to develop a custom AI that will run on a **[V O I D chip](https://github.com/voidspawner/void.tech#chip)**.
 
