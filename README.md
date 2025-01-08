@@ -7025,8 +7025,8 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > translate "嗨，世界 :D"
 > translate "Hi world :D" portuguese
 > image "playing cats on the lawn" cats.jpg
-> recognition "what's in the lower left corner?" cats.jpg
-> code.ai "python mouse moving imitation"
+> recognize "what's in the lower left corner?" cats.jpg
+> code.ai "python mouse movement simulation"
 > ```
 >
 > **Stable Diffusion**
