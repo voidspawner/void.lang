@@ -7017,16 +7017,40 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 **[Artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence)** that makes it easier to work with data. Third-party AI is currently connected.
 
 > **ChatGPT**
-> 
->     talk ・ translate ・ generate text ・ code ・ image ・ image recognition
+>
+> ```
+> chat "radius of the Earth"
+> chat "tell me a story"
+> chat "translate to portuguese: Hi world :D"
+> translate "嗨，世界 :D"
+> translate "Hi world :D" portuguese
+> image "playing cats on the lawn" cats.jpg
+> recognition "what's in the lower left corner?" cats.jpg
+> code.ai "python mouse moving imitation"
+> ```
 >
 > **Stable Diffusion**
 >
->     generate image and video ・ edit ・ resize
->
-> **TRELLIS**
+> ```
+> image "playing cats on the lawn" cats.jpg
+> video "playing cats on the lawn" cats.mp4
+> image.edit "remove the cat in the center and add more grass" cats.jpg cats-edited.jpg
+> image.color dogs.jpg dogs-colorized.jpg
+> image.style "cyberpunk" cats.jpg cats-cyberpunk.jpg
+> image.style "Van Gogh" cats.jpg cats-vangogh.jpg
+> image.nobg cats.jpg cats-without-background.png
+> 2x cats.jpg cats-resize-2x.jpg
+> 4x cats.jpg cats-resize-4x.jpg
+> asset.character "a girl in a tight space suit without a helmet smiles welcomingly" girl.jpg
+> asset.pixel "brick walls 32x32" wall.png
+> face man.jpg child.jpg man-to-child.jpg
+> ```
 > 
->     generate 3D objects
+> **TRELLIS**
+>
+> ```
+> asset.3d "a white cat sits on a stack of books" cat.glb
+> ```
 > 
 > **Voice Cloning**
 > 
