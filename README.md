@@ -7067,9 +7067,9 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > **speechrecognition**
 >
 > ```
-> recognize.speech
-> recognize.speech talk.mp3
-> recognize.speech video.mp4
+> voice.recognize
+> voice.recognize talk.mp3
+> voice.recognize video.mp4
 > ```
 > 
 > **gTTS**
