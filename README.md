@@ -7057,9 +7057,11 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > ```
 > voice my-voice.mp3
 > say "Hi world :D"
-> voice duck-voice.mp3 duck
-> say "Hi world :D" duck
+> voice duck duck-voice.mp3
+> say.voice duck
+> say "Hi world :D"
 > revoice my-voice.mp3 talk.mp3 my-talk.mp3
+> revoice duck talk.mp3 duck-talk.mp3
 > ```
 > 
 > **speechrecognition**
@@ -7074,6 +7076,8 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 >
 > ```
 > say "Hi world :D"
+> say.voice
+> say.voice name
 > ```
 > 
 > **DeepL**
