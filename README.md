@@ -168,7 +168,7 @@
 ##### Run native code
 ```json
 [
-  ["code", "for i in range(10):print(i)"]
+  ["native", "for i in range(10):print(i)"]
 ]
 ```
 ##### Run Python code
@@ -7026,7 +7026,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > translate "Hi world :D" portuguese
 > image "playing cats on the lawn" cats.jpg
 > recognize "what's in the lower left corner?" cats.jpg
-> code.ai "python mouse movement simulation"
+> code "python mouse movement simulation"
 > ```
 >
 > **Stable Diffusion**
