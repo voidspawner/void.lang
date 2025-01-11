@@ -6895,6 +6895,7 @@ binary
         <00 01 02>
 binary jpeg
     *
+        jpeg
         <FF D8 FF E0 00…>
 binary in hex
     *
