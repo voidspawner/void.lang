@@ -6,7 +6,7 @@
 > [!IMPORTANT]
 > **The project is in the process of development.**
 
-<img src="https://github.com/voidspawner/void.ideology/blob/main/asset/image/logo.jpg" width="100%">
+  <img src="https://github.com/voidspawner/voidspawner.github.io/blob/main/site/image/logo.jpg" width="100%">
 
 > [**About**](#about)・
 [**Preinstalled Language**](#preinstalled-language)・
@@ -6954,7 +6954,7 @@ binary in bin
 </table>
 
 > [!TIP]
-> Use **V O I D format [highlighting 📃](https://raw.githubusercontent.com/voidspawner/void.ideology/refs/heads/main/asset/settings/void.sublime-syntax)** for **[Sublime Text](https://sublimetext.com)**.
+> Use **V O I D format [highlighting 📃](https://github.com/voidspawner/voidspawner.github.io/blob/main/site/settings/void.sublime-syntax)** for **[Sublime Text](https://sublimetext.com)**.
 >
 > ``Tools`` → ``Developer`` → ``New Syntax…`` → ``Copy · Paste`` → ``Save as void.sublime-syntax``
 >
