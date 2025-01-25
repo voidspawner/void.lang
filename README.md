@@ -7092,7 +7092,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 Work is underway to develop a custom AI that will run on a **[V O I D chip](https://github.com/voidspawner/void.tech#chip)**.
 
 ## V O I D game
-**[⌜V O I D game⌟](https://github.com/voidspawner/void.game)** is a game that creates an **infinite** number of games, v-apps and content.
+**[⌜V O I D game⌟](https://voidspawner.github.io)** is a game that creates an **infinite** number of games, v-apps and content.
 
 ## V O I D social
 **⌜ V O I D social ⌟** is a social network where you can **quickly** and **easily** communicate without words with people all over the world.
