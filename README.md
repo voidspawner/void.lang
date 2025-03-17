@@ -321,10 +321,10 @@ code
     decompress
         [file.unvoid path/to/file.void]
     encrypt
-        [file.encrypt.void path/to/file, key]
-        [dir.encrypt.void path/to/dir, key]
+        [file.void path/to/file key]
+        [dir.void path/to/dir key]
     decrypt
-        [file.decrypt.void, key]
+        [file.unvoid path/to/file.void key]
 ```
 
 <table>
