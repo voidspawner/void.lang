@@ -193,7 +193,7 @@ python void.py vapp.json
 python void.py vapp.void
 ```
 ```console
-python void.py vapp.py
+python void.py app.py
 ```
 
 > [!TIP]
