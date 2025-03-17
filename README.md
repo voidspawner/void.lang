@@ -863,17 +863,20 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > ```
 > . {data.json/name.subname}
 > . {data.json/list.index.2.value}
+> = data.json/list.index.2.value 3
 >```
 
 > ``data.csv``
 > ```csv
 > index,text,value
 > 1,text 1,value 1
-> 2,text 2,value 2
+> 5,text 5,value 5
 > ```
 >
 > ```
-> . {data.csv/index.2.value}
+> . {data.csv/index.5.value}
+> . {data.csv/1.value}
+> = data.csv/index.5.value 3
 >```
 
 ## V O I D ai
