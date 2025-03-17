@@ -190,7 +190,7 @@ print(void.decrypt(encrypted.text, encrypted.key))
 python void.py vapp.json
 ```
 ```console
-python void.py vapp.vapp
+python void.py vapp.void
 ```
 ```console
 python void.py vapp.py
