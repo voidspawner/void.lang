@@ -198,6 +198,9 @@ python void.py vapp.void
 ```console
 python void.py app.py
 ```
+```console
+python void.py "['.', 'Hi World :D']"
+```
 
 > [!TIP]
 > **Linux・macOS**: Add alias to **``~/.bashrc``** ・ **``~/.zshrc``** ・ **``~/.bash_profile``** (macOS)
