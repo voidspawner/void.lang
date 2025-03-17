@@ -237,12 +237,12 @@ python void.py app.py
 > void.exe game.json
 > ```
 >
-> **The archive contains run.json and all game files**
+> **The archive contains ``run.json`` and all game files**
 > ```console
 > void.exe game.zip
 > ```
 >
-> **The execution directory contains run.json and all game files or contains run.zip file**
+> **The execution directory contains ``run.json`` and all game files or contains ``run.zip`` file**
 > ```console
 > void.exe
 > ```
