@@ -780,7 +780,7 @@ binary
         3
         <00 01 02>
 binary short
-   *3*<00 01 02>
+   *3 <00 01 02>
 binary in hex
     *
         56 20 4F 20 49
