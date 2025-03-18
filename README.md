@@ -263,7 +263,19 @@ python void.py "['.', 'Hi World :D']"
 ## Actions
 
 > Count **``591``**
-
+>
+> [!NOTE]
+> **Use Help to display a description of the action**
+>
+> ```json
+> ["help"],
+> ["help", "upper"]
+> 
+> ```console
+> python void.py help
+> python void.py help upper
+> ```
+ 
 ## V O I D format
 **⌜ V O I D format ⌟** is the data format that inherits the best features of [**JSON**](https://en.wikipedia.org/wiki/JSON), [**YAML**](https://en.wikipedia.org/wiki/YAML), [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) and [**plain text**](https://en.wikipedia.org/wiki/Plain_text) formats. Makes it easier to write and read data, both by human and by program. The format simplifies data creation by removing the use of unnecessary quotation marks, brackets, colons, commas and other symbols. It is possible to combine **text** and **binary** data.
 
@@ -754,14 +766,14 @@ base64
 base64 + gzip
     *
         eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
+base64 short
+    *ViBPIEkgRCBmb3JtYXQ=
 binary
     *
         3
         <00 01 02>
-binary jpeg
-    *
-        jpeg
-        <FF D8 FF E0 00…>
+binary short
+   *3*<00 01 02>
 binary in hex
     *
         56 20 4F 20 49
@@ -804,8 +816,9 @@ binary in bin
     ],
     "base64": "need to convert",
     "base64 + gzip": "need to convert",
+    "base64 short": "need to convert",
     "binary": "impossible",
-    "binary jpeg": "impossible",
+    "binary short": "impossible",
     "binary in hex": "need to convert",
     "binary in bin": "need to convert"
 }
