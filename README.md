@@ -51,6 +51,12 @@
   [".", "Hi World :D"]
 ]
 ```
+##### Show current version
+```json
+[
+  "version"
+]
+```
 ##### Multilanguage text
 ```json
 {
@@ -263,13 +269,14 @@ python void.py "['.', 'Hi World :D']"
 ## Actions
 
 > Count **``591``**
->
+
 > [!NOTE]
 > **Use Help to display a description of the action**
 >
 > ```json
 > ["help"],
 > ["help", "upper"]
+> ```
 > 
 > ```console
 > python void.py help
