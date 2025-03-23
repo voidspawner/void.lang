@@ -1178,7 +1178,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > ```
 > voice "Hi world :D"
 > voice.capture my
-> voice "Hi world :D"
+> voice "Hi world :D" my
 > ```
 > 
 > **``Speech Recognition``**
@@ -1189,14 +1189,14 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > voice.recognize video.mp4
 > ```
 > 
-> **Google TTS**
+> **``Google TTS``**
 >
 > ```
 > google.voice "Hi world :D"
 > voice "Hi world :D"
 > ```
 > 
-> **DeepL**
+> **``DeepL``**
 >
 > ```
 > deepl.translate "你好，世界 :D"
