@@ -1109,7 +1109,7 @@ binary in bin
 ## V O I D db
 A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for storage directly. Data is **cached**, **indexed** and **saved** automatically. **Easy access** to data without the need to create complex constructs.
 
-> ``data.json``
+> **``data.json``**
 > ```json
 > {
 >   "name": {
@@ -1134,7 +1134,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > = data.json/list.index.2.value 3
 >```
 
-> ``data.csv``
+> **``data.csv``**
 > ```csv
 > index,text,value
 > 1,text 1,value 1
@@ -1150,8 +1150,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 ## V O I D ai
 **[Artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence)** that makes it easier to work with data. Third-party AI is currently connected.
 
-> **ChatGPT**
->
+> **``ChatGPT``**
 > ```
 > chat "radius of the Earth"
 > chat "tell me a story"
@@ -1159,64 +1158,48 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > translate "嗨，世界 :D"
 > translate "Hi world :D" portuguese
 > image "playing cats on the lawn" cats.jpg
-> recognize "what's in the lower left corner?" cats.jpg
-> code "python mouse movement simulation"
+> code python "mouse movement simulation"
 > ```
 >
-> **Stable Diffusion**
->
+> **``Stable Diffusion``**
 > ```
 > image "playing cats on the lawn" cats.jpg
 > video "playing cats on the lawn" cats.mp4
-> fix "remove the cat in the center and add more grass" cats.jpg cats-edited.jpg
-> recolor dogs.jpg dogs-colorized.jpg
-> restyle "cyberpunk" cats.jpg cats-cyberpunk.jpg
-> restyle "Van Gogh" cats.jpg cats-vangogh.jpg
-> nobg cats.jpg cats-without-background.png
-> 2x cats.jpg cats-resize-2x.jpg
-> 4x cats.jpg cats-resize-4x.jpg
-> reface man.jpg child.jpg man-to-child.jpg
-> asset.character "a girl in a tight space suit without a helmet smiles welcomingly" girl.jpg
-> asset.pixel "brick walls 32x32" wall.png
+> image.draw "remove the cat in the center and add more grass" cats.jpg cats-edited.jpg
+> image.colorize dogs.jpg dogs-colorized.jpg
+> image.style "cyberpunk" cats.jpg cats-cyberpunk.jpg
+> image.background cats.jpg cats-without-background.png
+> image.upscale cats.jpg cats-resize-2x.jpg
+> image.upscale cats.jpg cats-resize-4x.jpg 4
+> image.face man.jpg child.jpg man-to-child.jpg
 > ```
 > 
-> **TRELLIS**
->
+> **``Voice Cloning``**
 > ```
-> asset.3d "a white cat sits on a stack of books" cat.glb
-> ```
-> 
-> **Voice Cloning**
->
-> ```
-> say "Hi world :D"
-> voice
-> voice duck duck-voice.mp3
-> voice duck
-> say "Hi world :D"
-> revoice my-voice.mp3 talk.mp3 my-talk.mp3
-> revoice duck talk.mp3 duck-talk.mp3
+> voice "Hi world :D"
+> voice.capture my
+> voice "Hi world :D"
 > ```
 > 
-> **speechrecognition**
+> **``Speech Recognition``**
 >
 > ```
-> voice.text
-> voice.text talk.mp3
-> voice.text video.mp4
+> voice.recognize
+> voice.recognize talk.mp3
+> voice.recognize video.mp4
 > ```
 > 
-> **gTTS**
+> **Google TTS**
 >
 > ```
-> say "Hi world :D"
-> voice
-> voice name
+> google.voice "Hi world :D"
+> voice "Hi world :D"
 > ```
 > 
 > **DeepL**
 >
 > ```
+> deepl.translate "你好，世界 :D"
 > translate "你好，世界 :D"
 > ```
 
