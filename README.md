@@ -281,7 +281,7 @@ python void.py "['.', 'Hi World :D']"
 > python void.py help upper
 > ```
 
-> Count **``431``**
+> Count of actions **``431``**
 
 | <img width="1000" height="1"> | <img width="1000" height="1"> |
 | --- | --- |
