@@ -321,7 +321,7 @@ python void.py "['.', 'Hi World :D']"
 | **``~=``**<br>Elevation and assign value to a variable | **``cookie``**<br>Gets or sets a specified cookie |
 | **``!=``**<br>Check if values are not equal | **``cookie.remove``**<br>Removes a specified cookie from the client's storage |
 | **``&=``**<br>Bitwise AND and assign value to a variable | &nbsp; |
-| **``|=``**<br>Bitwise OR and assign value to a variable | **cloud** |
+| **``\|=``**<br>Bitwise OR and assign value to a variable | **cloud** |
 | **``^=``**<br>Bitwise XOR and assign value to a variable | **``cloud``**<br>Runs cloud storage or services for data management |
 | **``>>=``**<br>Right shift and assign value to a variable | **``cloud.file``**<br>Runs cloud storage |
 | **``<<=``**<br>Left shift and assign value to a variable | **``cloud.web``**<br>Runs WEB service |
