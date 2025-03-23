@@ -1084,11 +1084,11 @@ binary in bin
 > [!TIP]
 > Use **V O I D format [highlighting 📃](https://github.com/voidspawner/voidspawner.github.io/blob/main/site/settings/void.sublime-syntax)** for **[Sublime Text](https://sublimetext.com)**.
 >
-> ``Tools`` → ``Developer`` → ``New Syntax…`` → ``Copy · Paste`` → ``Save as void.sublime-syntax``
+> **``Tools``** → **``Developer``** → **``New Syntax…``** → **``Copy · Paste``** → **``Save as void.sublime-syntax``**
 >
 > You can change the **color scheme** to alternate sections.
 > 
-> ``Preferences`` → ``Customize Color Scheme``
+> **``Preferences``** → **``Customize Color Scheme``**
 >
 > ```json
 > {
