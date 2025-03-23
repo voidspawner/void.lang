@@ -268,6 +268,19 @@ python void.py "['.', 'Hi World :D']"
 
 ## Actions
 
+> [!NOTE]
+> **Use Help to display a description of the action**
+>
+> ```json
+> ["help"],
+> ["help", "upper"]
+> ```
+> 
+> ```console
+> python void.py help
+> python void.py help upper
+> ```
+
 > Count **``431``**
 
 | <img width="1000" height="1"> | <img width="1000" height="1"> |
@@ -294,7 +307,7 @@ python void.py "['.', 'Hi World :D']"
 | **``~``**<br>Elevation operator | **request** |
 | **``!``**<br>Perform logical negation | **``request``**<br>Sends an HTTP (GET by default) request to a specified URL |
 | **``&``**<br>Perform bitwise AND operation | **``request.post``**<br>Sends an HTTP POST request to a specified URL |
-| **``|``**<br>Perform bitwise OR operation | **``request.put``**<br>Sends an HTTP PUT request to a specified URL |
+| **``\|``**<br>Perform bitwise OR operation | **``request.put``**<br>Sends an HTTP PUT request to a specified URL |
 | **``^``**<br>Perform bitwise XOR operation | **``request.delete``**<br>Sends an HTTP DELETE request to a specified URL |
 | **``>>``**<br>Perform right bitwise shift operation | **``request.head``**<br>Sends an HTTP HEAD request to a specified URL |
 | **``<<``**<br>Perform left bitwise shift operation | &nbsp; |
@@ -514,24 +527,6 @@ python void.py "['.', 'Hi World :D']"
 | &nbsp; | &nbsp; |
 | &nbsp; | **game** |
 | &nbsp; | **``game``**<br>Create a custom game |
-
-> [!NOTE]
-> **Use Help to display a description of the action**
->
-> ```json
-> ["help"],
-> ["help", "upper"]
-> ```
-> 
-> ```console
-> python void.py help
-> python void.py help upper
-> ```
-
-| oooo | bbb |
-| ---- | ---- |
-| ###AAAA | bbbb |
-| cccc | dddd |
 
 ## V O I D format
 **⌜ V O I D format ⌟** is the data format that inherits the best features of [**JSON**](https://en.wikipedia.org/wiki/JSON), [**YAML**](https://en.wikipedia.org/wiki/YAML), [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) and [**plain text**](https://en.wikipedia.org/wiki/Plain_text) formats. Makes it easier to write and read data, both by human and by program. The format simplifies data creation by removing the use of unnecessary quotation marks, brackets, colons, commas and other symbols. It is possible to combine **text** and **binary** data.
