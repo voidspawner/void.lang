@@ -5,6 +5,8 @@ import platform
 import time
 import json
 import math
+import string
+import random
 
 class void:
 
@@ -24,9 +26,9 @@ class void:
 					'name': 'get',
 					'group': 'value',
 					'description': 'Retrieve a value based on provided parameter name',
-					'safe': False,
+					'safe': True,
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'param': [{'name': 'name', 'type': 'str', 'default': None}],
+					'param': [{'name': 'name', 'type': 'text', 'default': None}],
 					'example': [
 						{'code': [['get', 'description.about.name']], 'result': 'V O I D lang', 'test': False}
 					] 
@@ -65,7 +67,21 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['text', 123]], 'result': '123'},
+						{'code': [['text', 'title', {
+							'length': 10,
+							'align': 'center'
+						}]], 'result': '  title   '},
+						{'code': [['text', 100000, {
+							'before': '∞',
+							'after': ' monthly',
+							'group': ',',
+							'fraction': '.',
+							'dot': 3
+						}]], 'result': '∞100,000.000 monthly'},
+						{'code': [['text', 100000, 'price']], 'result': '∞100 000'}
+					]
 				},
 				'number': {
 					'name': 'type_number',
@@ -74,7 +90,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['number', '123']], 'result': 123},
+						{'code': [['number', 45.67]], 'result': 45.67}
+					]
 				},
 				'bool': {
 					'name': 'type_bool',
@@ -83,7 +102,12 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['bool', 1]], 'result': True},
+						{'code': [['bool', 'false']], 'result': False},
+						{'code': [['bool', None]], 'result': False},
+						{'code': [['bool', 'none']], 'result': False}
+					]
 				},
 				'list': {
 					'name': 'type_list',
@@ -92,7 +116,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['list', 1, 2, 3]], 'result': [1, 2, 3]},
+						{'code': [['list', 'a', 'b']], 'result': ['a', 'b']}
+					]
 				},
 				'dict': {
 					'name': 'type_dict',
@@ -101,7 +128,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dict', 'key', 'value']], 'result': {'key': 'value'}},
+						{'code': [['dict', 'a', 1, 'b', 2]], 'result': {'a': 1, 'b': 2}}
+					]
 				},
 				'binary': {
 					'name': 'type_binary',
@@ -110,7 +140,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['binary', 'a']], 'result': b'a'},
+						{'code': [['binary', 255]], 'result': bin(255)}
+					]
 				},
 				'n': {
 					'name': 'n',
@@ -119,7 +152,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['n', 'text']], 'result': 4},
+						{'code': [['n', [1, 2, 'a']]], 'result': 3},
+						{'code': [['n', {'a': 1, 'b': 2}]], 'result': 2}
+					]
 				},
 				'+': {
 					'name': None,
@@ -128,7 +165,12 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['+', 2, 3]], 'result': 5},
+						{'code': [['+', 'a', 'b']], 'result': 'ab'},
+						{'code': [['+', ['a'], ['b']]], 'result': ['a', 'b']},
+						{'code': [['+', {'a': 1, 'b': {'c': 3}}, {'c': 5}]], 'result': {'a': 1, 'b': {'c': 5}}},
+					]
 				},
 				'-': {
 					'name': None,
@@ -137,7 +179,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['-', 5, 2]], 'result': 3},
+						{'code': [['-', 10]], 'result': -10}
+					]
 				},
 				'*': {
 					'name': None,
@@ -146,7 +191,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['*', 3, 4]], 'result': 12},
+						{'code': [['*', 'a', 3]], 'result': 'aaa'}
+					]
 				},
 				'/': {
 					'name': None,
@@ -155,7 +203,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['/', 10, 2]], 'result': 5},
+						{'code': [['/', 7, 2]], 'result': 3.5}
+					]
 				},
 				'%': {
 					'name': None,
@@ -164,7 +215,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['%', 10, 3]], 'result': 1},
+						{'code': [['%', 15, 4]], 'result': 3}
+					]
 				},
 				'~': {
 					'name': None,
@@ -173,7 +227,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['~', 2, 3]], 'result': 8},
+						{'code': [['~', 10, 0]], 'result': 1},
+						{'code': [['~', 4, 0.5]], 'result': 2}
+					]
 				},
 				'!': {
 					'name': None,
@@ -182,7 +240,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['!', True]], 'result': False},
+						{'code': [['!', False]], 'result': True}
+					]
 				},
 				'&': {
 					'name': None,
@@ -191,7 +252,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['&', 5, 3]], 'result': 1},
+						{'code': [['&', 12, 7]], 'result': 4}
+					]
 				},
 				'|': {
 					'name': None,
@@ -200,7 +264,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['|', 5, 3]], 'result': 7},
+						{'code': [['|', 12, 7]], 'result': 15}
+					]
 				},
 				'^': {
 					'name': None,
@@ -209,7 +276,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['^', 5, 3]], 'result': 6},
+						{'code': [['^', 12, 7]], 'result': 11}
+					]
 				},
 				'>>': {
 					'name': None,
@@ -218,7 +288,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['>>', 16, 2]], 'result': 4},
+						{'code': [['>>', 255, 4]], 'result': 15}
+					]
 				},
 				'<<': {
 					'name': None,
@@ -227,7 +300,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['<<', 4, 2]], 'result': 16},
+						{'code': [['<<', 7, 3]], 'result': 56}
+					]
 				},
 				'=': {
 					'name': None,
@@ -236,7 +312,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 10]], 'result': 10},
+						{'code': [['=', 'name', 'John']], 'result': 'John'}
+					]
 				},
 				'+=': {
 					'name': None,
@@ -245,7 +324,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 5], ['+=', 'x', 3]], 'result': 8},
+						{'code': [['=', 's', 'a'], ['+=', 's', 'b']], 'result': 'ab'}
+					]
 				},
 				'=+': {
 					'name': None,
@@ -254,7 +336,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=+', 'x', 5, 3]], 'result': 8},
+						{'code': [['=+', 's', 'a', 'b']], 'result': 'ab'}
+					]
 				},
 				'-=': {
 					'name': None,
@@ -263,7 +348,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 10], ['-=', 'x', 4]], 'result': 6},
+						{'code': [['=', 'y', 7.5], ['-=', 'y', 2.5]], 'result': 5.0}
+					]
 				},
 				'*=': {
 					'name': None,
@@ -272,7 +360,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 3], ['*=', 'x', 4]], 'result': 12},
+						{'code': [['=', 's', 'a'], ['*=', 's', 3]], 'result': 'aaa'}
+					]
 				},
 				'/=': {
 					'name': None,
@@ -281,7 +372,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 10], ['/=', 'x', 2]], 'result': 5},
+						{'code': [['=', 'y', 7], ['/=', 'y', 2]], 'result': 3.5}
+					]
 				},
 				'%=': {
 					'name': None,
@@ -290,7 +384,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 10], ['%=', 'x', 3]], 'result': 1},
+						{'code': [['=', 'y', 15], ['%=', 'y', 4]], 'result': 3}
+					]
 				},
 				'~=': {
 					'name': None,
@@ -299,7 +396,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 2], ['~=', 'x', 3]], 'result': 8},
+						{'code': [['=', 'y', 5], ['~=', 'y', 0]], 'result': 1}
+					]
 				},
 				'!=': {
 					'name': None,
@@ -308,7 +408,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['!=', 5, 3]], 'result': True},
+						{'code': [['!=', 'a', 'a']], 'result': False}
+					]
 				},
 				'&=': {
 					'name': None,
@@ -317,7 +420,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 5], ['&=', 'x', 3]], 'result': 1},
+						{'code': [['=', 'y', 12], ['&=', 'y', 7]], 'result': 4}
+					]
 				},
 				'|=': {
 					'name': None,
@@ -326,7 +432,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 5], ['|=', 'x', 3]], 'result': 7},
+						{'code': [['=', 'y', 12], ['|=', 'y', 7]], 'result': 15}
+					]
 				},
 				'^=': {
 					'name': None,
@@ -335,7 +444,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 5], ['^=', 'x', 3]], 'result': 6},
+						{'code': [['=', 'y', 12], ['^=', 'y', 7]], 'result': 11}
+					]
 				},
 				'>>=': {
 					'name': None,
@@ -344,7 +456,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 16], ['>>=', 'x', 2]], 'result': 4},
+						{'code': [['=', 'y', 255], ['>>=', 'y', 4]], 'result': 15}
+					]
 				},
 				'<<=': {
 					'name': None,
@@ -353,7 +468,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['=', 'x', 4], ['<<=', 'x', 2]], 'result': 16},
+						{'code': [['=', 'y', 7], ['<<=', 'y', 3]], 'result': 56}
+					]
 				},
 				'==': {
 					'name': None,
@@ -362,7 +480,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['==', 5, 5]], 'result': True},
+						{'code': [['==', 'a', 'b']], 'result': False}
+					]
 				},
 				'>': {
 					'name': None,
@@ -371,7 +492,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['>', 5, 3]], 'result': True},
+						{'code': [['>', 2, 4]], 'result': False}
+					]
 				},
 				'<': {
 					'name': None,
@@ -380,7 +504,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['<', 3, 5]], 'result': True},
+						{'code': [['<', 4, 2]], 'result': False}
+					]
 				},
 				'<=': {
 					'name': None,
@@ -389,7 +516,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['<=', 3, 5]], 'result': True},
+						{'code': [['<=', 5, 5]], 'result': True},
+						{'code': [['<=', 6, 5]], 'result': False}
+					]
 				},
 				'>=': {
 					'name': None,
@@ -398,7 +529,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['>=', 5, 3]], 'result': True},
+						{'code': [['>=', 5, 5]], 'result': True},
+						{'code': [['>=', 4, 5]], 'result': False}
+					]
 				},
 				'not': {
 					'name': None,
@@ -407,7 +542,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['not', True]], 'result': False},
+						{'code': [['not', False]], 'result': True}
+					]
 				},
 				'and': {
 					'name': None,
@@ -416,7 +554,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['and', True, False]], 'result': False},
+						{'code': [['and', True, True]], 'result': True}
+					]
 				},
 				'or': {
 					'name': None,
@@ -425,7 +566,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['or', True, False]], 'result': True},
+						{'code': [['or', False, False]], 'result': False}
+					]
 				},
 				'xor': {
 					'name': None,
@@ -434,7 +578,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['xor', True, False]], 'result': True},
+						{'code': [['xor', True, True]], 'result': False}
+					]
 				},
 				'in': {
 					'name': None,
@@ -443,7 +590,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['in', 'a', ['a', 'b', 'c']]], 'result': True},
+						{'code': [['in', 'x', {'x': 1}]], 'result': True},
+						{'code': [['in', 'd', ['a', 'b', 'c']]], 'result': False}
+					]
 				},
 				'not in': {
 					'name': None,
@@ -452,7 +603,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['not in', 'd', ['a', 'b', 'c']]], 'result': True},
+						{'code': [['not in', 'y', {'x': 1}]], 'result': True},
+						{'code': [['not in', 'a', ['a', 'b', 'c']]], 'result': False}
+					]
 				},
 				'.': {
 					'name': 'print',
@@ -461,7 +616,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['.', 'Hello']], 'result': 'Hello'},
+						{'code': [['.', 42]], 'result': 42}
+					]
 				},
 				'..': {
 					'name': 'input',
@@ -470,7 +628,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['..', 'Enter name:']], 'test': False},
+						{'code': [['..']], 'test': False}
+					]
 				},
 				'?': {
 					'name': 'condition',
@@ -479,7 +640,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['?', ['>', 5, 3], 'yes', 'no']], 'result': 'yes'},
+						{'code': [['?', ['==', 2, 3], 'equal', 'not equal']], 'result': 'not equal'}
+					]
 				},
 				'o': {
 					'name': 'loop',
@@ -488,7 +652,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['o', ['<', 'i', 3], [['.', 'i'], ['=', 'i', ['+', 'i', 1]]]]], 'test': False},
+						{'code': [['o', ['<', 'i', 5], [['.', ['*', 'i', 2]], ['=', 'i', ['+', 'i', 1]]]]], 'test': False}
+					]
 				},
 				'x': {
 					'name': 'loop_break',
@@ -497,7 +664,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['o', True, [['.', 'looping'], ['?', ['==', 'i', 3], [['x']], []]]]], 'test': False}
+					]
 				},
 				'->': {
 					'name': 'loop_continue',
@@ -506,7 +675,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['o', ['<', 'i', 5], [['?', ['==', 'i', 2], [['->']], [['.', 'i']]]]]], 'test': False}
+					]
 				},
 				'<-': {
 					'name': 'loop_repeat',
@@ -515,7 +686,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['o', ['<', 'i', 3], [['?', ['==', 'i', 1], [['<-']], [['.', 'i']]]]]], 'test': False}
+					]
 				},
 				':': {
 					'name': 'action_return',
@@ -524,7 +697,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['action', 'test', [], [[':', 42]]], ['test']], 'result': 42},
+						{'code': [['action', 'square', ['x'], [[':', ['*', 'x', 'x']]]], ['square', 5]], 'result': 25}
+					]
 				},
 				'action': {
 					'name': 'action',
@@ -533,7 +709,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['action', 'greet', [], [['.', 'Hello!']]], ['greet']], 'test': False},
+						{'code': [['action', 'add', ['a', 'b'], [[':', ['+', 'a', 'b']]]], ['add', 2, 3]], 'result': 5}
+					]
 				},
 				'open': {
 					'name': 'open',
@@ -542,7 +721,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['open', 'https://example.com']], 'test': False},
+						{'code': [['open', 'file.txt']], 'test': False}
+					]
 				},
 				'code': {
 					'name': 'code',
@@ -551,7 +733,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['code', 'python', 'print("Hello from Python")']], 'test': False},
+						{'code': [['code', 'js', 'console.log("Hello from JS")']], 'test': False}
+					]
 				},
 				'X': {
 					'name': 'exit',
@@ -560,7 +745,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['X']], 'test': False},
+						{'code': [['?', ['==', 'status', 'error'], [['X']], []]], 'test': False}
+					]
 				},
 				'l': {
 					'name': 'l',
@@ -569,7 +757,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['l', 'Debug info']], 'test': False},
+						{'code': [['l', ['+', 'x=', 'x']]], 'test': False}
+					]
 				},
 				'convert': {
 					'name': 'convert',
@@ -578,7 +769,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['convert', 'json', {'x': 10}]], 'result': '{"x": 10}'},
+						{'code': [['convert', 'yaml', {'x': 10}]], 'result': 'x: 10\n'}
+					]
 				},
 				'export': {
 					'name': 'export',
@@ -587,7 +781,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['export', 'game']], 'test': False},
+						{'code': [['export', 'app', 'my_app']], 'test': False}
+					]
 				},
 				'update': {
 					'name': 'update',
@@ -596,7 +793,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['update']], 'test': False},
+						{'code': [['update', 'force']], 'test': False}
+					]
 				},
 				'test': {
 					'name': 'test',
@@ -605,11 +805,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [
-						{'name': 'name', 'type': 'str', 'default': None}
+						{'name': 'name', 'type': 'text', 'default': None}
 					],
 					'example': [
 						{'code': [['test']], 'test': False},
-						{'code': [['test', 'upper']]}
+						{'code': [['test', 'upper']], 'test': False}
 					]
 				},
 				'help': {
@@ -618,7 +818,7 @@ class void:
 					'description': 'Show description and use of the action',
 					'safe': True,
 					'param': [
-						{'name': 'name', 'type': 'str', 'default': None}
+						{'name': 'name', 'type': 'text', 'default': None}
 					],
 					'example': [
 						{'code': [['help']], 'test': False},
@@ -631,8 +831,15 @@ class void:
 					'description': 'Perform a void action on the hash',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
-					'param': [],
-					'example': []
+					'param': [
+						{'name': 'hash', 'type': 'text', 'default': None},
+						{'name': 'data', 'type': 'any', 'default': None}
+					],
+					'example': [
+						{'code': [['void', 'hash']], 'test': False},
+						{'code': [['void', 'hash', {'text': 'comment'}]], 'test': False},
+						{'code': [['void', 'hash', 'camera.on']], 'test': False}
+					]
 				},
 				'lower': {
 					'name': 'lower',
@@ -641,7 +848,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['lower', 'TeXt']], 'result': 'text'}
+					]
 				},
 				'upper': {
 					'name': 'upper',
@@ -650,7 +859,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['upper', 'text']], 'result': 'TEXT'},
+						{'code': [['upper', 'text and text', 'title']], 'result': 'Text And Text'},
+						{'code': [['upper', 'text and text', 'sentence']], 'result': 'Text and text'}
+					]
 				},
 				'starts': {
 					'name': 'starts',
@@ -659,7 +872,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['starts', 'hello world', 'hell']], 'result': True},
+						{'code': [['starts', 'hello world', 'world']], 'result': False}
+					]
 				},
 				'ends': {
 					'name': 'ends',
@@ -668,7 +884,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ends', 'hello world', 'world']], 'result': True},
+						{'code': [['ends', 'hello world', 'hello']], 'result': False}
+					]
 				},
 				'strip': {
 					'name': 'strip',
@@ -677,7 +896,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['strip', '  hello  ']], 'result': 'hello'},
+						{'code': [['strip', '\ttext\n']], 'result': 'text'}
+					]
 				},
 				'strip.start': {
 					'name': 'strip_start',
@@ -686,7 +908,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True, 
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['strip.start', '  hello  ']], 'result': 'hello  '},
+						{'code': [['strip.start', '\ttext\n']], 'result': 'text\n'}
+					]
 				},
 				'strip.end': {
 					'name': 'strip_end',
@@ -695,7 +920,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['strip.end', '  hello  ']], 'result': '  hello'},
+						{'code': [['strip.end', '\ttext\n']], 'result': '\ttext'}
+					]
 				},
 				'replace': {
 					'name': 'replace',
@@ -704,7 +932,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['replace', 'hello world', 'world', 'there']], 'result': 'hello there'},
+						{'code': [['replace', 'aabbcc', 'b', 'x']], 'result': 'aaxxcc'}
+					]
 				},
 				'find': {
 					'name': 'find',
@@ -713,7 +944,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['find', 'hello world', 'world']], 'result': 6},
+						{'code': [['find', 'abcabc', 'b']], 'result': 1}
+					]
 				},
 				'parse': {
 					'name': 'parse',
@@ -722,7 +956,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['parse', 'json', '{"x": 5}']], 'result': {'x': 5}},
+						{'code': [['parse', 'number', '42']], 'result': 42}
+					]
 				},
 				'similar': {
 					'name': 'similar',
@@ -731,7 +968,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['similar', 'hello', 'hallo']], 'result': 0.8, 'round': 1},
+						{'code': [['similar', 'cat', 'dog']], 'result': 0.0, 'round': 1}
+					]
 				},
 				'part': {
 					'name': 'part',
@@ -740,7 +980,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['part', 'hello world', 0, 5]], 'result': 'hello'},
+						{'code': [['part', 'abcdef', 2, 4]], 'result': 'cd'}
+					]
 				},
 				'split': {
 					'name': 'split',
@@ -749,7 +992,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['split', 'a,b,c', ',']], 'result': ['a', 'b', 'c']},
+						{'code': [['split', 'one two three', ' ']], 'result': ['one', 'two', 'three']}
+					]
 				},
 				'join': {
 					'name': 'join',
@@ -758,7 +1004,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['join', ['a', 'b', 'c'], ',']], 'result': 'a,b,c'},
+						{'code': [['join', ['2023', '12', '31'], '-']], 'result': '2023-12-31'}
+					]
 				},
 				'date': {
 					'name': 'date',
@@ -767,7 +1016,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['date', 'format', '2023-01-01', '%Y-%m-%d']], 'result': '2023-01-01'},
+						{'code': [['date', 'parse', '2023-01-01', '%Y-%m-%d']], 'result': {'year': 2023, 'month': 1, 'day': 1}}
+					]
 				},
 				'escape': {
 					'name': 'escape',
@@ -776,7 +1028,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['escape', 'Line\nBreak']], 'result': 'Line\\nBreak'},
+						{'code': [['escape', 'Quote\'Here']], 'result': 'Quote\\\'Here'}
+					]
 				},
 				'escape.html': {
 					'name': 'escape_html',
@@ -785,7 +1040,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['escape.html', '<div>Test</div>']], 'result': '&lt;div&gt;Test&lt;/div&gt;'},
+						{'code': [['escape.html', '\'Quote\'']], 'result': '&quot;Quote&quot;'}
+					]
 				},
 				'escape.url': {
 					'name': 'escape_url',
@@ -794,7 +1052,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['escape.url', 'hello world']], 'result': 'hello%20world'},
+						{'code': [['escape.url', 'a/b?c=d']], 'result': 'a%2Fb%3Fc%3Dd'}
+					]
 				},
 				'escape.sql': {
 					'name': 'escape_sql',
@@ -803,7 +1064,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['escape.sql', 'O\'Reilly']], 'result': 'O\'Reilly'},
+						{'code': [['escape.sql', 'x\' OR 1=1 --']], 'result': 'x\\\' OR 1=1 --'}
+					]
 				},
 				'unescape': {
 					'name': 'unescape',
@@ -812,7 +1076,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['unescape', 'Line\\nBreak']], 'result': 'Line\nBreak'},
+						{'code': [['unescape', 'Quote\\\'Here']], 'result': 'Quote\'Here'}
+					]
 				},
 				'unescape.html': {
 					'name': 'unescape_html',
@@ -821,7 +1088,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['unescape.html', '&lt;div&gt;Test&lt;/div&gt;']], 'result': '<div>Test</div>'},
+						{'code': [['unescape.html', '&quot;Quote&quot;']], 'result': '\'Quote\''}
+					]
 				},
 				'unescape.url': {
 					'name': 'unescape_url',
@@ -830,7 +1100,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['unescape.url', 'hello%20world']], 'result': 'hello world'},
+						{'code': [['unescape.url', 'a%2Fb%3Fc%3Dd']], 'result': 'a/b?c=d'}
+					]
 				},
 				'unescape.sql': {
 					'name': 'unescape_sql',
@@ -839,7 +1112,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['unescape.sql', 'O''Reilly']], 'result': 'O\'Reilly'},
+						{'code': [['unescape.sql', 'x\\\' OR 1=1 --']], 'result': 'x\' OR 1=1 --'}
+					]
 				},
 				'letters': {
 					'name': 'letters',
@@ -848,7 +1124,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['letters', 'Test 123!']], 'result': 'Test'},
+						{'code': [['letters', 'A1B2C3']], 'result': 'ABC'}
+					]
 				},
 				'words': {
 					'name': 'words',
@@ -857,7 +1136,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['words', 'Hello world! How are you?']], 'result': ['Hello', 'world', 'How', 'are', 'you']},
+						{'code': [['words', 'one,two,three', ',']], 'result': ['one', 'two', 'three']}
+					]
 				},
 				'sentences': {
 					'name': 'sentences',
@@ -866,7 +1148,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sentences', 'First sentence. Second one! Third?']], 'result': ['First sentence', 'Second one', 'Third']},
+						{'code': [['sentences', 'Line 1.Line 2']], 'result': ['Line 1', 'Line 2']}
+					]
 				},
 				'lines': {
 					'name': 'lines',
@@ -875,7 +1160,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['lines', 'line1\nline2\nline3']], 'result': ['line1', 'line2', 'line3']},
+						{'code': [['lines', 'a\r\nb\r\nc']], 'result': ['a', 'b', 'c']}
+					]
 				},
 				'bytes': {
 					'name': 'bytes',
@@ -884,7 +1172,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['bytes', 'hello', 'utf-8']], 'result': [104, 101, 108, 108, 111]},
+						{'code': [['bytes', 'test']], 'result': [116, 101, 115, 116]}
+					]
 				},
 				'merge': {
 					'name': 'merge',
@@ -893,7 +1184,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['merge', [1, 2], [3, 4]]], 'result': [1, 2, 3, 4]},
+						{'code': [['merge', ['a'], ['b', 'c']]], 'result': ['a', 'b', 'c']}
+					]
 				},
 				'push': {
 					'name': 'push',
@@ -902,7 +1196,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['push', [1, 2], 3]], 'result': [1, 2, 3]},
+						{'code': [['push', [], 'new']], 'result': ['new']}
+					]
 				},
 				'pop': {
 					'name': 'pop',
@@ -911,7 +1208,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['pop', [1, 2, 3]]], 'result': 3},
+						{'code': [['pop', ['a']]], 'result': 'a'}
+					]
 				},
 				'reverse': {
 					'name': 'reverse',
@@ -920,7 +1220,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['reverse', [1, 2, 3]]], 'result': [3, 2, 1]},
+						{'code': [['reverse', ['a', 'b']]], 'result': ['b', 'a']}
+					]
 				},
 				'shuffle': {
 					'name': 'shuffle',
@@ -929,7 +1232,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['shuffle', [1, 2, 3, 4]]], 'test': False},
+						{'code': [['shuffle', ['a', 'b', 'c']]], 'test': False}
+					]
 				},
 				'map': {
 					'name': 'map',
@@ -938,7 +1244,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['map', [1, 2, 3], ['*', 'item', 2]]], 'result': [2, 4, 6]},
+						{'code': [['map', ['a', 'b'], ['upper', 'item']]], 'result': ['A', 'B']}
+					]
 				},
 				'reduce': {
 					'name': 'reduce',
@@ -947,7 +1256,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['reduce', [1, 2, 3, 4], ['+', 'acc', 'item'], 0]], 'result': 10},
+						{'code': [['reduce', [2, 3, 4], ['*', 'acc', 'item'], 1]], 'result': 24}
+					]
 				},
 				'names': {
 					'name': 'names',
@@ -956,7 +1268,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['names', {'x': 1, 'y': 2}]], 'result': ['x', 'y']},
+						{'code': [['names', ['a', 'b', 'c']]], 'result': ['0', '1', '2']}
+					]
 				},
 				'values': {
 					'name': 'values',
@@ -965,7 +1280,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['values', {'x': 1, 'y': 2}]], 'result': [1, 2]},
+						{'code': [['values', ['a', 'b', 'c']]], 'result': ['a', 'b', 'c']}
+					]
 				},
 				'sin': {
 					'name': 'sin',
@@ -996,7 +1314,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['tan', 0.1]], 'result': 0.1, 'round': 3}
+					]
 				},
 				'sinh': {
 					'name': 'sinh',
@@ -1005,7 +1325,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sinh', 0.1]], 'result': 0.1, 'round': 3}
+					]
 				},
 				'cosh': {
 					'name': 'cosh',
@@ -1014,7 +1336,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cosh', 0.1]], 'result': 1.005, 'round': 3}
+					]
 				},
 				'tanh': {
 					'name': 'tanh',
@@ -1023,7 +1347,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['tanh', 0.1]], 'result': 0.1, 'round': 3}
+					]
 				},
 				'asin': {
 					'name': 'asin',
@@ -1032,7 +1358,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['asin', 0.1]], 'result': 0.1, 'round': 3}
+					]
 				},
 				'acos': {
 					'name': 'acos',
@@ -1041,7 +1369,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['acos', 0.1]], 'result': 1.471, 'round': 3}
+					]
 				},
 				'atan': {
 					'name': 'atan',
@@ -1050,7 +1380,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['atan', 0.1]], 'result': 0.1, 'round': 3}
+					]
 				},
 				'asinh': {
 					'name': 'asinh',
@@ -1059,7 +1391,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['asinh', 0.1]], 'result': 0.1, 'round': 3}
+					]
 				},
 				'acosh': {
 					'name': 'acosh',
@@ -1068,7 +1402,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['acosh', 2]], 'result': 1.317, 'round': 3}
+					]
 				},
 				'atanh': {
 					'name': 'atanh',
@@ -1077,7 +1413,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['atanh', 0.1]], 'result': 0.1, 'round': 3}
+					]
 				},
 				'round': {
 					'name': 'round',
@@ -1086,7 +1424,12 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['round', 0.1]], 'result': 0},
+						{'code': [['round', 0.7]], 'result': 1},
+						{'code': [['round', -0.7]], 'result': -1},
+						{'code': [['round', 0.123, 2]], 'result': 0.12}
+					]
 				},
 				'floor': {
 					'name': 'floor',
@@ -1095,7 +1438,12 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['floor', 0.1]], 'result': 0},
+						{'code': [['floor', 0.1]], 'result': 0},
+						{'code': [['floor', 0.7]], 'result': 0},
+						{'code': [['floor', -0.7]], 'result': -1}
+					]
 				},
 				'ceil': {
 					'name': 'ceil',
@@ -1104,7 +1452,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ceil', 0.1]], 'result': 1},
+						{'code': [['ceil', 0.7]], 'result': 1},
+						{'code': [['ceil', -0.7]], 'result': 0}
+					]
 				},
 				'log': {
 					'name': 'log',
@@ -1113,7 +1465,11 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['log', 0.1]], 'result': -2.303, 'round': 3},
+						{'code': [['log', 0.1, 2]], 'result': -3.322, 'round': 3},
+						{'code': [['log', 0.1, 10]], 'result': -1, 'round': 3}
+					]
 				},
 				'factorial': {
 					'name': 'factorial',
@@ -1122,7 +1478,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['factorial', 5]], 'result': 120},
+						{'code': [['factorial', 0]], 'result': 1}
+					]
 				},
 				'fibonacci': {
 					'name': 'fibonacci',
@@ -1131,7 +1490,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['fibonacci', 5]], 'result': [0, 1, 1, 2, 3]},
+						{'code': [['fibonacci', 7]], 'result': [0, 1, 1, 2, 3, 5, 8]}
+					]
 				},
 				'gold': {
 					'name': 'gold',
@@ -1140,7 +1502,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['gold', 10]], 'result': {'short': 0, 'large': 0, 'total': 0}, 'round': 3},
+						{'code': [['gold', 10, 'short']], 'result': {'short': 0, 'large': 0, 'total': 0}, 'round': 3},
+					]
 				},
 				'abs': {
 					'name': 'abs',
@@ -1149,7 +1514,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['abs', -5]], 'result': 5},
+						{'code': [['abs', 3.14]], 'result': 3.14}
+					]
 				},
 				'min': {
 					'name': 'min',
@@ -1158,7 +1526,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['min', 5, 3, 8, 1]], 'result': 1},
+						{'code': [['min', -2, -5, 0]], 'result': -5}
+					]
 				},
 				'max': {
 					'name': 'max',
@@ -1167,7 +1538,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['max', 5, 3, 8, 1]], 'result': 8},
+						{'code': [['max', -2, -5, 0]], 'result': 0}
+					]
 				},
 				'avg': {
 					'name': 'avg',
@@ -1176,7 +1550,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['avg', 1, 2, 3, 4, 5]], 'result': 3},
+						{'code': [['avg', 10, 20]], 'result': 15}
+					]
 				},
 				'sum': {
 					'name': 'sum',
@@ -1185,7 +1562,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sum', 1, 2, 3, 4, 5]], 'result': 15},
+						{'code': [['sum', 10, 20, 30]], 'result': 60}
+					]
 				},
 				'random': {
 					'name': 'random',
@@ -1194,7 +1574,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['random']], 'result': 0.5488, 'round': 4}
+					]
 				},
 				'random.seed': {
 					'name': 'random_seed',
@@ -1203,7 +1585,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['random.seed', 42]], 'result': None}
+					]
 				},
 				't': {
 					'name': 't',
@@ -1212,7 +1596,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['t', 'start']], 'result': None},
+						{'code': [['t', 'stop']], 'result': 1.234, 'round': 3}
+					]
 				},
 				'time': {
 					'name': 'time',
@@ -1221,7 +1608,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['time']], 'result': 1678901234}
+					]
 				},
 				'timer': {
 					'name': 'timer',
@@ -1230,7 +1619,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['timer', 'start', 5]], 'result': 'timer_id_1'}
+					]
 				},
 				'timer.remove': {
 					'name': 'timer_remove',
@@ -1239,7 +1630,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['timer.remove', 'timer_id_1']], 'result': True}
+					]
 				},
 				'timepast': {
 					'name': 'timepast',
@@ -1248,7 +1641,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['timepast', 1678901200]], 'result': 34}
+					]
 				},
 				'wait': {
 					'name': 'wait',
@@ -1257,7 +1652,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['wait', 1.5]], 'result': None}
+					]
 				},
 				'encrypt': {
 					'name': 'encrypt',
@@ -1266,7 +1663,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['encrypt', 'secret', 'mykey']], 'result': 'aGVsbG8='}
+					]
 				},
 				'decrypt': {
 					'name': 'decrypt',
@@ -1275,7 +1674,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['decrypt', 'aGVsbG8=', 'mykey']], 'result': 'secret'}
+					]
 				},
 				'hash': {
 					'name': 'hash',
@@ -1284,7 +1685,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['hash', 'hello']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
+					]
 				},
 				'uuid': {
 					'name': 'uuid',
@@ -1293,7 +1696,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['uuid']], 'result': '550e8400-e29b-41d4-a716-446655440000'}
+					]
 				},
 				'md5': {
 					'name': 'md5',
@@ -1302,7 +1707,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['md5', 'hello']], 'result': '5d41402abc4b2a76b9719d911017c592'}
+					]
 				},
 				'sha1': {
 					'name': 'sha1',
@@ -1311,7 +1718,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sha1', 'hello']], 'result': 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d'}
+					]
 				},
 				'sha256': {
 					'name': 'sha256',
@@ -1320,7 +1729,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sha256', 'hello']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
+					]
 				},
 				'sha512': {
 					'name': 'sha512',
@@ -1329,7 +1740,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sha512', 'hello']], 'result': '9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043'}
+					]
 				},
 				'crc32': {
 					'name': 'crc32',
@@ -1338,7 +1751,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['crc32', 'hello']], 'result': 907060870}
+					]
 				},
 				'base64.encode': {
 					'name': 'base64_encode',
@@ -1347,7 +1762,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['base64.encode', 'hello']], 'result': 'aGVsbG8='}
+					]
 				},
 				'base64.decode': {
 					'name': 'base64_decode',
@@ -1356,7 +1773,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['base64.decode', 'aGVsbG8=']], 'result': 'hello'}
+					]
 				},
 				'gzip.encode': {
 					'name': 'gzip_encode',
@@ -1365,7 +1784,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['gzip.encode', 'hello']], 'result': 'H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA=='}
+					]
 				},
 				'gzip.decode': {
 					'name': 'gzip_decode',
@@ -1374,7 +1795,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['gzip.decode', 'H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==']], 'result': 'hello'}
+					]
 				},
 				'rsa.encode': {
 					'name': 'rsa_encode',
@@ -1383,7 +1806,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['rsa.encode', 'secret', 'public_key']], 'result': 'encrypted_data'}
+					]
 				},
 				'rsa.decode': {
 					'name': 'rsa_decode',
@@ -1392,7 +1817,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['rsa.decode', 'encrypted_data', 'private_key']], 'result': 'secret'}
+					]
 				},
 				'rsa.public': {
 					'name': 'rsa_public',
@@ -1401,7 +1828,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['rsa.public']], 'result': 'public_key'}
+					]
 				},
 				'rsa.private': {
 					'name': 'rsa_private',
@@ -1410,7 +1839,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['rsa.private']], 'result': 'private_key'}
+					]
 				},
 				'ssl.encode': {
 					'name': 'ssl_encode',
@@ -1419,7 +1850,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ssl.encode', 'data']], 'result': 'encrypted_ssl_data'}
+					]
 				},
 				'ssl.decode': {
 					'name': 'ssl_decode',
@@ -1428,7 +1861,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ssl.decode', 'encrypted_ssl_data']], 'result': 'data'}
+					]
 				},
 				'ssl.check': {
 					'name': 'ssl_check',
@@ -1437,7 +1872,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ssl.check', 'certificate']], 'result': True}
+					]
 				},
 				'bcrypt.encode': {
 					'name': 'bcrypt_encode',
@@ -1446,7 +1883,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['bcrypt.encode', 'password']], 'result': '$2a$12$saltpasswordhash'}
+					]
 				},
 				'bcrypt.check': {
 					'name': 'bcrypt_check',
@@ -1455,7 +1894,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['bcrypt.check', 'password', '$2a$12$saltpasswordhash']], 'result': True}
+					]
 				},
 				'file': {
 					'name': 'file',
@@ -1464,7 +1905,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file', 'read', 'test.txt']], 'result': 'file contents'},
+						{'code': [['file', 'write', 'test.txt', 'new content']], 'result': True}
+					]
 				},
 				'file.exists': {
 					'name': 'file_exists',
@@ -1473,7 +1917,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.exists', 'test.txt']], 'result': True}
+					]
 				},
 				'file.read': {
 					'name': 'file_read',
@@ -1482,7 +1928,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.read', 'test.txt']], 'result': 'file contents'}
+					]
 				},
 				'file.read.text': {
 					'name': 'file_read_text',
@@ -1491,7 +1939,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.read.text', 'test.txt']], 'result': 'text content'}
+					]
 				},
 				'file.read.lines': {
 					'name': 'file_read_lines',
@@ -1500,7 +1950,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.read.lines', 'test.txt']], 'result': ['line1', 'line2', 'line3']}
+					]
 				},
 				'file.write': {
 					'name': 'file_write',
@@ -1509,7 +1961,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.write', 'test.txt', 'new content']], 'result': True}
+					]
 				},
 				'file.append': {
 					'name': 'file_append',
@@ -1518,7 +1972,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.append', 'test.txt', 'appended content']], 'result': True}
+					]
 				},
 				'file.remove': {
 					'name': 'file_remove',
@@ -1527,7 +1983,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.remove', 'test.txt']], 'result': True}
+					]
 				},
 				'file.move': {
 					'name': 'file_move',
@@ -1536,7 +1994,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.move', 'old.txt', 'new.txt']], 'result': True}
+					]
 				},
 				'file.copy': {
 					'name': 'file_copy',
@@ -1545,7 +2005,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.copy', 'source.txt', 'dest.txt']], 'result': True}
+					]
 				},
 				'file.rename': {
 					'name': 'file_rename',
@@ -1554,7 +2016,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.rename', 'old.txt', 'new.txt']], 'result': True}
+					]
 				},
 				'file.link': {
 					'name': 'file_link',
@@ -1563,7 +2027,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.link', 'source.txt', 'link.txt']], 'result': True}
+					]
 				},
 				'file.link.exists': {
 					'name': 'file_link_exists',
@@ -1572,7 +2038,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.link.exists', 'link.txt']], 'result': True}
+					]
 				},
 				'file.info': {
 					'name': 'file_info',
@@ -1581,7 +2049,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.info', 'test.txt']], 'result': {'size': 1024, 'modified': 1678901234}}
+					]
 				},
 				'file.size': {
 					'name': 'file_size',
@@ -1590,7 +2060,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.size', 'test.txt']], 'result': 1024}
+					]
 				},
 				'file.permission': {
 					'name': 'file_permission',
@@ -1599,7 +2071,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.permission', 'test.txt', 'rw-r--r--']], 'result': True}
+					]
 				},
 				'file.time': {
 					'name': 'file_time',
@@ -1608,7 +2082,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.time', 'test.txt']], 'result': 1678901234}
+					]
 				},
 				'file.sha256': {
 					'name': 'file_sha256',
@@ -1617,7 +2093,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.sha256', 'test.txt']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
+					]
 				},
 				'file.crc32': {
 					'name': 'file_crc32',
@@ -1626,7 +2104,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.crc32', 'test.txt']], 'result': 907060870}
+					]
 				},
 				'file.base64': {
 					'name': 'file_base64',
@@ -1635,7 +2115,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.base64', 'test.txt']], 'result': 'aGVsbG8='}
+					]
 				},
 				'file.zip': {
 					'name': 'file_zip',
@@ -1644,7 +2126,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.zip', 'test.txt', 'archive.zip']], 'result': True}
+					]
 				},
 				'file.zip.list': {
 					'name': 'file_zip_list',
@@ -1653,7 +2137,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.zip.list', 'archive.zip']], 'result': ['test.txt']}
+					]
 				},
 				'file.zip.exists': {
 					'name': 'file_zip_exists',
@@ -1662,7 +2148,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.zip.exists', 'archive.zip', 'test.txt']], 'result': True}
+					]
 				},
 				'file.zip.read': {
 					'name': 'file_zip_read',
@@ -1671,7 +2159,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.zip.read', 'archive.zip', 'test.txt']], 'result': 'file contents'}
+					]
 				},
 				'file.zip.remove': {
 					'name': 'file_zip_remove',
@@ -1680,7 +2170,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.zip.remove', 'archive.zip', 'test.txt']]}
+					]
 				},
 				'file.unzip': {
 					'name': 'file_unzip',
@@ -1689,7 +2181,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.unzip', 'archive.zip', 'destination']]}
+					]
 				},
 				'file.gzip': {
 					'name': 'file_gzip',
@@ -1698,7 +2192,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.gzip', 'test.txt', 'test.txt.gz']]}
+					]
 				},
 				'file.ungzip': {
 					'name': 'file_ungzip',
@@ -1707,7 +2203,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.ungzip', 'test.txt.gz', 'test.txt']], 'result': True}
+					]
 				},
 				'file.void': {
 					'name': 'file_void',
@@ -1716,7 +2214,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.void', 'test.txt', 'test.void']], 'result': True}
+					]
 				},
 				'file.unvoid': {
 					'name': 'file_unvoid',
@@ -1725,7 +2225,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['file.unvoid', 'test.void', 'output']], 'result': True}
+					]
 				},
 				'dir.exists': {
 					'name': 'dir_exists',
@@ -1734,7 +2236,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.exists', 'folder']], 'result': True},
+						{'code': [['dir.exists', 'nonexistent']], 'result': False}
+					]
 				},
 				'dir.create': {
 					'name': 'dir_create',
@@ -1743,7 +2248,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.create', 'new_folder']], 'test': False},
+						{'code': [['dir.create', 'path/to/folder']], 'test': False}
+					]
 				},
 				'dir.copy': {
 					'name': 'dir_copy',
@@ -1752,7 +2260,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.copy', 'source', 'destination']], 'test': False},
+						{'code': [['dir.copy', 'backup', 'archive/backup']], 'test': False}
+					]
 				},
 				'dir.move': {
 					'name': 'dir_move',
@@ -1761,7 +2272,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.move', 'old', 'new']], 'test': False},
+						{'code': [['dir.move', 'temp', 'perm']], 'test': False}
+					]
 				},
 				'dir.rename': {
 					'name': 'dir_rename',
@@ -1770,7 +2284,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.rename', 'old_name', 'new_name']], 'test': False},
+						{'code': [['dir.rename', 'temp', 'final']], 'test': False}
+					]
 				},
 				'dir.remove': {
 					'name': 'dir_remove',
@@ -1779,7 +2296,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.remove', 'temp']], 'test': False},
+						{'code': [['dir.remove', 'old_backup']], 'test': False}
+					]
 				},
 				'dir.list': {
 					'name': 'dir_list',
@@ -1788,7 +2308,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.list', 'folder']], 'result': ['file1.txt', 'file2.txt', 'subfolder']},
+						{'code': [['dir.list', 'project/src']], 'result': ['main.py', 'utils.py']}
+					]
 				},
 				'dir.clear': {
 					'name': 'dir_clear',
@@ -1797,7 +2320,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.clear', 'temp']], 'test': False},
+						{'code': [['dir.clear', 'cache']], 'test': False}
+					]
 				},
 				'dir.info': {
 					'name': 'dir_info',
@@ -1806,7 +2332,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.info', 'folder']], 'result': {'size': 1024, 'files': 10, 'modified': 1672531200}, 'test': False},
+						{'code': [['dir.info', 'project']], 'result': {'size': 2048, 'files': 15, 'modified': 1672531200}, 'test': False}
+					]
 				},
 				'dir.size': {
 					'name': 'dir_size',
@@ -1815,7 +2344,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.size', 'data']], 'result': 1048576},
+						{'code': [['dir.size', 'downloads']], 'result': 5242880}
+					]
 				},
 				'dir.permission': {
 					'name': 'dir_permission',
@@ -1824,7 +2356,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.permission', 'scripts', '755']], 'test': False},
+						{'code': [['dir.permission', 'uploads', '775']], 'test': False}
+					]
 				},
 				'dir.time': {
 					'name': 'dir_time',
@@ -1833,7 +2368,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.time', 'logs']], 'result': 1672531200, 'test': False},
+						{'code': [['dir.time', 'backups', 'created']], 'result': 1672531200, 'test': False}
+					]
 				},
 				'dir.zip': {
 					'name': 'dir_zip',
@@ -1842,7 +2380,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.zip', 'archive.zip', 'folder']], 'test': False},
+						{'code': [['dir.zip', 'backup.zip', 'data']], 'test': False}
+					]
 				},
 				'dir.void': {
 					'name': 'dir_void',
@@ -1851,7 +2392,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dir.void', 'data']], 'result': 'data.void', 'test': False},
+						{'code': [['dir.void', 'project', 'backup.void']], 'test': False}
+					]
 				},
 				'drive.list': {
 					'name': 'drive_list',
@@ -1860,7 +2404,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.list']], 'result': ['C:', 'D:', 'E:'], 'test': False},
+						{'code': [['drive.list', 'removable']], 'result': ['D:', 'E:'], 'test': False}
+					]
 				},
 				'drive.name': {
 					'name': 'drive_name',
@@ -1869,7 +2416,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.name', 'C:']], 'result': 'System'},
+						{'code': [['drive.name', 'D:', 'Data']], 'test': False}
+					]
 				},
 				'drive.size': {
 					'name': 'drive_size',
@@ -1878,7 +2428,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.size', 'C:']], 'result': 256000000000},
+						{'code': [['drive.size', 'D:']], 'result': 1000000000000}
+					]
 				},
 				'drive.used': {
 					'name': 'drive_used',
@@ -1887,7 +2440,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.used', 'C:']], 'result': 128000000000},
+						{'code': [['drive.used', 'D:']], 'result': 500000000000}
+					]
 				},
 				'drive.free': {
 					'name': 'drive_free',
@@ -1896,7 +2452,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.free', 'C:']], 'result': 128000000000},
+						{'code': [['drive.free', 'D:']], 'result': 500000000000}
+					]
 				},
 				'drive.info': {
 					'name': 'drive_info',
@@ -1905,7 +2464,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.info', 'C:']], 'result': {'size': 256000000000, 'free': 128000000000, 'type': 'SSD'}, 'test': False},
+						{'code': [['drive.info', 'D:']], 'result': {'size': 1000000000000, 'free': 500000000000, 'type': 'HDD'}, 'test': False}
+					]
 				},
 				'drive.mount': {
 					'name': 'drive_mount',
@@ -1914,7 +2476,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.mount', '/dev/sdb1', 'D:']], 'test': False},
+						{'code': [['drive.mount', 'image.iso', 'E:']], 'test': False}
+					]
 				},
 				'drive.unmount': {
 					'name': 'drive_unmount',
@@ -1923,7 +2488,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.unmount', 'D:']], 'test': False},
+						{'code': [['drive.unmount', 'E:']], 'test': False}
+					]
 				},
 				'drive.create': {
 					'name': 'drive_create',
@@ -1932,7 +2500,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.create', 'virtual', 1000000000]], 'test': False},
+						{'code': [['drive.create', 'ramdisk', 4000000000, 'RAM']], 'test': False}
+					]
 				},
 				'drive.resize': {
 					'name': 'drive_resize',
@@ -1941,7 +2512,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.resize', 'virtual', 2000000000]], 'test': False},
+						{'code': [['drive.resize', 'D:', 1500000000000]], 'test': False}
+					]
 				},
 				'drive.format': {
 					'name': 'drive_format',
@@ -1950,7 +2524,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.format', 'D:', 'NTFS']], 'test': False},
+						{'code': [['drive.format', 'E:', 'FAT32']], 'test': False}
+					]
 				},
 				'drive.remove': {
 					'name': 'drive_remove',
@@ -1959,7 +2536,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['drive.remove', 'virtual']], 'test': False},
+						{'code': [['drive.remove', 'ramdisk']], 'test': False}
+					]
 				},
 				'path.drive': {
 					'name': 'path_drive',
@@ -1968,7 +2548,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['path.drive', 'C:/Windows/System32']], 'result': 'C:'},
+						{'code': [['path.drive', '/mnt/data/file.txt']], 'result': ''}
+					]
 				},
 				'path.dir': {
 					'name': 'path_dir',
@@ -1977,7 +2560,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['path.dir', 'C:/Windows/System32/kernel32.dll']], 'result': 'C:/Windows/System32'},
+						{'code': [['path.dir', '/home/user/docs/file.txt']], 'result': '/home/user/docs'}
+					]
 				},
 				'path.file': {
 					'name': 'path_file',
@@ -1986,7 +2572,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['path.file', 'C:/Windows/System32/kernel32.dll']], 'result': 'kernel32.dll'},
+						{'code': [['path.file', '/home/user/docs/report.pdf']], 'result': 'report.pdf'}
+					]
 				},
 				'path.name': {
 					'name': 'path_name',
@@ -1995,7 +2584,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['path.name', 'document.txt']], 'result': 'document'},
+						{'code': [['path.name', '/path/to/file.name.ext']], 'result': 'file.name'}
+					]
 				},
 				'path.extension': {
 					'name': 'path_extension',
@@ -2004,7 +2596,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['path.extension', 'image.png']], 'result': '.png'},
+						{'code': [['path.extension', 'archive.tar.gz']], 'result': '.gz'}
+					]
 				},
 				'path.strip': {
 					'name': 'path_strip',
@@ -2013,7 +2608,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['path.strip', 'file.txt']], 'result': 'file'},
+						{'code': [['path.strip', '/path/to/document.pdf']], 'result': '/path/to/document'}
+					]
 				},
 				'void.encode': {
 					'name': 'void_encode',
@@ -2023,9 +2621,12 @@ class void:
 					'safe': True,
 					'param': [
 						{'name': 'data', 'type': 'any'},
-						{'name': 'indent', 'type': 'str', 'default': '\t'}
+						{'name': 'indent', 'type': 'text', 'default': '\t'}
 					],
-					'example': []
+					'example': [
+						{'code': [['void.encode', {'key': 'value'}]], 'result': '{\n\t\'key\': \'value\'\n}'},
+						{'code': [['void.encode', [1, 2, 3], '  ']], 'result': '[\n  1,\n  2,\n  3\n]'}
+					]
 				},
 				'void.decode': {
 					'name': 'void_decode',
@@ -2034,7 +2635,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['void.decode', '{\'key\':\'value\'}']], 'result': {'key': 'value'}},
+						{'code': [['void.decode', '[1,2,3]']], 'result': [1, 2, 3]}
+					]
 				},
 				'json.encode': {
 					'name': 'json_encode',
@@ -2043,7 +2647,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['json.encode', {'name': 'John', 'age': 30}]], 'result': '{\'name\':\'John\',\'age\':30}'},
+						{'code': [['json.encode', [True, False]]], 'result': '[true,false]'}
+					]
 				},
 				'json.decode': {
 					'name': 'json_decode',
@@ -2052,7 +2659,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['json.decode', '{\'x\':5,\'y\':10}']], 'result': {'x': 5, 'y': 10}},
+						{'code': [['json.decode', '[\'a\',\'b\']']], 'result': ['a', 'b']}
+					]
 				},
 				'csv.encode': {
 					'name': 'csv_encode',
@@ -2061,7 +2671,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['csv.encode', [['Name', 'Age'], ['John', 30], ['Alice', 25]]]], 'result': 'Name,Age\nJohn,30\nAlice,25'},
+						{'code': [['csv.encode', {'a': [1,2], 'b': [3,4]}]], 'result': 'a,b\n1,3\n2,4'}
+					]
 				},
 				'csv.decode': {
 					'name': 'csv_decode',
@@ -2070,7 +2683,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['csv.decode', 'a,b,c\n1,2,3']], 'result': [{'a':'1','b':'2','c':'3'}]},
+						{'code': [['csv.decode', 'x;y\n4;5', ';']], 'result': [{'x':'4','y':'5'}]}
+					]
 				},
 				'yaml.encode': {
 					'name': 'yaml_encode',
@@ -2079,7 +2695,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['yaml.encode', {'name': 'John', 'skills': ['Python', 'JS']}]], 'result': 'name: John\nskills:\n  - Python\n  - JS'},
+						{'code': [['yaml.encode', [1, 2, 3]]], 'result': '- 1\n- 2\n- 3'}
+					]
 				},
 				'yaml.decode': {
 					'name': 'yaml_decode',
@@ -2088,7 +2707,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['yaml.decode', 'key: value']], 'result': {'key': 'value'}},
+						{'code': [['yaml.decode', '- 1\n- 2']], 'result': [1, 2]}
+					]
 				},
 				'ini.encode': {
 					'name': 'ini_encode',
@@ -2097,7 +2719,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ini.encode', {'section': {'key': 'value'}}]], 'result': '[section]\nkey=value'},
+						{'code': [['ini.encode', {'user': {'name': 'John'}, 'db': {'port': 3306}}]], 'result': '[user]\nname=John\n\n[db]\nport=3306'}
+					]
 				},
 				'ini.decode': {
 					'name': 'ini_decode',
@@ -2106,7 +2731,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ini.decode', '[section]\nkey=value']], 'result': {'section': {'key': 'value'}}},
+						{'code': [['ini.decode', '[user]\nname=John']], 'result': {'user': {'name': 'John'}}}
+					]
 				},
 				'html.encode': {
 					'name': 'html_encode',
@@ -2115,7 +2743,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['html.encode', {'div': {'class': 'main', 'content': 'Hello'}}]], 'result': '<div class=\'main\'>Hello</div>'},
+						{'code': [['html.encode', {'p': 'Paragraph'}]], 'result': '<p>Paragraph</p>'}
+					]
 				},
 				'html.decode': {
 					'name': 'html_decode',
@@ -2124,7 +2755,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['html.decode', '<div>content</div>']], 'result': {'div': 'content'}},
+						{'code': [['html.decode', '<a href=\'#\'>link</a>']], 'result': {'a': {'@href': '#', '#text': 'link'}}}
+					]
 				},
 				'html.markdown': {
 					'name': 'html_markdown',
@@ -2133,7 +2767,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['html.markdown', '# Heading']], 'result': '<h1>Heading</h1>'},
+						{'code': [['html.markdown', '**bold**']], 'result': '<p><strong>bold</strong></p>'}
+					]
 				},
 				'xml.encode': {
 					'name': 'xml_encode',
@@ -2142,7 +2779,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['xml.encode', {'root': {'item': ['a', 'b']}}]], 'result': '<root><item>a</item><item>b</item></root>'},
+						{'code': [['xml.encode', {'person': {'@id': 1, 'name': 'John'}}]], 'result': '<person id=\'1\'><name>John</name></person>'}
+					]
 				},
 				'xml.decode': {
 					'name': 'xml_decode',
@@ -2151,7 +2791,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['xml.decode', '<root><x>1</x></root>']], 'result': {'root': {'x': '1'}}},
+						{'code': [['xml.decode', '<person id=\'1\'><name>John</name></person>']], 'result': {'person': {'@id': '1', 'name': 'John'}}}
+					]
 				},
 				'css.encode': {
 					'name': 'css_encode',
@@ -2160,7 +2803,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['css.encode', {'body': {'color': 'red'}}]], 'result': 'body { color: red; }'},
+						{'code': [['css.encode', {'.class': {'margin': '10px'}}]], 'result': '.class { margin: 10px; }'}
+					]
 				},
 				'css.decode': {
 					'name': 'css_decode',
@@ -2169,7 +2815,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['css.decode', 'body { color: red; }']], 'result': {'body': {'color': 'red'}}},
+						{'code': [['css.decode', '.class { margin: 10px; }']], 'result': {'.class': {'margin': '10px'}}}
+					]
 				},
 				'request': {
 					'name': 'request',
@@ -2178,7 +2827,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['request', 'https://api.example.com/data']], 'test': False},
+						{'code': [['request', 'https://example.com', {'headers': {'Accept': 'application/json'}}]], 'test': False}
+					]
 				},
 				'request.post': {
 					'name': 'request_post',
@@ -2187,7 +2839,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['request.post', 'https://api.example.com', {'data': {'key': 'value'}}]], 'test': False},
+						{'code': [['request.post', 'https://example.com/login', {'form': {'user': 'admin'}}]], 'test': False}
+					]
 				},
 				'request.put': {
 					'name': 'request_put',
@@ -2196,7 +2851,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['request.put', 'https://api.example.com/update', {'json': {'id': 1}}]], 'test': False},
+						{'code': [['request.put', 'https://example.com/resource', {'data': 'content'}]], 'test': False}
+					]
 				},
 				'request.delete': {
 					'name': 'request_delete',
@@ -2205,7 +2863,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['request.delete', 'https://api.example.com/item/1']], 'test': False},
+						{'code': [['request.delete', 'https://example.com/resource']], 'test': False}
+					]
 				},
 				'request.head': {
 					'name': 'request_head',
@@ -2214,7 +2875,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['request.head', 'https://example.com']], 'test': False},
+						{'code': [['request.head', 'https://api.example.com/status']], 'test': False}
+					]
 				},
 				'download': {
 					'name': 'download',
@@ -2223,7 +2887,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['download', 'https://example.com/file.txt', 'local.txt']], 'test': False},
+						{'code': [['download', 'https://example.com/image.jpg']], 'test': False}
+					]
 				},
 				'download.info': {
 					'name': 'download_info',
@@ -2232,7 +2899,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['download.info', 'https://example.com/file.zip']], 'result': {'size': 1024, 'type': 'application/zip'}, 'test': False},
+						{'code': [['download.info', 'https://example.com/video.mp4']], 'result': {'size': 5242880, 'type': 'video/mp4'}, 'test': False}
+					]
 				},
 				'download.audio': {
 					'name': 'download_audio',
@@ -2241,7 +2911,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['download.audio', 'https://example.com/sound.mp3']], 'test': False},
+						{'code': [['download.audio', 'https://example.com/voice.ogg', 'output.ogg']], 'test': False}
+					]
 				},
 				'download.video': {
 					'name': 'download_video',
@@ -2250,7 +2923,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['download.video', 'https://example.com/clip.mp4']], 'test': False},
+						{'code': [['download.video', 'https://example.com/movie.mkv', 'film.mkv']], 'test': False}
+					]
 				},
 				'cookie': {
 					'name': 'cookie',
@@ -2259,7 +2935,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cookie', 'session', 'abc123']], 'test': False},
+						{'code': [['cookie', 'user']], 'result': 'john_doe', 'test': False}
+					]
 				},
 				'cookie.remove': {
 					'name': 'cookie_remove',
@@ -2268,7 +2947,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cookie.remove', 'session']], 'test': False},
+						{'code': [['cookie.remove', 'temp']], 'test': False}
+					]
 				},
 				'cloud': {
 					'name': 'cloud',
@@ -2277,7 +2959,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cloud', 'start']], 'test': False},
+						{'code': [['cloud', 'status']], 'result': 'running', 'test': False}
+					]
 				},
 				'cloud.file': {
 					'name': 'cloud_file',
@@ -2286,7 +2971,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cloud.file', 'upload', 'data.txt']], 'test': False},
+						{'code': [['cloud.file', 'list']], 'result': ['file1.txt', 'file2.txt'], 'test': False}
+					]
 				},
 				'cloud.web': {
 					'name': 'cloud_web',
@@ -2295,7 +2983,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cloud.web', 'start', 8080]], 'test': False},
+						{'code': [['cloud.web', 'stop']], 'test': False}
+					]
 				},
 				'cloud.api': {
 					'name': 'cloud_api',
@@ -2304,7 +2995,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cloud.api', 'deploy', 'api.json']], 'test': False},
+						{'code': [['cloud.api', 'list']], 'result': ['api1', 'api2'], 'test': False}
+					]
 				},
 				'cloud.socket': {
 					'name': 'cloud_socket',
@@ -2313,7 +3007,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cloud.socket', 'start', 3000]], 'test': False},
+						{'code': [['cloud.socket', 'send', 'message']], 'test': False}
+					]
 				},
 				'cloud.mail': {
 					'name': 'cloud_mail',
@@ -2322,7 +3019,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cloud.mail', 'send', 'user@example.com', 'Hello']], 'test': False},
+						{'code': [['cloud.mail', 'setup', 'smtp.example.com']], 'test': False}
+					]
 				},
 				'cloud.proxy': {
 					'name': 'cloud_proxy',
@@ -2331,61 +3031,24 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cloud.proxy', 'start', 8888]], 'test': False},
+						{'code': [['cloud.proxy', 'stop']], 'test': False}
+					]
 				},
-				'bot.telegram': {
-					'name': 'bot_telegram',
-					'group': 'bot',
-					'description': 'Interacting with the Telegram bot API',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': []
-				},
-				'bot.discord': {
-					'name': 'bot_discord',
-					'group': 'bot',
-					'description': 'Interacting with the Discord bot API',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': []
-				},
-				'bot.wechat': {
-					'name': 'bot_wechat',
-					'group': 'bot',
-					'description': 'Interacting with the WeChat bot API',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': []
-				},
-				'social.x': {
-					'name': 'social_x',
+				'social': {
+					'name': 'social',
 					'group': 'social',
-					'description': 'Interacting with the X API',
+					'description': 'Interacting with social API',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
+					'vapp': True,
 					'param': [],
-					'example': []
-				},
-				'social.youtube': {
-					'name': 'social_youtube',
-					'group': 'social',
-					'description': 'Interacting with the YouTube API',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': []
-				},
-				'social.tiktok': {
-					'name': 'social_tiktok',
-					'group': 'social',
-					'description': 'Interacting with the TikTok API',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': []
+					'example': [
+						{'code': [['social', 'tiktok', 'upload', 'clip.mp4']], 'test': False},
+						{'code': [['social', 'telegram', 'send', '@name', 'Text']], 'test': False},
+						{'code': [['social', 'telegram', 'bot', 'bot_action']], 'test': False}
+					]
 				},
 				'notification': {
 					'name': 'notification',
@@ -2394,7 +3057,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['notification', 'New message']], 'test': False},
+						{'code': [['notification', 'Alert', {'sound': True}]], 'test': False}
+					]
 				},
 				'mail': {
 					'name': 'mail',
@@ -2403,7 +3069,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['mail', 'user@example.com', 'Subject', 'Body']], 'test': False},
+						{'code': [['mail', 'test@example.com', 'Hello', 'Content', {'cc': 'copy@example.com'}]], 'test': False}
+					]
 				},
 				'call': {
 					'name': 'call',
@@ -2412,7 +3081,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['call', '+1234567890']], 'test': False},
+						{'code': [['call', 'user@domain.com', 'video']], 'test': False}
+					]
 				},
 				'sms': {
 					'name': 'sms',
@@ -2421,7 +3093,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sms', '+1234567890', 'Hello']], 'test': False},
+						{'code': [['sms', '+0987654321', 'Your code: 1234']], 'test': False}
+					]
 				},
 				'sql': {
 					'name': 'sql',
@@ -2430,7 +3105,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sql', 'SELECT * FROM users']], 'result': [], 'test': False},
+						{'code': [['sql', 'INSERT INTO logs VALUES (1)']], 'test': False}
+					]
 				},
 				'os': {
 					'name': 'os',
@@ -2439,7 +3117,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['os']], 'result': 'windows', 'test': False},
+						{'code': [['os', 'check', 'linux']], 'result': False, 'test': False}
+					]
 				},
 				'os.version': {
 					'name': 'os_version',
@@ -2448,7 +3129,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['os.version']], 'result': '10.0.19042', 'test': False},
+						{'code': [['os.version', 'build']], 'result': '19042', 'test': False}
+					]
 				},
 				'os.user': {
 					'name': 'os_user',
@@ -2457,7 +3141,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['os.user']], 'result': {'name': 'admin', 'home': '/home/admin'}, 'test': False},
+						{'code': [['os.user', 'name']], 'result': 'admin', 'test': False}
+					]
 				},
 				'language': {
 					'name': 'language',
@@ -2466,7 +3153,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['language']], 'result': 'en-US'},
+						{'code': [['language', 'set', 'ru-RU']], 'test': False}
+					]
 				},
 				'device': {
 					'name': 'device',
@@ -2475,7 +3165,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['device']], 'result': {'model': 'iPhone12,1', 'manufacturer': 'Apple'}, 'test': False},
+						{'code': [['device', 'id']], 'result': 'A12B3C4D', 'test': False}
+					]
 				},
 				'cpu': {
 					'name': 'cpu',
@@ -2484,7 +3177,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['cpu']], 'result': {'cores': 8, 'usage': 34.5}, 'test': False},
+						{'code': [['cpu', 'temperature']], 'result': 65.2, 'test': False}
+					]
 				},
 				'fps': {
 					'name': 'fps',
@@ -2493,7 +3189,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['fps']], 'result': 60, 'test': False},
+						{'code': [['fps', 'set', 30]], 'test': False}
+					]
 				},
 				'vsync': {
 					'name': 'vsync',
@@ -2502,7 +3201,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['vsync']], 'result': True, 'test': False},
+						{'code': [['vsync', 'set', False]], 'test': False}
+					]
 				},
 				'resolution': {
 					'name': 'resolution',
@@ -2511,7 +3213,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['resolution']], 'result': [1920, 1080], 'test': False},
+						{'code': [['resolution', 'set', 1280, 720]], 'test': False}
+					]
 				},
 				'orientation': {
 					'name': 'orientation',
@@ -2520,7 +3225,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['orientation']], 'result': 'landscape', 'test': False},
+						{'code': [['orientation', 'set', 'portrait']], 'test': False}
+					]
 				},
 				'darkmode': {
 					'name': 'darkmode',
@@ -2529,7 +3237,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['darkmode']], 'result': True, 'test': False},
+						{'code': [['darkmode', 'set', False]], 'test': False}
+					]
 				},
 				'pixel': {
 					'name': 'pixel',
@@ -2538,7 +3249,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['pixel', 100, 200]], 'result': [255, 0, 0], 'test': False},
+						{'code': [['pixel', 'set', 150, 300, [0, 255, 0]]], 'test': False}
+					]
 				},
 				'textmode.character': {
 					'name': 'textmode_character',
@@ -2547,7 +3261,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['textmode.character', 10, 5]], 'result': 'A', 'test': False},
+						{'code': [['textmode.character', 'set', 12, 7, 'B']], 'test': False}
+					]
 				},
 				'textmode.cursor': {
 					'name': 'textmode_cursor',
@@ -2556,7 +3273,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['textmode.cursor']], 'result': [5, 10], 'test': False},
+						{'code': [['textmode.cursor', 'set', 0, 0]], 'test': False}
+					]
 				},
 				'textmode.clear': {
 					'name': 'textmode_clear',
@@ -2565,7 +3285,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['textmode.clear']], 'test': False},
+						{'code': [['textmode.clear', 'green']], 'test': False}
+					]
 				},
 				'flashlight': {
 					'name': 'flashlight',
@@ -2574,7 +3297,10 @@ class void:
 					'language': ['swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['flashlight', 'on']], 'test': False},
+						{'code': [['flashlight', 'off']], 'test': False}
+					]
 				},
 				'location': {
 					'name': 'location',
@@ -2583,7 +3309,10 @@ class void:
 					'language': ['js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['location']], 'result': {'lat': 55.7558, 'lon': 37.6173}, 'test': False},
+						{'code': [['location', 'accuracy', 10]], 'test': False}
+					]
 				},
 				'gyroscope': {
 					'name': 'gyroscope',
@@ -2592,7 +3321,10 @@ class void:
 					'language': ['js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['gyroscope']], 'result': {'x': 0.1, 'y': -0.2, 'z': 0.05}, 'test': False},
+						{'code': [['gyroscope', 'frequency', 10]], 'test': False}
+					]
 				},
 				'accelerometer': {
 					'name': 'accelerometer',
@@ -2601,7 +3333,10 @@ class void:
 					'language': ['js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['accelerometer']], 'result': {'x': 0.0, 'y': 0.0, 'z': 9.8}, 'test': False},
+						{'code': [['accelerometer', 'calibrate']], 'test': False}
+					]
 				},
 				'compass': {
 					'name': 'compass',
@@ -2610,7 +3345,10 @@ class void:
 					'language': ['js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['compass']], 'result': 180.5, 'test': False},
+						{'code': [['compass', 'calibrate']], 'test': False}
+					]
 				},
 				'proximity': {
 					'name': 'proximity',
@@ -2619,7 +3357,10 @@ class void:
 					'language': ['swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['proximity']], 'result': 5.2, 'test': False},
+						{'code': [['proximity', 'threshold', 10]], 'test': False}
+					]
 				},
 				'brightness': {
 					'name': 'brightness',
@@ -2628,7 +3369,10 @@ class void:
 					'language': ['swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['brightness']], 'result': 80, 'test': False},
+						{'code': [['brightness', 'set', 50]], 'test': False}
+					]
 				},
 				'calendar': {
 					'name': 'calendar',
@@ -2637,7 +3381,10 @@ class void:
 					'language': ['swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['calendar', 'events']], 'result': [], 'test': False},
+						{'code': [['calendar', 'add', 'Meeting', '2023-12-01 14:00']], 'test': False}
+					]
 				},
 				'gallery': {
 					'name': 'gallery',
@@ -2646,7 +3393,10 @@ class void:
 					'language': ['swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['gallery', 'photos']], 'result': ['photo1.jpg', 'photo2.jpg'], 'test': False},
+						{'code': [['gallery', 'save', 'new.jpg']], 'test': False}
+					]
 				},
 				'contacts': {
 					'name': 'contacts',
@@ -2655,7 +3405,10 @@ class void:
 					'language': ['swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['contacts']], 'result': [{'name': 'John', 'phone': '+1234567890'}], 'test': False},
+						{'code': [['contacts', 'add', 'Alice', '+0987654321']], 'test': False}
+					]
 				},
 				'clipboard': {
 					'name': 'clipboard',
@@ -2664,7 +3417,10 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['clipboard']], 'result': 'copied text', 'test': False},
+						{'code': [['clipboard', 'set', 'new text']], 'test': False}
+					]
 				},
 				'clipboard.remove': {
 					'name': 'clipboard_remove',
@@ -2673,7 +3429,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['clipboard.remove']], 'test': False}
+					]
 				},
 				'translate': {
 					'name': 'translate',
@@ -2682,7 +3440,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['translate', 'Hello', 'en', 'es']], 'result': 'Hola'}
+					]
 				},
 				'spellcheck': {
 					'name': 'spellcheck',
@@ -2691,7 +3451,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []				
+					'example': [
+						{'code': [['spellcheck', 'Helo world']], 'result': ['Hello', 'world']}
+					]
 				},
 				'chat': {
 					'name': 'chat',
@@ -2700,7 +3462,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['chat', 'What\'s the weather today?']], 'result': 'The weather is sunny and warm.'}
+					]
 				},
 				'image': {
 					'name': 'image',
@@ -2709,7 +3473,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image', 'A sunset over mountains']], 'result': 'image.png'}
+					]
 				},
 				'image.size': {
 					'name': 'image_size',
@@ -2718,7 +3484,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.size', 'image.png', 800, 600]], 'result': 'image_resized.png'}
+					]
 				},
 				'image.square': {
 					'name': 'image_square',
@@ -2727,7 +3495,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.square', 'image.png']], 'result': 'image_square.png'}
+					]
 				},
 				'image.crop': {
 					'name': 'image_crop',
@@ -2736,7 +3506,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.crop', 'image.png', 100, 100, 400, 400]], 'result': 'image_cropped.png'}
+					]
 				},
 				'image.rotate': {
 					'name': 'image_rotate',
@@ -2745,7 +3517,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.rotate', 'image.png', 90]], 'result': 'image_rotated.png'}
+					]
 				},
 				'image.text': {
 					'name': 'image_text',
@@ -2754,7 +3528,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.text', 'image.png', 'Hello', 50, 50, '#FFFFFF']], 'result': 'image_with_text.png'}
+					]
 				},
 				'image.image': {
 					'name': 'image_image',
@@ -2763,7 +3539,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.image', 'image1.png', 'image2.png', 100, 100]], 'result': 'combined_image.png'}
+					]
 				},
 				'image.grayscale': {
 					'name': 'image_grayscale',
@@ -2772,7 +3550,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.grayscale', 'image.png']], 'result': 'image_grayscale.png'}
+					]
 				},
 				'image.tint': {
 					'name': 'image_tint',
@@ -2781,7 +3561,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.tint', 'image.png', '#FF0000']], 'result': 'image_tinted.png'}
+					]
 				},
 				'image.flip.h': {
 					'name': 'image_flip_h',
@@ -2790,7 +3572,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.flip.h', 'image.png']], 'result': 'image_flipped_h.png'}
+					]
 				},
 				'image.flip.v': {
 					'name': 'image_flip_v',
@@ -2799,7 +3583,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.flip.v', 'image.png']], 'result': 'image_flipped_v.png'}
+					]
 				},
 				'image.upscale': {
 					'name': 'image_upscale',
@@ -2808,7 +3594,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.upscale', 'image.png', 2]], 'result': 'image_upscaled.png'}
+					]
 				},
 				'image.draw': {
 					'name': 'image_draw',
@@ -2817,7 +3605,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.draw', 'image.png', 'circle', 100, 100, 50, '#FF0000']], 'result': 'image_drawn.png'}
+					]
 				},
 				'image.style': {
 					'name': 'image_style',
@@ -2826,7 +3616,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.style', 'image.png', 'watercolor']], 'result': 'image_styled.png'}
+					]
 				},
 				'image.colorize': {
 					'name': 'image_colorize',
@@ -2835,7 +3627,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.colorize', 'grayscale.png', '#3366FF']], 'result': 'image_colorized.png'}
+					]
 				},
 				'image.recognize': {
 					'name': 'image_recognize',
@@ -2844,7 +3638,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.recognize', 'image.png']], 'result': ['cat', 'tree', 'sun']}
+					]
 				},
 				'image.face': {
 					'name': 'image_face',
@@ -2853,7 +3649,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.face', 'photo.png']], 'result': [{'x': 100, 'y': 120, 'width': 200, 'height': 200}]}
+					]
 				},
 				'image.effect': {
 					'name': 'image_effect',
@@ -2862,7 +3660,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['image.effect', 'image.png', 'blur']], 'result': 'image_effect.png'}
+					]
 				},
 				'video': {
 					'name': 'video',
@@ -2871,7 +3671,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video', 'A beach sunset', 10]], 'result': 'video.mp4'}
+					]
 				},
 				'video.crop': {
 					'name': 'video_crop',
@@ -2880,7 +3682,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.crop', 'video.mp4', 0, 0, 640, 480]], 'result': 'video_cropped.mp4'}
+					]
 				},
 				'video.text': {
 					'name': 'video_text',
@@ -2889,7 +3693,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.text', 'video.mp4', 'Hello', 50, 50, '#FFFFFF', 0, 5]], 'result': 'video_with_text.mp4'}
+					]
 				},
 				'video.image': {
 					'name': 'video_image',
@@ -2898,7 +3704,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.image', 'video.mp4', 'logo.png', 10, 10, 0, 10]], 'result': 'video_with_image.mp4'}
+					]
 				},
 				'video.sound': {
 					'name': 'video_sound',
@@ -2907,7 +3715,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.sound', 'video.mp4', 'music.mp3']], 'result': 'video_with_sound.mp4'}
+					]
 				},
 				'video.video': {
 					'name': 'video_video',
@@ -2916,7 +3726,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.video', 'video1.mp4', 'video2.mp4', 5]], 'result': 'combined_video.mp4'}
+					]
 				},
 				'video.trim': {
 					'name': 'video_trim',
@@ -2925,7 +3737,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.trim', 'video.mp4', 5, 10]], 'result': 'video_trimmed.mp4'}
+					]
 				},
 				'video.size': {
 					'name': 'video_size',
@@ -2934,7 +3748,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.size', 'video.mp4', 1280, 720]], 'result': 'video_resized.mp4'}
+					]
 				},
 				'video.upscale': {
 					'name': 'video_upscale',
@@ -2943,7 +3759,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.upscale', 'video.mp4', 2]], 'result': 'video_upscaled.mp4'}
+					]
 				},
 				'video.speed': {
 					'name': 'video_speed',
@@ -2952,7 +3770,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.speed', 'video.mp4', 1.5]], 'result': 'video_spedup.mp4'}
+					]
 				},
 				'video.volume': {
 					'name': 'video_volume',
@@ -2961,7 +3781,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.volume', 'video.mp4', 0.5]], 'result': 'video_volume_adjusted.mp4'}
+					]
 				},
 				'video.mute': {
 					'name': 'video_mute',
@@ -2970,7 +3792,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.mute', 'video.mp4']], 'result': 'video_muted.mp4'}
+					]
 				},
 				'video.face': {
 					'name': 'video_face',
@@ -2979,7 +3803,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.face', 'video.mp4']], 'result': [{'time': 1.5, 'faces': [{'x': 100, 'y': 120, 'width': 200, 'height': 200}]}]}
+					]
 				},
 				'video.effect': {
 					'name': 'video_effect',
@@ -2988,7 +3814,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['video.effect', 'video.mp4', 'sepia']], 'result': 'video_effect.mp4'}
+					]
 				},
 				'sound': {
 					'name': 'sound',
@@ -2997,7 +3825,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sound', 'Ocean waves', 30]], 'result': 'sound.mp3'}
+					]
 				},
 				'sound.trim': {
 					'name': 'sound_trim',
@@ -3006,7 +3836,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sound.trim', 'sound.mp3', 5, 15]], 'result': 'sound_trimmed.mp3'}
+					]
 				},
 				'sound.speed': {
 					'name': 'sound_speed',
@@ -3015,7 +3847,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sound.speed', 'sound.mp3', 1.2]], 'result': 'sound_spedup.mp3'}
+					]
 				},
 				'sound.volume': {
 					'name': 'sound_volume',
@@ -3024,7 +3858,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sound.volume', 'sound.mp3', 0.7]], 'result': 'sound_volume_adjusted.mp3'}
+					]
 				},
 				'sound.effect': {
 					'name': 'sound_effect',
@@ -3033,7 +3869,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['sound.effect', 'sound.mp3', 'echo']], 'result': 'sound_effect.mp3'}
+					]
 				},
 				'music': {
 					'name': 'music',
@@ -3042,7 +3880,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['music', 'Relaxing piano', 180]], 'result': 'music.mp3'}
+					]
 				},
 				'voice': {
 					'name': 'voice',
@@ -3051,7 +3891,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['voice', 'Hello world', 'en-US']], 'result': 'voice.mp3'}
+					]
 				},
 				'voice.list': {
 					'name': 'voice_list',
@@ -3060,7 +3902,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['voice.list']], 'result': ['en-US', 'es-ES', 'fr-FR']}
+					]
 				},
 				'voice.recognize': {
 					'name': 'voice_recognize',
@@ -3069,7 +3913,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['voice.recognize', 'voice.mp3']], 'result': 'Hello world'}
+					]
 				},
 				'voice.stop': {
 					'name': 'voice_stop',
@@ -3078,7 +3924,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['voice.stop']], 'result': True}
+					]
 				},
 				'voice.capture': {
 					'name': 'voice_capture',
@@ -3087,7 +3935,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['voice.capture', 'sample.mp3', 'My Voice']], 'result': 'custom_voice_model'}
+					]
 				},
 				'motion': {
 					'name': 'motion',
@@ -3096,7 +3946,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['motion', 'walking']], 'result': {'speed': 1.2, 'steps': 500}}
+					]
 				},
 				'motion.capture': {
 					'name': 'motion_capture',
@@ -3105,7 +3957,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['motion.capture', 10]], 'result': {'positions': [[0,0], [0.1,0], [0.2,0.1]]}}
+					]
 				},
 				'google.voice': {
 					'name': 'google_voice',
@@ -3114,7 +3968,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['google.voice', 'Hello', 'en-US']], 'result': 'google_voice.mp3'}
+					]
 				},
 				'google.voice.list': {
 					'name': 'google_voice_list',
@@ -3123,7 +3979,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['google.voice.list']], 'result': ['en-US-Standard', 'es-ES-Standard']}
+					]
 				},
 				'google.voice.recognize': {
 					'name': 'google_voice_recognize',
@@ -3132,7 +3990,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['google.voice.recognize', 'audio.mp3']], 'result': 'Recognized text'}
+					]
 				},
 				'google.translate': {
 					'name': 'google_translate',
@@ -3141,7 +4001,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['google.translate', 'Hello', 'en', 'es']], 'result': 'Hola'}
+					]
 				},
 				'deepl.translate': {
 					'name': 'deepl_translate',
@@ -3150,7 +4012,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['deepl.translate', 'Hello', 'en', 'de']], 'result': 'Hallo'}
+					]
 				},
 				'openai.chat': {
 					'name': 'openai_chat',
@@ -3159,7 +4023,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['openai.chat', 'Explain quantum physics']], 'result': 'Quantum physics is...'}
+					]
 				},
 				'openai.image': {
 					'name': 'openai_image',
@@ -3168,7 +4034,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['openai.image', 'A futuristic city']], 'result': 'openai_image.png'}
+					]
 				},
 				'openai.video': {
 					'name': 'openai_video',
@@ -3177,7 +4045,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['openai.video', 'A sunset timelapse', 10]], 'result': 'openai_video.mp4'}
+					]
 				},
 				'openai.translate': {
 					'name': 'openai_translate',
@@ -3186,7 +4056,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['openai.translate', 'Hello', 'en', 'fr']], 'result': 'Bonjour'}
+					]
 				},
 				'deepseek.chat': {
 					'name': 'deepseek_chat',
@@ -3195,7 +4067,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['deepseek.chat', 'What is AI?']], 'result': 'AI stands for...'}
+					]
 				},
 				'deepseek.translate': {
 					'name': 'deepseek_translate',
@@ -3204,7 +4078,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['deepseek.translate', 'Hello', 'en', 'it']], 'result': 'Ciao'}
+					]
 				},
 				'claude.chat': {
 					'name': 'claude_chat',
@@ -3213,7 +4089,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['claude.chat', 'Tell me a joke']], 'result': 'Why did the AI...'}
+					]
 				},
 				'stablediffusion.image': {
 					'name': 'stablediffusion_image',
@@ -3222,7 +4100,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['stablediffusion.image', 'A dragon flying over mountains']], 'result': 'sd_image.png'}
+					]
 				},
 				'stablediffusion.upscale': {
 					'name': 'stablediffusion_upscale',
@@ -3231,7 +4111,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['stablediffusion.upscale', 'image.png', 2]], 'result': 'image_upscaled.png'}
+					]
 				},
 				'stablediffusion.draw': {
 					'name': 'stablediffusion_draw',
@@ -3240,7 +4122,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['stablediffusion.draw', 'image.png', 'add a dragon']], 'result': 'image_with_dragon.png'}
+					]
 				},
 				'stablediffusion.background': {
 					'name': 'stablediffusion_background',
@@ -3249,7 +4133,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['stablediffusion.background', 'photo.png']], 'result': 'photo_no_bg.png'}
+					]
 				},
 				'stablediffusion.video': {
 					'name': 'stablediffusion_video',
@@ -3258,7 +4144,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['stablediffusion.video', 'A forest animation', 5]], 'result': 'sd_video.mp4'}
+					]
 				},
 				'ollama.chat': {
 					'name': 'ollama_chat',
@@ -3267,7 +4155,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ollama.chat', 'Explain blockchain']], 'result': 'Blockchain is...'}
+					]
 				},
 				'ui': {
 					'name': 'ui',
@@ -3276,7 +4166,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui', 'button', 'Click me']], 'result': 'button1'}
+					]
 				},
 				'bg': {
 					'name': 'bg',
@@ -3285,7 +4177,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['bg', '#3366FF']], 'result': True}
+					]
 				},
 				'show': {
 					'name': 'show',
@@ -3294,7 +4188,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['show', 'button1']], 'result': True}
+					]
 				},
 				'hide': {
 					'name': 'hide',
@@ -3303,7 +4199,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['hide', 'button1']], 'result': True}
+					]
 				},
 				'enable': {
 					'name': 'enable',
@@ -3312,7 +4210,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['enable', 'button1']], 'result': True}
+					]
 				},
 				'disable': {
 					'name': 'disable',
@@ -3321,7 +4221,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['disable', 'button1']], 'result': True}
+					]
 				},
 				'focus': {
 					'name': 'focus',
@@ -3330,7 +4232,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['focus', 'input1']], 'result': True}
+					]
 				},
 				'unfocus': {
 					'name': 'unfocus',
@@ -3339,7 +4243,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['unfocus']], 'result': True}
+					]
 				},
 				'scale': {
 					'name': 'scale',
@@ -3348,7 +4254,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['scale', 'image1', 1.5]], 'result': True}
+					]
 				},
 				'ui.text': {
 					'name': 'ui_text',
@@ -3357,7 +4265,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.text', 'Hello World']], 'result': 'text1'}
+					]
 				},
 				'ui.image': {
 					'name': 'ui_image',
@@ -3366,7 +4276,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.image', 'photo.png']], 'result': 'image1'}
+					]
 				},
 				'ui.video': {
 					'name': 'ui_video',
@@ -3375,7 +4287,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.video', 'video.mp4']], 'result': 'video1'}
+					]
 				},
 				'ui.sound': {
 					'name': 'ui_sound',
@@ -3384,7 +4298,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.sound', 'sound.mp3']], 'result': 'sound1'}
+					]
 				},
 				'ui.camera': {
 					'name': 'ui_camera',
@@ -3393,7 +4309,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.camera']], 'result': 'camera1'}
+					]
 				},
 				'ui.draw': {
 					'name': 'ui_draw',
@@ -3402,7 +4320,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.draw', 400, 300]], 'result': 'canvas1'}
+					]
 				},
 				'ui.header': {
 					'name': 'ui_header',
@@ -3411,7 +4331,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.header', 'My App']], 'result': 'header1'}
+					]
 				},
 				'ui.footer': {
 					'name': 'ui_footer',
@@ -3420,7 +4342,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.footer', '© 2023']], 'result': 'footer1'}
+					]
 				},
 				'ui.wait': {
 					'name': 'ui_wait',
@@ -3429,7 +4353,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.wait']], 'result': 'wait1'}
+					]
 				},
 				'ui.gallery': {
 					'name': 'ui_gallery',
@@ -3438,7 +4364,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.gallery', ['img1.jpg', 'img2.jpg']]], 'result': 'gallery1'}
+					]
 				},
 				'ui.button': {
 					'name': 'ui_button',
@@ -3447,7 +4375,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.button', 'Click me']], 'result': 'button1'}
+					]
 				},
 				'ui.select': {
 					'name': 'ui_select',
@@ -3456,7 +4386,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.select', ['Option 1', 'Option 2']]], 'result': 'select1'}
+					]
 				},
 				'ui.switch': {
 					'name': 'ui_switch',
@@ -3465,7 +4397,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.switch', True]], 'result': 'switch1'}
+					]
 				},
 				'ui.progress': {
 					'name': 'ui_progress',
@@ -3474,7 +4408,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.progress', 50]], 'result': 'progress1'}
+					]
 				},
 				'ui.slider': {
 					'name': 'ui_slider',
@@ -3483,7 +4419,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.slider', 0, 100, 50]], 'result': 'slider1'}
+					]
 				},
 				'ui.edit': {
 					'name': 'ui_edit',
@@ -3492,7 +4430,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.edit', 'Type here']], 'result': 'edit1'}
+					]
 				},
 				'ui.divider': {
 					'name': 'ui_divider',
@@ -3501,7 +4441,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.divider']], 'result': 'divider1'}
+					]
 				},
 				'ui.split.h': {
 					'name': 'ui_split_h',
@@ -3510,7 +4452,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.split.h', 'panel1', 0.5]], 'result': ['panel1_left', 'panel1_right']}
+					]
 				},
 				'ui.split.v': {
 					'name': 'ui_split_v',
@@ -3519,7 +4463,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.split.v', 'panel1', 0.3]], 'result': ['panel1_top', 'panel1_bottom']}
+					]
 				},
 				'ui.list': {
 					'name': 'ui_list',
@@ -3528,7 +4474,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.list', ['Item 1', 'Item 2']]], 'result': 'list1'}
+					]
 				},
 				'ui.tile': {
 					'name': 'ui_tile',
@@ -3537,7 +4485,20 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.tile', ['img1.jpg', 'img2.jpg'], 3]], 'result': 'tile1'}
+					]
+				},
+				'ui.chart': {
+					'name': 'ui_chart',
+					'group': 'ui',
+					'description': 'Data visualization using charts and graphs',
+					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
+					'safe': True,
+					'param': [],
+					'example': [
+						{'code': [['ui.chart', {}]]}
+					]
 				},
 				'ui.color': {
 					'name': 'ui_color',
@@ -3546,7 +4507,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.color', '#FF0000']], 'result': 'color1'}
+					]
 				},
 				'ui.date': {
 					'name': 'ui_date',
@@ -3555,7 +4518,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.date']], 'result': 'date1'}
+					]
 				},
 				'ui.menu': {
 					'name': 'ui_menu',
@@ -3564,7 +4529,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.menu', ['File', 'Edit']]], 'result': 'menu1'}
+					]
 				},
 				'ui.menu.context': {
 					'name': 'ui_menu_context',
@@ -3573,7 +4540,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['ui.menu.context', 'element1', ['Copy', 'Paste']]], 'result': True}
+					]
 				},
 				'window': {
 					'name': 'window',
@@ -3582,7 +4551,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['window', 'My Window', 800, 600]], 'result': 'window1'}
+					]
 				},
 				'window.list': {
 					'name': 'window_list',
@@ -3591,7 +4562,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['window.list']], 'result': ['window1', 'window2']}
+					]
 				},
 				'title': {
 					'name': 'title',
@@ -3600,7 +4573,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['title', 'window1', 'New Title']], 'result': True}
+					]
 				},
 				'icon': {
 					'name': 'icon',
@@ -3609,7 +4584,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['icon', 'window1', 'app.ico']], 'result': True}
+					]
 				},
 				'size': {
 					'name': 'size',
@@ -3618,7 +4595,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['size', 'window1', 1024, 768]], 'result': True}
+					]
 				},
 				'size.max': {
 					'name': 'size_max',
@@ -3627,7 +4606,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['size.max', 'window1', 1920, 1080]], 'result': True}
+					]
 				},
 				'size.min': {
 					'name': 'size_min',
@@ -3636,7 +4617,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['size.min', 'window1', 400, 300]], 'result': True}
+					]
 				},
 				'position': {
 					'name': 'position',
@@ -3645,7 +4628,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['position', 'window1', 100, 50]], 'result': True}
+					]
 				},
 				'direction': {
 					'name': 'direction',
@@ -3654,7 +4639,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['direction', 'rtl']], 'result': True}
+					]
 				},
 				'attention': {
 					'name': 'attention',
@@ -3663,7 +4650,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['attention', 'window1']], 'result': True}
+					]
 				},
 				'top': {
 					'name': 'top',
@@ -3672,7 +4661,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['top', 'window1']], 'result': True}
+					]
 				},
 				'nofocus': {
 					'name': 'nofocus',
@@ -3681,7 +4672,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['nofocus', 'window1']], 'result': True}
+					]
 				},
 				'noresize': {
 					'name': 'noresize',
@@ -3690,7 +4683,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['noresize', 'window1']], 'result': True}
+					]
 				},
 				'center': {
 					'name': 'center',
@@ -3699,7 +4694,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['center', 'window1']], 'result': True}
+					]
 				},
 				'fullscreen': {
 					'name': 'fullscreen',
@@ -3708,7 +4705,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['fullscreen', 'window1']], 'result': True}
+					]
 				},
 				'maximize': {
 					'name': 'maximize',
@@ -3717,7 +4716,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['maximize', 'window1']], 'result': True}
+					]
 				},
 				'minimize': {
 					'name': 'minimize',
@@ -3726,7 +4727,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['minimize', 'window1']], 'result': True}
+					]
 				},
 				'exclusive': {
 					'name': 'exclusive',
@@ -3735,7 +4738,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['exclusive', 'window1']], 'result': True}
+					]
 				},
 				'border': {
 					'name': 'border',
@@ -3744,7 +4749,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['border', 'window1', False]], 'result': True}
+					]
 				},
 				'filedrop': {
 					'name': 'filedrop',
@@ -3753,7 +4760,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['filedrop', 'window1', True]], 'result': True}
+					]
 				},
 				'dialog': {
 					'name': 'dialog',
@@ -3762,7 +4771,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dialog', 'Are you sure?']], 'result': True}
+					]
 				},
 				'dialog.file': {
 					'name': 'dialog_file',
@@ -3771,7 +4782,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['dialog.file']], 'result': '/path/to/file.txt'}
+					]
 				},
 				'effect': {
 					'name': 'effect',
@@ -3780,7 +4793,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['effect', 'window1', 'blur']], 'result': True}
+					]
 				},
 				'effect.remove': {
 					'name': 'effect_remove',
@@ -3789,7 +4804,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['effect.remove', 'window1']], 'result': True}
+					]
 				},
 				'tap': {
 					'name': 'tap',
@@ -3798,7 +4815,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['tap', 100, 200]], 'result': True}
+					]
 				},
 				'key': {
 					'name': 'key',
@@ -3807,7 +4826,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['key', 'Ctrl+S', 'save']], 'result': True}
+					]
 				},
 				'key.remove': {
 					'name': 'key_remove',
@@ -3816,7 +4837,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['key.remove', 'Ctrl+S']], 'result': True}
+					]
 				},
 				'key.enable': {
 					'name': 'key_enable',
@@ -3825,7 +4848,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['key.enable', 'Ctrl+S']], 'result': True}
+					]
 				},
 				'key.disable': {
 					'name': 'key_disable',
@@ -3834,7 +4859,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['key.disable', 'Ctrl+S']], 'result': True}
+					]
 				},
 				'key.press': {
 					'name': 'key_press',
@@ -3843,7 +4870,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['key.press', 'Enter']], 'result': True}
+					]
 				},
 				'keyboard': {
 					'name': 'keyboard',
@@ -3852,7 +4881,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['keyboard']], 'result': {'layout': 'QWERTY', 'language': 'en-US'}}
+					]
 				},
 				'mouse': {
 					'name': 'mouse',
@@ -3861,7 +4892,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['mouse']], 'result': {'x': 500, 'y': 300, 'buttons': 0}}
+					]
 				},
 				'mouse.lock': {
 					'name': 'mouse_lock',
@@ -3870,7 +4903,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['mouse.lock', True]], 'result': True}
+					]
 				},
 				'mouse.position': {
 					'name': 'mouse_position',
@@ -3879,7 +4914,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['mouse.position', 400, 300]], 'result': True}
+					]
 				},
 				'mouse.shape': {
 					'name': 'mouse_shape',
@@ -3888,7 +4925,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['mouse.shape', 'pointer']], 'result': True}
+					]
 				},
 				'gamepad': {
 					'name': 'gamepad',
@@ -3897,7 +4936,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['gamepad', 0]], 'result': {'buttons': [False], 'axes': [0.0]}}
+					]
 				},
 				'gamepad.vibrate': {
 					'name': 'gamepad_vibrate',
@@ -3906,7 +4947,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['gamepad.vibrate', 0, 0.5, 0.5]], 'result': True}
+					]
 				},
 				'game': {
 					'name': 'game',
@@ -3915,7 +4958,9 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [['game', 'My Game', 800, 600]], 'result': 'game1'}
+					]
 				}
 			}
 		},
@@ -4027,7 +5072,7 @@ class void:
 		elif data_type in [int, float, bool, bytes]:
 			result = str(data)
 		elif data_type in [dict, list]:
-			result = void.void_encode(data, '  ')
+			result = void.void_encode(data, 4)
 		print(result, end=end)
 
 	def input(text: str = None):
@@ -4371,7 +5416,7 @@ class void:
 		return math.atanh(value)
 
 	def round(value: float, dot: int = 0):
-		return math.round(value, dot)
+		return round(value, dot)
 
 	def floor(value: float):
 		return math.floor(value)
@@ -4473,7 +5518,8 @@ class void:
 		pass
 
 	def hash(length: str = 64, symbols = None):
-		pass
+		chars = string.ascii_letters + string.digits  # a-z, A-Z, 0-9
+		return ''.join(random.choices(chars, k=length))
 
 	def uuid():
 		pass
@@ -4754,7 +5800,11 @@ class void:
 
 	# format
 
-	def void_encode(data, indent: str = '\t', level: int = 0):
+	def void_encode(data, indent = '\t', level: int = 0):
+		if type(indent) is int:
+			indent = ' ' * indent
+		else:
+			indent = str(indent)
 		result = ''
 		short = indent == None
 		indent_current = indent * level if not short else ''
