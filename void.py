@@ -805,11 +805,13 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [
-						{'name': 'name', 'type': 'text', 'default': None}
+						{'name': 'name', 'type': 'text', 'default': None},
+						{'name': 'group', 'type': 'text', 'default': None}
 					],
 					'example': [
 						{'code': [['test']], 'test': False},
-						{'code': [['test', 'upper']], 'test': False}
+						{'code': [['test', 'upper']], 'test': False},
+						{'code': [['test', 'group', 'math']], 'test': False}
 					]
 				},
 				'help': {
@@ -1017,8 +1019,9 @@ class void:
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['date', 'format', '2023-01-01', '%Y-%m-%d']], 'result': '2023-01-01'},
-						{'code': [['date', 'parse', '2023-01-01', '%Y-%m-%d']], 'result': {'year': 2023, 'month': 1, 'day': 1}}
+						{'code': [['date', '{year}-{month}-{day} {hour}:{minute}:{second}.{millisecond}', 1744095313.123]], 'result': '2025-04-08 06:55:13.123'},
+						{'code': [['date', '{month short}', 1744095313]], 'result': '4'},
+						{'code': [['date', '2025-04-08 06:55:13.123', '{year}-{month}-{day} {hour}:{minute}:{second}.{millisecond}']], 'result': 1744095313.123}
 					]
 				},
 				'escape': {
@@ -1117,24 +1120,13 @@ class void:
 						{'code': [['unescape.sql', 'x\\\' OR 1=1 --']], 'result': 'x\' OR 1=1 --'}
 					]
 				},
-				'letters': {
-					'name': 'letters',
-					'group': 'text',
-					'description': 'Extract alphabetic characters from a string',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['letters', 'Test 123!']], 'result': 'Test'},
-						{'code': [['letters', 'A1B2C3']], 'result': 'ABC'}
-					]
-				},
 				'words': {
 					'name': 'words',
 					'group': 'text',
 					'description': 'Split text into individual words',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['words', 'Hello world! How are you?']], 'result': ['Hello', 'world', 'How', 'are', 'you']},
@@ -1147,6 +1139,7 @@ class void:
 					'description': 'Split text into sentences',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['sentences', 'First sentence. Second one! Third?']], 'result': ['First sentence', 'Second one', 'Third']},
@@ -1159,6 +1152,7 @@ class void:
 					'description': 'Split text into lines',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['lines', 'line1\nline2\nline3']], 'result': ['line1', 'line2', 'line3']},
@@ -1171,6 +1165,7 @@ class void:
 					'description': 'Convert a string into bytes',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['bytes', 'hello', 'utf-8']], 'result': [104, 101, 108, 108, 111]},
@@ -2713,11 +2708,12 @@ class void:
 					]
 				},
 				'ini.encode': {
-					'name': 'ini_encode',
+					'name': 'format.ini.encode',
 					'group': 'format',
 					'description': 'Encodes data into the INI format',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['ini.encode', {'section': {'key': 'value'}}]], 'result': '[section]\nkey=value'},
@@ -2725,11 +2721,12 @@ class void:
 					]
 				},
 				'ini.decode': {
-					'name': 'ini_decode',
+					'name': 'format.ini.decode',
 					'group': 'format',
 					'description': 'Decodes data from the INI format',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['ini.decode', '[section]\nkey=value']], 'result': {'section': {'key': 'value'}}},
@@ -2737,11 +2734,12 @@ class void:
 					]
 				},
 				'html.encode': {
-					'name': 'html_encode',
+					'name': 'format.html.encode',
 					'group': 'format',
 					'description': 'Encodes data into the HTML format',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['html.encode', {'div': {'class': 'main', 'content': 'Hello'}}]], 'result': '<div class=\'main\'>Hello</div>'},
@@ -2749,11 +2747,12 @@ class void:
 					]
 				},
 				'html.decode': {
-					'name': 'html_decode',
+					'name': 'format.html.decode',
 					'group': 'format',
 					'description': 'Decodes data from the HTML format',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['html.decode', '<div>content</div>']], 'result': {'div': 'content'}},
@@ -2761,11 +2760,12 @@ class void:
 					]
 				},
 				'html.markdown': {
-					'name': 'html_markdown',
+					'name': 'format.html.markdown',
 					'group': 'format',
 					'description': 'Encodes Markdown-formatted text into the HTML format',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['html.markdown', '# Heading']], 'result': '<h1>Heading</h1>'},
@@ -2773,11 +2773,12 @@ class void:
 					]
 				},
 				'xml.encode': {
-					'name': 'xml_encode',
+					'name': 'format.xml.encode',
 					'group': 'format',
 					'description': 'Encodes data into the XML format',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['xml.encode', {'root': {'item': ['a', 'b']}}]], 'result': '<root><item>a</item><item>b</item></root>'},
@@ -2785,11 +2786,12 @@ class void:
 					]
 				},
 				'xml.decode': {
-					'name': 'xml_decode',
+					'name': 'format.xml.decode',
 					'group': 'format',
 					'description': 'Decodes data from the XML format',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['xml.decode', '<root><x>1</x></root>']], 'result': {'root': {'x': '1'}}},
@@ -2797,11 +2799,12 @@ class void:
 					]
 				},
 				'css.encode': {
-					'name': 'css_encode',
+					'name': 'format.css.encode',
 					'group': 'format',
 					'description': 'Encodes data into the CSS format',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['css.encode', {'body': {'color': 'red'}}]], 'result': 'body { color: red; }'},
@@ -2809,11 +2812,12 @@ class void:
 					]
 				},
 				'css.decode': {
-					'name': 'css_decode',
+					'name': 'format.css.decode',
 					'group': 'format',
 					'description': 'Decodes data from the CSS format',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['css.decode', 'body { color: red; }']], 'result': {'body': {'color': 'red'}}},
@@ -2881,11 +2885,12 @@ class void:
 					]
 				},
 				'download': {
-					'name': 'download',
+					'name': 'download.file',
 					'group': 'download',
 					'description': 'Downloads content from a specified URL',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['download', 'https://example.com/file.txt', 'local.txt']], 'test': False},
@@ -2893,11 +2898,12 @@ class void:
 					]
 				},
 				'download.info': {
-					'name': 'download_info',
+					'name': 'download.info',
 					'group': 'download',
 					'description': 'Retrieves information about a content available for download',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['download.info', 'https://example.com/file.zip']], 'result': {'size': 1024, 'type': 'application/zip'}, 'test': False},
@@ -2905,11 +2911,12 @@ class void:
 					]
 				},
 				'download.audio': {
-					'name': 'download_audio',
+					'name': 'download.audio',
 					'group': 'download',
 					'description': 'Downloads audio from a specified URL',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['download.audio', 'https://example.com/sound.mp3']], 'test': False},
@@ -2917,11 +2924,12 @@ class void:
 					]
 				},
 				'download.video': {
-					'name': 'download_video',
+					'name': 'download.video',
 					'group': 'download',
 					'description': 'Downloads video from a specified URL',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['download.video', 'https://example.com/clip.mp4']], 'test': False},
@@ -3042,7 +3050,6 @@ class void:
 					'description': 'Interacting with social API',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
-					'vapp': True,
 					'param': [],
 					'example': [
 						{'code': [['social', 'tiktok', 'upload', 'clip.mp4']], 'test': False},
@@ -3103,11 +3110,16 @@ class void:
 					'group': 'sql',
 					'description': 'Execute SQL query',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
+					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['sql', 'SELECT * FROM users']], 'result': [], 'test': False},
-						{'code': [['sql', 'INSERT INTO logs VALUES (1)']], 'test': False}
+						{'code': [['sql', 'SELECT * FROM user']], 'result': [], 'test': False},
+						{'code': [['sql', 'INSERT INTO log VALUES ({1},{2})', ['date', 'message']]], 'test': False},
+						{'code': [['sql', 'set', 'user', [1, 'name', 'mylogin', 'mypassword']]], 'test': False},
+						{'code': [['sql', 'set', 'user', 1, {'name': 'newname'}]], 'test': False},
+						{'code': [['sql', 'get', 'user']], 'test': False},
+						{'code': [['sql', 'get', 'user', 1]], 'test': False},
+						{'code': [['sql', 'remove', 'user', 1]], 'test': False}
 					]
 				},
 				'os': {
@@ -4994,8 +5006,15 @@ class void:
 				},
 				'html': {
 					'encode': [],
-					'decode': []
+					'decode': [],
+					'markdown': []
 				}
+			},
+			'download': {
+				'file': [],
+				'info': [],
+				'audio': [],
+				'video': []
 			}
 		},
 		'text': {}
@@ -5175,10 +5194,13 @@ class void:
 	def update(name: str = None):
 		pass
 
-	def test(name: str = None):
+	def test(name: str = None, group: str = None):
 		actions = void.data['description']['action']
-		if name in actions:
-			actions = {name: actions[name]}
+		if name == 'group' and group != None:
+			actions = {name: value for name, value in actions.items() if value['group'] == group}
+		else:
+			if name in actions:
+				actions = {name: actions[name]}
 		for name in actions:
 			action = actions[name]
 			if 'example' not in action:
@@ -5801,13 +5823,10 @@ class void:
 	# format
 
 	def void_encode(data, indent = '\t', level: int = 0):
-		if type(indent) is int:
-			indent = ' ' * indent
-		else:
-			indent = str(indent)
 		result = ''
 		short = indent == None
-		indent_current = indent * level if not short else ''
+		indent = ' ' * indent if type(indent) is int else str(indent)
+		indent_current = indent * level
 		match data:
 			case str():
 				if not short:
@@ -5956,20 +5975,6 @@ class void:
 		pass
 
 	def request_head():
-		pass
-
-	# download
-
-	def download():
-		pass
-
-	def download_info():
-		pass
-
-	def download_audio():
-		pass
-
-	def download_video():
 		pass
 
 	# cookie
