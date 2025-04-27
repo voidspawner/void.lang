@@ -7,6 +7,8 @@ import json
 import math
 import string
 import random
+import hashlib
+import base64
 
 class void:
 
@@ -28,9 +30,11 @@ class void:
 					'description': 'Retrieve a value based on provided parameter name',
 					'safe': True,
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'param': [{'name': 'name', 'type': 'text', 'default': None}],
+					'param': [
+						{'name': 'name', 'type': 'text', 'default': None}
+					],
 					'example': [
-						{'code': [['get', 'description.about.name']], 'result': 'V O I D lang', 'test': False}
+						{'code': [['get', 'description.about.name']], 'result': 'V O I D lang'}
 					] 
 				},
 				'set': {
@@ -40,7 +44,16 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [
+							['set', 'some.value', 1],
+							['get', 'some.value'],
+						], 'result': 1},						
+						{'code': [
+							['set', 'some.text', ':)'],
+							['get', 'some.text'],
+						], 'result': ':)'}
+					]
 				},
 				'remove': {
 					'name': 'remove',
@@ -49,7 +62,13 @@ class void:
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
-					'example': []
+					'example': [
+						{'code': [
+							['set', 'some.value', 1],
+							['remove', 'some.value'],
+							['get', 'some.value']
+						], 'result': None}
+					]
 				},
 				'type': {
 					'name': 'type',
@@ -73,13 +92,13 @@ class void:
 							'length': 10,
 							'align': 'center'
 						}]], 'result': '  title   '},
-						{'code': [['text', 100000, {
+						{'code': [['text', 100000.1, {
 							'before': '∞',
 							'after': ' monthly',
 							'group': ',',
 							'fraction': '.',
 							'dot': 3
-						}]], 'result': '∞100,000.000 monthly'},
+						}]], 'result': '∞100,000.100 monthly'},
 						{'code': [['text', 100000, 'price']], 'result': '∞100 000'}
 					]
 				},
@@ -117,8 +136,9 @@ class void:
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['list', 1, 2, 3]], 'result': [1, 2, 3]},
-						{'code': [['list', 'a', 'b']], 'result': ['a', 'b']}
+						{'code': [['list', 123]], 'result': [123]},
+						{'code': [['list', 'a']], 'result': ['a']},
+						{'code': [['list', [123, 'a']]], 'result': [123, 'a']}
 					]
 				},
 				'dict': {
@@ -129,8 +149,9 @@ class void:
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['dict', 'key', 'value']], 'result': {'key': 'value'}},
-						{'code': [['dict', 'a', 1, 'b', 2]], 'result': {'a': 1, 'b': 2}}
+						{'code': [['dict', [['key', 'value']]]], 'result': {'key': 'value'}},
+						{'code': [['dict', [['a', 1], ['b', 2]]]], 'result': {'a': 1, 'b': 2}},
+						{'code': [['dict', {'a': 1}]], 'result': {'a': 1}}
 					]
 				},
 				'binary': {
@@ -142,7 +163,7 @@ class void:
 					'param': [],
 					'example': [
 						{'code': [['binary', 'a']], 'result': b'a'},
-						{'code': [['binary', 255]], 'result': bin(255)}
+						{'code': [['binary', 1]], 'result': b'1'}
 					]
 				},
 				'n': {
@@ -155,7 +176,8 @@ class void:
 					'example': [
 						{'code': [['n', 'text']], 'result': 4},
 						{'code': [['n', [1, 2, 'a']]], 'result': 3},
-						{'code': [['n', {'a': 1, 'b': 2}]], 'result': 2}
+						{'code': [['n', {'a': 1, 'b': 2}]], 'result': 2},
+						{'code': [['n', 123]], 'result': 0}
 					]
 				},
 				'+': {
@@ -690,7 +712,7 @@ class void:
 						{'code': [['o', ['<', 'i', 3], [['?', ['==', 'i', 1], [['<-']], [['.', 'i']]]]]], 'test': False}
 					]
 				},
-				':': {
+				'X': {
 					'name': 'action_return',
 					'group': 'control',
 					'description': 'Return a result from an action',
@@ -698,8 +720,8 @@ class void:
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['action', 'test', [], [[':', 42]]], ['test']], 'result': 42},
-						{'code': [['action', 'square', ['x'], [[':', ['*', 'x', 'x']]]], ['square', 5]], 'result': 25}
+						{'code': [['action', [1, ['+', 1], 'X']]], 'result': 2},
+						{'code': [['action', [1, ['+', 1], ['X', '{}']]]], 'result': None}
 					]
 				},
 				'action': {
@@ -738,7 +760,7 @@ class void:
 						{'code': [['code', 'js', 'console.log("Hello from JS")']], 'test': False}
 					]
 				},
-				'X': {
+				'xx': {
 					'name': 'exit',
 					'group': 'control',
 					'description': 'Exit the current application',
@@ -746,8 +768,9 @@ class void:
 					'safe': False,
 					'param': [],
 					'example': [
-						{'code': [['X']], 'test': False},
-						{'code': [['?', ['==', 'status', 'error'], [['X']], []]], 'test': False}
+						{'code': [['xx']], 'test': False},
+						{'code': [['xx', 500]], 'test': False},
+						{'code': [['xx', 'something went wrong']], 'test': False}
 					]
 				},
 				'l': {
@@ -774,16 +797,26 @@ class void:
 						{'code': [['convert', 'yaml', {'x': 10}]], 'result': 'x: 10\n'}
 					]
 				},
-				'export': {
-					'name': 'export',
+				'spawner': {
+					'name': 'spawner',
 					'group': 'control',
-					'description': 'Export code to an application or game',
+					'description': 'Export code to an application, game or operation system',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': False,
 					'param': [],
 					'example': [
-						{'code': [['export', 'game']], 'test': False},
-						{'code': [['export', 'app', 'my_app']], 'test': False}
+						{'code': [['spawner', 'game.json']], 'test': False},
+						{'code': [['spawner', 'game.json', './game']], 'test': False},
+						{'code': [['spawner', {
+							'source': './app.json',
+							'path': './app',
+							'zip': True,
+							'platform': 'windows'
+							}]], 'test': False},
+						{'code': [['spawner', 'os.86', 'f:']], 'test': False},
+						{'code': [['spawner', 'os.64', 'f:']], 'test': False},
+						{'code': [['spawner', 'os.80286', 'f:']], 'test': False},
+						{'code': [['spawner', 'os.atari', '/mnt/flash']], 'test': False}
 					]
 				},
 				'update': {
@@ -794,8 +827,7 @@ class void:
 					'safe': False,
 					'param': [],
 					'example': [
-						{'code': [['update']], 'test': False},
-						{'code': [['update', 'force']], 'test': False}
+						{'code': [['update']], 'test': False}
 					]
 				},
 				'test': {
@@ -1484,22 +1516,28 @@ class void:
 					'description': 'Fibonacci numbers up to a specified index',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
-					'param': [],
+					'param': [
+						{'name': 'number', 'type': 'number', 'default': 10},
+						{'name': 'multiply', 'type': 'number', 'default': 1},
+						{'name': 'shift', 'type': 'number', 'default': 0}
+					],
 					'example': [
 						{'code': [['fibonacci', 5]], 'result': [0, 1, 1, 2, 3]},
-						{'code': [['fibonacci', 7]], 'result': [0, 1, 1, 2, 3, 5, 8]}
+						{'code': [['fibonacci', 7]], 'result': [0, 1, 1, 2, 3, 5, 8]},
+						{'code': [['fibonacci', 5, 3, 1]], 'result': [1, 4, 4, 7, 10]},
 					]
 				},
-				'gold': {
-					'name': 'gold',
+				'golden': {
+					'name': 'golden',
 					'group': 'math',
 					'description': 'Golden ratio of a number',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['gold', 10]], 'result': {'short': 0, 'large': 0, 'total': 0}, 'round': 3},
-						{'code': [['gold', 10, 'short']], 'result': {'short': 0, 'large': 0, 'total': 0}, 'round': 3},
+						{'code': [['golden', 10]], 'result': {'short': 3.820, 'long': 6.180, 'total': 10}, 'round': 3},
+						{'code': [['golden', 10, 'short']], 'result': {'short': 10, 'long': 16.18, 'total': 26.18}, 'round': 3},
+						{'code': [['golden', 10, 'long']], 'result': {'short': 6.18, 'long': 10, 'total': 16.18}, 'round': 3},
 					]
 				},
 				'abs': {
@@ -1522,8 +1560,8 @@ class void:
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['min', 5, 3, 8, 1]], 'result': 1},
-						{'code': [['min', -2, -5, 0]], 'result': -5}
+						{'code': [['min', [5, 3, 8, 1]]], 'result': 1},
+						{'code': [['min', [-2, -5, 0]]], 'result': -5}
 					]
 				},
 				'max': {
@@ -1534,8 +1572,8 @@ class void:
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['max', 5, 3, 8, 1]], 'result': 8},
-						{'code': [['max', -2, -5, 0]], 'result': 0}
+						{'code': [['max', [5, 3, 8, 1]]], 'result': 8},
+						{'code': [['max', [-2, -5, 0]]], 'result': 0}
 					]
 				},
 				'avg': {
@@ -1546,8 +1584,8 @@ class void:
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['avg', 1, 2, 3, 4, 5]], 'result': 3},
-						{'code': [['avg', 10, 20]], 'result': 15}
+						{'code': [['avg', [1, 2, 3, 4, 5]]], 'result': 3},
+						{'code': [['avg', [10, 20]]], 'result': 15}
 					]
 				},
 				'sum': {
@@ -1558,8 +1596,8 @@ class void:
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['sum', 1, 2, 3, 4, 5]], 'result': 15},
-						{'code': [['sum', 10, 20, 30]], 'result': 60}
+						{'code': [['sum', [1, 2, 3, 4, 5]]], 'result': 15},
+						{'code': [['sum', [10, 20, 30]]], 'result': 60}
 					]
 				},
 				'random': {
@@ -1570,7 +1608,9 @@ class void:
 					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['random']], 'result': 0.5488, 'round': 4}
+						{'code': [['random']], 'result': 'number', 'range': [0, 1]},
+						{'code': [['random', 10]], 'result': 'number', 'range': [0, 10]},
+						{'code': [['random', 10, 20]], 'result': 'number', 'range': [10, 20]},
 					]
 				},
 				'random.seed': {
@@ -1579,9 +1619,28 @@ class void:
 					'description': 'Sets or gets the seed for the random number generator to produce reproducible results',
 					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
 					'safe': True,
+					'param': [
+						{'name': 'seed', 'type': 'text', 'default': None}
+					],
+					'example': [
+						{'code': [
+							['random.seed', 'uniqueseed'],
+							['random.seed']
+						], 'result': 'uniqueseed'}
+					]
+				},
+				'random.reseed': {
+					'name': 'random_reseed',
+					'group': 'math',
+					'description': 'Sets a new random seed for the random number generator',
+					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
+					'safe': True,
 					'param': [],
 					'example': [
-						{'code': [['random.seed', 42]], 'result': None}
+						{'code': [
+							['random.reseed'],
+							['random.seed']
+						], 'result': 'text', 'range': 64}
 					]
 				},
 				't': {
@@ -4981,9 +5040,271 @@ class void:
 			'name': '',
 			'argument': []
 		},
+		'const': {
+			'pi': 3.1415926535,
+			'e': 2.7182818284,
+			'phi': 1.6180339887,
+			'sqrt2': 1.4142135623,
+			'ln2': 0.6931471805,
+			'gamma': 0.5772156649,
+			'sqrt3': 1.7320508075,
+			'ln10': 2.3025850929,
+			'pi^2': 9.8696044011,
+			'2pi': 6.2831853071,
+			'g': 0.9159655941,
+			'zeta3': 1.2020569032,
+			'e^pi': 23.1406926327,
+			'pi/e': 1.1557273498,
+			'sqrt5': 2.2360679775,
+			'zeta2': 1.6449340668,
+			'pi': 1.7724538509,
+			'sqrtpi': 0.3183098861,
+			'l': 0.1100010000,
+			'c10': 0.1234567891,
+			'feigenbaumdelta': 4.6692016091,
+			'feigenbaumalfa': 2.5029078750,
+			'k': 2.6854520010,
+			'a': 1.2824271291,
+			'e^gamma': 1.7810724179,
+			'sqrt6': 2.4494897427,
+			'zeta5': 1.0369277551,
+			'lambda': 2.6220575543,
+			'cahen': 0.6434105462,
+			'pi^3': 31.0062766803,
+			'zeta4': 1.0823232337,
+			'log210': 3.3219280949,
+			'log102': 0.3010299956,
+			'log10e': 0.4342944819,
+			'conway': 1.3035772690,
+			'sqrt7': 2.6457513111,
+			'rho': 1.3247179572,
+			'delta': 0.1039931210,
+			'sqrt2pi': 2.5066282746,
+			'1/e': 0.3678794412,
+			'gauss': 0.8346268417,
+			'omega': 0.5671432904,
+			'artin': 0.3739558136,
+			'sierpinski': 2.5849817596,
+			'wallis': 2.0945514815,
+			'ramanujan': 2625374126.0,
+			'brun': 1.9021605831,
+			'mrb': 0.1878596424,
+			'silver': 2.4142135623,
+			'eulerbeta': 3.1415926535,
+			'zeta2': 1.6449340668,
+			'log2e': 1.4426950408,
+			'log2pi': 1.6514961295,
+			'pi^5': 306.0196847853,
+			'sqrtpi': 1.7724538509,
+			'lnpi': 1.1447298858,
+			'ln1+sqrt2': 0.8813735870,
+			'e^e': 15.1542622414,
+			'e^1/pi': 1.4391645526,
+			'li2': 1.0451637801,
+			'sin1': 0.8414709848,
+			'cos1': 0.5403023059,
+			'tan1': 1.5574077247,
+			'sinh1': 1.1752011936,
+			'cosh1': 1.5430806348,
+			'tanh1': 0.7615941559,
+			'gamma^2': 0.3331779239,
+			'pi^6': 961.3891935753,
+			'pi^7': 3020.2932278,
+			'lnphi': 0.4812118251,
+			'pi/4': 0.7853981634,
+			'pi/2': 1.5707963268,
+			'lnsqrt2pi': 0.9189385332,
+			'zeta6': 1.0173430619,
+			'zeta7': 1.0083492774,
+			'gammaeulergelfand': 0.8346268417,
+			'cbrt2': 1.2599210499,
+			'cbrtpi': 1.4645918875,
+			'fthrt2': 1.1892071150,
+			'fthrtpi': 1.3313353638,
+			'e^0.5': 1.6487212707,
+			'lnln2': -0.3665129205,
+			'lnln10': 0.8340324452,
+			'zeta8': 1.0040773562,
+			'zeta9': 1.0020083928,
+			'1/pi': 0.3183098861,
+			'e^-pi': 0.0432139183,
+			'e^sqrt2': 4.1132503788,
+			'pi^pi': 36.4621596072,
+			'e^pi-pi': 19.9991009792,
+			'1+phi': 2.6180339887,
+			'lnphi^2': 0.9624236502,
+			'lnphi^-1': -0.4812118251,
+			'zeta10': 1.0009945751,
+			'zeta12': 1.0002460866,
+			'zetainf': 1.0
+		},
 		'device': {},
 		'os': {},
-		'cloud': {},
+		'cloud': {
+			'mime': {
+				'html': 'text/html',
+				'htm': 'text/html',
+				'xml': 'application/xml',
+				'text': 'text/plain',
+				'txt': 'text/plain',
+				'void': 'application/void',
+				'css': 'text/css',
+				'js': 'text/javascript',
+				'mjs': 'text/javascript',
+				'csv': 'text/csv',
+				'ttf': 'font/ttf',
+				'otf': 'font/otf',
+				'sfnt': 'font/sfnt',
+				'woff': 'font/woff',
+				'woff2': 'font/woff2',
+				'eot': 'application/vnd.ms-fontobject',
+				'svg': 'image/svg+xml',
+				'webp': 'image/webp',
+				'gif': 'image/gif',
+				'jpeg': 'image/jpeg',
+				'jpg': 'image/jpeg',
+				'png': 'image/png',
+				'tiff': 'image/tiff',
+				'tif': 'image/tiff',
+				'avif': 'image/avif',
+				'apng': 'image/apng',
+				'ico': 'image/x-icon',
+				'icon': 'image/vnd.microsoft.icon',
+				'djvu': 'image/vnd.djvu',
+				'bin': 'application/octet-stream',
+				'ogg': 'application/ogg',
+				'pdf': 'application/pdf',
+				'xhtml': 'application/xhtml+xml',
+				'json': 'application/json',
+				'jsonld': 'application/ld+json',
+				'zip': 'application/zip',
+				'gz': 'application/gzip',
+				'7z': 'application/x-7z-compressed',
+				'tar': 'application/x-tar',
+				'arc': 'application/x-freearc',
+				'rar': 'application/vnd.rar',
+				'bz': 'application/x-bzip',
+				'bz2': 'application/x-bzip2',
+				'mpa': 'audio/mpeg',
+				'mp2': 'audio/mpeg',
+				'mp3': 'audio/mpeg',
+				'wma': 'audio/x-ms-wma',
+				'wav': 'audio/x-wav',
+				'oga': 'audio/ogg',
+				'weba': 'audio/webm',
+				'cda': 'application/x-cdf',
+				'aac': 'audio/aac',
+				'ac3': 'audio/ac3',
+				'mid': 'audio/midi',
+				'midi': 'audio/x-midi',
+				'mpeg': 'video/mpeg',
+				'mpg': 'video/mpeg',
+				'mpv': 'video/mpeg',
+				'mp4': 'video/mp4',
+				'webm': 'video/webm',
+				'ogv': 'video/ogg',
+				'qt': 'video/quicktime',
+				'mov': 'ideo/quicktime',
+				'm4v': 'video/x-m4v',
+				'wmv': 'video/x-ms-wmv',
+				'avi': 'video/x-msvideo',
+				'mkv': 'application/x-matroska',
+				'mjpeg': 'multipart/x-mixed-replace',
+				'ts': 'video/mp2t',
+				'multipart': 'multipart/form-data',
+				'multipart form': 'application/x-www-form-urlencoded',
+				'multipart mixed': 'multipart/mixed',
+				'multipart alternative': 'multipart/alternative',
+				'xls': 'application/vnd.ms-excel',
+				'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+				'abw': 'application/x-abiword',
+				'azw': 'application/vnd.amazon.ebook',
+				'sh': 'application/x-sh',
+				'csh': 'application/x-csh',
+				'doc': 'application/msword',
+				'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+				'ppt': 'application/vnd.ms-powerpoint',
+				'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+				'rtf': 'application/rtf',
+				'epub': 'application/epub+zip',
+				'ics': 'text/calendar',
+				'mpkg': 'application/vnd.apple.installer+xml',
+				'odp': 'application/vnd.oasis.opendocument.presentation',
+				'ods': 'application/vnd.oasis.opendocument.spreadsheet',
+				'odt': 'application/vnd.oasis.opendocument.text',
+				'ogx': 'application/ogg',
+				'php': 'application/x-httpd-php',
+				'py': 'applycation/x-python-code',
+				'jar': 'application/java-archive',
+				'java': 'application/java',
+				'swift': 'application/swift'
+			},
+			'code': {
+				100: 'Continue',
+				101: 'Switching protocols',
+				102: 'Processing',
+				103: 'Early Hints',
+				200: 'OK',
+				201: 'Created',
+				202: 'Accepted',
+				203: 'Non-Authoritative Information',
+				204: 'No Content',
+				205: 'Reset Content',
+				206: 'Partial Content',
+				207: 'Multi-Status',
+				208: 'Already Reported',
+				226: 'IM Used',
+				300: 'Multiple Choices',
+				301: 'Moved Permanently',
+				302: 'Found (Previously \'Moved Temporarily\')',
+				303: 'See Other',
+				304: 'Not Modified',
+				305: 'Use Proxy',
+				306: 'Switch Proxy',
+				307: 'Temporary Redirect',
+				308: 'Permanent Redirect',
+				400: 'Bad Request',
+				401: 'Unauthorized',
+				402: 'Payment Required',
+				403: 'Forbidden',
+				404: 'Not Found',
+				405: 'Method Not Allowed',
+				406: 'Not Acceptable',
+				407: 'Proxy Authentication Required',
+				408: 'Request Timeout',
+				409: 'Conflict',
+				410: 'Gone',
+				411: 'Length Required',
+				412: 'Precondition Failed',
+				413: 'Payload Too Large',
+				414: 'URI Too Long',
+				415: 'Unsupported Media Type',
+				416: 'Range Not Satisfiable',
+				417: 'Expectation Failed',
+				418: 'I\'m a Teapot',
+				421: 'Misdirected Request',
+				422: 'Unprocessable Entity',
+				423: 'Locked',
+				424: 'Failed Dependency',
+				425: 'Too Early',
+				426: 'Upgrade Required',
+				428: 'Precondition Required',
+				429: 'Too Many Requests',
+				431: 'Request Header Fields Too Large',
+				451: 'Unavailable For Legal Reasons',
+				500: 'Internal Server Error',
+				501: 'Not Implemented',
+				502: 'Bad Gateway',
+				503: 'Service Unavailable',
+				504: 'Gateway Timeout',
+				505: 'HTTP Version Not Supported',
+				506: 'Variant Also Negotiates',
+				507: 'Insufficient Storage',
+				508: 'Loop Detected',
+				510: 'Not Extended',
+				511: 'Network Authentication Required'
+			}
+		},
 		'log': {},
 		'db': {},
 		'ai': {},
@@ -4995,12 +5316,28 @@ class void:
 			'help': [],
 			'update': [],
 			'test': [],
+			'words': [
+				['find', '{data}', [' ', '\n', '\t']],
+				'n',
+				'X'
+			],
+			'sentences': [
+				['find', '{data}', ['.', '!', '?']],
+				'n',
+				'X'
+			],
+			'lines': [
+				['find', '{data}', '\n'],
+				'n',
+				'X'
+			],
+			'bytes': [
+				['byte', '{data}'],
+				'n',
+				'X'
+			],
 			'format': {
 				'ini': {
-					'encode': [],
-					'decode': []
-				},
-				'xml': {
 					'encode': [],
 					'decode': []
 				},
@@ -5008,6 +5345,14 @@ class void:
 					'encode': [],
 					'decode': [],
 					'markdown': []
+				},
+				'xml': {
+					'encode': [],
+					'decode': []
+				},
+				'css': {
+					'encode': [],
+					'decode': []
 				}
 			},
 			'download': {
@@ -5017,25 +5362,186 @@ class void:
 				'video': []
 			}
 		},
-		'text': {}
+		'text': {
+			'void': {
+				'style': {
+					'price': {
+						'dot': 5,
+						'before': '∞',
+						'group': ' '
+					}
+				}
+			}
+		}
 	}
 
 	# value
 
-	def get(name: str = '', default = None, data = None):
+	def get(name, default = None, data = None):
+		if name.startswith('./'):
 			pass
+		elif name.startswith('http://') or name.startswith('https://'):
+			pass
+		if data == None:
+			data = void.data
+		names = name.split('.')
+		names.reverse()
+		while len(names) > 0:
+			subname = names.pop()
+			subtype = type(data)
+			last = len(names) == 0
+			if subtype is dict:
+				if subname not in data:
+					return default
+				if last:
+					return data[subname]
+				data = data[subname]
+			elif subtype is list:
+				try:
+					subname = int(subname)
+				except:
+					return default
+				if len(data) <= subname:
+					return default
+				if last:
+					return data[subname]
+				data = data[subname]
+			else:
+				return default
 
 	def set(name: str, value = None, data = None):
-		pass
+		if data == None:
+			data = void.data
+		names = name.split('.')
+		names.reverse()
+		while len(names) > 0:
+			subname = names.pop()
+			subtype = type(data)
+			last = len(names) == 0
+			if subtype is dict:
+				if subname not in data:
+					data[subname] = {}
+				if last:
+					data[subname] = value
+					return
+				data = data[subname]
+			elif subtype is list:
+				try:
+					subname = int(subname)
+				except:
+					return
+				if len(data) <= subname:
+					if len(data) == subname:
+						data.append({})
+					else:
+						return
+				if last:
+					data[subname] = value
+					return
+				data = data[subname]
+			else:
+				return
 
 	def remove(name: str, data = None):
-		pass
+		if data == None:
+			data = void.data
+		names = name.split('.')
+		names.reverse()
+		while len(names) > 0:
+			subname = names.pop()
+			subtype = type(data)
+			last = len(names) == 0
+			if subtype is dict:
+				if subname not in data:
+					return
+				if last:
+					del data[subname]
+					return
+				data = data[subname]
+			elif subtype is list:
+				try:
+					subname = int(subname)
+				except:
+					return
+				if len(data) <= subname:
+					return
+				if last:
+					del data[subname]
+					return
+				data = data[subname]
+			else:
+				return
 
 	def type(data):
-		pass
+		data_type = type(data)
+		if data_type is str:
+			return 'text'
+		elif data_type in [float, int]:
+			return 'number'
+		elif data_type is bool:
+			return 'bool'
+		elif data_type is list:
+			return 'list'
+		elif data_type is dict:
+			return 'dict'
+		elif data_type is bytes:
+			return 'binary'
+		return 'none'
 
-	def type_text(data):
-		pass
+	def type_text(data, style = {}):
+		result = ''
+		if type(style) is str:
+			style = void.get('text.void.style.' + style, {})
+		if type(style) != dict:
+			style = {}
+		data_type = type(data)
+		if data_type is str:
+			result = data
+		elif data_type in [float, int]:
+			group = void.get('group', '', style)
+			if data_type is float:
+				fraction = void.get('fraction', '.', style)
+				dot = int(void.get('dot', 10, style))
+				result = f'{data:_.{dot}f}'.replace('_', group).replace('.', fraction)
+			else:
+				if group != '':
+					result = f'{data:_}'.replace('_', group)
+				else:
+					result = str(data)
+		elif data_type is bool:
+			result = 'true' if data else 'false'
+		elif data_type in [list, dict]:
+			result = void.void_encode(data)
+		elif data_type is bytes:
+			result = data.decode('utf-8')
+		else:
+			result = 'none'
+		if style != None:
+			if type(style) is str:
+				style = void.get('text.void.style.' + style)
+			if type(style) is dict:
+				for name in style:
+					value = style[name]
+					match name:
+						case 'length':
+							align = void.get('align', 'start', style)
+							space = void.get('space', ' ', style)[:1]
+							length = int(value)
+							if len(result) > length:
+								result = result[:length]
+							else:
+								match align:
+									case 'start':
+										result = result.ljust(length, space)
+									case 'end':
+										result = result.rjust(length, space)
+									case 'center':
+										result = result.center(length, space)
+						case 'before':
+							result = str(value) + result
+						case 'after':
+							result = result + str(value)
+		return result
 
 	def type_int(data):
 		try:
@@ -5050,11 +5556,14 @@ class void:
 			return 0.0
 
 	def type_number(data):
-		result = void.type_float(data)
-		return result if result % 1 != 0 else int(result)
+		try:
+			data = float(data)
+		except:
+			return 0
+		return data if data % 1 != 0 else int(data)
 
 	def type_bool(data):
-		return data not in [0, '0', b'0', False, None, [], {}]
+		return data not in [0, '0', b'0', 'false', 'none', False, None, [], {}]
 
 	def type_list(data):
 		return list(data) if type(data) is list else [data]
@@ -5069,17 +5578,21 @@ class void:
 					result[value[0]] = value[1]
 				else:
 					result[len(result)] = value
-		return {'value': data}
+			return result
+		return {}
 
 	def type_binary(data):
 		if type(data) is str:
-			return data.decode()
+			return data.encode('utf-8')
 		if type(data) is bytes:
 			return data
-		return void.text(data).decode()
+		return void.type_text(data).encode('utf-8')
 
 	def n(data):
-		pass
+		data_type = type(data)
+		if data_type in [str, list, dict, bytes]:
+			return len(data)
+		return 0
 
 	# control
 
@@ -5143,7 +5656,7 @@ class void:
 								break
 						value = params[index]
 						match param['type']:
-							case 'str':
+							case 'text':
 								value = str(value)
 							case 'number':
 								value = float(value)
@@ -5158,6 +5671,8 @@ class void:
 							case 'list':
 								if type(value) is str:
 									value = list(void.json_decode(value))
+								else:
+									value = [value]
 							case 'dict':
 								if type(value) is str:
 									value = dict(void.json_decode(value))
@@ -5201,7 +5716,9 @@ class void:
 		else:
 			if name in actions:
 				actions = {name: actions[name]}
+		void.print('test')
 		for name in actions:
+			void.print(' ' * 4 + name)
 			action = actions[name]
 			if 'example' not in action:
 				continue
@@ -5215,7 +5732,14 @@ class void:
 					code += list(example['after'])
 				result = void.action(code)
 				if 'round' in example:
-					result = round(result, example['round'])
+					if type(result) is dict:
+						for name in result:
+							result[name] = round(result[name], int(example['round'])) if result != None else None
+					elif type(result) is list:
+						for index in range(len(result)):
+							result[index] = round(result[index], int(example['round'])) if result != None else None
+					else:
+						result = round(result, int(example['round'])) if result != None else None
 				if 'result' in example:
 					error = False
 					match example['result']:
@@ -5225,6 +5749,11 @@ class void:
 						case 'number':
 							if type(result) not in [int, float]:
 								error = True
+							elif 'range' in example and type(example['range']) in [list, int, float]:
+								range_from = float(example['range'][0]) if type(example['range']) is list and len(example['range']) > 1 else 0
+								range_to = float(example['range'][1] if type(example['range']) is list and len(example['range']) > 1 else (example['range'][0] if type(example['range']) is list else example['range']))
+								if result < range_from or result > range_to:
+									error = True
 						case 'bool':
 							if type(result) is not bool:
 								error = True
@@ -5242,11 +5771,13 @@ class void:
 								error = True
 					if error:
 						void.exit({
-							'action': name,
-							'expect': example['result'],
-							'found': result
-							})
-		void.print('ok')
+							'error': {
+								'action': name,
+								'example': example['code'],
+								'expected': example['result'],
+								'found': result
+							}})
+		void.print({'result': 'ok'})
 
 	def help(name: str = None):
 		result = dict(void.data['description'])
@@ -5452,18 +5983,39 @@ class void:
 	def factorial(value: float):
 		return math.factorial(value)
 
-	def fibonacci(value: int):
+	def fibonacci(value: float, multiply: float = 1, shift: float = 0):
+		value = int(value)
 		if value <= 0:
 			return 0
 		elif value == 1:
 			return 1
 		a, b = 0, 1
-		for _ in range(2, value + 1):
+		result = [0 + shift, 1 * multiply + shift]
+		for _ in range(2, value):
 			a, b = b, a + b
-		return b
+			result.append(b * multiply + shift)
+		return result
 
-	def gold():
-		pass
+	def golden(value: float, name: str = None):
+		const = 1.61803398874989484820
+		if name == 'short':
+			return {
+				'short': value,
+				'long': value * const,
+				'total': value * (1 + const)
+				}
+		elif name == 'long':
+			return {
+				'short': value / const,
+				'long': value,
+				'total': value * (1 + const) / const
+				}
+		else:
+			return {
+				'short': (2 - const) * value,
+				'long': (const - 1) * value,
+				'total': value
+				}
 
 	def abs(value: float):
 		return abs(value)
@@ -5501,10 +6053,14 @@ class void:
 				return random.randint(0, value)
 			return random.uniform(0, value)
 
-	def random_seed(seed = None):
+	def random_seed(seed: str = None):
 		if seed == None:
-			return random.getstate()
-		return random.setstate(seed)
+			return void.get('app.seed')
+		return void.set('app.seed', seed)
+
+	def random_reseed():
+		seed = void.sha256(str(void.time()) + void.hash(40))
+		void.random_seed(seed)
 
 	# time
 
@@ -5546,34 +6102,36 @@ class void:
 	def uuid():
 		pass
 
-	def md5():
+	def md5(value: str):
+		return hashlib.md5(value)
+
+	def sha1(value: str):
 		pass
 
-	def sha1():
+	def sha256(value: str):
+		return hashlib.sha256(value.encode()) 
+
+	def sha512(value: str):
 		pass
 
-	def sha256():
+	def crc32(value: str):
 		pass
 
-	def sha512():
-		pass
-
-	def crc32():
-		pass
-
-	def base64_encode():
-		pass
+	def base64_encode(data, charset: str = 'utf-8'):
+		if type(data) is not bool:
+			data = void.type_text(data).encode()
+		return base64.b64encode(data).decode(charset)
 
 	def base64_decode():
 		pass
 
-	def gzip_encode():
+	def gzip_encode(value: str):
 		pass
 
 	def gzip_decode():
 		pass
 
-	def rsa_encode():
+	def rsa_encode(value: str):
 		pass
 
 	def rsa_decode():
@@ -5585,7 +6143,7 @@ class void:
 	def rsa_private():
 		pass
 
-	def ssl_encode():
+	def ssl_encode(value: str):
 		pass
 
 	def ssl_decode():
@@ -5594,7 +6152,7 @@ class void:
 	def ssl_check():
 		pass
 
-	def bcrypt_encode():
+	def bcrypt_encode(value: str):
 		pass
 
 	def bcrypt_check():
@@ -5603,7 +6161,11 @@ class void:
 	# file
 
 	def file(path: str, data = None):
-		pass
+		extension = void.path_extension(path).lower()
+		match extension:
+			case 'json':
+			case 'void':
+			case 'txt':
 
 	def file_exists(path: str):
 		pass
@@ -5825,12 +6387,12 @@ class void:
 	def void_encode(data, indent = '\t', level: int = 0):
 		result = ''
 		short = indent == None
-		indent = ' ' * indent if type(indent) is int else str(indent)
+		indent = (' ' * indent) if type(indent) is int else str(indent)
 		indent_current = indent * level
 		match data:
 			case str():
 				if not short:
-					result += indent_current + data + '\n'
+					result += indent_current + (data if len(data) > 0 else "'") + '\n'
 				else:
 					if len(data) > 0:
 						result += (f'"{data}"' if (data.count(' ') > 1 or data[0] == '*') else data.replace(' ', '\\ ')) + ' '
@@ -5877,7 +6439,7 @@ class void:
 				if not short:
 					for name in data:
 						value = data[name]
-						result += indent_current + name + '\n'
+						result += indent_current + str(name) + '\n'
 						result += void.void_encode(value, indent, level + 1).rstrip(']"') + '\n'
 				else:
 					if len(data) > 0:
@@ -6021,13 +6583,7 @@ class void:
 
 	# social
 
-	def social_x():
-		pass
-
-	def social_youtube():
-		pass
-
-	def social_tiktok():
+	def social():
 		pass
 
 	# notification
@@ -6702,6 +7258,7 @@ class void:
 		void.set('app.name', sys.argv[0])
 		void.set('app.path', os.getcwd())
 		void.set('app.argument', arguments)
+		void.random_reseed()
 		result = None
 		if len(arguments) > 0:
 			text = arguments[0]
@@ -6712,7 +7269,7 @@ class void:
 				void.code(text)
 			else:
 				if void.path_extension(text) in ['json', 'void']:
-					action = file(text)
+					action = void.file(text)
 				else:
 					action = void.json_decode(text.replace("'", '"'))
 				if action != None and len(action) > 0:
