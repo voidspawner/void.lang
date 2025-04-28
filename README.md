@@ -307,7 +307,7 @@ python void.py "['.', 'Hi World :D']"
 | **``~``**<br>Elevation operator | **request** |
 | **``!``**<br>Perform logical negation | **``request``**<br>Sends an HTTP (GET by default) request to a specified URL |
 | **``&``**<br>Perform bitwise AND operation | **``request.post``**<br>Sends an HTTP POST request to a specified URL |
-| **``|``**<br>Perform bitwise OR operation | **``request.put``**<br>Sends an HTTP PUT request to a specified URL |
+| **``\|``**<br>Perform bitwise OR operation | **``request.put``**<br>Sends an HTTP PUT request to a specified URL |
 | **``^``**<br>Perform bitwise XOR operation | **``request.delete``**<br>Sends an HTTP DELETE request to a specified URL |
 | **``>>``**<br>Perform right bitwise shift operation | **``request.head``**<br>Sends an HTTP HEAD request to a specified URL |
 | **``<<``**<br>Perform left bitwise shift operation | &nbsp; |
@@ -321,7 +321,7 @@ python void.py "['.', 'Hi World :D']"
 | **``~=``**<br>Elevation and assign value to a variable | **``cloud``**<br>Runs cloud storage or services for data management |
 | **``!=``**<br>Check if values are not equal | **``cloud.file``**<br>Runs cloud storage |
 | **``&=``**<br>Bitwise AND and assign value to a variable | **``cloud.web``**<br>Runs WEB service |
-| **``|=``**<br>Bitwise OR and assign value to a variable | **``cloud.api``**<br>Runs API service |
+| **``\|=``**<br>Bitwise OR and assign value to a variable | **``cloud.api``**<br>Runs API service |
 | **``^=``**<br>Bitwise XOR and assign value to a variable | **``cloud.socket``**<br>Runs Socket service |
 | **``>>=``**<br>Right shift and assign value to a variable | **``cloud.mail``**<br>Runs Mail service |
 | **``<<=``**<br>Left shift and assign value to a variable | **``cloud.proxy``**<br>Runs Proxy service |
