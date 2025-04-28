@@ -281,7 +281,7 @@ python void.py "['.', 'Hi World :D']"
 > python void.py help upper
 > ```
 
-> Count of actions **``431``**
+> Count of actions **``427``**
 
 | <img width="1000" height="1"> | <img width="1000" height="1"> |
 | --- | --- |
@@ -307,7 +307,7 @@ python void.py "['.', 'Hi World :D']"
 | **``~``**<br>Elevation operator | **request** |
 | **``!``**<br>Perform logical negation | **``request``**<br>Sends an HTTP (GET by default) request to a specified URL |
 | **``&``**<br>Perform bitwise AND operation | **``request.post``**<br>Sends an HTTP POST request to a specified URL |
-| **``\|``**<br>Perform bitwise OR operation | **``request.put``**<br>Sends an HTTP PUT request to a specified URL |
+| **``|``**<br>Perform bitwise OR operation | **``request.put``**<br>Sends an HTTP PUT request to a specified URL |
 | **``^``**<br>Perform bitwise XOR operation | **``request.delete``**<br>Sends an HTTP DELETE request to a specified URL |
 | **``>>``**<br>Perform right bitwise shift operation | **``request.head``**<br>Sends an HTTP HEAD request to a specified URL |
 | **``<<``**<br>Perform left bitwise shift operation | &nbsp; |
@@ -317,216 +317,211 @@ python void.py "['.', 'Hi World :D']"
 | **``-=``**<br>Subtract and assign value to a variable | **``download.audio``**<br>Downloads audio from a specified URL |
 | **``*=``**<br>Multiply and assign value to a variable | **``download.video``**<br>Downloads video from a specified URL |
 | **``/=``**<br>Divide and assign value to a variable | &nbsp; |
-| **``%=``**<br>Modulo and assign value to a variable | **cookie** |
-| **``~=``**<br>Elevation and assign value to a variable | **``cookie``**<br>Gets or sets a specified cookie |
-| **``!=``**<br>Check if values are not equal | **``cookie.remove``**<br>Removes a specified cookie from the client's storage |
-| **``&=``**<br>Bitwise AND and assign value to a variable | &nbsp; |
-| **``\|=``**<br>Bitwise OR and assign value to a variable | **cloud** |
-| **``^=``**<br>Bitwise XOR and assign value to a variable | **``cloud``**<br>Runs cloud storage or services for data management |
-| **``>>=``**<br>Right shift and assign value to a variable | **``cloud.file``**<br>Runs cloud storage |
-| **``<<=``**<br>Left shift and assign value to a variable | **``cloud.web``**<br>Runs WEB service |
-| **``==``**<br>Checks if left value is equal to right | **``cloud.api``**<br>Runs API service |
-| **``>``**<br>Checks if left value is greater than right | **``cloud.socket``**<br>Runs Socket service |
-| **``<``**<br>Checks if left value is less than right | **``cloud.mail``**<br>Runs Mail service |
-| **``<=``**<br>Checks if left value is less than or equal to right | **``cloud.proxy``**<br>Runs Proxy service |
-| **``>=``**<br>Checks if left value is greater than or equal to right | &nbsp; |
-| **``not``**<br>Logical NOT operation | **bot** |
-| **``and``**<br>Logical AND operation | **``bot.telegram``**<br>Interacting with the Telegram bot API |
-| **``or``**<br>Logical OR operation | **``bot.discord``**<br>Interacting with the Discord bot API |
-| **``xor``**<br>Logical XOR operation | **``bot.wechat``**<br>Interacting with the WeChat bot API |
-| **``in``**<br>Checks if value is in a list or name in a dictionary | &nbsp; |
-| **``not in``**<br>Checks if value is not in a list or name not in a dictionary | **social** |
-| &nbsp; | **``social.x``**<br>Interacting with the X API |
-| **control** | **``social.youtube``**<br>Interacting with the YouTube API |
-| **``.``**<br>Output data to the console | **``social.tiktok``**<br>Interacting with the TikTok API |
-| **``..``**<br>Input text from the user | &nbsp; |
-| **``?``**<br>Evaluate a conditional expression | **notification** |
-| **``o``**<br>Perform a loop operation | **``notification``**<br>Send notification |
-| **``x``**<br>Exit the current loop | **``mail``**<br>Send mail |
-| **``->``**<br>Skip to the next iteration of the loop | **``call``**<br>Initiate a voice or video call to a specified recipient |
-| **``<-``**<br>Repeat the current iteration of the loop | **``sms``**<br>Send a text message (SMS) to a specified recipient |
-| **``:``**<br>Return a result from an action | &nbsp; |
-| **``action``**<br>Initiate or call an action | **sql** |
-| **``open``**<br>Open a link | **``sql``**<br>Execute SQL query |
-| **``code``**<br>Execute a block of native code | &nbsp; |
-| **``X``**<br>Exit the current application | **os** |
-| **``l``**<br>Log data | **``os``**<br>Gets or checks the operating system type |
-| **``convert``**<br>Convert data from one format to another | **``os.version``**<br>Current version of the operating system |
-| **``export``**<br>Export code to an application or game | **``os.user``**<br>Information about the current user logged into the operating system |
-| **``update``**<br>Updating the language code | **``language``**<br>System language |
-| **``test``**<br>Test one or all actions | &nbsp; |
-| **``help``**<br>Show description and use of the action | **device** |
-| **``void``**<br>Perform a void action on the hash | **``device``**<br>Information related to the hardware device |
-| &nbsp; | **``cpu``**<br>Information about the CPU, including its usage and specifications |
-| **text** | **``fps``**<br>Frames per second for video or graphical rendering |
-| **``lower``**<br>Convert text to lowercase | **``vsync``**<br>Vertical sync settings to reduce screen tearing during rendering |
-| **``upper``**<br>Convert text to uppercase | **``resolution``**<br>Screen resolution |
-| **``starts``**<br>Check if text starts with a specific substring | **``orientation``**<br>Orientation of a device's display (landscape or portrait) |
-| **``ends``**<br>Check if text ends with a specific substring | **``darkmode``**<br>Dark mode setting for user interfaces |
-| **``strip``**<br>Remove leading and trailing spaces from text | **``pixel``**<br>Color of the pixel displayed on the screen |
-| **``strip.start``**<br>Remove leading spaces from text | **``textmode.character``**<br>Symbol on the screen in text mode |
-| **``strip.end``**<br>Remove trailing spaces from text | **``textmode.cursor``**<br>Cursor position on the screen in text mode |
-| **``replace``**<br>Replace occurrences of a substring within text | **``textmode.clear``**<br>Clears the screen in text mode |
-| **``find``**<br>Locate a substring within text | **``flashlight``**<br>Turns on or off the device's flashlight |
-| **``parse``**<br>Parse text into structured data | **``location``**<br>Retrieves the current geographic location using GPS or network triangulation |
-| **``similar``**<br>Find similarity between texts | **``gyroscope``**<br>Provides access to the gyroscope sensor for motion detection |
-| **``part``**<br>Extract a part of the text | **``accelerometer``**<br>Provides access to the accelerometer sensor to detect acceleration forces |
-| **``split``**<br>Split text into parts based on a delimiter | **``compass``**<br>Accesses the magnetic compass sensor to determine orientation relative to the Earth's magnetic field |
-| **``join``**<br>Join a list of strings into a single string with a delimiter | **``proximity``**<br>Detects the proximity of objects in relation to the device's proximity sensor |
-| **``date``**<br>Format or parse date-related information | **``brightness``**<br>Manages the screen brightness level of the device |
-| **``escape``**<br>Escape special characters in a string | **``calendar``**<br>Calendar events on a device |
-| **``escape.html``**<br>Escape HTML tags and attributes in a string | **``gallery``**<br>Photo and video library on a device |
-| **``escape.url``**<br>Escape URL components | **``contacts``**<br>Contact list on a device |
-| **``escape.sql``**<br>Escape SQL query components to prevent injection | &nbsp; |
-| **``unescape``**<br>Unescape special characters in a string | **clipboard** |
-| **``unescape.html``**<br>Unescape HTML tags and attributes in a string | **``clipboard``**<br>Storing or retrieving clipboard temporary data |
-| **``unescape.url``**<br>Unescape URL components | **``clipboard.remove``**<br>Clears the clipboard content |
-| **``unescape.sql``**<br>Unescape SQL query components | &nbsp; |
-| **``letters``**<br>Extract alphabetic characters from a string | **ai** |
-| **``words``**<br>Split text into individual words | **``translate``**<br>Converts text from one language to another |
-| **``sentences``**<br>Split text into sentences | **``spellcheck``**<br>Spell check in different languages |
-| **``lines``**<br>Split text into lines | **``chat``**<br>AI conversation and interaction through text |
-| **``bytes``**<br>Convert a string into bytes | **``image``**<br>Create an image |
-| &nbsp; | **``image.size``**<br>Adjusts the dimensions of an image |
-| **list** | **``image.square``**<br>Crops an image to a square aspect ratio |
-| **``merge``**<br>Combine multiple lists into one | **``image.crop``**<br>Cuts a portion of the image according to specified dimensions |
-| **``push``**<br>Add an element to the end of a list | **``image.rotate``**<br>Rotates an image by a specified number of degrees |
-| **``pop``**<br>Remove and return an element from the end of a list | **``image.text``**<br>Adds text to an image at specified positions |
-| **``reverse``**<br>Reverse the order of elements in a list | **``image.image``**<br>Adds an image onto another |
-| **``shuffle``**<br>Randomly reorder elements in a list | **``image.grayscale``**<br>Converts an image to grayscale |
-| **``map``**<br>Apply a function to each element in a list | **``image.tint``**<br>Applies a color tint to an image |
-| **``reduce``**<br>Apply a function cumulatively to the elements in a list | **``image.flip.h``**<br>Flips an image horizontally |
-| **``names``**<br>Retrieve all keys or attribute names from a structure | **``image.flip.v``**<br>Flips an image vertically |
-| **``values``**<br>Retrieve all values from a structure | **``image.upscale``**<br>Increases the resolution of an image |
-| &nbsp; | **``image.draw``**<br>Allows draw, clear or replace objects on an image |
-| **math** | **``image.style``**<br>Applies stylistic effects to an image |
-| **``sin``**<br>Sine of the value (in radians) | **``image.colorize``**<br>Adds color to a grayscale image |
-| **``cos``**<br>Cosine of the value (in radians) | **``image.recognize``**<br>Identifies objects or text within an image |
-| **``tan``**<br>Tangent of the value (in radians) | **``image.face``**<br>Detects and processes faces within an image |
-| **``sinh``**<br>Hyperbolic sine of the value | **``image.effect``**<br>Applies special effects to an image |
-| **``cosh``**<br>Hyperbolic cosine of the value | **``video``**<br>Create a video |
-| **``tanh``**<br>Hyperbolic tangent of the valu | **``video.crop``**<br>Cuts a portion of the video according to specified dimensions |
-| **``asin``**<br>Arc sine of the value | **``video.text``**<br>Adds text to a video at specified positions |
-| **``acos``**<br>Arc cosine of the value | **``video.image``**<br>Adds an image to a video |
-| **``atan``**<br>Arc tangent of the value | **``video.sound``**<br>Adds audio track to a video |
-| **``asinh``**<br>Arc hyperbolic sine of the value | **``video.video``**<br>Adds another video clip to a video |
-| **``acosh``**<br>Arc hyperbolic cosine of the value | **``video.trim``**<br>Trims the video to a specified length |
-| **``atanh``**<br>Arc hyperbolic tangent of the value | **``video.size``**<br>Adjusts the dimensions of a video |
-| **``round``**<br>Rounds a number to the nearest integer or to the specified number of decimal places | **``video.upscale``**<br>Increases the resolution of a video |
-| **``floor``**<br>Largest integer less than or equal to a number | **``video.speed``**<br>Adjusts the playback speed of a video |
-| **``ceil``**<br>Smallest integer greater than or equal to a number | **``video.volume``**<br>Adjusts the volume of the video's audio track |
-| **``log``**<br>Logarithm (natural by default) of a number | **``video.mute``**<br>Removes sound from a video |
-| **``factorial``**<br>Factorial of a given non-negative number | **``video.face``**<br>Detects and processes faces within a video |
-| **``fibonacci``**<br>Fibonacci numbers up to a specified index | **``video.effect``**<br>Applies special effects to a video |
-| **``gold``**<br>Golden ratio of a number | **``sound``**<br>Create audio track |
-| **``abs``**<br>Absolute value of a number | **``sound.trim``**<br>Trims the audio track to a specified length |
-| **``min``**<br>Smallest of a list of numbers | **``sound.speed``**<br>Adjusts the playback speed of audio |
-| **``max``**<br>Largest of a list of numbers | **``sound.volume``**<br>Adjusts the volume of an audio track |
-| **``avg``**<br>Average value of a list of numbers | **``sound.effect``**<br>Applies special effects to an audio track |
-| **``sum``**<br>Sum of a list of numbers | **``music``**<br>Generates music |
-| **``random``**<br>Generates a pseudo-random number | **``voice``**<br>Text voicing with different voices |
-| **``random.seed``**<br>Sets or gets the seed for the random number generator to produce reproducible results | **``voice.list``**<br>List of available voices |
-| &nbsp; | **``voice.recognize``**<br>Convert voice to text |
-| **time** | **``voice.stop``**<br>Stop dictation of the text |
-| **``t``**<br>Stopwatch for calculating the time spent on operations | **``voice.capture``**<br>Create a specific voice |
-| **``time``**<br>Provides current time since the epoch (1970-01-01 00:00:00 UTC) | **``motion``**<br>Processes motion-based data |
-| **``timer``**<br>Creates a timer that can be used to trigger events at specific intervals | **``motion.capture``**<br>Records or analyzes motion data in real-time |
-| **``timer.remove``**<br>Removes previously created timer | **``google.voice``**<br>Utilizes Google's voice recognition services |
-| **``timepast``**<br>Calculates time passed since a given start time | **``google.voice.list``**<br>Lists available voice options via Google services |
-| **``wait``**<br>Pauses execution for a specified number of seconds | **``google.voice.recognize``**<br>Recognizes speech using Google technology |
-| &nbsp; | **``google.translate``**<br>Utilizes Google's translation services |
-| **crypto** | **``deepl.translate``**<br>Utilizes DeepL's translation services |
-| **``encrypt``**<br>Encrypts data using a specified key | **``openai.chat``**<br>Conversation using OpenAI's chat models |
-| **``decrypt``**<br>Decrypts previously encrypted data using the specified key | **``openai.image``**<br>Generates or processes images using OpenAI's models |
-| **``hash``**<br>Generates a hash for the data or generates a random text | **``openai.video``**<br>Generates or processes videos using OpenAI's models |
-| **``uuid``**<br>Generates a universally unique identifier | **``openai.translate``**<br>Utilizes OpenAI's services for text translation |
-| **``md5``**<br>Generates an MD5 hash of a text | **``deepseek.chat``**<br>Conversation using DeepSeek's chat models |
-| **``sha1``**<br>Generates an SHA-1 hash of a text | **``deepseek.translate``**<br>Utilizes DeepSeek's services for text translation |
-| **``sha256``**<br>Generates an SHA-256 hash of a text | **``claude.chat``**<br>Conversation using Claude's chat models |
-| **``sha512``**<br>Generates an SHA-512 hash of a text | **``stablediffusion.image``**<br>Generates artistic images using Stable Diffusion models |
-| **``crc32``**<br>Calculates the CRC32 checksum of a text | **``stablediffusion.upscale``**<br>Enhances image resolution using Stable Diffusion models |
-| **``base64.encode``**<br>Encodes the data into base64 format | **``stablediffusion.draw``**<br>Creating and replacing objects in an image using Stable Diffusion models |
-| **``base64.decode``**<br>Decodes base64 encoded data back to its original form | **``stablediffusion.background``**<br>Background removal using Stable Diffusion models |
-| **``gzip.encode``**<br>Compresses data using the GZip compression algorithm | **``stablediffusion.video``**<br>Creates videos using Stable Diffusion's models |
-| **``gzip.decode``**<br>Decompresses GZip compressed data | **``ollama.chat``**<br>Conversation using Ollama's chat models |
-| **``rsa.encode``**<br>Encrypts data using RSA encryption with a public key | &nbsp; |
-| **``rsa.decode``**<br>Decrypts data encrypted with RSA using the corresponding private key | **ui** |
-| **``rsa.public``**<br>Generates the RSA public key used for encryption | **``ui``**<br>Creating a basic element of user interface |
-| **``rsa.private``**<br>Generates the RSA private key used for decryption | **``bg``**<br>Sets or updates the background properties, such as color or image |
-| **``ssl.encode``**<br>Performs SSL encryption on data to secure communication | **``show``**<br>Displays a UI element to make it visible |
-| **``ssl.decode``**<br>Decrypts data encrypted with SSL for secure data transfer | **``hide``**<br>Hides a UI element to make it invisible |
-| **``ssl.check``**<br>Verifies the validity and authenticity of an SSL certificate | **``enable``**<br>Enables a UI element, making it interactive and functional |
-| **``bcrypt.encode``**<br>Hashes a password using the bcrypt algorithm for secure storage | **``disable``**<br>Disables a UI element, preventing interaction or use |
-| **``bcrypt.check``**<br>Verifies a password against a bcrypt hashed password | **``focus``**<br>Sets focus on a specific UI element, making it active or highlighted |
-| &nbsp; | **``unfocus``**<br>Removes focus from a UI element |
-| **file** | **``scale``**<br>Adjusts the size of a UI element by scaling it up or down |
-| **``file``**<br>Read or write data to a file at a specified path | **``ui.text``**<br>Displays or manages text within the user interface |
-| **``file.exists``**<br>Checks if a specified file exists at the given path | **``ui.image``**<br>Displays or manages images within the user interface |
-| **``file.read``**<br>Reads the contents of a specified file | **``ui.video``**<br>Handles video playback or displays video content in the UI |
-| **``file.read.text``**<br>Reads the text contents of a specified file | **``ui.sound``**<br>Manages sound playback or controls audio settings in the UI |
-| **``file.read.lines``**<br>Reads a specified file line by line into a list | **``ui.camera``**<br>Handles camera input or streams video from a camera in the UI |
-| **``file.write``**<br>Writes data to a specified file, creating or replacing it | **``ui.draw``**<br>Enables drawing within the user interface |
-| **``file.append``**<br>Appends data to the end of a specified file without replacing it | **``ui.header``**<br>Defines or manages the header section of the user interface |
-| **``file.remove``**<br>Removes a specified file from the file system | **``ui.footer``**<br>Defines or manages the footer section of the user interface |
-| **``file.move``**<br>Moves a specified file to a new location | **``ui.wait``**<br>Displays a waiting indicator within the UI |
-| **``file.copy``**<br>Copies a specified file to a new location | **``ui.gallery``**<br>Manages or displays a collection of images or media items |
-| **``file.rename``**<br>Renames a specified file | **``ui.button``**<br>Defines or manages buttons in the UI for user interaction |
-| **``file.link``**<br>Creates a hard link to a specified file | **``ui.select``**<br>Creates or manages a selection interface, such as a dropdown menu |
-| **``file.link.exists``**<br>Checks if a hard link exists at the given path | **``ui.switch``**<br>Implements a toggle switch for binary choices in the UI |
-| **``file.info``**<br>Retrieves information about a specified file | **``ui.progress``**<br>Displays a progress bar or status indicator |
-| **``file.size``**<br>Returns the size of a specified file in bytes | **``ui.slider``**<br>Implements a sliding control for adjusting values along a range |
-| **``file.permission``**<br>Retrieves or sets permissions for a specified file | **``ui.edit``**<br>Enables text editing or manages editable fields in the UI |
-| **``file.time``**<br>Gets or sets the modified timestamp for a specified file | **``ui.divider``**<br>Inserts a visual divider or separating line within the UI layout |
-| **``file.sha256``**<br>Computes the SHA256 checksum of a specified file | **``ui.split.h``**<br>Splits a UI container horizontally to create multiple sections |
-| **``file.crc32``**<br>Computes the CRC32 checksum for a specified file | **``ui.split.v``**<br>Splits a UI container vertically to create multiple sections |
-| **``file.base64``**<br>Encodes a specified file to base64 format | **``ui.list``**<br>Displays a list of items for selection or viewing |
-| **``file.zip``**<br>Compresses a specified file into a ZIP archive | **``ui.tile``**<br>Arranges content in a tiled format for visual organization |
-| **``file.zip.list``**<br>Lists the files contained within a ZIP archive | **``ui.color``**<br>Color selection or manages color properties in the UI |
-| **``file.zip.exists``**<br>Checks if a specific file exists within a ZIP archive | **``ui.date``**<br>Date selection or displays date information |
-| **``file.zip.read``**<br>Reads a specific file from within a ZIP archive | **``ui.menu``**<br>Creates or manages menu options for navigation or actions |
-| **``file.zip.remove``**<br>Removes a specific file from a ZIP archive | **``ui.menu.context``**<br>Defines a context menu for right-click actions or additional options |
-| **``file.unzip``**<br>Extracts files from a ZIP archive into a specified directory | **``window``**<br>Creates or manages window |
-| **``file.gzip``**<br>Compresses a specified file using GZip compression | **``window.list``**<br>List of windows |
-| **``file.ungzip``**<br>Decompresses a GZip-compressed file | **``title``**<br>Sets or updates the title of a window or UI element |
-| **``file.void``**<br>Compresses the specified file using GZip compression and places it in a Void container | **``icon``**<br>Defines or changes an icon associated with a window or UI element |
-| **``file.unvoid``**<br>Decompresses a GZip-compressed files and directories from a Void container | **``size``**<br>Adjusts the dimensions or size of a window or UI element |
-| **``dir.exists``**<br>Checks if a specified directory exists | **``size.max``**<br>Sets the maximum size constraints for a window or UI element |
-| **``dir.create``**<br>Creates a new directory at a specified path | **``size.min``**<br>Sets the minimum size constraints for a window or UI element |
-| **``dir.copy``**<br>Copies a specified directory and its contents to a new location | **``position``**<br>Adjusts the position or placement of a window or UI element |
-| **``dir.move``**<br>Moves a specified directory to a new location | **``direction``**<br>Text writing direction for the selected language |
-| **``dir.rename``**<br>Renames a specified directory | **``attention``**<br>Highlights a window or UI element |
-| **``dir.remove``**<br>Removes a specified directory and its contents | **``top``**<br>Brings a window or UI element to the top layer or foreground |
-| **``dir.list``**<br>Lists the contents of a specified directory | **``nofocus``**<br>Prevents a UI element from receiving focus or interaction |
-| **``dir.clear``**<br>Clears all contents of a specified directory without deleting the directory itself | **``noresize``**<br>Locks the size of a window or UI element, preventing resizing |
-| **``dir.info``**<br>Retrieves information about a specified directory | **``center``**<br>Centers a window or UI element within its parent container or screen |
-| **``dir.size``**<br>Calculates the total size of a specified directory and its contents | **``fullscreen``**<br>Switches a window or UI element to fullscreen mode |
-| **``dir.permission``**<br>Gets or sets the permissions of a specified directory | **``maximize``**<br>Minimizes a window to the taskbar or dock |
-| **``dir.time``**<br>Gets or sets the timestamps of a specified directory | **``minimize``**<br> |
-| **``dir.zip``**<br>Compresses a specified directory into a ZIP archive | **``exclusive``**<br>Enables exclusive mode restricting other operations |
-| **``dir.void``**<br>Compresses a specified directory into a Void container | **``border``**<br>Border properties or visibility for a UI element |
-| **``drive.list``**<br>Lists all available drives on the system | **``filedrop``**<br>File drag-and-drop capabilities within the application UI |
-| **``drive.name``**<br>Gets or sets the name of a specified drive | **``dialog``**<br>Dialog box for user prompts or options |
-| **``drive.size``**<br>Total size of a specified drive | **``dialog.file``**<br>Opens a file selection dialog |
-| **``drive.used``**<br>Amount of used space on a specified drive | **``effect``**<br>Applies visual or audio effect to a UI element |
-| **``drive.free``**<br>Amount of free space on a specified drive | **``effect.remove``**<br>Removes applied effect from a UI element |
-| **``drive.info``**<br>Retrieves information about a specified drive | &nbsp; |
-| **``drive.mount``**<br>Mounts a drive to make it accessible | **input** |
-| **``drive.unmount``**<br>Unmounts a drive | **``tap``**<br>Simulates a tap gesture |
-| **``drive.create``**<br>Creates a new virtual drive or volume | **``key``**<br>Key binding |
-| **``drive.resize``**<br>Resizes an existing drive partition or volume | **``key.remove``**<br>Removes a key binding |
-| **``drive.format``**<br>Formats a drive with a specified file system | **``key.enable``**<br>Enables key binding |
-| **``drive.remove``**<br>Removes or deletes a specified drive or partition | **``key.disable``**<br>Disable key binding |
-| **``path.drive``**<br>Drive component of a specified file path | **``key.press``**<br>Simulates a key press event |
-| **``path.dir``**<br>Directory portion of a specified file path | **``keyboard``**<br>Keyboard information |
-| **``path.file``**<br>File portion of a specified file path | **``mouse``**<br>Mouse information |
-| **``path.name``**<br>Name of the file without extension from a specified path | **``mouse.lock``**<br>Locks the mouse cursor to prevent it from leaving a designated area |
-| **``path.extension``**<br>File extension from a specified file path | **``mouse.position``**<br>Retrieves or sets the current position of the mouse cursor |
-| **``path.strip``**<br>Removes the extension from a specified path | **``mouse.shape``**<br>Change the shape of the mouse cursor |
-| &nbsp; | **``gamepad``**<br>Gamepad information |
-| &nbsp; | **``gamepad.vibrate``**<br>Gamepad vibration |
+| **``%=``**<br>Modulo and assign value to a variable | **cloud** |
+| **``~=``**<br>Elevation and assign value to a variable | **``cloud``**<br>Runs cloud storage or services for data management |
+| **``!=``**<br>Check if values are not equal | **``cloud.file``**<br>Runs cloud storage |
+| **``&=``**<br>Bitwise AND and assign value to a variable | **``cloud.web``**<br>Runs WEB service |
+| **``|=``**<br>Bitwise OR and assign value to a variable | **``cloud.api``**<br>Runs API service |
+| **``^=``**<br>Bitwise XOR and assign value to a variable | **``cloud.socket``**<br>Runs Socket service |
+| **``>>=``**<br>Right shift and assign value to a variable | **``cloud.mail``**<br>Runs Mail service |
+| **``<<=``**<br>Left shift and assign value to a variable | **``cloud.proxy``**<br>Runs Proxy service |
+| **``==``**<br>Checks if left value is equal to right | **``cookie``**<br>Gets or sets a specified cookie |
+| **``>``**<br>Checks if left value is greater than right | **``cookie.remove``**<br>Removes a specified cookie from the client's storage |
+| **``<``**<br>Checks if left value is less than right | &nbsp; |
+| **``<=``**<br>Checks if left value is less than or equal to right | **social** |
+| **``>=``**<br>Checks if left value is greater than or equal to right | **``social``**<br>Interacting with social API |
+| **``not``**<br>Logical NOT operation | &nbsp; |
+| **``and``**<br>Logical AND operation | **notification** |
+| **``or``**<br>Logical OR operation | **``notification``**<br>Send notification |
+| **``xor``**<br>Logical XOR operation | **``mail``**<br>Send mail |
+| **``in``**<br>Checks if value is in a list or name in a dictionary | **``call``**<br>Initiate a voice or video call to a specified recipient |
+| **``not in``**<br>Checks if value is not in a list or name not in a dictionary | **``sms``**<br>Send a text message (SMS) to a specified recipient |
 | &nbsp; | &nbsp; |
-| &nbsp; | **game** |
-| &nbsp; | **``game``**<br>Create a custom game |
+| **control** | **sql** |
+| **``.``**<br>Output data to the console | **``sql``**<br>Execute SQL query |
+| **``..``**<br>Input text from the user | &nbsp; |
+| **``?``**<br>Evaluate a conditional expression | **os** |
+| **``o``**<br>Perform a loop operation | **``os``**<br>Gets or checks the operating system type |
+| **``x``**<br>Exit the current loop | **``os.version``**<br>Current version of the operating system |
+| **``->``**<br>Skip to the next iteration of the loop | **``os.user``**<br>Information about the current user logged into the operating system |
+| **``<-``**<br>Repeat the current iteration of the loop | **``language``**<br>System language |
+| **``X``**<br>Return a result from an action | **``clipboard``**<br>Storing or retrieving clipboard temporary data |
+| **``action``**<br>Initiate or call an action | **``clipboard.remove``**<br>Clears the clipboard content |
+| **``open``**<br>Open a link | &nbsp; |
+| **``code``**<br>Execute a block of native code | **device** |
+| **``xx``**<br>Exit the current application | **``device``**<br>Information related to the hardware device |
+| **``l``**<br>Log data | **``cpu``**<br>Information about the CPU, including its usage and specifications |
+| **``convert``**<br>Convert data from one format to another | **``fps``**<br>Frames per second for video or graphical rendering |
+| **``spawner``**<br>Export code to an application, game or operation system | **``vsync``**<br>Vertical sync settings to reduce screen tearing during rendering |
+| **``update``**<br>Updating the language code | **``resolution``**<br>Screen resolution |
+| **``test``**<br>Test one or all actions | **``orientation``**<br>Orientation of a device's display (landscape or portrait) |
+| **``help``**<br>Show description and use of the action | **``darkmode``**<br>Dark mode setting for user interfaces |
+| **``void``**<br>Perform a void action on the hash | **``pixel``**<br>Color of the pixel displayed on the screen |
+| &nbsp; | **``textmode.character``**<br>Symbol on the screen in text mode |
+| **text** | **``textmode.cursor``**<br>Cursor position on the screen in text mode |
+| **``lower``**<br>Convert text to lowercase | **``textmode.clear``**<br>Clears the screen in text mode |
+| **``upper``**<br>Convert text to uppercase | **``flashlight``**<br>Turns on or off the device's flashlight |
+| **``starts``**<br>Check if text starts with a specific substring | **``location``**<br>Retrieves the current geographic location using GPS or network triangulation |
+| **``ends``**<br>Check if text ends with a specific substring | **``gyroscope``**<br>Provides access to the gyroscope sensor for motion detection |
+| **``strip``**<br>Remove leading and trailing spaces from text | **``accelerometer``**<br>Provides access to the accelerometer sensor to detect acceleration forces |
+| **``strip.start``**<br>Remove leading spaces from text | **``compass``**<br>Accesses the magnetic compass sensor to determine orientation relative to the Earth's magnetic field |
+| **``strip.end``**<br>Remove trailing spaces from text | **``proximity``**<br>Detects the proximity of objects in relation to the device's proximity sensor |
+| **``replace``**<br>Replace occurrences of a substring within text | **``brightness``**<br>Manages the screen brightness level of the device |
+| **``find``**<br>Locate a substring within text | **``calendar``**<br>Calendar events on a device |
+| **``parse``**<br>Parse text into structured data | **``gallery``**<br>Photo and video library on a device |
+| **``similar``**<br>Find similarity between texts | **``contacts``**<br>Contact list on a device |
+| **``part``**<br>Extract a part of the text | &nbsp; |
+| **``split``**<br>Split text into parts based on a delimiter | **ai** |
+| **``join``**<br>Join a list of strings into a single string with a delimiter | **``translate``**<br>Converts text from one language to another |
+| **``date``**<br>Format or parse date-related information | **``spellcheck``**<br>Spell check in different languages |
+| **``escape``**<br>Escape special characters in a string | **``chat``**<br>AI conversation and interaction through text |
+| **``escape.html``**<br>Escape HTML tags and attributes in a string | **``image``**<br>Create an image |
+| **``escape.url``**<br>Escape URL components | **``image.size``**<br>Adjusts the dimensions of an image |
+| **``escape.sql``**<br>Escape SQL query components to prevent injection | **``image.square``**<br>Crops an image to a square aspect ratio |
+| **``unescape``**<br>Unescape special characters in a string | **``image.crop``**<br>Cuts a portion of the image according to specified dimensions |
+| **``unescape.html``**<br>Unescape HTML tags and attributes in a string | **``image.rotate``**<br>Rotates an image by a specified number of degrees |
+| **``unescape.url``**<br>Unescape URL components | **``image.text``**<br>Adds text to an image at specified positions |
+| **``unescape.sql``**<br>Unescape SQL query components | **``image.image``**<br>Adds an image onto another |
+| **``words``**<br>Split text into individual words | **``image.grayscale``**<br>Converts an image to grayscale |
+| **``sentences``**<br>Split text into sentences | **``image.tint``**<br>Applies a color tint to an image |
+| **``lines``**<br>Split text into lines | **``image.flip.h``**<br>Flips an image horizontally |
+| **``bytes``**<br>Convert a string into bytes | **``image.flip.v``**<br>Flips an image vertically |
+| &nbsp; | **``image.upscale``**<br>Increases the resolution of an image |
+| **list** | **``image.draw``**<br>Allows draw, clear or replace objects on an image |
+| **``merge``**<br>Combine multiple lists into one | **``image.style``**<br>Applies stylistic effects to an image |
+| **``push``**<br>Add an element to the end of a list | **``image.colorize``**<br>Adds color to a grayscale image |
+| **``pop``**<br>Remove and return an element from the end of a list | **``image.recognize``**<br>Identifies objects or text within an image |
+| **``reverse``**<br>Reverse the order of elements in a list | **``image.face``**<br>Detects and processes faces within an image |
+| **``shuffle``**<br>Randomly reorder elements in a list | **``image.effect``**<br>Applies special effects to an image |
+| **``map``**<br>Apply a function to each element in a list | **``video``**<br>Create a video |
+| **``reduce``**<br>Apply a function cumulatively to the elements in a list | **``video.crop``**<br>Cuts a portion of the video according to specified dimensions |
+| **``names``**<br>Retrieve all keys or attribute names from a structure | **``video.text``**<br>Adds text to a video at specified positions |
+| **``values``**<br>Retrieve all values from a structure | **``video.image``**<br>Adds an image to a video |
+| &nbsp; | **``video.sound``**<br>Adds audio track to a video |
+| **math** | **``video.video``**<br>Adds another video clip to a video |
+| **``sin``**<br>Sine of the value (in radians) | **``video.trim``**<br>Trims the video to a specified length |
+| **``cos``**<br>Cosine of the value (in radians) | **``video.size``**<br>Adjusts the dimensions of a video |
+| **``tan``**<br>Tangent of the value (in radians) | **``video.upscale``**<br>Increases the resolution of a video |
+| **``sinh``**<br>Hyperbolic sine of the value | **``video.speed``**<br>Adjusts the playback speed of a video |
+| **``cosh``**<br>Hyperbolic cosine of the value | **``video.volume``**<br>Adjusts the volume of the video's audio track |
+| **``tanh``**<br>Hyperbolic tangent of the valu | **``video.mute``**<br>Removes sound from a video |
+| **``asin``**<br>Arc sine of the value | **``video.face``**<br>Detects and processes faces within a video |
+| **``acos``**<br>Arc cosine of the value | **``video.effect``**<br>Applies special effects to a video |
+| **``atan``**<br>Arc tangent of the value | **``sound``**<br>Create audio track |
+| **``asinh``**<br>Arc hyperbolic sine of the value | **``sound.trim``**<br>Trims the audio track to a specified length |
+| **``acosh``**<br>Arc hyperbolic cosine of the value | **``sound.speed``**<br>Adjusts the playback speed of audio |
+| **``atanh``**<br>Arc hyperbolic tangent of the value | **``sound.volume``**<br>Adjusts the volume of an audio track |
+| **``round``**<br>Rounds a number to the nearest integer or to the specified number of decimal places | **``sound.effect``**<br>Applies special effects to an audio track |
+| **``floor``**<br>Largest integer less than or equal to a number | **``music``**<br>Generates music |
+| **``ceil``**<br>Smallest integer greater than or equal to a number | **``voice``**<br>Text voicing with different voices |
+| **``log``**<br>Logarithm (natural by default) of a number | **``voice.list``**<br>List of available voices |
+| **``factorial``**<br>Factorial of a given non-negative number | **``voice.recognize``**<br>Convert voice to text |
+| **``fibonacci``**<br>Fibonacci numbers up to a specified index | **``voice.stop``**<br>Stop dictation of the text |
+| **``golden``**<br>Golden ratio of a number | **``voice.capture``**<br>Create a specific voice |
+| **``abs``**<br>Absolute value of a number | **``motion``**<br>Processes motion-based data |
+| **``min``**<br>Smallest of a list of numbers | **``motion.capture``**<br>Records or analyzes motion data in real-time |
+| **``max``**<br>Largest of a list of numbers | **``google.voice``**<br>Utilizes Google's voice recognition services |
+| **``avg``**<br>Average value of a list of numbers | **``google.voice.list``**<br>Lists available voice options via Google services |
+| **``sum``**<br>Sum of a list of numbers | **``google.voice.recognize``**<br>Recognizes speech using Google technology |
+| **``random``**<br>Generates a pseudo-random number | **``google.translate``**<br>Utilizes Google's translation services |
+| **``random.seed``**<br>Sets or gets the seed for the random number generator to produce reproducible results | **``deepl.translate``**<br>Utilizes DeepL's translation services |
+| **``random.reseed``**<br>Sets a new random seed for the random number generator | **``openai.chat``**<br>Conversation using OpenAI's chat models |
+| &nbsp; | **``openai.image``**<br>Generates or processes images using OpenAI's models |
+| **time** | **``openai.video``**<br>Generates or processes videos using OpenAI's models |
+| **``t``**<br>Stopwatch for calculating the time spent on operations | **``openai.translate``**<br>Utilizes OpenAI's services for text translation |
+| **``time``**<br>Provides current time since the epoch (1970-01-01 00:00:00 UTC) | **``deepseek.chat``**<br>Conversation using DeepSeek's chat models |
+| **``timer``**<br>Creates a timer that can be used to trigger events at specific intervals | **``deepseek.translate``**<br>Utilizes DeepSeek's services for text translation |
+| **``timer.remove``**<br>Removes previously created timer | **``claude.chat``**<br>Conversation using Claude's chat models |
+| **``timepast``**<br>Calculates time passed since a given start time | **``stablediffusion.image``**<br>Generates artistic images using Stable Diffusion models |
+| **``wait``**<br>Pauses execution for a specified number of seconds | **``stablediffusion.upscale``**<br>Enhances image resolution using Stable Diffusion models |
+| &nbsp; | **``stablediffusion.draw``**<br>Creating and replacing objects in an image using Stable Diffusion models |
+| **crypto** | **``stablediffusion.background``**<br>Background removal using Stable Diffusion models |
+| **``encrypt``**<br>Encrypts data using a specified key | **``stablediffusion.video``**<br>Creates videos using Stable Diffusion's models |
+| **``decrypt``**<br>Decrypts previously encrypted data using the specified key | **``ollama.chat``**<br>Conversation using Ollama's chat models |
+| **``hash``**<br>Generates a hash for the data or generates a random text | &nbsp; |
+| **``uuid``**<br>Generates a universally unique identifier | **ui** |
+| **``md5``**<br>Generates an MD5 hash of a text | **``ui``**<br>Creating a basic element of user interface |
+| **``sha1``**<br>Generates an SHA-1 hash of a text | **``bg``**<br>Sets or updates the background properties, such as color or image |
+| **``sha256``**<br>Generates an SHA-256 hash of a text | **``show``**<br>Displays a UI element to make it visible |
+| **``sha512``**<br>Generates an SHA-512 hash of a text | **``hide``**<br>Hides a UI element to make it invisible |
+| **``crc32``**<br>Calculates the CRC32 checksum of a text | **``enable``**<br>Enables a UI element, making it interactive and functional |
+| **``base64.encode``**<br>Encodes the data into base64 format | **``disable``**<br>Disables a UI element, preventing interaction or use |
+| **``base64.decode``**<br>Decodes base64 encoded data back to its original form | **``focus``**<br>Sets focus on a specific UI element, making it active or highlighted |
+| **``gzip.encode``**<br>Compresses data using the GZip compression algorithm | **``unfocus``**<br>Removes focus from a UI element |
+| **``gzip.decode``**<br>Decompresses GZip compressed data | **``scale``**<br>Adjusts the size of a UI element by scaling it up or down |
+| **``rsa.encode``**<br>Encrypts data using RSA encryption with a public key | **``ui.text``**<br>Displays or manages text within the user interface |
+| **``rsa.decode``**<br>Decrypts data encrypted with RSA using the corresponding private key | **``ui.image``**<br>Displays or manages images within the user interface |
+| **``rsa.public``**<br>Generates the RSA public key used for encryption | **``ui.video``**<br>Handles video playback or displays video content in the UI |
+| **``rsa.private``**<br>Generates the RSA private key used for decryption | **``ui.sound``**<br>Manages sound playback or controls audio settings in the UI |
+| **``ssl.encode``**<br>Performs SSL encryption on data to secure communication | **``ui.camera``**<br>Handles camera input or streams video from a camera in the UI |
+| **``ssl.decode``**<br>Decrypts data encrypted with SSL for secure data transfer | **``ui.draw``**<br>Enables drawing within the user interface |
+| **``ssl.check``**<br>Verifies the validity and authenticity of an SSL certificate | **``ui.header``**<br>Defines or manages the header section of the user interface |
+| **``bcrypt.encode``**<br>Hashes a password using the bcrypt algorithm for secure storage | **``ui.footer``**<br>Defines or manages the footer section of the user interface |
+| **``bcrypt.check``**<br>Verifies a password against a bcrypt hashed password | **``ui.wait``**<br>Displays a waiting indicator within the UI |
+| &nbsp; | **``ui.gallery``**<br>Manages or displays a collection of images or media items |
+| **file** | **``ui.button``**<br>Defines or manages buttons in the UI for user interaction |
+| **``file``**<br>Read or write data to a file at a specified path | **``ui.select``**<br>Creates or manages a selection interface, such as a dropdown menu |
+| **``file.exists``**<br>Checks if a specified file exists at the given path | **``ui.switch``**<br>Implements a toggle switch for binary choices in the UI |
+| **``file.read``**<br>Reads the contents of a specified file | **``ui.progress``**<br>Displays a progress bar or status indicator |
+| **``file.read.text``**<br>Reads the text contents of a specified file | **``ui.slider``**<br>Implements a sliding control for adjusting values along a range |
+| **``file.read.lines``**<br>Reads a specified file line by line into a list | **``ui.edit``**<br>Enables text editing or manages editable fields in the UI |
+| **``file.write``**<br>Writes data to a specified file, creating or replacing it | **``ui.divider``**<br>Inserts a visual divider or separating line within the UI layout |
+| **``file.append``**<br>Appends data to the end of a specified file without replacing it | **``ui.split.h``**<br>Splits a UI container horizontally to create multiple sections |
+| **``file.remove``**<br>Removes a specified file from the file system | **``ui.split.v``**<br>Splits a UI container vertically to create multiple sections |
+| **``file.move``**<br>Moves a specified file to a new location | **``ui.list``**<br>Displays a list of items for selection or viewing |
+| **``file.copy``**<br>Copies a specified file to a new location | **``ui.tile``**<br>Arranges content in a tiled format for visual organization |
+| **``file.rename``**<br>Renames a specified file | **``ui.chart``**<br>Data visualization using charts and graphs |
+| **``file.link``**<br>Creates a hard link to a specified file | **``ui.color``**<br>Color selection or manages color properties in the UI |
+| **``file.link.exists``**<br>Checks if a hard link exists at the given path | **``ui.date``**<br>Date selection or displays date information |
+| **``file.info``**<br>Retrieves information about a specified file | **``ui.menu``**<br>Creates or manages menu options for navigation or actions |
+| **``file.size``**<br>Returns the size of a specified file in bytes | **``ui.menu.context``**<br>Defines a context menu for right-click actions or additional options |
+| **``file.permission``**<br>Retrieves or sets permissions for a specified file | **``window``**<br>Creates or manages window |
+| **``file.time``**<br>Gets or sets the modified timestamp for a specified file | **``window.list``**<br>List of windows |
+| **``file.sha256``**<br>Computes the SHA256 checksum of a specified file | **``title``**<br>Sets or updates the title of a window or UI element |
+| **``file.crc32``**<br>Computes the CRC32 checksum for a specified file | **``icon``**<br>Defines or changes an icon associated with a window or UI element |
+| **``file.base64``**<br>Encodes a specified file to base64 format | **``size``**<br>Adjusts the dimensions or size of a window or UI element |
+| **``file.zip``**<br>Compresses a specified file into a ZIP archive | **``size.max``**<br>Sets the maximum size constraints for a window or UI element |
+| **``file.zip.list``**<br>Lists the files contained within a ZIP archive | **``size.min``**<br>Sets the minimum size constraints for a window or UI element |
+| **``file.zip.exists``**<br>Checks if a specific file exists within a ZIP archive | **``position``**<br>Adjusts the position or placement of a window or UI element |
+| **``file.zip.read``**<br>Reads a specific file from within a ZIP archive | **``direction``**<br>Text writing direction for the selected language |
+| **``file.zip.remove``**<br>Removes a specific file from a ZIP archive | **``attention``**<br>Highlights a window or UI element |
+| **``file.unzip``**<br>Extracts files from a ZIP archive into a specified directory | **``top``**<br>Brings a window or UI element to the top layer or foreground |
+| **``file.gzip``**<br>Compresses a specified file using GZip compression | **``nofocus``**<br>Prevents a UI element from receiving focus or interaction |
+| **``file.ungzip``**<br>Decompresses a GZip-compressed file | **``noresize``**<br>Locks the size of a window or UI element, preventing resizing |
+| **``file.void``**<br>Compresses the specified file using GZip compression and places it in a Void container | **``center``**<br>Centers a window or UI element within its parent container or screen |
+| **``file.unvoid``**<br>Decompresses a GZip-compressed files and directories from a Void container | **``fullscreen``**<br>Switches a window or UI element to fullscreen mode |
+| **``dir.exists``**<br>Checks if a specified directory exists | **``maximize``**<br>Minimizes a window to the taskbar or dock |
+| **``dir.create``**<br>Creates a new directory at a specified path | **``minimize``**<br> |
+| **``dir.copy``**<br>Copies a specified directory and its contents to a new location | **``exclusive``**<br>Enables exclusive mode restricting other operations |
+| **``dir.move``**<br>Moves a specified directory to a new location | **``border``**<br>Border properties or visibility for a UI element |
+| **``dir.rename``**<br>Renames a specified directory | **``filedrop``**<br>File drag-and-drop capabilities within the application UI |
+| **``dir.remove``**<br>Removes a specified directory and its contents | **``dialog``**<br>Dialog box for user prompts or options |
+| **``dir.list``**<br>Lists the contents of a specified directory | **``dialog.file``**<br>Opens a file selection dialog |
+| **``dir.clear``**<br>Clears all contents of a specified directory without deleting the directory itself | **``effect``**<br>Applies visual or audio effect to a UI element |
+| **``dir.info``**<br>Retrieves information about a specified directory | **``effect.remove``**<br>Removes applied effect from a UI element |
+| **``dir.size``**<br>Calculates the total size of a specified directory and its contents | &nbsp; |
+| **``dir.permission``**<br>Gets or sets the permissions of a specified directory | **input** |
+| **``dir.time``**<br>Gets or sets the timestamps of a specified directory | **``tap``**<br>Simulates a tap gesture |
+| **``dir.zip``**<br>Compresses a specified directory into a ZIP archive | **``key``**<br>Key binding |
+| **``dir.void``**<br>Compresses a specified directory into a Void container | **``key.remove``**<br>Removes a key binding |
+| **``drive.list``**<br>Lists all available drives on the system | **``key.enable``**<br>Enables key binding |
+| **``drive.name``**<br>Gets or sets the name of a specified drive | **``key.disable``**<br>Disable key binding |
+| **``drive.size``**<br>Total size of a specified drive | **``key.press``**<br>Simulates a key press event |
+| **``drive.used``**<br>Amount of used space on a specified drive | **``keyboard``**<br>Keyboard information |
+| **``drive.free``**<br>Amount of free space on a specified drive | **``mouse``**<br>Mouse information |
+| **``drive.info``**<br>Retrieves information about a specified drive | **``mouse.lock``**<br>Locks the mouse cursor to prevent it from leaving a designated area |
+| **``drive.mount``**<br>Mounts a drive to make it accessible | **``mouse.position``**<br>Retrieves or sets the current position of the mouse cursor |
+| **``drive.unmount``**<br>Unmounts a drive | **``mouse.shape``**<br>Change the shape of the mouse cursor |
+| **``drive.create``**<br>Creates a new virtual drive or volume | **``gamepad``**<br>Gamepad information |
+| **``drive.resize``**<br>Resizes an existing drive partition or volume | **``gamepad.vibrate``**<br>Gamepad vibration |
+| **``drive.format``**<br>Formats a drive with a specified file system | &nbsp; |
+| **``drive.remove``**<br>Removes or deletes a specified drive or partition | **game** |
+| **``path.drive``**<br>Drive component of a specified file path | **``game``**<br>Create a custom game |
+| **``path.dir``**<br>Directory portion of a specified file path | &nbsp; |
+| **``path.file``**<br>File portion of a specified file path | &nbsp; |
+| **``path.name``**<br>Name of the file without extension from a specified path | &nbsp; |
+| **``path.extension``**<br>File extension from a specified file path | &nbsp; |
+| **``path.strip``**<br>Removes the extension from a specified path | &nbsp; |
 
 ## V O I D format
 **⌜ V O I D format ⌟** is the data format that inherits the best features of [**JSON**](https://en.wikipedia.org/wiki/JSON), [**YAML**](https://en.wikipedia.org/wiki/YAML), [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) and [**plain text**](https://en.wikipedia.org/wiki/Plain_text) formats. Makes it easier to write and read data, both by human and by program. The format simplifies data creation by removing the use of unnecessary quotation marks, brackets, colons, commas and other symbols. It is possible to combine **text** and **binary** data.
