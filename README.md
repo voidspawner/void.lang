@@ -54,7 +54,7 @@
 ##### Show current version
 ```json
 [
-  "version"
+  ["." "{description.about.version}"]
 ]
 ```
 ##### Multilanguage text
