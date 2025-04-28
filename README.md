@@ -6,7 +6,7 @@
 > [!IMPORTANT]
 > **The project is in the process of development.**
 
-  <img src="https://github.com/voidspawner/voidspawner.github.io/blob/main/site/image/logo.jpg" width="100%">
+  <img src="https://github.com/voidspawner/void.ideology/blob/main/asset/image/logo.jpg" width="100%">
 
 > [**About**](#about)・
 [**Preinstalled Language**](#preinstalled-language)・
@@ -1082,7 +1082,7 @@ binary in bin
 </table>
 
 > [!TIP]
-> Use **V O I D format [highlighting 📃](https://github.com/voidspawner/voidspawner.github.io/blob/main/site/settings/void.sublime-syntax)** for **[Sublime Text](https://sublimetext.com)**.
+> Use **V O I D format [highlighting 📃](https://github.com/voidspawner/void.ideology/blob/main/asset/settings/void.sublime-syntax)** for **[Sublime Text](https://sublimetext.com)**.
 >
 > **``Tools``** → **``Developer``** → **``New Syntax…``** → **``Copy · Paste``** → **``Save as void.sublime-syntax``**
 >
@@ -1206,10 +1206,10 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 Work is underway to develop a custom AI that will run on a **[V O I D chip](https://github.com/voidspawner/void.tech#chip)**.
 
 ## V O I D game
-**[⌜ V O I D game ⌟](https://voidspawner.github.io)** is a game that creates an **infinite** number of games, v-apps and content.
+**[⌜ V O I D game ⌟](https://voidsp.ru/void.game)** is a game that creates an **infinite** number of games, v-apps and content.
 
 ## V O I D social
-**⌜ V O I D social ⌟** is a social network where you can **quickly** and **easily** communicate without words with people all over the world.
+**[⌜ V O I D social ⌟](https://voidsp.ru/void.social)** is a social network where you can **quickly** and **easily** communicate without words with people all over the world.
 
 ## V O I D os
 **[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
@@ -1231,4 +1231,4 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
 
-Find out current **tasks** and **payment** at [**V O I D task**](https://github.com/voidspawner/void.task)
+Find out current **tasks** and **payment** at [**V O I D task**](https://voidsp.ru/void.task)
