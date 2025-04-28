@@ -6162,10 +6162,41 @@ class void:
 
 	def file(path: str, data = None):
 		extension = void.path_extension(path).lower()
-		match extension:
-			case 'json':
-			case 'void':
-			case 'txt':
+		if data == None:
+			match extension:
+				case 'json':
+					return void.json_decode(void.file_read_text(path))
+				case 'void':
+					return void.void_decode(void.file_read_text(path))
+				case 'csv':
+					return void.csv_decode(void.file_read_text(path))
+				case 'yaml':
+					return void.yaml_decode(void.file_read_text(path))
+				case 'txt':
+					return void.file_read_text(path)
+				case _:
+					return void.file_read(path)
+		else:
+			match extension:
+				case 'json':
+					void.file_write(path, void.json_encode(data))
+				case 'void':
+					void.file_write(path, void.void_encode(data))
+				case 'csv':
+					void.file_write(path, void.csv_encode(data))
+				case 'yaml':
+					void.file_write(path, void.yaml_encode(data))
+				case 'txt':
+					if type(data) in [float, int]:
+						data = str(data)
+					elif type(data) is not str:
+						data = void.void_encode(data)
+					void.file_write(path, data)
+				case _:
+					if type(data) in [bytes, str, int, float]:
+						void.file_write(path, data)
+					else:
+						void.file_write(path, void.void_encode(data))
 
 	def file_exists(path: str):
 		pass
