@@ -281,7 +281,7 @@ python void.py "['.', 'Hi World :D']"
 > python void.py help upper
 > ```
 
-> Count of actions **``434``**
+> Count of actions **``416``**
 
 | <img width="1000" height="1"> | <img width="1000" height="1"> |
 | --- | --- |
@@ -412,112 +412,112 @@ python void.py "['.', 'Hi World :D']"
 | **``acosh``**<br>Arc hyperbolic cosine of the value | **``voice.capture``**<br>Create a specific voice |
 | **``atanh``**<br>Arc hyperbolic tangent of the value | **``motion``**<br>Processes motion-based data |
 | **``round``**<br>Rounds a number to the nearest integer or to the specified number of decimal places | **``motion.capture``**<br>Records or analyzes motion data in real-time |
-| **``floor``**<br>Largest integer less than or equal to a number | **``google.voice``**<br>Utilizes Google's voice recognition services |
-| **``ceil``**<br>Smallest integer greater than or equal to a number | **``google.voice.list``**<br>Lists available voice options via Google services |
-| **``log``**<br>Logarithm (natural by default) of a number | **``google.voice.recognize``**<br>Recognizes speech using Google technology |
-| **``factorial``**<br>Factorial of a given non-negative number | **``google.translate``**<br>Utilizes Google's translation services |
-| **``fibonacci``**<br>Fibonacci numbers up to a specified index | **``deepl.translate``**<br>Utilizes DeepL's translation services |
-| **``golden``**<br>Golden ratio of a number | **``openai.chat``**<br>Conversation using OpenAI's chat models |
-| **``abs``**<br>Absolute value of a number | **``openai.image``**<br>Generates or processes images using OpenAI's models |
-| **``min``**<br>Smallest of a list of numbers | **``openai.video``**<br>Generates or processes videos using OpenAI's models |
-| **``max``**<br>Largest of a list of numbers | **``openai.translate``**<br>Utilizes OpenAI's services for text translation |
-| **``avg``**<br>Average value of a list of numbers | **``deepseek.chat``**<br>Conversation using DeepSeek's chat models |
-| **``sum``**<br>Sum of a list of numbers | **``deepseek.translate``**<br>Utilizes DeepSeek's services for text translation |
-| **``random``**<br>Generates a pseudo-random number | **``claude.chat``**<br>Conversation using Claude's chat models |
-| **``random.seed``**<br>Sets or gets the seed for the random number generator to produce reproducible results | **``stablediffusion.image``**<br>Generates artistic images using Stable Diffusion models |
-| **``random.reseed``**<br>Sets a new random seed for the random number generator | **``stablediffusion.upscale``**<br>Enhances image resolution using Stable Diffusion models |
-| &nbsp; | **``stablediffusion.draw``**<br>Creating and replacing objects in an image using Stable Diffusion models |
-| **time** | **``stablediffusion.background``**<br>Background removal using Stable Diffusion models |
-| **``t``**<br>Stopwatch for calculating the time spent on operations | **``stablediffusion.video``**<br>Creates videos using Stable Diffusion's models |
-| **``time``**<br>Provides current time since the epoch (1970-01-01 00:00:00 UTC) | **``ollama.chat``**<br>Conversation using Ollama's chat models |
-| **``timer``**<br>Creates a timer that can be used to trigger events at specific intervals | &nbsp; |
-| **``timer.remove``**<br>Removes previously created timer | **ui** |
-| **``timepast``**<br>Calculates time passed since a given start time | **``ui``**<br>Creating a basic element of user interface |
-| **``wait``**<br>Pauses execution for a specified number of seconds | **``bg``**<br>Sets or updates the background properties, such as color or image |
-| &nbsp; | **``show``**<br>Displays a UI element to make it visible |
-| **crypto** | **``hide``**<br>Hides a UI element to make it invisible |
-| **``encrypt``**<br>Encrypts data using a specified key | **``enable``**<br>Enables a UI element, making it interactive and functional |
-| **``decrypt``**<br>Decrypts previously encrypted data using the specified key | **``disable``**<br>Disables a UI element, preventing interaction or use |
-| **``hash``**<br>Generates a hash for the data or generates a random text | **``focus``**<br>Sets focus on a specific UI element, making it active or highlighted |
-| **``uuid``**<br>Generates a universally unique identifier | **``unfocus``**<br>Removes focus from a UI element |
-| **``md5``**<br>Generates an MD5 hash of a text | **``scale``**<br>Adjusts the size of a UI element by scaling it up or down |
-| **``sha1``**<br>Generates an SHA-1 hash of a text | **``ui.text``**<br>Displays or manages text within the user interface |
-| **``sha256``**<br>Generates an SHA-256 hash of a text | **``ui.image``**<br>Displays or manages images within the user interface |
-| **``sha512``**<br>Generates an SHA-512 hash of a text | **``ui.video``**<br>Handles video playback or displays video content in the UI |
-| **``crc32``**<br>Calculates the CRC32 checksum of a text | **``ui.sound``**<br>Manages sound playback or controls audio settings in the UI |
-| **``base64.encode``**<br>Encodes the data into base64 format | **``ui.camera``**<br>Handles camera input or streams video from a camera in the UI |
-| **``base64.decode``**<br>Decodes base64 encoded data back to its original form | **``ui.draw``**<br>Enables drawing within the user interface |
-| **``gzip.encode``**<br>Compresses data using the GZip compression algorithm | **``ui.header``**<br>Defines or manages the header section of the user interface |
-| **``gzip.decode``**<br>Decompresses GZip compressed data | **``ui.footer``**<br>Defines or manages the footer section of the user interface |
-| **``rsa.encode``**<br>Encrypts data using RSA encryption with a public key | **``ui.wait``**<br>Displays a waiting indicator within the UI |
-| **``rsa.decode``**<br>Decrypts data encrypted with RSA using the corresponding private key | **``ui.gallery``**<br>Manages or displays a collection of images or media items |
-| **``rsa.public``**<br>Generates the RSA public key used for encryption | **``ui.button``**<br>Defines or manages buttons in the UI for user interaction |
-| **``rsa.private``**<br>Generates the RSA private key used for decryption | **``ui.select``**<br>Creates or manages a selection interface, such as a dropdown menu |
-| **``ssl.encode``**<br>Performs SSL encryption on data to secure communication | **``ui.switch``**<br>Implements a toggle switch for binary choices in the UI |
-| **``ssl.decode``**<br>Decrypts data encrypted with SSL for secure data transfer | **``ui.progress``**<br>Displays a progress bar or status indicator |
-| **``ssl.check``**<br>Verifies the validity and authenticity of an SSL certificate | **``ui.slider``**<br>Implements a sliding control for adjusting values along a range |
-| **``bcrypt.encode``**<br>Hashes a password using the bcrypt algorithm for secure storage | **``ui.edit``**<br>Enables text editing or manages editable fields in the UI |
-| **``bcrypt.check``**<br>Verifies a password against a bcrypt hashed password | **``ui.divider``**<br>Inserts a visual divider or separating line within the UI layout |
-| &nbsp; | **``ui.split.h``**<br>Splits a UI container horizontally to create multiple sections |
-| **file** | **``ui.split.v``**<br>Splits a UI container vertically to create multiple sections |
-| **``file``**<br>Read or write data to a file at a specified path | **``ui.list``**<br>Displays a list of items for selection or viewing |
-| **``file.exists``**<br>Checks if a specified file exists at the given path | **``ui.tile``**<br>Arranges content in a tiled format for visual organization |
-| **``file.read``**<br>Reads the contents of a specified file | **``ui.chart``**<br>Data visualization using charts and graphs |
-| **``file.read.text``**<br>Reads the text contents of a specified file | **``ui.color``**<br>Color selection or manages color properties in the UI |
-| **``file.read.lines``**<br>Reads a specified file line by line into a list | **``ui.date``**<br>Date selection or displays date information |
-| **``file.write``**<br>Writes data to a specified file, creating or replacing it | **``ui.menu``**<br>Creates or manages menu options for navigation or actions |
-| **``file.append``**<br>Appends data to the end of a specified file without replacing it | **``ui.menu.context``**<br>Defines a context menu for right-click actions or additional options |
-| **``file.remove``**<br>Removes a specified file from the file system | **``window``**<br>Creates or manages window |
-| **``file.move``**<br>Moves a specified file to a new location | **``window.list``**<br>List of windows |
-| **``file.copy``**<br>Copies a specified file to a new location | **``title``**<br>Sets or updates the title of a window or UI element |
-| **``file.rename``**<br>Renames a specified file | **``icon``**<br>Defines or changes an icon associated with a window or UI element |
-| **``file.link``**<br>Creates a hard link to a specified file | **``size``**<br>Adjusts the dimensions or size of a window or UI element |
-| **``file.link.exists``**<br>Checks if a hard link exists at the given path | **``size.max``**<br>Sets the maximum size constraints for a window or UI element |
-| **``file.info``**<br>Retrieves information about a specified file | **``size.min``**<br>Sets the minimum size constraints for a window or UI element |
-| **``file.size``**<br>Returns the size of a specified file in bytes | **``position``**<br>Adjusts the position or placement of a window or UI element |
-| **``file.permission``**<br>Retrieves or sets permissions for a specified file | **``direction``**<br>Text writing direction for the selected language |
-| **``file.time``**<br>Gets or sets the modified timestamp for a specified file | **``attention``**<br>Highlights a window or UI element |
-| **``file.sha256``**<br>Computes the SHA256 checksum of a specified file | **``top``**<br>Brings a window or UI element to the top layer or foreground |
-| **``file.crc32``**<br>Computes the CRC32 checksum for a specified file | **``nofocus``**<br>Prevents a UI element from receiving focus or interaction |
-| **``file.base64``**<br>Encodes a specified file to base64 format | **``noresize``**<br>Locks the size of a window or UI element, preventing resizing |
-| **``file.zip``**<br>Compresses a specified file into a ZIP archive | **``center``**<br>Centers a window or UI element within its parent container or screen |
-| **``file.zip.list``**<br>Lists the files contained within a ZIP archive | **``fullscreen``**<br>Switches a window or UI element to fullscreen mode |
-| **``file.zip.exists``**<br>Checks if a specific file exists within a ZIP archive | **``maximize``**<br>Minimizes a window to the taskbar or dock |
-| **``file.zip.read``**<br>Reads a specific file from within a ZIP archive | **``minimize``**<br> |
-| **``file.zip.remove``**<br>Removes a specific file from a ZIP archive | **``exclusive``**<br>Enables exclusive mode restricting other operations |
-| **``file.unzip``**<br>Extracts files from a ZIP archive into a specified directory | **``border``**<br>Border properties or visibility for a UI element |
-| **``file.gzip``**<br>Compresses a specified file using GZip compression | **``filedrop``**<br>File drag-and-drop capabilities within the application UI |
-| **``file.ungzip``**<br>Decompresses a GZip-compressed file | **``dialog``**<br>Dialog box for user prompts or options |
-| **``file.void``**<br>Compresses the specified file using GZip compression and places it in a Void container | **``dialog.file``**<br>Opens a file selection dialog |
-| **``file.unvoid``**<br>Decompresses a GZip-compressed files and directories from a Void container | **``effect``**<br>Applies visual or audio effect to a UI element |
-| **``dir.exists``**<br>Checks if a specified directory exists | **``effect.remove``**<br>Removes applied effect from a UI element |
-| **``dir.create``**<br>Creates a new directory at a specified path | &nbsp; |
-| **``dir.copy``**<br>Copies a specified directory and its contents to a new location | **input** |
-| **``dir.move``**<br>Moves a specified directory to a new location | **``tap``**<br>Simulates a tap gesture |
-| **``dir.rename``**<br>Renames a specified directory | **``key``**<br>Key binding |
-| **``dir.remove``**<br>Removes a specified directory and its contents | **``key.remove``**<br>Removes a key binding |
-| **``dir.list``**<br>Lists the contents of a specified directory | **``key.enable``**<br>Enables key binding |
-| **``dir.clear``**<br>Clears all contents of a specified directory without deleting the directory itself | **``key.disable``**<br>Disable key binding |
-| **``dir.info``**<br>Retrieves information about a specified directory | **``key.press``**<br>Simulates a key press event |
-| **``dir.size``**<br>Calculates the total size of a specified directory and its contents | **``keyboard``**<br>Keyboard information |
-| **``dir.permission``**<br>Gets or sets the permissions of a specified directory | **``mouse``**<br>Mouse information |
-| **``dir.time``**<br>Gets or sets the timestamps of a specified directory | **``mouse.lock``**<br>Locks the mouse cursor to prevent it from leaving a designated area |
-| **``dir.zip``**<br>Compresses a specified directory into a ZIP archive | **``mouse.position``**<br>Retrieves or sets the current position of the mouse cursor |
-| **``dir.void``**<br>Compresses a specified directory into a Void container | **``mouse.shape``**<br>Change the shape of the mouse cursor |
-| **``drive.list``**<br>Lists all available drives on the system | **``gamepad``**<br>Gamepad information |
-| **``drive.name``**<br>Gets or sets the name of a specified drive | **``gamepad.vibrate``**<br>Gamepad vibration |
+| **``floor``**<br>Largest integer less than or equal to a number | &nbsp; |
+| **``ceil``**<br>Smallest integer greater than or equal to a number | **ui** |
+| **``log``**<br>Logarithm (natural by default) of a number | **``ui``**<br>Creating a basic element of user interface |
+| **``factorial``**<br>Factorial of a given non-negative number | **``bg``**<br>Sets or updates the background properties, such as color or image |
+| **``fibonacci``**<br>Fibonacci numbers up to a specified index | **``show``**<br>Displays a UI element to make it visible |
+| **``golden``**<br>Golden ratio of a number | **``hide``**<br>Hides a UI element to make it invisible |
+| **``abs``**<br>Absolute value of a number | **``enable``**<br>Enables a UI element, making it interactive and functional |
+| **``min``**<br>Smallest of a list of numbers | **``disable``**<br>Disables a UI element, preventing interaction or use |
+| **``max``**<br>Largest of a list of numbers | **``focus``**<br>Sets focus on a specific UI element, making it active or highlighted |
+| **``avg``**<br>Average value of a list of numbers | **``unfocus``**<br>Removes focus from a UI element |
+| **``sum``**<br>Sum of a list of numbers | **``scale``**<br>Adjusts the size of a UI element by scaling it up or down |
+| **``random``**<br>Generates a pseudo-random number | **``ui.text``**<br>Displays or manages text within the user interface |
+| **``random.seed``**<br>Sets or gets the seed for the random number generator to produce reproducible results | **``ui.image``**<br>Displays or manages images within the user interface |
+| **``random.reseed``**<br>Sets a new random seed for the random number generator | **``ui.video``**<br>Handles video playback or displays video content in the UI |
+| &nbsp; | **``ui.sound``**<br>Manages sound playback or controls audio settings in the UI |
+| **time** | **``ui.camera``**<br>Handles camera input or streams video from a camera in the UI |
+| **``t``**<br>Stopwatch for calculating the time spent on operations | **``ui.draw``**<br>Enables drawing within the user interface |
+| **``time``**<br>Provides current time since the epoch (1970-01-01 00:00:00 UTC) | **``ui.header``**<br>Defines or manages the header section of the user interface |
+| **``timer``**<br>Creates a timer that can be used to trigger events at specific intervals | **``ui.footer``**<br>Defines or manages the footer section of the user interface |
+| **``timer.remove``**<br>Removes previously created timer | **``ui.wait``**<br>Displays a waiting indicator within the UI |
+| **``timepast``**<br>Calculates time passed since a given start time | **``ui.gallery``**<br>Manages or displays a collection of images or media items |
+| **``wait``**<br>Pauses execution for a specified number of seconds | **``ui.button``**<br>Defines or manages buttons in the UI for user interaction |
+| &nbsp; | **``ui.select``**<br>Creates or manages a selection interface, such as a dropdown menu |
+| **crypto** | **``ui.switch``**<br>Implements a toggle switch for binary choices in the UI |
+| **``encrypt``**<br>Encrypts data using a specified key | **``ui.progress``**<br>Displays a progress bar or status indicator |
+| **``decrypt``**<br>Decrypts previously encrypted data using the specified key | **``ui.slider``**<br>Implements a sliding control for adjusting values along a range |
+| **``hash``**<br>Generates a hash for the data or generates a random text | **``ui.edit``**<br>Enables text editing or manages editable fields in the UI |
+| **``uuid``**<br>Generates a universally unique identifier | **``ui.divider``**<br>Inserts a visual divider or separating line within the UI layout |
+| **``md5``**<br>Generates an MD5 hash of a text | **``ui.split.h``**<br>Splits a UI container horizontally to create multiple sections |
+| **``sha1``**<br>Generates an SHA-1 hash of a text | **``ui.split.v``**<br>Splits a UI container vertically to create multiple sections |
+| **``sha256``**<br>Generates an SHA-256 hash of a text | **``ui.list``**<br>Displays a list of items for selection or viewing |
+| **``sha512``**<br>Generates an SHA-512 hash of a text | **``ui.tile``**<br>Arranges content in a tiled format for visual organization |
+| **``crc32``**<br>Calculates the CRC32 checksum of a text | **``ui.chart``**<br>Data visualization using charts and graphs |
+| **``base64.encode``**<br>Encodes the data into base64 format | **``ui.color``**<br>Color selection or manages color properties in the UI |
+| **``base64.decode``**<br>Decodes base64 encoded data back to its original form | **``ui.date``**<br>Date selection or displays date information |
+| **``gzip.encode``**<br>Compresses data using the GZip compression algorithm | **``ui.menu``**<br>Creates or manages menu options for navigation or actions |
+| **``gzip.decode``**<br>Decompresses GZip compressed data | **``ui.menu.context``**<br>Defines a context menu for right-click actions or additional options |
+| **``rsa.encode``**<br>Encrypts data using RSA encryption with a public key | **``window``**<br>Creates or manages window |
+| **``rsa.decode``**<br>Decrypts data encrypted with RSA using the corresponding private key | **``window.list``**<br>List of windows |
+| **``rsa.public``**<br>Generates the RSA public key used for encryption | **``title``**<br>Sets or updates the title of a window or UI element |
+| **``rsa.private``**<br>Generates the RSA private key used for decryption | **``icon``**<br>Defines or changes an icon associated with a window or UI element |
+| **``ssl.encode``**<br>Performs SSL encryption on data to secure communication | **``size``**<br>Adjusts the dimensions or size of a window or UI element |
+| **``ssl.decode``**<br>Decrypts data encrypted with SSL for secure data transfer | **``size.max``**<br>Sets the maximum size constraints for a window or UI element |
+| **``ssl.check``**<br>Verifies the validity and authenticity of an SSL certificate | **``size.min``**<br>Sets the minimum size constraints for a window or UI element |
+| **``bcrypt.encode``**<br>Hashes a password using the bcrypt algorithm for secure storage | **``position``**<br>Adjusts the position or placement of a window or UI element |
+| **``bcrypt.check``**<br>Verifies a password against a bcrypt hashed password | **``direction``**<br>Text writing direction for the selected language |
+| &nbsp; | **``attention``**<br>Highlights a window or UI element |
+| **file** | **``top``**<br>Brings a window or UI element to the top layer or foreground |
+| **``file``**<br>Read or write data to a file at a specified path | **``nofocus``**<br>Prevents a UI element from receiving focus or interaction |
+| **``file.exists``**<br>Checks if a specified file exists at the given path | **``noresize``**<br>Locks the size of a window or UI element, preventing resizing |
+| **``file.read``**<br>Reads the contents of a specified file | **``center``**<br>Centers a window or UI element within its parent container or screen |
+| **``file.read.text``**<br>Reads the text contents of a specified file | **``fullscreen``**<br>Switches a window or UI element to fullscreen mode |
+| **``file.read.lines``**<br>Reads a specified file line by line into a list | **``maximize``**<br>Minimizes a window to the taskbar or dock |
+| **``file.write``**<br>Writes data to a specified file, creating or replacing it | **``minimize``**<br> |
+| **``file.append``**<br>Appends data to the end of a specified file without replacing it | **``exclusive``**<br>Enables exclusive mode restricting other operations |
+| **``file.remove``**<br>Removes a specified file from the file system | **``border``**<br>Border properties or visibility for a UI element |
+| **``file.move``**<br>Moves a specified file to a new location | **``filedrop``**<br>File drag-and-drop capabilities within the application UI |
+| **``file.copy``**<br>Copies a specified file to a new location | **``dialog``**<br>Dialog box for user prompts or options |
+| **``file.rename``**<br>Renames a specified file | **``dialog.file``**<br>Opens a file selection dialog |
+| **``file.link``**<br>Creates a hard link to a specified file | **``effect``**<br>Applies visual or audio effect to a UI element |
+| **``file.link.exists``**<br>Checks if a hard link exists at the given path | **``effect.remove``**<br>Removes applied effect from a UI element |
+| **``file.info``**<br>Retrieves information about a specified file | &nbsp; |
+| **``file.size``**<br>Returns the size of a specified file in bytes | **input** |
+| **``file.permission``**<br>Retrieves or sets permissions for a specified file | **``tap``**<br>Simulates a tap gesture |
+| **``file.time``**<br>Gets or sets the modified timestamp for a specified file | **``key``**<br>Key binding |
+| **``file.sha256``**<br>Computes the SHA256 checksum of a specified file | **``key.remove``**<br>Removes a key binding |
+| **``file.crc32``**<br>Computes the CRC32 checksum for a specified file | **``key.enable``**<br>Enables key binding |
+| **``file.base64``**<br>Encodes a specified file to base64 format | **``key.disable``**<br>Disable key binding |
+| **``file.zip``**<br>Compresses a specified file into a ZIP archive | **``key.press``**<br>Simulates a key press event |
+| **``file.zip.list``**<br>Lists the files contained within a ZIP archive | **``keyboard``**<br>Keyboard information |
+| **``file.zip.exists``**<br>Checks if a specific file exists within a ZIP archive | **``mouse``**<br>Mouse information |
+| **``file.zip.read``**<br>Reads a specific file from within a ZIP archive | **``mouse.lock``**<br>Locks the mouse cursor to prevent it from leaving a designated area |
+| **``file.zip.remove``**<br>Removes a specific file from a ZIP archive | **``mouse.position``**<br>Retrieves or sets the current position of the mouse cursor |
+| **``file.unzip``**<br>Extracts files from a ZIP archive into a specified directory | **``mouse.shape``**<br>Change the shape of the mouse cursor |
+| **``file.gzip``**<br>Compresses a specified file using GZip compression | **``gamepad``**<br>Gamepad information |
+| **``file.ungzip``**<br>Decompresses a GZip-compressed file | **``gamepad.vibrate``**<br>Gamepad vibration |
+| **``file.void``**<br>Compresses the specified file using GZip compression and places it in a Void container | &nbsp; |
+| **``file.unvoid``**<br>Decompresses a GZip-compressed files and directories from a Void container | **game** |
+| **``dir.exists``**<br>Checks if a specified directory exists | **``scene``**<br>Create or show a custom game scene |
+| **``dir.create``**<br>Creates a new directory at a specified path | **``character``**<br>Create or change a game character |
+| **``dir.copy``**<br>Copies a specified directory and its contents to a new location | **``say``**<br>Say or show the character's speech |
+| **``dir.move``**<br>Moves a specified directory to a new location | **``item``**<br>Create or change a game item |
+| **``dir.rename``**<br>Renames a specified directory | **``item.put``**<br>Put a game item to the inventory |
+| **``dir.remove``**<br>Removes a specified directory and its contents | **``item.remove``**<br>Remove an item from the inventory |
+| **``dir.list``**<br>Lists the contents of a specified directory | **``item.on``**<br>Put item on |
+| **``dir.clear``**<br>Clears all contents of a specified directory without deleting the directory itself | **``item.off``**<br>Take item off |
+| **``dir.info``**<br>Retrieves information about a specified directory | **``camera``**<br>Create or change a game camera |
+| **``dir.size``**<br>Calculates the total size of a specified directory and its contents | **``world``**<br>Create a game world |
+| **``dir.permission``**<br>Gets or sets the permissions of a specified directory | &nbsp; |
+| **``dir.time``**<br>Gets or sets the timestamps of a specified directory | &nbsp; |
+| **``dir.zip``**<br>Compresses a specified directory into a ZIP archive | &nbsp; |
+| **``dir.void``**<br>Compresses a specified directory into a Void container | &nbsp; |
+| **``drive.list``**<br>Lists all available drives on the system | &nbsp; |
+| **``drive.name``**<br>Gets or sets the name of a specified drive | &nbsp; |
 | **``drive.size``**<br>Total size of a specified drive | &nbsp; |
-| **``drive.used``**<br>Amount of used space on a specified drive | **game** |
-| **``drive.free``**<br>Amount of free space on a specified drive | **``scene``**<br>Create or show a custom game scene |
-| **``drive.info``**<br>Retrieves information about a specified drive | **``character``**<br>Create or change a game character |
-| **``drive.mount``**<br>Mounts a drive to make it accessible | **``say``**<br>Say or show the character's speech |
-| **``drive.unmount``**<br>Unmounts a drive | **``item``**<br>Create or change a game item |
-| **``drive.create``**<br>Creates a new virtual drive or volume | **``item.put``**<br>Put a game item to the inventory |
-| **``drive.resize``**<br>Resizes an existing drive partition or volume | **``item.remove``**<br>Remove an item from the inventory |
-| **``drive.format``**<br>Formats a drive with a specified file system | **``item.on``**<br>Put item on |
-| **``drive.remove``**<br>Removes or deletes a specified drive or partition | **``item.off``**<br>Take item off |
-| **``path.drive``**<br>Drive component of a specified file path | **``camera``**<br>Create or change a game camera |
-| **``path.dir``**<br>Directory portion of a specified file path | **``world``**<br>Create a game world |
+| **``drive.used``**<br>Amount of used space on a specified drive | &nbsp; |
+| **``drive.free``**<br>Amount of free space on a specified drive | &nbsp; |
+| **``drive.info``**<br>Retrieves information about a specified drive | &nbsp; |
+| **``drive.mount``**<br>Mounts a drive to make it accessible | &nbsp; |
+| **``drive.unmount``**<br>Unmounts a drive | &nbsp; |
+| **``drive.create``**<br>Creates a new virtual drive or volume | &nbsp; |
+| **``drive.resize``**<br>Resizes an existing drive partition or volume | &nbsp; |
+| **``drive.format``**<br>Formats a drive with a specified file system | &nbsp; |
+| **``drive.remove``**<br>Removes or deletes a specified drive or partition | &nbsp; |
+| **``path.drive``**<br>Drive component of a specified file path | &nbsp; |
+| **``path.dir``**<br>Directory portion of a specified file path | &nbsp; |
 | **``path.file``**<br>File portion of a specified file path | &nbsp; |
 | **``path.name``**<br>Name of the file without extension from a specified path | &nbsp; |
 | **``path.extension``**<br>File extension from a specified file path | &nbsp; |
