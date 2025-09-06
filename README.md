@@ -38,13 +38,11 @@
 
 ## Example
 ##### Simple
-<table>
-<tr><th align="center"><img width="441" height="1"><p>V O I D format</p></th><th align="center"><img width="441" height="1"><p>JSON</p></th></tr>
-<tr><td>
+<table><tr><th align="center"><img width="441" height="1"><p>V O I D format</p></th><th align="center"><img width="441" height="1"><p>JSON</p></th></tr><tr><td>
 
 ```
 run
-  [. 'Hi World :D
+  [[. 'Hi World :D
 ```
 
 </td><td>
@@ -60,11 +58,21 @@ run
 </td></tr></table>
 
 ##### Even simpler
+<table><tr><th align="center"><img width="441" height="1"><p>V O I D format</p></th><th align="center"><img width="441" height="1"><p>JSON</p></th></tr><tr><td>
+
+```
+. 'Hi World :D
+```
+
+</td><td>
+
 ```json
 [
   [".", "Hi World :D"]
 ]
 ```
+</td></tr></table>
+
 ##### Show current version
 ```json
 [
@@ -1144,5 +1152,6 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
 
 Find out current **tasks** and **payment** at [**V O I D task**](https://voidsp.ru/void.task)
+
 
 
