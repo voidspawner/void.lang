@@ -1078,18 +1078,23 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > chat radius of the Earth
 > chat tell me a story
 > chat translate to portuguese: Hi world :D
-> chat.translate.pt Hi world :D
 > chat.svg ginger cat in a box
-> chat.python mouse movement simulation
+> chat.python calculator application
 > ```
 >
+> **``DeepSeek``**
+> ```
+> chat.name deepseek
+> chat radius of the Earth
+> ```
+> 
 > **``Stable Diffusion``**
 > ```
-> image 'playing cats on the lawn' cats.jpg
 > video 'playing cats on the lawn' cats.mp4
-> image.draw 'remove the cat in the center and add more grass' cats.jpg cats-edited.jpg
+> image 'playing cats on the lawn' cats.jpg
+> image.draw 'remove the cat in the center' cats.jpg cats-edited.jpg
 > image.colorize dogs.jpg dogs-colorized.jpg
-> image.style 'cyberpunk' cats.jpg cats-cyberpunk.jpg
+> image.style cyberpunk cats.jpg cats-cyberpunk.jpg
 > image.background cats.jpg cats-without-background.png
 > image.2x cats.jpg cats-resize-2x.jpg
 > image.4x cats.jpg cats-resize-4x.jpg
@@ -1099,7 +1104,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > **``Voice Cloning``**
 > ```
 > voice mike.mp3
-> say.mike 'Hi world :D
+> say.mike Hi world :D
 > ```
 > 
 > **``Speech Recognition``**
@@ -1113,22 +1118,23 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > **``Google TTS``**
 >
 > ```
-> say 'Hi world :D
-> say.en-US-Wavenet-B 'Hi world :D
+> say Hi world :D
+> say.en-US-Wavenet-B Hi world :D
 > ```
 >
 > **``Google Translate``**
 >
 > ```
-> translate '你好，世界 :D
-> translate.pt '你好，世界 :D
-> translate.google '你好，世界 :D
+> translate 你好，世界 :D
+> translate.pt 你好，世界 :D
 > ```
 > 
 > **``DeepL``**
 >
 > ```
-> translate.deepl '你好，世界 :D
+> translate.name deepl
+> translate 你好，世界 :D
+> translate.pt 你好，世界 :D
 > ```
 
 Work is underway to develop a custom AI that will run on a **V O I D chip**.
@@ -1158,6 +1164,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
