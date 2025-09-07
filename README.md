@@ -478,7 +478,7 @@ purpose
     subtitles
     font
     file
-    …
+    other
 value type
     text
     number
@@ -492,7 +492,7 @@ indent
         \t
 separator
     space
-        " "
+        ' '
 newline
     line feed
         \n
@@ -1157,6 +1157,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
 
 Find out current **tasks** and **payment** at [**V O I D task**](https://voidsp.ru/void.task)
+
 
 
 
