@@ -304,11 +304,12 @@ python void.py "['.', 'Hi World :D']"
 > python void.py help upper
 > ```
 
-> Count of actions **``274``**
+> Count of actions **``269``**
 
 | <img width="1000" height="1"> | <img width="1000" height="1"> |
 | --- | --- |
-| **⌜ value ⌟** | **⌜ crypto ⌟** |
+| &nbsp;<br>**value**<br>&nbsp; | &nbsp;<br>**crypto**<br>&nbsp; |
+| **``get``**<br>Retrieve a value based on provided parameter name | **``encrypt``**<br>Encrypts data using a specified key |
 | **``set``**<br>Assign a value to a specified parameter | **``decrypt``**<br>Decrypts previously encrypted data using the specified key |
 | **``remove``**<br>Remove a specified parameter or value | **``hash``**<br>Generates a hash for the data or generates a random text |
 | **``type``**<br>Determine the data type of a specified parameter | **``uuid``**<br>Generates a universally unique identifier |
@@ -317,19 +318,20 @@ python void.py "['.', 'Hi World :D']"
 | **``bool``**<br>Specify a parameter as a boolean type | **``sha256``**<br>Generates an SHA-256 hash of a text |
 | **``list``**<br>Specify a parameter as a list type | **``sha512``**<br>Generates an SHA-512 hash of a text |
 | **``binary``**<br>Specify a parameter as a binary type | **``crc32``**<br>Calculates the CRC32 checksum of a text |
-| **``l``**<br>Gets the length of the text, the number of items in a list or dictionary, the count of bytes in a number | **``base64``**<br>Encodes the data into Base64 format |
-| **⌜ expression ⌟** | **``base64.decode``**<br>Decodes Base64 encoded data back to its original form |
-| **``-``**<br>Perform subtraction operation | **``base85``**<br>Encodes the data into Base85 format |
-| **``*``**<br>Perform multiplication operation | **``base85.decode``**<br>Decodes Base85 encoded data back to its original form |
-| **``/``**<br>Perform division operation | **``gzip``**<br>Compresses data using the GZip compression algorithm |
-| **``%``**<br>Perform modulo operation | **``gzip.decode``**<br>Decompresses GZip compressed data |
-| **``^``**<br>Elevation operator | **``rsa``**<br>Encrypts data using RSA encryption with a public key |
-| **``not``**<br>Perform negation | **``rsa.decode``**<br>Decrypts data encrypted with RSA using the corresponding private key |
-| **``and``**<br>Perform AND operation | **``ssl``**<br>Performs SSL encryption on data to secure communication |
-| **``or``**<br>Perform OR operation | **``ssl.decode``**<br>Decrypts data encrypted with SSL for secure data transfer |
-| **``xor``**<br>Perform XOR operation | **``bcrypt``**<br>Hashes a password using the bcrypt algorithm for secure storage |
-| **``>>``**<br>Perform right shift operation | **``bcrypt.check``**<br>Verifies a password against a bcrypt hashed password |
-| **``<<``**<br>Perform left shift operation | **⌜ file ⌟** |
+| **``l``** · **``length``**<br>Gets the length of the text, the number of items in a list or dictionary, the count of bytes in a number | **``base64``**<br>Encodes the data into Base64 format |
+| &nbsp;<br>**expression**<br>&nbsp; | **``base64.decode``**<br>Decodes Base64 encoded data back to its original form |
+| **``+``**<br>Perform addition operation | **``base85``**<br>Encodes the data into Base85 format |
+| **``-``**<br>Perform subtraction operation | **``base85.decode``**<br>Decodes Base85 encoded data back to its original form |
+| **``*``**<br>Perform multiplication operation | **``gzip``**<br>Compresses data using the GZip compression algorithm |
+| **``/``**<br>Perform division operation | **``gzip.decode``**<br>Decompresses GZip compressed data |
+| **``%``**<br>Perform modulo operation | **``rsa``**<br>Encrypts data using RSA encryption with a public key |
+| **``^``**<br>Elevation operator | **``rsa.decode``**<br>Decrypts data encrypted with RSA using the corresponding private key |
+| **``not``**<br>Perform negation | **``ssl``**<br>Performs SSL encryption on data to secure communication |
+| **``and``**<br>Perform AND operation | **``ssl.decode``**<br>Decrypts data encrypted with SSL for secure data transfer |
+| **``or``**<br>Perform OR operation | **``bcrypt``**<br>Hashes a password using the bcrypt algorithm for secure storage |
+| **``xor``**<br>Perform XOR operation | **``bcrypt.check``**<br>Verifies a password against a bcrypt hashed password |
+| **``shr``**<br>Perform right shift operation | &nbsp;<br>**file**<br>&nbsp; |
+| **``shl``**<br>Perform left shift operation | **``file``**<br>Read or write data to a file at a specified path |
 | **``=``**<br>Assign value to a variable | **``file.exists``**<br>Checks if a specified file exists at the given path |
 | **``+=``**<br>Add and assign value to a variable | **``file.lines``**<br>Reads a specified file line by line into a list |
 | **``=+``**<br>Assign and add value to a variable | **``file.remove``**<br>Removes a specified file from the file system |
@@ -342,112 +344,111 @@ python void.py "['.', 'Hi World :D']"
 | **``and=``**<br>AND and assign value to a variable | **``file.size``**<br>Returns the size of a specified file in bytes |
 | **``or=``**<br>OR and assign value to a variable | **``file.permission``**<br>Retrieves or sets permissions for a specified file |
 | **``xor=``**<br>XOR and assign value to a variable | **``file.time``**<br>Gets or sets the modified timestamp for a specified file |
-| **``>>=``**<br>Right shift and assign value to a variable | **``file.sha256``**<br>Computes the SHA256 checksum of a specified file |
-| **``<<=``**<br>Left shift and assign value to a variable | **``file.crc32``**<br>Computes the CRC32 checksum for a specified file |
-| **``==``**<br>Checks if left value is equal to right | **``file.base64``**<br>Encodes a specified file to base64 format |
-| **``!=``**<br>Check if values are not equal | **``file.zip``**<br>Compresses a specified file into a ZIP archive |
-| **``>``**<br>Checks if left value is greater than right | **``file.zip.list``**<br>Lists the files contained within a ZIP archive |
-| **``<``**<br>Checks if left value is less than right | **``file.zip.exists``**<br>Checks if a specific file exists within a ZIP archive |
-| **``>=``**<br>Checks if left value is greater than or equal to right | **``file.zip.read``**<br>Reads a specific file from within a ZIP archive |
-| **``<=``**<br>Checks if left value is less than or equal to right | **``file.zip.remove``**<br>Removes a specific file from a ZIP archive |
-| **``in``**<br>Checks if value is in a list or subtext in a text or name in a dictionary | **``file.unzip``**<br>Extracts files from a ZIP archive into a specified directory |
-| **``notin``**<br>Checks if value is not in a list or subtext in a text or or name not in a dictionary | **``file.gzip``**<br>Compresses a specified file using GZip compression |
-| **``is``**<br>Checks if value is in a list or name in a dictionary | **``file.ungzip``**<br>Decompresses a GZip-compressed file |
-| **``isnot``**<br>Checks if value is not in a list or name not in a dictionary | **``file.void``**<br>Compresses the specified file using GZip compression and places it in a Void container |
-| **⌜ control ⌟** | **``file.unvoid``**<br>Decompresses a GZip-compressed files and directories from a Void container |
-| **``printn``**<br>Output data to the console without newline | **``dir``**<br>Lists the contents of a specified directory |
-| **``input``**<br>Input text from the user | **``dir.create``**<br>Creates a new directory at a specified path |
-| **``if``**<br>Evaluate a conditional expression | **``dir.exists``**<br>Checks if a specified directory exists |
-| **``loop``**<br>Perform a loop operation | **``dir.remove``**<br>Removes a specified directory and its contents |
-| **``break``**<br>Exit the current loop | **``dir.move``**<br>Moves a specified directory to a new location |
-| **``continue``**<br>Skip to the next iteration of the loop | **``dir.copy``**<br>Copies a specified directory and its contents to a new location |
-| **``repeat``**<br>Repeat the current iteration of the loop | **``dir.rename``**<br>Renames a specified directory |
-| **``result``**<br>Return a result from an action | **``dir.clear``**<br>Clears all contents of a specified directory without deleting the directory itself |
+| **``shr=``**<br>Right shift and assign value to a variable | **``file.sha256``**<br>Computes the SHA256 checksum of a specified file |
+| **``shl=``**<br>Left shift and assign value to a variable | **``file.sha512``**<br>Computes the SHA512 checksum of a specified file |
+| **``==``**<br>Checks if left value is equal to right | **``file.crc32``**<br>Computes the CRC32 checksum for a specified file |
+| **``!=``**<br>Check if values are not equal | **``file.base64``**<br>Encodes a specified file to base64 format |
+| **``>``**<br>Checks if left value is greater than right | **``file.zip``**<br>Compresses a specified file into a ZIP archive |
+| **``<``**<br>Checks if left value is less than right | **``file.zip.list``**<br>Lists the files contained within a ZIP archive |
+| **``>=``**<br>Checks if left value is greater than or equal to right | **``file.zip.exists``**<br>Checks if a specific file exists within a ZIP archive |
+| **``<=``**<br>Checks if left value is less than or equal to right | **``file.zip.read``**<br>Reads a specific file from within a ZIP archive |
+| **``in``**<br>Checks if value is in a list or subtext in a text or name in a dictionary | **``file.zip.remove``**<br>Removes a specific file from a ZIP archive |
+| **``notin``**<br>Checks if value is not in a list or subtext in a text or or name not in a dictionary | **``file.unzip``**<br>Extracts files from a ZIP archive into a specified directory |
+| **``is``**<br>Checks if value is in a list or name in a dictionary | **``file.gzip``**<br>Compresses a specified file using GZip compression |
+| **``isnot``**<br>Checks if value is not in a list or name not in a dictionary | **``file.ungzip``**<br>Decompresses a GZip-compressed file |
+| &nbsp;<br>**control**<br>&nbsp; | **``file.void``**<br>Compresses the specified file using GZip compression and places it in a Void container |
+| **``.``** · **``print``**<br>Output data to the console | **``file.unvoid``**<br>Decompresses a GZip-compressed files and directories from a Void container |
+| **``..``** · **``printn``**<br>Output data to the console without newline | **``dir``**<br>Lists the contents of a specified directory |
+| **``...``** · **``input``**<br>Input text from the user | **``dir.create``**<br>Creates a new directory at a specified path |
+| **``?``** · **``if``**<br>Evaluate a conditional expression | **``dir.exists``**<br>Checks if a specified directory exists |
+| **``o``** · **``loop``**<br>Perform a loop operation | **``dir.remove``**<br>Removes a specified directory and its contents |
+| **``x``** · **``break``**<br>Exit the current loop | **``dir.move``**<br>Moves a specified directory to a new location |
+| **``>>``** · **``continue``**<br>Skip to the next iteration of the loop | **``dir.copy``**<br>Copies a specified directory and its contents to a new location |
+| **``<<``** · **``repeat``**<br>Repeat the current iteration of the loop | **``dir.rename``**<br>Renames a specified directory |
+| **``X``** · **``result``**<br>Return a result from an action | **``dir.clear``**<br>Clears all contents of a specified directory without deleting the directory itself |
 | **``action``**<br>Initiate or call an action | **``dir.info``**<br>Retrieves information about a specified directory |
-| **``open``**<br>Open a link | **``dir.size``**<br>Calculates the total size of a specified directory and its contents |
+| **``open``**<br>Open a link in standard way | **``dir.size``**<br>Calculates the total size of a specified directory and its contents |
 | **``code``**<br>Execute a block of native code | **``dir.permission``**<br>Gets or sets the permissions of a specified directory |
-| **``info``**<br>Log data | **``dir.time``**<br>Gets or sets the timestamps of a specified directory |
-| **``convert``**<br>Convert data from one format to another | **``dir.zip``**<br>Compresses a specified directory into a ZIP archive |
-| **``sql``**<br>Execute SQL query | **``dir.void``**<br>Compresses a specified directory into a Void container |
-| **``clipboard``**<br>Storing or retrieving clipboard temporary data | **``drive``**<br>Lists all available drives on the system |
+| **``i``** · **``info``**<br>Log data | **``dir.time``**<br>Gets or sets the timestamps of a specified directory |
+| **``c``** · **``convert``**<br>Convert data from one format to another | **``dir.zip``**<br>Compresses a specified directory into a ZIP archive |
+| **``clipboard``**<br>Storing or retrieving clipboard temporary data | **``dir.void``**<br>Compresses a specified directory into a Void container |
+| **``sql``**<br>Execute SQL query | **``drive``**<br>Lists all available drives on the system |
 | **``test``**<br>Test one or all actions | **``drive.name``**<br>Gets or sets the name of a specified drive |
-| **``help``**<br>Show description and use of the action | **``drive.size``**<br>Total size of a specified drive |
-| **``exit``**<br>Exit the current application | **``drive.used``**<br>Amount of used space on a specified drive |
-| **⌜ content ⌟** | **``drive.free``**<br>Amount of free space on a specified drive |
+| **``h``** · **``help``**<br>Show description and use of the action | **``drive.size``**<br>Total size of a specified drive |
+| **``xx``** · **``exit``**<br>Exit the current application | **``drive.used``**<br>Amount of used space on a specified drive |
+| **``chat``**<br>AI conversation and interaction through text | **``drive.free``**<br>Amount of free space on a specified drive |
 | **``say``**<br>Text voicing with different voices | **``drive.info``**<br>Retrieves information about a specified drive |
 | **``voice``**<br>List of available voices | **``drive.mount``**<br>Mounts a drive to make it accessible |
 | **``recognize``**<br>Convert voice to text | **``drive.unmount``**<br>Unmounts a drive |
 | **``capture``**<br>Records or analyzes motion data in real-time | **``drive.create``**<br>Creates a new virtual drive or volume |
-| **``ui``**<br>Creating a basic element of user interface | **``drive.resize``**<br>Resizes an existing drive partition or volume |
-| **⌜ text ⌟** | **``drive.format``**<br>Formats a drive with a specified file system |
-| **``upper``**<br>Convert text to uppercase | **``drive.remove``**<br>Removes or deletes a specified drive or partition |
-| **``starts``**<br>Check if text starts with a specific substring | **``path``**<br>Returns components of a specified file path |
-| **``ends``**<br>Check if text ends with a specific substring | **``path.drive``**<br>Drive component of a specified file path |
-| **``strip``**<br>Remove leading and trailing spaces from text | **``path.dir``**<br>Directory portion of a specified file path |
-| **``strip.start``**<br>Remove leading spaces from text | **``path.file``**<br>File portion of a specified file path |
-| **``strip.end``**<br>Remove trailing spaces from text | **``path.name``**<br>Name of the file without extension from a specified path |
-| **``replace``**<br>Replace occurrences of a substring within text | **``path.extension``**<br>File extension from a specified file path |
-| **``find``**<br>Locate a substring within text | **``path.strip``**<br>Removes the extension from a specified path |
-| **``parse``**<br>Parse text into structured data | **⌜ format ⌟** |
+| **``ui``** · **``app``** · **``game``** · **``web``** · **``cli``**<br>Creating a basic element of user interface | **``drive.resize``**<br>Resizes an existing drive partition or volume |
+| &nbsp;<br>**text**<br>&nbsp; | **``drive.format``**<br>Formats a drive with a specified file system |
+| **``lower``**<br>Convert text to lowercase | **``drive.remove``**<br>Removes or deletes a specified drive or partition |
+| **``upper``**<br>Convert text to uppercase | **``path``**<br>Returns components of a specified file path |
+| **``starts``**<br>Check if text starts with a specific substring | **``path.drive``**<br>Drive component of a specified file path |
+| **``ends``**<br>Check if text ends with a specific substring | **``path.dir``**<br>Directory portion of a specified file path |
+| **``strip``**<br>Remove leading and trailing spaces from text | **``path.file``**<br>File portion of a specified file path |
+| **``strip.start``**<br>Remove leading spaces from text | **``path.name``**<br>Name of the file without extension from a specified path |
+| **``strip.end``**<br>Remove trailing spaces from text | **``path.extension``**<br>File extension from a specified file path |
+| **``replace``**<br>Replace occurrences of a substring within text | **``path.strip``**<br>Removes the extension from a specified path |
+| **``find``**<br>Locate a substring within text | &nbsp;<br>**format**<br>&nbsp; |
+| **``parse``**<br>Parse text into structured data | **``void``**<br>Encodes data into the Void format |
 | **``part``**<br>Extract a part of the text or list | **``void.decode``**<br>Decodes data from the Void format |
 | **``split``**<br>Split text into parts based on a delimiter | **``json``**<br>Encodes data into the JSON format |
 | **``join``**<br>Join a list of strings into a single string with a delimiter | **``json.decode``**<br>Decodes data from the JSON format |
 | **``date``**<br>Format or parse date-related information | **``csv``**<br>Encodes data into the CSV format |
-| **``escape``**<br>Escape HTML tags and attributes in a string | **``csv.decode``**<br>Decodes data from the CSV format |
-| **``unescape``**<br>Unescape HTML tags and attributes in a string | **``yaml``**<br>Encodes data into the YAML format |
+| **``e``** · **``escape``**<br>Escape special characters in a text | **``csv.decode``**<br>Decodes data from the CSV format |
+| **``unescape``**<br>Unescape special characters in a text | **``yaml``**<br>Encodes data into the YAML format |
 | **``words``**<br>Count the number of words | **``yaml.decode``**<br>Decodes data from the YAML format |
 | **``sentences``**<br>Count the number of sentences | **``ini``**<br>Encodes data into the INI format |
 | **``lines``**<br>Count the number of lines | **``ini.decode``**<br>Decodes data from the INI format |
-| **``translate``**<br>Converts text from one language to another | **``html``**<br>Encodes data into the HTML format |
-| **``spellcheck``**<br>Spell check in different languages | **``html.decode``**<br>Decodes data from the HTML format |
-| **⌜ list ⌟** | **``markdown``**<br>Encodes Markdown-formatted text into the HTML format |
-| **``pop``**<br>Remove and return an element from the end of a list | **``markdown.decode``**<br>Decodes data from the Markdown-formatted text |
-| **``merge``**<br>Combine multiple lists into one | **``xml``**<br>Encodes data into the XML format |
-| **``reverse``**<br>Reverse the order of elements in a list | **``xml.decode``**<br>Decodes data from the XML format |
-| **``shuffle``**<br>Randomly reorder elements in a list | **``css``**<br>Encodes data into the CSS format |
-| **``unique``**<br>Leave only unique values in a list | **``css.decode``**<br>Decodes data from the CSS format |
-| **``map``**<br>Apply a function to each element in a list | **⌜ communication ⌟** |
-| **``reduce``**<br>Apply a function cumulatively to the elements in a list | **``request``**<br>Sends an HTTP (GET by default) request to a specified URL |
-| **``filter``**<br>Apply a filter function to each element in a list | **``download``**<br>Downloads content from a specified URL |
-| **``indexes``**<br>Retrieve all keys or attribute names from a structure | **``cookie``**<br>Gets or sets a specified cookie |
-| **``values``**<br>Retrieve all values from a structure | **``cookie.remove``**<br>Removes a specified cookie from the client's storage |
-| **⌜ math ⌟** | **``social``**<br>Interacting with social API |
-| **``cos``**<br>Cosine of the value (in radians) | **``notification``**<br>Send notification |
-| **``tan``**<br>Tangent of the value (in radians) | **``mail``**<br>Send mail |
-| **``sinh``**<br>Hyperbolic sine of the value | **``call``**<br>Initiate a voice or video call to a specified recipient |
-| **``cosh``**<br>Hyperbolic cosine of the value | **``sms``**<br>Send a text message (SMS) to a specified recipient |
-| **``tanh``**<br>Hyperbolic tangent of the valu | **⌜ device ⌟** |
-| **``asin``**<br>Arc sine of the value | **``cpu``**<br>Information about the CPU, including its usage and specifications |
-| **``acos``**<br>Arc cosine of the value | **``fps``**<br>Frames per second for video or graphical rendering |
-| **``atan``**<br>Arc tangent of the value | **``vsync``**<br>Vertical sync settings to reduce screen tearing during rendering |
-| **``asinh``**<br>Arc hyperbolic sine of the value | **``resolution``**<br>Screen resolution |
-| **``acosh``**<br>Arc hyperbolic cosine of the value | **``orientation``**<br>Orientation of a device's display (landscape or portrait) |
-| **``atanh``**<br>Arc hyperbolic tangent of the value | **``dark``**<br>Dark mode setting for user interfaces |
-| **``round``**<br>Rounds a number to the nearest integer or to the specified number of decimal places | **``pixel``**<br>Color of the pixel displayed on the screen |
-| **``floor``**<br>Largest integer less than or equal to a number | **``char``**<br>Symbol on the screen in text mode |
-| **``ceil``**<br>Smallest integer greater than or equal to a number | **``cursor``**<br>Cursor position on the screen in text mode |
-| **``log``**<br>Logarithm (natural by default) of a number | **``clear``**<br>Clears the screen in text mode |
-| **``fact``**<br>Factorial of a given non-negative number | **``light``**<br>Turns on or off the device's flashlight |
-| **``fib``**<br>Fibonacci numbers up to a specified index | **``location``**<br>Retrieves the current geographic location using GPS or network triangulation |
-| **``gr``**<br>Golden ratio of a number | **``gyroscope``**<br>Provides access to the gyroscope sensor for motion detection |
-| **``abs``**<br>Absolute value of a number | **``accelerometer``**<br>Provides access to the accelerometer sensor to detect acceleration forces |
-| **``min``**<br>Smallest of a list of numbers | **``compass``**<br>Accesses the magnetic compass sensor to determine orientation relative to the Earth's magnetic field |
-| **``max``**<br>Largest of a list of numbers | **``proximity``**<br>Detects the proximity of objects in relation to the device's proximity sensor |
-| **``avg``**<br>Average value of a list of numbers | **``brightness``**<br>Manages the screen brightness level of the device |
-| **``sum``**<br>Sum of a list of numbers | **``calendar``**<br>Calendar events on a device |
-| **``random``**<br>Generates a pseudo-random number | **``gallery``**<br>Photo and video library on a device |
-| **``random.seed``**<br>Sets or gets the seed for the random number generator to produce reproducible results | **``contacts``**<br>Contact list on a device |
-| **⌜ time ⌟** | **``keyboard``**<br>Keyboard information |
-| **``timer``**<br>Creates a timer that can be used to trigger events at specific intervals | **``mouse``**<br>Mouse information |
-| **``timer.remove``**<br>Removes previously created timer | **``gamepad``**<br>Gamepad information |
-| **``timecheck``**<br>Stopwatch for calculating the time spent on operations | **``tap``**<br>Simulates a tap gesture |
-| **``wait``**<br>Pauses execution for a specified number of seconds | **``key``**<br>Key binding |
-| &nbsp; | **⌜ content ⌟** |
-| &nbsp; | **``video``**<br>Create a video |
-| &nbsp; | **``sound``**<br>Create audio track |
-| &nbsp; | **``music``**<br>Generates music |
-| &nbsp; | **``model``**<br>Create 3D model |
-| &nbsp; | **``book``**<br>Create a book, comic, manga |
+| **``translate``**<br>Converts text from one language to another | **``xml``**<br>Encodes data into the XML format |
+| **``spellcheck``**<br>Spell check in different languages | **``xml.decode``**<br>Decodes data from the XML format |
+| &nbsp;<br>**list**<br>&nbsp; | &nbsp;<br>**communication**<br>&nbsp; |
+| **``push``**<br>Add an element to the end of a list | **``cloud``**<br>Runs cloud storage or services for data management |
+| **``pop``**<br>Remove and return an element from the end of a list | **``r``** · **``request``**<br>Sends an HTTP (GET by default) request to a specified URL |
+| **``merge``**<br>Combine multiple lists into one | **``d``** · **``download``**<br>Downloads content from a specified URL |
+| **``reverse``**<br>Reverse the order of elements in a list | **``cookie``**<br>Gets or sets a specified cookie |
+| **``shuffle``**<br>Randomly reorder elements in a list | **``cookie.remove``**<br>Removes a specified cookie from the client's storage |
+| **``unique``**<br>Leave only unique values in a list | **``social``**<br>Interacting with social API |
+| **``map``**<br>Apply a function to each element in a list | **``notification``**<br>Send notification |
+| **``reduce``**<br>Apply a function cumulatively to the elements in a list | **``mail``**<br>Send mail |
+| **``filter``**<br>Apply a filter function to each element in a list | **``call``**<br>Initiate a voice or video call to a specified recipient |
+| **``indexes``**<br>Retrieve all keys or attribute names from a structure | **``sms``**<br>Send a text message (SMS) to a specified recipient |
+| **``values``**<br>Retrieve all values from a structure | &nbsp;<br>**device**<br>&nbsp; |
+| &nbsp;<br>**math**<br>&nbsp; | **``device``**<br>Information related to the hardware device |
+| **``sin``**<br>Sine of the value (in radians) | **``cpu``**<br>Information about the CPU, including its usage and specifications |
+| **``cos``**<br>Cosine of the value (in radians) | **``fps``**<br>Frames per second for video or graphical rendering |
+| **``tan``**<br>Tangent of the value (in radians) | **``vsync``**<br>Vertical sync settings to reduce screen tearing during rendering |
+| **``sinh``**<br>Hyperbolic sine of the value | **``resolution``**<br>Screen resolution |
+| **``cosh``**<br>Hyperbolic cosine of the value | **``orientation``**<br>Orientation of a device's display (landscape or portrait) |
+| **``tanh``**<br>Hyperbolic tangent of the valu | **``dark``**<br>Dark mode setting for user interfaces |
+| **``asin``**<br>Arc sine of the value | **``pixel``**<br>Color of the pixel displayed on the screen |
+| **``acos``**<br>Arc cosine of the value | **``char``**<br>Symbol on the screen in text mode |
+| **``atan``**<br>Arc tangent of the value | **``cursor``**<br>Cursor position on the screen in text mode |
+| **``asinh``**<br>Arc hyperbolic sine of the value | **``clear``**<br>Clears the screen in text mode |
+| **``acosh``**<br>Arc hyperbolic cosine of the value | **``light``**<br>Turns on or off the device's flashlight |
+| **``atanh``**<br>Arc hyperbolic tangent of the value | **``location``**<br>Retrieves the current geographic location using GPS or network triangulation |
+| **``round``**<br>Rounds a number to the nearest integer or to the specified number of decimal places | **``gyroscope``**<br>Provides access to the gyroscope sensor for motion detection |
+| **``floor``**<br>Largest integer less than or equal to a number | **``accelerometer``**<br>Provides access to the accelerometer sensor to detect acceleration forces |
+| **``ceil``**<br>Smallest integer greater than or equal to a number | **``compass``**<br>Accesses the magnetic compass sensor to determine orientation relative to the Earth's magnetic field |
+| **``log``**<br>Logarithm (natural by default) of a number | **``proximity``**<br>Detects the proximity of objects in relation to the device's proximity sensor |
+| **``fact``**<br>Factorial of a given non-negative number | **``brightness``**<br>Manages the screen brightness level of the device |
+| **``fib``**<br>Fibonacci numbers up to a specified index | **``calendar``**<br>Calendar events on a device |
+| **``gr``**<br>Golden ratio of a number | **``gallery``**<br>Photo and video library on a device |
+| **``abs``**<br>Absolute value of a number | **``contacts``**<br>Contact list on a device |
+| **``min``**<br>Smallest of a list of numbers | **``keyboard``**<br>Keyboard information |
+| **``max``**<br>Largest of a list of numbers | **``mouse``**<br>Mouse information |
+| **``avg``**<br>Average value of a list of numbers | **``gamepad``**<br>Gamepad information |
+| **``sum``**<br>Sum of a list of numbers | **``tap``**<br>Simulates a tap gesture |
+| **``random``**<br>Generates a pseudo-random number | **``key``**<br>Key binding |
+| **``random.seed``**<br>Sets or gets the seed for the random number generator to produce reproducible results | &nbsp;<br>**content**<br>&nbsp; |
+| &nbsp;<br>**time**<br>&nbsp; | **``image``**<br>Create an image |
+| **``time``**<br>Provides current time since the epoch (1970-01-01 00:00:00 UTC) or calculates time passed since a given start time | **``video``** · **``movie``** · **``anime``**<br>Create a video |
+| **``timer``**<br>Creates a timer that can be used to trigger events at specific intervals | **``sound``**<br>Create audio track |
+| **``timer.remove``**<br>Removes previously created timer | **``music``**<br>Generates music |
+| **``t``** · **``timecheck``**<br>Stopwatch for calculating the time spent on operations | **``model``**<br>Create 3D model |
+| **``wait``**<br>Pauses execution for a specified number of seconds | **``book``** · **``novel``** · **``manga``**<br>Create a book, graphic novel, manga |
 
 ## V O I D format
 **⌜ V O I D format ⌟** is the data format that inherits the best features of [**JSON**](https://en.wikipedia.org/wiki/JSON), [**YAML**](https://en.wikipedia.org/wiki/YAML), [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) and [**plain text**](https://en.wikipedia.org/wiki/Plain_text) formats. Makes it easier to write and read data, both by human and by program. The format simplifies data creation by removing the use of unnecessary quotation marks, brackets, colons, commas and other symbols. It is possible to combine **text** and **binary** data.
@@ -465,7 +466,7 @@ influenced by
     python
     assembly
     plain text
-container
+purpose
     settings
     text
     code
@@ -477,6 +478,7 @@ container
     subtitles
     font
     file
+    …
 value type
     text
     number
@@ -495,24 +497,20 @@ newline
     line feed
         \n
 code
-    encode
-        [void.encode [1 2 3]]
-    decode
-        [void.decode "[1 2 3]"]
     write
-        [file path/to/file.void [1 2 3]]
+        [file path/to/file.void [1 2 3
     read
-        [file path/to/file.void]
+        [file path/to/file.void
     compress
-        [file.void path/to/file]
-        [dir.void path/to/dir]
+        [file.void path/to/file
+        [dir.void path/to/dir
     decompress
-        [file.unvoid path/to/file.void]
+        [file.unvoid path/to/file.void
     encrypt
-        [file.void path/to/file key]
-        [dir.void path/to/dir key]
+        [file.void path/to/file key
+        [dir.void path/to/dir key
     decrypt
-        [file.unvoid path/to/file.void key]
+        [file.unvoid path/to/file.void key
 ```
 
 <table>
@@ -1153,6 +1151,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
 
 Find out current **tasks** and **payment** at [**V O I D task**](https://voidsp.ru/void.task)
+
 
 
 
