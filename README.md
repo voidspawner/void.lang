@@ -476,7 +476,6 @@ purpose
     3d
     subtitles
     font
-    file
     other
 value type
     text
@@ -1076,73 +1075,78 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 
 > **``ChatGPT``**
 > ```
-> chat "radius of the Earth"
-> chat "tell me a story"
-> chat "translate to portuguese: Hi world :D"
-> translate "嗨，世界 :D"
-> translate "Hi world :D" portuguese
-> image "playing cats on the lawn" cats.jpg
-> code python "mouse movement simulation"
+> chat radius of the Earth
+> chat tell me a story
+> chat translate to portuguese: Hi world :D
+> chat.translate.pt Hi world :D
+> chat.svg ginger cat in a box
+> chat.python mouse movement simulation
 > ```
 >
 > **``Stable Diffusion``**
 > ```
-> image "playing cats on the lawn" cats.jpg
-> video "playing cats on the lawn" cats.mp4
-> image.draw "remove the cat in the center and add more grass" cats.jpg cats-edited.jpg
+> image 'playing cats on the lawn' cats.jpg
+> video 'playing cats on the lawn' cats.mp4
+> image.draw 'remove the cat in the center and add more grass' cats.jpg cats-edited.jpg
 > image.colorize dogs.jpg dogs-colorized.jpg
-> image.style "cyberpunk" cats.jpg cats-cyberpunk.jpg
+> image.style 'cyberpunk' cats.jpg cats-cyberpunk.jpg
 > image.background cats.jpg cats-without-background.png
-> image.upscale cats.jpg cats-resize-2x.jpg
-> image.upscale cats.jpg cats-resize-4x.jpg 4
-> image.face man.jpg child.jpg man-to-child.jpg
+> image.2x cats.jpg cats-resize-2x.jpg
+> image.4x cats.jpg cats-resize-4x.jpg
+> image.swapface adult.jpg child.jpg adult-to-child.jpg
 > ```
 > 
 > **``Voice Cloning``**
 > ```
-> voice "Hi world :D"
-> voice.capture my
-> voice "Hi world :D" my
+> voice mike.mp3
+> say.mike 'Hi world :D
 > ```
 > 
 > **``Speech Recognition``**
 >
 > ```
-> voice.recognize
-> voice.recognize talk.mp3
-> voice.recognize video.mp4
+> recognize
+> recognize talk.mp3
+> recognize video.mp4
 > ```
 > 
 > **``Google TTS``**
 >
 > ```
-> google.voice "Hi world :D"
-> voice "Hi world :D"
+> say 'Hi world :D
+> say.en-US-Wavenet-B 'Hi world :D
+> ```
+>
+> **``Google Translate``**
+>
+> ```
+> translate '你好，世界 :D
+> translate.pt '你好，世界 :D
+> translate.google '你好，世界 :D
 > ```
 > 
 > **``DeepL``**
 >
 > ```
-> deepl.translate "你好，世界 :D"
-> translate "你好，世界 :D"
+> translate.deepl '你好，世界 :D
 > ```
 
-Work is underway to develop a custom AI that will run on a **[V O I D chip](https://github.com/voidspawner/void.tech#chip)**.
+Work is underway to develop a custom AI that will run on a **V O I D chip**.
 
 ## V O I D game
-**[⌜ V O I D game ⌟](https://voidsp.ru/void.game)** is a game that creates an **infinite** number of games, vapps and content.
+**⌜ V O I D game ⌟** is a game that creates an **infinite** number of games, apps and content.
 
 ## V O I D social
-**[⌜ V O I D social ⌟](https://voidsp.ru/void.social)** is a social network where you can **quickly** and **easily** communicate without words with people all over the world.
+**⌜ V O I D social ⌟** is a social network where you can **quickly** and **easily** communicate with people all over the world.
 
 ## V O I D os
-**[⌜ V O I D os ⌟](https://github.com/voidspawner/void.os)** is an Operating System that uses **V O I D lang** to run and create applications and games.
+**⌜ V O I D os ⌟** is an Operating System that uses **V O I D lang** to run and create applications and games.
 
 ## V O I D tech
-**[⌜ V O I D tech ⌟](https://github.com/voidspawner/void.tech)** are combinable devices controlled by **[V O I D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
+**⌜ V O I D tech ⌟** are combinable devices controlled by **[V O I D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
 
 ## V O I D ideology
-**[⌜ V O I D ⌟](https://github.com/voidspawner/void.ideology)**  is not only about compact technologies, but also an **ideology** that shows where these technologies are taking us.
+**⌜ V O I D ⌟**  is not only about compact technologies, but also an **ideology** that shows where these technologies are taking us.
 
 ## V O I D license
 **⌜ V O I D license ⌟** is a license to distribute digital content and goods. Expressed in a single sentence:
@@ -1154,8 +1158,6 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
-
-Find out current **tasks** and **payment** at [**V O I D task**](https://voidsp.ru/void.task)
 
 
 
