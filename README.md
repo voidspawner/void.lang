@@ -353,23 +353,23 @@ python void.py . Hi World :D
 4. Sell your game or share with friends
 
 > [!NOTE]
-> **Run with game engine**
+> Run with game engine
 > ```console
 > void.exe game.void
 > void.exe game.json
 > ```
 >
-> **The archive contains ``run.void`` · ``run.json`` and all game files**
+> The archive contains **``run.void``** · **``run.json``** and all game files
 > ```console
 > void.exe game.zip
 > ```
 >
-> **The execution directory contains ``run.void`` · ``run.json`` · ``run.zip`` file**
+> The execution directory contains **``run.void``** · **``run.json``** · **``run.zip``** file
 > ```console
 > void.exe
 > ```
 >
-> **You can export your game to various platforms within the V O I D spawner game or via an action**
+> You can **export** your game to various platforms
 > ```console
 > void.exe convert game.void game.exe
 > ```
@@ -385,25 +385,8 @@ python void.py . Hi World :D
 ## Actions
 
 > [!NOTE]
-> **Use Help to display a description of the action**
-
-<table><tr><td>
-<img width="441" height="1">
-
-```
-`
-  help
-  h upper
-```
-</td><td>
-<img width="441" height="1">
-  
-```json
-["help"],
-["h", "upper"]
-```
-</td></tr></table>
-
+> Use **Help** to display a description of the action
+> 
 > ```console
 > python void.py help
 > python void.py h upper
@@ -1269,6 +1252,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
