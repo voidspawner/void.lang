@@ -194,32 +194,20 @@ run
 <img width="441" height="1">
 
 ```
-description
-  Just add the property 'description', '//' and so on
-version
-  description
-    Version description
-  number
-    1
-  name
-    First
+comment
+  Comment as a property
 run
   `
- - Comment begins from space -
+ Comment begins with space
     . Hi World :D
-        - Comment with double indent -
+        Comment begins with double indent
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
 {
-  "description": "Just add the property 'description', '//' and so on",
-  "version": {
-    "description": "Version description",
-    "number": 1,
-    "name": "First"
-  },
+  "comment": "Comment as a property",
   "run": [
     [".", "Hi World :D"]
   ]
@@ -1261,6 +1249,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
