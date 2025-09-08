@@ -62,7 +62,8 @@ run
 <img width="441" height="1">
 
 ```
-. Hi World :D
+`
+  . Hi World :D
 ```
 </td><td>
 <img width="441" height="1">
@@ -75,11 +76,22 @@ run
 </td></tr></table>
 
 ##### Show current version
+<table><tr><td>
+<img width="441" height="1">
+
+```
+`
+  . {description.about.version}
+```
+</td><td>
+<img width="441" height="1">
+  
 ```json
 [
   ["." "{description.about.version}"]
 ]
 ```
+</td></tr></table>
 ##### Multilanguage text
 ```json
 {
@@ -155,12 +167,45 @@ run
 }
 ```
 ##### File sharing
+<table><tr><td>
+<img width="441" height="1">
+
+```
+`
+  cloud.file /path/to/share
+```
+</td><td>
+<img width="441" height="1">
+  
 ```json
 [
   ["cloud.file": "/path/to/share"]
 ]
 ```
+</td></tr></table>
 ##### Add comments
+<table><tr><td>
+<img width="441" height="1">
+
+```
+description
+  All code is data. So just add the property 'description', '//' and so on
+version
+  description
+    Version description
+  number
+    1
+  name
+    First
+run
+  `
+ - Comment begins from space -
+    . Hi World :D
+        - Comment with double indent -
+```
+</td><td>
+<img width="441" height="1">
+  
 ```json
 {
   "description": "All code is data. So just add the property 'description', '//' and so on",
@@ -174,7 +219,23 @@ run
   ]
 }
 ```
+</td></tr></table>
 ##### Use loop and conditions
+<table><tr><td>
+<img width="441" height="1">
+
+```
+`
+  = word Hi World :D
+  o letter {word}
+    ? {letter} = i
+      . i!
+
+      . {letter}
+```
+</td><td>
+<img width="441" height="1">
+  
 ```json
 [
   ["=", "word", "Hi World :D"],
@@ -187,7 +248,21 @@ run
   ]]
 ]
 ```
+</td></tr></table>
 ##### Get the last result without using variables
+<table><tr><td>
+<img width="441" height="1">
+
+```
+`
+  replace 'Hi World :D' i i!
+  . {}
+  upper
+  .
+```
+</td><td>
+<img width="441" height="1">
+  
 ```json
 [
   ["replace", "Hi World :D", "i", "i!"],
@@ -196,17 +271,29 @@ run
   "."
 ]
 ```
+</td></tr></table>
 ##### Run native code
+<table><tr><td>
+<img width="441" height="1">
+
+```
+`
+  code for i in range(10):print(i)
+```
+</td><td>
+<img width="441" height="1">
+  
 ```json
 [
   ["code", "for i in range(10):print(i)"]
 ]
 ```
+</td></tr></table>
 ##### Import into your project
 ```python
 exec(open('void.py').read())
 encrypted = void.encrypt('Hi World :D')
-print(void.decrypt(encrypted.text, encrypted.key))
+print(void.decrypt(encrypted['text'], encrypted['key']))
 ```
 
 ## How to Use
@@ -1164,6 +1251,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
