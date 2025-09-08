@@ -321,12 +321,12 @@ python void.py . Hi World :D
 ```
 
 > [!TIP]
-> **Linux・macOS**: Add alias to **``~/.bashrc``** ・ **``~/.zshrc``** ・ **``~/.bash_profile``** (macOS)
+> **``Linux``・``macOS``**: Add alias to **``~/.bashrc``** ・ **``~/.zshrc``** ・ **``~/.bash_profile``** (macOS)
 > ```console
 > alias void="python /path/to/void.py"
 > ```
 > 
-> **Windows**: Use alias in command line
+> **``Windows``**: Use alias in command line
 > ```console
 > doskey void=python /path/to/void.py
 > ```
@@ -334,7 +334,7 @@ python void.py . Hi World :D
 > void app.json
 > ```
 > 
-> **Swift・Kotlin・C++**: Embed the **V O I D app (vapp)** in the source code and compile it into an executable
+> **``Swift``・``Kotlin``・``C++``**: Embed the **V O I D app (vapp)** in the source code and compile it into an executable
 > ```console
 > swiftc void.swift
 > ```
@@ -347,34 +347,38 @@ python void.py . Hi World :D
 
 ## How to Use Game Engine
 
-1. Buy **V O I D spawner** game on **Steam**
-2. Create your first game in **``run.json``** file
-3. Copy the **void.exe** file from the **V O I D spawner** game to the same directory as **``run.json``** file
+1. Download **V O I D spawner** game
+2. Create your first game in **``run.void``** · **``run.json``** file
+3. Copy the **void.exe** file to the same directory as **``run.void``** · **``run.json``** file
 4. Sell your game or share with friends
 
 > [!NOTE]
 > **Run with game engine**
 > ```console
+> void.exe game.void
 > void.exe game.json
 > ```
 >
-> **The archive contains ``run.json`` and all game files**
+> **The archive contains ``run.void`` · ``run.json`` and all game files**
 > ```console
 > void.exe game.zip
 > ```
 >
-> **The execution directory contains ``run.json`` and all game files or contains ``run.zip`` file**
+> **The execution directory contains ``run.void`` · ``run.json`` · ``run.zip`` file**
 > ```console
 > void.exe
 > ```
 >
-> You can use the **Exporter** inside the **V O I D spawner** game to export your game to all platforms ⌜**Windows**・**macOS**・**Linux**・**Android**・**iOS**・**Web**・**Xbox**・**Switch**・**PlayStation**⌟
+> **You can export your game to various platforms within the V O I D spawner game or via an action**
+> ```console
+> void.exe convert game.void game.exe
+> ```
 
 **Alternative**
 
 1. Download **V O I D lang**
 2. Import **``void.gd``**・**``void.cpp``** into the **Godot**・**Unreal Engine**
-3. Create your first game in **``run.json``** file
+3. Create your first game in **``run.void``** · **``run.json``** file
 4. Export the game in the engine itself to the available platforms
 5. Sell your game or share with friends
 
@@ -382,15 +386,27 @@ python void.py . Hi World :D
 
 > [!NOTE]
 > **Use Help to display a description of the action**
->
-> ```json
-> ["help"],
-> ["help", "upper"]
-> ```
-> 
+
+<table><tr><td>
+<img width="441" height="1">
+
+```
+`
+  help
+  h upper
+```
+</td><td>
+<img width="441" height="1">
+  
+```json
+["help"],
+["h", "upper"]
+```
+</td></tr></table>
+
 > ```console
 > python void.py help
-> python void.py help upper
+> python void.py h upper
 > ```
 
 > Count of actions **``269``**
@@ -1253,6 +1269,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
