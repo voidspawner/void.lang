@@ -763,23 +763,6 @@ c:\Users\name\Desktop
 <td>
 
 ```
-0.123
-```
-
-</td>
-<td>
-
-```json
-0.123
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
 100_000
 ```
 
@@ -792,6 +775,27 @@ c:\Users\name\Desktop
 
 ```json
 100000
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
+0.123_456
+```
+
+```
+0.123 456
+```
+
+</td>
+<td>
+
+```json
+0.123456
 ```
 
 </td>
@@ -892,7 +896,7 @@ none
 ```
 
 ```
-[]
+`
   1 12.34 Name
   2 56.78 'Other name
 ```
@@ -918,6 +922,12 @@ name
   text
 other name
   123
+```
+
+```
+`
+  name: text
+  other name: 123
 ```
 
 </td>
@@ -1253,6 +1263,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
