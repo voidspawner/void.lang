@@ -161,7 +161,7 @@ text
 `
   cloud.web
     /
-      X <h1>Hi World 😄</h1>
+      response <h1>Hi World 😄</h1>
 ```
 </td><td>
 <img width="441" height="1">
@@ -170,7 +170,7 @@ text
 [
   ["cloud.web", [
     ["/", [
-        ["X", "<h1>Hi World 😄</h1>"]
+        ["response", "<h1>Hi World 😄</h1>"]
     ]]
   ]]
 ]
@@ -456,7 +456,7 @@ python void.py "['.', 'Hi World :D']"
 | **``x``** · **``break``**<br>Exit the current loop | **``dir.move``**<br>Moves a specified directory to a new location |
 | **``>>``** · **``continue``**<br>Skip to the next iteration of the loop | **``dir.copy``**<br>Copies a specified directory and its contents to a new location |
 | **``<<``** · **``repeat``**<br>Repeat the current iteration of the loop | **``dir.rename``**<br>Renames a specified directory |
-| **``X``** · **``result``**<br>Return a result from an action | **``dir.clear``**<br>Clears all contents of a specified directory without deleting the directory itself |
+| **``X``** · **``result``** · **``response``**<br>Return a result from an action | **``dir.clear``**<br>Clears all contents of a specified directory without deleting the directory itself |
 | **``action``**<br>Initiate or call an action | **``dir.info``**<br>Retrieves information about a specified directory |
 | **``open``**<br>Open a link in standard way | **``dir.size``**<br>Calculates the total size of a specified directory and its contents |
 | **``code``**<br>Execute a block of native code | **``dir.permission``**<br>Gets or sets the permissions of a specified directory |
@@ -1255,6 +1255,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
