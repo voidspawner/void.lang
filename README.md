@@ -94,6 +94,41 @@ run
 </td></tr></table>
 
 ##### Multilanguage text
+<table><tr><td>
+<img width="441" height="1">
+
+```
+run
+  `
+    . {text.hi} :D
+text
+  hi
+    en
+      Hi World
+    zh
+      你好世界
+    fr
+      Bonjour le monde
+    es
+      Hola Mundo
+    pt
+      Olá Mundo
+    it
+      Ciao mondo
+    de
+      Hallo Welt
+    jp
+      こんにちは世界
+    ru
+      Привет, мир
+    ar
+      مرحبا بالعالم
+    hi
+      हैलो वर्ल्ड
+```
+</td><td>
+<img width="441" height="1">
+  
 ```json
 {
   "run": [
@@ -116,8 +151,17 @@ run
   }
 }
 ```
+</td></tr></table>
 
 ##### Web server
+<table><tr><td>
+<img width="441" height="1">
+
+```
+```
+</td><td>
+<img width="441" height="1">
+  
 ```json
 {
   "run": [
@@ -134,11 +178,25 @@ run
   }
 }
 ```
+</td></tr></table>
 
 ##### Web server simpler
+<table><tr><td>
+<img width="441" height="1">
+
+```
+`
+  cloud.web
+    route:
+      /
+        response <h1>Hi World 😄</h1>
+```
+</td><td>
+<img width="441" height="1">
+  
 ```json
 [
-  ["cloud.web": {
+  ["cloud.web", {
     "route": [
       ["/", [
         ["response", "<h1>Hi World 😄</h1>"]
@@ -147,29 +205,7 @@ run
   }]
 ]
 ```
-
-##### Web app with UI
-```json
-{
-  "run": [
-    ["cloud.web": {
-      "route": [
-        ["/", [
-          ["title", "{text.hi}"],
-          ["text", "{text.hi}", {
-            "color": "white",
-            "background": "green",
-            "size": 20
-          }]
-        ]]
-      ]
-    }]
-  ],
-  "text": {
-    "hi": "Hi World 😄"
-  }
-}
-```
+</td></tr></table>
 
 ##### File sharing
 <table><tr><td>
@@ -200,7 +236,7 @@ run
   `
  Comment begins with space
     . Hi World :D
-        Comment begins with double indent
+        Comment with double indent
 ```
 </td><td>
 <img width="441" height="1">
@@ -1249,6 +1285,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
