@@ -303,23 +303,21 @@ print(void.decrypt(encrypted['text'], encrypted['key']))
 ## How to Use
 
 1. Download **V O I D lang**
-2. Create your first vapp (V O I D app) in **``run.json``** or other JSON file
-3. Launch vapp with **V O I D lang**
+2. Create your first app in **``run.void``** · **``run.json``** or other JSON file
+3. Launch app with **V O I D lang**
  
 ```console
-python void.py vapp.json
+python void.py app.void
+python void.py app.json
 ```
 
 **Alternative**
 
 ```console
-python void.py vapp.void
-```
-```console
 python void.py app.py
 ```
 ```console
-python void.py "['.', 'Hi World :D']"
+python void.py . Hi World :D
 ```
 
 > [!TIP]
@@ -333,10 +331,10 @@ python void.py "['.', 'Hi World :D']"
 > doskey void=python /path/to/void.py
 > ```
 > ```console
-> void vapp.json
+> void app.json
 > ```
 > 
-> **Swift・Kotlin・C++**: Embed the **vapp** in the source code and compile it into an executable
+> **Swift・Kotlin・C++**: Embed the **V O I D app (vapp)** in the source code and compile it into an executable
 > ```console
 > swiftc void.swift
 > ```
@@ -1255,6 +1253,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
