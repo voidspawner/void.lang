@@ -92,6 +92,7 @@ run
 ]
 ```
 </td></tr></table>
+
 ##### Multilanguage text
 ```json
 {
@@ -115,6 +116,7 @@ run
   }
 }
 ```
+
 ##### Web server
 ```json
 {
@@ -132,6 +134,7 @@ run
   }
 }
 ```
+
 ##### Web server simpler
 ```json
 [
@@ -144,6 +147,7 @@ run
   }]
 ]
 ```
+
 ##### Web app with UI
 ```json
 {
@@ -166,6 +170,7 @@ run
   }
 }
 ```
+
 ##### File sharing
 <table><tr><td>
 <img width="441" height="1">
@@ -183,13 +188,14 @@ run
 ]
 ```
 </td></tr></table>
+
 ##### Add comments
 <table><tr><td>
 <img width="441" height="1">
 
 ```
 description
-  All code is data. So just add the property 'description', '//' and so on
+  Just add the property 'description', '//' and so on
 version
   description
     Version description
@@ -208,7 +214,7 @@ run
   
 ```json
 {
-  "description": "All code is data. So just add the property 'description', '//' and so on",
+  "description": "Just add the property 'description', '//' and so on",
   "version": {
     "description": "Version description",
     "number": 1,
@@ -220,6 +226,7 @@ run
 }
 ```
 </td></tr></table>
+
 ##### Use loop and conditions
 <table><tr><td>
 <img width="441" height="1">
@@ -249,6 +256,7 @@ run
 ]
 ```
 </td></tr></table>
+
 ##### Get the last result without using variables
 <table><tr><td>
 <img width="441" height="1">
@@ -272,6 +280,7 @@ run
 ]
 ```
 </td></tr></table>
+
 ##### Run native code
 <table><tr><td>
 <img width="441" height="1">
@@ -289,6 +298,7 @@ run
 ]
 ```
 </td></tr></table>
+
 ##### Import into your project
 ```python
 exec(open('void.py').read())
@@ -1251,6 +1261,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
