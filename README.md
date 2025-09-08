@@ -569,9 +569,9 @@ value type
     text
     number
     boolean
+    none
     list
     dictionary
-    none
     binary
 indent
     tab
@@ -1261,6 +1261,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
