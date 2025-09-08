@@ -883,13 +883,13 @@ none
 <td>
 
 ```
-[
+[]
   [1 12.34 Name]
   [2 56.78 'Other name']
 ```
 
 ```
-[]
+[
   [1 12.34 Name
   [2 56.78 'Other name
 ```
@@ -1261,6 +1261,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
