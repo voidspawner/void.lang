@@ -1055,7 +1055,7 @@ base64 compact full
 base85
   *Rv=FxNgzZZW^ZzBVRQ
 base85 full
-  *b85*ViBPIEkgRCBmb3JtYXQ=
+  *b85*Rv=FxNgzZZW^ZzBVRQ
 hex
   *564F 4944
 hex full
@@ -1289,6 +1289,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
