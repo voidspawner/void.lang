@@ -585,24 +585,24 @@ newline
 code
     write
         `
-          file path/to/file.void [1 2 3
+            file path/to/file.void [1 2 3
     read
         `
-          file path/to/file.void
+            file path/to/file.void
     compress
         `
-          file.void path/to/file
-          dir.void path/to/dir
+            file.void path/to/file
+            dir.void path/to/dir
     decompress
         `
-          file.unvoid path/to/file.void
+            file.unvoid path/to/file.void
     encrypt
         `
-          file.void path/to/file key
-          dir.void path/to/dir key
+            file.void path/to/file key
+            dir.void path/to/dir key
     decrypt
         `
-          file.unvoid path/to/file.void key
+            file.unvoid path/to/file.void key
 ```
 
 <table>
@@ -1275,6 +1275,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
