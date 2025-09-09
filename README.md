@@ -1022,12 +1022,12 @@ list
   none
 list short
   [text 1 true false none
-dictionary
+dict
   name 1
     true
   name2
     true
-dictionary short
+dict short
   ['name 1':true name2:true
 code
   `
@@ -1096,11 +1096,11 @@ bin compact
     null
   ],
   "list short": ["text", 1, true, false, null],
-  "dictionary": {
+  "dict": {
     "name 1": true,
     "name2": true
   },
-  "dictionary short": {"name 1": true, "name2": true},
+  "dict short": {"name 1": true, "name2": true},
   "code": [
     [".", "Hi World :D"],
     ["=", "var", 123],
@@ -1289,6 +1289,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
