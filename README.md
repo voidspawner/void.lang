@@ -993,67 +993,86 @@ other name
 
 ```
 text
-    text
+  text
 multiline text
-    "
-        multiline
-        text
-text in a line
-    '
-        text
-        in
-        a
-        line
-escape
-    "\t\n\r\"\\"
-int
-    123 000
-float
-    1.23
-bool
-    true
-empty
-    none
-list
+  "
+    multiline
     text
-    1
-    true
-    false
-    none
+text in a line
+  '
+    text
+    in
+    a
+    line
+escape
+  '\t\n\r'\
+int
+  123 000
+float
+  1.23
+bool
+  true
+empty
+  none
+list
+  text
+  1
+  true
+  false
+  none
 list short
-    [text 1 true false none]
+  [text 1 true false none
 dictionary
-    name 1
-        true
-    name 2
-        true
+  name 1
+    true
+  name2
+    true
+dictionary short
+  ['name 1':true name2:true
 code
-    []
-        . "Hi World :D
-        = var 123
-        . {var}
-base64
-    *
-        ViBPIEkgRCBmb3JtYXQ=
-base64 + gzip
-    *
-        eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
-base64 short
-    *ViBPIEkgRCBmb3JtYXQ=
+  `
+    . 'Hi World :D
+    = var 123
+    . {var}
+
+        B I N A R Y
 binary
-    *
-        3
-        <00 01 02>
-binary short
-   *3 <00 01 02>
-binary in hex
-    *
-        56 20 4F 20 49
-        20 44 20 66 6F
-        72 6D 61 74
-binary in bin
-    *
-        0000 1000 1111 0001
+  *4*data
+base64
+  *ViBPIEkgRCBmb3JtYXQ=
+base64 full
+  *b64*ViBPIEkgRCBmb3JtYXQ=
+base64 gzip
+  *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
+base64 compact
+  *
+    ViBPIEkgRC
+    Bmb3JtYXQ=
+base64 compact full
+  *b64
+    ViBPIEkgRC
+    Bmb3JtYXQ=
+base85
+  *Rv=FxNgzZZW^ZzBVRQ
+base85 full
+  *b85*ViBPIEkgRCBmb3JtYXQ=
+hex
+  *564F 4944
+hex full
+  *h*564F4944
+hex compact
+  *
+    56 20 4F 20 49
+    20 44 20 66 6F
+    72 6D 61 74
+bin
+  *00001000 11110001
+bin full
+  *b*0000100011110001
+bin compact
+  *
+    0000 1000
+    1111 0001
 ```
 
 </td>
@@ -1061,38 +1080,47 @@ binary in bin
 
 ```json
 {
-    "text": "text",
-    "multiline text": "multiline\ntext",
-    "text in a line": "textinaline",
-    "escape": "\t\n\r\"\\",
-    "int": 123000,
-    "float": 1.23,
-    "bool": true,
-    "empty": null,
-    "list": [
-        "text",
-        1,
-        true,
-        false,
-        null
-    ],
-    "list short": ["text", 1, true, false, null],
-    "dictionary": {
-        "name 1": true,
-        "name 2": true
-    },
-    "code": [
-        [".", "Hi World :D"],
-        ["=", "var", 123],
-        [".", "{var}"]
-    ],
-    "base64": "need to convert",
-    "base64 + gzip": "need to convert",
-    "base64 short": "need to convert",
-    "binary": "impossible",
-    "binary short": "impossible",
-    "binary in hex": "need to convert",
-    "binary in bin": "need to convert"
+  "text": "text",
+  "multiline text": "multiline\ntext",
+  "text in a line": "textinaline",
+  "escape": "\t\n\r'\\",
+  "int": 123000,
+  "float": 1.23,
+  "bool": true,
+  "empty": null,
+  "list": [
+    "text",
+    1,
+    true,
+    false,
+    null
+  ],
+  "list short": ["text", 1, true, false, null],
+  "dictionary": {
+    "name 1": true,
+    "name2": true
+  },
+  "dictionary short": {"name 1": true, "name2": true},
+  "code": [
+    [".", "Hi World :D"],
+    ["=", "var", 123],
+    [".", "{var}"]
+  ],
+  "comment": "property or JSONC",
+  "binary": "impossible",
+  "base64": "need to convert",
+  "base64 full": "need to convert",
+  "base64 gzip": "need to convert",
+  "base64 compact": "need to convert",
+  "base64 compact full": "need to convert",
+  "base85": "need to convert",
+  "base85 full": "need to convert",
+  "hex": "need to convert",
+  "hex full": "need to convert",
+  "hex compact": "need to convert",
+  "bin": "need to convert",
+  "bin full": "need to convert",
+  "bin compact": "need to convert"
 }
 ```
 
@@ -1261,6 +1289,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
