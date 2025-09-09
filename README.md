@@ -1040,16 +1040,10 @@ binary
   *4*data
 base64
   *ViBPIEkgRCBmb3JtYXQ=
-base64 full
-  *b64*ViBPIEkgRCBmb3JtYXQ=
 base64 gzip
   *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
 base64 compact
   *
-    ViBPIEkgRC
-    Bmb3JtYXQ=
-base64 compact full
-  *b64
     ViBPIEkgRC
     Bmb3JtYXQ=
 hex
@@ -1105,10 +1099,8 @@ bin compact
   "comment": "property or JSONC",
   "binary": "impossible",
   "base64": "need to convert",
-  "base64 full": "need to convert",
   "base64 gzip": "need to convert",
   "base64 compact": "need to convert",
-  "base64 compact full": "need to convert",
   "hex": "need to convert",
   "hex full": "need to convert",
   "hex compact": "need to convert",
@@ -1283,6 +1275,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
