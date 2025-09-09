@@ -349,7 +349,7 @@ python void.py . Hi World :D
 
 1. Download **V O I D spawner** game
 2. Create your first game in **``run.void``** · **``run.json``** file
-3. Copy the **void.exe** file to the same directory as **``run.void``** · **``run.json``** file
+3. Copy the **``void.exe``** file to the same directory as **``run.void``** · **``run.json``** file
 4. Sell your game or share with friends
 
 > [!NOTE]
@@ -1275,6 +1275,7 @@ You can use it in both **private** and **open source**, embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
