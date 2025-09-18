@@ -1188,7 +1188,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > ```
 > chat radius of the Earth
 > chat tell me a story
-> chat translate to portuguese: Hi world :D
+> chat translate to portuguese: Hi World :D
 > chat svg ginger cat in a box
 > chat python calculator application
 > chat image dancing cats
@@ -1216,7 +1216,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > **``Voice Cloning``**
 > ```
 > voice mike.mp3
-> say mike 'Hi world :D
+> say mike 'Hi World :D
 > ```
 > 
 > **``Speech Recognition``**
@@ -1233,7 +1233,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > 
 > **``Google Text-to-Speech``**
 > ```
-> say en-US-Wavenet-B Hi world :D
+> say en-US-Wavenet-B Hi World :D
 > ```
 > 
 > **``Google Translate``**
@@ -1275,3 +1275,4 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
