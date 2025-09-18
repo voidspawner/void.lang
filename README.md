@@ -1270,11 +1270,12 @@ Work is underway to develop a custom AI that will run on a **V O I D chip**.
 
 > **DO WHAT YOU WANT**
 
-You can use it in both **private** and **open source**, embed it in **free** or **paid** products. **Modify**. Create your **own solutions** based on it. **No need to specify the author**.
+You can use it in both **private** and **open source**. Embed it in **free** or **paid** products. **Modify**. Create your **own solutions** based on it. **No need to specify the author**.
 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
