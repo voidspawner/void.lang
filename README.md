@@ -469,7 +469,7 @@ python void.py . Hi World :D
 | **``voice``**<br>List of available voices | **``drive.mount``**<br>Mounts a drive to make it accessible |
 | **``recognize``**<br>Convert voice to text | **``drive.unmount``**<br>Unmounts a drive |
 | **``capture``**<br>Records or analyzes motion data in real-time | **``drive.create``**<br>Creates a new virtual drive or volume |
-| **``ui``** · **``app``** · **``game``** · **``web``** · **``cli``**<br>Create user interface | **``drive.resize``**<br>Resizes an existing drive partition or volume |
+| **``ui``** · **``app``** · **``game``** · **``web``** · **``cli``**<br>Create a user interface | **``drive.resize``**<br>Resizes an existing drive partition or volume |
 | &nbsp;<br>**text**<br>&nbsp; | **``drive.format``**<br>Formats a drive with a specified file system |
 | **``lower``**<br>Convert text to lowercase | **``drive.remove``**<br>Removes or deletes a specified drive or partition |
 | **``upper``**<br>Convert text to uppercase | **``path``**<br>Returns components of a specified file path |
@@ -1274,6 +1274,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
