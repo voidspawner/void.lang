@@ -62,15 +62,14 @@ run
 <img width="441" height="1">
 
 ```
-`
-  . Hi World :D
+[[. Hi World :D
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
 [
-  [".", "Hi World :D"]
+  [".", "Hi", "World", ":D"]
 ]
 ```
 </td></tr></table>
@@ -80,8 +79,7 @@ run
 <img width="441" height="1">
 
 ```
-`
-  . {about.version}
+[[. {about.version}
 ```
 </td><td>
 <img width="441" height="1">
@@ -99,8 +97,7 @@ run
 
 ```
 run
-  `
-    . {text.hi} :D
+    [[. {text.hi} :D
 text
   hi
     en
@@ -158,10 +155,10 @@ text
 <img width="441" height="1">
 
 ```
-`
-  cloud.web
-    /
-      response <h1>Hi World 😄</h1>
+[
+  [cloud.web
+    [/
+      [response '<h1>Hi World 😄</h1>
 ```
 </td><td>
 <img width="441" height="1">
@@ -182,8 +179,7 @@ text
 <img width="441" height="1">
 
 ```
-`
-  cloud.file /path/to/share
+[[cloud.file /path/to/share
 ```
 </td><td>
 <img width="441" height="1">
@@ -203,9 +199,9 @@ text
 comment
   Comment as a property
 run
-  `
+  [
  Comment begins with space
-    . Hi World :D
+    [. Hi World :D
         Comment with double indent
 ```
 </td><td>
@@ -226,13 +222,13 @@ run
 <img width="441" height="1">
 
 ```
-`
-  = word Hi World :D
-  o letter {word}
-    ? {letter} = i
-      . i!
+[
+  [= word Hi World :D
+  [o letter {word}
+    [? {letter} = i
+      [. i!
 
-      . {letter}
+      [. {letter}
 ```
 </td><td>
 <img width="441" height="1">
@@ -256,9 +252,9 @@ run
 <img width="441" height="1">
 
 ```
-`
-  replace 'Hi World :D' i i!
-  . {}
+[
+  [replace 'Hi World :D' i i!
+  [. {}
   upper
   .
 ```
@@ -280,8 +276,7 @@ run
 <img width="441" height="1">
 
 ```
-`
-  code for i in range(10):print(i)
+[[code for i in range(10):print(i)
 ```
 </td><td>
 <img width="441" height="1">
@@ -584,25 +579,19 @@ newline
         \n
 code
     write
-        `
-            file path/to/file.void [1 2 3
+        [[file path/to/file.void [1 2 3
     read
-        `
-            file path/to/file.void
+        [[file path/to/file.void
     compress
-        `
-            file.void path/to/file
-            dir.void path/to/dir
+        [file.void path/to/file
+        [dir.void path/to/dir
     decompress
-        `
-            file.unvoid path/to/file.void
+        [file.unvoid path/to/file.void
     encrypt
-        `
-            file.void path/to/file key
-            dir.void path/to/dir key
+        [file.void path/to/file key
+        [dir.void path/to/dir key
     decrypt
-        `
-            file.unvoid path/to/file.void key
+        [file.unvoid path/to/file.void key
 ```
 
 <table>
@@ -894,12 +883,6 @@ none
   [2 56.78 'Other name
 ```
 
-```
-`
-  1 12.34 Name
-  2 56.78 'Other name
-```
-
 </td>
 <td>
 
@@ -924,8 +907,8 @@ other name
 ```
 
 ```
-name: text
-'other name': 123
+name         text
+other name   123
 ```
 
 </td>
@@ -1029,8 +1012,7 @@ dictionary
 dict short
   ['name 1':true name2:true
 code
-  `
-    . 'Hi World :D
+    . Hi World :D
     = var 123
     . {var}
 
@@ -1054,14 +1036,23 @@ hex compact
     56 20 4F 20 49
     20 44 20 66 6F
     72 6D 61 74
+hex full compact
+  *h
+    56204F2049
+    204420666F
+    726D6174
 bin
-  *00001000 11110001
+  *00001000_11110001
 bin full
   *b*0000100011110001
 bin compact
   *
     0000 1000
     1111 0001
+bin full compact
+  *b
+    00001000
+    11110001
 ```
 
 </td>
@@ -1091,9 +1082,9 @@ bin compact
   },
   "dict short": {"name 1": true, "name2": true},
   "code": [
-    [".", "Hi World :D"],
-    ["=", "var", 123],
-    [".", "{var}"]
+    ". Hi World :D",
+    "= var 123",
+    ". {var}"
   ],
   "comment": "property or JSONC",
   "binary": "impossible",
@@ -1103,9 +1094,11 @@ bin compact
   "hex": "need to convert",
   "hex full": "need to convert",
   "hex compact": "need to convert",
+  "hex full compact": "need to convert",
   "bin": "need to convert",
   "bin full": "need to convert",
-  "bin compact": "need to convert"
+  "bin compact": "need to convert",
+  "bin full compact": "need to convert"
 }
 ```
 
@@ -1274,6 +1267,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
