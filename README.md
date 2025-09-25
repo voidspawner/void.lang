@@ -314,6 +314,10 @@ python void.py app.py
 ```console
 python void.py . Hi World :D
 ```
+```console
+```json
+python void.py cloud.file /path/to/share
+```
 
 > [!TIP]
 > **``Linux``・``macOS``**: Add alias to **``~/.bashrc``** ・ **``~/.zshrc``** ・ **``~/.bash_profile``** (macOS)
@@ -1303,6 +1307,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
