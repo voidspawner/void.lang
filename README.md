@@ -1028,33 +1028,33 @@ base64
   *ViBPIEkgRCBmb3JtYXQ=
 base64 gzip
   *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
-base64 compact
+base64 multiline
   *
     ViBPIEkgRC
     Bmb3JtYXQ=
 hex
   *564F 4944
-hex full
+hex named
   *h*564F4944
-hex compact
+hex multiline
   *
     56 20 4F 20 49
     20 44 20 66 6F
     72 6D 61 74
-hex full compact
+hex named multiline
   *h
     56204F2049
     204420666F
     726D6174
 bin
   *00001000_11110001
-bin full
+bin named
   *b*0000100011110001
-bin compact
+bin multiline
   *
     0000 1000
     1111 0001
-bin full compact
+bin named multiline
   *b
     00001000
     11110001
@@ -1095,15 +1095,15 @@ bin full compact
   "binary": "impossible",
   "base64": "need to convert",
   "base64 gzip": "need to convert",
-  "base64 compact": "need to convert",
+  "base64 multiline": "need to convert",
   "hex": "need to convert",
-  "hex full": "need to convert",
-  "hex compact": "need to convert",
-  "hex full compact": "need to convert",
+  "hex named": "need to convert",
+  "hex multiline": "need to convert",
+  "hex named multiline": "need to convert",
   "bin": "need to convert",
-  "bin full": "need to convert",
-  "bin compact": "need to convert",
-  "bin full compact": "need to convert"
+  "bin named": "need to convert",
+  "bin multiline": "need to convert",
+  "bin named multiline": "need to convert"
 }
 ```
 
@@ -1272,6 +1272,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
