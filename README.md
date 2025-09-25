@@ -1057,6 +1057,8 @@ base64
   *ViBPIEkgRCBmb3JtYXQ=
 base64 gzip
   *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
+base64 safe
+  *eNoLU_BX8FRwUUjLL8pNLAEAG0QEPA
 base64 multiline
   *
     ViBPIEkgRC
@@ -1076,7 +1078,7 @@ hex named multiline
     204420666F
     726D6174
 bin
-  *00001000_11110001
+  *00001000 11110001
 bin named
   *b*0000100011110001
 bin multiline
@@ -1124,6 +1126,7 @@ bin named multiline
   "binary": "impossible",
   "base64": "need to convert",
   "base64 gzip": "need to convert",
+  "base64 safe": "need to convert",
   "base64 multiline": "need to convert",
   "hex": "need to convert",
   "hex named": "need to convert",
@@ -1301,6 +1304,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
