@@ -129,7 +129,7 @@ text
 ```json
 {
   "run": [
-    [".", "{text.hi} :D"]
+    [".", "{text.hi}", ":D"]
   ],
   "text": {
     "hi": {
@@ -211,7 +211,7 @@ run
 {
   "comment": "Comment as a property",
   "run": [
-    [".", "Hi World :D"]
+    [".", "Hi", "World", ":D"]
   ]
 }
 ```
@@ -223,7 +223,7 @@ run
 
 ```
 [
-  [= word Hi World :D
+  [= word 'Hi World :D
   [o letter {word}
     [? {letter} = i
       [. i!
@@ -276,7 +276,7 @@ run
 <img width="441" height="1">
 
 ```
-[[code for i in range(10):print(i)
+[[code 'for i in range(10):print(i)
 ```
 </td><td>
 <img width="441" height="1">
@@ -1267,6 +1267,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
