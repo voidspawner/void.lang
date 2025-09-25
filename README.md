@@ -389,9 +389,8 @@ python void.py . Hi World :D
 
 > Number of actions **``269``**
 
-| <img width="1000" height="1"> | <img width="1000" height="1"> |
-| --- | --- |
-| &nbsp;<br>**value**<br>&nbsp; | &nbsp;<br>**crypto**<br>&nbsp; |
+| <img width="1000" height="1"><br>**value**<br>&nbsp; | <img width="1000" height="1"><br>**crypto**<br>&nbsp; |
+| :--- | :--- |
 | **``get``**<br>Retrieve a value based on provided parameter name | **``encrypt``**<br>Encrypts data using a specified key |
 | **``set``**<br>Assign a value to a specified parameter | **``decrypt``**<br>Decrypts previously encrypted data using the specified key |
 | **``remove``**<br>Remove a specified parameter or value | **``hash``**<br>Generates a hash for the data or generates a random text |
@@ -1304,6 +1303,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
