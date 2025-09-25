@@ -933,6 +933,35 @@ other name   123
 <td>
 
 ```
+text     number
+
+text 1   1
+text 2   2
+```
+
+</td>
+<td>
+
+```json
+[
+  {
+    "text": "text 1",
+    "number": 1
+  },
+  {
+    "text": "text 2",
+    "number": 2
+  }
+]
+```
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+```
 [name:text 'other name':123
 ```
 
@@ -1272,6 +1301,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
