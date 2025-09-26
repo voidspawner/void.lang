@@ -127,13 +127,13 @@ text
 <img width="441" height="1">
 
 ```
-cloud web <h1>Hi World 😄</h1>
+cloud <h1>Hi World 😄</h1>
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-"cloud web <h1>Hi World 😄</h1>"
+"cloud <h1>Hi World 😄</h1>"
 ```
 </td></tr></table>
 
@@ -142,13 +142,13 @@ cloud web <h1>Hi World 😄</h1>
 <img width="441" height="1">
 
 ```
-cloud file /path/to/share
+cloud /path/to/share
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-"cloud file /path/to/share"
+"cloud /path/to/share"
 ```
 </td></tr></table>
 
@@ -1268,6 +1268,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
