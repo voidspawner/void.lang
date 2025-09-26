@@ -41,25 +41,6 @@
 <table><tr><th align="center"><img width="441" height="1"><p>V O I D format</p></th><th align="center"><img width="441" height="1"><p>JSON</p></th></tr><tr><td>
 
 ```
-run
-  . Hi World :D
-```
-
-</td><td>
-
-```json
-{
-  "run": ". Hi World :D"
-}
-```
-
-</td></tr></table>
-
-##### Even simpler
-<table><tr><td>
-<img width="441" height="1">
-
-```
 . Hi World :D
 ```
 </td><td>
@@ -1287,6 +1268,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
