@@ -42,16 +42,14 @@
 
 ```
 run
-  [[. 'Hi World :D
+  . Hi World :D
 ```
 
 </td><td>
 
 ```json
 {
-  "run": [
-    [".", "Hi World :D"]
-  ]
+  "run": ". Hi World :D"
 }
 ```
 
@@ -62,15 +60,13 @@ run
 <img width="441" height="1">
 
 ```
-[[. Hi World :D
+. Hi World :D
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[
-  [".", "Hi", "World", ":D"]
-]
+". Hi World :D"
 ```
 </td></tr></table>
 
@@ -79,15 +75,13 @@ run
 <img width="441" height="1">
 
 ```
-[[. {about.version}
+. {about.version}
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[
-  ["." "{about.version}"]
-]
+". {about.version}"
 ```
 </td></tr></table>
 
@@ -97,7 +91,7 @@ run
 
 ```
 run
-    [[. {text.hi} :D
+    . {text.hi} :D
 text
   hi
     en
@@ -128,9 +122,7 @@ text
   
 ```json
 {
-  "run": [
-    [".", "{text.hi}", ":D"]
-  ],
+  "run": ". {text.hi} :D",
   "text": {
     "hi": {
       "en": "Hi World",
@@ -155,22 +147,13 @@ text
 <img width="441" height="1">
 
 ```
-[
-  [cloud.web
-    [/
-      [response '<h1>Hi World 😄</h1>
+cloud.web <h1>Hi World 😄</h1>
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[
-  ["cloud.web", [
-    ["/", [
-        ["response", "<h1>Hi World 😄</h1>"]
-    ]]
-  ]]
-]
+"cloud.web <h1>Hi World 😄</h1>"
 ```
 </td></tr></table>
 
@@ -179,15 +162,13 @@ text
 <img width="441" height="1">
 
 ```
-[[cloud.file /path/to/share
+cloud.file /path/to/share
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[
-  ["cloud.file": "/path/to/share"]
-]
+"cloud.file /path/to/share"
 ```
 </td></tr></table>
 
@@ -1306,6 +1287,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
