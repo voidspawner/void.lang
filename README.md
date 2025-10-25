@@ -628,7 +628,7 @@ V O I D format
           name 4
             value 4
       line
-        name 1  value 1   name 2  value 2   name 3  value 3
+        name 1  value 1   name 2  value 2
       empty
         none
     binary
@@ -828,7 +828,7 @@ V O I D format
             "name 4": "value 4"
           }
         ],
-        "line": {"name 1": "value 1", "name 2": "value 2", "name 3": "value 3"},
+        "line": {"name 1": "value 1", "name 2": "value 2"},
         "empty": null
       },
       "binary": {
@@ -1039,6 +1039,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
