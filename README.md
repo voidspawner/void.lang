@@ -670,7 +670,7 @@ V O I D format
               6174 AABB
         full
           line
-            *h*5620 4F20 4920 4420 666F 726D 6174
+            *h 5620 4F20 4920 4420 666F 726D 6174
           multiline
             *h
               5620 4F20
@@ -687,7 +687,7 @@ V O I D format
               1110 0111
         full
           line
-            *b*00000111 11100111
+            *b 00000111 11100111
           multiline
             *b
               0000 0111
@@ -1055,6 +1055,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
