@@ -875,6 +875,21 @@ V O I D format
     "comment": "property or JSONC"
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ```
 
 </td>
@@ -1042,6 +1057,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
