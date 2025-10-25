@@ -41,12 +41,14 @@
 <table><tr><th align="center"><img width="441" height="1"><p>V O I D format</p></th><th align="center"><img width="441" height="1"><p>JSON</p></th></tr><tr><td>
 
 ```
-. Hi World :D
+  .  Hi World :D
 ```
 </td><td>
   
 ```json
-". Hi World :D"
+[
+  [".", "Hi World :D"]
+]
 ```
 </td></tr></table>
 
@@ -55,13 +57,15 @@
 <img width="441" height="1">
 
 ```
-. {about.version}
+  .  {about.version}
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-". {about.version}"
+[
+  ["." {about.version}"]
+]
 ```
 </td></tr></table>
 
@@ -71,7 +75,7 @@
 
 ```
 run
-    . {text.hi} :D
+    .  {text.hi} :D
 text
   hi
     en
@@ -102,7 +106,9 @@ text
   
 ```json
 {
-  "run": ". {text.hi} :D",
+  "run": [
+    [".", "{text.hi} :D"
+  ],
   "text": {
     "hi": {
       "en": "Hi World",
@@ -127,13 +133,15 @@ text
 <img width="441" height="1">
 
 ```
-cloud <h1>Hi World 😄</h1>
+  cloud  <h1>Hi World 😄</h1>
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-"cloud <h1>Hi World 😄</h1>"
+[
+  ["cloud", "<h1>Hi World 😄</h1>"]
+]
 ```
 </td></tr></table>
 
@@ -142,39 +150,15 @@ cloud <h1>Hi World 😄</h1>
 <img width="441" height="1">
 
 ```
-cloud /path/to/share
+  cloud  /path/to/share
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-"cloud /path/to/share"
-```
-</td></tr></table>
-
-##### Add comments
-<table><tr><td>
-<img width="441" height="1">
-
-```
-comment
-  Comment as a property
-run
-  [
- Comment begins with space
-    [. Hi World :D
-        Comment with double indent
-```
-</td><td>
-<img width="441" height="1">
-  
-```json
-{
-  "comment": "Comment as a property",
-  "run": [
-    [".", "Hi", "World", ":D"]
-  ]
-}
+[
+  ["cloud", "/path/to/share"]
+]
 ```
 </td></tr></table>
 
@@ -183,20 +167,19 @@ run
 <img width="441" height="1">
 
 ```
-[
-  [= word 'Hi World :D
-  [o letter {word}
-    [? [{letter} = i
-      [.. i!
+=  word  Hi World :D
+o  letter  {word}
+  ?  {letter}  =  i
+      ..  i!
 
-      [.. {letter}
+      ..  {letter}
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
 [
-  ["=", "word", "Hi World :D"],
+  ["=", "word" "Hi World :D"],
   ["o", "letter", "{word}", [
     ["?", ["{letter}", "=", "i"], [
       ["..", "i!"]
@@ -213,11 +196,10 @@ run
 <img width="441" height="1">
 
 ```
-[
-  [replace 'Hi World :D' i i!
-  [. {}
-  upper
-  .
+replace  Hi World :D  i  i!
+.  {}
+upper
+.
 ```
 </td><td>
 <img width="441" height="1">
@@ -237,7 +219,7 @@ run
 <img width="441" height="1">
 
 ```
-[[code 'for i in range(10):print(i)
+  code  for i in range(10):print(i)
 ```
 </td><td>
 <img width="441" height="1">
@@ -1071,6 +1053,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
