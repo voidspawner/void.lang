@@ -622,7 +622,6 @@ V O I D format
           name 2
             value 2
 
-
           name 3
             value 3
           name 4
@@ -889,7 +888,6 @@ V O I D format
 
 
 
-
 ```
 
 </td>
@@ -1057,6 +1055,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
