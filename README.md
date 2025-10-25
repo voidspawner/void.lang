@@ -681,18 +681,18 @@ V O I D format
       bin
         short
           line
-            *00001000 11110001
+            *00000111 11100111
           multiline
             *
-              0000 1000
-              1111 0001
+              0000 0111
+              1110 0111
         full
           line
-            *b*00001000 11110001
+            *b*00000111 11100111
           multiline
             *b
-              0000 1000
-              1111 0001
+              0000 0111
+              1110 0111
   comment
     begins with a space
        C O M M E N T
@@ -1057,6 +1057,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
