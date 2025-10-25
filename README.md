@@ -632,7 +632,7 @@ V O I D format
         none
     binary
       data
-        *4*data
+        *4 data
       base64
         simple
           line
@@ -1055,6 +1055,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
