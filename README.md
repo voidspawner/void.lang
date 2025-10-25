@@ -511,8 +511,12 @@ python void.py cloud.file /path/to/share
 ```
 V O I D format
   extension
-    void
-    txt
+    base
+      .void
+    sketch
+      .txt
+    retro
+      .8
   mime type
     application/void
   influenced by
@@ -705,10 +709,11 @@ V O I D format
 ```json
 {
   "V O I D format": {
-    "extension": [
-      "void",
-      "txt"
-    ],
+    "extension": {
+      "base": ".void",
+      "sketch": ".txt",
+      "retro": ".8"
+    },
     "mime type": "application/void",
     "influenced by": [
       "json",
@@ -877,6 +882,8 @@ V O I D format
     "comment": "property or JSONC"
   }
 }
+
+
 
 
 
@@ -1063,6 +1070,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
