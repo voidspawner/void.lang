@@ -499,64 +499,6 @@ python void.py cloud.file /path/to/share
 ## V O I D format
 **⌜ V O I D format ⌟** is the data format that inherits the best features of [**JSON**](https://en.wikipedia.org/wiki/JSON), [**YAML**](https://en.wikipedia.org/wiki/YAML), [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) and [**plain text**](https://en.wikipedia.org/wiki/Plain_text) formats. Makes it easier to write and read data, both by human and by program. The format simplifies data creation by removing the use of unnecessary quotation marks, brackets, colons, commas and other symbols. It is possible to combine **text** and **binary** data.
 
-```
-extension
-    void
-mime type
-    application/void
-influenced by
-    json
-    yaml
-    csv
-    python
-    assembly
-    plain text
-purpose
-    settings
-    text
-    code
-    data
-    image
-    video
-    sound
-    3d
-    subtitles
-    font
-    other
-value type
-    text
-    number
-    boolean
-    none
-    list
-    dictionary
-    binary
-indent
-    tab
-        \t
-separator
-    space
-        ' '
-newline
-    line feed
-        \n
-code
-    write
-        file path/to/file.void [1 2 3
-    read
-        file path/to/file.void
-    compress
-        file.void path/to/file
-        dir.void path/to/dir
-    decompress
-        file.unvoid path/to/file.void
-    encrypt
-        file.void path/to/file key
-        dir.void path/to/dir key
-    decrypt
-        file.unvoid path/to/file.void key
-```
-
 <table>
 <tr>
 <th align="center"><img width="441" height="1"><p>V O I D format</p></th>
@@ -567,316 +509,190 @@ code
 <td>
 
 ```
-text
-```
-
-</td>
-<td>
-
-```json
-"text"
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-text with space
-```
-```
-'text with space'
-```
-```
-'text with space
-```
-
-</td>
-<td>
-
-```json
-"text with space"
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-"
-  multiline
-  text
-```
-
-</td>
-<td>
-
-```json
-"multiline\ntext"
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-'
-  text
-  in
-  a
-  line
-```
-
-</td>
-<td>
-
-```json
-"textinaline"
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-c:\Users\name\Desktop
-```
-
-</td>
-<td>
-
-```json
-"c:\\Users\\name\\Desktop"
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-'\t\n\r'\
-```
-
-</td>
-<td>
-
-```json
-"\t\n\r'\\"
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-123
-```
-
-</td>
-<td>
-
-```json
-123
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
--123
-```
-
-</td>
-<td>
-
-```json
--123
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-100_000
-```
-
-```
-100 000
-```
-
-</td>
-<td>
-
-```json
-100000
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-0.123_456
-```
-
-```
-0.123 456
-```
-
-</td>
-<td>
-
-```json
-0.123456
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-true
-```
-
-</td>
-<td>
-
-```json
-true
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-false
-```
-
-</td>
-<td>
-
-```json
-false
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-none
-```
-
-</td>
-<td>
-
-```json
-null
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-1
-text
-true
-false
-none
-```
-
-</td>
-<td>
-
-```json
-[
-  1,
-  "text",
-  true,
-  false,
-  null
-]
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-[]
-  [1 12.34 Name]
-  [2 56.78 'Other name']
-```
-
-```
-[
-  [1 12.34 Name
-  [2 56.78 'Other name
-```
-
-```
-1  12.34  Name
-2  56.78  Other name
-```
-
-</td>
-<td>
-
-```json
-[
-  [1, 12.34, "Name"],
-  [2, 56.78, "Other name"]
-]
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-name
-  text
-other name
-  123
-```
-
-```
-name         text
-other name   123
+V O I D format
+  extension
+    void
+    txt
+  mime type
+    application/void
+  influenced by
+    json
+    yaml
+    csv
+    ini
+    python
+    assembly
+    text
+  purpose
+    data
+    code
+    settings
+    text
+    image
+    video
+    subtitles
+    sound
+    3d
+    font
+    other
+  indent
+    tab
+      '\t
+  newline
+    line feed
+      '\n
+  separator
+    list
+      double space
+        '  '
+    dictionary
+      name
+        double space
+          '  '
+      value
+        triple space
+          '   '
+  value type
+    text
+      text with space
+      'text with space
+      'text with space'
+      '
+        text
+        in a
+        line
+      "
+        text
+        multi
+        line
+    number
+      1
+      100
+      -100
+      100 000
+      100 000.000 000 001
+    bool
+      true
+      false
+    none
+      none
+    list
+      column
+        value 1
+        value 2
+        value 3
+      table
+        name1  value1  100
+        name2  value2  200
+        name3  value3  300
+        name4  value4  400
+      nested
+          value 1
+          value 2
+
+          value 3
+          value 4
+      line
+        value 1  value 2  value 3
+      one
+          value
+      empty
+        none
+    dictionary
+      column
+        name 1
+          value 1
+        name 2
+          value 2
+        name 3
+          value 3
+      row
+        name1      value 1
+        name100    value 100
+        name10000  value 10000
+      table
+        name      value
+
+        name 1    value 1
+        name 10   value 10
+        name 100  value 100
+      nested
+          name 1
+            value 1
+          name 2
+            value 2
+
+
+          name 3
+            value 3
+          name 4
+            value 4
+      line
+        name 1  value 1   name 2  value 2   name 3  value 3
+      empty
+        none
+    binary
+      data
+        *3*...
+      base64
+        simple
+          line
+            *ABCDefgh...
+          multiline
+            *
+              ABCD
+              efgh
+              ....
+        gzip
+          line
+            *ABCDefgh...
+          multiline
+            *
+              ABCD
+              efgh
+              ....
+        safe
+          line
+            *eNoLU_BX8FRwUUjLL8pNLAEAG0QEPA
+          multiline
+            *
+              eNoLU_BX
+              8FRwUUjL
+              L8pNLAEA
+              G0QEPA
+      hex
+        short
+          line
+            *AABB CCDD
+          multiline
+            *
+              AA BB
+              CC DD
+        full
+          line
+            *h*AABB CCDD
+          multiline
+            *h
+              AA BB
+              CC DD
+      bin
+        short
+          line
+            *1111 0000
+          multiline
+            *
+              11 11
+              00 00
+        full
+          line
+            *b*1111 0000
+          multiline
+            *b
+              11 11
+              00 00
+  comment
+    begins with a space
+       C O M M E N T
 ```
 
 </td>
@@ -884,222 +700,177 @@ other name   123
 
 ```json
 {
-  "name": "text",
-  "other name": 123
-}
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-text     number
-
-text 1   1
-text 2   2
-```
-
-</td>
-<td>
-
-```json
-[
-  {
-    "text": "text 1",
-    "number": 1
-  },
-  {
-    "text": "text 2",
-    "number": 2
+  "V O I D format": {
+    "extension": [
+      "void",
+      "txt"
+    ],
+    "mime type": "application/void",
+    "influenced by": [
+      "json",
+      "yaml",
+      "csv",
+      "ini",
+      "python",
+      "assembly",
+      "text"
+    ],
+    "purpose": [
+      "data",
+      "code",
+      "settings",
+      "text",
+      "image",
+      "video",
+      "subtitles",
+      "sound",
+      "3d",
+      "font",
+      "other"
+    ],
+    "indent": {
+      "tab": "\t"
+    },
+    "newline": {
+      "line feed": "\n"
+    },
+    "separator": {
+      "list": {
+        "double space": "  "
+      },
+      "dictionary": {
+        "name": {
+          "double space": "  "
+        },
+        "value": {
+          "triple space": "   "
+        }
+      }
+    },
+    "value type": {
+      "text": [
+        "text with space",
+        "text with space",
+        "text with space",
+        "textin aline",
+        "text\nmulti\nline"
+      ],
+      "number": [
+        1,
+        100,
+        -100,
+        100000,
+        100000.000000001
+      ],
+      "bool": [
+        true,
+        false
+      ],
+      "none": null,
+      "list": {
+        "column": [
+          "value 1",
+          "value 2",
+          "value 3"
+        ],
+        "table": [
+          ["name1", "value1", 100],
+          ["name2", "value2", 200],
+          ["name3", "value3", 300],
+          ["name4", "value4", 400]
+        ],
+        "nested": [
+          [
+            "value 1",
+            "value 2"
+          ],
+          [
+            "value 3",
+            "value 4"
+          ]
+        ],
+        "line": ["value 1", "value 2", "value 3"],
+        "one": ["value"],
+        "empty": null
+      },
+      "dictionary": {
+        "column": {
+          "name 1": "value 1",
+          "name 2": "value 2",
+          "name 3": "value 3"
+        },
+        "row": {
+          "name1": "value 1",
+          "name100": "value 100",
+          "name10000": "value 10000"
+        },
+        "table": [
+          [
+            "name": "name 1",
+            "value": "value 1"
+          ],
+          [
+            "name": "name 10",
+            "value": "value 10"
+          ],
+          [
+            "name": "name 100",
+            "value": "value 100"
+          ]
+        ],
+        "nested": [
+          {
+            "name 1": "value 1",
+            "name 2": "value 2"
+          },
+          {
+            "name 3": "value 3",
+            "name 4": "value 4"
+          }
+        ],
+        "line": {"name 1": "value 1", "name 2": "value 2", "name 3": "value 3"},
+        "empty": null
+      },
+      "binary": {
+        "data": "impossible",
+        "base64": {
+          "simple": {
+            "line": "need to convert",
+            "multiline": "need to convert"
+          },
+          "gzip": {
+            "line": "need to convert",
+            "multiline": "need to convert"
+          },
+          "safe": {
+            "line": "need to convert",
+            "multiline": "need to convert"
+          }
+        },
+        "hex": {
+          "short": {
+            "line": "need to convert",
+            "multiline": "need to convert"
+          },
+          "full": {
+            "line": "need to convert",
+            "multiline": "need to convert"
+          }
+        },
+        "bin": {
+          "short": {
+            "line": "need to convert",
+            "multiline": "need to convert"
+          },
+          "full": {
+            "line": "need to convert",
+            "multiline": "need to convert"
+          }
+        }
+      }
+    },
+    "comment": "property or JSONC"
   }
-]
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-[name:text 'other name':123
-```
-
-</td>
-<td>
-
-```json
-{"name": "text", "other name": 123}
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-[
-  name
-    text
-[
-  other name
-    123
-```
-
-</td>
-<td>
-
-```json
-[
-  {
-    "name": "text"
-  },
-  {
-    "other name": 123
-  }
-]
-```
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-```
-text
-  text
-multiline text
-  "
-    multiline
-    text
-text in a line
-  '
-    text
-    in
-    a
-    line
-escape
-  '\t\n\r'\
-int
-  123 000
-float
-  1.23
-bool
-  true
-empty
-  none
-list
-  text
-  1
-  true
-  false
-  none
-list short
-  [text 1 true false none
-dictionary
-  name 1
-    true
-  name2
-    true
-dict short
-  ['name 1':true name2:true
-code
-    . Hi World :D
-    = var 123
-    . {var}
-
-        B I N A R Y
-
-binary
-  *4*data
-base64
-  *ViBPIEkgRCBmb3JtYXQ=
-base64 gzip
-  *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
-base64 safe
-  *eNoLU_BX8FRwUUjLL8pNLAEAG0QEPA
-base64 multiline
-  *
-    ViBPIEkgRC
-    Bmb3JtYXQ=
-hex
-  *564F 4944
-hex named
-  *h*564F4944
-hex multiline
-  *
-    56 20 4F 20 49
-    20 44 20 66 6F
-    72 6D 61 74
-hex named multiline
-  *h
-    56204F2049
-    204420666F
-    726D6174
-bin
-  *00001000 11110001
-bin named
-  *b*0000100011110001
-bin multiline
-  *
-    0000 1000
-    1111 0001
-bin named multiline
-  *b
-    00001000
-    11110001
-```
-
-</td>
-<td>
-
-```json
-{
-  "text": "text",
-  "multiline text": "multiline\ntext",
-  "text in a line": "textinaline",
-  "escape": "\t\n\r'\\",
-  "int": 123000,
-  "float": 1.23,
-  "bool": true,
-  "empty": null,
-  "list": [
-    "text",
-    1,
-    true,
-    false,
-    null
-  ],
-  "list short": ["text", 1, true, false, null],
-  "dictionary": {
-    "name 1": true,
-    "name2": true
-  },
-  "dict short": {"name 1": true, "name2": true},
-  "code": [
-    ". Hi World :D",
-    "= var 123",
-    ". {var}"
-  ],
-  "comment": "property or JSONC",
-  "binary": "impossible",
-  "base64": "need to convert",
-  "base64 gzip": "need to convert",
-  "base64 safe": "need to convert",
-  "base64 multiline": "need to convert",
-  "hex": "need to convert",
-  "hex named": "need to convert",
-  "hex multiline": "need to convert",
-  "hex named multiline": "need to convert",
-  "bin": "need to convert",
-  "bin named": "need to convert",
-  "bin multiline": "need to convert",
-  "bin named multiline": "need to convert"
 }
 ```
 
@@ -1268,6 +1039,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
