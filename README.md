@@ -950,6 +950,10 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > . {data.json/name.subname}
 > . {data.json/list.index.2.value}
 > = data.json/list.index.2.value 3
+> ```
+> 
+> ```
+> . {https://voidsp.com/data.json/name.subname}
 >```
 
 > **``data.csv``**
@@ -1059,6 +1063,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
