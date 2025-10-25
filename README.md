@@ -64,7 +64,7 @@
   
 ```json
 [
-  ["." {about.version}"]
+  [".", "{about.version}"]
 ]
 ```
 </td></tr></table>
@@ -107,7 +107,7 @@ text
 ```json
 {
   "run": [
-    [".", "{text.hi} :D"
+    [".", "{text.hi} :D"]
   ],
   "text": {
     "hi": {
@@ -179,7 +179,7 @@ o  letter  {word}
   
 ```json
 [
-  ["=", "word" "Hi World :D"],
+  ["=", "word", "Hi World :D"],
   ["o", "letter", "{word}", [
     ["?", ["{letter}", "=", "i"], [
       ["..", "i!"]
@@ -1053,6 +1053,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
