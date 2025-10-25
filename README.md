@@ -633,63 +633,66 @@ V O I D format
         none
     binary
       data
-        *3*...
+        *4*data
       base64
         simple
           line
-            *ABCDefgh...
+            *ViBPIEkgRCBmb3JtYXQ=
           multiline
             *
-              ABCD
-              efgh
-              ....
+              ViBPIEk
+              gRCBmb3
+              JtYXQ=
         gzip
           line
-            *ABCDefgh...
+            *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
           multiline
             *
-              ABCD
-              efgh
-              ....
+              eNoLU/BX8FR
+              wUUjLL8pNLA
+              EAG0QEPA==
         safe
           line
             *eNoLU_BX8FRwUUjLL8pNLAEAG0QEPA
           multiline
             *
-              eNoLU_BX
-              8FRwUUjL
-              L8pNLAEA
-              G0QEPA
+              eNoLU_BX8FR
+              wUUjLL8pNLA
+              EAG0QEPA
       hex
         short
           line
-            *AABB CCDD
+            *5620 4F20 4920 4420 666F 726D 6174
           multiline
             *
-              AA BB
-              CC DD
+              5620 4F20
+              4920 4420
+              666F 726D
+              6174 AABB
         full
           line
-            *h*AABB CCDD
+            *h*5620 4F20 4920 4420 666F 726D 6174
           multiline
             *h
-              AA BB
-              CC DD
+              5620 4F20
+              4920 4420
+              666F 726D
+              6174 AABB
       bin
         short
           line
-            *1111 0000
+            *00001000 11110001
           multiline
             *
-              11 11
-              00 00
+              0000 1000
+              1111 0001
         full
           line
-            *b*1111 0000
+            *b*00001000 11110001
           multiline
             *b
-              11 11
-              00 00
+              0000 1000
+              1111 0001
   comment
     begins with a space
        C O M M E N T
@@ -1039,6 +1042,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
