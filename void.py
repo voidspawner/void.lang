@@ -1,5195 +1,4180 @@
+import importlib
+import traceback
 import os
 import sys
-import psutil
 import platform
-import time
-import json
-import math
+import subprocess
+import signal
+import struct
 import string
+import re
+import time
+import math
 import random
 import hashlib
-import base64
+import json
+import gzip as gz
+from datetime import datetime
 
 class void:
 
+	modules = {
+		'psutil': None,
+		'platform': None,
+		'base64': None,
+		'tkinter': None
+	}
 	data = {
-		'description': {
-			'about': {
-				'name': 'V O I D lang',
-				'site': 'https://voidsp.com',
-				'language': 'python',
-				'version': {
-					'time': 0,
-					'date': ''
-				}
+		'about': {
+			'name': 'V O I D lang',
+			'site': 'https://voidsp.com',
+			'language': 'python',
+			'version': {
+				'time': 1761401661,
+				'date': '2025·10·25'
 			},
-			'action': {
-				'get': {
-					'name': 'get',
-					'group': 'value',
-					'description': 'Retrieve a value based on provided parameter name',
-					'safe': True,
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'param': [
-						{'name': 'name', 'type': 'text', 'default': None}
-					],
-					'example': [
-						{'code': [['get', 'description.about.name']], 'result': 'V O I D lang'}
-					] 
-				},
-				'set': {
-					'name': 'set',
-					'group': 'value',
-					'description': 'Assign a value to a specified parameter',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [
-							['set', 'some.value', 1],
-							['get', 'some.value'],
-						], 'result': 1},						
-						{'code': [
-							['set', 'some.text', ':)'],
-							['get', 'some.text'],
-						], 'result': ':)'}
-					]
-				},
-				'remove': {
-					'name': 'remove',
-					'group': 'value',
-					'description': 'Remove a specified parameter or value',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [
-							['set', 'some.value', 1],
-							['remove', 'some.value'],
-							['get', 'some.value']
-						], 'result': None}
-					]
-				},
-				'type': {
-					'name': 'type',
-					'group': 'value',
-					'description': 'Determine the data type of a specified parameter',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': []
-				},
-				'text': {
-					'name': 'type_text',
-					'group': 'value',
-					'description': 'Specify a parameter as a text type',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['text', 123]], 'result': '123'},
-						{'code': [['text', 'title', {
-							'length': 10,
-							'align': 'center'
-						}]], 'result': '  title   '},
-						{'code': [['text', 100000.1, {
-							'before': '∞',
-							'after': ' monthly',
-							'group': ',',
-							'fraction': '.',
-							'dot': 3
-						}]], 'result': '∞100,000.100 monthly'},
-						{'code': [['text', 100000, 'price']], 'result': '∞100 000'}
-					]
-				},
-				'number': {
-					'name': 'type_number',
-					'group': 'value',
-					'description': 'Specify a parameter as a number type',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['number', '123']], 'result': 123},
-						{'code': [['number', 45.67]], 'result': 45.67}
-					]
-				},
-				'bool': {
-					'name': 'type_bool',
-					'group': 'value',
-					'description': 'Specify a parameter as a boolean type',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['bool', 1]], 'result': True},
-						{'code': [['bool', 'false']], 'result': False},
-						{'code': [['bool', None]], 'result': False},
-						{'code': [['bool', 'none']], 'result': False}
-					]
-				},
-				'list': {
-					'name': 'type_list',
-					'group': 'value',
-					'description': 'Specify a parameter as a list type',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['list', 123]], 'result': [123]},
-						{'code': [['list', 'a']], 'result': ['a']},
-						{'code': [['list', [123, 'a']]], 'result': [123, 'a']}
-					]
-				},
-				'dict': {
-					'name': 'type_dict',
-					'group': 'value',
-					'description': 'Specify a parameter as a dictionary type',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['dict', [['key', 'value']]]], 'result': {'key': 'value'}},
-						{'code': [['dict', [['a', 1], ['b', 2]]]], 'result': {'a': 1, 'b': 2}},
-						{'code': [['dict', {'a': 1}]], 'result': {'a': 1}}
-					]
-				},
-				'binary': {
-					'name': 'type_binary',
-					'group': 'value',
-					'description': 'Specify a parameter as a binary type',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['binary', 'a']], 'result': b'a'},
-						{'code': [['binary', 1]], 'result': b'1'}
-					]
-				},
-				'n': {
-					'name': 'n',
-					'group': 'value',
-					'description': 'Gets the length of the text, the number of items in a list or dictionary',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['n', 'text']], 'result': 4},
-						{'code': [['n', [1, 2, 'a']]], 'result': 3},
-						{'code': [['n', {'a': 1, 'b': 2}]], 'result': 2},
-						{'code': [['n', 123]], 'result': 0}
-					]
-				},
-				'+': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform addition operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['+', 2, 3]], 'result': 5},
-						{'code': [['+', 'a', 'b']], 'result': 'ab'},
-						{'code': [['+', ['a'], ['b']]], 'result': ['a', 'b']},
-						{'code': [['+', {'a': 1, 'b': {'c': 3}}, {'c': 5}]], 'result': {'a': 1, 'b': {'c': 5}}},
-					]
-				},
-				'-': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform subtraction operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['-', 5, 2]], 'result': 3},
-						{'code': [['-', 10]], 'result': -10}
-					]
-				},
-				'*': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform multiplication operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['*', 3, 4]], 'result': 12},
-						{'code': [['*', 'a', 3]], 'result': 'aaa'}
-					]
-				},
-				'/': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform division operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['/', 10, 2]], 'result': 5},
-						{'code': [['/', 7, 2]], 'result': 3.5}
-					]
-				},
-				'%': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform modulo operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['%', 10, 3]], 'result': 1},
-						{'code': [['%', 15, 4]], 'result': 3}
-					]
-				},
-				'~': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Elevation operator',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['~', 2, 3]], 'result': 8},
-						{'code': [['~', 10, 0]], 'result': 1},
-						{'code': [['~', 4, 0.5]], 'result': 2}
-					]
-				},
-				'!': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform logical negation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['!', True]], 'result': False},
-						{'code': [['!', False]], 'result': True}
-					]
-				},
-				'&': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform bitwise AND operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['&', 5, 3]], 'result': 1},
-						{'code': [['&', 12, 7]], 'result': 4}
-					]
-				},
-				'|': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform bitwise OR operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['|', 5, 3]], 'result': 7},
-						{'code': [['|', 12, 7]], 'result': 15}
-					]
-				},
-				'^': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform bitwise XOR operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['^', 5, 3]], 'result': 6},
-						{'code': [['^', 12, 7]], 'result': 11}
-					]
-				},
-				'>>': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform right bitwise shift operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['>>', 16, 2]], 'result': 4},
-						{'code': [['>>', 255, 4]], 'result': 15}
-					]
-				},
-				'<<': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Perform left bitwise shift operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['<<', 4, 2]], 'result': 16},
-						{'code': [['<<', 7, 3]], 'result': 56}
-					]
-				},
-				'=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 10]], 'result': 10},
-						{'code': [['=', 'name', 'John']], 'result': 'John'}
-					]
-				},
-				'+=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Add and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 5], ['+=', 'x', 3]], 'result': 8},
-						{'code': [['=', 's', 'a'], ['+=', 's', 'b']], 'result': 'ab'}
-					]
-				},
-				'=+': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Assign and add value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=+', 'x', 5, 3]], 'result': 8},
-						{'code': [['=+', 's', 'a', 'b']], 'result': 'ab'}
-					]
-				},
-				'-=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Subtract and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 10], ['-=', 'x', 4]], 'result': 6},
-						{'code': [['=', 'y', 7.5], ['-=', 'y', 2.5]], 'result': 5.0}
-					]
-				},
-				'*=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Multiply and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 3], ['*=', 'x', 4]], 'result': 12},
-						{'code': [['=', 's', 'a'], ['*=', 's', 3]], 'result': 'aaa'}
-					]
-				},
-				'/=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Divide and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 10], ['/=', 'x', 2]], 'result': 5},
-						{'code': [['=', 'y', 7], ['/=', 'y', 2]], 'result': 3.5}
-					]
-				},
-				'%=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Modulo and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 10], ['%=', 'x', 3]], 'result': 1},
-						{'code': [['=', 'y', 15], ['%=', 'y', 4]], 'result': 3}
-					]
-				},
-				'~=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Elevation and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 2], ['~=', 'x', 3]], 'result': 8},
-						{'code': [['=', 'y', 5], ['~=', 'y', 0]], 'result': 1}
-					]
-				},
-				'!=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Check if values are not equal',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['!=', 5, 3]], 'result': True},
-						{'code': [['!=', 'a', 'a']], 'result': False}
-					]
-				},
-				'&=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Bitwise AND and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 5], ['&=', 'x', 3]], 'result': 1},
-						{'code': [['=', 'y', 12], ['&=', 'y', 7]], 'result': 4}
-					]
-				},
-				'|=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Bitwise OR and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 5], ['|=', 'x', 3]], 'result': 7},
-						{'code': [['=', 'y', 12], ['|=', 'y', 7]], 'result': 15}
-					]
-				},
-				'^=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Bitwise XOR and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 5], ['^=', 'x', 3]], 'result': 6},
-						{'code': [['=', 'y', 12], ['^=', 'y', 7]], 'result': 11}
-					]
-				},
-				'>>=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Right shift and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 16], ['>>=', 'x', 2]], 'result': 4},
-						{'code': [['=', 'y', 255], ['>>=', 'y', 4]], 'result': 15}
-					]
-				},
-				'<<=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Left shift and assign value to a variable',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['=', 'x', 4], ['<<=', 'x', 2]], 'result': 16},
-						{'code': [['=', 'y', 7], ['<<=', 'y', 3]], 'result': 56}
-					]
-				},
-				'==': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Checks if left value is equal to right',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['==', 5, 5]], 'result': True},
-						{'code': [['==', 'a', 'b']], 'result': False}
-					]
-				},
-				'>': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Checks if left value is greater than right',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['>', 5, 3]], 'result': True},
-						{'code': [['>', 2, 4]], 'result': False}
-					]
-				},
-				'<': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Checks if left value is less than right',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['<', 3, 5]], 'result': True},
-						{'code': [['<', 4, 2]], 'result': False}
-					]
-				},
-				'<=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Checks if left value is less than or equal to right',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['<=', 3, 5]], 'result': True},
-						{'code': [['<=', 5, 5]], 'result': True},
-						{'code': [['<=', 6, 5]], 'result': False}
-					]
-				},
-				'>=': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Checks if left value is greater than or equal to right',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['>=', 5, 3]], 'result': True},
-						{'code': [['>=', 5, 5]], 'result': True},
-						{'code': [['>=', 4, 5]], 'result': False}
-					]
-				},
-				'not': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Logical NOT operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['not', True]], 'result': False},
-						{'code': [['not', False]], 'result': True}
-					]
-				},
-				'and': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Logical AND operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['and', True, False]], 'result': False},
-						{'code': [['and', True, True]], 'result': True}
-					]
-				},
-				'or': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Logical OR operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['or', True, False]], 'result': True},
-						{'code': [['or', False, False]], 'result': False}
-					]
-				},
-				'xor': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Logical XOR operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['xor', True, False]], 'result': True},
-						{'code': [['xor', True, True]], 'result': False}
-					]
-				},
-				'in': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Checks if value is in a list or name in a dictionary',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['in', 'a', ['a', 'b', 'c']]], 'result': True},
-						{'code': [['in', 'x', {'x': 1}]], 'result': True},
-						{'code': [['in', 'd', ['a', 'b', 'c']]], 'result': False}
-					]
-				},
-				'not in': {
-					'name': None,
-					'group': 'expression',
-					'description': 'Checks if value is not in a list or name not in a dictionary',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['not in', 'd', ['a', 'b', 'c']]], 'result': True},
-						{'code': [['not in', 'y', {'x': 1}]], 'result': True},
-						{'code': [['not in', 'a', ['a', 'b', 'c']]], 'result': False}
-					]
-				},
-				'.': {
-					'name': 'print',
-					'group': 'control',
-					'description': 'Output data to the console',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['.', 'Hello']], 'result': 'Hello'},
-						{'code': [['.', 42]], 'result': 42}
-					]
-				},
-				'..': {
-					'name': 'input',
-					'group': 'control',
-					'description': 'Input text from the user',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['..', 'Enter name:']], 'test': False},
-						{'code': [['..']], 'test': False}
-					]
-				},
-				'?': {
-					'name': 'condition',
-					'group': 'control',
-					'description': 'Evaluate a conditional expression',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['?', ['>', 5, 3], 'yes', 'no']], 'result': 'yes'},
-						{'code': [['?', ['==', 2, 3], 'equal', 'not equal']], 'result': 'not equal'}
-					]
-				},
-				'o': {
-					'name': 'loop',
-					'group': 'control',
-					'description': 'Perform a loop operation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['o', ['<', 'i', 3], [['.', 'i'], ['=', 'i', ['+', 'i', 1]]]]], 'test': False},
-						{'code': [['o', ['<', 'i', 5], [['.', ['*', 'i', 2]], ['=', 'i', ['+', 'i', 1]]]]], 'test': False}
-					]
-				},
-				'x': {
-					'name': 'loop_break',
-					'group': 'control',
-					'description': 'Exit the current loop',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['o', True, [['.', 'looping'], ['?', ['==', 'i', 3], [['x']], []]]]], 'test': False}
-					]
-				},
-				'->': {
-					'name': 'loop_continue',
-					'group': 'control',
-					'description': 'Skip to the next iteration of the loop',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['o', ['<', 'i', 5], [['?', ['==', 'i', 2], [['->']], [['.', 'i']]]]]], 'test': False}
-					]
-				},
-				'<-': {
-					'name': 'loop_repeat',
-					'group': 'control',
-					'description': 'Repeat the current iteration of the loop',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['o', ['<', 'i', 3], [['?', ['==', 'i', 1], [['<-']], [['.', 'i']]]]]], 'test': False}
-					]
-				},
-				'X': {
-					'name': 'action_return',
-					'group': 'control',
-					'description': 'Return a result from an action',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['action', [1, ['+', 1], 'X']]], 'result': 2},
-						{'code': [['action', [1, ['+', 1], ['X', '{}']]]], 'result': None}
-					]
-				},
-				'action': {
-					'name': 'action',
-					'group': 'control',
-					'description': 'Initiate or call an action',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['action', 'greet', [], [['.', 'Hello!']]], ['greet']], 'test': False},
-						{'code': [['action', 'add', ['a', 'b'], [[':', ['+', 'a', 'b']]]], ['add', 2, 3]], 'result': 5}
-					]
-				},
-				'open': {
-					'name': 'open',
-					'group': 'control',
-					'description': 'Open a link',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['open', 'https://example.com']], 'test': False},
-						{'code': [['open', 'file.txt']], 'test': False}
-					]
-				},
-				'code': {
-					'name': 'code',
-					'group': 'control',
-					'description': 'Execute a block of native code',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['code', 'python', 'print("Hello from Python")']], 'test': False},
-						{'code': [['code', 'js', 'console.log("Hello from JS")']], 'test': False}
-					]
-				},
-				'xx': {
-					'name': 'exit',
-					'group': 'control',
-					'description': 'Exit the current application',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['xx']], 'test': False},
-						{'code': [['xx', 500]], 'test': False},
-						{'code': [['xx', 'something went wrong']], 'test': False}
-					]
-				},
-				'l': {
-					'name': 'l',
-					'group': 'control',
-					'description': 'Log data',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['l', 'Debug info']], 'test': False},
-						{'code': [['l', ['+', 'x=', 'x']]], 'test': False}
-					]
-				},
-				'convert': {
-					'name': 'convert',
-					'group': 'control',
-					'description': 'Convert data from one format to another',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['convert', 'json', {'x': 10}]], 'result': '{"x": 10}'},
-						{'code': [['convert', 'yaml', {'x': 10}]], 'result': 'x: 10\n'}
-					]
-				},
-				'spawner': {
-					'name': 'spawner',
-					'group': 'control',
-					'description': 'Export code to an application, game or operation system',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['spawner', 'game.json']], 'test': False},
-						{'code': [['spawner', 'game.json', './game']], 'test': False},
-						{'code': [['spawner', {
-							'source': './app.json',
-							'path': './app',
-							'zip': True,
-							'platform': 'windows'
-							}]], 'test': False},
-						{'code': [['spawner', 'os.86', 'f:']], 'test': False},
-						{'code': [['spawner', 'os.64', 'f:']], 'test': False},
-						{'code': [['spawner', 'os.80286', 'f:']], 'test': False},
-						{'code': [['spawner', 'os.atari', '/mnt/flash']], 'test': False}
-					]
-				},
-				'update': {
-					'name': 'update',
-					'group': 'control',
-					'description': 'Updating the language code',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['update']], 'test': False}
-					]
-				},
-				'test': {
-					'name': 'test',
-					'group': 'control',
-					'description': 'Test one or all actions',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [
-						{'name': 'name', 'type': 'text', 'default': None},
-						{'name': 'group', 'type': 'text', 'default': None}
-					],
-					'example': [
-						{'code': [['test']], 'test': False},
-						{'code': [['test', 'upper']], 'test': False},
-						{'code': [['test', 'group', 'math']], 'test': False}
-					]
-				},
-				'help': {
-					'name': 'help',
-					'group': 'control',
-					'description': 'Show description and use of the action',
-					'safe': True,
-					'param': [
-						{'name': 'name', 'type': 'text', 'default': None}
-					],
-					'example': [
-						{'code': [['help']], 'test': False},
-						{'code': [['help', 'upper']], 'test': False}
-					]
-				},
-				'void': {
-					'name': 'void',
-					'group': 'control',
-					'description': 'Perform a void action on the hash',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [
-						{'name': 'hash', 'type': 'text', 'default': None},
-						{'name': 'data', 'type': 'any', 'default': None}
-					],
-					'example': [
-						{'code': [['void', 'hash']], 'test': False},
-						{'code': [['void', 'hash', {'text': 'comment'}]], 'test': False},
-						{'code': [['void', 'hash', 'camera.on']], 'test': False}
-					]
-				},
-				'lower': {
-					'name': 'lower',
-					'group': 'text',
-					'description': 'Convert text to lowercase',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['lower', 'TeXt']], 'result': 'text'}
-					]
-				},
-				'upper': {
-					'name': 'upper',
-					'group': 'text',
-					'description': 'Convert text to uppercase',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['upper', 'text']], 'result': 'TEXT'},
-						{'code': [['upper', 'text and text', 'title']], 'result': 'Text And Text'},
-						{'code': [['upper', 'text and text', 'sentence']], 'result': 'Text and text'}
-					]
-				},
-				'starts': {
-					'name': 'starts',
-					'group': 'text',
-					'description': 'Check if text starts with a specific substring',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['starts', 'hello world', 'hell']], 'result': True},
-						{'code': [['starts', 'hello world', 'world']], 'result': False}
-					]
-				},
-				'ends': {
-					'name': 'ends',
-					'group': 'text',
-					'description': 'Check if text ends with a specific substring',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ends', 'hello world', 'world']], 'result': True},
-						{'code': [['ends', 'hello world', 'hello']], 'result': False}
-					]
-				},
-				'strip': {
-					'name': 'strip',
-					'group': 'text',
-					'description': 'Remove leading and trailing spaces from text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['strip', '  hello  ']], 'result': 'hello'},
-						{'code': [['strip', '\ttext\n']], 'result': 'text'}
-					]
-				},
-				'strip.start': {
-					'name': 'strip_start',
-					'group': 'text',
-					'description': 'Remove leading spaces from text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True, 
-					'param': [],
-					'example': [
-						{'code': [['strip.start', '  hello  ']], 'result': 'hello  '},
-						{'code': [['strip.start', '\ttext\n']], 'result': 'text\n'}
-					]
-				},
-				'strip.end': {
-					'name': 'strip_end',
-					'group': 'text',
-					'description': 'Remove trailing spaces from text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['strip.end', '  hello  ']], 'result': '  hello'},
-						{'code': [['strip.end', '\ttext\n']], 'result': '\ttext'}
-					]
-				},
-				'replace': {
-					'name': 'replace',
-					'group': 'text',
-					'description': 'Replace occurrences of a substring within text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['replace', 'hello world', 'world', 'there']], 'result': 'hello there'},
-						{'code': [['replace', 'aabbcc', 'b', 'x']], 'result': 'aaxxcc'}
-					]
-				},
-				'find': {
-					'name': 'find',
-					'group': 'text',
-					'description': 'Locate a substring within text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['find', 'hello world', 'world']], 'result': 6},
-						{'code': [['find', 'abcabc', 'b']], 'result': 1}
-					]
-				},
-				'parse': {
-					'name': 'parse',
-					'group': 'text',
-					'description': 'Parse text into structured data',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['parse', 'json', '{"x": 5}']], 'result': {'x': 5}},
-						{'code': [['parse', 'number', '42']], 'result': 42}
-					]
-				},
-				'similar': {
-					'name': 'similar',
-					'group': 'text',
-					'description': 'Find similarity between texts',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['similar', 'hello', 'hallo']], 'result': 0.8, 'round': 1},
-						{'code': [['similar', 'cat', 'dog']], 'result': 0.0, 'round': 1}
-					]
-				},
-				'part': {
-					'name': 'part',
-					'group': 'text',
-					'description': 'Extract a part of the text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['part', 'hello world', 0, 5]], 'result': 'hello'},
-						{'code': [['part', 'abcdef', 2, 4]], 'result': 'cd'}
-					]
-				},
-				'split': {
-					'name': 'split',
-					'group': 'text',
-					'description': 'Split text into parts based on a delimiter',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['split', 'a,b,c', ',']], 'result': ['a', 'b', 'c']},
-						{'code': [['split', 'one two three', ' ']], 'result': ['one', 'two', 'three']}
-					]
-				},
-				'join': {
-					'name': 'join',
-					'group': 'text',
-					'description': 'Join a list of strings into a single string with a delimiter',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['join', ['a', 'b', 'c'], ',']], 'result': 'a,b,c'},
-						{'code': [['join', ['2023', '12', '31'], '-']], 'result': '2023-12-31'}
-					]
-				},
-				'date': {
-					'name': 'date',
-					'group': 'text',
-					'description': 'Format or parse date-related information',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['date', '{year}-{month}-{day} {hour}:{minute}:{second}.{millisecond}', 1744095313.123]], 'result': '2025-04-08 06:55:13.123'},
-						{'code': [['date', '{month short}', 1744095313]], 'result': '4'},
-						{'code': [['date', '2025-04-08 06:55:13.123', '{year}-{month}-{day} {hour}:{minute}:{second}.{millisecond}']], 'result': 1744095313.123}
-					]
-				},
-				'escape': {
-					'name': 'escape',
-					'group': 'text',
-					'description': 'Escape special characters in a string',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['escape', 'Line\nBreak']], 'result': 'Line\\nBreak'},
-						{'code': [['escape', 'Quote\'Here']], 'result': 'Quote\\\'Here'}
-					]
-				},
-				'escape.html': {
-					'name': 'escape_html',
-					'group': 'text',
-					'description': 'Escape HTML tags and attributes in a string',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['escape.html', '<div>Test</div>']], 'result': '&lt;div&gt;Test&lt;/div&gt;'},
-						{'code': [['escape.html', '\'Quote\'']], 'result': '&quot;Quote&quot;'}
-					]
-				},
-				'escape.url': {
-					'name': 'escape_url',
-					'group': 'text',
-					'description': 'Escape URL components',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['escape.url', 'hello world']], 'result': 'hello%20world'},
-						{'code': [['escape.url', 'a/b?c=d']], 'result': 'a%2Fb%3Fc%3Dd'}
-					]
-				},
-				'escape.sql': {
-					'name': 'escape_sql',
-					'group': 'text',
-					'description': 'Escape SQL query components to prevent injection',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['escape.sql', 'O\'Reilly']], 'result': 'O\'Reilly'},
-						{'code': [['escape.sql', 'x\' OR 1=1 --']], 'result': 'x\\\' OR 1=1 --'}
-					]
-				},
-				'unescape': {
-					'name': 'unescape',
-					'group': 'text',
-					'description': 'Unescape special characters in a string',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['unescape', 'Line\\nBreak']], 'result': 'Line\nBreak'},
-						{'code': [['unescape', 'Quote\\\'Here']], 'result': 'Quote\'Here'}
-					]
-				},
-				'unescape.html': {
-					'name': 'unescape_html',
-					'group': 'text',
-					'description': 'Unescape HTML tags and attributes in a string',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['unescape.html', '&lt;div&gt;Test&lt;/div&gt;']], 'result': '<div>Test</div>'},
-						{'code': [['unescape.html', '&quot;Quote&quot;']], 'result': '\'Quote\''}
-					]
-				},
-				'unescape.url': {
-					'name': 'unescape_url',
-					'group': 'text',
-					'description': 'Unescape URL components',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['unescape.url', 'hello%20world']], 'result': 'hello world'},
-						{'code': [['unescape.url', 'a%2Fb%3Fc%3Dd']], 'result': 'a/b?c=d'}
-					]
-				},
-				'unescape.sql': {
-					'name': 'unescape_sql',
-					'group': 'text',
-					'description': 'Unescape SQL query components',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['unescape.sql', 'O''Reilly']], 'result': 'O\'Reilly'},
-						{'code': [['unescape.sql', 'x\\\' OR 1=1 --']], 'result': 'x\' OR 1=1 --'}
-					]
-				},
-				'words': {
-					'name': 'words',
-					'group': 'text',
-					'description': 'Split text into individual words',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['words', 'Hello world! How are you?']], 'result': ['Hello', 'world', 'How', 'are', 'you']},
-						{'code': [['words', 'one,two,three', ',']], 'result': ['one', 'two', 'three']}
-					]
-				},
-				'sentences': {
-					'name': 'sentences',
-					'group': 'text',
-					'description': 'Split text into sentences',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['sentences', 'First sentence. Second one! Third?']], 'result': ['First sentence', 'Second one', 'Third']},
-						{'code': [['sentences', 'Line 1.Line 2']], 'result': ['Line 1', 'Line 2']}
-					]
-				},
-				'lines': {
-					'name': 'lines',
-					'group': 'text',
-					'description': 'Split text into lines',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['lines', 'line1\nline2\nline3']], 'result': ['line1', 'line2', 'line3']},
-						{'code': [['lines', 'a\r\nb\r\nc']], 'result': ['a', 'b', 'c']}
-					]
-				},
-				'bytes': {
-					'name': 'bytes',
-					'group': 'text',
-					'description': 'Convert a string into bytes',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['bytes', 'hello', 'utf-8']], 'result': [104, 101, 108, 108, 111]},
-						{'code': [['bytes', 'test']], 'result': [116, 101, 115, 116]}
-					]
-				},
-				'merge': {
-					'name': 'merge',
-					'group': 'list',
-					'description': 'Combine multiple lists into one',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['merge', [1, 2], [3, 4]]], 'result': [1, 2, 3, 4]},
-						{'code': [['merge', ['a'], ['b', 'c']]], 'result': ['a', 'b', 'c']}
-					]
-				},
-				'push': {
-					'name': 'push',
-					'group': 'list',
-					'description': 'Add an element to the end of a list',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['push', [1, 2], 3]], 'result': [1, 2, 3]},
-						{'code': [['push', [], 'new']], 'result': ['new']}
-					]
-				},
-				'pop': {
-					'name': 'pop',
-					'group': 'list',
-					'description': 'Remove and return an element from the end of a list',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['pop', [1, 2, 3]]], 'result': 3},
-						{'code': [['pop', ['a']]], 'result': 'a'}
-					]
-				},
-				'reverse': {
-					'name': 'reverse',
-					'group': 'list',
-					'description': 'Reverse the order of elements in a list',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['reverse', [1, 2, 3]]], 'result': [3, 2, 1]},
-						{'code': [['reverse', ['a', 'b']]], 'result': ['b', 'a']}
-					]
-				},
-				'shuffle': {
-					'name': 'shuffle',
-					'group': 'list',
-					'description': 'Randomly reorder elements in a list',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['shuffle', [1, 2, 3, 4]]], 'test': False},
-						{'code': [['shuffle', ['a', 'b', 'c']]], 'test': False}
-					]
-				},
-				'map': {
-					'name': 'map',
-					'group': 'list',
-					'description': 'Apply a function to each element in a list',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['map', [1, 2, 3], ['*', 'item', 2]]], 'result': [2, 4, 6]},
-						{'code': [['map', ['a', 'b'], ['upper', 'item']]], 'result': ['A', 'B']}
-					]
-				},
-				'reduce': {
-					'name': 'reduce',
-					'group': 'list',
-					'description': 'Apply a function cumulatively to the elements in a list',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['reduce', [1, 2, 3, 4], ['+', 'acc', 'item'], 0]], 'result': 10},
-						{'code': [['reduce', [2, 3, 4], ['*', 'acc', 'item'], 1]], 'result': 24}
-					]
-				},
-				'names': {
-					'name': 'names',
-					'group': 'list',
-					'description': 'Retrieve all keys or attribute names from a structure',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['names', {'x': 1, 'y': 2}]], 'result': ['x', 'y']},
-						{'code': [['names', ['a', 'b', 'c']]], 'result': ['0', '1', '2']}
-					]
-				},
-				'values': {
-					'name': 'values',
-					'group': 'list',
-					'description': 'Retrieve all values from a structure',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['values', {'x': 1, 'y': 2}]], 'result': [1, 2]},
-						{'code': [['values', ['a', 'b', 'c']]], 'result': ['a', 'b', 'c']}
-					]
-				},
-				'sin': {
-					'name': 'sin',
-					'group': 'math',
-					'description': 'Sine of the value (in radians)',
-					'language': ['python', 'js', 'swift', 'kotlin', 'godot', 'c++'],
-					'safe': True,
-					'param': [{'name': 'value', 'type': 'number'}],
-					'example': [
-						{'code': [['sin', 0.1]], 'result': 0.0998, 'round': 4}
-					]
-				},
-				'cos': {
-					'name': 'cos',
-					'group': 'math',
-					'description': 'Cosine of the value (in radians)',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [{'name': 'value', 'type': 'number'}],
-					'example': [
-						{'code': [['cos', 0.1]], 'result': 0.995, 'round': 3}
-					]
-				},
-				'tan': {
-					'name': 'tan',
-					'group': 'math',
-					'description': 'Tangent of the value (in radians)',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['tan', 0.1]], 'result': 0.1, 'round': 3}
-					]
-				},
-				'sinh': {
-					'name': 'sinh',
-					'group': 'math',
-					'description': 'Hyperbolic sine of the value',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sinh', 0.1]], 'result': 0.1, 'round': 3}
-					]
-				},
-				'cosh': {
-					'name': 'cosh',
-					'group': 'math',
-					'description': 'Hyperbolic cosine of the value',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['cosh', 0.1]], 'result': 1.005, 'round': 3}
-					]
-				},
-				'tanh': {
-					'name': 'tanh',
-					'group': 'math',
-					'description': 'Hyperbolic tangent of the valu',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['tanh', 0.1]], 'result': 0.1, 'round': 3}
-					]
-				},
-				'asin': {
-					'name': 'asin',
-					'group': 'math',
-					'description': 'Arc sine of the value',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['asin', 0.1]], 'result': 0.1, 'round': 3}
-					]
-				},
-				'acos': {
-					'name': 'acos',
-					'group': 'math',
-					'description': 'Arc cosine of the value',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['acos', 0.1]], 'result': 1.471, 'round': 3}
-					]
-				},
-				'atan': {
-					'name': 'atan',
-					'group': 'math',
-					'description': 'Arc tangent of the value',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['atan', 0.1]], 'result': 0.1, 'round': 3}
-					]
-				},
-				'asinh': {
-					'name': 'asinh',
-					'group': 'math',
-					'description': 'Arc hyperbolic sine of the value',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['asinh', 0.1]], 'result': 0.1, 'round': 3}
-					]
-				},
-				'acosh': {
-					'name': 'acosh',
-					'group': 'math',
-					'description': 'Arc hyperbolic cosine of the value',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['acosh', 2]], 'result': 1.317, 'round': 3}
-					]
-				},
-				'atanh': {
-					'name': 'atanh',
-					'group': 'math',
-					'description': 'Arc hyperbolic tangent of the value',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['atanh', 0.1]], 'result': 0.1, 'round': 3}
-					]
-				},
-				'round': {
-					'name': 'round',
-					'group': 'math',
-					'description': 'Rounds a number to the nearest integer or to the specified number of decimal places',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['round', 0.1]], 'result': 0},
-						{'code': [['round', 0.7]], 'result': 1},
-						{'code': [['round', -0.7]], 'result': -1},
-						{'code': [['round', 0.123, 2]], 'result': 0.12}
-					]
-				},
-				'floor': {
-					'name': 'floor',
-					'group': 'math',
-					'description': 'Largest integer less than or equal to a number',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['floor', 0.1]], 'result': 0},
-						{'code': [['floor', 0.1]], 'result': 0},
-						{'code': [['floor', 0.7]], 'result': 0},
-						{'code': [['floor', -0.7]], 'result': -1}
-					]
-				},
-				'ceil': {
-					'name': 'ceil',
-					'group': 'math',
-					'description': 'Smallest integer greater than or equal to a number',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ceil', 0.1]], 'result': 1},
-						{'code': [['ceil', 0.7]], 'result': 1},
-						{'code': [['ceil', -0.7]], 'result': 0}
-					]
-				},
-				'log': {
-					'name': 'log',
-					'group': 'math',
-					'description': 'Logarithm (natural by default) of a number',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['log', 0.1]], 'result': -2.303, 'round': 3},
-						{'code': [['log', 0.1, 2]], 'result': -3.322, 'round': 3},
-						{'code': [['log', 0.1, 10]], 'result': -1, 'round': 3}
-					]
-				},
-				'factorial': {
-					'name': 'factorial',
-					'group': 'math',
-					'description': 'Factorial of a given non-negative number',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['factorial', 5]], 'result': 120},
-						{'code': [['factorial', 0]], 'result': 1}
-					]
-				},
-				'fibonacci': {
-					'name': 'fibonacci',
-					'group': 'math',
-					'description': 'Fibonacci numbers up to a specified index',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [
-						{'name': 'number', 'type': 'number', 'default': 10},
-						{'name': 'multiply', 'type': 'number', 'default': 1},
-						{'name': 'shift', 'type': 'number', 'default': 0}
-					],
-					'example': [
-						{'code': [['fibonacci', 5]], 'result': [0, 1, 1, 2, 3]},
-						{'code': [['fibonacci', 7]], 'result': [0, 1, 1, 2, 3, 5, 8]},
-						{'code': [['fibonacci', 5, 3, 1]], 'result': [1, 4, 4, 7, 10]},
-					]
-				},
-				'golden': {
-					'name': 'golden',
-					'group': 'math',
-					'description': 'Golden ratio of a number',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['golden', 10]], 'result': {'short': 3.820, 'long': 6.180, 'total': 10}, 'round': 3},
-						{'code': [['golden', 10, 'short']], 'result': {'short': 10, 'long': 16.18, 'total': 26.18}, 'round': 3},
-						{'code': [['golden', 10, 'long']], 'result': {'short': 6.18, 'long': 10, 'total': 16.18}, 'round': 3},
-					]
-				},
-				'abs': {
-					'name': 'abs',
-					'group': 'math',
-					'description': 'Absolute value of a number',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['abs', -5]], 'result': 5},
-						{'code': [['abs', 3.14]], 'result': 3.14}
-					]
-				},
-				'min': {
-					'name': 'min',
-					'group': 'math',
-					'description': 'Smallest of a list of numbers',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['min', [5, 3, 8, 1]]], 'result': 1},
-						{'code': [['min', [-2, -5, 0]]], 'result': -5}
-					]
-				},
-				'max': {
-					'name': 'max',
-					'group': 'math',
-					'description': 'Largest of a list of numbers',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['max', [5, 3, 8, 1]]], 'result': 8},
-						{'code': [['max', [-2, -5, 0]]], 'result': 0}
-					]
-				},
-				'avg': {
-					'name': 'avg',
-					'group': 'math',
-					'description': 'Average value of a list of numbers',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['avg', [1, 2, 3, 4, 5]]], 'result': 3},
-						{'code': [['avg', [10, 20]]], 'result': 15}
-					]
-				},
-				'sum': {
-					'name': 'sum',
-					'group': 'math',
-					'description': 'Sum of a list of numbers',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sum', [1, 2, 3, 4, 5]]], 'result': 15},
-						{'code': [['sum', [10, 20, 30]]], 'result': 60}
-					]
-				},
-				'random': {
-					'name': 'random',
-					'group': 'math',
-					'description': 'Generates a pseudo-random number',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['random']], 'result': 'number', 'range': [0, 1]},
-						{'code': [['random', 10]], 'result': 'number', 'range': [0, 10]},
-						{'code': [['random', 10, 20]], 'result': 'number', 'range': [10, 20]},
-					]
-				},
-				'random.seed': {
-					'name': 'random_seed',
-					'group': 'math',
-					'description': 'Sets or gets the seed for the random number generator to produce reproducible results',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [
-						{'name': 'seed', 'type': 'text', 'default': None}
-					],
-					'example': [
-						{'code': [
-							['random.seed', 'uniqueseed'],
-							['random.seed']
-						], 'result': 'uniqueseed'}
-					]
-				},
-				'random.reseed': {
-					'name': 'random_reseed',
-					'group': 'math',
-					'description': 'Sets a new random seed for the random number generator',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [
-							['random.reseed'],
-							['random.seed']
-						], 'result': 'text', 'range': 64}
-					]
-				},
-				't': {
-					'name': 't',
-					'group': 'time',
-					'description': 'Stopwatch for calculating the time spent on operations',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['t', 'start']], 'result': None},
-						{'code': [['t', 'stop']], 'result': 1.234, 'round': 3}
-					]
-				},
-				'time': {
-					'name': 'time',
-					'group': 'time',
-					'description': 'Provides current time since the epoch (1970-01-01 00:00:00 UTC)',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['time']], 'result': 1678901234}
-					]
-				},
-				'timer': {
-					'name': 'timer',
-					'group': 'time',
-					'description': 'Creates a timer that can be used to trigger events at specific intervals',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['timer', 'start', 5]], 'result': 'timer_id_1'}
-					]
-				},
-				'timer.remove': {
-					'name': 'timer_remove',
-					'group': 'time',
-					'description': 'Removes previously created timer',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['timer.remove', 'timer_id_1']], 'result': True}
-					]
-				},
-				'timepast': {
-					'name': 'timepast',
-					'group': 'time',
-					'description': 'Calculates time passed since a given start time',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['timepast', 1678901200]], 'result': 34}
-					]
-				},
-				'wait': {
-					'name': 'wait',
-					'group': 'time',
-					'description': 'Pauses execution for a specified number of seconds',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['wait', 1.5]], 'result': None}
-					]
-				},
-				'encrypt': {
-					'name': 'encrypt',
-					'group': 'crypto',
-					'description': 'Encrypts data using a specified key',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['encrypt', 'secret', 'mykey']], 'result': 'aGVsbG8='}
-					]
-				},
-				'decrypt': {
-					'name': 'decrypt',
-					'group': 'crypto',
-					'description': 'Decrypts previously encrypted data using the specified key',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['decrypt', 'aGVsbG8=', 'mykey']], 'result': 'secret'}
-					]
-				},
-				'hash': {
-					'name': 'hash',
-					'group': 'crypto',
-					'description': 'Generates a hash for the data or generates a random text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['hash', 'hello']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
-					]
-				},
-				'uuid': {
-					'name': 'uuid',
-					'group': 'crypto',
-					'description': 'Generates a universally unique identifier',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['uuid']], 'result': '550e8400-e29b-41d4-a716-446655440000'}
-					]
-				},
-				'md5': {
-					'name': 'md5',
-					'group': 'crypto',
-					'description': 'Generates an MD5 hash of a text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['md5', 'hello']], 'result': '5d41402abc4b2a76b9719d911017c592'}
-					]
-				},
-				'sha1': {
-					'name': 'sha1',
-					'group': 'crypto',
-					'description': 'Generates an SHA-1 hash of a text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sha1', 'hello']], 'result': 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d'}
-					]
-				},
-				'sha256': {
-					'name': 'sha256',
-					'group': 'crypto',
-					'description': 'Generates an SHA-256 hash of a text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sha256', 'hello']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
-					]
-				},
-				'sha512': {
-					'name': 'sha512',
-					'group': 'crypto',
-					'description': 'Generates an SHA-512 hash of a text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sha512', 'hello']], 'result': '9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043'}
-					]
-				},
-				'crc32': {
-					'name': 'crc32',
-					'group': 'crypto',
-					'description': 'Calculates the CRC32 checksum of a text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['crc32', 'hello']], 'result': 907060870}
-					]
-				},
-				'base64.encode': {
-					'name': 'base64_encode',
-					'group': 'crypto',
-					'description': 'Encodes the data into base64 format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['base64.encode', 'hello']], 'result': 'aGVsbG8='}
-					]
-				},
-				'base64.decode': {
-					'name': 'base64_decode',
-					'group': 'crypto',
-					'description': 'Decodes base64 encoded data back to its original form',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['base64.decode', 'aGVsbG8=']], 'result': 'hello'}
-					]
-				},
-				'gzip.encode': {
-					'name': 'gzip_encode',
-					'group': 'crypto',
-					'description': 'Compresses data using the GZip compression algorithm',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['gzip.encode', 'hello']], 'result': 'H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA=='}
-					]
-				},
-				'gzip.decode': {
-					'name': 'gzip_decode',
-					'group': 'crypto',
-					'description': 'Decompresses GZip compressed data',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['gzip.decode', 'H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==']], 'result': 'hello'}
-					]
-				},
-				'rsa.encode': {
-					'name': 'rsa_encode',
-					'group': 'crypto',
-					'description': 'Encrypts data using RSA encryption with a public key',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['rsa.encode', 'secret', 'public_key']], 'result': 'encrypted_data'}
-					]
-				},
-				'rsa.decode': {
-					'name': 'rsa_decode',
-					'group': 'crypto',
-					'description': 'Decrypts data encrypted with RSA using the corresponding private key',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['rsa.decode', 'encrypted_data', 'private_key']], 'result': 'secret'}
-					]
-				},
-				'rsa.public': {
-					'name': 'rsa_public',
-					'group': 'crypto',
-					'description': 'Generates the RSA public key used for encryption',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['rsa.public']], 'result': 'public_key'}
-					]
-				},
-				'rsa.private': {
-					'name': 'rsa_private',
-					'group': 'crypto',
-					'description': 'Generates the RSA private key used for decryption',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['rsa.private']], 'result': 'private_key'}
-					]
-				},
-				'ssl.encode': {
-					'name': 'ssl_encode',
-					'group': 'crypto',
-					'description': 'Performs SSL encryption on data to secure communication',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ssl.encode', 'data']], 'result': 'encrypted_ssl_data'}
-					]
-				},
-				'ssl.decode': {
-					'name': 'ssl_decode',
-					'group': 'crypto',
-					'description': 'Decrypts data encrypted with SSL for secure data transfer',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ssl.decode', 'encrypted_ssl_data']], 'result': 'data'}
-					]
-				},
-				'ssl.check': {
-					'name': 'ssl_check',
-					'group': 'crypto',
-					'description': 'Verifies the validity and authenticity of an SSL certificate',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ssl.check', 'certificate']], 'result': True}
-					]
-				},
-				'bcrypt.encode': {
-					'name': 'bcrypt_encode',
-					'group': 'crypto',
-					'description': 'Hashes a password using the bcrypt algorithm for secure storage',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['bcrypt.encode', 'password']], 'result': '$2a$12$saltpasswordhash'}
-					]
-				},
-				'bcrypt.check': {
-					'name': 'bcrypt_check',
-					'group': 'crypto',
-					'description': 'Verifies a password against a bcrypt hashed password',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['bcrypt.check', 'password', '$2a$12$saltpasswordhash']], 'result': True}
-					]
-				},
-				'file': {
-					'name': 'file',
-					'group': 'file',
-					'description': 'Read or write data to a file at a specified path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file', 'read', 'test.txt']], 'result': 'file contents'},
-						{'code': [['file', 'write', 'test.txt', 'new content']], 'result': True}
-					]
-				},
-				'file.exists': {
-					'name': 'file_exists',
-					'group': 'file',
-					'description': 'Checks if a specified file exists at the given path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.exists', 'test.txt']], 'result': True}
-					]
-				},
-				'file.read': {
-					'name': 'file_read',
-					'group': 'file',
-					'description': 'Reads the contents of a specified file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.read', 'test.txt']], 'result': 'file contents'}
-					]
-				},
-				'file.read.text': {
-					'name': 'file_read_text',
-					'group': 'file',
-					'description': 'Reads the text contents of a specified file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.read.text', 'test.txt']], 'result': 'text content'}
-					]
-				},
-				'file.read.lines': {
-					'name': 'file_read_lines',
-					'group': 'file',
-					'description': 'Reads a specified file line by line into a list',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.read.lines', 'test.txt']], 'result': ['line1', 'line2', 'line3']}
-					]
-				},
-				'file.write': {
-					'name': 'file_write',
-					'group': 'file',
-					'description': 'Writes data to a specified file, creating or replacing it',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.write', 'test.txt', 'new content']], 'result': True}
-					]
-				},
-				'file.append': {
-					'name': 'file_append',
-					'group': 'file',
-					'description': 'Appends data to the end of a specified file without replacing it',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.append', 'test.txt', 'appended content']], 'result': True}
-					]
-				},
-				'file.remove': {
-					'name': 'file_remove',
-					'group': 'file',
-					'description': 'Removes a specified file from the file system',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.remove', 'test.txt']], 'result': True}
-					]
-				},
-				'file.move': {
-					'name': 'file_move',
-					'group': 'file',
-					'description': 'Moves a specified file to a new location',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.move', 'old.txt', 'new.txt']], 'result': True}
-					]
-				},
-				'file.copy': {
-					'name': 'file_copy',
-					'group': 'file',
-					'description': 'Copies a specified file to a new location',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.copy', 'source.txt', 'dest.txt']], 'result': True}
-					]
-				},
-				'file.rename': {
-					'name': 'file_rename',
-					'group': 'file',
-					'description': 'Renames a specified file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.rename', 'old.txt', 'new.txt']], 'result': True}
-					]
-				},
-				'file.link': {
-					'name': 'file_link',
-					'group': 'file',
-					'description': 'Creates a hard link to a specified file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.link', 'source.txt', 'link.txt']], 'result': True}
-					]
-				},
-				'file.link.exists': {
-					'name': 'file_link_exists',
-					'group': 'file',
-					'description': 'Checks if a hard link exists at the given path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.link.exists', 'link.txt']], 'result': True}
-					]
-				},
-				'file.info': {
-					'name': 'file_info',
-					'group': 'file',
-					'description': 'Retrieves information about a specified file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.info', 'test.txt']], 'result': {'size': 1024, 'modified': 1678901234}}
-					]
-				},
-				'file.size': {
-					'name': 'file_size',
-					'group': 'file',
-					'description': 'Returns the size of a specified file in bytes',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.size', 'test.txt']], 'result': 1024}
-					]
-				},
-				'file.permission': {
-					'name': 'file_permission',
-					'group': 'file',
-					'description': 'Retrieves or sets permissions for a specified file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.permission', 'test.txt', 'rw-r--r--']], 'result': True}
-					]
-				},
-				'file.time': {
-					'name': 'file_time',
-					'group': 'file',
-					'description': 'Gets or sets the modified timestamp for a specified file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.time', 'test.txt']], 'result': 1678901234}
-					]
-				},
-				'file.sha256': {
-					'name': 'file_sha256',
-					'group': 'file',
-					'description': 'Computes the SHA256 checksum of a specified file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.sha256', 'test.txt']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
-					]
-				},
-				'file.crc32': {
-					'name': 'file_crc32',
-					'group': 'file',
-					'description': 'Computes the CRC32 checksum for a specified file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.crc32', 'test.txt']], 'result': 907060870}
-					]
-				},
-				'file.base64': {
-					'name': 'file_base64',
-					'group': 'file',
-					'description': 'Encodes a specified file to base64 format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.base64', 'test.txt']], 'result': 'aGVsbG8='}
-					]
-				},
-				'file.zip': {
-					'name': 'file_zip',
-					'group': 'file',
-					'description': 'Compresses a specified file into a ZIP archive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.zip', 'test.txt', 'archive.zip']], 'result': True}
-					]
-				},
-				'file.zip.list': {
-					'name': 'file_zip_list',
-					'group': 'file',
-					'description': 'Lists the files contained within a ZIP archive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.zip.list', 'archive.zip']], 'result': ['test.txt']}
-					]
-				},
-				'file.zip.exists': {
-					'name': 'file_zip_exists',
-					'group': 'file',
-					'description': 'Checks if a specific file exists within a ZIP archive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.zip.exists', 'archive.zip', 'test.txt']], 'result': True}
-					]
-				},
-				'file.zip.read': {
-					'name': 'file_zip_read',
-					'group': 'file',
-					'description': 'Reads a specific file from within a ZIP archive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.zip.read', 'archive.zip', 'test.txt']], 'result': 'file contents'}
-					]
-				},
-				'file.zip.remove': {
-					'name': 'file_zip_remove',
-					'group': 'file',
-					'description': 'Removes a specific file from a ZIP archive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.zip.remove', 'archive.zip', 'test.txt']]}
-					]
-				},
-				'file.unzip': {
-					'name': 'file_unzip',
-					'group': 'file',
-					'description': 'Extracts files from a ZIP archive into a specified directory',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.unzip', 'archive.zip', 'destination']]}
-					]
-				},
-				'file.gzip': {
-					'name': 'file_gzip',
-					'group': 'file',
-					'description': 'Compresses a specified file using GZip compression',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.gzip', 'test.txt', 'test.txt.gz']]}
-					]
-				},
-				'file.ungzip': {
-					'name': 'file_ungzip',
-					'group': 'file',
-					'description': 'Decompresses a GZip-compressed file',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.ungzip', 'test.txt.gz', 'test.txt']], 'result': True}
-					]
-				},
-				'file.void': {
-					'name': 'file_void',
-					'group': 'file',
-					'description': 'Compresses the specified file using GZip compression and places it in a Void container',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.void', 'test.txt', 'test.void']], 'result': True}
-					]
-				},
-				'file.unvoid': {
-					'name': 'file_unvoid',
-					'group': 'file',
-					'description': 'Decompresses a GZip-compressed files and directories from a Void container',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['file.unvoid', 'test.void', 'output']], 'result': True}
-					]
-				},
-				'dir.exists': {
-					'name': 'dir_exists',
-					'group': 'file',
-					'description': 'Checks if a specified directory exists',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.exists', 'folder']], 'result': True},
-						{'code': [['dir.exists', 'nonexistent']], 'result': False}
-					]
-				},
-				'dir.create': {
-					'name': 'dir_create',
-					'group': 'file',
-					'description': 'Creates a new directory at a specified path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.create', 'new_folder']], 'test': False},
-						{'code': [['dir.create', 'path/to/folder']], 'test': False}
-					]
-				},
-				'dir.copy': {
-					'name': 'dir_copy',
-					'group': 'file',
-					'description': 'Copies a specified directory and its contents to a new location',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.copy', 'source', 'destination']], 'test': False},
-						{'code': [['dir.copy', 'backup', 'archive/backup']], 'test': False}
-					]
-				},
-				'dir.move': {
-					'name': 'dir_move',
-					'group': 'file',
-					'description': 'Moves a specified directory to a new location',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.move', 'old', 'new']], 'test': False},
-						{'code': [['dir.move', 'temp', 'perm']], 'test': False}
-					]
-				},
-				'dir.rename': {
-					'name': 'dir_rename',
-					'group': 'file',
-					'description': 'Renames a specified directory',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.rename', 'old_name', 'new_name']], 'test': False},
-						{'code': [['dir.rename', 'temp', 'final']], 'test': False}
-					]
-				},
-				'dir.remove': {
-					'name': 'dir_remove',
-					'group': 'file',
-					'description': 'Removes a specified directory and its contents',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.remove', 'temp']], 'test': False},
-						{'code': [['dir.remove', 'old_backup']], 'test': False}
-					]
-				},
-				'dir.list': {
-					'name': 'dir_list',
-					'group': 'file',
-					'description': 'Lists the contents of a specified directory',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.list', 'folder']], 'result': ['file1.txt', 'file2.txt', 'subfolder']},
-						{'code': [['dir.list', 'project/src']], 'result': ['main.py', 'utils.py']}
-					]
-				},
-				'dir.clear': {
-					'name': 'dir_clear',
-					'group': 'file',
-					'description': 'Clears all contents of a specified directory without deleting the directory itself',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.clear', 'temp']], 'test': False},
-						{'code': [['dir.clear', 'cache']], 'test': False}
-					]
-				},
-				'dir.info': {
-					'name': 'dir_info',
-					'group': 'file',
-					'description': 'Retrieves information about a specified directory',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.info', 'folder']], 'result': {'size': 1024, 'files': 10, 'modified': 1672531200}, 'test': False},
-						{'code': [['dir.info', 'project']], 'result': {'size': 2048, 'files': 15, 'modified': 1672531200}, 'test': False}
-					]
-				},
-				'dir.size': {
-					'name': 'dir_size',
-					'group': 'file',
-					'description': 'Calculates the total size of a specified directory and its contents',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.size', 'data']], 'result': 1048576},
-						{'code': [['dir.size', 'downloads']], 'result': 5242880}
-					]
-				},
-				'dir.permission': {
-					'name': 'dir_permission',
-					'group': 'file',
-					'description': 'Gets or sets the permissions of a specified directory',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.permission', 'scripts', '755']], 'test': False},
-						{'code': [['dir.permission', 'uploads', '775']], 'test': False}
-					]
-				},
-				'dir.time': {
-					'name': 'dir_time',
-					'group': 'file',
-					'description': 'Gets or sets the timestamps of a specified directory',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.time', 'logs']], 'result': 1672531200, 'test': False},
-						{'code': [['dir.time', 'backups', 'created']], 'result': 1672531200, 'test': False}
-					]
-				},
-				'dir.zip': {
-					'name': 'dir_zip',
-					'group': 'file',
-					'description': 'Compresses a specified directory into a ZIP archive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.zip', 'archive.zip', 'folder']], 'test': False},
-						{'code': [['dir.zip', 'backup.zip', 'data']], 'test': False}
-					]
-				},
-				'dir.void': {
-					'name': 'dir_void',
-					'group': 'file',
-					'description': 'Compresses a specified directory into a Void container',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['dir.void', 'data']], 'result': 'data.void', 'test': False},
-						{'code': [['dir.void', 'project', 'backup.void']], 'test': False}
-					]
-				},
-				'drive.list': {
-					'name': 'drive_list',
-					'group': 'file',
-					'description': 'Lists all available drives on the system',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.list']], 'result': ['C:', 'D:', 'E:'], 'test': False},
-						{'code': [['drive.list', 'removable']], 'result': ['D:', 'E:'], 'test': False}
-					]
-				},
-				'drive.name': {
-					'name': 'drive_name',
-					'group': 'file',
-					'description': 'Gets or sets the name of a specified drive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.name', 'C:']], 'result': 'System'},
-						{'code': [['drive.name', 'D:', 'Data']], 'test': False}
-					]
-				},
-				'drive.size': {
-					'name': 'drive_size',
-					'group': 'file',
-					'description': 'Total size of a specified drive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.size', 'C:']], 'result': 256000000000},
-						{'code': [['drive.size', 'D:']], 'result': 1000000000000}
-					]
-				},
-				'drive.used': {
-					'name': 'drive_used',
-					'group': 'file',
-					'description': 'Amount of used space on a specified drive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.used', 'C:']], 'result': 128000000000},
-						{'code': [['drive.used', 'D:']], 'result': 500000000000}
-					]
-				},
-				'drive.free': {
-					'name': 'drive_free',
-					'group': 'file',
-					'description': 'Amount of free space on a specified drive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.free', 'C:']], 'result': 128000000000},
-						{'code': [['drive.free', 'D:']], 'result': 500000000000}
-					]
-				},
-				'drive.info': {
-					'name': 'drive_info',
-					'group': 'file',
-					'description': 'Retrieves information about a specified drive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.info', 'C:']], 'result': {'size': 256000000000, 'free': 128000000000, 'type': 'SSD'}, 'test': False},
-						{'code': [['drive.info', 'D:']], 'result': {'size': 1000000000000, 'free': 500000000000, 'type': 'HDD'}, 'test': False}
-					]
-				},
-				'drive.mount': {
-					'name': 'drive_mount',
-					'group': 'file',
-					'description': 'Mounts a drive to make it accessible',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.mount', '/dev/sdb1', 'D:']], 'test': False},
-						{'code': [['drive.mount', 'image.iso', 'E:']], 'test': False}
-					]
-				},
-				'drive.unmount': {
-					'name': 'drive_unmount',
-					'group': 'file',
-					'description': 'Unmounts a drive',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.unmount', 'D:']], 'test': False},
-						{'code': [['drive.unmount', 'E:']], 'test': False}
-					]
-				},
-				'drive.create': {
-					'name': 'drive_create',
-					'group': 'file',
-					'description': 'Creates a new virtual drive or volume',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.create', 'virtual', 1000000000]], 'test': False},
-						{'code': [['drive.create', 'ramdisk', 4000000000, 'RAM']], 'test': False}
-					]
-				},
-				'drive.resize': {
-					'name': 'drive_resize',
-					'group': 'file',
-					'description': 'Resizes an existing drive partition or volume',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.resize', 'virtual', 2000000000]], 'test': False},
-						{'code': [['drive.resize', 'D:', 1500000000000]], 'test': False}
-					]
-				},
-				'drive.format': {
-					'name': 'drive_format',
-					'group': 'file',
-					'description': 'Formats a drive with a specified file system',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.format', 'D:', 'NTFS']], 'test': False},
-						{'code': [['drive.format', 'E:', 'FAT32']], 'test': False}
-					]
-				},
-				'drive.remove': {
-					'name': 'drive_remove',
-					'group': 'file',
-					'description': 'Removes or deletes a specified drive or partition',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['drive.remove', 'virtual']], 'test': False},
-						{'code': [['drive.remove', 'ramdisk']], 'test': False}
-					]
-				},
-				'path.drive': {
-					'name': 'path_drive',
-					'group': 'file',
-					'description': 'Drive component of a specified file path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['path.drive', 'C:/Windows/System32']], 'result': 'C:'},
-						{'code': [['path.drive', '/mnt/data/file.txt']], 'result': ''}
-					]
-				},
-				'path.dir': {
-					'name': 'path_dir',
-					'group': 'file',
-					'description': 'Directory portion of a specified file path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['path.dir', 'C:/Windows/System32/kernel32.dll']], 'result': 'C:/Windows/System32'},
-						{'code': [['path.dir', '/home/user/docs/file.txt']], 'result': '/home/user/docs'}
-					]
-				},
-				'path.file': {
-					'name': 'path_file',
-					'group': 'file',
-					'description': 'File portion of a specified file path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['path.file', 'C:/Windows/System32/kernel32.dll']], 'result': 'kernel32.dll'},
-						{'code': [['path.file', '/home/user/docs/report.pdf']], 'result': 'report.pdf'}
-					]
-				},
-				'path.name': {
-					'name': 'path_name',
-					'group': 'file',
-					'description': 'Name of the file without extension from a specified path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['path.name', 'document.txt']], 'result': 'document'},
-						{'code': [['path.name', '/path/to/file.name.ext']], 'result': 'file.name'}
-					]
-				},
-				'path.extension': {
-					'name': 'path_extension',
-					'group': 'file',
-					'description': 'File extension from a specified file path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['path.extension', 'image.png']], 'result': '.png'},
-						{'code': [['path.extension', 'archive.tar.gz']], 'result': '.gz'}
-					]
-				},
-				'path.strip': {
-					'name': 'path_strip',
-					'group': 'file',
-					'description': 'Removes the extension from a specified path',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['path.strip', 'file.txt']], 'result': 'file'},
-						{'code': [['path.strip', '/path/to/document.pdf']], 'result': '/path/to/document'}
-					]
-				},
-				'void.encode': {
-					'name': 'void_encode',
-					'group': 'format',
-					'description': 'Encodes data into the Void format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [
-						{'name': 'data', 'type': 'any'},
-						{'name': 'indent', 'type': 'text', 'default': '\t'}
-					],
-					'example': [
-						{'code': [['void.encode', {'key': 'value'}]], 'result': '{\n\t\'key\': \'value\'\n}'},
-						{'code': [['void.encode', [1, 2, 3], '  ']], 'result': '[\n  1,\n  2,\n  3\n]'}
-					]
-				},
-				'void.decode': {
-					'name': 'void_decode',
-					'group': 'format',
-					'description': 'Decodes data from the Void format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['void.decode', '{\'key\':\'value\'}']], 'result': {'key': 'value'}},
-						{'code': [['void.decode', '[1,2,3]']], 'result': [1, 2, 3]}
-					]
-				},
-				'json.encode': {
-					'name': 'json_encode',
-					'group': 'format',
-					'description': 'Encodes data into the JSON format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['json.encode', {'name': 'John', 'age': 30}]], 'result': '{\'name\':\'John\',\'age\':30}'},
-						{'code': [['json.encode', [True, False]]], 'result': '[true,false]'}
-					]
-				},
-				'json.decode': {
-					'name': 'json_decode',
-					'group': 'format',
-					'description': 'Decodes data from the JSON format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['json.decode', '{\'x\':5,\'y\':10}']], 'result': {'x': 5, 'y': 10}},
-						{'code': [['json.decode', '[\'a\',\'b\']']], 'result': ['a', 'b']}
-					]
-				},
-				'csv.encode': {
-					'name': 'csv_encode',
-					'group': 'format',
-					'description': 'Encodes data into the CSV format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['csv.encode', [['Name', 'Age'], ['John', 30], ['Alice', 25]]]], 'result': 'Name,Age\nJohn,30\nAlice,25'},
-						{'code': [['csv.encode', {'a': [1,2], 'b': [3,4]}]], 'result': 'a,b\n1,3\n2,4'}
-					]
-				},
-				'csv.decode': {
-					'name': 'csv_decode',
-					'group': 'format',
-					'description': 'Decodes data from the CSV format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['csv.decode', 'a,b,c\n1,2,3']], 'result': [{'a':'1','b':'2','c':'3'}]},
-						{'code': [['csv.decode', 'x;y\n4;5', ';']], 'result': [{'x':'4','y':'5'}]}
-					]
-				},
-				'yaml.encode': {
-					'name': 'yaml_encode',
-					'group': 'format',
-					'description': 'Encodes data into the YAML format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['yaml.encode', {'name': 'John', 'skills': ['Python', 'JS']}]], 'result': 'name: John\nskills:\n  - Python\n  - JS'},
-						{'code': [['yaml.encode', [1, 2, 3]]], 'result': '- 1\n- 2\n- 3'}
-					]
-				},
-				'yaml.decode': {
-					'name': 'yaml_decode',
-					'group': 'format',
-					'description': 'Decodes data from the YAML format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['yaml.decode', 'key: value']], 'result': {'key': 'value'}},
-						{'code': [['yaml.decode', '- 1\n- 2']], 'result': [1, 2]}
-					]
-				},
-				'ini.encode': {
-					'name': 'format.ini.encode',
-					'group': 'format',
-					'description': 'Encodes data into the INI format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['ini.encode', {'section': {'key': 'value'}}]], 'result': '[section]\nkey=value'},
-						{'code': [['ini.encode', {'user': {'name': 'John'}, 'db': {'port': 3306}}]], 'result': '[user]\nname=John\n\n[db]\nport=3306'}
-					]
-				},
-				'ini.decode': {
-					'name': 'format.ini.decode',
-					'group': 'format',
-					'description': 'Decodes data from the INI format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['ini.decode', '[section]\nkey=value']], 'result': {'section': {'key': 'value'}}},
-						{'code': [['ini.decode', '[user]\nname=John']], 'result': {'user': {'name': 'John'}}}
-					]
-				},
-				'html.encode': {
-					'name': 'format.html.encode',
-					'group': 'format',
-					'description': 'Encodes data into the HTML format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['html.encode', {'div': {'class': 'main', 'content': 'Hello'}}]], 'result': '<div class=\'main\'>Hello</div>'},
-						{'code': [['html.encode', {'p': 'Paragraph'}]], 'result': '<p>Paragraph</p>'}
-					]
-				},
-				'html.decode': {
-					'name': 'format.html.decode',
-					'group': 'format',
-					'description': 'Decodes data from the HTML format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['html.decode', '<div>content</div>']], 'result': {'div': 'content'}},
-						{'code': [['html.decode', '<a href=\'#\'>link</a>']], 'result': {'a': {'@href': '#', '#text': 'link'}}}
-					]
-				},
-				'html.markdown': {
-					'name': 'format.html.markdown',
-					'group': 'format',
-					'description': 'Encodes Markdown-formatted text into the HTML format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['html.markdown', '# Heading']], 'result': '<h1>Heading</h1>'},
-						{'code': [['html.markdown', '**bold**']], 'result': '<p><strong>bold</strong></p>'}
-					]
-				},
-				'xml.encode': {
-					'name': 'format.xml.encode',
-					'group': 'format',
-					'description': 'Encodes data into the XML format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['xml.encode', {'root': {'item': ['a', 'b']}}]], 'result': '<root><item>a</item><item>b</item></root>'},
-						{'code': [['xml.encode', {'person': {'@id': 1, 'name': 'John'}}]], 'result': '<person id=\'1\'><name>John</name></person>'}
-					]
-				},
-				'xml.decode': {
-					'name': 'format.xml.decode',
-					'group': 'format',
-					'description': 'Decodes data from the XML format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['xml.decode', '<root><x>1</x></root>']], 'result': {'root': {'x': '1'}}},
-						{'code': [['xml.decode', '<person id=\'1\'><name>John</name></person>']], 'result': {'person': {'@id': '1', 'name': 'John'}}}
-					]
-				},
-				'css.encode': {
-					'name': 'format.css.encode',
-					'group': 'format',
-					'description': 'Encodes data into the CSS format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['css.encode', {'body': {'color': 'red'}}]], 'result': 'body { color: red; }'},
-						{'code': [['css.encode', {'.class': {'margin': '10px'}}]], 'result': '.class { margin: 10px; }'}
-					]
-				},
-				'css.decode': {
-					'name': 'format.css.decode',
-					'group': 'format',
-					'description': 'Decodes data from the CSS format',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['css.decode', 'body { color: red; }']], 'result': {'body': {'color': 'red'}}},
-						{'code': [['css.decode', '.class { margin: 10px; }']], 'result': {'.class': {'margin': '10px'}}}
-					]
-				},
-				'request': {
-					'name': 'request',
-					'group': 'request',
-					'description': 'Sends an HTTP (GET by default) request to a specified URL',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['request', 'https://api.example.com/data']], 'test': False},
-						{'code': [['request', 'https://example.com', {'headers': {'Accept': 'application/json'}}]], 'test': False}
-					]
-				},
-				'request.post': {
-					'name': 'request_post',
-					'group': 'request',
-					'description': 'Sends an HTTP POST request to a specified URL',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['request.post', 'https://api.example.com', {'data': {'key': 'value'}}]], 'test': False},
-						{'code': [['request.post', 'https://example.com/login', {'form': {'user': 'admin'}}]], 'test': False}
-					]
-				},
-				'request.put': {
-					'name': 'request_put',
-					'group': 'request',
-					'description': 'Sends an HTTP PUT request to a specified URL',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['request.put', 'https://api.example.com/update', {'json': {'id': 1}}]], 'test': False},
-						{'code': [['request.put', 'https://example.com/resource', {'data': 'content'}]], 'test': False}
-					]
-				},
-				'request.delete': {
-					'name': 'request_delete',
-					'group': 'request',
-					'description': 'Sends an HTTP DELETE request to a specified URL',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['request.delete', 'https://api.example.com/item/1']], 'test': False},
-						{'code': [['request.delete', 'https://example.com/resource']], 'test': False}
-					]
-				},
-				'request.head': {
-					'name': 'request_head',
-					'group': 'request',
-					'description': 'Sends an HTTP HEAD request to a specified URL',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['request.head', 'https://example.com']], 'test': False},
-						{'code': [['request.head', 'https://api.example.com/status']], 'test': False}
-					]
-				},
-				'download': {
-					'name': 'download.file',
-					'group': 'download',
-					'description': 'Downloads content from a specified URL',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['download', 'https://example.com/file.txt', 'local.txt']], 'test': False},
-						{'code': [['download', 'https://example.com/image.jpg']], 'test': False}
-					]
-				},
-				'download.info': {
-					'name': 'download.info',
-					'group': 'download',
-					'description': 'Retrieves information about a content available for download',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['download.info', 'https://example.com/file.zip']], 'result': {'size': 1024, 'type': 'application/zip'}, 'test': False},
-						{'code': [['download.info', 'https://example.com/video.mp4']], 'result': {'size': 5242880, 'type': 'video/mp4'}, 'test': False}
-					]
-				},
-				'download.audio': {
-					'name': 'download.audio',
-					'group': 'download',
-					'description': 'Downloads audio from a specified URL',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['download.audio', 'https://example.com/sound.mp3']], 'test': False},
-						{'code': [['download.audio', 'https://example.com/voice.ogg', 'output.ogg']], 'test': False}
-					]
-				},
-				'download.video': {
-					'name': 'download.video',
-					'group': 'download',
-					'description': 'Downloads video from a specified URL',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'vapp': True,
-					'param': [],
-					'example': [
-						{'code': [['download.video', 'https://example.com/clip.mp4']], 'test': False},
-						{'code': [['download.video', 'https://example.com/movie.mkv', 'film.mkv']], 'test': False}
-					]
-				},
-				'cookie': {
-					'name': 'cookie',
-					'group': 'cookie',
-					'description': 'Gets or sets a specified cookie',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['cookie', 'session', 'abc123']], 'test': False},
-						{'code': [['cookie', 'user']], 'result': 'john_doe', 'test': False}
-					]
-				},
-				'cookie.remove': {
-					'name': 'cookie_remove',
-					'group': 'cookie',
-					'description': 'Removes a specified cookie from the client\'s storage',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['cookie.remove', 'session']], 'test': False},
-						{'code': [['cookie.remove', 'temp']], 'test': False}
-					]
-				},
-				'cloud': {
-					'name': 'cloud',
-					'group': 'cloud',
-					'description': 'Runs cloud storage or services for data management',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['cloud', 'start']], 'test': False},
-						{'code': [['cloud', 'status']], 'result': 'running', 'test': False}
-					]
-				},
-				'cloud.file': {
-					'name': 'cloud_file',
-					'group': 'cloud',
-					'description': 'Runs cloud storage',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['cloud.file', 'upload', 'data.txt']], 'test': False},
-						{'code': [['cloud.file', 'list']], 'result': ['file1.txt', 'file2.txt'], 'test': False}
-					]
-				},
-				'cloud.web': {
-					'name': 'cloud_web',
-					'group': 'cloud',
-					'description': 'Runs WEB service',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['cloud.web', 'start', 8080]], 'test': False},
-						{'code': [['cloud.web', 'stop']], 'test': False}
-					]
-				},
-				'cloud.api': {
-					'name': 'cloud_api',
-					'group': 'cloud',
-					'description': 'Runs API service',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['cloud.api', 'deploy', 'api.json']], 'test': False},
-						{'code': [['cloud.api', 'list']], 'result': ['api1', 'api2'], 'test': False}
-					]
-				},
-				'cloud.socket': {
-					'name': 'cloud_socket',
-					'group': 'cloud',
-					'description': 'Runs Socket service',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['cloud.socket', 'start', 3000]], 'test': False},
-						{'code': [['cloud.socket', 'send', 'message']], 'test': False}
-					]
-				},
-				'cloud.mail': {
-					'name': 'cloud_mail',
-					'group': 'cloud',
-					'description': 'Runs Mail service',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['cloud.mail', 'send', 'user@example.com', 'Hello']], 'test': False},
-						{'code': [['cloud.mail', 'setup', 'smtp.example.com']], 'test': False}
-					]
-				},
-				'cloud.proxy': {
-					'name': 'cloud_proxy',
-					'group': 'cloud',
-					'description': 'Runs Proxy service',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['cloud.proxy', 'start', 8888]], 'test': False},
-						{'code': [['cloud.proxy', 'stop']], 'test': False}
-					]
-				},
-				'social': {
-					'name': 'social',
-					'group': 'social',
-					'description': 'Interacting with social API',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['social', 'tiktok', 'upload', 'clip.mp4']], 'test': False},
-						{'code': [['social', 'telegram', 'send', '@name', 'Text']], 'test': False},
-						{'code': [['social', 'telegram', 'bot', 'bot_action']], 'test': False}
-					]
-				},
-				'notification': {
-					'name': 'notification',
-					'group': 'notification',
-					'description': 'Send notification',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['notification', 'New message']], 'test': False},
-						{'code': [['notification', 'Alert', {'sound': True}]], 'test': False}
-					]
-				},
-				'mail': {
-					'name': 'mail',
-					'group': 'notification',
-					'description': 'Send mail',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['mail', 'user@example.com', 'Subject', 'Body']], 'test': False},
-						{'code': [['mail', 'test@example.com', 'Hello', 'Content', {'cc': 'copy@example.com'}]], 'test': False}
-					]
-				},
-				'call': {
-					'name': 'call',
-					'group': 'notification',
-					'description': 'Initiate a voice or video call to a specified recipient',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['call', '+1234567890']], 'test': False},
-						{'code': [['call', 'user@domain.com', 'video']], 'test': False}
-					]
-				},
-				'sms': {
-					'name': 'sms',
-					'group': 'notification',
-					'description': 'Send a text message (SMS) to a specified recipient',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['sms', '+1234567890', 'Hello']], 'test': False},
-						{'code': [['sms', '+0987654321', 'Your code: 1234']], 'test': False}
-					]
-				},
-				'sql': {
-					'name': 'sql',
-					'group': 'sql',
-					'description': 'Execute SQL query',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sql', 'SELECT * FROM user']], 'result': [], 'test': False},
-						{'code': [['sql', 'INSERT INTO log VALUES ({1},{2})', ['date', 'message']]], 'test': False},
-						{'code': [['sql', 'set', 'user', [1, 'name', 'mylogin', 'mypassword']]], 'test': False},
-						{'code': [['sql', 'set', 'user', 1, {'name': 'newname'}]], 'test': False},
-						{'code': [['sql', 'get', 'user']], 'test': False},
-						{'code': [['sql', 'get', 'user', 1]], 'test': False},
-						{'code': [['sql', 'remove', 'user', 1]], 'test': False}
-					]
-				},
-				'os': {
-					'name': 'os',
-					'group': 'os',
-					'description': 'Gets or checks the operating system type',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['os']], 'result': 'windows', 'test': False},
-						{'code': [['os', 'check', 'linux']], 'result': False, 'test': False}
-					]
-				},
-				'os.version': {
-					'name': 'os_version',
-					'group': 'os',
-					'description': 'Current version of the operating system',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['os.version']], 'result': '10.0.19042', 'test': False},
-						{'code': [['os.version', 'build']], 'result': '19042', 'test': False}
-					]
-				},
-				'os.user': {
-					'name': 'os_user',
-					'group': 'os',
-					'description': 'Information about the current user logged into the operating system',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['os.user']], 'result': {'name': 'admin', 'home': '/home/admin'}, 'test': False},
-						{'code': [['os.user', 'name']], 'result': 'admin', 'test': False}
-					]
-				},
-				'language': {
-					'name': 'language',
-					'group': 'os',
-					'description': 'System language',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['language']], 'result': 'en-US'},
-						{'code': [['language', 'set', 'ru-RU']], 'test': False}
-					]
-				},
-				'device': {
-					'name': 'device',
-					'group': 'device',
-					'description': 'Information related to the hardware device',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['device']], 'result': {'model': 'iPhone12,1', 'manufacturer': 'Apple'}, 'test': False},
-						{'code': [['device', 'id']], 'result': 'A12B3C4D', 'test': False}
-					]
-				},
-				'cpu': {
-					'name': 'cpu',
-					'group': 'device',
-					'description': 'Information about the CPU, including its usage and specifications',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['cpu']], 'result': {'cores': 8, 'usage': 34.5}, 'test': False},
-						{'code': [['cpu', 'temperature']], 'result': 65.2, 'test': False}
-					]
-				},
-				'fps': {
-					'name': 'fps',
-					'group': 'device',
-					'description': 'Frames per second for video or graphical rendering',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['fps']], 'result': 60, 'test': False},
-						{'code': [['fps', 'set', 30]], 'test': False}
-					]
-				},
-				'vsync': {
-					'name': 'vsync',
-					'group': 'device',
-					'description': 'Vertical sync settings to reduce screen tearing during rendering',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['vsync']], 'result': True, 'test': False},
-						{'code': [['vsync', 'set', False]], 'test': False}
-					]
-				},
-				'resolution': {
-					'name': 'resolution',
-					'group': 'device',
-					'description': 'Screen resolution',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['resolution']], 'result': [1920, 1080], 'test': False},
-						{'code': [['resolution', 'set', 1280, 720]], 'test': False}
-					]
-				},
-				'orientation': {
-					'name': 'orientation',
-					'group': 'device',
-					'description': 'Orientation of a device\'s display (landscape or portrait)',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['orientation']], 'result': 'landscape', 'test': False},
-						{'code': [['orientation', 'set', 'portrait']], 'test': False}
-					]
-				},
-				'darkmode': {
-					'name': 'darkmode',
-					'group': 'device',
-					'description': 'Dark mode setting for user interfaces',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['darkmode']], 'result': True, 'test': False},
-						{'code': [['darkmode', 'set', False]], 'test': False}
-					]
-				},
-				'pixel': {
-					'name': 'pixel',
-					'group': 'device',
-					'description': 'Color of the pixel displayed on the screen',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['pixel', 100, 200]], 'result': [255, 0, 0], 'test': False},
-						{'code': [['pixel', 'set', 150, 300, [0, 255, 0]]], 'test': False}
-					]
-				},
-				'textmode.character': {
-					'name': 'textmode_character',
-					'group': 'device',
-					'description': 'Symbol on the screen in text mode',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['textmode.character', 10, 5]], 'result': 'A', 'test': False},
-						{'code': [['textmode.character', 'set', 12, 7, 'B']], 'test': False}
-					]
-				},
-				'textmode.cursor': {
-					'name': 'textmode_cursor',
-					'group': 'device',
-					'description': 'Cursor position on the screen in text mode',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['textmode.cursor']], 'result': [5, 10], 'test': False},
-						{'code': [['textmode.cursor', 'set', 0, 0]], 'test': False}
-					]
-				},
-				'textmode.clear': {
-					'name': 'textmode_clear',
-					'group': 'device',
-					'description': 'Clears the screen in text mode',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['textmode.clear']], 'test': False},
-						{'code': [['textmode.clear', 'green']], 'test': False}
-					]
-				},
-				'flashlight': {
-					'name': 'flashlight',
-					'group': 'device',
-					'description': 'Turns on or off the device\'s flashlight',
-					'language': ['swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['flashlight', 'on']], 'test': False},
-						{'code': [['flashlight', 'off']], 'test': False}
-					]
-				},
-				'location': {
-					'name': 'location',
-					'group': 'device',
-					'description': 'Retrieves the current geographic location using GPS or network triangulation',
-					'language': ['js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['location']], 'result': {'lat': 55.7558, 'lon': 37.6173}, 'test': False},
-						{'code': [['location', 'accuracy', 10]], 'test': False}
-					]
-				},
-				'gyroscope': {
-					'name': 'gyroscope',
-					'group': 'device',
-					'description': 'Provides access to the gyroscope sensor for motion detection',
-					'language': ['js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['gyroscope']], 'result': {'x': 0.1, 'y': -0.2, 'z': 0.05}, 'test': False},
-						{'code': [['gyroscope', 'frequency', 10]], 'test': False}
-					]
-				},
-				'accelerometer': {
-					'name': 'accelerometer',
-					'group': 'device',
-					'description': 'Provides access to the accelerometer sensor to detect acceleration forces',
-					'language': ['js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['accelerometer']], 'result': {'x': 0.0, 'y': 0.0, 'z': 9.8}, 'test': False},
-						{'code': [['accelerometer', 'calibrate']], 'test': False}
-					]
-				},
-				'compass': {
-					'name': 'compass',
-					'group': 'device',
-					'description': 'Accesses the magnetic compass sensor to determine orientation relative to the Earth\'s magnetic field',
-					'language': ['js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['compass']], 'result': 180.5, 'test': False},
-						{'code': [['compass', 'calibrate']], 'test': False}
-					]
-				},
-				'proximity': {
-					'name': 'proximity',
-					'group': 'device',
-					'description': 'Detects the proximity of objects in relation to the device\'s proximity sensor',
-					'language': ['swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['proximity']], 'result': 5.2, 'test': False},
-						{'code': [['proximity', 'threshold', 10]], 'test': False}
-					]
-				},
-				'brightness': {
-					'name': 'brightness',
-					'group': 'device',
-					'description': 'Manages the screen brightness level of the device',
-					'language': ['swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['brightness']], 'result': 80, 'test': False},
-						{'code': [['brightness', 'set', 50]], 'test': False}
-					]
-				},
-				'calendar': {
-					'name': 'calendar',
-					'group': 'device',
-					'description': 'Calendar events on a device',
-					'language': ['swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['calendar', 'events']], 'result': [], 'test': False},
-						{'code': [['calendar', 'add', 'Meeting', '2023-12-01 14:00']], 'test': False}
-					]
-				},
-				'gallery': {
-					'name': 'gallery',
-					'group': 'device',
-					'description': 'Photo and video library on a device',
-					'language': ['swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['gallery', 'photos']], 'result': ['photo1.jpg', 'photo2.jpg'], 'test': False},
-						{'code': [['gallery', 'save', 'new.jpg']], 'test': False}
-					]
-				},
-				'contacts': {
-					'name': 'contacts',
-					'group': 'device',
-					'description': 'Contact list on a device',
-					'language': ['swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['contacts']], 'result': [{'name': 'John', 'phone': '+1234567890'}], 'test': False},
-						{'code': [['contacts', 'add', 'Alice', '+0987654321']], 'test': False}
-					]
-				},
-				'clipboard': {
-					'name': 'clipboard',
-					'group': 'clipboard',
-					'description': 'Storing or retrieving clipboard temporary data',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['clipboard']], 'result': 'copied text', 'test': False},
-						{'code': [['clipboard', 'set', 'new text']], 'test': False}
-					]
-				},
-				'clipboard.remove': {
-					'name': 'clipboard_remove',
-					'group': 'clipboard',
-					'description': 'Clears the clipboard content',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': False,
-					'param': [],
-					'example': [
-						{'code': [['clipboard.remove']], 'test': False}
-					]
-				},
-				'translate': {
-					'name': 'translate',
-					'group': 'ai',
-					'description': 'Converts text from one language to another',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['translate', 'Hello', 'en', 'es']], 'result': 'Hola'}
-					]
-				},
-				'spellcheck': {
-					'name': 'spellcheck',
-					'group': 'ai',
-					'description': 'Spell check in different languages',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['spellcheck', 'Helo world']], 'result': ['Hello', 'world']}
-					]
-				},
-				'chat': {
-					'name': 'chat',
-					'group': 'ai',
-					'description': 'AI conversation and interaction through text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['chat', 'What\'s the weather today?']], 'result': 'The weather is sunny and warm.'}
-					]
-				},
-				'image': {
-					'name': 'image',
-					'group': 'ai',
-					'description': 'Create an image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image', 'A sunset over mountains']], 'result': 'image.png'}
-					]
-				},
-				'image.size': {
-					'name': 'image_size',
-					'group': 'ai',
-					'description': 'Adjusts the dimensions of an image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.size', 'image.png', 800, 600]], 'result': 'image_resized.png'}
-					]
-				},
-				'image.square': {
-					'name': 'image_square',
-					'group': 'ai',
-					'description': 'Crops an image to a square aspect ratio',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.square', 'image.png']], 'result': 'image_square.png'}
-					]
-				},
-				'image.crop': {
-					'name': 'image_crop',
-					'group': 'ai',
-					'description': 'Cuts a portion of the image according to specified dimensions',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.crop', 'image.png', 100, 100, 400, 400]], 'result': 'image_cropped.png'}
-					]
-				},
-				'image.rotate': {
-					'name': 'image_rotate',
-					'group': 'ai',
-					'description': 'Rotates an image by a specified number of degrees',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.rotate', 'image.png', 90]], 'result': 'image_rotated.png'}
-					]
-				},
-				'image.text': {
-					'name': 'image_text',
-					'group': 'ai',
-					'description': 'Adds text to an image at specified positions',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.text', 'image.png', 'Hello', 50, 50, '#FFFFFF']], 'result': 'image_with_text.png'}
-					]
-				},
-				'image.image': {
-					'name': 'image_image',
-					'group': 'ai',
-					'description': 'Adds an image onto another',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.image', 'image1.png', 'image2.png', 100, 100]], 'result': 'combined_image.png'}
-					]
-				},
-				'image.grayscale': {
-					'name': 'image_grayscale',
-					'group': 'ai',
-					'description': 'Converts an image to grayscale',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.grayscale', 'image.png']], 'result': 'image_grayscale.png'}
-					]
-				},
-				'image.tint': {
-					'name': 'image_tint',
-					'group': 'ai',
-					'description': 'Applies a color tint to an image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.tint', 'image.png', '#FF0000']], 'result': 'image_tinted.png'}
-					]
-				},
-				'image.flip.h': {
-					'name': 'image_flip_h',
-					'group': 'ai',
-					'description': 'Flips an image horizontally',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.flip.h', 'image.png']], 'result': 'image_flipped_h.png'}
-					]
-				},
-				'image.flip.v': {
-					'name': 'image_flip_v',
-					'group': 'ai',
-					'description': 'Flips an image vertically',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.flip.v', 'image.png']], 'result': 'image_flipped_v.png'}
-					]
-				},
-				'image.upscale': {
-					'name': 'image_upscale',
-					'group': 'ai',
-					'description': 'Increases the resolution of an image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.upscale', 'image.png', 2]], 'result': 'image_upscaled.png'}
-					]
-				},
-				'image.draw': {
-					'name': 'image_draw',
-					'group': 'ai',
-					'description': 'Allows draw, clear or replace objects on an image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.draw', 'image.png', 'circle', 100, 100, 50, '#FF0000']], 'result': 'image_drawn.png'}
-					]
-				},
-				'image.style': {
-					'name': 'image_style',
-					'group': 'ai',
-					'description': 'Applies stylistic effects to an image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.style', 'image.png', 'watercolor']], 'result': 'image_styled.png'}
-					]
-				},
-				'image.colorize': {
-					'name': 'image_colorize',
-					'group': 'ai',
-					'description': 'Adds color to a grayscale image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.colorize', 'grayscale.png', '#3366FF']], 'result': 'image_colorized.png'}
-					]
-				},
-				'image.recognize': {
-					'name': 'image_recognize',
-					'group': 'ai',
-					'description': 'Identifies objects or text within an image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.recognize', 'image.png']], 'result': ['cat', 'tree', 'sun']}
-					]
-				},
-				'image.face': {
-					'name': 'image_face',
-					'group': 'ai',
-					'description': 'Detects and processes faces within an image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.face', 'photo.png']], 'result': [{'x': 100, 'y': 120, 'width': 200, 'height': 200}]}
-					]
-				},
-				'image.effect': {
-					'name': 'image_effect',
-					'group': 'ai',
-					'description': 'Applies special effects to an image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['image.effect', 'image.png', 'blur']], 'result': 'image_effect.png'}
-					]
-				},
-				'video': {
-					'name': 'video',
-					'group': 'ai',
-					'description': 'Create a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video', 'A beach sunset', 10]], 'result': 'video.mp4'}
-					]
-				},
-				'video.crop': {
-					'name': 'video_crop',
-					'group': 'ai',
-					'description': 'Cuts a portion of the video according to specified dimensions',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.crop', 'video.mp4', 0, 0, 640, 480]], 'result': 'video_cropped.mp4'}
-					]
-				},
-				'video.text': {
-					'name': 'video_text',
-					'group': 'ai',
-					'description': 'Adds text to a video at specified positions',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.text', 'video.mp4', 'Hello', 50, 50, '#FFFFFF', 0, 5]], 'result': 'video_with_text.mp4'}
-					]
-				},
-				'video.image': {
-					'name': 'video_image',
-					'group': 'ai',
-					'description': 'Adds an image to a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.image', 'video.mp4', 'logo.png', 10, 10, 0, 10]], 'result': 'video_with_image.mp4'}
-					]
-				},
-				'video.sound': {
-					'name': 'video_sound',
-					'group': 'ai',
-					'description': 'Adds audio track to a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.sound', 'video.mp4', 'music.mp3']], 'result': 'video_with_sound.mp4'}
-					]
-				},
-				'video.video': {
-					'name': 'video_video',
-					'group': 'ai',
-					'description': 'Adds another video clip to a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.video', 'video1.mp4', 'video2.mp4', 5]], 'result': 'combined_video.mp4'}
-					]
-				},
-				'video.trim': {
-					'name': 'video_trim',
-					'group': 'ai',
-					'description': 'Trims the video to a specified length',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.trim', 'video.mp4', 5, 10]], 'result': 'video_trimmed.mp4'}
-					]
-				},
-				'video.size': {
-					'name': 'video_size',
-					'group': 'ai',
-					'description': 'Adjusts the dimensions of a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.size', 'video.mp4', 1280, 720]], 'result': 'video_resized.mp4'}
-					]
-				},
-				'video.upscale': {
-					'name': 'video_upscale',
-					'group': 'ai',
-					'description': 'Increases the resolution of a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.upscale', 'video.mp4', 2]], 'result': 'video_upscaled.mp4'}
-					]
-				},
-				'video.speed': {
-					'name': 'video_speed',
-					'group': 'ai',
-					'description': 'Adjusts the playback speed of a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.speed', 'video.mp4', 1.5]], 'result': 'video_spedup.mp4'}
-					]
-				},
-				'video.volume': {
-					'name': 'video_volume',
-					'group': 'ai',
-					'description': 'Adjusts the volume of the video\'s audio track',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.volume', 'video.mp4', 0.5]], 'result': 'video_volume_adjusted.mp4'}
-					]
-				},
-				'video.mute': {
-					'name': 'video_mute',
-					'group': 'ai',
-					'description': 'Removes sound from a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.mute', 'video.mp4']], 'result': 'video_muted.mp4'}
-					]
-				},
-				'video.face': {
-					'name': 'video_face',
-					'group': 'ai',
-					'description': 'Detects and processes faces within a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.face', 'video.mp4']], 'result': [{'time': 1.5, 'faces': [{'x': 100, 'y': 120, 'width': 200, 'height': 200}]}]}
-					]
-				},
-				'video.effect': {
-					'name': 'video_effect',
-					'group': 'ai',
-					'description': 'Applies special effects to a video',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['video.effect', 'video.mp4', 'sepia']], 'result': 'video_effect.mp4'}
-					]
-				},
-				'sound': {
-					'name': 'sound',
-					'group': 'ai',
-					'description': 'Create audio track',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sound', 'Ocean waves', 30]], 'result': 'sound.mp3'}
-					]
-				},
-				'sound.trim': {
-					'name': 'sound_trim',
-					'group': 'ai',
-					'description': 'Trims the audio track to a specified length',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sound.trim', 'sound.mp3', 5, 15]], 'result': 'sound_trimmed.mp3'}
-					]
-				},
-				'sound.speed': {
-					'name': 'sound_speed',
-					'group': 'ai',
-					'description': 'Adjusts the playback speed of audio',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sound.speed', 'sound.mp3', 1.2]], 'result': 'sound_spedup.mp3'}
-					]
-				},
-				'sound.volume': {
-					'name': 'sound_volume',
-					'group': 'ai',
-					'description': 'Adjusts the volume of an audio track',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sound.volume', 'sound.mp3', 0.7]], 'result': 'sound_volume_adjusted.mp3'}
-					]
-				},
-				'sound.effect': {
-					'name': 'sound_effect',
-					'group': 'ai',
-					'description': 'Applies special effects to an audio track',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['sound.effect', 'sound.mp3', 'echo']], 'result': 'sound_effect.mp3'}
-					]
-				},
-				'music': {
-					'name': 'music',
-					'group': 'ai',
-					'description': 'Generates music',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['music', 'Relaxing piano', 180]], 'result': 'music.mp3'}
-					]
-				},
-				'voice': {
-					'name': 'voice',
-					'group': 'ai',
-					'description': 'Text voicing with different voices',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['voice', 'Hello world', 'en-US']], 'result': 'voice.mp3'}
-					]
-				},
-				'voice.list': {
-					'name': 'voice_list',
-					'group': 'ai',
-					'description': 'List of available voices',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['voice.list']], 'result': ['en-US', 'es-ES', 'fr-FR']}
-					]
-				},
-				'voice.recognize': {
-					'name': 'voice_recognize',
-					'group': 'ai',
-					'description': 'Convert voice to text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['voice.recognize', 'voice.mp3']], 'result': 'Hello world'}
-					]
-				},
-				'voice.stop': {
-					'name': 'voice_stop',
-					'group': 'ai',
-					'description': 'Stop dictation of the text',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['voice.stop']], 'result': True}
-					]
-				},
-				'voice.capture': {
-					'name': 'voice_capture',
-					'group': 'ai',
-					'description': 'Create a specific voice',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['voice.capture', 'sample.mp3', 'My Voice']], 'result': 'custom_voice_model'}
-					]
-				},
-				'motion': {
-					'name': 'motion',
-					'group': 'ai',
-					'description': 'Processes motion-based data',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['motion', 'walking']], 'result': {'speed': 1.2, 'steps': 500}}
-					]
-				},
-				'motion.capture': {
-					'name': 'motion_capture',
-					'group': 'ai',
-					'description': 'Records or analyzes motion data in real-time',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['motion.capture', 10]], 'result': {'positions': [[0,0], [0.1,0], [0.2,0.1]]}}
-					]
-				},
-				'google.voice': {
-					'name': 'google_voice',
-					'group': 'ai',
-					'description': 'Utilizes Google\'s voice recognition services',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['google.voice', 'Hello', 'en-US']], 'result': 'google_voice.mp3'}
-					]
-				},
-				'google.voice.list': {
-					'name': 'google_voice_list',
-					'group': 'ai',
-					'description': 'Lists available voice options via Google services',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['google.voice.list']], 'result': ['en-US-Standard', 'es-ES-Standard']}
-					]
-				},
-				'google.voice.recognize': {
-					'name': 'google_voice_recognize',
-					'group': 'ai',
-					'description': 'Recognizes speech using Google technology',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['google.voice.recognize', 'audio.mp3']], 'result': 'Recognized text'}
-					]
-				},
-				'google.translate': {
-					'name': 'google_translate',
-					'group': 'ai',
-					'description': 'Utilizes Google\'s translation services',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['google.translate', 'Hello', 'en', 'es']], 'result': 'Hola'}
-					]
-				},
-				'deepl.translate': {
-					'name': 'deepl_translate',
-					'group': 'ai',
-					'description': 'Utilizes DeepL\'s translation services',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['deepl.translate', 'Hello', 'en', 'de']], 'result': 'Hallo'}
-					]
-				},
-				'openai.chat': {
-					'name': 'openai_chat',
-					'group': 'ai',
-					'description': 'Conversation using OpenAI\'s chat models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['openai.chat', 'Explain quantum physics']], 'result': 'Quantum physics is...'}
-					]
-				},
-				'openai.image': {
-					'name': 'openai_image',
-					'group': 'ai',
-					'description': 'Generates or processes images using OpenAI\'s models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['openai.image', 'A futuristic city']], 'result': 'openai_image.png'}
-					]
-				},
-				'openai.video': {
-					'name': 'openai_video',
-					'group': 'ai',
-					'description': 'Generates or processes videos using OpenAI\'s models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['openai.video', 'A sunset timelapse', 10]], 'result': 'openai_video.mp4'}
-					]
-				},
-				'openai.translate': {
-					'name': 'openai_translate',
-					'group': 'ai',
-					'description': 'Utilizes OpenAI\'s services for text translation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['openai.translate', 'Hello', 'en', 'fr']], 'result': 'Bonjour'}
-					]
-				},
-				'deepseek.chat': {
-					'name': 'deepseek_chat',
-					'group': 'ai',
-					'description': 'Conversation using DeepSeek\'s chat models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['deepseek.chat', 'What is AI?']], 'result': 'AI stands for...'}
-					]
-				},
-				'deepseek.translate': {
-					'name': 'deepseek_translate',
-					'group': 'ai',
-					'description': 'Utilizes DeepSeek\'s services for text translation',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['deepseek.translate', 'Hello', 'en', 'it']], 'result': 'Ciao'}
-					]
-				},
-				'claude.chat': {
-					'name': 'claude_chat',
-					'group': 'ai',
-					'description': 'Conversation using Claude\'s chat models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['claude.chat', 'Tell me a joke']], 'result': 'Why did the AI...'}
-					]
-				},
-				'stablediffusion.image': {
-					'name': 'stablediffusion_image',
-					'group': 'ai',
-					'description': 'Generates artistic images using Stable Diffusion models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['stablediffusion.image', 'A dragon flying over mountains']], 'result': 'sd_image.png'}
-					]
-				},
-				'stablediffusion.upscale': {
-					'name': 'stablediffusion_upscale',
-					'group': 'ai',
-					'description': 'Enhances image resolution using Stable Diffusion models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['stablediffusion.upscale', 'image.png', 2]], 'result': 'image_upscaled.png'}
-					]
-				},
-				'stablediffusion.draw': {
-					'name': 'stablediffusion_draw',
-					'group': 'ai',
-					'description': 'Creating and replacing objects in an image using Stable Diffusion models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['stablediffusion.draw', 'image.png', 'add a dragon']], 'result': 'image_with_dragon.png'}
-					]
-				},
-				'stablediffusion.background': {
-					'name': 'stablediffusion_background',
-					'group': 'ai',
-					'description': 'Background removal using Stable Diffusion models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['stablediffusion.background', 'photo.png']], 'result': 'photo_no_bg.png'}
-					]
-				},
-				'stablediffusion.video': {
-					'name': 'stablediffusion_video',
-					'group': 'ai',
-					'description': 'Creates videos using Stable Diffusion\'s models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['stablediffusion.video', 'A forest animation', 5]], 'result': 'sd_video.mp4'}
-					]
-				},
-				'ollama.chat': {
-					'name': 'ollama_chat',
-					'group': 'ai',
-					'description': 'Conversation using Ollama\'s chat models',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ollama.chat', 'Explain blockchain']], 'result': 'Blockchain is...'}
-					]
-				},
-				'ui': {
-					'name': 'ui',
-					'group': 'ui',
-					'description': 'Creating a basic element of user interface',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui', 'button', 'Click me']], 'result': 'button1'}
-					]
-				},
-				'bg': {
-					'name': 'bg',
-					'group': 'ui',
-					'description': 'Sets or updates the background properties, such as color or image',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['bg', '#3366FF']], 'result': True}
-					]
-				},
-				'show': {
-					'name': 'show',
-					'group': 'ui',
-					'description': 'Displays a UI element to make it visible',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['show', 'button1']], 'result': True}
-					]
-				},
-				'hide': {
-					'name': 'hide',
-					'group': 'ui',
-					'description': 'Hides a UI element to make it invisible',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['hide', 'button1']], 'result': True}
-					]
-				},
-				'enable': {
-					'name': 'enable',
-					'group': 'ui',
-					'description': 'Enables a UI element, making it interactive and functional',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['enable', 'button1']], 'result': True}
-					]
-				},
-				'disable': {
-					'name': 'disable',
-					'group': 'ui',
-					'description': 'Disables a UI element, preventing interaction or use',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['disable', 'button1']], 'result': True}
-					]
-				},
-				'focus': {
-					'name': 'focus',
-					'group': 'ui',
-					'description': 'Sets focus on a specific UI element, making it active or highlighted',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['focus', 'input1']], 'result': True}
-					]
-				},
-				'unfocus': {
-					'name': 'unfocus',
-					'group': 'ui',
-					'description': 'Removes focus from a UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['unfocus']], 'result': True}
-					]
-				},
-				'scale': {
-					'name': 'scale',
-					'group': 'ui',
-					'description': 'Adjusts the size of a UI element by scaling it up or down',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['scale', 'image1', 1.5]], 'result': True}
-					]
-				},
-				'ui.text': {
-					'name': 'ui_text',
-					'group': 'ui',
-					'description': 'Displays or manages text within the user interface',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.text', 'Hello World']], 'result': 'text1'}
-					]
-				},
-				'ui.image': {
-					'name': 'ui_image',
-					'group': 'ui',
-					'description': 'Displays or manages images within the user interface',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.image', 'photo.png']], 'result': 'image1'}
-					]
-				},
-				'ui.video': {
-					'name': 'ui_video',
-					'group': 'ui',
-					'description': 'Handles video playback or displays video content in the UI',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.video', 'video.mp4']], 'result': 'video1'}
-					]
-				},
-				'ui.sound': {
-					'name': 'ui_sound',
-					'group': 'ui',
-					'description': 'Manages sound playback or controls audio settings in the UI',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.sound', 'sound.mp3']], 'result': 'sound1'}
-					]
-				},
-				'ui.camera': {
-					'name': 'ui_camera',
-					'group': 'ui',
-					'description': 'Handles camera input or streams video from a camera in the UI',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.camera']], 'result': 'camera1'}
-					]
-				},
-				'ui.draw': {
-					'name': 'ui_draw',
-					'group': 'ui',
-					'description': 'Enables drawing within the user interface',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.draw', 400, 300]], 'result': 'canvas1'}
-					]
-				},
-				'ui.header': {
-					'name': 'ui_header',
-					'group': 'ui',
-					'description': 'Defines or manages the header section of the user interface',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.header', 'My App']], 'result': 'header1'}
-					]
-				},
-				'ui.footer': {
-					'name': 'ui_footer',
-					'group': 'ui',
-					'description': 'Defines or manages the footer section of the user interface',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.footer', '© 2023']], 'result': 'footer1'}
-					]
-				},
-				'ui.wait': {
-					'name': 'ui_wait',
-					'group': 'ui',
-					'description': 'Displays a waiting indicator within the UI',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.wait']], 'result': 'wait1'}
-					]
-				},
-				'ui.gallery': {
-					'name': 'ui_gallery',
-					'group': 'ui',
-					'description': 'Manages or displays a collection of images or media items',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.gallery', ['img1.jpg', 'img2.jpg']]], 'result': 'gallery1'}
-					]
-				},
-				'ui.button': {
-					'name': 'ui_button',
-					'group': 'ui',
-					'description': 'Defines or manages buttons in the UI for user interaction',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.button', 'Click me']], 'result': 'button1'}
-					]
-				},
-				'ui.select': {
-					'name': 'ui_select',
-					'group': 'ui',
-					'description': 'Creates or manages a selection interface, such as a dropdown menu',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.select', ['Option 1', 'Option 2']]], 'result': 'select1'}
-					]
-				},
-				'ui.switch': {
-					'name': 'ui_switch',
-					'group': 'ui',
-					'description': 'Implements a toggle switch for binary choices in the UI',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.switch', True]], 'result': 'switch1'}
-					]
-				},
-				'ui.progress': {
-					'name': 'ui_progress',
-					'group': 'ui',
-					'description': 'Displays a progress bar or status indicator',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.progress', 50]], 'result': 'progress1'}
-					]
-				},
-				'ui.slider': {
-					'name': 'ui_slider',
-					'group': 'ui',
-					'description': 'Implements a sliding control for adjusting values along a range',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.slider', 0, 100, 50]], 'result': 'slider1'}
-					]
-				},
-				'ui.edit': {
-					'name': 'ui_edit',
-					'group': 'ui',
-					'description': 'Enables text editing or manages editable fields in the UI',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.edit', 'Type here']], 'result': 'edit1'}
-					]
-				},
-				'ui.divider': {
-					'name': 'ui_divider',
-					'group': 'ui',
-					'description': 'Inserts a visual divider or separating line within the UI layout',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.divider']], 'result': 'divider1'}
-					]
-				},
-				'ui.split.h': {
-					'name': 'ui_split_h',
-					'group': 'ui',
-					'description': 'Splits a UI container horizontally to create multiple sections',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.split.h', 'panel1', 0.5]], 'result': ['panel1_left', 'panel1_right']}
-					]
-				},
-				'ui.split.v': {
-					'name': 'ui_split_v',
-					'group': 'ui',
-					'description': 'Splits a UI container vertically to create multiple sections',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.split.v', 'panel1', 0.3]], 'result': ['panel1_top', 'panel1_bottom']}
-					]
-				},
-				'ui.list': {
-					'name': 'ui_list',
-					'group': 'ui',
-					'description': 'Displays a list of items for selection or viewing',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.list', ['Item 1', 'Item 2']]], 'result': 'list1'}
-					]
-				},
-				'ui.tile': {
-					'name': 'ui_tile',
-					'group': 'ui',
-					'description': 'Arranges content in a tiled format for visual organization',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.tile', ['img1.jpg', 'img2.jpg'], 3]], 'result': 'tile1'}
-					]
-				},
-				'ui.chart': {
-					'name': 'ui_chart',
-					'group': 'ui',
-					'description': 'Data visualization using charts and graphs',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.chart', {}]]}
-					]
-				},
-				'ui.color': {
-					'name': 'ui_color',
-					'group': 'ui',
-					'description': 'Color selection or manages color properties in the UI',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.color', '#FF0000']], 'result': 'color1'}
-					]
-				},
-				'ui.date': {
-					'name': 'ui_date',
-					'group': 'ui',
-					'description': 'Date selection or displays date information',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.date']], 'result': 'date1'}
-					]
-				},
-				'ui.menu': {
-					'name': 'ui_menu',
-					'group': 'ui',
-					'description': 'Creates or manages menu options for navigation or actions',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.menu', ['File', 'Edit']]], 'result': 'menu1'}
-					]
-				},
-				'ui.menu.context': {
-					'name': 'ui_menu_context',
-					'group': 'ui',
-					'description': 'Defines a context menu for right-click actions or additional options',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['ui.menu.context', 'element1', ['Copy', 'Paste']]], 'result': True}
-					]
-				},
-				'window': {
-					'name': 'window',
-					'group': 'ui',
-					'description': 'Creates or manages window',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['window', 'My Window', 800, 600]], 'result': 'window1'}
-					]
-				},
-				'window.list': {
-					'name': 'window_list',
-					'group': 'ui',
-					'description': 'List of windows',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['window.list']], 'result': ['window1', 'window2']}
-					]
-				},
-				'title': {
-					'name': 'title',
-					'group': 'ui',
-					'description': 'Sets or updates the title of a window or UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['title', 'window1', 'New Title']], 'result': True}
-					]
-				},
-				'icon': {
-					'name': 'icon',
-					'group': 'ui',
-					'description': 'Defines or changes an icon associated with a window or UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['icon', 'window1', 'app.ico']], 'result': True}
-					]
-				},
-				'size': {
-					'name': 'size',
-					'group': 'ui',
-					'description': 'Adjusts the dimensions or size of a window or UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['size', 'window1', 1024, 768]], 'result': True}
-					]
-				},
-				'size.max': {
-					'name': 'size_max',
-					'group': 'ui',
-					'description': 'Sets the maximum size constraints for a window or UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['size.max', 'window1', 1920, 1080]], 'result': True}
-					]
-				},
-				'size.min': {
-					'name': 'size_min',
-					'group': 'ui',
-					'description': 'Sets the minimum size constraints for a window or UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['size.min', 'window1', 400, 300]], 'result': True}
-					]
-				},
-				'position': {
-					'name': 'position',
-					'group': 'ui',
-					'description': 'Adjusts the position or placement of a window or UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['position', 'window1', 100, 50]], 'result': True}
-					]
-				},
-				'direction': {
-					'name': 'direction',
-					'group': 'ui',
-					'description': 'Text writing direction for the selected language',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['direction', 'rtl']], 'result': True}
-					]
-				},
-				'attention': {
-					'name': 'attention',
-					'group': 'ui',
-					'description': 'Highlights a window or UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['attention', 'window1']], 'result': True}
-					]
-				},
-				'top': {
-					'name': 'top',
-					'group': 'ui',
-					'description': 'Brings a window or UI element to the top layer or foreground',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['top', 'window1']], 'result': True}
-					]
-				},
-				'nofocus': {
-					'name': 'nofocus',
-					'group': 'ui',
-					'description': 'Prevents a UI element from receiving focus or interaction',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['nofocus', 'window1']], 'result': True}
-					]
-				},
-				'noresize': {
-					'name': 'noresize',
-					'group': 'ui',
-					'description': 'Locks the size of a window or UI element, preventing resizing',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['noresize', 'window1']], 'result': True}
-					]
-				},
-				'center': {
-					'name': 'center',
-					'group': 'ui',
-					'description': 'Centers a window or UI element within its parent container or screen',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['center', 'window1']], 'result': True}
-					]
-				},
-				'fullscreen': {
-					'name': 'fullscreen',
-					'group': 'ui',
-					'description': 'Switches a window or UI element to fullscreen mode',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['fullscreen', 'window1']], 'result': True}
-					]
-				},
-				'maximize': {
-					'name': 'maximize',
-					'group': 'ui',
-					'description': 'Minimizes a window to the taskbar or dock',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['maximize', 'window1']], 'result': True}
-					]
-				},
-				'minimize': {
-					'name': 'minimize',
-					'group': 'ui',
-					'description': '',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['minimize', 'window1']], 'result': True}
-					]
-				},
-				'exclusive': {
-					'name': 'exclusive',
-					'group': 'ui',
-					'description': 'Enables exclusive mode restricting other operations',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['exclusive', 'window1']], 'result': True}
-					]
-				},
-				'border': {
-					'name': 'border',
-					'group': 'ui',
-					'description': 'Border properties or visibility for a UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['border', 'window1', False]], 'result': True}
-					]
-				},
-				'filedrop': {
-					'name': 'filedrop',
-					'group': 'ui',
-					'description': 'File drag-and-drop capabilities within the application UI',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['filedrop', 'window1', True]], 'result': True}
-					]
-				},
-				'dialog': {
-					'name': 'dialog',
-					'group': 'ui',
-					'description': 'Dialog box for user prompts or options',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['dialog', 'Are you sure?']], 'result': True}
-					]
-				},
-				'dialog.file': {
-					'name': 'dialog_file',
-					'group': 'ui',
-					'description': 'Opens a file selection dialog',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['dialog.file']], 'result': '/path/to/file.txt'}
-					]
-				},
-				'effect': {
-					'name': 'effect',
-					'group': 'ui',
-					'description': 'Applies visual or audio effect to a UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['effect', 'window1', 'blur']], 'result': True}
-					]
-				},
-				'effect.remove': {
-					'name': 'effect_remove',
-					'group': 'ui',
-					'description': 'Removes applied effect from a UI element',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['effect.remove', 'window1']], 'result': True}
-					]
-				},
-				'tap': {
-					'name': 'tap',
-					'group': 'input',
-					'description': 'Simulates a tap gesture',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['tap', 100, 200]], 'result': True}
-					]
-				},
-				'key': {
-					'name': 'key',
-					'group': 'input',
-					'description': 'Key binding',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['key', 'Ctrl+S', 'save']], 'result': True}
-					]
-				},
-				'key.remove': {
-					'name': 'key_remove',
-					'group': 'input',
-					'description': 'Removes a key binding',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['key.remove', 'Ctrl+S']], 'result': True}
-					]
-				},
-				'key.enable': {
-					'name': 'key_enable',
-					'group': 'input',
-					'description': 'Enables key binding',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['key.enable', 'Ctrl+S']], 'result': True}
-					]
-				},
-				'key.disable': {
-					'name': 'key_disable',
-					'group': 'input',
-					'description': 'Disable key binding',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['key.disable', 'Ctrl+S']], 'result': True}
-					]
-				},
-				'key.press': {
-					'name': 'key_press',
-					'group': 'input',
-					'description': 'Simulates a key press event',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['key.press', 'Enter']], 'result': True}
-					]
-				},
-				'keyboard': {
-					'name': 'keyboard',
-					'group': 'input',
-					'description': 'Keyboard information',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['keyboard']], 'result': {'layout': 'QWERTY', 'language': 'en-US'}}
-					]
-				},
-				'mouse': {
-					'name': 'mouse',
-					'group': 'input',
-					'description': 'Mouse information',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['mouse']], 'result': {'x': 500, 'y': 300, 'buttons': 0}}
-					]
-				},
-				'mouse.lock': {
-					'name': 'mouse_lock',
-					'group': 'input',
-					'description': 'Locks the mouse cursor to prevent it from leaving a designated area',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['mouse.lock', True]], 'result': True}
-					]
-				},
-				'mouse.position': {
-					'name': 'mouse_position',
-					'group': 'input',
-					'description': 'Retrieves or sets the current position of the mouse cursor',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['mouse.position', 400, 300]], 'result': True}
-					]
-				},
-				'mouse.shape': {
-					'name': 'mouse_shape',
-					'group': 'input',
-					'description': 'Change the shape of the mouse cursor',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['mouse.shape', 'pointer']], 'result': True}
-					]
-				},
-				'gamepad': {
-					'name': 'gamepad',
-					'group': 'input',
-					'description': 'Gamepad information',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['gamepad', 0]], 'result': {'buttons': [False], 'axes': [0.0]}}
-					]
-				},
-				'gamepad.vibrate': {
-					'name': 'gamepad_vibrate',
-					'group': 'input',
-					'description': 'Gamepad vibration',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['gamepad.vibrate', 0, 0.5, 0.5]], 'result': True}
-					]
-				},
-				'game': {
-					'name': 'game',
-					'group': 'game',
-					'description': 'Create a custom game',
-					'language': ['python', 'js', 'swift', 'kotlin', 'c++', 'godot'],
-					'safe': True,
-					'param': [],
-					'example': [
-						{'code': [['game', 'My Game', 800, 600]], 'result': 'game1'}
-					]
-				}
+			'license': {
+				'name': 'V O I D license',
+				'url': 'https://github.com/voidspawner/void.lang#v-o-i-d-license',
+				'text': 'do what you want · you can use it in both private and open source · embed it in free or paid products · modify · create your own solutions based on it · no need to specify the author'
 			}
 		},
+		'doc': {
+
+			# value
+
+			'get': {
+				'group': 'value',
+				'method': 'get',
+				'alias': None,
+				'description': 'Retrieve a value based on provided parameter name',
+				'safe': True,
+				'container': None,
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'default', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['get', 'about.name']], 'result': 'V O I D lang'},
+					{'code': [['get', 'about.unknown', 'empty']], 'result': 'empty'},
+					{'code': [['get', 'void.test.json/about.name']], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'clean': [['file.remove', 'void.test.json']], 'result': 'V O I D lang'},
+					{'code': [['get', 'void.test.json/list.1']], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'clean': [['file.remove', 'void.test.json']], 'result': 1}
+				]
+			},
+			'set': {
+				'group': 'value',
+				'method': 'set',
+				'alias': None,
+				'description': 'Assign a value to a specified parameter',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'data', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['set', 'some.value', 1]], 'after': [['get', 'some.value']], 'result': 1},						
+					{'code': [['set', 'some.text', ':)']], 'after': [['get', 'some.text']], 'result': ':)'},
+					{'code': [['set', 'void.test.json/about.name', 'V O I D']], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'after': [['get', 'void.test.json/about.name']], 'clean': [['file.remove', 'void.test.json']], 'result': 'V O I D'},
+					{'code': [['set', 'void.test.json/list.1', 2]], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'after': [['get', 'void.test.json/list.1']], 'claen': [['file.remove', 'void.test.json']], 'result': 2}
+				]
+			},
+			'remove': {
+				'group': 'value',
+				'method': 'remove',
+				'alias': None,
+				'description': 'Remove a specified parameter or value',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text'}
+				],
+				'example': [
+					{'code': [['remove', 'some.value']], 'before': [['set', 'some.value', 1]], 'after': [['get', 'some.value']], 'result': None},
+					{'code': [['remove', 'void.test.json/about.name']], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'after': [['get', 'void.test.json/about.name']], 'clean': [['file.remove', 'void.test.json']], 'result': None}
+				]
+			},
+			'type': {
+				'group': 'value',
+				'method': 'type',
+				'alias': None,
+				'description': 'Determine the data type of a specified parameter',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any'}
+				],
+				'example': [
+					{'code': [['type', 'text']], 'result': 'text'},
+					{'code': [['type', 1]], 'result': 'number'},
+					{'code': [['type', 1.2]], 'result': 'number'},
+					{'code': [['type', True]], 'result': 'bool'},
+					{'code': [['type', False]], 'result': 'bool'},
+					{'code': [['type', None]], 'result': 'none'},
+					{'code': [['type', {'a': 1}]], 'result': 'dict'},
+					{'code': [['type', [1,2,3]]], 'result': 'list'},
+					{'code': [['type', b'1']], 'result': 'binary'}
+				]
+			},
+			'text': {
+				'group': 'value',
+				'method': 'type_text',
+				'alias': None,
+				'description': 'Specify a parameter as a text type',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any'},
+					{'name': 'style', 'type': ['text', 'dict'], 'default': {}}
+				],
+				'example': [
+					{'code': [['text', 123]], 'result': '123'},
+					{'code': [['text', 'title', {
+						'length': 10,
+						'align': 'center'
+					}]], 'result': '  title   '},
+					{'code': [['text', 100000.1, {
+						'before': '∞',
+						'after': ' monthly',
+						'group': ',',
+						'fraction': '.',
+						'dot': 3
+					}]], 'result': '∞100,000.100 monthly'},
+					{'code': [['text', 100000, 'price']], 'result': '∞100 000'}
+				]
+			},
+			'number': {
+				'group': 'value',
+				'method': 'type_number',
+				'alias': None,
+				'description': 'Specify a parameter as a number type',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any'}
+				],
+				'example': [
+					{'code': [['number', '123']], 'result': 123},
+					{'code': [['number', 45.67]], 'result': 45.67}
+				]
+			},
+			'bool': {
+				'group': 'value',
+				'method': 'type_bool',
+				'alias': None,
+				'description': 'Specify a parameter as a boolean type',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any'}
+				],
+				'example': [
+					{'code': [['bool', 1]], 'result': True},
+					{'code': [['bool', 'false']], 'result': False},
+					{'code': [['bool', None]], 'result': False},
+					{'code': [['bool', 'none']], 'result': False}
+				]
+			},
+			'list': {
+				'group': 'value',
+				'method': 'type_list',
+				'alias': None,
+				'description': 'Specify a parameter as a list type',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any'}
+				],
+				'example': [
+					{'code': [['list', 123]], 'result': [123]},
+					{'code': [['list', 'a']], 'result': ['a']},
+					{'code': [['list', [123, 'a']]], 'result': [123, 'a']}
+				]
+			},
+			'binary': {
+				'group': 'value',
+				'method': 'type_binary',
+				'alias': None,
+				'description': 'Specify a parameter as a binary type',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any'}
+				],
+				'example': [
+					{'code': [['binary', 'a']], 'result': b'a'},
+					{'code': [['binary', 1]], 'result': b'1'}
+				]
+			},
+			'length': {
+				'group': 'value',
+				'method': 'length',
+				'alias': 'l',
+				'description': 'Gets the length of the text, the number of items in a list or dictionary, the count of bytes in a number',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any'}
+				],
+				'example': [
+					{'code': [['l', 'text']], 'result': 4},
+					{'code': [['l', [1, 2, 'a']]], 'result': 3},
+					{'code': [['l', {'a': 1, 'b': 2}]], 'result': 2},
+					{'code': [['l', 123]], 'result': 1},
+					{'code': [['l', -123]], 'result': 1},
+					{'code': [['l', 12345678]], 'result': 3},
+					{'code': [['l', 123.1]], 'result': 8}
+				]
+			},
+
+			# expression
+
+			'+': {
+				'group': 'expression',
+				'method': 'expression_plus',
+				'alias': None,
+				'description': 'Perform addition or AND operation',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': '{}'},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['+', 2, 3]], 'result': 5},
+					{'code': [['+', True]], 'result': False},
+					{'code': [['+', False]], 'result': False},
+					{'code': [['+', True, True]], 'result': True},
+					{'code': [['+', True, False]], 'result': False},
+					{'code': [['+', False, True]], 'result': False},
+					{'code': [['+', False, False]], 'result': False},
+					{'code': [['+', 'a', 'b']], 'result': 'ab'},
+					{'code': [['+', 'a', 2]], 'result': 'a  '},
+					{'code': [['+', ['a'], ['b']]], 'result': ['a', 'b']},
+					{'code': [['+', ['a'], 2]], 'result': ['a', None, None]},
+					{'code': [['+', {'a': 1, 'b': {'c': 3}}, {'b': {'c': 5}}]], 'result': {'a': 1, 'b': {'c': 5}}},
+					{'code': [['+', {'a': 1}, 'b']], 'result': {'a': 1, 'b': None}},
+					{'code': [['+', {'a': 1}, 1]], 'result': [{'a': 1}, {'a': 1}]},
+					{'code': [['+', b'a', b'b']], 'result': b'ab'},
+					{'code': [['+', b'a', 'b']], 'result': b'ab'},
+					{'code': [['+', b'a', 1]], 'result': b'a1'}
+				]
+			},
+			'-': {
+				'group': 'expression',
+				'method': 'expression_minus',
+				'alias': None,
+				'description': 'Perform subtraction or NOT operation',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': '{}'},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['-', 5, 2]], 'result': 3},
+					{'code': [['-', 10]], 'result': -10},
+					{'code': [['-', True]], 'result': False},
+					{'code': [['-', False]], 'result': True},
+					{'code': [['-', True, True]], 'result': False},
+					{'code': [['-', False, True]], 'result': False},
+					{'code': [['-', True, False]], 'result': True},
+					{'code': [['-', False, False]], 'result': False},
+					{'code': [['-', 'file.json', '.json']], 'result': 'file'},
+					{'code': [['-', 'text', 2]], 'result': 'te'},
+					{'code': [['-', [1, 2, 3], 1]], 'result': [1, 2]},
+					{'code': [['-', {'a': 1, 'b': 2}, 'a']], 'result': {'b': 2}},
+					{'code': [['-', {'a': 1, 'b': 2}, 1]], 'length': 1},
+					{'code': [['-', b'text', 2]], 'result': b'te'},
+					{'code': [['-', b'text', 't']], 'result': b'tex'},
+					{'code': [['-', b'text', b't']], 'result': b'tex'}
+				]
+			},
+			'*': {
+				'group': 'expression',
+				'method': 'expression_multiply',
+				'alias': None,
+				'description': 'Perform multiplication or XOR operation',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': '{}'},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['*', 3, 4]], 'result': 12},
+					{'code': [['*', True]], 'result': True},
+					{'code': [['*', False]], 'result': False},
+					{'code': [['*', True, True]], 'result': False},
+					{'code': [['*', True, False]], 'result': True},
+					{'code': [['*', False, True]], 'result': True},
+					{'code': [['*', False, False]], 'result': False},
+					{'code': [['*', 'a', 3]], 'result': 'aaa'},
+					{'code': [['*', ['a'], 2]], 'result': ['a', 'a']},
+					{'code': [['*', ['a', 'b'], ' ']], 'result': 'a b'},
+					{'code': [['*', {'a': 1}, 2]], 'result': [{'a': 1}, {'a': 1}]},
+					{'code': [['*', b'a', 2]], 'result': b'aa'}
+				]
+			},
+			'/': {
+				'group': 'expression',
+				'method': 'expression_divide',
+				'alias': None,
+				'description': 'Perform division or OR operation',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': '{}'},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['/', 10, 2]], 'result': 5},
+					{'code': [['/', 7, 2]], 'result': 3.5},
+					{'code': [['/', True]], 'result': True},
+					{'code': [['/', False]], 'result': False},
+					{'code': [['/', True, True]], 'result': True},
+					{'code': [['/', True, False]], 'result': True},
+					{'code': [['/', False, True]], 'result': True},
+					{'code': [['/', False, False]], 'result': False},
+					{'code': [['/', 'a b', ' ']], 'result': ['a', 'b']},
+				]
+			},
+			'%': {
+				'group': 'expression',
+				'method': 'expression_modulo',
+				'alias': None,
+				'description': 'Perform modulo operation',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': '{}'},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['%', 10, 3]], 'result': 1},
+					{'code': [['%', 15, 4]], 'result': 3}
+				]
+			},
+			'^': {
+				'group': 'expression',
+				'method': 'expression_power',
+				'alias': None,
+				'description': 'Elevation operator',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': '{}'},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['^', 2, 3]], 'result': 8},
+					{'code': [['^', 10, 0]], 'result': 1},
+					{'code': [['^', 4, 0.5]], 'result': 2}
+				]
+			},
+			'>>': {
+				'group': 'expression',
+				'method': 'expression_shr',
+				'alias': None,
+				'description': 'Perform right shift operation',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any', 'default': '{}'},
+					{'name': 'count', 'type': 'number', 'default': 1}
+				],
+				'example': [
+					{'code': [['>>', 16, 2]], 'result': 4},
+					{'code': [['>>', 255, 4]], 'result': 15},
+					{'code': [['>>', True]], 'result': False},
+				]
+			},
+			'<<': {
+				'group': 'expression',
+				'method': 'expression_shl',
+				'alias': None,
+				'description': 'Perform left shift operation',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any', 'default': '{}'},
+					{'name': 'count', 'type': 'number', 'default': 1}
+				],
+				'example': [
+					{'code': [['<<', 4, 2]], 'result': 16},
+					{'code': [['<<', 7, 3]], 'result': 56},
+					{'code': [['<<', True]], 'result': False}
+				]
+			},
+			'==': {
+				'group': 'expression',
+				'method': 'expression_equal',
+				'alias': None,
+				'description': 'Checks if left value is equal to right',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': None},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['==', 5, 5]], 'result': True},
+					{'code': [['==', 'a', 'b']], 'result': False}
+				]
+			},
+			'!=': {
+				'group': 'expression',
+				'method': 'expression_notequal',
+				'alias': None,
+				'description': 'Check if values are not equal',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': None},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['!=', 5, 3]], 'result': True},
+					{'code': [['!=', 'a', 'a']], 'result': False}
+				]
+			},
+			'>': {
+				'group': 'expression',
+				'method': 'expression_greater',
+				'alias': None,
+				'description': 'Checks if left value is greater than right',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': None},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['>', 5, 3]], 'result': True},
+					{'code': [['>', 2, 4]], 'result': False}
+				]
+			},
+			'<': {
+				'group': 'expression',
+				'method': 'expression_less',
+				'alias': None,
+				'description': 'Checks if left value is less than right',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': None},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['<', 3, 5]], 'result': True},
+					{'code': [['<', 4, 2]], 'result': False}
+				]
+			},
+			'>=': {
+				'group': 'expression',
+				'method': 'expression_greater_equal',
+				'alias': None,
+				'description': 'Checks if left value is greater than or equal to right',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': None},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['>=', 5, 3]], 'result': True},
+					{'code': [['>=', 5, 5]], 'result': True},
+					{'code': [['>=', 4, 5]], 'result': False}
+				]
+			},
+			'<=': {
+				'group': 'expression',
+				'method': 'expression_less_equal',
+				'alias': None,
+				'description': 'Checks if left value is less than or equal to right',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': None},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['<=', 3, 5]], 'result': True},
+					{'code': [['<=', 5, 5]], 'result': True},
+					{'code': [['<=', 6, 5]], 'result': False}
+				]
+			},
+			'<>': {
+				'group': 'expression',
+				'method': 'expression_in',
+				'alias': None,
+				'description': 'Checks if value is in a list or subtext in a text or name in a dictionary',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': None},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['<>', 'te', 'text']], 'result': True},
+					{'code': [['<>', 'a', ['a', 'b', 'c']]], 'result': True},
+					{'code': [['<>', 'a', {'a': 1}]], 'result': True},
+					{'code': [['<>', 'd', ['a', 'b', 'c']]], 'result': False}
+				]
+			},
+			'><': {
+				'group': 'expression',
+				'method': 'expression_notin',
+				'alias': None,
+				'description': 'Checks if value is not in a list or subtext in a text or or name not in a dictionary',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'first', 'type': 'any', 'default': None},
+					{'name': 'second', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['><', 'a', 'text']], 'result': True},
+					{'code': [['><', 'd', ['a', 'b', 'c']]], 'result': True},
+					{'code': [['><', 'b', {'a': 1}]], 'result': True},
+					{'code': [['><', 'a', ['a', 'b', 'c']]], 'result': False}
+				]
+			},
+			'~': {
+				'group': 'expression',
+				'method': 'expression_is',
+				'alias': None,
+				'description': 'Checks if value is in a list or name in a dictionary',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any', 'default': None},
+					{'name': 'type', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['~', 'name', 'text']], 'result': True},
+					{'code': [['~', 'name', 'number']], 'result': False},
+					{'code': [['~', 123, 'number']], 'result': True},
+					{'code': [['~', True, 'bool']], 'result': True},
+					{'code': [['~', None, 'none']], 'result': True},
+					{'code': [['~', [1, 2], 'list']], 'result': True},
+					{'code': [['~', {'a': 1}, 'dict']], 'result': True},
+					{'code': [['~', 'name', ['text', 'dict']]], 'result': True},
+					{'code': [['~', b'text', 'binary']], 'result': True}
+				]
+			},
+			'!~': {
+				'group': 'expression',
+				'method': 'expression_isnot',
+				'alias': None,
+				'description': 'Checks if value is not in a list or name not in a dictionary',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any', 'default': None},
+					{'name': 'type', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['!~', 'name', 'number']], 'result': True},
+					{'code': [['!~', 123, 'text']], 'result': True},
+					{'code': [['!~', 123, ['list', 'dict']]], 'result': True}
+				]
+			},
+			'=': {
+				'group': 'expression',
+				'method': 'expression_assign',
+				'alias': None,
+				'description': 'Assign value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'data', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['=', 'x', 10]], 'result': 10},
+					{'code': [['=', 'name', 'John']], 'result': 'John'}
+				]
+			},
+			'+=': {
+				'group': 'expression',
+				'method': 'expression_plus_assign',
+				'alias': None,
+				'description': 'Add and assign value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'data', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['=', 'x', 5], ['+=', 'x', 3]], 'result': 8},
+					{'code': [['=', 's', 'a'], ['+=', 's', 'b']], 'result': 'ab'}
+				]
+			},
+			'=+': {
+				'group': 'expression',
+				'method': 'expression_assign_plus',
+				'alias': None,
+				'description': 'Assign and add value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'data', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['=+', 'x', 5, 3]], 'result': 8},
+					{'code': [['=+', 's', 'a', 'b']], 'result': 'ab'}
+				]
+			},
+			'-=': {
+				'group': 'expression',
+				'method': 'expression_minus_assign',
+				'alias': None,
+				'description': 'Subtract and assign value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'data', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['=', 'x', 10], ['-=', 'x', 4]], 'result': 6},
+					{'code': [['=', 'y', 7.5], ['-=', 'y', 2.5]], 'result': 5.0}
+				]
+			},
+			'*=': {
+				'group': 'expression',
+				'method': 'expression_multiply_assign',
+				'alias': None,
+				'description': 'Multiply and assign value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'data', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['=', 'x', 3], ['*=', 'x', 4]], 'result': 12},
+					{'code': [['=', 's', 'a'], ['*=', 's', 3]], 'result': 'aaa'}
+				]
+			},
+			'/=': {
+				'group': 'expression',
+				'method': 'expression_divide_assign',
+				'alias': None,
+				'description': 'Divide and assign value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'data', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['=', 'x', 10], ['/=', 'x', 2]], 'result': 5},
+					{'code': [['=', 'y', 7], ['/=', 'y', 2]], 'result': 3.5}
+				]
+			},
+			'%=': {
+				'group': 'expression',
+				'method': 'expression_modulo_assign',
+				'alias': None,
+				'description': 'Modulo and assign value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'data', 'type': 'any', 'default': None}
+				],
+				'example': [
+					{'code': [['=', 'x', 10], ['%=', 'x', 3]], 'result': 1},
+					{'code': [['=', 'y', 15], ['%=', 'y', 4]], 'result': 3}
+				]
+			},
+			'^=': {
+				'group': 'expression',
+				'method': 'expression_power_assign',
+				'alias': None,
+				'description': 'Elevation and assign value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'data', 'type': 'any', 'default': 2}
+				],
+				'example': [
+					{'code': [['=', 'x', 2], ['~=', 'x', 3]], 'result': 8},
+					{'code': [['=', 'y', 5], ['~=', 'y', 0]], 'result': 1}
+				]
+			},
+			'>>=': {
+				'group': 'expression',
+				'method': 'expression_shr_assign',
+				'alias': None,
+				'description': 'Right shift and assign value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'count', 'type': 'number', 'default': 1}
+				],
+				'example': [
+					{'code': [['=', 'x', 16], ['>>=', 'x', 2]], 'result': 4},
+					{'code': [['=', 'y', 255], ['>>=', 'y', 4]], 'result': 15}
+				]
+			},
+			'<<=': {
+				'group': 'expression',
+				'method': 'expression_shl_assign',
+				'alias': None,
+				'description': 'Left shift and assign value to a variable',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None},
+					{'name': 'count', 'type': 'number', 'default': 1}
+				],
+				'example': [
+					{'code': [['=', 'x', 4], ['<<=', 'x', 2]], 'result': 16},
+					{'code': [['=', 'y', 7], ['<<=', 'y', 3]], 'result': 56}
+				]
+			},
+
+
+			# control
+
+			'print': {
+				'group': 'control',
+				'method': 'print',
+				'alias': '.',
+				'description': 'Output data to the console',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any', 'many': True, 'default': '{}'},
+					{'name': 'end', 'type': 'text', 'default': '\n'}
+				],
+				'example': [
+					{'code': [['.', 'Hello']], 'result': 'Hello\n', 'output': 'shell'},
+					{'code': [['.', 42]], 'result': '42\n', 'output': 'shell'},
+					{'code': [['.', 'Hello', 'there']], 'result': 'Hello there\n', 'output': 'shell'}
+				]
+			},
+			'printn': {
+				'group': 'control',
+				'method': 'printn',
+				'alias': '..',
+				'description': 'Output data to the console without newline',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any', 'many': True, 'default': '{}'}
+				],
+				'example': [
+					{'code': [['..', 'Hello']], 'result': 'Hello', 'output': 'shell'},
+					{'code': [['..', 42]], 'result': '42', 'output': 'shell'},
+					{'code': [['..', 'Hello', 'there']], 'result': 'Hello there', 'output': 'shell'}
+				]
+			},
+			'input': {
+				'group': 'control',
+				'method': None,
+				'alias': '...',
+				'description': 'Input text from the user',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''}
+				],
+				'example': [
+					{'code': [['.?', 'Enter name: ']], 'test': False},
+					{'code': [['.?']], 'test': False}
+				]
+			},
+			'if': {
+				'group': 'control',
+				'method': None,
+				'alias': '?',
+				'description': 'Evaluate a conditional expression',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['?', ['>', 5, 3], 'yes', 'no']], 'result': 'yes'},
+					{'code': [['?', ['==', 2, 3], 'equal', 'not equal']], 'result': 'not equal'}
+				]
+			},
+			'loop': {
+				'group': 'control',
+				'method': None,
+				'alias': 'o',
+				'description': 'Perform a loop operation',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['o', ['<', 'i', 3], [['.', 'i'], ['=', 'i', ['+', 'i', 1]]]]], 'test': False},
+					{'code': [['o', ['<', 'i', 5], [['.', ['*', 'i', 2]], ['=', 'i', ['+', 'i', 1]]]]], 'test': False}
+				]
+			},
+			'break': {
+				'group': 'control',
+				'method': None,
+				'alias': 'x',
+				'description': 'Exit the current loop',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['o', True, [['.', 'looping'], ['?', ['==', 'i', 3], [['x']], []]]]], 'test': False}
+				]
+			},
+			'continue': {
+				'group': 'control',
+				'method': None,
+				'alias': 'x>',
+				'description': 'Skip to the next iteration of the loop',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['o', ['<', 'i', 5], [['?', ['==', 'i', 2], [['->']], [['.', 'i']]]]]], 'test': False}
+				]
+			},
+			'repeat': {
+				'group': 'control',
+				'method': None,
+				'alias': '<x',
+				'description': 'Repeat the current iteration of the loop',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['o', ['<', 'i', 3], [['?', ['==', 'i', 1], [['<-']], [['.', 'i']]]]]], 'test': False}
+				]
+			},
+			'return': {
+				'group': 'control',
+				'method': None,
+				'alias': ['X', 'response'],
+				'description': 'Return a result from an action',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'result', 'default': None}
+				],
+				'example': [
+					{'code': [['action', [1, ['+', 1], 'X']]], 'result': 2},
+					{'code': [['action', [1, ['+', 1], ['X', '{}']]]], 'result': None}
+				]
+			},
+			'action': {
+				'group': 'control',
+				'method': 'action',
+				'alias': None,
+				'description': 'Initiate or call an action',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['action', 'greet', [], [['.', 'Hello!']]], ['greet']], 'test': False},
+					{'code': [['action', 'add', ['a', 'b'], [[':', ['+', 'a', 'b']]]], ['add', 2, 3]], 'result': 5}
+				]
+			},
+			'open': {
+				'group': 'control',
+				'method': 'open',
+				'alias': None,
+				'description': 'Open a link in standard way or execute shell command',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['open', 'https://example.com']], 'test': False},
+					{'code': [['open', 'file.txt']], 'test': False}
+				]
+			},
+			'close': {
+				'group': 'control',
+				'method': 'close',
+				'alias': None,
+				'description': 'Close an application by name or PID',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['close', 'App Name']], 'test': False},
+					{'code': [['close', 31337]], 'test': False}
+				]
+			},
+			'code': {
+				'group': 'control',
+				'method': 'code',
+				'alias': None,
+				'description': 'Execute a block of native code',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['code', 'python', 'print("Hello from Python")']], 'test': False},
+					{'code': [['code', 'js', 'console.log("Hello from JS")']], 'test': False}
+				]
+			},
+			'info': {
+				'group': 'control',
+				'method': 'info',
+				'alias': 'i',
+				'description': 'Log data',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['l', 'Debug info']], 'test': False},
+					{'code': [['l', ['+', 'x=', 'x']]], 'test': False}
+				]
+			},
+			'convert': {
+				'group': 'control',
+				'method': 'convert',
+				'alias': 'c',
+				'description': 'Convert data from one format to another',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['convert', 'json', {'x': 10}]], 'result': '{"x": 10}'},
+					{'code': [['convert', 'yaml', {'x': 10}]], 'result': 'x: 10\n'}
+				]
+			},
+			'clipboard': {
+				'group': 'control',
+				'method': 'clipboard',
+				'alias': None,
+				'description': 'Storing or retrieving clipboard temporary data',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [
+						['clipboard', 'copied text'],
+						['clipboard']
+					], 'result': 'copied text'},
+					{'code': [['clipboard', None]], 'test': False}
+				]
+			},
+			'sql': {
+				'group': 'control',
+				'method': 'sql',
+				'alias': None,
+				'description': 'Execute SQL query',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': True,
+				'param': [],
+				'example': [
+					{'code': [['sql', 'connect', 'server', 'database', 'login', 'password']], 'test': False},
+					{'code': [['sql', 'disconnect']], 'test': False},
+					{'code': [['sql', 'db1', 'connect', 'server', 'database', 'login', 'password']], 'test': False},
+					{'code': [['sql', 'db1', 'disconnect']], 'test': False},
+					{'code': [['sql', 'SELECT * FROM user']], 'result': [], 'test': False},
+					{'code': [['sql', 'INSERT INTO log VALUES ({1},{2})', ['date', 'message']]], 'test': False},
+					{'code': [['sql', 'set', 'user', [1, 'name', 'mylogin', 'mypassword']]], 'test': False},
+					{'code': [['sql', 'set', 'user', 1, {'name': 'newname'}]], 'test': False},
+					{'code': [['sql', 'get', 'user']], 'test': False},
+					{'code': [['sql', 'get', 'user', 1]], 'test': False},
+					{'code': [['sql', 'remove', 'user', 1]], 'test': False}
+				]
+			},
+			'test': {
+				'group': 'control',
+				'method': 'test',
+				'alias': None,
+				'description': 'Test one or all actions',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['test']], 'test': False},
+					{'code': [['test', 'upper']], 'length': 3},
+					{'code': [['test', 'math']], 'length': 3}
+				]
+			},
+			'help': {
+				'group': 'control',
+				'method': 'help',
+				'alias': 'h',
+				'description': 'Show description and use of the action',
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['h']], 'test': False},
+					{'code': [['h', 'upper']], 'test': False}
+				]
+			},
+			'exit': {
+				'group': 'control',
+				'method': 'exit',
+				'alias': 'xx',
+				'description': 'Exit the current application',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['xx']], 'test': False},
+					{'code': [['xx', 500]], 'test': False},
+					{'code': [['xx', 'something went wrong']], 'test': False}
+				]
+			},
+			'chat': {
+				'group': 'control',
+				'method': 'chat',
+				'alias': None,
+				'description': 'AI conversation and interaction through text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': True,
+				'param': [],
+				'example': [
+					{'code': [['chat', 'What\'s the weather today?']], 'result': 'The weather is sunny and warm.'}
+				]
+			},
+			'say': {
+				'group': 'control',
+				'method': 'say',
+				'alias': None,
+				'description': 'Text voicing with different voices',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['voice', 'Hello world', 'en-US']], 'result': 'voice.mp3'}
+				]
+			},
+			'voice': {
+				'group': 'control',
+				'method': 'voice',
+				'alias': None,
+				'description': 'List of available voices',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['voice.list']], 'result': ['en-US', 'es-ES', 'fr-FR']}
+				]
+			},
+			'recognize': {
+				'group': 'control',
+				'method': 'recognize',
+				'alias': None,
+				'description': 'Convert voice to text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['voice.recognize', 'voice.mp3']], 'result': 'Hello world'}
+				]
+			},
+			'capture': {
+				'group': 'control',
+				'method': 'capture',
+				'alias': None,
+				'description': 'Records or analyzes motion data in real-time',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['motion.capture', 10]], 'result': {'positions': [[0,0], [0.1,0], [0.2,0.1]]}}
+				]
+			},
+			'ui': {
+				'group': 'control',
+				'method': 'ui',
+				'alias': ['app', 'game', 'web', 'cli'],
+				'description': 'Create a user interface',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': {
+					'bg': {
+						'description': '',
+						'param': []
+					},
+					'title': {
+						'description': '',
+						'param': []					
+					}
+				},
+				'param': [],
+				'example': [
+					{'code': [['ui', 'button', 'Click me']], 'result': 'button1'}
+				]
+			},
+
+			# text
+
+			'lower': {
+				'group': 'text',
+				'method': 'lower',
+				'alias': None,
+				'description': 'Convert text to lowercase',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''}
+				],
+				'example': [
+					{'code': [['lower', 'TeXt']], 'result': 'text'}
+				]
+			},
+			'upper': {
+				'group': 'text',
+				'method': 'upper',
+				'alias': None,
+				'description': 'Convert text to uppercase',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''},
+					{'name': 'type', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['upper', 'text']], 'result': 'TEXT'},
+					{'code': [['upper', 'text title', 'title']], 'result': 'Text Title'},
+					{'code': [['upper', 'text sentence', 'sentence']], 'result': 'Text sentence'}
+				]
+			},
+			'starts': {
+				'group': 'text',
+				'method': 'starts',
+				'alias': None,
+				'description': 'Check if text starts with a specific substring',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''},
+					{'name': 'subtext', 'type': 'text', 'default': ''}
+				],
+				'example': [
+					{'code': [['starts', 'Hi World', 'Hi']], 'result': True},
+					{'code': [['starts', 'Hi World', 'World']], 'result': False}
+				]
+			},
+			'ends': {
+				'group': 'text',
+				'method': 'ends',
+				'alias': None,
+				'description': 'Check if text ends with a specific substring',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''},
+					{'name': 'subtext', 'type': 'text', 'default': ''}
+				],
+				'example': [
+					{'code': [['ends', 'Hi World', 'World']], 'result': True},
+					{'code': [['ends', 'Hi World', 'Hi']], 'result': False}
+				]
+			},
+			'strip': {
+				'group': 'text',
+				'method': 'strip',
+				'alias': None,
+				'description': 'Remove leading and trailing characters from text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''},
+					{'name': 'character', 'type': 'text', 'default': [' ', '\r', '\n', '\t']}
+				],
+				'example': [
+					{'code': [['strip', '  text  ']], 'result': 'text'},
+					{'code': [['strip', '\ttext\n']], 'result': 'text'},
+					{'code': [['strip', '- text -', '- ']], 'result': 'text -'},
+					{'code': [['strip', '- text -', ['-', ' ']]], 'result': 'text'}
+				]
+			},
+			'strip.start': {
+				'group': 'text',
+				'method': 'strip_start',
+				'alias': None,
+				'description': 'Remove leading characters from text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None, 
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''},
+					{'name': 'character', 'type': 'text', 'default': [' ', '\r', '\n', '\t']}
+				],
+				'example': [
+					{'code': [['strip.start', '  text  ']], 'result': 'text  '},
+					{'code': [['strip.start', '\ttext\n']], 'result': 'text\n'},
+					{'code': [['strip.start', '- text -', '- ']], 'result': 'text -'},
+					{'code': [['strip.start', '- text -', ['-', ' ']]], 'result': 'text -'}
+				]
+			},
+			'strip.end': {
+				'group': 'text',
+				'method': 'strip_end',
+				'alias': None,
+				'description': 'Remove trailing characters from text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''},
+					{'name': 'character', 'type': 'text', 'default': [' ', '\r', '\n', '\t']}
+				],
+				'example': [
+					{'code': [['strip.end', '  text  ']], 'result': '  text'},
+					{'code': [['strip.end', '\ttext\n']], 'result': '\ttext'},
+					{'code': [['strip.end', '- text -', '- ']], 'result': '- text -'},
+					{'code': [['strip.end', '- text -', ['-', ' ']]], 'result': '- text'}
+				]
+			},
+			'replace': {
+				'group': 'text',
+				'method': 'replace',
+				'alias': None,
+				'description': 'Replace occurrences of a substring within text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''},
+					{'name': 'search', 'type': ['text', 'dict'], 'default': None},
+					{'name': 'replace', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['replace', 'hello world', 'world', 'there']], 'result': 'hello there'},
+					{'code': [['replace', 'aabbcc', 'b', 'x']], 'result': 'aaxxcc'}
+				]
+			},
+			'find': {
+				'group': 'text',
+				'method': 'find',
+				'alias': None,
+				'description': 'Locate a substring within text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['find', 'hello world', 'world']], 'result': 6},
+					{'code': [['find', 'abcabc', 'b']], 'result': 1}
+				]
+			},
+			'parse': {
+				'group': 'text',
+				'method': 'parse',
+				'alias': None,
+				'description': 'Parse text into structured data',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['parse', 'json', '{"x": 5}']], 'result': {'x': 5}},
+					{'code': [['parse', 'number', '42']], 'result': 42}
+				]
+			},
+			'part': {
+				'group': 'text',
+				'method': 'part',
+				'alias': None,
+				'description': 'Extract a part of the text or list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['part', 'hello world', 0, 5]], 'result': 'hello'},
+					{'code': [['part', 'abcdef', 2, 4]], 'result': 'cd'}
+				]
+			},
+			'split': {
+				'group': 'text',
+				'method': 'split',
+				'alias': None,
+				'description': 'Split text into parts based on a delimiter',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['split', 'a,b,c', ',']], 'result': ['a', 'b', 'c']},
+					{'code': [['split', 'one two three', ' ']], 'result': ['one', 'two', 'three']}
+				]
+			},
+			'join': {
+				'group': 'text',
+				'method': 'join',
+				'alias': None,
+				'description': 'Join a list of strings into a single string with a delimiter',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['join', ['a', 'b', 'c'], ',']], 'result': 'a,b,c'},
+					{'code': [['join', ['2023', '12', '31'], '-']], 'result': '2023-12-31'}
+				]
+			},
+			'date': {
+				'group': 'text',
+				'method': 'date',
+				'alias': None,
+				'description': 'Format or parse date-related information',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'name', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['date', '{year}-{month}-{day} {hour}:{minute}:{second}.{millisecond}', 1744095313.123]], 'result': '2025-04-08 06:55:13.123'},
+					{'code': [['date', '{month short}', 1744095313]], 'result': '4'},
+					{'code': [['date', '2025-04-08 06:55:13.123', '{year}-{month}-{day} {hour}:{minute}:{second}.{millisecond}']], 'result': 1744095313.123}
+				]
+			},
+			'escape': {
+				'group': 'text',
+				'method': 'escape',
+				'alias': 'e',
+				'description': 'Escape special characters in a text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['escape.html', '<div>Test</div>']], 'result': '&lt;div&gt;Test&lt;/div&gt;'},
+					{'code': [['escape.html', '\'Quote\'']], 'result': '&quot;Quote&quot;'}
+				]
+			},
+			'unescape': {
+				'group': 'text',
+				'method': 'unescape',
+				'alias': None,
+				'description': 'Unescape special characters in a text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['unescape.html', '&lt;div&gt;Test&lt;/div&gt;']], 'result': '<div>Test</div>'},
+					{'code': [['unescape.html', '&quot;Quote&quot;']], 'result': '\'Quote\''}
+				]
+			},
+			'words': {
+				'group': 'text',
+				'method': 'words',
+				'alias': None,
+				'description': 'Split text into words',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''}
+				],
+				'example': [
+					{'code': [['words', 'Hello world! How are you?']], 'result': ['Hello', 'world', 'How', 'are', 'you']},
+					{'code': [['words', 'one,two,three', ',']], 'result': ['one', 'two', 'three']}
+				]
+			},
+			'sentences': {
+				'group': 'text',
+				'method': 'sentences',
+				'alias': None,
+				'description': 'Split text into sentences',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''}
+				],
+				'example': [
+					{'code': [['sentences', 'First sentence. Second one! Third?']], 'result': ['First sentence.', 'Second one!', 'Third?']}
+				]
+			},
+			'lines': {
+				'group': 'text',
+				'method': 'lines',
+				'alias': None,
+				'description': 'Split text into lines',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''}
+				],
+				'example': [
+					{'code': [['lines', 'text\ntext\n\t\ntext\n\n']], 'result': ['text', 'text', 'text']}
+				]
+			},
+			'translate': {
+				'group': 'text',
+				'method': 'translate',
+				'alias': None,
+				'description': 'Translate text from one language to another',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''},
+					{'name': 'from', 'type': 'text', 'default': None},
+					{'name': 'to', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['translate', 'Hello']], 'result': 'translate to the current language', 'test': False},
+					{'code': [['translate', 'Hello', 'en', 'es']], 'result': 'Hola'},
+					{'code': [['translate', 'es', 'Hello']], 'result': 'Hola'}
+				]
+			},
+			'spellcheck': {
+				'group': 'text',
+				'method': 'spellcheck',
+				'alias': None,
+				'description': 'Spell check in different languages',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'text', 'type': 'text', 'default': ''},
+					{'name': 'language', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [['spellcheck', 'Hi Warld']], 'result': {'text': 'Hi World', 'error': [{'position': 3, 'text': 'Warld', 'correct': 'World'}]}}
+				]
+			},
+
+			# list
+
+			'push': {
+				'group': 'list',
+				'method': 'push',
+				'alias': None,
+				'description': 'Add an element to the end of a list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['push', [1, 2], 3]], 'result': [1, 2, 3]},
+					{'code': [['push', [], 'new']], 'result': ['new']}
+				]
+			},
+			'pop': {
+				'group': 'list',
+				'method': 'pop',
+				'alias': None,
+				'description': 'Remove and return an element from the end of a list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['pop', [1, 2, 3]]], 'result': 3},
+					{'code': [['pop', ['a']]], 'result': 'a'}
+				]
+			},
+			'merge': {
+				'group': 'list',
+				'method': 'merge',
+				'alias': None,
+				'description': 'Combine multiple lists into one',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['merge', [1, 2], [3, 4]]], 'result': [1, 2, 3, 4]},
+					{'code': [['merge', ['a'], ['b', 'c']]], 'result': ['a', 'b', 'c']}
+				]
+			},
+			'reverse': {
+				'group': 'list',
+				'method': 'reverse',
+				'alias': None,
+				'description': 'Reverse the order of elements in a list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['reverse', [1, 2, 3]]], 'result': [3, 2, 1]},
+					{'code': [['reverse', ['a', 'b']]], 'result': ['b', 'a']}
+				]
+			},
+			'shuffle': {
+				'group': 'list',
+				'method': 'shuffle',
+				'alias': None,
+				'description': 'Randomly reorder elements in a list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['shuffle', [1, 2, 3, 4]]], 'test': False},
+					{'code': [['shuffle', ['a', 'b', 'c']]], 'test': False}
+				]
+			},
+			'unique': {
+				'group': 'list',
+				'method': 'unique',
+				'alias': None,
+				'description': 'Leave only unique values in a list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['unique', [1, 2, 3, 4, 2, 1]]], 'result': [1, 2, 3, 4], 'test': False},
+					{'code': [['unique', ['a', 'a', 'b']]],  'result': ['a', 'b'], 'test': False}
+				]
+			},
+			'map': {
+				'group': 'list',
+				'method': 'map',
+				'alias': None,
+				'description': 'Apply a function to each element in a list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['map', [1, 2, 3], ['*', 'item', 2]]], 'result': [2, 4, 6]},
+					{'code': [['map', ['a', 'b'], ['upper', 'item']]], 'result': ['A', 'B']}
+				]
+			},
+			'reduce': {
+				'group': 'list',
+				'method': 'reduce',
+				'alias': None,
+				'description': 'Apply a function cumulatively to the elements in a list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['reduce', [1, 2, 3, 4], ['+', 'acc', 'item'], 0]], 'result': 10},
+					{'code': [['reduce', [2, 3, 4], ['*', 'acc', 'item'], 1]], 'result': 24}
+				]
+			},
+			'filter': {
+				'group': 'list',
+				'method': 'filter',
+				'alias': None,
+				'description': 'Apply a filter function to each element in a list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['filter', [1, 2, 3], ['>', 2]]], 'result': [3]}
+				]
+			},
+			'indexes': {
+				'group': 'list',
+				'method': 'names',
+				'alias': None,
+				'description': 'Retrieve all keys or attribute names from a structure',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['names', {'x': 1, 'y': 2}]], 'result': ['x', 'y']},
+					{'code': [['names', ['a', 'b', 'c']]], 'result': ['0', '1', '2']}
+				]
+			},
+			'values': {
+				'group': 'list',
+				'method': 'values',
+				'alias': None,
+				'description': 'Retrieve all values from a structure',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['values', {'x': 1, 'y': 2}]], 'result': [1, 2]},
+					{'code': [['values', ['a', 'b', 'c']]], 'result': ['a', 'b', 'c']}
+				]
+			},
+
+			# math
+
+			'sin': {
+				'group': 'math',
+				'method': 'sin',
+				'alias': None,
+				'description': 'Sine of the value (in radians)',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['sin', 0.1]], 'result': 0.0998, 'round': 4}
+				]
+			},
+			'cos': {
+				'group': 'math',
+				'method': 'cos',
+				'alias': None,
+				'description': 'Cosine of the value (in radians)',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['cos', 0.1]], 'result': 0.995, 'round': 3}
+				]
+			},
+			'tan': {
+				'group': 'math',
+				'method': 'tan',
+				'alias': None,
+				'description': 'Tangent of the value (in radians)',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['tan', 0.1]], 'result': 0.1, 'round': 3}
+				]
+			},
+			'sinh': {
+				'group': 'math',
+				'method': 'sinh',
+				'alias': None,
+				'description': 'Hyperbolic sine of the value',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['sinh', 0.1]], 'result': 0.1, 'round': 3}
+				]
+			},
+			'cosh': {
+				'group': 'math',
+				'method': 'cosh',
+				'alias': None,
+				'description': 'Hyperbolic cosine of the value',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['cosh', 0.1]], 'result': 1.005, 'round': 3}
+				]
+			},
+			'tanh': {
+				'group': 'math',
+				'method': 'tanh',
+				'alias': None,
+				'description': 'Hyperbolic tangent of the valu',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['tanh', 0.1]], 'result': 0.1, 'round': 3}
+				]
+			},
+			'asin': {
+				'group': 'math',
+				'method': 'asin',
+				'alias': None,
+				'description': 'Arc sine of the value',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['asin', 0.1]], 'result': 0.1, 'round': 3}
+				]
+			},
+			'acos': {
+				'group': 'math',
+				'method': 'acos',
+				'alias': None,
+				'description': 'Arc cosine of the value',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['acos', 0.1]], 'result': 1.471, 'round': 3}
+				]
+			},
+			'atan': {
+				'group': 'math',
+				'method': 'atan',
+				'alias': None,
+				'description': 'Arc tangent of the value',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['atan', 0.1]], 'result': 0.1, 'round': 3}
+				]
+			},
+			'asinh': {
+				'group': 'math',
+				'method': 'asinh',
+				'alias': None,
+				'description': 'Arc hyperbolic sine of the value',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['asinh', 0.1]], 'result': 0.1, 'round': 3}
+				]
+			},
+			'acosh': {
+				'group': 'math',
+				'method': 'acosh',
+				'alias': None,
+				'description': 'Arc hyperbolic cosine of the value',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['acosh', 2]], 'result': 1.317, 'round': 3}
+				]
+			},
+			'atanh': {
+				'group': 'math',
+				'method': 'atanh',
+				'alias': None,
+				'description': 'Arc hyperbolic tangent of the value',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['atanh', 0.1]], 'result': 0.1, 'round': 3}
+				]
+			},
+			'round': {
+				'group': 'math',
+				'method': 'round',
+				'alias': None,
+				'description': 'Rounds a number to the nearest integer or to the specified number of decimal places',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['round', 0.1]], 'result': 0},
+					{'code': [['round', 0.7]], 'result': 1},
+					{'code': [['round', -0.7]], 'result': -1},
+					{'code': [['round', 0.123, 2]], 'result': 0.12}
+				]
+			},
+			'floor': {
+				'group': 'math',
+				'method': 'floor',
+				'alias': None,
+				'description': 'Largest integer less than or equal to a number',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['floor', 0.1]], 'result': 0},
+					{'code': [['floor', 0.1]], 'result': 0},
+					{'code': [['floor', 0.7]], 'result': 0},
+					{'code': [['floor', -0.7]], 'result': -1}
+				]
+			},
+			'ceil': {
+				'group': 'math',
+				'method': 'ceil',
+				'alias': None,
+				'description': 'Smallest integer greater than or equal to a number',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['ceil', 0.1]], 'result': 1},
+					{'code': [['ceil', 0.7]], 'result': 1},
+					{'code': [['ceil', -0.7]], 'result': 0}
+				]
+			},
+			'log': {
+				'group': 'math',
+				'method': 'log',
+				'alias': None,
+				'description': 'Logarithm (natural by default) of a number',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'},
+					{'name': 'base', 'type': 'number', 'default': None}
+				],
+				'example': [
+					{'code': [['log', 0.1]], 'result': -2.303, 'round': 3},
+					{'code': [['log', 0.1, 2]], 'result': -3.322, 'round': 3},
+					{'code': [['log', 0.1, 10]], 'result': -1, 'round': 3}
+				]
+			},
+			'fact': {
+				'group': 'math',
+				'method': 'factorial',
+				'alias': None,
+				'description': 'Factorial of a given non-negative number',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['fact', 5]], 'result': 120},
+					{'code': [['fact', 0]], 'result': 1}
+				]
+			},
+			'fib': {
+				'group': 'math',
+				'method': 'fibonacci',
+				'alias': None,
+				'description': 'Fibonacci numbers up to a specified index',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'number', 'type': 'number', 'default': 10},
+					{'name': 'multiply', 'type': 'number', 'default': 1},
+					{'name': 'shift', 'type': 'number', 'default': 0}
+				],
+				'example': [
+					{'code': [['fib', 5]], 'result': [0, 1, 1, 2, 3]},
+					{'code': [['fib', 7]], 'result': [0, 1, 1, 2, 3, 5, 8]},
+					{'code': [['fib', 5, 3, 1]], 'result': [1, 4, 4, 7, 10]},
+				]
+			},
+			'gr': {
+				'group': 'math',
+				'method': 'golden_ratio',
+				'alias': None,
+				'description': 'Golden ratio of a number',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'},
+					{'name': 'part', 'type': 'number', 'default': None}
+				],
+				'example': [
+					{'code': [['gr', 10]], 'result': {'short': 3.820, 'long': 6.180, 'total': 10}, 'round': 3},
+					{'code': [['gr', 10, 'short']], 'result': {'short': 10, 'long': 16.18, 'total': 26.18}, 'round': 3},
+					{'code': [['gr', 10, 'long']], 'result': {'short': 6.18, 'long': 10, 'total': 16.18}, 'round': 3}
+				]
+			},
+			'abs': {
+				'group': 'math',
+				'method': 'abs',
+				'alias': None,
+				'description': 'Absolute value of a number',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'value', 'type': 'number'}
+				],
+				'example': [
+					{'code': [['abs', -5]], 'result': 5},
+					{'code': [['abs', 3.14]], 'result': 3.14}
+				]
+			},
+			'min': {
+				'group': 'math',
+				'method': 'min',
+				'alias': None,
+				'description': 'Smallest of a list of numbers',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'list', 'type': 'list'}
+				],
+				'example': [
+					{'code': [['min', [5, 3, 8, 1]]], 'result': 1},
+					{'code': [['min', [-2, -5, 0]]], 'result': -5}
+				]
+			},
+			'max': {
+				'group': 'math',
+				'method': 'max',
+				'alias': None,
+				'description': 'Largest of a list of numbers',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'list', 'type': 'list'}
+				],
+				'example': [
+					{'code': [['max', [5, 3, 8, 1]]], 'result': 8},
+					{'code': [['max', [-2, -5, 0]]], 'result': 0}
+				]
+			},
+			'avg': {
+				'group': 'math',
+				'method': 'avg',
+				'alias': None,
+				'description': 'Average value of a list of numbers',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'list', 'type': 'list'}
+				],
+				'example': [
+					{'code': [['avg', [1, 2, 3, 4, 5]]], 'result': 3},
+					{'code': [['avg', [10, 20]]], 'result': 15}
+				]
+			},
+			'sum': {
+				'group': 'math',
+				'method': 'sum',
+				'alias': None,
+				'description': 'Sum of a list of numbers',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'list', 'type': 'list'}
+				],
+				'example': [
+					{'code': [['sum', [1, 2, 3, 4, 5]]], 'result': 15},
+					{'code': [['sum', [10, 20, 30]]], 'result': 60}
+				]
+			},
+			'random': {
+				'group': 'math',
+				'method': 'random',
+				'alias': None,
+				'description': 'Generates a pseudo-random number',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'from', 'type': ['number', 'text', 'dict', 'list'], 'default': None},
+					{'name': 'to', 'type': 'number', 'default': None}
+				],
+				'example': [
+					{'code': [['random']], 'type': 'number', 'range': [0, 1]},
+					{'code': [['random', 10]], 'type': 'number', 'range': [0, 10]},
+					{'code': [['random', 10, 20]], 'type': 'number', 'range': [10, 20]},
+					{'code': [['random', True]], 'type': 'bool'},
+					{'code': [['random', 'abcd']], 'type': 'text', 'length': 1},
+					{'code': [['random', [1, 2, 3]]], 'type': 'number', 'range': [1, 3]},
+					{'code': [['random', {'a': 1, 'b': 2}]], 'type': 'number', 'range': [1, 2]}
+				]
+			},
+			'random.seed': {
+				'group': 'math',
+				'method': 'random_seed',
+				'alias': None,
+				'description': 'Sets or gets the seed for the random number generator to produce reproducible results',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'seed', 'type': 'text', 'default': None}
+				],
+				'example': [
+					{'code': [
+						['random.seed', 'uniqueseed'],
+						['random.seed']
+					], 'result': 'uniqueseed'}
+				]
+			},
+
+			# time
+
+			'time': {
+				'group': 'time',
+				'method': 'time',
+				'alias': None,
+				'description': 'Provides current time since the epoch (1970-01-01 00:00:00 UTC) or calculates time passed since a given start time',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'dot', 'type': 'number', 'default': 0}
+				],
+				'example': [
+					{'code': [['time']], 'result': 1678901234, 'test': False},
+					{'code': [['time', 1678901234]], 'result': 34, 'test': False}
+				]
+			},
+			'timer': {
+				'group': 'time',
+				'method': 'timer',
+				'alias': None,
+				'description': 'Creates a timer that can be used to trigger events at specific intervals',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['timer', 'start', 5]], 'result': 'timer_id_1'}
+				]
+			},
+			'timer.remove': {
+				'group': 'time',
+				'method': 'timer_remove',
+				'alias': None,
+				'description': 'Removes previously created timer',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['timer.remove', 'timer_id_1']], 'result': True}
+				]
+			},
+			'timecheck': {
+				'group': 'time',
+				'method': 'timecheck',
+				'alias': 't',
+				'description': 'Stopwatch for calculating the time spent on operations',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['t', 'start']], 'result': None},
+					{'code': [['t', 'stop']], 'result': 1.234, 'round': 3}
+				]
+			},
+			'wait': {
+				'group': 'time',
+				'method': 'wait',
+				'alias': None,
+				'description': 'Pauses execution for a specified number of seconds',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'seconds', 'type': 'number', 'default': 1}
+				],
+				'example': [
+					{'code': [['wait', 0.1]], 'result': None}
+				]
+			},
+
+			# crypto
+
+			'encrypt': {
+				'group': 'crypto',
+				'method': 'encrypt',
+				'alias': None,
+				'description': 'Encrypts data using a specified key',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['encrypt', 'secret', 'mykey']], 'result': 'aGVsbG8='}
+				]
+			},
+			'decrypt': {
+				'group': 'crypto',
+				'method': 'decrypt',
+				'alias': None,
+				'description': 'Decrypts previously encrypted data using the specified key',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['decrypt', 'aGVsbG8=', 'mykey']], 'result': 'secret'}
+				]
+			},
+			'hash': {
+				'group': 'crypto',
+				'method': 'hash',
+				'alias': None,
+				'description': 'Generates a hash for the data or generates a random text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['hash', 'hello']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
+				]
+			},
+			'uuid': {
+				'group': 'crypto',
+				'method': 'uuid',
+				'alias': None,
+				'description': 'Generates a universally unique identifier',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['uuid']], 'result': '550e8400-e29b-41d4-a716-446655440000'}
+				]
+			},
+			'md5': {
+				'group': 'crypto',
+				'method': 'md5',
+				'alias': None,
+				'description': 'Generates an MD5 hash of a text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['md5', 'hello']], 'result': '5d41402abc4b2a76b9719d911017c592'}
+				]
+			},
+			'sha1': {
+				'group': 'crypto',
+				'method': 'sha1',
+				'alias': None,
+				'description': 'Generates an SHA-1 hash of a text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['sha1', 'hello']], 'result': 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d'}
+				]
+			},
+			'sha256': {
+				'group': 'crypto',
+				'method': 'sha256',
+				'alias': None,
+				'description': 'Generates an SHA-256 hash of a text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['sha256', 'hello']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
+				]
+			},
+			'sha512': {
+				'group': 'crypto',
+				'method': 'sha512',
+				'alias': None,
+				'description': 'Generates an SHA-512 hash of a text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['sha512', 'hello']], 'result': '9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043'}
+				]
+			},
+			'crc32': {
+				'group': 'crypto',
+				'method': 'crc32',
+				'alias': None,
+				'description': 'Calculates the CRC32 checksum of a text',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['crc32', 'hello']], 'result': 907060870}
+				]
+			},
+			'base64': {
+				'group': 'crypto',
+				'method': 'base64_encode',
+				'alias': None,
+				'description': 'Encodes the data into Base64 format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['base64', 'hello']], 'result': 'aGVsbG8='}
+				]
+			},
+			'base64.decode': {
+				'group': 'crypto',
+				'method': 'base64_decode',
+				'alias': None,
+				'description': 'Decodes Base64 encoded data back to its original form',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['base64.decode', 'aGVsbG8=']], 'result': 'hello'}
+				]
+			},
+			'base85': {
+				'group': 'crypto',
+				'method': 'base85_encode',
+				'alias': None,
+				'description': 'Encodes the data into Base85 format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['base64', 'hello']], 'result': 'aGVsbG8='}
+				]
+			},
+			'base85.decode': {
+				'group': 'crypto',
+				'method': 'base85_decode',
+				'alias': None,
+				'description': 'Decodes Base85 encoded data back to its original form',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['base64.decode', 'aGVsbG8=']], 'result': 'hello'}
+				]
+			},
+			'gzip': {
+				'group': 'crypto',
+				'method': 'gzip_encode',
+				'alias': None,
+				'description': 'Compresses data using the GZip compression algorithm',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['gzip', 'hello']], 'result': 'H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA=='}
+				]
+			},
+			'gzip.decode': {
+				'group': 'crypto',
+				'method': 'gzip_decode',
+				'alias': None,
+				'description': 'Decompresses GZip compressed data',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['gzip.decode', 'H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==']], 'result': 'hello'}
+				]
+			},
+			'rsa': {
+				'group': 'crypto',
+				'method': 'rsa_encode',
+				'alias': None,
+				'description': 'Encrypts data using RSA encryption with a public key',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['rsa', 'secret', 'public_key']], 'result': 'encrypted_data'}
+				]
+			},
+			'rsa.decode': {
+				'group': 'crypto',
+				'method': 'rsa_decode',
+				'alias': None,
+				'description': 'Decrypts data encrypted with RSA using the corresponding private key',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['rsa.decode', 'encrypted_data', 'private_key']], 'result': 'secret'}
+				]
+			},
+			'ssl': {
+				'group': 'crypto',
+				'method': 'ssl_encode',
+				'alias': None,
+				'description': 'Performs SSL encryption on data to secure communication',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['ssl', 'data']], 'result': 'encrypted_ssl_data'}
+				]
+			},
+			'ssl.decode': {
+				'group': 'crypto',
+				'method': 'ssl_decode',
+				'alias': None,
+				'description': 'Decrypts data encrypted with SSL for secure data transfer',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['ssl.decode', 'encrypted_ssl_data']], 'result': 'data'}
+				]
+			},
+			'bcrypt': {
+				'group': 'crypto',
+				'method': 'bcrypt_encode',
+				'alias': None,
+				'description': 'Hashes a password using the bcrypt algorithm for secure storage',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['bcrypt', 'password']], 'result': '$2a$12$saltpasswordhash'}
+				]
+			},
+			'bcrypt.check': {
+				'group': 'crypto',
+				'method': 'bcrypt_check',
+				'alias': None,
+				'description': 'Verifies a password against a bcrypt hashed password',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['bcrypt.check', 'password', '$2a$12$saltpasswordhash']], 'result': True}
+				]
+			},
+
+			# file
+
+			'file': {
+				'group': 'file',
+				'method': 'file',
+				'alias': None,
+				'description': 'Read or write data to a file at a specified path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file', 'read', 'test.txt']], 'result': 'file contents'},
+					{'code': [['file', 'write', 'test.txt', 'new content']], 'result': True}
+				]
+			},
+			'file.exists': {
+				'group': 'file',
+				'method': 'file_exists',
+				'alias': None,
+				'description': 'Checks if a specified file exists at the given path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.exists', 'test.txt']], 'result': True}
+				]
+			},
+			'file.lines': {
+				'group': 'file',
+				'method': 'file_read_lines',
+				'alias': None,
+				'description': 'Reads a specified file line by line into a list',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.read.lines', 'test.txt']], 'result': ['line1', 'line2', 'line3']}
+				]
+			},
+			'file.remove': {
+				'group': 'file',
+				'method': 'file_remove',
+				'alias': None,
+				'description': 'Removes a specified file from the file system',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.remove', 'test.txt']], 'result': True}
+				]
+			},
+			'file.move': {
+				'group': 'file',
+				'method': 'file_move',
+				'alias': None,
+				'description': 'Moves a specified file to a new location',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.move', 'old.txt', 'new.txt']], 'result': True}
+				]
+			},
+			'file.copy': {
+				'group': 'file',
+				'method': 'file_copy',
+				'alias': None,
+				'description': 'Copies a specified file to a new location',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.copy', 'source.txt', 'dest.txt']], 'result': True}
+				]
+			},
+			'file.rename': {
+				'group': 'file',
+				'method': 'file_rename',
+				'alias': None,
+				'description': 'Renames a specified file',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.rename', 'old.txt', 'new.txt']], 'result': True}
+				]
+			},
+			'file.link': {
+				'group': 'file',
+				'method': 'file_link',
+				'alias': None,
+				'description': 'Creates a hard link to a specified file',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.link', 'source.txt', 'link.txt']], 'result': True}
+				]
+			},
+			'file.link.exists': {
+				'group': 'file',
+				'method': 'file_link_exists',
+				'alias': None,
+				'description': 'Checks if a hard link exists at the given path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.link.exists', 'link.txt']], 'result': True}
+				]
+			},
+			'file.info': {
+				'group': 'file',
+				'method': 'file_info',
+				'alias': None,
+				'description': 'Retrieves information about a specified file',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.info', 'test.txt']], 'result': {'size': 1024, 'modified': 1678901234}}
+				]
+			},
+			'file.size': {
+				'group': 'file',
+				'method': 'file_size',
+				'alias': None,
+				'description': 'Returns the size of a specified file in bytes',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.size', 'test.txt']], 'result': 1024}
+				]
+			},
+			'file.permission': {
+				'group': 'file',
+				'method': 'file_permission',
+				'alias': None,
+				'description': 'Retrieves or sets permissions for a specified file',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.permission', 'test.txt', 'rw-r--r--']], 'result': True}
+				]
+			},
+			'file.time': {
+				'group': 'file',
+				'method': 'file_time',
+				'alias': None,
+				'description': 'Gets or sets the modified timestamp for a specified file',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.time', 'test.txt']], 'result': 1678901234}
+				]
+			},
+			'file.sha256': {
+				'group': 'file',
+				'method': 'file_sha256',
+				'alias': None,
+				'description': 'Computes the SHA256 checksum of a specified file',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [
+					{'name': 'path', 'type': 'text'}
+				],
+				'example': [
+					{'code': [['file.sha256', 'test.txt']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
+				]
+			},
+			'file.sha512': {
+				'group': 'file',
+				'method': 'file_sha512',
+				'alias': None,
+				'description': 'Computes the SHA512 checksum of a specified file',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [
+					{'name': 'path', 'type': 'text'}
+				],
+				'example': [
+					{'code': [['file.sha256', 'test.txt']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
+				]
+			},
+			'file.crc32': {
+				'group': 'file',
+				'method': 'file_crc32',
+				'alias': None,
+				'description': 'Computes the CRC32 checksum for a specified file',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.crc32', 'test.txt']], 'result': 907060870}
+				]
+			},
+			'file.base64': {
+				'group': 'file',
+				'method': 'file_base64',
+				'alias': None,
+				'description': 'Encodes a specified file to base64 format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.base64', 'test.txt']], 'result': 'aGVsbG8='}
+				]
+			},
+			'file.zip': {
+				'group': 'file',
+				'method': 'file_zip',
+				'alias': None,
+				'description': 'Compresses a specified file into a ZIP archive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.zip', 'test.txt', 'archive.zip']], 'result': True}
+				]
+			},
+			'file.zip.list': {
+				'group': 'file',
+				'method': 'file_zip_list',
+				'alias': None,
+				'description': 'Lists the files contained within a ZIP archive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.zip.list', 'archive.zip']], 'result': ['test.txt']}
+				]
+			},
+			'file.zip.exists': {
+				'group': 'file',
+				'method': 'file_zip_exists',
+				'alias': None,
+				'description': 'Checks if a specific file exists within a ZIP archive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.zip.exists', 'archive.zip', 'test.txt']], 'result': True}
+				]
+			},
+			'file.zip.read': {
+				'group': 'file',
+				'method': 'file_zip_read',
+				'alias': None,
+				'description': 'Reads a specific file from within a ZIP archive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.zip.read', 'archive.zip', 'test.txt']], 'result': 'file contents'}
+				]
+			},
+			'file.zip.remove': {
+				'group': 'file',
+				'method': 'file_zip_remove',
+				'alias': None,
+				'description': 'Removes a specific file from a ZIP archive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.zip.remove', 'archive.zip', 'test.txt']]}
+				]
+			},
+			'file.unzip': {
+				'group': 'file',
+				'method': 'file_unzip',
+				'alias': None,
+				'description': 'Extracts files from a ZIP archive into a specified directory',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.unzip', 'archive.zip', 'destination']]}
+				]
+			},
+			'file.gzip': {
+				'group': 'file',
+				'method': 'file_gzip',
+				'alias': None,
+				'description': 'Compresses a specified file using GZip compression',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.gzip', 'test.txt', 'test.txt.gz']]}
+				]
+			},
+			'file.ungzip': {
+				'group': 'file',
+				'method': 'file_ungzip',
+				'alias': None,
+				'description': 'Decompresses a GZip-compressed file',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.ungzip', 'test.txt.gz', 'test.txt']], 'result': True}
+				]
+			},
+			'file.void': {
+				'group': 'file',
+				'method': 'file_void',
+				'alias': None,
+				'description': 'Compresses the specified file using GZip compression and places it in a Void container',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.void', 'test.txt', 'test.void']], 'result': True}
+				]
+			},
+			'file.unvoid': {
+				'group': 'file',
+				'method': 'file_unvoid',
+				'alias': None,
+				'description': 'Decompresses a GZip-compressed files and directories from a Void container',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['file.unvoid', 'test.void', 'output']], 'result': True}
+				]
+			},
+			'dir': {
+				'group': 'file',
+				'method': 'dir',
+				'alias': None,
+				'description': 'Lists the contents of a specified directory',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.list', 'folder']], 'result': ['file1.txt', 'file2.txt', 'subfolder']},
+					{'code': [['dir.list', 'project/src']], 'result': ['main.py', 'utils.py']}
+				]
+			},
+			'dir.create': {
+				'group': 'file',
+				'method': 'dir_create',
+				'alias': None,
+				'description': 'Creates a new directory at a specified path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.create', 'new_folder']], 'test': False},
+					{'code': [['dir.create', 'path/to/folder']], 'test': False}
+				]
+			},
+			'dir.exists': {
+				'group': 'file',
+				'method': 'dir_exists',
+				'alias': None,
+				'description': 'Checks if a specified directory exists',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.exists', 'folder']], 'result': True},
+					{'code': [['dir.exists', 'nonexistent']], 'result': False}
+				]
+			},
+			'dir.remove': {
+				'group': 'file',
+				'method': 'dir_remove',
+				'alias': None,
+				'description': 'Removes a specified directory and its contents',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.remove', 'temp']], 'test': False},
+					{'code': [['dir.remove', 'old_backup']], 'test': False}
+				]
+			},
+			'dir.move': {
+				'group': 'file',
+				'method': 'dir_move',
+				'alias': None,
+				'description': 'Moves a specified directory to a new location',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.move', 'old', 'new']], 'test': False},
+					{'code': [['dir.move', 'temp', 'perm']], 'test': False}
+				]
+			},
+			'dir.copy': {
+				'group': 'file',
+				'method': 'dir_copy',
+				'alias': None,
+				'description': 'Copies a specified directory and its contents to a new location',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.copy', 'source', 'destination']], 'test': False},
+					{'code': [['dir.copy', 'backup', 'archive/backup']], 'test': False}
+				]
+			},
+			'dir.rename': {
+				'group': 'file',
+				'method': 'dir_rename',
+				'alias': None,
+				'description': 'Renames a specified directory',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.rename', 'old_name', 'new_name']], 'test': False},
+					{'code': [['dir.rename', 'temp', 'final']], 'test': False}
+				]
+			},
+			'dir.clear': {
+				'group': 'file',
+				'method': 'dir_clear',
+				'alias': None,
+				'description': 'Clears all contents of a specified directory without deleting the directory itself',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.clear', 'temp']], 'test': False},
+					{'code': [['dir.clear', 'cache']], 'test': False}
+				]
+			},
+			'dir.info': {
+				'group': 'file',
+				'method': 'dir_info',
+				'alias': None,
+				'description': 'Retrieves information about a specified directory',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.info', 'folder']], 'result': {'size': 1024, 'files': 10, 'modified': 1672531200}, 'test': False},
+					{'code': [['dir.info', 'project']], 'result': {'size': 2048, 'files': 15, 'modified': 1672531200}, 'test': False}
+				]
+			},
+			'dir.size': {
+				'group': 'file',
+				'method': 'dir_size',
+				'alias': None,
+				'description': 'Calculates the total size of a specified directory and its contents',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.size', 'data']], 'result': 1048576},
+					{'code': [['dir.size', 'downloads']], 'result': 5242880}
+				]
+			},
+			'dir.permission': {
+				'group': 'file',
+				'method': 'dir_permission',
+				'alias': None,
+				'description': 'Gets or sets the permissions of a specified directory',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.permission', 'scripts', '755']], 'test': False},
+					{'code': [['dir.permission', 'uploads', '775']], 'test': False}
+				]
+			},
+			'dir.time': {
+				'group': 'file',
+				'method': 'dir_time',
+				'alias': None,
+				'description': 'Gets or sets the timestamps of a specified directory',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.time', 'logs']], 'result': 1672531200, 'test': False},
+					{'code': [['dir.time', 'backups', 'created']], 'result': 1672531200, 'test': False}
+				]
+			},
+			'dir.zip': {
+				'group': 'file',
+				'method': 'dir_zip',
+				'alias': None,
+				'description': 'Compresses a specified directory into a ZIP archive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.zip', 'archive.zip', 'folder']], 'test': False},
+					{'code': [['dir.zip', 'backup.zip', 'data']], 'test': False}
+				]
+			},
+			'dir.void': {
+				'group': 'file',
+				'method': 'dir_void',
+				'alias': None,
+				'description': 'Compresses a specified directory into a Void container',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['dir.void', 'data']], 'result': 'data.void', 'test': False},
+					{'code': [['dir.void', 'project', 'backup.void']], 'test': False}
+				]
+			},
+			'drive': {
+				'group': 'file',
+				'method': 'drive_list',
+				'alias': None,
+				'description': 'Lists all available drives on the system',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.list']], 'result': ['C:', 'D:', 'E:'], 'test': False},
+					{'code': [['drive.list', 'removable']], 'result': ['D:', 'E:'], 'test': False}
+				]
+			},
+			'drive.name': {
+				'group': 'file',
+				'method': 'drive_name',
+				'alias': None,
+				'description': 'Gets or sets the name of a specified drive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.name', 'C:']], 'result': 'System'},
+					{'code': [['drive.name', 'D:', 'Data']], 'test': False}
+				]
+			},
+			'drive.size': {
+				'group': 'file',
+				'method': 'drive_size',
+				'alias': None,
+				'description': 'Total size of a specified drive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.size', 'C:']], 'result': 256000000000},
+					{'code': [['drive.size', 'D:']], 'result': 1000000000000}
+				]
+			},
+			'drive.used': {
+				'group': 'file',
+				'method': 'drive_used',
+				'alias': None,
+				'description': 'Amount of used space on a specified drive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.used', 'C:']], 'result': 128000000000},
+					{'code': [['drive.used', 'D:']], 'result': 500000000000}
+				]
+			},
+			'drive.free': {
+				'group': 'file',
+				'method': 'drive_free',
+				'alias': None,
+				'description': 'Amount of free space on a specified drive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.free', 'C:']], 'result': 128000000000},
+					{'code': [['drive.free', 'D:']], 'result': 500000000000}
+				]
+			},
+			'drive.info': {
+				'group': 'file',
+				'method': 'drive_info',
+				'alias': None,
+				'description': 'Retrieves information about a specified drive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.info', 'C:']], 'result': {'size': 256000000000, 'free': 128000000000, 'type': 'SSD'}, 'test': False},
+					{'code': [['drive.info', 'D:']], 'result': {'size': 1000000000000, 'free': 500000000000, 'type': 'HDD'}, 'test': False}
+				]
+			},
+			'drive.mount': {
+				'group': 'file',
+				'method': 'drive_mount',
+				'alias': None,
+				'description': 'Mounts a drive to make it accessible',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.mount', '/dev/sdb1', 'D:']], 'test': False},
+					{'code': [['drive.mount', 'image.iso', 'E:']], 'test': False}
+				]
+			},
+			'drive.unmount': {
+				'group': 'file',
+				'method': 'drive_unmount',
+				'alias': None,
+				'description': 'Unmounts a drive',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.unmount', 'D:']], 'test': False},
+					{'code': [['drive.unmount', 'E:']], 'test': False}
+				]
+			},
+			'drive.create': {
+				'group': 'file',
+				'method': 'drive_create',
+				'alias': None,
+				'description': 'Creates a new virtual drive or volume',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.create', 'virtual', 1000000000]], 'test': False},
+					{'code': [['drive.create', 'ramdisk', 4000000000, 'RAM']], 'test': False}
+				]
+			},
+			'drive.resize': {
+				'group': 'file',
+				'method': 'drive_resize',
+				'alias': None,
+				'description': 'Resizes an existing drive partition or volume',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.resize', 'virtual', 2000000000]], 'test': False},
+					{'code': [['drive.resize', 'D:', 1500000000000]], 'test': False}
+				]
+			},
+			'drive.format': {
+				'group': 'file',
+				'method': 'drive_format',
+				'alias': None,
+				'description': 'Formats a drive with a specified file system',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.format', 'D:', 'NTFS']], 'test': False},
+					{'code': [['drive.format', 'E:', 'FAT32']], 'test': False}
+				]
+			},
+			'drive.remove': {
+				'group': 'file',
+				'method': 'drive_remove',
+				'alias': None,
+				'description': 'Removes or deletes a specified drive or partition',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['drive.remove', 'virtual']], 'test': False},
+					{'code': [['drive.remove', 'ramdisk']], 'test': False}
+				]
+			},
+			'path': {
+				'group': 'file',
+				'method': 'path',
+				'alias': None,
+				'description': 'Returns components of a specified file path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['path.drive', 'C:/Windows/System32']], 'result': 'C:'},
+					{'code': [['path.drive', '/mnt/data/file.txt']], 'result': ''}
+				]
+			},
+			'path.drive': {
+				'group': 'file',
+				'method': 'path_drive',
+				'alias': None,
+				'description': 'Drive component of a specified file path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['path.drive', 'C:/Windows/System32']], 'result': 'C:'},
+					{'code': [['path.drive', '/mnt/data/file.txt']], 'result': ''}
+				]
+			},
+			'path.dir': {
+				'group': 'file',
+				'method': 'path_dir',
+				'alias': None,
+				'description': 'Directory portion of a specified file path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['path.dir', 'C:/Windows/System32/kernel32.dll']], 'result': 'C:/Windows/System32'},
+					{'code': [['path.dir', '/home/user/docs/file.txt']], 'result': '/home/user/docs'}
+				]
+			},
+			'path.file': {
+				'group': 'file',
+				'method': 'path_file',
+				'alias': None,
+				'description': 'File portion of a specified file path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['path.file', 'C:/Windows/System32/kernel32.dll']], 'result': 'kernel32.dll'},
+					{'code': [['path.file', '/home/user/docs/report.pdf']], 'result': 'report.pdf'}
+				]
+			},
+			'path.name': {
+				'group': 'file',
+				'method': 'path_name',
+				'alias': None,
+				'description': 'Name of the file without extension from a specified path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['path.name', 'document.txt']], 'result': 'document'},
+					{'code': [['path.name', '/path/to/file.name.ext']], 'result': 'file.name'}
+				]
+			},
+			'path.extension': {
+				'group': 'file',
+				'method': 'path_extension',
+				'alias': None,
+				'description': 'File extension from a specified file path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['path.extension', 'image.png']], 'result': '.png'},
+					{'code': [['path.extension', 'archive.tar.gz']], 'result': '.gz'}
+				]
+			},
+			'path.strip': {
+				'group': 'file',
+				'method': 'path_strip',
+				'alias': None,
+				'description': 'Removes the extension from a specified path',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['path.strip', 'file.txt']], 'result': 'file'},
+					{'code': [['path.strip', '/path/to/document.pdf']], 'result': '/path/to/document'}
+				]
+			},
+
+			# format
+
+			'void': {
+				'group': 'format',
+				'method': 'void_encode',
+				'alias': None,
+				'description': 'Encodes data into the Void format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [
+					{'name': 'data', 'type': 'any'},
+					{'name': 'indent', 'type': 'text', 'default': '\t'}
+				],
+				'example': [
+					{'code': [['void', {'key': 'value'}]], 'result': '{\n\t\'key\': \'value\'\n}'},
+					{'code': [['void', [1, 2, 3], '  ']], 'result': '[\n  1,\n  2,\n  3\n]'}
+				]
+			},
+			'void.decode': {
+				'group': 'format',
+				'method': 'void_decode',
+				'alias': None,
+				'description': 'Decodes data from the Void format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['void.decode', '{\'key\':\'value\'}']], 'result': {'key': 'value'}},
+					{'code': [['void.decode', '[1,2,3]']], 'result': [1, 2, 3]}
+				]
+			},
+			'json': {
+				'group': 'format',
+				'method': 'json_encode',
+				'alias': None,
+				'description': 'Encodes data into the JSON format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['json', {'name': 'John', 'age': 30}]], 'result': '{\'name\':\'John\',\'age\':30}'},
+					{'code': [['json', [True, False]]], 'result': '[true,false]'}
+				]
+			},
+			'json.decode': {
+				'group': 'format',
+				'method': 'json_decode',
+				'alias': None,
+				'description': 'Decodes data from the JSON format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['json.decode', '{\'x\':5,\'y\':10}']], 'result': {'x': 5, 'y': 10}},
+					{'code': [['json.decode', '[\'a\',\'b\']']], 'result': ['a', 'b']}
+				]
+			},
+			'csv': {
+				'group': 'format',
+				'method': 'csv_encode',
+				'alias': None,
+				'description': 'Encodes data into the CSV format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['csv', [['Name', 'Age'], ['John', 30], ['Alice', 25]]]], 'result': 'Name,Age\nJohn,30\nAlice,25'},
+					{'code': [['csv', {'a': [1,2], 'b': [3,4]}]], 'result': 'a,b\n1,3\n2,4'}
+				]
+			},
+			'csv.decode': {
+				'group': 'format',
+				'method': 'csv_decode',
+				'alias': None,
+				'description': 'Decodes data from the CSV format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['csv.decode', 'a,b,c\n1,2,3']], 'result': [{'a':'1','b':'2','c':'3'}]},
+					{'code': [['csv.decode', 'x;y\n4;5', ';']], 'result': [{'x':'4','y':'5'}]}
+				]
+			},
+			'yaml': {
+				'group': 'format',
+				'method': 'yaml_encode',
+				'alias': None,
+				'description': 'Encodes data into the YAML format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['yaml', {'name': 'John', 'skills': ['Python', 'JS']}]], 'result': 'name: John\nskills:\n  - Python\n  - JS'},
+					{'code': [['yaml', [1, 2, 3]]], 'result': '- 1\n- 2\n- 3'}
+				]
+			},
+			'yaml.decode': {
+				'group': 'format',
+				'method': 'yaml_decode',
+				'alias': None,
+				'description': 'Decodes data from the YAML format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['yaml.decode', 'key: value']], 'result': {'key': 'value'}},
+					{'code': [['yaml.decode', '- 1\n- 2']], 'result': [1, 2]}
+				]
+			},
+			'ini': {
+				'group': 'format',
+				'method': 'ini_encode',
+				'alias': None,
+				'description': 'Encodes data into the INI format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['ini', {'section': {'key': 'value'}}]], 'result': '[section]\nkey=value'},
+					{'code': [['ini', {'user': {'name': 'John'}, 'db': {'port': 3306}}]], 'result': '[user]\nname=John\n\n[db]\nport=3306'}
+				]
+			},
+			'ini.decode': {
+				'group': 'format',
+				'method': 'ini_decode',
+				'alias': None,
+				'description': 'Decodes data from the INI format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['ini.decode', '[section]\nkey=value']], 'result': {'section': {'key': 'value'}}},
+					{'code': [['ini.decode', '[user]\nname=John']], 'result': {'user': {'name': 'John'}}}
+				]
+			},
+			'xml': {
+				'group': 'format',
+				'method': 'xml_encode',
+				'alias': None,
+				'description': 'Encodes data into the XML format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['xml', {'root': {'item': ['a', 'b']}}]], 'result': '<root><item>a</item><item>b</item></root>'},
+					{'code': [['xml', {'person': {'@id': 1, 'name': 'John'}}]], 'result': '<person id=\'1\'><name>John</name></person>'}
+				]
+			},
+			'xml.decode': {
+				'group': 'format',
+				'method': 'xml_decode',
+				'alias': None,
+				'description': 'Decodes data from the XML format',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['xml.decode', '<root><x>1</x></root>']], 'result': {'root': {'x': '1'}}},
+					{'code': [['xml.decode', '<person id=\'1\'><name>John</name></person>']], 'result': {'person': {'@id': '1', 'name': 'John'}}}
+				]
+			},
+
+			# communication
+
+			'cloud': {
+				'group': 'communication',
+				'method': 'cloud',
+				'alias': None,
+				'description': 'Runs cloud storage or services for data management',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': True,
+				'param': [],
+				'example': [
+					{'code': [['cloud', 'start']], 'test': False},
+					{'code': [['cloud', 'status']], 'result': 'running', 'test': False}
+				]
+			},
+			'request': {
+				'group': 'communication',
+				'method': 'request',
+				'alias': 'r',
+				'description': 'Sends an HTTP (GET by default) request to a specified URL',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': {
+					'get': {},
+					'post': {},
+					'put': {},
+					'delete': {},
+					'method': {},
+					'url': {},
+					'header': {},
+					'cookie': {},
+					'data': {},
+					'done': {},
+					'error': {}
+				},
+				'param': [],
+				'example': [
+					{'code': [['r', 'https://api.example.com/data']], 'test': False},
+					{'code': [['r', 'https://example.com', {'headers': {'Accept': 'application/json'}}]], 'test': False}
+				]
+			},
+			'download': {
+				'group': 'communication',
+				'method': 'download',
+				'alias': 'd',
+				'description': 'Downloads content from a specified URL',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': {
+					'url': {},
+					'video': {},
+					'audio': {},
+					'subtitles': {},
+					'': {},
+					'': {},
+					'': {},
+					'': {},
+					'': {},
+					'': {},
+				},
+				'param': [],
+				'example': [
+					{'code': [['dl', 'https://example.com/file.txt', 'local.txt']], 'test': False},
+					{'code': [['dl', 'https://example.com/image.jpg']], 'test': False}
+				]
+			},
+			'cookie': {
+				'group': 'communication',
+				'method': 'cookie',
+				'alias': None,
+				'description': 'Gets or sets a specified cookie',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['cookie', 'session', 'abc123']], 'test': False},
+					{'code': [['cookie', 'user']], 'result': 'john_doe', 'test': False}
+				]
+			},
+			'cookie.remove': {
+				'group': 'communication',
+				'method': 'cookie_remove',
+				'alias': None,
+				'description': 'Removes a specified cookie from the client\'s storage',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['cookie.remove', 'session']], 'test': False},
+					{'code': [['cookie.remove', 'temp']], 'test': False}
+				]
+			},
+			'social': {
+				'group': 'communication',
+				'method': 'social',
+				'alias': None,
+				'description': 'Interacting with social API',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': True,
+				'param': [],
+				'example': [
+					{'code': [['social', 'tiktok', 'upload', 'clip.mp4']], 'test': False},
+					{'code': [['social', 'telegram', 'send', '@name', 'Text']], 'test': False},
+					{'code': [['social', 'telegram', 'bot', 'bot_action']], 'test': False}
+				]
+			},
+			'notification': {
+				'group': 'communication',
+				'method': 'notification',
+				'alias': None,
+				'description': 'Send notification',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['notification', 'New message']], 'test': False},
+					{'code': [['notification', 'Alert', {'sound': True}]], 'test': False}
+				]
+			},
+			'mail': {
+				'group': 'communication',
+				'method': 'mail',
+				'alias': None,
+				'description': 'Send mail',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['mail', 'user@example.com', 'Subject', 'Body']], 'test': False},
+					{'code': [['mail', 'test@example.com', 'Hello', 'Content', {'cc': 'copy@example.com'}]], 'test': False}
+				]
+			},
+			'call': {
+				'group': 'communication',
+				'method': 'call',
+				'alias': None,
+				'description': 'Initiate a voice or video call to a specified recipient',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['call', '+1234567890']], 'test': False},
+					{'code': [['call', 'user@domain.com', 'video']], 'test': False}
+				]
+			},
+			'sms': {
+				'group': 'communication',
+				'method': 'sms',
+				'alias': None,
+				'description': 'Send a text message (SMS) to a specified recipient',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['sms', '+1234567890', 'Hello']], 'test': False},
+					{'code': [['sms', '+0987654321', 'Your code: 1234']], 'test': False}
+				]
+			},
+
+			# device
+
+			'device': {
+				'group': 'device',
+				'method': 'device',
+				'alias': None,
+				'description': 'Information related to the hardware device',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['device']], 'result': {'model': 'iPhone12,1', 'manufacturer': 'Apple'}, 'test': False},
+					{'code': [['device', 'id']], 'result': 'A12B3C4D', 'test': False}
+				]
+			},
+			'cpu': {
+				'group': 'device',
+				'method': 'cpu',
+				'alias': None,
+				'description': 'Information about the CPU, including its usage and specifications',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['cpu']], 'result': {'cores': 8, 'usage': 34.5}, 'test': False},
+					{'code': [['cpu', 'temperature']], 'result': 65.2, 'test': False}
+				]
+			},
+			'fps': {
+				'group': 'device',
+				'method': 'fps',
+				'alias': None,
+				'description': 'Frames per second for video or graphical rendering',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['fps']], 'result': 60, 'test': False},
+					{'code': [['fps', 'set', 30]], 'test': False}
+				]
+			},
+			'vsync': {
+				'group': 'device',
+				'method': 'vsync',
+				'alias': None,
+				'description': 'Vertical sync settings to reduce screen tearing during rendering',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['vsync']], 'result': True, 'test': False},
+					{'code': [['vsync', 'set', False]], 'test': False}
+				]
+			},
+			'resolution': {
+				'group': 'device',
+				'method': 'resolution',
+				'alias': None,
+				'description': 'Screen resolution',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['resolution']], 'result': [1920, 1080], 'test': False},
+					{'code': [['resolution', 'set', 1280, 720]], 'test': False}
+				]
+			},
+			'orientation': {
+				'group': 'device',
+				'method': 'orientation',
+				'alias': None,
+				'description': 'Orientation of a device\'s display (landscape or portrait)',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['orientation']], 'result': 'landscape', 'test': False},
+					{'code': [['orientation', 'set', 'portrait']], 'test': False}
+				]
+			},
+			'dark': {
+				'group': 'device',
+				'method': 'darkmode',
+				'alias': None,
+				'description': 'Dark mode setting for user interfaces',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['darkmode']], 'result': True, 'test': False},
+					{'code': [['darkmode', 'set', False]], 'test': False}
+				]
+			},
+			'pixel': {
+				'group': 'device',
+				'method': 'pixel',
+				'alias': None,
+				'description': 'Color of the pixel displayed on the screen',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['pixel', 100, 200]], 'result': [255, 0, 0], 'test': False},
+					{'code': [['pixel', 'set', 150, 300, [0, 255, 0]]], 'test': False}
+				]
+			},
+			'char': {
+				'group': 'device',
+				'method': 'textmode_character',
+				'alias': None,
+				'description': 'Symbol on the screen in text mode',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['textmode.character', 10, 5]], 'result': 'A', 'test': False},
+					{'code': [['textmode.character', 'set', 12, 7, 'B']], 'test': False}
+				]
+			},
+			'cursor': {
+				'group': 'device',
+				'method': 'textmode_cursor',
+				'alias': None,
+				'description': 'Cursor position on the screen in text mode',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['textmode.cursor']], 'result': [5, 10], 'test': False},
+					{'code': [['textmode.cursor', 'set', 0, 0]], 'test': False}
+				]
+			},
+			'clear': {
+				'group': 'device',
+				'method': 'textmode_clear',
+				'alias': None,
+				'description': 'Clears the screen in text mode',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['textmode.clear']], 'test': False},
+					{'code': [['textmode.clear', 'green']], 'test': False}
+				]
+			},
+			'light': {
+				'group': 'device',
+				'method': 'flashlight',
+				'alias': None,
+				'description': 'Turns on or off the device\'s flashlight',
+				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['flashlight', 'on']], 'test': False},
+					{'code': [['flashlight', 'off']], 'test': False}
+				]
+			},
+			'location': {
+				'group': 'device',
+				'method': 'location',
+				'alias': None,
+				'description': 'Retrieves the current geographic location using GPS or network triangulation',
+				'language': ['js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['location']], 'result': {'lat': 55.7558, 'lon': 37.6173}, 'test': False},
+					{'code': [['location', 'accuracy', 10]], 'test': False}
+				]
+			},
+			'gyroscope': {
+				'group': 'device',
+				'method': 'gyroscope',
+				'alias': None,
+				'description': 'Provides access to the gyroscope sensor for motion detection',
+				'language': ['js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['gyroscope']], 'result': {'x': 0.1, 'y': -0.2, 'z': 0.05}, 'test': False},
+					{'code': [['gyroscope', 'frequency', 10]], 'test': False}
+				]
+			},
+			'accelerometer': {
+				'group': 'device',
+				'method': 'accelerometer',
+				'alias': None,
+				'description': 'Provides access to the accelerometer sensor to detect acceleration forces',
+				'language': ['js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['accelerometer']], 'result': {'x': 0.0, 'y': 0.0, 'z': 9.8}, 'test': False},
+					{'code': [['accelerometer', 'calibrate']], 'test': False}
+				]
+			},
+			'compass': {
+				'group': 'device',
+				'method': 'compass',
+				'alias': None,
+				'description': 'Accesses the magnetic compass sensor to determine orientation relative to the Earth\'s magnetic field',
+				'language': ['js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['compass']], 'result': 180.5, 'test': False},
+					{'code': [['compass', 'calibrate']], 'test': False}
+				]
+			},
+			'proximity': {
+				'group': 'device',
+				'method': 'proximity',
+				'alias': None,
+				'description': 'Detects the proximity of objects in relation to the device\'s proximity sensor',
+				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['proximity']], 'result': 5.2, 'test': False},
+					{'code': [['proximity', 'threshold', 10]], 'test': False}
+				]
+			},
+			'brightness': {
+				'group': 'device',
+				'method': 'brightness',
+				'alias': None,
+				'description': 'Manages the screen brightness level of the device',
+				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['brightness']], 'result': 80, 'test': False},
+					{'code': [['brightness', 'set', 50]], 'test': False}
+				]
+			},
+			'calendar': {
+				'group': 'device',
+				'method': 'calendar',
+				'alias': None,
+				'description': 'Calendar events on a device',
+				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['calendar', 'events']], 'result': [], 'test': False},
+					{'code': [['calendar', 'add', 'Meeting', '2023-12-01 14:00']], 'test': False}
+				]
+			},
+			'gallery': {
+				'group': 'device',
+				'method': 'gallery',
+				'alias': None,
+				'description': 'Photo and video library on a device',
+				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['gallery', 'photos']], 'result': ['photo1.jpg', 'photo2.jpg'], 'test': False},
+					{'code': [['gallery', 'save', 'new.jpg']], 'test': False}
+				]
+			},
+			'contacts': {
+				'group': 'device',
+				'method': 'contacts',
+				'alias': None,
+				'description': 'Contact list on a device',
+				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': False,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['contacts']], 'result': [{'name': 'John', 'phone': '+1234567890'}], 'test': False},
+					{'code': [['contacts', 'add', 'Alice', '+0987654321']], 'test': False}
+				]
+			},
+			'keyboard': {
+				'group': 'device',
+				'method': 'keyboard',
+				'alias': None,
+				'description': 'Keyboard information',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['keyboard']], 'result': {'layout': 'QWERTY', 'language': 'en-US'}}
+				]
+			},
+			'mouse': {
+				'group': 'device',
+				'method': 'mouse',
+				'alias': None,
+				'description': 'Mouse information',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['mouse']], 'result': {'x': 500, 'y': 300, 'buttons': 0}}
+				]
+			},
+			'gamepad': {
+				'group': 'device',
+				'method': 'gamepad',
+				'alias': None,
+				'description': 'Gamepad information',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['gamepad', 0]], 'result': {'buttons': [False], 'axes': [0.0]}}
+				]
+			},
+			'tap': {
+				'group': 'device',
+				'method': 'tap',
+				'alias': None,
+				'description': 'Simulates a tap gesture',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['tap', 100, 200]], 'result': True}
+				]
+			},
+			'key': {
+				'group': 'device',
+				'method': 'key',
+				'alias': None,
+				'description': 'Key binding',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': None,
+				'param': [],
+				'example': [
+					{'code': [['key', 'Ctrl+S', 'save']], 'result': True}
+				]
+			},
+
+			# content
+
+			'image': {
+				'group': 'content',
+				'method': 'image',
+				'alias': None,
+				'description': 'Create an image',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': True,
+				'param': [],
+				'example': [
+					{'code': [['image', 'A sunset over mountains']], 'result': 'image.png'}
+				]
+			},
+			'video': {
+				'group': 'content',
+				'method': 'video',
+				'alias': ['movie', 'anime'],
+				'description': 'Create a video',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': True,
+				'param': [],
+				'example': [
+					{'code': [['video', 'A beach sunset', 10]], 'result': 'video.mp4'}
+				]
+			},
+			'sound': {
+				'group': 'content',
+				'method': 'sound',
+				'alias': None,
+				'description': 'Create audio track',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': True,
+				'param': [],
+				'example': [
+					{'code': [['sound', 'Ocean waves', 30]], 'result': 'sound.mp3'}
+				]
+			},
+			'music': {
+				'group': 'content',
+				'method': 'music',
+				'alias': None,
+				'description': 'Generates music',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': True,
+				'param': [],
+				'example': [
+					{'code': [['music', 'Relaxing piano', 180]], 'result': 'music.mp3'}
+				]
+			},
+			'model': {
+				'group': 'content',
+				'method': 'model',
+				'alias': None,
+				'description': 'Create 3D model',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': True,
+				'param': [],
+				'example': []
+			},
+			'book': {
+				'group': 'content',
+				'method': 'book',
+				'alias': ['novel', 'manga'],
+				'description': 'Create a book, comic, manga',
+				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
+				'safe': True,
+				'container': True,
+				'param': [],
+				'example': []
+			}
+		},
+		'alias': {
+			'.': 'print',
+			'..': 'printn',
+			'...': 'input',
+			'?': 'if',
+			'c': 'convert',
+			'd': 'download',
+			'e': 'escape',
+			'h': 'help',
+			'i': 'info',
+			'l': 'length',
+			'o': 'loop',
+			'r': 'request',
+			't': 'timecheck',
+			'x': 'break',
+			'x>': 'continue',
+			'<x': 'repeat',
+			'X': 'return',
+			'response': 'return',
+			'xx': 'exit',
+			'app': 'ui',
+			'game': 'ui',
+			'web': 'ui',
+			'cli': 'ui'
+		},
+		'pi': 3.1415926535,
+		'pi2': 9.8696044011,
+		'2pi': 6.2831853071,
+		'e': 2.7182818284,
+		'epi': 23.1406926327,
+		'pie': 1.1557273498,
+		'phi': 1.6180339887,
+		'sqrt2': 1.4142135623,
+		'sqrt3': 1.7320508075,
+		'sqrt5': 2.2360679775,
+		'ln2': 0.6931471805,
+		'ln10': 2.3025850929,
+		'gamma': 0.5772156649,
 		'app': {
 			'path': '',
 			'name': '',
 			'argument': []
 		},
-		'const': {
-			'pi': 3.1415926535,
-			'e': 2.7182818284,
-			'phi': 1.6180339887,
-			'sqrt2': 1.4142135623,
-			'ln2': 0.6931471805,
-			'gamma': 0.5772156649,
-			'sqrt3': 1.7320508075,
-			'ln10': 2.3025850929,
-			'pi^2': 9.8696044011,
-			'2pi': 6.2831853071,
-			'g': 0.9159655941,
-			'zeta3': 1.2020569032,
-			'e^pi': 23.1406926327,
-			'pi/e': 1.1557273498,
-			'sqrt5': 2.2360679775,
-			'zeta2': 1.6449340668,
-			'pi': 1.7724538509,
-			'sqrtpi': 0.3183098861,
-			'l': 0.1100010000,
-			'c10': 0.1234567891,
-			'feigenbaumdelta': 4.6692016091,
-			'feigenbaumalfa': 2.5029078750,
-			'k': 2.6854520010,
-			'a': 1.2824271291,
-			'e^gamma': 1.7810724179,
-			'sqrt6': 2.4494897427,
-			'zeta5': 1.0369277551,
-			'lambda': 2.6220575543,
-			'cahen': 0.6434105462,
-			'pi^3': 31.0062766803,
-			'zeta4': 1.0823232337,
-			'log210': 3.3219280949,
-			'log102': 0.3010299956,
-			'log10e': 0.4342944819,
-			'conway': 1.3035772690,
-			'sqrt7': 2.6457513111,
-			'rho': 1.3247179572,
-			'delta': 0.1039931210,
-			'sqrt2pi': 2.5066282746,
-			'1/e': 0.3678794412,
-			'gauss': 0.8346268417,
-			'omega': 0.5671432904,
-			'artin': 0.3739558136,
-			'sierpinski': 2.5849817596,
-			'wallis': 2.0945514815,
-			'ramanujan': 2625374126.0,
-			'brun': 1.9021605831,
-			'mrb': 0.1878596424,
-			'silver': 2.4142135623,
-			'eulerbeta': 3.1415926535,
-			'zeta2': 1.6449340668,
-			'log2e': 1.4426950408,
-			'log2pi': 1.6514961295,
-			'pi^5': 306.0196847853,
-			'sqrtpi': 1.7724538509,
-			'lnpi': 1.1447298858,
-			'ln1+sqrt2': 0.8813735870,
-			'e^e': 15.1542622414,
-			'e^1/pi': 1.4391645526,
-			'li2': 1.0451637801,
-			'sin1': 0.8414709848,
-			'cos1': 0.5403023059,
-			'tan1': 1.5574077247,
-			'sinh1': 1.1752011936,
-			'cosh1': 1.5430806348,
-			'tanh1': 0.7615941559,
-			'gamma^2': 0.3331779239,
-			'pi^6': 961.3891935753,
-			'pi^7': 3020.2932278,
-			'lnphi': 0.4812118251,
-			'pi/4': 0.7853981634,
-			'pi/2': 1.5707963268,
-			'lnsqrt2pi': 0.9189385332,
-			'zeta6': 1.0173430619,
-			'zeta7': 1.0083492774,
-			'gammaeulergelfand': 0.8346268417,
-			'cbrt2': 1.2599210499,
-			'cbrtpi': 1.4645918875,
-			'fthrt2': 1.1892071150,
-			'fthrtpi': 1.3313353638,
-			'e^0.5': 1.6487212707,
-			'lnln2': -0.3665129205,
-			'lnln10': 0.8340324452,
-			'zeta8': 1.0040773562,
-			'zeta9': 1.0020083928,
-			'1/pi': 0.3183098861,
-			'e^-pi': 0.0432139183,
-			'e^sqrt2': 4.1132503788,
-			'pi^pi': 36.4621596072,
-			'e^pi-pi': 19.9991009792,
-			'1+phi': 2.6180339887,
-			'lnphi^2': 0.9624236502,
-			'lnphi^-1': -0.4812118251,
-			'zeta10': 1.0009945751,
-			'zeta12': 1.0002460866,
-			'zetainf': 1.0
+		'device': {
+			'fps': None,
+			'cpu': {},
+			'gpu': {}
 		},
-		'device': {},
-		'os': {},
+		'os': {
+			'type': None,
+			'name': None,
+			'version': None
+		},
 		'cloud': {
 			'mime': {
-				'html': 'text/html',
-				'htm': 'text/html',
+				# data
+				'void': 'application/void',
+				'json': 'application/json',
+				'jsonl': 'application/jsonl',
+				'jsonld': 'application/ld+json',
+				'yaml': 'application/x-yaml',
+				'csv': 'text/csv',
+				'ini': 'text/plain',
 				'xml': 'application/xml',
+				'sql': 'application/sql',
+				'bin': 'application/octet-stream',
+				# document
 				'text': 'text/plain',
 				'txt': 'text/plain',
-				'void': 'application/void',
+				'pdf': 'application/pdf',
+				'djvu': 'image/vnd.djvu',
+				'doc': 'application/msword',
+				'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+				'xls': 'application/vnd.ms-excel',
+				'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+				'ppt': 'application/vnd.ms-powerpoint',
+				'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+				'rtf': 'application/rtf',
+				'epub': 'application/epub+zip',
+				'abw': 'application/x-abiword',
+				'azw': 'application/vnd.amazon.ebook',
+				'odp': 'application/vnd.oasis.opendocument.presentation',
+				'ods': 'application/vnd.oasis.opendocument.spreadsheet',
+				'odt': 'application/vnd.oasis.opendocument.text',
+				'ics': 'text/calendar',
+				# html
+				'html': 'text/html',
+				'htm': 'text/html',
+				'xhtml': 'application/xhtml+xml',
 				'css': 'text/css',
-				'js': 'text/javascript',
-				'mjs': 'text/javascript',
-				'csv': 'text/csv',
+				# font
 				'ttf': 'font/ttf',
 				'otf': 'font/otf',
 				'sfnt': 'font/sfnt',
 				'woff': 'font/woff',
 				'woff2': 'font/woff2',
 				'eot': 'application/vnd.ms-fontobject',
-				'svg': 'image/svg+xml',
-				'webp': 'image/webp',
-				'gif': 'image/gif',
+				# image
 				'jpeg': 'image/jpeg',
 				'jpg': 'image/jpeg',
 				'png': 'image/png',
+				'apng': 'image/apng',
+				'gif': 'image/gif',
+				'svg': 'image/svg+xml',
+				'webp': 'image/webp',
+				'heif': 'image/heif',
+				'heic': 'image/heic',
 				'tiff': 'image/tiff',
 				'tif': 'image/tiff',
 				'avif': 'image/avif',
-				'apng': 'image/apng',
 				'ico': 'image/x-icon',
 				'icon': 'image/vnd.microsoft.icon',
-				'djvu': 'image/vnd.djvu',
-				'bin': 'application/octet-stream',
-				'ogg': 'application/ogg',
-				'pdf': 'application/pdf',
-				'xhtml': 'application/xhtml+xml',
-				'json': 'application/json',
-				'jsonld': 'application/ld+json',
-				'zip': 'application/zip',
-				'gz': 'application/gzip',
-				'7z': 'application/x-7z-compressed',
-				'tar': 'application/x-tar',
-				'arc': 'application/x-freearc',
-				'rar': 'application/vnd.rar',
-				'bz': 'application/x-bzip',
-				'bz2': 'application/x-bzip2',
+				'icns': 'image/x-icns',
+				# audio
+				'mp3': 'audio/mpeg',
 				'mpa': 'audio/mpeg',
 				'mp2': 'audio/mpeg',
-				'mp3': 'audio/mpeg',
 				'wma': 'audio/x-ms-wma',
 				'wav': 'audio/x-wav',
+				'flac': 'audio/flac',
+				'ogg': 'application/ogg',
 				'oga': 'audio/ogg',
 				'weba': 'audio/webm',
 				'cda': 'application/x-cdf',
@@ -5197,11 +4182,17 @@ class void:
 				'ac3': 'audio/ac3',
 				'mid': 'audio/midi',
 				'midi': 'audio/x-midi',
+				's3m': 'audio/s3m',
+				'it':  'audio/it',
+				'mod': 'audio/x-mod',
+				'xm':  'audio/xm',
+				# video
+				'mp4': 'video/mp4',
 				'mpeg': 'video/mpeg',
 				'mpg': 'video/mpeg',
 				'mpv': 'video/mpeg',
-				'mp4': 'video/mp4',
 				'webm': 'video/webm',
+				'ogx': 'application/ogg',
 				'ogv': 'video/ogg',
 				'qt': 'video/quicktime',
 				'mov': 'ideo/quicktime',
@@ -5211,33 +4202,54 @@ class void:
 				'mkv': 'application/x-matroska',
 				'mjpeg': 'multipart/x-mixed-replace',
 				'ts': 'video/mp2t',
-				'multipart': 'multipart/form-data',
-				'multipart form': 'application/x-www-form-urlencoded',
-				'multipart mixed': 'multipart/mixed',
-				'multipart alternative': 'multipart/alternative',
-				'xls': 'application/vnd.ms-excel',
-				'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-				'abw': 'application/x-abiword',
-				'azw': 'application/vnd.amazon.ebook',
+				# 3d
+				'gltf': 'model/gltf+json',
+				'glb': 'model/gltf-binary',
+				'obj': 'model/obj',
+				'stl': 'model/stl',
+				'fbx': 'application/vnd.autodesk.fbx',
+				'dae': 'model/vnd.collada+xml',
+				'3ds': 'model/x-3ds',
+				'ply': 'model/ply',
+				'usd': 'model/vnd.usd',
+				'usdz': 'model/vnd.usdz+zip',
+				'x3d': 'model/x3d+xml',
+				'wrl': 'model/vrml',
+				'vrml': 'model/vrml',
+				# archive
+				'zip': 'application/zip',
+				'gz': 'application/gzip',
+				'7z': 'application/x-7z-compressed',
+				'tar': 'application/x-tar',
+				'arc': 'application/x-freearc',
+				'rar': 'application/vnd.rar',
+				'bz': 'application/x-bzip',
+				'bz2': 'application/x-bzip2',
+				'mpkg': 'application/vnd.apple.installer+xml',
+				# code
+				'py': 'applycation/x-python-code',
+				'php': 'application/x-httpd-php',
+				'java': 'application/java',
+				'jar': 'application/java-archive',
+				'kt':  'text/x-kotlin',
+				'swift': 'application/swift',
+				'c':   'text/x-csrc',
+				'cpp': 'text/x-c++src',
+				'h':   'text/x-chdr',
+				'cs': 'text/x-csharp',
+				'gd': 'text/x-gdscript',
+				'js': 'text/javascript',
+				'mjs': 'text/javascript',
+				'lua': 'text/x-lua',
 				'sh': 'application/x-sh',
 				'csh': 'application/x-csh',
-				'doc': 'application/msword',
-				'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-				'ppt': 'application/vnd.ms-powerpoint',
-				'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-				'rtf': 'application/rtf',
-				'epub': 'application/epub+zip',
-				'ics': 'text/calendar',
-				'mpkg': 'application/vnd.apple.installer+xml',
-				'odp': 'application/vnd.oasis.opendocument.presentation',
-				'ods': 'application/vnd.oasis.opendocument.spreadsheet',
-				'odt': 'application/vnd.oasis.opendocument.text',
-				'ogx': 'application/ogg',
-				'php': 'application/x-httpd-php',
-				'py': 'applycation/x-python-code',
-				'jar': 'application/java-archive',
-				'java': 'application/java',
-				'swift': 'application/swift'
+				'bat': 'application/x-bat',
+				'ps1': 'text/x-powershell',
+				# form
+				'form data': 'multipart/form-data',
+				'form mixed': 'multipart/mixed',
+				'form alternative': 'multipart/alternative',
+				'form text': 'application/x-www-form-urlencoded'
 			},
 			'code': {
 				100: 'Continue',
@@ -5305,63 +4317,11 @@ class void:
 				511: 'Network Authentication Required'
 			}
 		},
-		'log': {},
+		'info': {},
 		'db': {},
 		'ai': {},
 		'run': [],
-		'action': {
-			'version': [
-				['.', '{description.about}']
-			],
-			'help': [],
-			'update': [],
-			'test': [],
-			'words': [
-				['find', '{data}', [' ', '\n', '\t']],
-				'n',
-				'X'
-			],
-			'sentences': [
-				['find', '{data}', ['.', '!', '?']],
-				'n',
-				'X'
-			],
-			'lines': [
-				['find', '{data}', '\n'],
-				'n',
-				'X'
-			],
-			'bytes': [
-				['byte', '{data}'],
-				'n',
-				'X'
-			],
-			'format': {
-				'ini': {
-					'encode': [],
-					'decode': []
-				},
-				'html': {
-					'encode': [],
-					'decode': [],
-					'markdown': []
-				},
-				'xml': {
-					'encode': [],
-					'decode': []
-				},
-				'css': {
-					'encode': [],
-					'decode': []
-				}
-			},
-			'download': {
-				'file': [],
-				'info': [],
-				'audio': [],
-				'video': []
-			}
-		},
+		'action': {},
 		'text': {
 			'void': {
 				'style': {
@@ -5378,11 +4338,15 @@ class void:
 	# value
 
 	def get(name, default = None, data = None):
-		if name.startswith('./'):
-			pass
-		elif name.startswith('http://') or name.startswith('https://'):
-			pass
-		if data == None:
+		if '/' in name or '\\' in name:
+			path_outer = void.path_dir(name)
+			path_extension = void.path_extension(path_outer).lower()
+			if path_extension in ['void', 'json', 'csv', 'yaml', 'ini', 'xml'] and void.file_exists(path_outer):
+				data = void.file(path_outer)
+				name = void.path_file(name)
+			else:
+				return default
+		elif data == None:
 			data = void.data
 		names = name.split('.')
 		names.reverse()
@@ -5410,8 +4374,19 @@ class void:
 				return default
 
 	def set(name: str, value = None, data = None):
-		if data == None:
+		if '/' in name or '\\' in name:
+			path_outer = void.path_dir(name)
+			path_extension = void.path_extension(path_outer).lower()
+			if path_extension in ['void', 'json', 'csv', 'yaml', 'ini', 'xml'] and void.file_exists(path_outer):
+				data_file = void.file(path_outer)
+				data = data_file
+				name = void.path_file(name)
+				file = True
+			else:
+				return
+		elif data == None:
 			data = void.data
+			file = False
 		names = name.split('.')
 		names.reverse()
 		while len(names) > 0:
@@ -5423,6 +4398,8 @@ class void:
 					data[subname] = {}
 				if last:
 					data[subname] = value
+					if file:
+						void.file(path_outer, data_file)
 					return
 				data = data[subname]
 			elif subtype is list:
@@ -5437,14 +4414,27 @@ class void:
 						return
 				if last:
 					data[subname] = value
+					if file:
+						void.file(path_outer, data_file)
 					return
 				data = data[subname]
 			else:
 				return
 
 	def remove(name: str, data = None):
-		if data == None:
+		if '/' in name or '\\' in name:
+			path_outer = void.path_dir(name)
+			path_extension = void.path_extension(path_outer).lower()
+			if path_extension in ['void', 'json', 'csv', 'yaml', 'ini', 'xml'] and void.file_exists(path_outer):
+				data_file = void.file(path_outer)
+				data = data_file
+				name = void.path_file(name)
+				file = True
+			else:
+				return
+		elif data == None:
 			data = void.data
+			file = False
 		names = name.split('.')
 		names.reverse()
 		while len(names) > 0:
@@ -5456,6 +4446,8 @@ class void:
 					return
 				if last:
 					del data[subname]
+					if file:
+						void.file(path_outer, data_file)
 					return
 				data = data[subname]
 			elif subtype is list:
@@ -5467,6 +4459,8 @@ class void:
 					return
 				if last:
 					del data[subname]
+					if file:
+						void.file(path_outer, data_file)
 					return
 				data = data[subname]
 			else:
@@ -5588,11 +4582,167 @@ class void:
 			return data
 		return void.type_text(data).encode('utf-8')
 
-	def n(data):
+	def length(data):
 		data_type = type(data)
 		if data_type in [str, list, dict, bytes]:
 			return len(data)
+		elif data_type is int:
+			return (data.bit_length() + 7) // 8
+		elif data_type is float:
+			return 8
 		return 0
+
+	def expression_plus(first = None, second = None):
+		match first:
+			case bool():
+				return first or bool(second)
+			case int() | float():
+				if second is None:
+					return first + 1
+				if type(second) in [int, float]:
+					return first + second
+				if type(second) is str:
+					return void.number(second)
+			case str():
+				if second is None:
+					return first + ' '
+				if type(second) is str:
+					return first + second
+				if type(second) is int:
+					return first + ' ' * second
+			case list():
+				if second is None:
+					return first + first
+				if type(second) is list:
+					return first + second
+				if type(second) is int:
+					return first + [None for _ in range(second)]
+			case dict():
+				if type(second) is dict:
+					return void.merge(first, second)
+				if type(second) is str:
+					return void.merge(first, {second: None})
+				if type(second) is int and second > 0:
+					return [first for _ in range(second + 1)]
+			case bytes():
+				if second is None:
+					return first + first
+				if type(second) is bytes:
+					return first + second
+				if type(second) is str:
+					return first + second.encode()
+				if type(second) in [int, float]:
+					return first + bytes(str(second).encode())
+				if type(second) is bool:
+					return first + bytes(int(second))
+
+	def expression_minus(first, second):
+		match first:
+			case bool():
+				return first and not bool(second)
+			case int() | float():
+				if second is None:
+					return first + 1
+				if type(second) in [int, float]:
+					return first + second
+				if type(second) is str:
+					return void.number(second)
+			case str():
+				if second is None:
+					return first.strip()
+				if type(second) is str:
+					return first + second
+				if type(second) is int:
+					return first + first * second
+			case list():
+				if second is None:
+					return first + first
+				if type(second) is list:
+					return first + second
+				if type(second) is int:
+					return first + first * second
+			case dict():
+				if type(second) is dict:
+					return void.merge(first, second)
+			case bytes():
+				if second is None:
+					return first + first
+				if type(second) is bytes:
+					return first + second
+				if type(second) is str:
+					return first + second.encode()
+				if type(second) is int:
+					return first + first * second
+
+	def expression_multiply(first, second):
+		pass
+
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
+	def expression_(first, second):
+		pass
 
 	# control
 
@@ -5607,91 +4757,168 @@ class void:
 			result = void.void_encode(data, 4)
 		print(result, end=end)
 
-	def input(text: str = None):
-		pass
-
-	def condition():
-		pass
-
-	def loop():
-		pass
-
-	def loop_break():
-		pass
-
-	def loop_continue():
-		pass
-
-	def loop_repeat():
-		pass
-
-	def action_return():
-		pass
+	def print_raw(data):
+		print(data, end='')
 
 	def action(action):
+		doc = void.data['doc']
+		alias = void.data['alias']
+		variable = {
+			'result': None
+		}
 		result = None
-		if type(action) is not list:
-			action = [action]
-		actions = void.data['description']['action']
-		for action in action:
+		for action in (action if type(action) is list else [action]):
 			if type(action) is not list:
 				action = [action]
-			if len(action) == 0:
+			elif len(action) == 0:
 				continue
 			name = action[0]
-			if name in actions:
-				info = actions[name]
-				params = action[1:]
-				if 'param' in info:
-					index = 0
-					skip = False
-					for param in info['param']:
-						if index >= len(params):
-							if 'default' in param:
-								params.append(param['default'])
-								index += 1
-								continue
-							else:
-								skip = True
-								break
-						value = params[index]
-						match param['type']:
-							case 'text':
-								value = str(value)
-							case 'number':
-								value = float(value)
-								if value % 1 == 0:
-									value = int(value)
-							case 'int':
-								value = int(value)
-							case 'float':
-								value = float(value)
-							case 'bool':
-								value = bool(value)
-							case 'list':
-								if type(value) is str:
-									value = list(void.json_decode(value))
+			name_type = type(name)
+			if name_type is str:
+				if name in alias:
+					name = alias[name]
+				if name in doc:
+					info = doc[name]
+					params = action[1:]
+					if 'param' in info:
+						index = 0
+						skip = False
+						for param in info['param']:
+							if index >= len(params):
+								if 'default' in param:
+									params.append(param['default'])
+									index += 1
+									continue
 								else:
-									value = [value]
-							case 'dict':
-								if type(value) is str:
-									value = dict(void.json_decode(value))
-						params[index] = value
-						index += 1
-					if skip:
-						continue
-				if 'name' in info:
-					method = getattr(void, info['name'])
-					result = method(*params)
+									skip = True
+									break
+							value = params[index]
+							if 'type' in param:
+								type_list = param['type'] if type(param['type']) is list else [param['type']]
+								for param_type in type_list:
+									match param_type:
+										case 'text':
+											if type(value) is str:
+												value = str(value)
+												found = True
+												break
+										case 'number':
+											if type(value) in [int, float]:
+												try:
+													value = float(value)
+													if value % 1 == 0:
+														value = int(value)
+													found = True
+													break
+												except:
+													pass
+										case 'int':
+											if type(value) is int:
+												try:
+													value = int(value)
+													found = True
+													break
+												except:
+													pass
+										case 'float':
+											if type(value) is float:
+												try:
+													value = float(value)
+													found = True
+													break
+												except:
+													pass
+										case 'bool':
+											if type(value) is bool:
+												try:
+													value = bool(value)
+													found = True
+													break
+												except:
+													pass
+										case 'list':
+											if type(value) is str:
+												value = list(void.json_decode(value))
+											elif type(value) is not list:
+												value = [value]
+											found = True
+											break
+										case 'dict':
+											if type(value) is str:
+												value_decoded = void.json_decode(value)
+												if type(value_decoded) is not dict:
+													continue
+												else:
+													value = value_decoded
+											elif type(value) is not dict:
+												continue
+											found = True
+											break
+										case 'any':
+											found = True
+											break
+								if not found:
+									value = param['default'] if 'default' in param else None
+								params[index] = value
+							index += 1
+						if skip:
+							continue
+					if 'method' in info and info['method'] != None:
+						for index in range(len(params)):
+							if type(params[index]) is str:
+								if params[index] == '{}':
+									params[index] = result
+						method = getattr(void, str(info['method']))
+						#params.append(variable)
+						result = method(*params)
+					else:
+						pass
+				else:
+					action = void.get('action.' + name)
+					if action != None: 
+						result = void.action(action)
+			else:
+				result = name
 		return result
 
 	def open(text: str):
-		pass
+		if text in ['', None]:
+			return
+		process = subprocess.Popen(text.split(' '))
+		return {
+			'pid': process.pid
+		}
+
+	def close(name, soft: bool = False):
+		if type(name) not in [str, int]:
+			return False
+		if type(name) is int or name.isdigit():
+			try:
+				os.kill(int(name), signal.SIGTERM if soft else signal.SIGKILL)
+				return True
+			except ProcessLookupError:
+				return False
+		else:
+			system = platform.system()			
+			try:
+				match void.get('os.type'):
+					case 'windows':
+						subprocess.run(['taskkill', '/f' if not soft else '', '/t', '/im', name], check=True)
+						return True
+					case 'linux' | 'mac':
+						subprocess.run(['pkill', name], check=True)
+						return True
+					case _:
+						return False
+			except subprocess.CalledProcessError:
+				return False
+			except FileNotFoundError:
+				return False
 
 	def code(text: str):
 		exec(text)
 
-	def exit(code = 0):
+	def exit(code = -1):
 		if type(code) is not int:
 			void.print(code)
 			exit(-1)
@@ -5709,91 +4936,183 @@ class void:
 	def update(name: str = None):
 		pass
 
-	def test(name: str = None, group: str = None):
-		actions = void.data['description']['action']
-		if name == 'group' and group != None:
-			actions = {name: value for name, value in actions.items() if value['group'] == group}
+	def test(name: str = None):
+		start = time.time()
+		doc = void.data['doc']
+		if name in set(action['group'] for action in doc.values()):
+			doc = {action_name: action for action_name, action in doc.items() if action['group'] == name}
 		else:
-			if name in actions:
-				actions = {name: actions[name]}
-		void.print('test')
-		for name in actions:
-			void.print(' ' * 4 + name)
-			action = actions[name]
-			if 'example' not in action:
-				continue
-			for example in action['example']:
-				if 'test' in example and not example['test']:
+			if name in doc:
+				doc = {name: doc[name]}
+		tested = []
+		try:
+			for name in doc:
+				tested.append(name)
+				action = doc[name]
+				if 'example' not in action:
 					continue
-				code = list(example['code'])
-				if 'before' in example:
-					code = list(example['before']) + code
-				if 'after' in example:
-					code += list(example['after'])
-				result = void.action(code)
-				if 'round' in example:
-					if type(result) is dict:
-						for name in result:
-							result[name] = round(result[name], int(example['round'])) if result != None else None
-					elif type(result) is list:
-						for index in range(len(result)):
-							result[index] = round(result[index], int(example['round'])) if result != None else None
-					else:
-						result = round(result, int(example['round'])) if result != None else None
-				if 'result' in example:
+				for example in action['example']:
+					if 'test' in example and not example['test']:
+						continue
+					code = list(example['code'])
+					if 'before' in example:
+						code = list(example['before']) + code
+					if 'after' in example:
+						code += list(example['after'])
+					result = void.action(code)
+					if 'clean' in example:
+						void.action(list(example['clean']))
+					if 'round' in example:
+						if type(result) is dict:
+							for name in result:
+								result[name] = round(result[name], int(example['round'])) if result != None else None
+						elif type(result) is list:
+							for index in range(len(result)):
+								result[index] = round(result[index], int(example['round'])) if result != None else None
+						else:
+							result = round(result, int(example['round'])) if result != None else None
 					error = False
-					match example['result']:
-						case 'str':
-							if type(result) is not str:
-								error = True
-						case 'number':
-							if type(result) not in [int, float]:
-								error = True
-							elif 'range' in example and type(example['range']) in [list, int, float]:
-								range_from = float(example['range'][0]) if type(example['range']) is list and len(example['range']) > 1 else 0
-								range_to = float(example['range'][1] if type(example['range']) is list and len(example['range']) > 1 else (example['range'][0] if type(example['range']) is list else example['range']))
-								if result < range_from or result > range_to:
+					if 'length' in example and type(result) in [str, list, dict]:
+						error = len(result) != example['length']
+					if 'result' in example:
+						if result != example['result']:
+							error = True					
+					if 'type' in example:
+						match example['type']:
+							case 'text':
+								if type(result) is not str:
 									error = True
-						case 'bool':
-							if type(result) is not bool:
-								error = True
-						case 'dict':
-							if type(result) is not dict:
-								error = True
-						case 'list':
-							if type(result) is not list:
-								error = True
-						case 'none':
-							if result != None:
-								error = True
-						case _:
-							if result != example['result']:
+								else:
+									if 'range' in example and type(example['range']) in [list, int, float, str]:
+										rng = example['range']
+										if type(rng) in [int, float, str]:
+											if len(result) != int(rng):
+												error = True
+										elif type(rng) is list:
+											if len(rng) > 2:
+												range_from = int(rng[0])
+												range_to = int(rng[1])
+												if len(result) < range_from or len(result) > range_to:
+													error = True											
+											elif len(rng) == 1:
+												if len(result) != int(rng[0]):
+													error = True
+									if 'symbol' in example:
+										if not re.fullmatch('[' + str(example['symbol']) + ']{' + str(len(result)) + '}', result):
+											error = True
+							case 'number':
+								if type(result) not in [int, float]:
+									error = True
+								else:
+									if 'range' in example and type(example['range']) in [list, int, float, str]:
+										rng = example['range']
+										if type(rng) in [int, float, str]:
+											if result != int(rng):
+												error = True
+										elif type(rng) is list:
+											if len(rng) > 2:
+												range_from = int(rng[0])
+												range_to = int(rng[1])
+												if result < range_from or result > range_to:
+													error = True											
+											elif len(rng) == 1:
+												if len(result) != int(rng[0]):
+													error = True
+							case 'bool':
+								if type(result) is not bool:
+									error = True
+							case 'dict':
+								if type(result) is not dict:
+									error = True
+							case 'list':
+								if type(result) is not list:
+									error = True
+							case 'none':
+								if result != None:
+									error = True
+							case _:
 								error = True
 					if error:
-						void.exit({
+						expected = {}
+						if 'result' in example:
+							expected['result'] = example['result']
+						if 'type' in example:
+							expected['type'] = example['type']
+						if 'range' in example:
+							expected['range'] = example['range']
+						if 'symbol' in example:
+							expected['symbol'] = example['symbol']
+						if len(expected) == 1 and 'result' in expected:
+							expected = expected['result']
+						elif len(expected) == 0:
+							expected = None
+						return {
+							'test': tested,
 							'error': {
 								'action': name,
 								'example': example['code'],
-								'expected': example['result'],
+								'expected': expected,
 								'found': result
-							}})
-		void.print({'result': 'ok'})
+							}}
+		except Exception as e:
+			_, message, trace = sys.exc_info()
+			last_frame = traceback.extract_tb(trace)[-1]
+			return {
+				'test': tested,
+				'error': {
+					'reason': str(e),
+					'line': last_frame.lineno,
+					'text': last_frame.line
+				}
+			}
+		return {
+			'test': tested,
+			'time': void.date(time.time() - start, '(second) sec'),
+			'result': 'ok'
+		}
 
 	def help(name: str = None):
-		result = dict(void.data['description'])
-		if name != None:
-			if name in result['action']:
-				result['action'] = {name: result['action'][name]}
-			else:
-				void.print({
-					'action': name,
-					'error': 'not found'
-					})
-				return
-		void.print(result)
+		doc = void.data['doc']
+		if name == None:
+			return void.data['about']
+		elif name == 'all':
+			return list(doc.keys())
+		elif name == 'full':
+			return doc
+		elif name in doc:
+			return {name: doc[name]}
+		else:
+			result = []
+			for action_name in doc:
+				if name in action_name:
+					result.append(action_name)
+			return result if len(result) > 0 else ''
 
-	def void(name: str, action = None):
+	def v(name: str, action = None):
 		pass
+
+	def os(name: str = None):
+		match name:
+			case 'mac':
+				pass
+			case 'language':
+				pass
+			case 'user':
+				user = psutil.users()[0]
+				return {
+					'name': user.name,
+					'terminal': user.terminal,
+					'host': user.host,
+					'pid': user.pid,
+					'time': {
+						'started': user.started,
+						'passed': time.time() - user.started
+					}
+				}
+
+		if name == None:
+			return data['os']['type']
+		return data['os']['type'] == name
 
 	# text
 
@@ -5818,8 +5137,21 @@ class void:
 	def strip_end():
 		pass
 
-	def replace():
-		pass
+	def replace(text: str, search, replace = None):
+		if type(search) is str:
+			if replace == None:
+				return text
+			search = {search: str(replace)}
+		if type(search) is not dict:
+			return text
+		result = text
+		for name in search:
+			if '()' in name:
+				part = name.split('()')
+				result = re.sub(r'(' + part[0] + ').*?(' + part[1] + ')', r'\1' + str(search[name]) + r'\2', text)
+			else:
+				result = result.replace(str(name), str(search[name]))
+		return result
 
 	def find(text: str, subtext: str):
 		pass
@@ -5839,8 +5171,29 @@ class void:
 	def join():
 		pass
 
-	def date(time: float, format: dict):
-		pass
+	def date(timestamp: float = None, format: str = ''):
+		dt = datetime.now() if timestamp == None else datetime.fromtimestamp(timestamp)
+		timestamp = int(dt.timestamp())
+		return void.replace(format, {
+			'(time)': timestamp,
+			'(year)': dt.year,
+			'(month)': dt.month,
+			'(day)': dt.day,
+			'(hour)': dt.hour,
+			'(minute)': dt.minute,
+			'(second)': dt.second,
+			'(millisecond)': dt.microsecond // 1000 - timestamp * 1_000,
+			'(microsecond)': dt.microsecond - timestamp * 1_000_000,
+			'(nanosecond)': time.time_ns() - timestamp * 1_000_000_000,
+			'(weekday)': dt.weekday(),
+			'(yearshort)': str(dt.year)[-2:],
+			'(monthfull)': str(dt.month).zfill(2),
+			'(dayfull)': str(dt.day).zfill(2),
+			'(hourfull)': str(dt.hour).zfill(2),
+			'(minutefull)': str(dt.minute).zfill(2),
+			'(secondfull)': str(dt.second).zfill(2),
+			'(seconds)': ''
+			})
 
 	def escape(text, symbol, replace = None):
 		pass
@@ -5996,15 +5349,15 @@ class void:
 			result.append(b * multiply + shift)
 		return result
 
-	def golden(value: float, name: str = None):
+	def golden_ratio(value: float, part: str = None):
 		const = 1.61803398874989484820
-		if name == 'short':
+		if part == 'short':
 			return {
 				'short': value,
 				'long': value * const,
 				'total': value * (1 + const)
 				}
-		elif name == 'long':
+		elif part == 'long':
 			return {
 				'short': value / const,
 				'long': value,
@@ -6039,24 +5392,33 @@ class void:
 		return result
 
 	def random(value = None, to = None):
+		print(value)
 		if value == None and to == None:
 			return random.random()
 		if value != None and to != None:
 			if type(value) is int and type(to) is int:
 				return random.randint(value, to)
-			return random.uniform(value, to)
+			return random.uniform(float(value), float(to))
 		if value == None and to != None:
 			value = to
 			to = None
+		if type(value) is bool:
+			return random.choice([True, False])
+		if type(value) is str:
+			return random.choice(value)
+		if type(value) is list:
+			return random.choice(value)
+		if type(value) is dict:
+			return random.choice(list(value.values()))
 		if value != None and to == None:
 			if type(value) is int:
 				return random.randint(0, value)
-			return random.uniform(0, value)
+			return random.uniform(0, float(value))
 
 	def random_seed(seed: str = None):
 		if seed == None:
 			return void.get('app.seed')
-		return void.set('app.seed', seed)
+		void.set('app.seed', seed)
 
 	def random_reseed():
 		seed = void.sha256(str(void.time()) + void.hash(40))
@@ -6065,14 +5427,19 @@ class void:
 	# time
 
 	def t(name: str = None):
+		void.timecheck(name)
+
+	def timecheck(name: str = None):
 		pass
 
-	def time(dot: int = 6):
+	def time(dot: int = 0):
 		result = time.time()
-		if dot >= 0:
+		if dot == 0:
+			result = int(result)
+		elif dot > 0:
 			result = round(result, dot)
 		else:
-			result = round(result * (10 ** dot))
+			result = round(result * (10 ** -dot))
 		return result
 
 	def timer(action, seconds: float = 1, name: str = None):
@@ -6085,9 +5452,9 @@ class void:
 		pass
 
 	def wait(seconds: float = 1):
-		wait(seconds)
+		time.sleep(seconds)
 
-	# encrypt
+	# crypto
 
 	def encrypt(data, key: str = None):
 		pass
@@ -6095,8 +5462,8 @@ class void:
 	def decrypt(data, key: str):
 		pass
 
-	def hash(length: str = 64, symbols = None):
-		chars = string.ascii_letters + string.digits  # a-z, A-Z, 0-9
+	def hash(length: str = 64, symbols: str = None):
+		chars = (string.ascii_letters + string.digits) if symbols == None else symbols
 		return ''.join(random.choices(chars, k=length))
 
 	def uuid():
@@ -6109,7 +5476,7 @@ class void:
 		pass
 
 	def sha256(value: str):
-		return hashlib.sha256(value.encode()) 
+		return '' + hashlib.sha256(value.encode()).hexdigest()
 
 	def sha512(value: str):
 		pass
@@ -6193,13 +5560,16 @@ class void:
 						data = void.void_encode(data)
 					void.file_write(path, data)
 				case _:
-					if type(data) in [bytes, str, int, float]:
+					if type(data) is str:
+						void.file_write(path, data)
+					elif type(data) in [bytes, bytearray, int, float]:
+						data = bytes(data)
 						void.file_write(path, data)
 					else:
 						void.file_write(path, void.void_encode(data))
 
 	def file_exists(path: str):
-		pass
+		return os.path.isfile(path)
 
 	def file_read(path: str, start: int = None, length: int = None):
 		with open(path, 'rb') as file:
@@ -6225,7 +5595,10 @@ class void:
 		pass
 
 	def file_remove(path: str):
-		pass
+		try:
+			os.remove(path)
+		except OSError:
+			pass
 
 	def file_move(path: str):
 		pass
@@ -6255,7 +5628,11 @@ class void:
 		pass
 
 	def file_sha256(path: str):
-		pass
+		try:
+			with open(path, 'rb') as file:
+				return hashlib.sha256(file.read()).hexdigest()
+		except Exception as e:
+			return None
 
 	def file_crc32(path: str):
 		pass
@@ -6337,13 +5714,11 @@ class void:
 	def dir_void(path: str):
 		pass
 
-	# drive
-
 	def drive_list():
 		result = []
 		for drive in psutil.disk_partitions():
 			result.append({
-				'name': drive[0],
+				'method': drive[0],
 				'path': drive[1],
 				'type': drive[2]
 				})
@@ -6382,8 +5757,6 @@ class void:
 	def drive_remove(path: str):
 		pass
 
-	# path
-
 	def path_drive(path: str):
 		if void.os('windows'):
 			part = path.split(':')
@@ -6415,87 +5788,216 @@ class void:
 
 	# format
 
-	def void_encode(data, indent = '\t', level: int = 0):
-		result = ''
-		short = indent == None
-		indent = (' ' * indent) if type(indent) is int else str(indent)
-		indent_current = indent * level
-		match data:
-			case str():
-				if not short:
-					result += indent_current + (data if len(data) > 0 else "'") + '\n'
-				else:
-					if len(data) > 0:
-						result += (f'"{data}"' if (data.count(' ') > 1 or data[0] == '*') else data.replace(' ', '\\ ')) + ' '
-					else:
-						result += ' '
-			case bool():
-				data = 'true' if data else 'false'
-				if not short:
-					result += indent_current + data + '\n'
-				else:
-					result += data + ' '
-			case int():
-				if not short:
-					result += indent_current + f'{data:,}'.replace(',', ' ') + '\n'
-				else:
-					result += f'{data}' + ' '
-			case float():
-				if not short:
-					result += indent_current + f'{data:,}'.replace(',', ' ') + '\n'
-				else:
-					result += f'{data}' + ' '
-			case bytes():
-				if not short:
-					result += indent_current + '*\n' + indent_current + indent + void.base64_encode(data) + '\n'
-				else:
-					result += '*' + void.base64_encode(data) + ' '
-			case list():
-				if not short:
-					text_short = void.void_encode(data, None)
-					if len(text_short) > 80:
-						for value in data:
-							result += void.void_encode(value, indent, level + 1).rstrip(']"') + '\n'
-					else:
-						result += indent_current + text_short + '\n'
-				else:
-					if len(data) > 0:
-						result += '['
-						for value in data:
-							result += void.void_encode(value, None) + ' '
-						result = result[:-1] + '] '
-					else:
-						result += '[] '
-			case dict():
-				if not short:
-					for name in data:
-						value = data[name]
-						result += indent_current + str(name) + '\n'
-						result += void.void_encode(value, indent, level + 1).rstrip(']"') + '\n'
-				else:
-					if len(data) > 0:
-						result += '['
-						for name in data:
-							value = data[name]
-							result += void.void_encode(str(name), None) + ':' + void.void_encode(value, None) + ' '
-						result = result[:-1] + '] '
-					else:
-						result += '[] '
-			case None:
-				data = 'none'
-				if not short:
-					result += indent_current + data + '\n'
-				else:
-					result += data + ' '
-			case _:
-				if not short:
-					result += '\n'
-				else:
-					result += ' '
-		return result[:-1]
+	def void_encode(data, indent = '\t', level: int = 0, base64:bool = False, base85:bool = False, gzip:bool = False):
+		if type(indent) is int:
+			indent = ' ' * indent
+		data_binary = {}
+		result = void.void_encode_iterate(data, indent, level, base64, base85, gzip, False, data_binary)
+		if len(data_binary) > 0:
+			result = b'\xef\xbb\xbf' + result.encode()
+			for unique in list(data_binary):
+				result = result.replace(unique, data_binary[unique])
+				del data_binary[unique]
+		return result
 
-	def void_decode(text: str):
-		pass
+	def void_encode_iterate(data, indent: str = '\t', level: int = 0, base64: bool = False, base85: bool = False, gzip: bool = False, inlist: bool = False, data_binary: dict = {}):
+		prefix = indent * (level if not inlist else level - 1)
+		match data:
+			case bool():
+				return prefix + 'true' if data else prefix + 'false'
+			case int() | float():
+				return prefix + f'{data:,}'.replace(',', ' ')
+			case str():
+				if data == '':
+					result = '""'
+				elif data == '"':
+					result = '"'
+				elif data == '[':
+					result = '"['
+				elif data == ' ':
+					result = '" "'
+				else:
+					if data in ['true', 'false', 'none']:
+						result = '"' + data
+					else:
+						escape = '\r' in data or '\n' in data or '\t' in data
+						if escape:
+							result = data.replace('\\r', '\\\\r').replace('\\n', '\\\\n').replace('\\t', '\\\\t').replace('\r', '\\r').replace('\n', '\\n').replace('\t', '\\t')
+						else:
+							result = data
+						if data[0] == '"' or escape:
+							result = '"' + result
+							if result[-1] == '"':
+								result += '"'
+				return prefix + result
+			case list():
+				if len(data) == 0:
+					return prefix + '['
+				if inlist:
+					result = prefix + '[\n'
+				else:
+					result = ''
+				for value in data:
+					result += void.void_encode_iterate(value, indent=indent, level=level+1, base64=base64, base85=base85, gzip=gzip, inlist=True, data_binary=data_binary) + '\n'
+				return result.rstrip('\n')
+			case dict():
+				if len(data) == 0:
+					return prefix + '['
+				if inlist:
+					result = prefix + '[\n'
+					prefix += '\t'
+				else:
+					result = ''
+				for name in data:
+					value = data[name]
+					result += prefix + void.void_encode_iterate(str(name)) + '\n' + void.void_encode_iterate(value, indent=indent, level=level+1, base64=base64, base85=base85, gzip=gzip, data_binary=data_binary) + '\n'
+				return result.rstrip('\n')
+			case bytes():
+				if gzip:
+					data = gz.compress(data, mtime=0)
+				if base64:
+					return f'{prefix}*\n{prefix}\t' + b64.b64encode(data).decode()
+				elif base85:
+					return f'{prefix}*\n{prefix}\t' + b64.b85encode(data).decode()
+				unique = void.hash(64)
+				data_binary[unique.encode()] = data
+				return f'{prefix}*\n{prefix}\t{len(data)}\n{prefix}\t{unique}'
+			case _:
+				return prefix + 'none'
+
+	def void_decode(data, gzip:bool = True):
+		description = []
+		i = 0
+		line = b''
+		indent = 0
+
+		if type(data) is str:
+			data = data.encode()
+		elif type(data) is bytes:
+			if data.startswith(b'\xef\xbb\xbf'):
+				data = data[3:]
+		else:
+			return
+		data += b'\n'
+		while i < len(data):
+			c = data[i:i+1]
+			i += 1
+			if c == b'\n':
+				indent = 0
+				for b in line:
+					if b == 9:
+						indent += 1
+					else:
+						break
+				value = line[indent:].decode('utf-8').rstrip('\r')
+				line = b''
+				if value == '*':
+					binary_line = b''
+					i += indent + 1
+					while data[i:i+1] != b'\n':
+						binary_line += data[i:i+1]
+						i += 1
+					i += 1
+					binary_line = binary_line.rstrip(b'\r')
+					if data[i:i+indent+1] != b'\t' * (indent + 1):
+						try:
+							if re.fullmatch(r'^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$', binary_line.decode('ascii')):
+								value = b64.b64decode(binary_line, validate=True)
+							else:
+								raise Exception()
+						except Exception:
+							try:
+								value = b64.b85decode(binary_line)
+							except Exception:
+								value = None
+						if gzip and value.startswith(b'\x1f\x8b'):
+							value = gz.decompress(value)
+						try:
+							value = value.decode('utf-8')
+						except:
+							pass
+					else:
+						i += indent + 1
+						binary_length = int(binary_line.decode())
+						value = data[i:i+binary_length]
+						i += binary_length
+						if gzip and value.startswith(b'\x1f\x8b'):
+							value = gz.decompress(value)
+				else:
+					value = value.strip()
+					if len(value) == 0:
+						continue
+					match value:
+						case 'none': value = None
+						case 'true': value = True
+						case 'false': value = False
+						case '[' | '[]': value = []
+						case '""' | '': value = ''
+						case '"': value = '"'
+						case '" "': value = ' '
+						case _:
+							if value[0] == '"':
+								value = value[1:]
+								if value.endswith('"'):
+									value = value[:-1]
+								value = value.replace('\\\\r', '\x01').replace('\\\\n', '\x02').replace('\\\\t', '\x03').replace('\\r', '\r').replace('\\n', '\n').replace('\\t', '\t').replace('\x01', '\\r').replace('\x02', '\\n').replace('\x03', '\\t')
+							else:
+								number = value.replace(' ', '').replace('_', '')
+								try:
+									value = int(number)
+								except:
+									try:
+										value = float(number)
+									except:
+										pass
+				description.append((indent, value))
+			else:
+				line += c
+
+		def parse(description: list, level: int = 0):
+			result = None
+			index = 0
+			while index < len(description):
+				indent, value = description[index]
+				if indent == level:
+					if result == None:
+						result = value
+					elif type(result) is list:
+						result.append(value)
+					elif type(result) in [str, int, float, bool]:
+						result = [result, value]
+					elif type(result) is dict:
+						result[str(value)] = None
+				elif indent == level + 1:
+					if type(result) is list:
+						if not result:
+							result = parse(description[index:], level + 1)
+						else:
+							prev = result[-1]
+							if type(prev) is list:  
+								result[-1] = parse(description[index:], level + 1)
+							else:
+								result[-1] = {str(result[-1]):parse(description[index:], level + 1)}
+						while index < len(description) and description[index][0] > level:
+							index += 1
+						continue
+					elif type(result) in [str, int, float, bool]:
+						result = {str(result):parse(description[index:], level + 1)}
+						while index < len(description) and description[index][0] > level:
+							index += 1
+						continue
+					elif type(result) is dict:
+						key = description[index-1][1]
+						result[str(key)] = parse(description[index:], level + 1)
+						while index < len(description) and description[index][0] > level:
+							index += 1
+						continue
+				elif indent < level:
+					return result
+				index += 1
+			return result
+
+		return parse(description)
 
 	def json_encode(data, indent: str = '\t', separators: tuple = None):
 		try:
@@ -6553,7 +6055,7 @@ class void:
 	def css_decode(text: str):
 		pass
 
-	# request
+	# communication
 
 	def request():
 		pass
@@ -6570,15 +6072,11 @@ class void:
 	def request_head():
 		pass
 
-	# cookie
-
 	def cookie(name: str, value = None):
 		pass
 
 	def cookie_remove(name: str):
 		pass
-
-	# cloud
 
 	def cloud():
 		pass
@@ -6636,32 +6134,6 @@ class void:
 	def sql(query, data = None):
 		pass
 
-	# os
-
-	def os(name: str = None):
-		if name == None:
-			return data['os']['type']
-		return data['os']['type'] == name
-
-	def os_version():
-		pass
-
-	def os_user():
-		user = psutil.users()[0]
-		return {
-			'name': user.name,
-			'terminal': user.terminal,
-			'host': user.host,
-			'pid': user.pid,
-			'time': {
-				'started': user.started,
-				'passed': time.time() - user.started
-			}
-		}
-
-	def language():
-		pass
-
 	# device
 
 	def device():
@@ -6705,7 +6177,7 @@ class void:
 						'ptp': interface[4]
 						})
 				network['interface'].append({
-					'name': name,
+					'method': name,
 					'list': protocol
 					})
 		if hasattr(psutil, 'sensors_temperatures'):
@@ -6714,7 +6186,7 @@ class void:
 				temperature = []
 				for sensor in sensor:
 					temperature.append({
-						'name': sensor[0],
+						'method': sensor[0],
 						'current': sensor[1],
 						'high': sensor[2],
 						'critical': sensor[3]
@@ -6723,7 +6195,7 @@ class void:
 			sensor = psutil.sensors_fans()
 			for name in sensor:
 				fan.append({
-					'name': name,
+					'method': name,
 					'current': sensor[name]
 					})
 		if hasattr(psutil, 'sensors_battery'):
@@ -6736,7 +6208,7 @@ class void:
 				}
 		return {
 			'cpu': {
-				'name': platform.processor(),
+				'method': platform.processor(),
 				'count': psutil.cpu_count(logical=False),
 				'threads': psutil.cpu_count(logical=True),
 				'frequency': psutil.cpu_freq()[0],
@@ -7088,8 +6560,16 @@ class void:
 	def scale():
 		pass
 
-	def ui_text():
-		pass
+	def ui_text(renderer: None):
+		if renderer == None:
+			renderer = void.get('ui.renderer')
+		match renderer:
+			case 'web':
+				pass
+			case 'cli':
+				pass
+			case 'app':
+				pass
 
 	def ui_image():
 		pass
@@ -7281,6 +6761,13 @@ class void:
 	def game():
 		pass
 
+	# helper
+
+	def module(name: str):
+		if name not in void.modules or void.modules[name] == None:
+			void.modules[name] = importlib.import_module(name)
+		return void.modules[name]
+
 	# run
 
 	def run():
@@ -7289,11 +6776,21 @@ class void:
 		void.set('app.name', sys.argv[0])
 		void.set('app.path', os.getcwd())
 		void.set('app.argument', arguments)
+		match platform.system():
+			case 'Windows':
+				void.set('app.type', 'windows')
+			case 'Linux':
+				void.set('app.type', 'linux')
+			case 'Darwin':
+				void.set('app.type', 'mac')
+			case _:
+				void.set('unknown')
+		void.set('app.type', arguments)
 		void.random_reseed()
 		result = None
 		if len(arguments) > 0:
 			text = arguments[0]
-			if text in void.data['description']['action']:
+			if text in void.data['doc'] or text in void.data['alias'] or text in void.data['action']:
 				result = void.action([arguments])
 			elif void.path_extension(text) == 'py':
 				text = void.file_read_text(text)
@@ -7305,11 +6802,11 @@ class void:
 					action = void.json_decode(text.replace("'", '"'))
 				if action != None and len(action) > 0:
 					if type(action) in [str, list]:
-						result = void.action(action)
+						void.action(action)
 					elif type(action) is dict:
 						void.data = void.merge(void.data, action)
 						if 'run' in void.data and type(void.data['run']) is list:
-							result = void.action(void.data['run'])
+							void.action(void.data['run'])
 		if result not in ['', None]:
 			void.print(result)
 
