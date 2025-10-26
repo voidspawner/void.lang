@@ -570,10 +570,9 @@ V O I D format
         value 2
         value 3
       table
-        name1  value1  100
-        name2  value2  200
-        name3  value3  300
-        name4  value4  400
+        name 1    value 1    1
+        name 10   value 10   10
+        name 100  value 100  100
       nested
           value 1
           value 2
@@ -595,9 +594,9 @@ V O I D format
         name 3
           value 3
       row
-        name1      value 1
-        name100    value 100
-        name10000  value 10000
+        name 1    value 1
+        name 10   value 10
+        name 100  value 100
       table
         name      value
 
@@ -766,10 +765,9 @@ V O I D format
           "value 3"
         ],
         "table": [
-          ["name1", "value1", 100],
-          ["name2", "value2", 200],
-          ["name3", "value3", 300],
-          ["name4", "value4", 400]
+          ["name 1", "value 1", 1],
+          ["name 10", "value 10", 10],
+          ["name 100", "value 100", 100]
         ],
         "nested": [
           [
@@ -792,9 +790,9 @@ V O I D format
           "name 3": "value 3"
         },
         "row": {
-          "name1": "value 1",
-          "name100": "value 100",
-          "name10000": "value 10000"
+          "name 1": "value 1",
+          "name 10": "value 10",
+          "name 100": "value 100"
         },
         "table": [
           [
@@ -1053,4 +1051,5 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
