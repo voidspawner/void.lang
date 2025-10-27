@@ -72,7 +72,7 @@
 ```
 run
   .  {text.hi} :D
-  .  {text.hi.pt} :D
+  .  language · {language}
 text
   hi
     en
@@ -105,7 +105,7 @@ text
 {
   "run": [
     [".", "{text.hi}", ":D"],
-    [".", "{text.hi.pt}", ":D"]
+    [".", "language", "·", "{language}"]
   ],
   "text": {
     "hi": {
@@ -139,7 +139,7 @@ cloud  '<h1>Hi World 😄</h1>
   
 ```json
 [
-  [".", "web server on port 80"],
+  [".", "web", "server", "on", "port", 80],
   ["cloud", "<h1>Hi World 😄</h1>"]
 ]
 ```
@@ -150,15 +150,15 @@ cloud  '<h1>Hi World 😄</h1>
 <img width="441" height="1">
 
 ```
-.  share folder on port 80
-cloud /path/to/share
+.  shared folder on port 80
+cloud  /path/to/share
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
 [
-  [".", "share folder on port 80"],
+  [".", "shared", "folder", "on", "port", 80],
   ["cloud", "/path/to/share"]
 ]
 ```
@@ -221,13 +221,15 @@ upper
 <img width="441" height="1">
 
 ```
-||code 'for i in range(10):print(i)
+.  native python code
+code 'for i in range(10):print(i)
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
 [
+  [".", "native", "python", "code"],
   ["code", "for i in range(10):print(i)"]
 ]
 ```
@@ -1051,6 +1053,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
