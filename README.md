@@ -499,9 +499,7 @@ V O I D format
   extension
     base
       .void
-    sketch
-      .txt
-    retro
+    retro file system
       .8
   mime type
     application/void
@@ -535,15 +533,32 @@ V O I D format
       '\n
   separator
     list
-      double space
-        '  '
-    dictionary
-      name
+      base
+        space
+          ' '
+      initial
+        double space
+          '  '      
+      table
         double space
           '  '
-      value
+    dictionary
+      base
+        name value
+          space
+            ' '
+        pair
+          double space
+            '  '
+      one
         triple space
-          '   '
+            '   '
+      row
+          double space
+            '  '
+      table
+          double space
+            '  '
   value type
     text
       text with space
@@ -584,11 +599,14 @@ V O I D format
           value 3
           value 4
       line
-        value 1  value 2  value 3
-      one
-          value
-      empty
-        none
+        short
+          1  2 3
+        full
+          |1 2 3|
+        one
+          |value
+        empty
+          ||
     dictionary
       column
         name 1
@@ -618,9 +636,14 @@ V O I D format
           name 4
             value 4
       line
-        name 1  value 1   name 2  value 2
-      empty
-        none
+        short
+          name1 value1  'name 2' value 2
+        full
+          |'name1' 'value1'  'name 2' 'value 2'|
+        one
+          name   value
+        empty
+          | |
     binary
       data
         *4 data
@@ -696,8 +719,7 @@ V O I D format
   "V O I D format": {
     "extension": {
       "base": ".void",
-      "sketch": ".txt",
-      "retro": ".8"
+      "retro file system": ".8"
     },
     "mime type": "application/void",
     "influenced by": [
@@ -783,9 +805,12 @@ V O I D format
             "value 4"
           ]
         ],
-        "line": ["value 1", "value 2", "value 3"],
-        "one": ["value"],
-        "empty": null
+        "line": {
+          "short": [1, 2, 3],
+          "full": [1, 2, 3],
+          "one": ["value"],
+          "empty": []
+        }
       },
       "dictionary": {
         "column": {
@@ -822,8 +847,12 @@ V O I D format
             "name 4": "value 4"
           }
         ],
-        "line": {"name 1": "value 1", "name 2": "value 2"},
-        "empty": null
+        "line": {
+          "short": {"name1": "value1", "name 2": "value 2"},
+          "full": {"name1": "value1", "name 2": "value 2"},
+          "one": {"name": "value"},
+          "empty": {}
+        }
       },
       "binary": {
         "data": "impossible",
@@ -866,6 +895,21 @@ V O I D format
     "comment": "property or JSONC"
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1053,6 +1097,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
