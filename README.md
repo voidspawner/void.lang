@@ -594,6 +594,7 @@ V O I D format
       -100
       100 000
       100 000.000 000 001
+      100_000.000_000_001
     bool
       true
       false
@@ -826,6 +827,7 @@ V O I D format
         100,
         -100,
         100000,
+        100000.000000001,
         100000.000000001
       ],
       "bool": [
@@ -1133,6 +1135,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
