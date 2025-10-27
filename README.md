@@ -550,15 +550,15 @@ V O I D format
         pair
           double space
             '  '
-      one
-        triple space
-            '   '
       row
           double space
             '  '
       table
           double space
             '  '
+      one
+        triple space
+            '   '
   value type
     text
       text with space
@@ -928,6 +928,7 @@ V O I D format
 
 
 
+
 ```
 
 </td>
@@ -1097,6 +1098,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
