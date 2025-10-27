@@ -41,14 +41,12 @@
 <table><tr><th align="center"><img width="441" height="1"><p>V O I D format</p></th><th align="center"><img width="441" height="1"><p>JSON</p></th></tr><tr><td>
 
 ```
-  .  Hi World :D
+. Hi World :D
 ```
 </td><td>
   
 ```json
-[
-  [".", "Hi World :D"]
-]
+". Hi World :D"
 ```
 </td></tr></table>
 
@@ -57,15 +55,13 @@
 <img width="441" height="1">
 
 ```
-  .  {about.version}
+. {about.version}
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[
-  [".", "{about.version}"]
-]
+". {about.version}"
 ```
 </td></tr></table>
 
@@ -75,7 +71,8 @@
 
 ```
 run
-    .  {text.hi} :D
+  .  {text.hi} :D
+  .  {text.hi.pt} :D
 text
   hi
     en
@@ -107,7 +104,8 @@ text
 ```json
 {
   "run": [
-    [".", "{text.hi} :D"]
+    [".", "{text.hi}", ":D"],
+    [".", "{text.hi.pt}, ":D"]
   ],
   "text": {
     "hi": {
@@ -133,13 +131,15 @@ text
 <img width="441" height="1">
 
 ```
-  cloud  <h1>Hi World 😄</h1>
+.  web server on port 80
+cloud  '<h1>Hi World 😄</h1>
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
 [
+  [".", "web server on port 80"],
   ["cloud", "<h1>Hi World 😄</h1>"]
 ]
 ```
@@ -150,13 +150,15 @@ text
 <img width="441" height="1">
 
 ```
-  cloud  /path/to/share
+.  share folder on port 80
+cloud /path/to/share
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
 [
+  [".", "share folder on port 80"],
   ["cloud", "/path/to/share"]
 ]
 ```
@@ -167,9 +169,9 @@ text
 <img width="441" height="1">
 
 ```
-=  word  Hi World :D
-o  letter  {word}
-  ?  {letter}  =  i
+=  word 'Hi World :D
+o  letter {word}
+  ?  {letter} = i
       ..  i!
 
       ..  {letter}
@@ -181,7 +183,7 @@ o  letter  {word}
 [
   ["=", "word", "Hi World :D"],
   ["o", "letter", "{word}", [
-    ["?", ["{letter}", "=", "i"], [
+    ["?", "{letter}", "=", "i", [
       ["..", "i!"]
     ], [
       ["..", "{letter}"]
@@ -196,7 +198,7 @@ o  letter  {word}
 <img width="441" height="1">
 
 ```
-replace  Hi World :D  i  i!
+replace  'Hi World :D' i i!
 .  {}
 upper
 .
@@ -219,7 +221,7 @@ upper
 <img width="441" height="1">
 
 ```
-  code  for i in range(10):print(i)
+||code 'for i in range(10):print(i)
 ```
 </td><td>
 <img width="441" height="1">
@@ -972,27 +974,34 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 >
 > **``DeepSeek``**
 > ```
-> chat  deepseek radius of the Earth
+> chat  deepseek
+> chat  radius of the Earth
 > ```
 > 
 > **``Stable Diffusion``**
 > ```
-> video  playing cats on the lawn  cats.mp4
-> image  playing cats on the lawn  cats.jpg
-> image  draw  remove the cat in the center  cats.jpg  cats-edited.jpg
-> image  grayscale  cats.jpg  cats-grayscaled.jpg
-> image  colorize  cats-grayscaled.jpg  cats-colorized.jpg
-> image  style  cyberpunk  cats.jpg  cats-cyberpunk.jpg
-> image  background  cats.jpg  cats-without-background.png
-> image  2x  cats.jpg  cats-resize-2x.jpg
-> image  4x  cats.jpg  cats-resize-4x.jpg
-> image  swapface  adult.jpg  child.jpg  adult-to-child.jpg
+> video  'playing cats on the lawn' cats.mp4
+> image  'playing cats on the lawn' cats.jpg
+> image  draw 'remove the cat in the center' cats.jpg cats-edited.jpg
+> image  grayscale cats.jpg cats-grayscaled.jpg
+> image  colorize cats-grayscaled.jpg cats-colorized.jpg
+> image  style cyberpunk cats.jpg cats-cyberpunk.jpg
+> image  background cats.jpg cats-without-background.png
+> image  2x cats.jpg cats-resize-2x.jpg
+> image  4x cats.jpg cats-resize-4x.jpg
+> image  swapface adult.jpg child.jpg adult-to-child.jpg
 > ```
 > 
 > **``Voice Cloning``**
 > ```
 > voice  mike.mp3
-> say  mike  Hi World :D
+> say  Hi World :D
+> ```
+> 
+> **``Google Text-to-Speech``**
+> ```
+> voice  en-US-Wavenet-B
+> say  Hi World :D
 > ```
 > 
 > **``Speech Recognition``**
@@ -1000,16 +1009,6 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > recognize
 > recognize  talk.mp3
 > recognize  video.mp4
-> ```
-> 
-> **``Text-to-Speech``**
-> ```
-> say  Hi World :D
-> ```
-> 
-> **``Google Text-to-Speech``**
-> ```
-> say  en-US-Wavenet-B Hi World :D
 > ```
 > 
 > **``Google Translate``**
@@ -1020,8 +1019,9 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > 
 > **``DeepL``**
 > ```
-> translate  deepl 你好，世界 :D
-> translate  deepl pt 你好，世界 :D
+> translate  deepl
+> translate  你好，世界 :D
+> translate  pt 你好，世界 :D
 > ```
 
 Work is underway to develop a custom AI that will run on a **V O I D chip**.
@@ -1051,6 +1051,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
