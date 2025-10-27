@@ -525,39 +525,55 @@ V O I D format
     other
   released
     2025
-  indent
-    tab
-      '\t
-  newline
-    line feed
-      '\n
-  separator
-    list
-      base
-        space
-          ' '
-      initial
-        double space
-          '  '      
-      table
-        double space
-          '  '
-    dictionary
-      base
-        name value
+  symbol
+    indent
+      tab
+        '\t
+    newline
+      line feed
+        '\n
+    quotation
+      single
+        '
+    bracket
+      vertical bar
+        |
+    escape when necessary
+      tab
+        '\t
+      line feed
+        '\n
+      single quotation mark
+        '
+      backslash
+        \
+    separator
+      list
+        base
           space
             ' '
-        pair
+        initial
+          double space
+            '  '      
+        table
           double space
             '  '
-      row
+      dictionary
+        base
+          name value
+            space
+              ' '
+          pair
+            double space
+              '  '
+        row
           double space
             '  '
-      table
+        table
           double space
             '  '
-      one
-        triple space
+        one
+          triple space
             '   '
   value type
     text
@@ -745,22 +761,55 @@ V O I D format
       "other"
     ],
     "released": 2025,
-    "indent": {
-      "tab": "\t"
-    },
-    "newline": {
-      "line feed": "\n"
-    },
-    "separator": {
-      "list": {
-        "double space": "  "
+    "symbol": {
+      "indent": {
+        "tab": "\t"
       },
-      "dictionary": {
-        "name": {
-          "double space": "  "
+      "newline": {
+        "line feed": "\n"
+      },
+      "quotation": {
+        "single": "'"
+      },
+      "bracket": {
+        "vertical bar": "|"
+      },
+      "escape when necessary": {
+        "tab": "\t",
+        "line feed": "\n",
+        "single quotation mark": "'",
+        "backslash": "\\"
+      },
+      "separator": {
+        "list": {
+          "base": {
+            "space": " "
+          },
+          "initial": {
+            "double space": "  "
+          },
+          "table": {
+            "double space": "  "
+          }
         },
-        "value": {
-          "triple space": "   "
+        "dictionary": {
+          "base": {
+            "name value": {
+              "space": " "
+            },
+            "pair": {
+              "double space": "  "
+            }
+          },
+          "row": {
+            "double space": "  "
+          },
+          "table": {
+            "double space": "  "
+          },
+          "one": {
+            "triple space": "   "
+          }
         }
       }
     },
@@ -914,21 +963,6 @@ V O I D format
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
 
 </td>
@@ -990,7 +1024,8 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > ```
 > 
 > ```
-> .  {https://voidsp.com/data.json/name.subname}
+> .  {https://voidsp.com/@name/file.json/data.text}
+> =  {https://voidsp.com/@name/file.json/data.text} text
 >```
 
 > **``data.csv``**
@@ -1098,6 +1133,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
