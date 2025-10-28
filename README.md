@@ -262,7 +262,7 @@ python void.py app.py
 python void.py . Hi World :D
 ```
 ```console
-python void.py cloud.file /path/to/share
+python void.py cloud /path/to/share
 ```
 
 > [!TIP]
@@ -1132,6 +1132,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
