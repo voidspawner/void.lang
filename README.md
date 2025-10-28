@@ -314,7 +314,7 @@ python void.py cloud /path/to/share
 > void.exe
 > ```
 >
-> You can **export** your game to various platforms
+> **Export** your game to various platforms
 > ```console
 > void.exe convert game.void game.exe
 > ```
@@ -1132,6 +1132,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
