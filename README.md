@@ -6,7 +6,7 @@
 > [!IMPORTANT]
 > **The project is in the process of development.**
 
-  <img src="https://github.com/voidspawner/void.storage/blob/main/asset/image/logo.jpg" width="100%">
+  <img src="https://github.com/voidspawner/void.storage/blob/main/image/logo.jpg" width="100%">
 
 > [**About**](#about)・
 [**Preinstalled Language**](#preinstalled-language)・
@@ -970,11 +970,11 @@ V O I D format
 </table>
 
 > [!TIP]
-> Use **V O I D format [highlighting](https://github.com/voidspawner/void.storage/blob/main/asset/settings/void.sublime-syntax)** 🔆 for **[Sublime Text](https://sublimetext.com)**.
+> Use **V O I D format [highlighting](https://github.com/voidspawner/void.storage/blob/main/settings/void.sublime-syntax)** 🔆 for **[Sublime Text](https://sublimetext.com)**.
 >
 > **``Tools``** → **``Developer``** → **``New Syntax…``** → **``Copy · Paste``** → **``Save as void.sublime-syntax``**
 >
-> You can change the **[color scheme](https://github.com/voidspawner/void.storage/blob/main/asset/settings/void.sublime-color-scheme)** 🎨 to alternate sections.
+> You can change the **[color scheme](https://github.com/voidspawner/void.storage/blob/main/settings/void.sublime-color-scheme)** 🎨 to alternate sections.
 > 
 > **``Preferences``** → **``Customize Color Scheme``**
 >
@@ -1132,6 +1132,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
