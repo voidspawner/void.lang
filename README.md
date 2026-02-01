@@ -500,7 +500,7 @@ V O I D format
     base
       .void
     retro file system
-      .8
+      .v
   mime type
     application/void
   influenced by
@@ -1132,6 +1132,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
