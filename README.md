@@ -497,7 +497,7 @@ python void.py cloud /path/to/share
 ```
 V O I D format
   extension
-    base
+    regular
       .void
     retro file system
       .v
@@ -518,13 +518,13 @@ V O I D format
     text
     image
     video
-    subtitles
     sound
     3d
+    subtitles
     font
     other
   released
-    2025
+    2026
   symbol
     indent
       tab
@@ -535,51 +535,20 @@ V O I D format
     quotation
       single
         '
-    bracket
-      vertical bar
-        |
-    escape when necessary
-      tab
-        '\t
-      line feed
-        '\n
-      single quotation mark
-        '
-      backslash
-        \
     separator
-      list
-        base
-          space
-            ' '
-        initial
-          double space
-            '  '      
-        table
-          double space
-            '  '
-      dictionary
-        base
-          name value
-            space
-              ' '
-          pair
-            double space
-              '  '
-        row
-          double space
-            '  '
-        table
-          double space
-            '  '
-        one
-          triple space
-            '   '
+      space
+        ' '
+    bracket
+      square
+        '[]
   value type
     text
       text with space
       'text with space
       'text with space'
+      '
+      ''
+      '''
       '
         text
         in a
@@ -588,11 +557,18 @@ V O I D format
         text
         multi
         line
+      'tab \t
+      'line feed \n
+      'quotation end ''
+      'quotation ' middle
+      'backslash \\t \\n
+      backslash \t \n
     number
       1
       100
       -100
       100 000
+      100_000
       100 000.000 000 001
     bool
       true
@@ -608,21 +584,25 @@ V O I D format
         name 1    value 1    1
         name 10   value 10   10
         name 100  value 100  100
-      nested
-          value 1
-          value 2
-
-          value 3
-          value 4
       line
-        short
-          1  2 3
         full
-          |1 2 3|
-        one
-          |value
-        empty
-          ||
+          [1 2 3]
+        short
+          [1 2 3
+      empty
+        full
+          []
+        short
+          [
+      snake
+        [1 2 3
+          4
+          5
+
+          6
+          7
+
+          8 9 10
     dictionary
       column
         name 1
@@ -631,17 +611,21 @@ V O I D format
           value 2
         name 3
           value 3
-      row
-        name 1    value 1
-        name 10   value 10
-        name 100  value 100
       table
-        name      value
-
         name 1    value 1
         name 10   value 10
         name 100  value 100
-      nested
+      line
+        full
+          ['name1' 'value1'  'name 2' 'value 2']
+        short
+          [name1 value1  'name 2' value 2
+        one
+          [name  value
+      empty
+        [ ]
+      snake
+        [1 2 3
           name 1
             value 1
           name 2
@@ -651,20 +635,13 @@ V O I D format
             value 3
           name 4
             value 4
-      line
-        short
-          name1 value1  'name 2' value 2
-        full
-          |'name1' 'value1'  'name 2' 'value 2'|
-        one
-          name   value
-        empty
-          | |
+
+          4 5
     binary
-      data
+      raw
         *4 data
       base64
-        simple
+        regular
           line
             *ViBPIEkgRCBmb3JtYXQ=
           multiline
@@ -672,14 +649,6 @@ V O I D format
               ViBPIEk
               gRCBmb3
               JtYXQ=
-        gzip
-          line
-            *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
-          multiline
-            *
-              eNoLU/BX8FR
-              wUUjLL8pNLA
-              EAG0QEPA==
         safe
           line
             *eNoLU_BX8FRwUUjLL8pNLAEAG0QEPA
@@ -688,43 +657,41 @@ V O I D format
               eNoLU_BX8FR
               wUUjLL8pNLA
               EAG0QEPA
+        gzip
+          line
+            *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
+          multiline
+            *
+              eNoLU/BX8FR
+              wUUjLL8pNLA
+              EAG0QEPA==
+        lzma
+          line
+            */Td6WFoAAATm1rRGAgAhARwAAAAQz1jMAQANViBPIEkgRCBmb3JtYXQAAADXR9DDlMsFngABJg4IG+AEH7bzfQEAAAAABFla
+          multiline
+            *
+              /Td6WFoAAATm1rRGAgAhARwAAAAQz1jM
+              AQANViBPIEkgRCBmb3JtYXQAAADXR9DD
+              lMsFngABJg4IG+AEH7bzfQEAAAAABFla
       hex
-        short
-          line
-            *5620 4F20 4920 4420 666F 726D 6174
-          multiline
-            *
-              5620 4F20
-              4920 4420
-              666F 726D
-              6174 AABB
-        full
-          line
-            *h 5620 4F20 4920 4420 666F 726D 6174
-          multiline
-            *h
-              5620 4F20
-              4920 4420
-              666F 726D
-              6174 AABB
+        line
+          #5620 4F20 4920 4420 666F 726D 6174
+        multiline
+          #
+            5620 4F20
+            4920 4420
+            666F 726D
+            6174 AABB
       bin
-        short
-          line
-            *00000111 11100111
-          multiline
-            *
-              0000 0111
-              1110 0111
-        full
-          line
-            *b 00000111 11100111
-          multiline
-            *b
-              0000 0111
-              1110 0111
+        line
+          @00000111 11100111
+        multiline
+          @
+            0000 0111
+            1110 0111
   comment
-    begins with a space
-       C O M M E N T
+    begins with a single space
+       .: C O M M E N T :.
 ```
 
 </td>
@@ -734,7 +701,7 @@ V O I D format
 {
   "V O I D format": {
     "extension": {
-      "base": ".void",
+      "regular": ".void",
       "retro file system": ".v"
     },
     "mime type": "application/void",
@@ -754,13 +721,13 @@ V O I D format
       "text",
       "image",
       "video",
-      "subtitles",
       "sound",
       "3d",
+      "subtitles",
       "font",
       "other"
     ],
-    "released": 2025,
+    "released": 2026,
     "symbol": {
       "indent": {
         "tab": "\t"
@@ -771,46 +738,11 @@ V O I D format
       "quotation": {
         "single": "'"
       },
-      "bracket": {
-        "vertical bar": "|"
-      },
-      "escape when necessary": {
-        "tab": "\t",
-        "line feed": "\n",
-        "single quotation mark": "'",
-        "backslash": "\\"
-      },
       "separator": {
-        "list": {
-          "base": {
-            "space": " "
-          },
-          "initial": {
-            "double space": "  "
-          },
-          "table": {
-            "double space": "  "
-          }
-        },
-        "dictionary": {
-          "base": {
-            "name value": {
-              "space": " "
-            },
-            "pair": {
-              "double space": "  "
-            }
-          },
-          "row": {
-            "double space": "  "
-          },
-          "table": {
-            "double space": "  "
-          },
-          "one": {
-            "triple space": "   "
-          }
-        }
+        "space": " "
+      },
+      "bracket": {
+        "square": "[]"
       }
     },
     "value type": {
@@ -818,13 +750,23 @@ V O I D format
         "text with space",
         "text with space",
         "text with space",
+        "'",
+        "",
+        "'",
         "textin aline",
-        "text\nmulti\nline"
+        "text\nmulti\nline",
+        "tab \t",
+        "line feed \n",
+        "quotation end '",
+        "quotation ' middle",
+        "backslash \\t \\n",
+        "backslash \\t \\n"
       ],
       "number": [
         1,
         100,
         -100,
+        100000,
         100000,
         100000.000000001
       ],
@@ -844,22 +786,21 @@ V O I D format
           ["name 10", "value 10", 10],
           ["name 100", "value 100", 100]
         ],
-        "nested": [
-          [
-            "value 1",
-            "value 2"
-          ],
-          [
-            "value 3",
-            "value 4"
-          ]
-        ],
         "line": {
-          "short": [1, 2, 3],
           "full": [1, 2, 3],
-          "one": ["value"],
-          "empty": []
-        }
+          "short": [1,2,3]
+        },
+        "empty": {
+          "full": [],
+          "short": []
+        },
+        "snake": [1, 2, 3, [
+          4,
+          5
+        ], [
+          6,
+          7
+        ], 8, 9, 10]
       },
       "dictionary": {
         "column": {
@@ -867,83 +808,77 @@ V O I D format
           "name 2": "value 2",
           "name 3": "value 3"
         },
-        "row": {
+        "table": {
           "name 1": "value 1",
           "name 10": "value 10",
           "name 100": "value 100"
         },
-        "table": [
-          [
-            "name": "name 1",
-            "value": "value 1"
-          ],
-          [
-            "name": "name 10",
-            "value": "value 10"
-          ],
-          [
-            "name": "name 100",
-            "value": "value 100"
-          ]
-        ],
-        "nested": [
-          {
-            "name 1": "value 1",
-            "name 2": "value 2"
-          },
-          {
-            "name 3": "value 3",
-            "name 4": "value 4"
-          }
-        ],
         "line": {
-          "short": {"name1": "value1", "name 2": "value 2"},
           "full": {"name1": "value1", "name 2": "value 2"},
-          "one": {"name": "value"},
-          "empty": {}
-        }
+          "short": {"name1": "value1", "name 2": "value 2"},
+          "one": {"name": "value"}
+        },
+        "empty": {}
+        "snake": [1, 2, 3, {
+          "name 1": "value 1",
+          "name 2": "value 2"
+        }, {
+          "name 3": "value 3",
+          "name 4": "value 4"
+        }, 4, 5]
       },
-      "binary": {
-        "data": "impossible",
-        "base64": {
-          "simple": {
-            "line": "need to convert",
-            "multiline": "need to convert"
-          },
-          "gzip": {
-            "line": "need to convert",
-            "multiline": "need to convert"
-          },
-          "safe": {
-            "line": "need to convert",
-            "multiline": "need to convert"
-          }
-        },
-        "hex": {
-          "short": {
-            "line": "need to convert",
-            "multiline": "need to convert"
-          },
-          "full": {
-            "line": "need to convert",
-            "multiline": "need to convert"
-          }
-        },
-        "bin": {
-          "short": {
-            "line": "need to convert",
-            "multiline": "need to convert"
-          },
-          "full": {
-            "line": "need to convert",
-            "multiline": "need to convert"
-          }
-        }
-      }
+      "binary": "impossible"
     },
-    "comment": "property or JSONC"
+    "comment": "impossible or JSONC"
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1132,6 +1067,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
