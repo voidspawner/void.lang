@@ -667,7 +667,7 @@ V O I D format
               EAG0QEPA==
         lzma
           line
-            */Td6WFoAAATm1rRGAgAhARwAAAAQz1jMAQANViBPIEkgRCBmb3JtYXQAAADXR9DDlMsFngABJg4IG+AEH7bzfQEAAAAABFla
+            */Td6WFoAAATm1rRGAgAhARwAAAAQz1jM…
           multiline
             *
               /Td6WFoAAATm1rRGAgAhARwAAAAQz1jM
@@ -1067,6 +1067,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
