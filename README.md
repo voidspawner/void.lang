@@ -561,8 +561,8 @@ V O I D format
       'line feed \n
       'quotation end ''
       'quotation ' middle
-      'backslash \\t \\n
-      backslash \t \n
+      'backslash \\t \\n \\
+      backslash \t \n \
     number
       1
       100
@@ -759,8 +759,8 @@ V O I D format
         "line feed \n",
         "quotation end '",
         "quotation ' middle",
-        "backslash \\t \\n",
-        "backslash \\t \\n"
+        "backslash \\t \\n \\",
+        "backslash \\t \\n \\"
       ],
       "number": [
         1,
@@ -1067,6 +1067,7 @@ You can use it in both **private** and **open source**. Embed it in **free** or 
 ## V O I D task
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
+
 
 
 
