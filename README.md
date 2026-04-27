@@ -6,7 +6,7 @@
 > [!IMPORTANT]
 > **The project is in the process of development.**
 
-  <img src="https://github.com/voidspawner/void.storage/blob/main/image/logo.jpg" width="100%">
+  <img src="https://github.com/voidspawner/void.storage/blob/main/image/logo_muryashka.jpg" width="100%">
 
 > [**About**](#about)・
 [**Preinstalled Language**](#preinstalled-language)・
