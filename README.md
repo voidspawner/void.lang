@@ -71,8 +71,8 @@
 
 ```
 run
-  .  {text.hi} :D
-  .  language · {language}
+  [. {text.hi} :D
+  [. language · {language}
 text
   hi
     en
@@ -131,8 +131,8 @@ text
 <img width="441" height="1">
 
 ```
-.  web server on port 80
-cloud  '<h1>Hi World 😄</h1>
+[. web server on port 80
+[cloud '<h1>Hi World 😄</h1>
 ```
 </td><td>
 <img width="441" height="1">
@@ -150,8 +150,8 @@ cloud  '<h1>Hi World 😄</h1>
 <img width="441" height="1">
 
 ```
-.  shared folder on port 80
-cloud  /path/to/share
+[. shared folder on port 80
+[cloud /path/to/share
 ```
 </td><td>
 <img width="441" height="1">
@@ -169,12 +169,12 @@ cloud  /path/to/share
 <img width="441" height="1">
 
 ```
-=  word 'Hi World :D
-o  letter {word}
-  ?  {letter} = i
-      ..  i!
+[= word 'Hi World :D
+[o letter {word}
+  [? {letter} = i
+      [.. i!
 
-      ..  {letter}
+      [.. {letter}
 ```
 </td><td>
 <img width="441" height="1">
@@ -198,8 +198,8 @@ o  letter {word}
 <img width="441" height="1">
 
 ```
-replace  'Hi World :D' i i!
-.  {}
+[replace 'Hi World :D' i i!
+[. {}
 upper
 .
 ```
@@ -221,8 +221,8 @@ upper
 <img width="441" height="1">
 
 ```
-.  native python code
-code  'for i in range(10):print(i)
+[. native python code
+[code 'for i in range(10):print(i)
 ```
 </td><td>
 <img width="441" height="1">
@@ -237,7 +237,7 @@ code  'for i in range(10):print(i)
 
 ##### Import into your project
 ```python
-exec(open('void.py').read())
+from path.to.void import VOIDlang as void
 encrypted = void.encrypt('Hi World :D')
 print(void.decrypt(encrypted['text'], encrypted['key']))
 ```
