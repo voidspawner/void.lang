@@ -1,5342 +1,7059 @@
-import importlib
-import traceback
 import os
+import re
 import sys
-import platform
-import subprocess
+import json
+import gzip
+import lzma
+import time
+import math
 import signal
 import struct
 import string
-import re
-import time
-import math
 import random
+import base64
 import hashlib
-import json
-import gzip as gz
-from datetime import datetime
+import platform
+import datetime
+import calendar
+import importlib
+import threading
+import traceback
+import subprocess
 
-class void:
+class VOIDlang:
 
-	modules = {
-		'psutil': None,
-		'platform': None,
-		'base64': None,
-		'tkinter': None
-	}
-	data = {
-		'about': {
-			'name': 'V O I D lang',
-			'site': 'https://voidsp.com',
-			'language': 'python',
-			'version': {
-				'time': 1761401661,
-				'date': '2025·10·25'
-			},
-			'license': {
-				'name': 'V O I D license',
-				'url': 'https://github.com/voidspawner/void.lang#v-o-i-d-license',
-				'text': 'do what you want · you can use it in both private and open source · embed it in free or paid products · modify · create your own solutions based on it · no need to specify the author'
-			}
-		},
-		'doc': {
+	modules = {}
+	data = '''
+		about
+			type
+				code
+			name
+				V O I D lang
+			site
+				https://voidsp.com
+			language
+				python
+			version
+				time
+					1777211505
+				date
+					2026 · 04 · 26
+			license
+				name
+					V O I D license
+				url
+					https://github.com/voidspawner/void.lang#v-o-i-d-license
+				text
+					do what you want · you can use it in both private and open source · embed it in free or paid products · modify · create your own solutions based on it · no need to specify the author
+			logo
+				'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                         '
+				'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                     '
+				'                                  ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                  '
+				'                               ∞∞∞∞∞∞∞∞∞∞∞                ∞∞∞∞∞∞∞∞∞∞                                '
+				'                              ∞∞∞∞∞∞∞∞                        ∞∞∞∞∞∞∞∞                              '
+				'                            ∞∞∞∞∞∞∞                              ∞∞∞∞∞∞∞                            '
+				'                           ∞∞∞∞∞∞                                  ∞∞∞∞∞∞                           '
+				'                          ∞∞∞∞∞      ∞∞∞∞∞∞           ∞∞∞∞∞∞        ∞∞∞∞∞∞                          '
+				'                         ∞∞∞∞∞      ∞∞∞∞∞∞∞           ∞∞∞∞∞∞∞         ∞∞∞∞∞                         '
+				'                        ∞∞∞∞∞       ∞∞∞∞∞∞             ∞∞∞∞∞           ∞∞∞∞∞                        '
+				'                       ∞∞∞∞∞∞                                          ∞∞∞∞∞                        '
+				'                       ∞∞∞∞∞           ∞∞∞∞∞           ∞∞∞∞             ∞∞∞∞∞                       '
+				'                ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞      ∞∞∞∞∞           ∞∞∞∞       ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞             '
+				'            ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          '
+				'          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞    ∞∞∞∞∞      ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          '
+				'         ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞∞∞∞∞∞∞∞∞∞      ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          '
+				'          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞∞∞∞∞∞∞∞∞         ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞           '
+				'            ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞            ∞∞                  ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞               '
+				'                 ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                    ∞∞∞∞∞∞                        '
+				'                         ∞∞∞∞∞                                       ∞∞∞∞∞∞                         '
+				'                          ∞∞∞∞∞∞                                    ∞∞∞∞∞∞                          '
+				'                           ∞∞∞∞∞∞                                 ∞∞∞∞∞∞∞                           '
+				'                            ∞∞∞∞∞∞∞                             ∞∞∞∞∞∞∞∞                            '
+				'                              ∞∞∞∞∞∞∞∞                       ∞∞∞∞∞∞∞∞∞                              '
+				'                                ∞∞∞∞∞∞∞∞∞∞                ∞∞∞∞∞∞∞∞∞∞                                '
+				'                                   ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                   '
+				'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      '
+				'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
+		lang
 
-			# value
+		  .: value :.
 
-			'get': {
-				'group': 'value',
-				'method': 'get',
-				'alias': None,
-				'description': 'Retrieve a value based on provided parameter name',
-				'safe': True,
-				'container': None,
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'default', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['get', 'about.name']], 'result': 'V O I D lang'},
-					{'code': [['get', 'about.unknown', 'empty']], 'result': 'empty'},
-					{'code': [['get', 'void.test.json/about.name']], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'clean': [['file.remove', 'void.test.json']], 'result': 'V O I D lang'},
-					{'code': [['get', 'void.test.json/list.1']], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'clean': [['file.remove', 'void.test.json']], 'result': 1}
-				]
-			},
-			'set': {
-				'group': 'value',
-				'method': 'set',
-				'alias': None,
-				'description': 'Assign a value to a specified parameter',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'data', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['set', 'some.value', 1]], 'after': [['get', 'some.value']], 'result': 1},						
-					{'code': [['set', 'some.text', ':)']], 'after': [['get', 'some.text']], 'result': ':)'},
-					{'code': [['set', 'void.test.json/about.name', 'V O I D']], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'after': [['get', 'void.test.json/about.name']], 'clean': [['file.remove', 'void.test.json']], 'result': 'V O I D'},
-					{'code': [['set', 'void.test.json/list.1', 2]], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'after': [['get', 'void.test.json/list.1']], 'claen': [['file.remove', 'void.test.json']], 'result': 2}
-				]
-			},
-			'remove': {
-				'group': 'value',
-				'method': 'remove',
-				'alias': None,
-				'description': 'Remove a specified parameter or value',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text'}
-				],
-				'example': [
-					{'code': [['remove', 'some.value']], 'before': [['set', 'some.value', 1]], 'after': [['get', 'some.value']], 'result': None},
-					{'code': [['remove', 'void.test.json/about.name']], 'before': [['file', 'void.test.json', {"about":{"name": "V O I D lang"},"list":[0,1,2]}]], 'after': [['get', 'void.test.json/about.name']], 'clean': [['file.remove', 'void.test.json']], 'result': None}
-				]
-			},
-			'type': {
-				'group': 'value',
-				'method': 'type',
-				'alias': None,
-				'description': 'Determine the data type of a specified parameter',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any'}
-				],
-				'example': [
-					{'code': [['type', 'text']], 'result': 'text'},
-					{'code': [['type', 1]], 'result': 'number'},
-					{'code': [['type', 1.2]], 'result': 'number'},
-					{'code': [['type', True]], 'result': 'bool'},
-					{'code': [['type', False]], 'result': 'bool'},
-					{'code': [['type', None]], 'result': 'none'},
-					{'code': [['type', {'a': 1}]], 'result': 'dict'},
-					{'code': [['type', [1,2,3]]], 'result': 'list'},
-					{'code': [['type', b'1']], 'result': 'binary'}
-				]
-			},
-			'text': {
-				'group': 'value',
-				'method': 'type_text',
-				'alias': None,
-				'description': 'Specify a parameter as a text type',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any'},
-					{'name': 'style', 'type': ['text', 'dict'], 'default': {}}
-				],
-				'example': [
-					{'code': [['text', 123]], 'result': '123'},
-					{'code': [['text', 'title', {
-						'length': 10,
-						'align': 'center'
-					}]], 'result': '  title   '},
-					{'code': [['text', 100000.1, {
-						'before': '∞',
-						'after': ' monthly',
-						'group': ',',
-						'fraction': '.',
-						'dot': 3
-					}]], 'result': '∞100,000.100 monthly'},
-					{'code': [['text', 100000, 'price']], 'result': '∞100 000'}
-				]
-			},
-			'number': {
-				'group': 'value',
-				'method': 'type_number',
-				'alias': None,
-				'description': 'Specify a parameter as a number type',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any'}
-				],
-				'example': [
-					{'code': [['number', '123']], 'result': 123},
-					{'code': [['number', 45.67]], 'result': 45.67}
-				]
-			},
-			'bool': {
-				'group': 'value',
-				'method': 'type_bool',
-				'alias': None,
-				'description': 'Specify a parameter as a boolean type',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any'}
-				],
-				'example': [
-					{'code': [['bool', 1]], 'result': True},
-					{'code': [['bool', 'false']], 'result': False},
-					{'code': [['bool', None]], 'result': False},
-					{'code': [['bool', 'none']], 'result': False}
-				]
-			},
-			'list': {
-				'group': 'value',
-				'method': 'type_list',
-				'alias': None,
-				'description': 'Specify a parameter as a list type',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any'}
-				],
-				'example': [
-					{'code': [['list', 123]], 'result': [123]},
-					{'code': [['list', 'a']], 'result': ['a']},
-					{'code': [['list', [123, 'a']]], 'result': [123, 'a']}
-				]
-			},
-			'binary': {
-				'group': 'value',
-				'method': 'type_binary',
-				'alias': None,
-				'description': 'Specify a parameter as a binary type',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any'}
-				],
-				'example': [
-					{'code': [['binary', 'a']], 'result': b'a'},
-					{'code': [['binary', 1]], 'result': b'1'}
-				]
-			},
-			'length': {
-				'group': 'value',
-				'method': 'length',
-				'alias': 'l',
-				'description': 'Gets the length of the text, the number of items in a list or dictionary, the count of bytes in a number',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any'}
-				],
-				'example': [
-					{'code': [['l', 'text']], 'result': 4},
-					{'code': [['l', [1, 2, 'a']]], 'result': 3},
-					{'code': [['l', {'a': 1, 'b': 2}]], 'result': 2},
-					{'code': [['l', 123]], 'result': 1},
-					{'code': [['l', -123]], 'result': 1},
-					{'code': [['l', 12345678]], 'result': 3},
-					{'code': [['l', 123.1]], 'result': 8}
-				]
-			},
+			get
+				group
+					value
+				method
+					get
+				alias
+					none
+				description
+					Retrieve a value based on provided parameter name
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text  default none
+					[name default  type any  default none
+				example
+					[code [[get about.name]]  result V O I D lang
+					[code [[get about.unknown 'not found']]  result not found
+					[code [[get void.test.json/about.name]]  before [[file void.test.json [about [name  V O I D lang]  list [0 1 2]] ]]  clear [[file.remove void.test.json]]  result V O I D lang
+					[code [[get void.test.json/list.1]]  before [[file void.test.json [about [name  V O I D lang]  list [0 1 2]] ]]  clear [[file.remove void.test.json]]  result 1
+					[code [[get db.sqldbname.user]]  type list  test false
+					[code [[get db.sqldbname.user.id.12345]]  type [dict none]  test false
+					[code [[{about.name}]]  result V O I D lang
+					[code [[{about.{name}}]]  before [[= name name]]  clear [[remove name]]  result V O I D lang
+			set
+				group
+					value
+				method
+					set
+				alias
+					none
+				description
+					Assign a value to a specified parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text  default none
+					[name data  type any  default none
+				example
+					[code [[set some.value 1]]  after [[get some.value]]  clear [[remove some.value]]  result 1
+					[code [[set some.text :)]]  after [[get some.text]]  clear [[remove some.value]]  result :)
+					[code [[set void.test.json/about.name 'V O I D']]  before [[file void.test.json [about [name  V O I D lang]  list [0 1 2]] ]]  after [[get void.test.json/about.name]]  clear [[file.remove void.test.json]]  result V O I D
+					[code [[set void.test.json/list.1 3]]  before [[file void.test.json [about [name  V O I D lang]  list [0 1 2]] ]]  after [[get void.test.json/list.1]]  clear [[file.remove void.test.json]]  result 3
+					[code [[set db.sqldbname.user [id 12345  name Thomas  phone +123456789]]]  test false
+					[code [[set db.sqldbname.user.id.12345.phone +1234567890]]  test false
+			remove
+				group
+					value
+				method
+					remove
+				alias
+					del
+				description
+					Remove a specified parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type text  default none
+				example
+					[code [[remove some.value]]  before [[set some.value 1]]  after [[get some.value]]  result none
+					[code [[remove void.test.json/about.name]]  before [[file void.test.json [about [name  V O I D lang]  list [0 1 2]] ]]  after [[get void.test.json/about.name]]  clear [[file.remove void.test.json]]  result none
+					[code [remove]  before [123]  after [get]  result none
+					[code [[remove db.sqldbname]]  test false
+					[code [[remove db.sqldbname.user]]  test false
+					[code [[remove db.sqldbname.user.id.12345]]  test false
+			type
+				group
+					value
+				method
+					type
+				alias
+					none
+				description
+					Determine the data type
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any  default none
+				example
+					[code [[type text]]  result text
+					[code [[type 1]]  result number
+					[code [[type 1.2]]  result number
+					[code [[type true]]  result bool
+					[code [[type false]]  result bool
+					[code [[type none]]  result none
+					[code [[type [1 2 3]]]  result list
+					[code [[type [a 1  b 2]]]  result dict
+					[code [[type *1]]  result binary
+			text
+				group
+					value
+				method
+					type_text
+				alias
+					none
+				description
+					Specify a data as a text type
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name format  type many  default none
+				example
+					[code [[text 123]]  result '123
+					[code [[text true]]  result 'true
+					[code [[text none]]  result 'none
+					[code [[text [1 2 3]]]  result '[1 2 3
+					[code [[text [a 1  b 2]]]  result '[a 1  b 2
+					[code [[text *74657874]]  result text
+					[code [[text *7465_7874]]  result text
+					[code [[text **01100001]]  result a
+					[code [[text **0110_0001]]  result a
+					[code [[text ***dGV4dA==]]  result text
+					[code [[text ***dGV4dA]]  result text
+					[code [[text *a]]  result a
+					[code [[text *1]]  result '1
+					[code [[text *text]]  result text
+					[code [[text *'text text']]  result 'text text
+					[code [[text *1*a]]  result a
+					[code [[text *4*text]]  result text
+					[code [[text title [length 10  align center]]]  result '  title   '
+					[code [[text 100000 price]]  result '∞100 000
+					[code [[text 100000.1 [before ∞  after monthly  group ,  dot .  round 3]]]  result '∞100,000.100 monthly
+					[code [[text {image} [size  100]]]  test false
+					[code [[text {image} [width 100  height 100]]]  test false
+					[code [[text text + text]]  result 'text+text
+					[code [[text number ' ' 123]]  result 'number 123
+					[code [[text *abc '*{}']]  result '*abc
+					[code [[text *abc [[+ '*' {}]] ]]  result '*abc
+			number
+				group
+					value
+				method
+					type_number
+				alias
+					none
+				description
+					Specify a data as a number type
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any  default none
+				example
+					[code [[number text]]  result 0
+					[code [[number '123']]  result 123
+					[code [[number '45.67']]  result 45.67
+					[code [[number true]]  result 1
+					[code [[number false]]  result 0
+					[code [[number none]]  result 0
+					[code [[number []]]  result 0
+					[code [[number [text]]]  result 1
+					[code [[number [a 1  b 2]]]  result 2
+					[code [[number *1]]  result 1
+			bool
+				group
+					value
+				method
+					type_bool
+				alias
+					none
+				description
+					Specify a data as a boolean type
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any  default none
+				example
+					[code [[bool text]]  result true
+					[code [[bool '0']]  result true
+					[code [[bool '']]  result false
+					[code [[bool 1]]  result true
+					[code [[bool 0]]  result false
+					[code [[bool false]]  result false
+					[code [[bool none]]  result false
+					[code [[bool [0]]]  result true
+					[code [[bool []]]  result false
+					[code [[bool [a  0]]]  result true
+					[code [[bool [ ]]]  result false
+					[code [[bool *0]]  result true
+					[code [[bool *'']]  result false
+			binary
+				group
+					value
+				method
+					type_binary
+				alias
+					none
+				description
+					Specify a data as a binary type
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any  default none
+				example
+					[code [[binary text]]  result *text
+					[code [[binary 123]]  result *7B
+					[code [[binary true]]  result *01
+					[code [[binary none]]  result *00
+					[code [[binary [1 2 3]]]  result *'[1 2 3
+					[code [[binary [a 1  b 2]]]  result *'[a 1  b 2
+					[code [[binary *a]]  result *a
+			length
+				group
+					value
+				method
+					length
+				alias
+					n
+					len
+				description
+					Gets the length of the data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any  default none
+				example
+					[code [[n text]]  result 4
+					[code [[n [1 2 a]]]  result 3
+					[code [[n [a 1  b 2]]]  result 2
+					[code [[n 123]]  result 1
+					[code [[n -123]]  result 1
+					[code [[n 12345678]]  result 3
+					[code [[n 123.1]]  result 8
+					[code [[n *'123']]  result 3
 
-			# expression
+		  .: expression :.
 
-			'+': {
-				'group': 'expression',
-				'method': 'expression_plus',
-				'alias': None,
-				'description': 'Perform addition or AND operation',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': '{}'},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['+', 2, 3]], 'result': 5},
-					{'code': [['+', True]], 'result': False},
-					{'code': [['+', False]], 'result': False},
-					{'code': [['+', True, True]], 'result': True},
-					{'code': [['+', True, False]], 'result': False},
-					{'code': [['+', False, True]], 'result': False},
-					{'code': [['+', False, False]], 'result': False},
-					{'code': [['+', 'a', 'b']], 'result': 'ab'},
-					{'code': [['+', 'a', 2]], 'result': 'a  '},
-					{'code': [['+', ['a'], ['b']]], 'result': ['a', 'b']},
-					{'code': [['+', ['a'], 2]], 'result': ['a', None, None]},
-					{'code': [['+', {'a': 1, 'b': {'c': 3}}, {'b': {'c': 5}}]], 'result': {'a': 1, 'b': {'c': 5}}},
-					{'code': [['+', {'a': 1}, 'b']], 'result': {'a': 1, 'b': None}},
-					{'code': [['+', {'a': 1}, 1]], 'result': [{'a': 1}, {'a': 1}]},
-					{'code': [['+', b'a', b'b']], 'result': b'ab'},
-					{'code': [['+', b'a', 'b']], 'result': b'ab'},
-					{'code': [['+', b'a', 1]], 'result': b'a1'}
-				]
-			},
-			'-': {
-				'group': 'expression',
-				'method': 'expression_minus',
-				'alias': None,
-				'description': 'Perform subtraction or NOT operation',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': '{}'},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['-', 5, 2]], 'result': 3},
-					{'code': [['-', 10]], 'result': -10},
-					{'code': [['-', True]], 'result': False},
-					{'code': [['-', False]], 'result': True},
-					{'code': [['-', True, True]], 'result': False},
-					{'code': [['-', False, True]], 'result': False},
-					{'code': [['-', True, False]], 'result': True},
-					{'code': [['-', False, False]], 'result': False},
-					{'code': [['-', 'file.json', '.json']], 'result': 'file'},
-					{'code': [['-', 'text', 2]], 'result': 'te'},
-					{'code': [['-', [1, 2, 3], 1]], 'result': [1, 2]},
-					{'code': [['-', {'a': 1, 'b': 2}, 'a']], 'result': {'b': 2}},
-					{'code': [['-', {'a': 1, 'b': 2}, 1]], 'length': 1},
-					{'code': [['-', b'text', 2]], 'result': b'te'},
-					{'code': [['-', b'text', 't']], 'result': b'tex'},
-					{'code': [['-', b'text', b't']], 'result': b'tex'}
-				]
-			},
-			'*': {
-				'group': 'expression',
-				'method': 'expression_multiply',
-				'alias': None,
-				'description': 'Perform multiplication or XOR operation',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': '{}'},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['*', 3, 4]], 'result': 12},
-					{'code': [['*', True]], 'result': True},
-					{'code': [['*', False]], 'result': False},
-					{'code': [['*', True, True]], 'result': False},
-					{'code': [['*', True, False]], 'result': True},
-					{'code': [['*', False, True]], 'result': True},
-					{'code': [['*', False, False]], 'result': False},
-					{'code': [['*', 'a', 3]], 'result': 'aaa'},
-					{'code': [['*', ['a'], 2]], 'result': ['a', 'a']},
-					{'code': [['*', ['a', 'b'], ' ']], 'result': 'a b'},
-					{'code': [['*', {'a': 1}, 2]], 'result': [{'a': 1}, {'a': 1}]},
-					{'code': [['*', b'a', 2]], 'result': b'aa'}
-				]
-			},
-			'/': {
-				'group': 'expression',
-				'method': 'expression_divide',
-				'alias': None,
-				'description': 'Perform division or OR operation',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': '{}'},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['/', 10, 2]], 'result': 5},
-					{'code': [['/', 7, 2]], 'result': 3.5},
-					{'code': [['/', True]], 'result': True},
-					{'code': [['/', False]], 'result': False},
-					{'code': [['/', True, True]], 'result': True},
-					{'code': [['/', True, False]], 'result': True},
-					{'code': [['/', False, True]], 'result': True},
-					{'code': [['/', False, False]], 'result': False},
-					{'code': [['/', 'a b', ' ']], 'result': ['a', 'b']},
-				]
-			},
-			'%': {
-				'group': 'expression',
-				'method': 'expression_modulo',
-				'alias': None,
-				'description': 'Perform modulo operation',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': '{}'},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['%', 10, 3]], 'result': 1},
-					{'code': [['%', 15, 4]], 'result': 3}
-				]
-			},
-			'^': {
-				'group': 'expression',
-				'method': 'expression_power',
-				'alias': None,
-				'description': 'Elevation operator',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': '{}'},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['^', 2, 3]], 'result': 8},
-					{'code': [['^', 10, 0]], 'result': 1},
-					{'code': [['^', 4, 0.5]], 'result': 2}
-				]
-			},
-			'>>': {
-				'group': 'expression',
-				'method': 'expression_shr',
-				'alias': None,
-				'description': 'Perform right shift operation',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any', 'default': '{}'},
-					{'name': 'count', 'type': 'number', 'default': 1}
-				],
-				'example': [
-					{'code': [['>>', 16, 2]], 'result': 4},
-					{'code': [['>>', 255, 4]], 'result': 15},
-					{'code': [['>>', True]], 'result': False},
-				]
-			},
-			'<<': {
-				'group': 'expression',
-				'method': 'expression_shl',
-				'alias': None,
-				'description': 'Perform left shift operation',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any', 'default': '{}'},
-					{'name': 'count', 'type': 'number', 'default': 1}
-				],
-				'example': [
-					{'code': [['<<', 4, 2]], 'result': 16},
-					{'code': [['<<', 7, 3]], 'result': 56},
-					{'code': [['<<', True]], 'result': False}
-				]
-			},
-			'==': {
-				'group': 'expression',
-				'method': 'expression_equal',
-				'alias': None,
-				'description': 'Checks if left value is equal to right',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': None},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['==', 5, 5]], 'result': True},
-					{'code': [['==', 'a', 'b']], 'result': False}
-				]
-			},
-			'!=': {
-				'group': 'expression',
-				'method': 'expression_notequal',
-				'alias': None,
-				'description': 'Check if values are not equal',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': None},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['!=', 5, 3]], 'result': True},
-					{'code': [['!=', 'a', 'a']], 'result': False}
-				]
-			},
-			'>': {
-				'group': 'expression',
-				'method': 'expression_greater',
-				'alias': None,
-				'description': 'Checks if left value is greater than right',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': None},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['>', 5, 3]], 'result': True},
-					{'code': [['>', 2, 4]], 'result': False}
-				]
-			},
-			'<': {
-				'group': 'expression',
-				'method': 'expression_less',
-				'alias': None,
-				'description': 'Checks if left value is less than right',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': None},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['<', 3, 5]], 'result': True},
-					{'code': [['<', 4, 2]], 'result': False}
-				]
-			},
-			'>=': {
-				'group': 'expression',
-				'method': 'expression_greater_equal',
-				'alias': None,
-				'description': 'Checks if left value is greater than or equal to right',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': None},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['>=', 5, 3]], 'result': True},
-					{'code': [['>=', 5, 5]], 'result': True},
-					{'code': [['>=', 4, 5]], 'result': False}
-				]
-			},
-			'<=': {
-				'group': 'expression',
-				'method': 'expression_less_equal',
-				'alias': None,
-				'description': 'Checks if left value is less than or equal to right',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': None},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['<=', 3, 5]], 'result': True},
-					{'code': [['<=', 5, 5]], 'result': True},
-					{'code': [['<=', 6, 5]], 'result': False}
-				]
-			},
-			'<>': {
-				'group': 'expression',
-				'method': 'expression_in',
-				'alias': None,
-				'description': 'Checks if value is in a list or subtext in a text or name in a dictionary',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': None},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['<>', 'te', 'text']], 'result': True},
-					{'code': [['<>', 'a', ['a', 'b', 'c']]], 'result': True},
-					{'code': [['<>', 'a', {'a': 1}]], 'result': True},
-					{'code': [['<>', 'd', ['a', 'b', 'c']]], 'result': False}
-				]
-			},
-			'><': {
-				'group': 'expression',
-				'method': 'expression_notin',
-				'alias': None,
-				'description': 'Checks if value is not in a list or subtext in a text or or name not in a dictionary',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'first', 'type': 'any', 'default': None},
-					{'name': 'second', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['><', 'a', 'text']], 'result': True},
-					{'code': [['><', 'd', ['a', 'b', 'c']]], 'result': True},
-					{'code': [['><', 'b', {'a': 1}]], 'result': True},
-					{'code': [['><', 'a', ['a', 'b', 'c']]], 'result': False}
-				]
-			},
-			'~': {
-				'group': 'expression',
-				'method': 'expression_is',
-				'alias': None,
-				'description': 'Checks if value is in a list or name in a dictionary',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any', 'default': None},
-					{'name': 'type', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['~', 'name', 'text']], 'result': True},
-					{'code': [['~', 'name', 'number']], 'result': False},
-					{'code': [['~', 123, 'number']], 'result': True},
-					{'code': [['~', True, 'bool']], 'result': True},
-					{'code': [['~', None, 'none']], 'result': True},
-					{'code': [['~', [1, 2], 'list']], 'result': True},
-					{'code': [['~', {'a': 1}, 'dict']], 'result': True},
-					{'code': [['~', 'name', ['text', 'dict']]], 'result': True},
-					{'code': [['~', b'text', 'binary']], 'result': True}
-				]
-			},
-			'!~': {
-				'group': 'expression',
-				'method': 'expression_isnot',
-				'alias': None,
-				'description': 'Checks if value is not in a list or name not in a dictionary',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any', 'default': None},
-					{'name': 'type', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['!~', 'name', 'number']], 'result': True},
-					{'code': [['!~', 123, 'text']], 'result': True},
-					{'code': [['!~', 123, ['list', 'dict']]], 'result': True}
-				]
-			},
-			'=': {
-				'group': 'expression',
-				'method': 'expression_assign',
-				'alias': None,
-				'description': 'Assign value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'data', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['=', 'x', 10]], 'result': 10},
-					{'code': [['=', 'name', 'John']], 'result': 'John'}
-				]
-			},
-			'+=': {
-				'group': 'expression',
-				'method': 'expression_plus_assign',
-				'alias': None,
-				'description': 'Add and assign value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'data', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['=', 'x', 5], ['+=', 'x', 3]], 'result': 8},
-					{'code': [['=', 's', 'a'], ['+=', 's', 'b']], 'result': 'ab'}
-				]
-			},
-			'=+': {
-				'group': 'expression',
-				'method': 'expression_assign_plus',
-				'alias': None,
-				'description': 'Assign and add value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'data', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['=+', 'x', 5, 3]], 'result': 8},
-					{'code': [['=+', 's', 'a', 'b']], 'result': 'ab'}
-				]
-			},
-			'-=': {
-				'group': 'expression',
-				'method': 'expression_minus_assign',
-				'alias': None,
-				'description': 'Subtract and assign value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'data', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['=', 'x', 10], ['-=', 'x', 4]], 'result': 6},
-					{'code': [['=', 'y', 7.5], ['-=', 'y', 2.5]], 'result': 5.0}
-				]
-			},
-			'*=': {
-				'group': 'expression',
-				'method': 'expression_multiply_assign',
-				'alias': None,
-				'description': 'Multiply and assign value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'data', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['=', 'x', 3], ['*=', 'x', 4]], 'result': 12},
-					{'code': [['=', 's', 'a'], ['*=', 's', 3]], 'result': 'aaa'}
-				]
-			},
-			'/=': {
-				'group': 'expression',
-				'method': 'expression_divide_assign',
-				'alias': None,
-				'description': 'Divide and assign value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'data', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['=', 'x', 10], ['/=', 'x', 2]], 'result': 5},
-					{'code': [['=', 'y', 7], ['/=', 'y', 2]], 'result': 3.5}
-				]
-			},
-			'%=': {
-				'group': 'expression',
-				'method': 'expression_modulo_assign',
-				'alias': None,
-				'description': 'Modulo and assign value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'data', 'type': 'any', 'default': None}
-				],
-				'example': [
-					{'code': [['=', 'x', 10], ['%=', 'x', 3]], 'result': 1},
-					{'code': [['=', 'y', 15], ['%=', 'y', 4]], 'result': 3}
-				]
-			},
-			'^=': {
-				'group': 'expression',
-				'method': 'expression_power_assign',
-				'alias': None,
-				'description': 'Elevation and assign value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'data', 'type': 'any', 'default': 2}
-				],
-				'example': [
-					{'code': [['=', 'x', 2], ['~=', 'x', 3]], 'result': 8},
-					{'code': [['=', 'y', 5], ['~=', 'y', 0]], 'result': 1}
-				]
-			},
-			'>>=': {
-				'group': 'expression',
-				'method': 'expression_shr_assign',
-				'alias': None,
-				'description': 'Right shift and assign value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'count', 'type': 'number', 'default': 1}
-				],
-				'example': [
-					{'code': [['=', 'x', 16], ['>>=', 'x', 2]], 'result': 4},
-					{'code': [['=', 'y', 255], ['>>=', 'y', 4]], 'result': 15}
-				]
-			},
-			'<<=': {
-				'group': 'expression',
-				'method': 'expression_shl_assign',
-				'alias': None,
-				'description': 'Left shift and assign value to a variable',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None},
-					{'name': 'count', 'type': 'number', 'default': 1}
-				],
-				'example': [
-					{'code': [['=', 'x', 4], ['<<=', 'x', 2]], 'result': 16},
-					{'code': [['=', 'y', 7], ['<<=', 'y', 3]], 'result': 56}
-				]
-			},
+			+
+				group
+					expression
+				method
+					expression_plus
+				alias
+					and
+				description
+					Perform addition or AND operation
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[+ 2 3]]  result 5
+					[code [[+ 1 2 3]]  result 6
+					[code [2 [+ 3]]  result 5
+					[code [2 + 3]  result 5
+					[code [[+ text ' ' text]]  result 'text text
+					[code [text + ' ' + text]  result 'text text
+					[code [text + 1]  result 'text1
+					[code [[+ [1 2] [a b]]]  result [1 2 a b
+					[code [[1 2 3] + 4]  result [1 2 3 4
+					[code [[+ true true]]  result true
+					[code [[+ true false]]  result false
+					[code [[+ false true]]  result false
+					[code [[+ false false]]  result false
+					[code [[+ [a 1  b [c 2]] [b [c 3]]]] result [a 1  b [c 3
+					[code [[+ *a *b]]  result *'ab
+					[code [[+ *a 1]]  result *'a1
+			-
+				group
+					expression
+				method
+					expression_minus
+				alias
+					not
+				description
+					Perform subtraction or NOT operation
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[- 5 2]]  result 3
+					[code [5 - 2 - 1]  result 2
+					[code [[- 10]]  result -10
+					[code [text - 2]  result te
+					[code [file.void - .void]]  result file
+					[code [[- true]]  result false
+					[code [[- false]]  result true
+					[code [[- [1 2 3] 1]]  result [1 2]
+					[code [[- [1 2 3] [1 3]]]  result [2]
+					[code [[- [a 1  b 2] a]]  result [b 2]
+					[code [[- *text 2]]  result *te
+					[code [[- *text *xt]]  result *te
+			*
+				group
+					expression
+				method
+					expression_multiply
+				alias
+					xor
+				description
+					Perform multiplication or XOR operation
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[* 3 4]]  result 12
+					[code [2 * 3 * 4]  result 24
+					[code [true * true]  result false
+					[code [true * false]  result true
+					[code [false * true]  result true
+					[code [false * false]  result false
+					[code [text * 2]  result texttext
+					[code [text * ' ']  result t e x t
+					[code [[1 2 3] * 2]  result [[1 2 3] [1 2 3
+					[code [[a 1  b 2] * 2]  result [[a 1  b 2] [a 1  b 2
+					[code [[text text] * ' ']  result 'text text
+					[code [*a * 2]  result *'aa
+			/
+				group
+					expression
+				method
+					expression_divide
+				alias
+					or
+				description
+					Perform division or OR operation
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[/ 10 2]]  result 5
+					[code [[/ 7 2]]  result 3.5
+					[code [20 / 10 / 2]  result 1
+					[code [true / true]  result true
+					[code [true / false]  result true
+					[code [false / true]  result true
+					[code [false / false]  result false
+					[code [[/ [1 2 3 4] 2]]  result [[1 2] [3 4
+					[code [[/ [a 1  b 2  c 3  d 4] 2]]  result [[a 1  b 2] [c 3  d 4
+					[code [text / 2]  result [te xt
+					[code ['text text' / ' ']  result [text text]
+					[code [*text / 2]  result [*te *xt
+			%
+				group
+					expression
+				method
+					expression_modulo
+				alias
+					none
+				description
+					Perform modulo operation
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type [int many]  default none
+				example
+					[code [[% 10 3]]  result 1
+					[code [15 % 4]  result 3
+			^
+				group
+					expression
+				method
+					expression_power
+				alias
+					none
+				description
+					Perform power operator
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[^ 2 3]]  result 8
+					[code [[^ 10 0]]  result 1
+					[code [[^ 4 0.5]]  result 2
+					[code [2 ^ 3 ^ 2]  result 64
+			>>
+				group
+					expression
+				method
+					expression_shr
+				alias
+					shr
+				description
+					Perform right shift operation
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[>> 16 2]]  result 4
+					[code [[>> 255 4]]  result 15
+					[code [[>> true]]  result false
+					[code [[>> false]]  result false
+					[code [[1 2 3] >> 2]  result [1
+					[code [[a 1  b 2] >> 1]  result [a  1]
+					[code [text >> 2]  result te
+					[code [*text >> 2]  result *te
+			<<
+				group
+					expression
+				method
+					expression_shl
+				alias
+					shl
+				description
+					Perform left shift operation
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[<< 4 2]]  result 16
+					[code [[<< 7 3]]  result 56
+					[code [[<< true]]  result false
+					[code [[<< [1 2]]]  result [1 2 ''
+					[code [[<< [a 1  b 2]]]  result [a 1  b 2
+					[code [text << 2]  result 'text  '
+					[code [*text << 2]  result *'text  '
+			!=
+				group
+					expression
+				method
+					expression_notequal
+				alias
+					none
+				description
+					Checks if values are not equal
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[!= 5 3]]  result true
+					[code [[!= a a]]  result false
+					[code [a != b]  result true
+					[code [true != false]  result true
+					[code [[1 2] != [1 2]]  result false
+					[code [[a 1  b 2] != [a 1  b 2]]  result false
+					[code [text != text]  result false
+					[code [*text != *text]  result false
+			>
+				group
+					expression
+				method
+					expression_greater
+				alias
+					none
+				description
+					Checks if left value is greater than right
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[> 5 3]]  result true
+					[code [2 > 4]  result false
+					[code [a > b]  return false
+					[code [text > tex]  return true
+					[code [[1 2 3] > [1 2]]  return true
+					[code [*text > *tex]  return true
+			<
+				group
+					expression
+				method
+					expression_less
+				alias
+					none
+				description
+					Checks if left value is less than right
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[< 5 3]]  result false
+					[code [2 < 4]  result true
+					[code [a < b]  return true
+					[code [text < tex]  return false
+					[code [[1 2 3] < [1 2]]  return false
+					[code [*text < *tex]  return false
+			>=
+				group
+					expression
+				method
+					expression_greater_equal
+				alias
+					none
+				description
+					Checks if left value is greater than or equal to right
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[>= 5 3]]  result true
+					[code [5 >= 5]  result true
+			<=
+				group
+					expression
+				method
+					expression_less_equal
+				alias
+					none
+				description
+					Checks if left value is less than or equal to right
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type many  default none
+				example
+					[code [[<= 5 3]]  result false
+					[code [5 <= 5]  result true
+			#
+				group
+					expression
+				method
+					expression_in
+				alias
+					in
+				description
+					Checks if value is in a list, subtext in a text or name in a dictionary
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name value  type any
+					[name data  type [text list dict
+				example
+					[code [[# te text]]  result true
+					[code [[# a [a b c]]]  result true
+					[code [[# a [a 1  b 2]]]  result true
+					[code [a # [a b c]]  result true
+					[code [d # [a b c]]  result false
+			!#
+				group
+					expression
+				method
+					expression_notin
+				alias
+					notin
+				description
+					Checks if value is not in a list, subtext in a text or name not in a dictionary
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name value  type any
+					[name data  type [text list dict
+				example
+					[code [[!# te text]]  result false
+					[code [[!# a [a b c]]]  result false
+					[code [[!# a [a 1  b 2]]]  result false
+					[code [a !# [a b c]]  result false
+					[code [d !# [a b c]]  result true
+			@
+				group
+					expression
+				method
+					expression_is
+				alias
+					is
+				description
+					Checks if value matches a type or one of types
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name type  type [text none list
+				example
+					[code [[@ name text]]  result true
+					[code [[@ name number]]  result false
+					[code [[@ 123 number]]  result true
+					[code [[@ true bool]]  result true
+					[code [[@ none none]]  result true
+					[code [[@ [1 2] list]]  result true
+					[code [[@ [a 1  b 2] dict]]  result true
+					[code [[@ name [text dict]]]  result true
+					[code [[@ *text binary]]  result true
+					[code [123 @ number]  result true
+			!@
+				group
+					expression
+				method
+					expression_isnot
+				alias
+					isnot
+				description
+					Checks if value does not match a type or types
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name type  type [text none list
+				example
+					[code [[!@ name text]]  result false
+					[code [[!@ name number]]  result true
+					[code [[!@ 123 number]]  result false
+					[code [[!@ true bool]]  result false
+					[code [[!@ none none]]  result false
+					[code [[!@ [1 2] list]]  result false
+					[code [[!@ [a 1  b 2] dict]]  result false
+					[code [[!@ name [text dict]]]  result false
+					[code [[!@ *text binary]]  result false
+					[code [123 !@ number]  result false
+			=
+				group
+					expression
+				method
+					expression_assign
+				alias
+					==
+				description
+					Assign value or expression to a parameter or checks if values are equal
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type any
+					[name data  type any
+				example
+					[code [[= x 10] {x}]  result 10
+					[code [[= name text] {name}]  result text
+					[code [[= name.subname text] {name.subname}]  result text
+					[code [[= '' text] {}]  result text
+					[code [[= none text] {}]  result text
+					[code [[= x 10] {x} = 10]  result true
+					[code [20 = 10]  result false
+					[code [[= 20 10]]  result false
+			+=
+				group
+					expression
+				method
+					expression_plus_assign
+				alias
+					none
+				description
+					Add and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name data  type any  default 1
+				example
+					[code [[= x 10] [+= x] {x}]  result 11
+					[code [[= x 10] [+= x 2] {x}]  result 12
+					[code [[= name text] [+= name] {name}]  result 'text '
+					[code [[= name text] [+= name 2] {name}]  result 'text  '
+					[code [[= name text] [+= name end] {name}]  result textend
+					[code [[= data [1 2 3]] [+= data 2] {data}]  result [1 2 3 '' ''
+					[code [[= data [a 1  b 2]] [+= data [c  3]] {data}]  result [a 1  b 2  c 3
+					[code [[= name *text] [+= name end] {name}]  result *textend
+			=+
+				group
+					expression
+				method
+					expression_assign_plus
+				alias
+					none
+				description
+					Add to the beginning and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name data  type any  default 1
+				example
+					[code [[= x 10] [=+ x] {x}]  result 11
+					[code [[= x 10] [=+ x 2] {x}]  result 12
+					[code [[= name text] [=+ name] {name}]  result ' text
+					[code [[= name text] [=+ name 2] {name}]  result '  text
+					[code [[= name text] [=+ name start] {name}]  result starttext
+					[code [[= data [1 2 3]] [=+ data 2] {data}]  result ['' '' 1 2 3
+					[code [[= data [a 1  b 2]] [=+ data [c  3]] {data}]  result [c 3  a 1  b 2
+					[code [[= name *text] [+= name start] {name}]  result *starttext
+			-=
+				group
+					expression
+				method
+					expression_minus_assign
+				alias
+					none
+				description
+					Subtract and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name data  type any  default 1
+				example
+					[code [[= x 10] [-= x] {x}]  result 9
+					[code [[= x 10] [-= x 2] {x}]  result 8
+					[code [[= name text] [-= name] {name}]  result tex
+					[code [[= name text] [-= name 2] {name}]  result te
+					[code [[= name text] [-= name xt] {name}]  result te
+					[code [[= data [1 2 3]] [-= data 2] {data}]  result [1 2
+					[code [[= data [a 1  b 2]] [-= data b] {data}]  result [a 1
+					[code [[= name *text] [-= name xt] {name}]  result *te
+			=-
+				group
+					expression
+				method
+					expression_assign_minus
+				alias
+					none
+				description
+					Subtract from the beginning and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name data  type any   default 1
+				example
+					[code [[= x 10] [=- x] {x}]  result 9
+					[code [[= x 10] [=- x 2] {x}]  result 8
+					[code [[= name text] [=- name] {name}]  result ext
+					[code [[= name text] [=- name 2] {name}]  result xt
+					[code [[= name text] [=- name te] {name}]  result xt
+					[code [[= data [1 2 3]] [=- data 2] {data}]  result [1
+					[code [[= data [a 1  b 2]] [=- data b] {data}]  result [a 1
+					[code [[= name *text] [=- name te] {name}]  result *xt
+			*=
+				group
+					expression
+				method
+					expression_multiply_assign
+				alias
+					none
+				description
+					Multiply and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name data  type any  default none
+				example
+					[code [[= x 10] [*= x] {x}]  result 100
+					[code [[= x 10] [*= x 2] {x}]  result 20
+					[code [[= name text] [*= name 2] {name}]  result texttext
+					[code [[= name text] [*= name ' '] {name}]  result t e x t
+					[code [[= data [1 2 3]] [*= data 2] {data}]  result [[1 2 3] [1 2 3
+					[code [[= data [a 1  b 2]] [*= data 2] {data}]  result [[a 1  b 2] [a 1  b 2
+					[code [[= name *text] [*= name ' '] {name}]  result *'t e x t
+			/=
+				group
+					expression
+				method
+					expression_divide_assign
+				alias
+					none
+				description
+					Divide and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name data  type any  default none
+				example
+					[code [[= x 100] [/= x] {x}]  result 10
+					[code [[= x 10] [/= x 2] {x}]  result 5
+					[code [[= name text] [/= name 2] {name}]  result [te xt
+					[code [[= name 'text text'] [/= name ' '] {name}]  result [text text
+					[code [[= data [1 2 3 4]] [/= data 2] {data}]  result [[1 2] [3 4
+					[code [[= data [a 1  b 2]] [/= data 2 {data}]  result [[a  1] [b  2
+					[code [[= name *text] [/= name 2] {name}]  result [*te *xt
+			%=
+				group
+					expression
+				method
+					expression_modulo_assign
+				alias
+					none
+				description
+					Modulo and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name data  type any  default 2
+				example
+					[code [[= x 4] [%= x] {x}]  result 0
+					[code [[= x 10] [%= x 3] {x}]  result 1
+			^=
+				group
+					expression
+				method
+					expression_power_assign
+				alias
+					none
+				description
+					Power and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name data  type any  default 2
+				example
+					[code [[= x 10] [^= x] {x}]  result 100
+					[code [[= x 2] [^= x 3] {x}]  result 8
+			>>=
+				group
+					expression
+				method
+					expression_shr_assign
+				alias
+					none
+				description
+					Right shift and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name count  type number  default 1
+				example
+					[code [[= x 16] [>>= x 2] {x}]  result 4
+					[code [[= x 255] [>>= x 4] {x}]  result 15
+					[code [[= data [1 2 3]] [>>= data 2] {data}]  result [1
+					[code [[= data [a 1  b 2]] [>>= data 1] {data}]  result [a  1]
+					[code [[= name text] [>>= name 2] {name}]  result te
+					[code [[= name *text] [>>= name 2] {name}]  result *te
+			<<=
+				group
+					expression
+				method
+					expression_shl_assign
+				alias
+					none
+				description
+					Left shift and assign value to a parameter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name count  type number  default 1
+				example
+					[code [[= x 4] [<<= x 2] {x}]  result 16
+					[code [[= x 7] [<<= x 3] {x}]  result 56
+					[code [[= data [1 2]] [<<= data 1] {data}]  result [1 2 ''
+					[code [[= name text] [<<= name 2] {name}]  result 'text  '
+					[code [[= name *text] [<<= name 2] {name}]  result *'text  '
 
+		  .: control :.
 
-			# control
-
-			'print': {
-				'group': 'control',
-				'method': 'print',
-				'alias': '.',
-				'description': 'Output data to the console',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any', 'many': True, 'default': '{}'},
-					{'name': 'end', 'type': 'text', 'default': '\n'}
-				],
-				'example': [
-					{'code': [['.', 'Hello']], 'result': 'Hello\n', 'output': 'shell'},
-					{'code': [['.', 42]], 'result': '42\n', 'output': 'shell'},
-					{'code': [['.', 'Hello', 'there']], 'result': 'Hello there\n', 'output': 'shell'}
-				]
-			},
-			'printn': {
-				'group': 'control',
-				'method': 'printn',
-				'alias': '..',
-				'description': 'Output data to the console without newline',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any', 'many': True, 'default': '{}'}
-				],
-				'example': [
-					{'code': [['..', 'Hello']], 'result': 'Hello', 'output': 'shell'},
-					{'code': [['..', 42]], 'result': '42', 'output': 'shell'},
-					{'code': [['..', 'Hello', 'there']], 'result': 'Hello there', 'output': 'shell'}
-				]
-			},
-			'input': {
-				'group': 'control',
-				'method': None,
-				'alias': '...',
-				'description': 'Input text from the user',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''}
-				],
-				'example': [
-					{'code': [['.?', 'Enter name: ']], 'test': False},
-					{'code': [['.?']], 'test': False}
-				]
-			},
-			'if': {
-				'group': 'control',
-				'method': None,
-				'alias': '?',
-				'description': 'Evaluate a conditional expression',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['?', ['>', 5, 3], 'yes', 'no']], 'result': 'yes'},
-					{'code': [['?', ['==', 2, 3], 'equal', 'not equal']], 'result': 'not equal'}
-				]
-			},
-			'loop': {
-				'group': 'control',
-				'method': None,
-				'alias': 'o',
-				'description': 'Perform a loop operation',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['o', ['<', 'i', 3], [['.', 'i'], ['=', 'i', ['+', 'i', 1]]]]], 'test': False},
-					{'code': [['o', ['<', 'i', 5], [['.', ['*', 'i', 2]], ['=', 'i', ['+', 'i', 1]]]]], 'test': False}
-				]
-			},
-			'break': {
-				'group': 'control',
-				'method': None,
-				'alias': 'x',
-				'description': 'Exit the current loop',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['o', True, [['.', 'looping'], ['?', ['==', 'i', 3], [['x']], []]]]], 'test': False}
-				]
-			},
-			'continue': {
-				'group': 'control',
-				'method': None,
-				'alias': 'x>',
-				'description': 'Skip to the next iteration of the loop',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['o', ['<', 'i', 5], [['?', ['==', 'i', 2], [['->']], [['.', 'i']]]]]], 'test': False}
-				]
-			},
-			'repeat': {
-				'group': 'control',
-				'method': None,
-				'alias': '<x',
-				'description': 'Repeat the current iteration of the loop',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['o', ['<', 'i', 3], [['?', ['==', 'i', 1], [['<-']], [['.', 'i']]]]]], 'test': False}
-				]
-			},
-			'return': {
-				'group': 'control',
-				'method': None,
-				'alias': ['X', 'response'],
-				'description': 'Return a result from an action',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'result', 'default': None}
-				],
-				'example': [
-					{'code': [['action', [1, ['+', 1], 'X']]], 'result': 2},
-					{'code': [['action', [1, ['+', 1], ['X', '{}']]]], 'result': None}
-				]
-			},
-			'action': {
-				'group': 'control',
-				'method': 'action',
-				'alias': None,
-				'description': 'Initiate or call an action',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['action', 'greet', [], [['.', 'Hello!']]], ['greet']], 'test': False},
-					{'code': [['action', 'add', ['a', 'b'], [[':', ['+', 'a', 'b']]]], ['add', 2, 3]], 'result': 5}
-				]
-			},
-			'open': {
-				'group': 'control',
-				'method': 'open',
-				'alias': None,
-				'description': 'Open a link in standard way or execute shell command',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['open', 'https://example.com']], 'test': False},
-					{'code': [['open', 'file.txt']], 'test': False}
-				]
-			},
-			'close': {
-				'group': 'control',
-				'method': 'close',
-				'alias': None,
-				'description': 'Close an application by name or PID',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['close', 'App Name']], 'test': False},
-					{'code': [['close', 31337]], 'test': False}
-				]
-			},
-			'code': {
-				'group': 'control',
-				'method': 'code',
-				'alias': None,
-				'description': 'Execute a block of native code',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['code', 'python', 'print("Hello from Python")']], 'test': False},
-					{'code': [['code', 'js', 'console.log("Hello from JS")']], 'test': False}
-				]
-			},
-			'info': {
-				'group': 'control',
-				'method': 'info',
-				'alias': 'i',
-				'description': 'Log data',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['l', 'Debug info']], 'test': False},
-					{'code': [['l', ['+', 'x=', 'x']]], 'test': False}
-				]
-			},
-			'convert': {
-				'group': 'control',
-				'method': 'convert',
-				'alias': 'c',
-				'description': 'Convert data from one format to another',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['convert', 'json', {'x': 10}]], 'result': '{"x": 10}'},
-					{'code': [['convert', 'yaml', {'x': 10}]], 'result': 'x: 10\n'}
-				]
-			},
-			'clipboard': {
-				'group': 'control',
-				'method': 'clipboard',
-				'alias': None,
-				'description': 'Storing or retrieving clipboard temporary data',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [
-						['clipboard', 'copied text'],
-						['clipboard']
-					], 'result': 'copied text'},
-					{'code': [['clipboard', None]], 'test': False}
-				]
-			},
-			'sql': {
-				'group': 'control',
-				'method': 'sql',
-				'alias': None,
-				'description': 'Execute SQL query',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': True,
-				'param': [],
-				'example': [
-					{'code': [['sql', 'connect', 'server', 'database', 'login', 'password']], 'test': False},
-					{'code': [['sql', 'disconnect']], 'test': False},
-					{'code': [['sql', 'db1', 'connect', 'server', 'database', 'login', 'password']], 'test': False},
-					{'code': [['sql', 'db1', 'disconnect']], 'test': False},
-					{'code': [['sql', 'SELECT * FROM user']], 'result': [], 'test': False},
-					{'code': [['sql', 'INSERT INTO log VALUES ({1},{2})', ['date', 'message']]], 'test': False},
-					{'code': [['sql', 'set', 'user', [1, 'name', 'mylogin', 'mypassword']]], 'test': False},
-					{'code': [['sql', 'set', 'user', 1, {'name': 'newname'}]], 'test': False},
-					{'code': [['sql', 'get', 'user']], 'test': False},
-					{'code': [['sql', 'get', 'user', 1]], 'test': False},
-					{'code': [['sql', 'remove', 'user', 1]], 'test': False}
-				]
-			},
-			'test': {
-				'group': 'control',
-				'method': 'test',
-				'alias': None,
-				'description': 'Test one or all actions',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['test']], 'test': False},
-					{'code': [['test', 'upper']], 'length': 3},
-					{'code': [['test', 'math']], 'length': 3}
-				]
-			},
-			'help': {
-				'group': 'control',
-				'method': 'help',
-				'alias': 'h',
-				'description': 'Show description and use of the action',
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['h']], 'test': False},
-					{'code': [['h', 'upper']], 'test': False}
-				]
-			},
-			'exit': {
-				'group': 'control',
-				'method': 'exit',
-				'alias': 'xx',
-				'description': 'Exit the current application',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['xx']], 'test': False},
-					{'code': [['xx', 500]], 'test': False},
-					{'code': [['xx', 'something went wrong']], 'test': False}
-				]
-			},
-			'chat': {
-				'group': 'control',
-				'method': 'chat',
-				'alias': None,
-				'description': 'AI conversation and interaction through text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': True,
-				'param': [],
-				'example': [
-					{'code': [['chat', 'What\'s the weather today?']], 'result': 'The weather is sunny and warm.'}
-				]
-			},
-			'say': {
-				'group': 'control',
-				'method': 'say',
-				'alias': None,
-				'description': 'Text voicing with different voices',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['voice', 'Hello world', 'en-US']], 'result': 'voice.mp3'}
-				]
-			},
-			'voice': {
-				'group': 'control',
-				'method': 'voice',
-				'alias': None,
-				'description': 'List of available voices',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['voice.list']], 'result': ['en-US', 'es-ES', 'fr-FR']}
-				]
-			},
-			'recognize': {
-				'group': 'control',
-				'method': 'recognize',
-				'alias': None,
-				'description': 'Convert voice to text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['voice.recognize', 'voice.mp3']], 'result': 'Hello world'}
-				]
-			},
-			'capture': {
-				'group': 'control',
-				'method': 'capture',
-				'alias': None,
-				'description': 'Records or analyzes motion data in real-time',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['motion.capture', 10]], 'result': {'positions': [[0,0], [0.1,0], [0.2,0.1]]}}
-				]
-			},
-			'ui': {
-				'group': 'control',
-				'method': 'ui',
-				'alias': ['app', 'game', 'web', 'cli'],
-				'description': 'Create a user interface',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': {
-					'bg': {
-						'description': '',
-						'param': []
-					},
-					'title': {
-						'description': '',
-						'param': []					
-					}
-				},
-				'param': [],
-				'example': [
-					{'code': [['ui', 'button', 'Click me']], 'result': 'button1'}
-				]
-			},
-
-			# text
-
-			'lower': {
-				'group': 'text',
-				'method': 'lower',
-				'alias': None,
-				'description': 'Convert text to lowercase',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''}
-				],
-				'example': [
-					{'code': [['lower', 'TeXt']], 'result': 'text'}
-				]
-			},
-			'upper': {
-				'group': 'text',
-				'method': 'upper',
-				'alias': None,
-				'description': 'Convert text to uppercase',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''},
-					{'name': 'type', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['upper', 'text']], 'result': 'TEXT'},
-					{'code': [['upper', 'text title', 'title']], 'result': 'Text Title'},
-					{'code': [['upper', 'text sentence', 'sentence']], 'result': 'Text sentence'}
-				]
-			},
-			'starts': {
-				'group': 'text',
-				'method': 'starts',
-				'alias': None,
-				'description': 'Check if text starts with a specific substring',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''},
-					{'name': 'subtext', 'type': 'text', 'default': ''}
-				],
-				'example': [
-					{'code': [['starts', 'Hi World', 'Hi']], 'result': True},
-					{'code': [['starts', 'Hi World', 'World']], 'result': False}
-				]
-			},
-			'ends': {
-				'group': 'text',
-				'method': 'ends',
-				'alias': None,
-				'description': 'Check if text ends with a specific substring',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''},
-					{'name': 'subtext', 'type': 'text', 'default': ''}
-				],
-				'example': [
-					{'code': [['ends', 'Hi World', 'World']], 'result': True},
-					{'code': [['ends', 'Hi World', 'Hi']], 'result': False}
-				]
-			},
-			'strip': {
-				'group': 'text',
-				'method': 'strip',
-				'alias': None,
-				'description': 'Remove leading and trailing characters from text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''},
-					{'name': 'character', 'type': 'text', 'default': [' ', '\r', '\n', '\t']}
-				],
-				'example': [
-					{'code': [['strip', '  text  ']], 'result': 'text'},
-					{'code': [['strip', '\ttext\n']], 'result': 'text'},
-					{'code': [['strip', '- text -', '- ']], 'result': 'text -'},
-					{'code': [['strip', '- text -', ['-', ' ']]], 'result': 'text'}
-				]
-			},
-			'strip.start': {
-				'group': 'text',
-				'method': 'strip_start',
-				'alias': None,
-				'description': 'Remove leading characters from text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None, 
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''},
-					{'name': 'character', 'type': 'text', 'default': [' ', '\r', '\n', '\t']}
-				],
-				'example': [
-					{'code': [['strip.start', '  text  ']], 'result': 'text  '},
-					{'code': [['strip.start', '\ttext\n']], 'result': 'text\n'},
-					{'code': [['strip.start', '- text -', '- ']], 'result': 'text -'},
-					{'code': [['strip.start', '- text -', ['-', ' ']]], 'result': 'text -'}
-				]
-			},
-			'strip.end': {
-				'group': 'text',
-				'method': 'strip_end',
-				'alias': None,
-				'description': 'Remove trailing characters from text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''},
-					{'name': 'character', 'type': 'text', 'default': [' ', '\r', '\n', '\t']}
-				],
-				'example': [
-					{'code': [['strip.end', '  text  ']], 'result': '  text'},
-					{'code': [['strip.end', '\ttext\n']], 'result': '\ttext'},
-					{'code': [['strip.end', '- text -', '- ']], 'result': '- text -'},
-					{'code': [['strip.end', '- text -', ['-', ' ']]], 'result': '- text'}
-				]
-			},
-			'replace': {
-				'group': 'text',
-				'method': 'replace',
-				'alias': None,
-				'description': 'Replace occurrences of a substring within text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''},
-					{'name': 'search', 'type': ['text', 'dict'], 'default': None},
-					{'name': 'replace', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['replace', 'hello world', 'world', 'there']], 'result': 'hello there'},
-					{'code': [['replace', 'aabbcc', 'b', 'x']], 'result': 'aaxxcc'}
-				]
-			},
-			'find': {
-				'group': 'text',
-				'method': 'find',
-				'alias': None,
-				'description': 'Locate a substring within text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['find', 'hello world', 'world']], 'result': 6},
-					{'code': [['find', 'abcabc', 'b']], 'result': 1}
-				]
-			},
-			'parse': {
-				'group': 'text',
-				'method': 'parse',
-				'alias': None,
-				'description': 'Parse text into structured data',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['parse', 'json', '{"x": 5}']], 'result': {'x': 5}},
-					{'code': [['parse', 'number', '42']], 'result': 42}
-				]
-			},
-			'part': {
-				'group': 'text',
-				'method': 'part',
-				'alias': None,
-				'description': 'Extract a part of the text or list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['part', 'hello world', 0, 5]], 'result': 'hello'},
-					{'code': [['part', 'abcdef', 2, 4]], 'result': 'cd'}
-				]
-			},
-			'split': {
-				'group': 'text',
-				'method': 'split',
-				'alias': None,
-				'description': 'Split text into parts based on a delimiter',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['split', 'a,b,c', ',']], 'result': ['a', 'b', 'c']},
-					{'code': [['split', 'one two three', ' ']], 'result': ['one', 'two', 'three']}
-				]
-			},
-			'join': {
-				'group': 'text',
-				'method': 'join',
-				'alias': None,
-				'description': 'Join a list of strings into a single string with a delimiter',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['join', ['a', 'b', 'c'], ',']], 'result': 'a,b,c'},
-					{'code': [['join', ['2023', '12', '31'], '-']], 'result': '2023-12-31'}
-				]
-			},
-			'date': {
-				'group': 'text',
-				'method': 'date',
-				'alias': None,
-				'description': 'Format or parse date-related information',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'name', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['date', '{year}-{month}-{day} {hour}:{minute}:{second}.{millisecond}', 1744095313.123]], 'result': '2025-04-08 06:55:13.123'},
-					{'code': [['date', '{month short}', 1744095313]], 'result': '4'},
-					{'code': [['date', '2025-04-08 06:55:13.123', '{year}-{month}-{day} {hour}:{minute}:{second}.{millisecond}']], 'result': 1744095313.123}
-				]
-			},
-			'escape': {
-				'group': 'text',
-				'method': 'escape',
-				'alias': 'e',
-				'description': 'Escape special characters in a text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['escape.html', '<div>Test</div>']], 'result': '&lt;div&gt;Test&lt;/div&gt;'},
-					{'code': [['escape.html', '\'Quote\'']], 'result': '&quot;Quote&quot;'}
-				]
-			},
-			'unescape': {
-				'group': 'text',
-				'method': 'unescape',
-				'alias': None,
-				'description': 'Unescape special characters in a text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['unescape.html', '&lt;div&gt;Test&lt;/div&gt;']], 'result': '<div>Test</div>'},
-					{'code': [['unescape.html', '&quot;Quote&quot;']], 'result': '\'Quote\''}
-				]
-			},
-			'words': {
-				'group': 'text',
-				'method': 'words',
-				'alias': None,
-				'description': 'Split text into words',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''}
-				],
-				'example': [
-					{'code': [['words', 'Hello world! How are you?']], 'result': ['Hello', 'world', 'How', 'are', 'you']},
-					{'code': [['words', 'one,two,three', ',']], 'result': ['one', 'two', 'three']}
-				]
-			},
-			'sentences': {
-				'group': 'text',
-				'method': 'sentences',
-				'alias': None,
-				'description': 'Split text into sentences',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''}
-				],
-				'example': [
-					{'code': [['sentences', 'First sentence. Second one! Third?']], 'result': ['First sentence.', 'Second one!', 'Third?']}
-				]
-			},
-			'lines': {
-				'group': 'text',
-				'method': 'lines',
-				'alias': None,
-				'description': 'Split text into lines',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''}
-				],
-				'example': [
-					{'code': [['lines', 'text\ntext\n\t\ntext\n\n']], 'result': ['text', 'text', 'text']}
-				]
-			},
-			'translate': {
-				'group': 'text',
-				'method': 'translate',
-				'alias': None,
-				'description': 'Translate text from one language to another',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''},
-					{'name': 'from', 'type': 'text', 'default': None},
-					{'name': 'to', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['translate', 'Hello']], 'result': 'translate to the current language', 'test': False},
-					{'code': [['translate', 'Hello', 'en', 'es']], 'result': 'Hola'},
-					{'code': [['translate', 'es', 'Hello']], 'result': 'Hola'}
-				]
-			},
-			'spellcheck': {
-				'group': 'text',
-				'method': 'spellcheck',
-				'alias': None,
-				'description': 'Spell check in different languages',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'text', 'type': 'text', 'default': ''},
-					{'name': 'language', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [['spellcheck', 'Hi Warld']], 'result': {'text': 'Hi World', 'error': [{'position': 3, 'text': 'Warld', 'correct': 'World'}]}}
-				]
-			},
-
-			# list
-
-			'push': {
-				'group': 'list',
-				'method': 'push',
-				'alias': None,
-				'description': 'Add an element to the end of a list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['push', [1, 2], 3]], 'result': [1, 2, 3]},
-					{'code': [['push', [], 'new']], 'result': ['new']}
-				]
-			},
-			'pop': {
-				'group': 'list',
-				'method': 'pop',
-				'alias': None,
-				'description': 'Remove and return an element from the end of a list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['pop', [1, 2, 3]]], 'result': 3},
-					{'code': [['pop', ['a']]], 'result': 'a'}
-				]
-			},
-			'merge': {
-				'group': 'list',
-				'method': 'merge',
-				'alias': None,
-				'description': 'Combine multiple lists into one',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['merge', [1, 2], [3, 4]]], 'result': [1, 2, 3, 4]},
-					{'code': [['merge', ['a'], ['b', 'c']]], 'result': ['a', 'b', 'c']}
-				]
-			},
-			'reverse': {
-				'group': 'list',
-				'method': 'reverse',
-				'alias': None,
-				'description': 'Reverse the order of elements in a list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['reverse', [1, 2, 3]]], 'result': [3, 2, 1]},
-					{'code': [['reverse', ['a', 'b']]], 'result': ['b', 'a']}
-				]
-			},
-			'shuffle': {
-				'group': 'list',
-				'method': 'shuffle',
-				'alias': None,
-				'description': 'Randomly reorder elements in a list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['shuffle', [1, 2, 3, 4]]], 'test': False},
-					{'code': [['shuffle', ['a', 'b', 'c']]], 'test': False}
-				]
-			},
-			'unique': {
-				'group': 'list',
-				'method': 'unique',
-				'alias': None,
-				'description': 'Leave only unique values in a list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['unique', [1, 2, 3, 4, 2, 1]]], 'result': [1, 2, 3, 4], 'test': False},
-					{'code': [['unique', ['a', 'a', 'b']]],  'result': ['a', 'b'], 'test': False}
-				]
-			},
-			'map': {
-				'group': 'list',
-				'method': 'map',
-				'alias': None,
-				'description': 'Apply a function to each element in a list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['map', [1, 2, 3], ['*', 'item', 2]]], 'result': [2, 4, 6]},
-					{'code': [['map', ['a', 'b'], ['upper', 'item']]], 'result': ['A', 'B']}
-				]
-			},
-			'reduce': {
-				'group': 'list',
-				'method': 'reduce',
-				'alias': None,
-				'description': 'Apply a function cumulatively to the elements in a list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['reduce', [1, 2, 3, 4], ['+', 'acc', 'item'], 0]], 'result': 10},
-					{'code': [['reduce', [2, 3, 4], ['*', 'acc', 'item'], 1]], 'result': 24}
-				]
-			},
-			'filter': {
-				'group': 'list',
-				'method': 'filter',
-				'alias': None,
-				'description': 'Apply a filter function to each element in a list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['filter', [1, 2, 3], ['>', 2]]], 'result': [3]}
-				]
-			},
-			'indexes': {
-				'group': 'list',
-				'method': 'names',
-				'alias': None,
-				'description': 'Retrieve all keys or attribute names from a structure',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['names', {'x': 1, 'y': 2}]], 'result': ['x', 'y']},
-					{'code': [['names', ['a', 'b', 'c']]], 'result': ['0', '1', '2']}
-				]
-			},
-			'values': {
-				'group': 'list',
-				'method': 'values',
-				'alias': None,
-				'description': 'Retrieve all values from a structure',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['values', {'x': 1, 'y': 2}]], 'result': [1, 2]},
-					{'code': [['values', ['a', 'b', 'c']]], 'result': ['a', 'b', 'c']}
-				]
-			},
-
-			# math
-
-			'sin': {
-				'group': 'math',
-				'method': 'sin',
-				'alias': None,
-				'description': 'Sine of the value (in radians)',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['sin', 0.1]], 'result': 0.0998, 'round': 4}
-				]
-			},
-			'cos': {
-				'group': 'math',
-				'method': 'cos',
-				'alias': None,
-				'description': 'Cosine of the value (in radians)',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['cos', 0.1]], 'result': 0.995, 'round': 3}
-				]
-			},
-			'tan': {
-				'group': 'math',
-				'method': 'tan',
-				'alias': None,
-				'description': 'Tangent of the value (in radians)',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['tan', 0.1]], 'result': 0.1, 'round': 3}
-				]
-			},
-			'sinh': {
-				'group': 'math',
-				'method': 'sinh',
-				'alias': None,
-				'description': 'Hyperbolic sine of the value',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['sinh', 0.1]], 'result': 0.1, 'round': 3}
-				]
-			},
-			'cosh': {
-				'group': 'math',
-				'method': 'cosh',
-				'alias': None,
-				'description': 'Hyperbolic cosine of the value',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['cosh', 0.1]], 'result': 1.005, 'round': 3}
-				]
-			},
-			'tanh': {
-				'group': 'math',
-				'method': 'tanh',
-				'alias': None,
-				'description': 'Hyperbolic tangent of the valu',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['tanh', 0.1]], 'result': 0.1, 'round': 3}
-				]
-			},
-			'asin': {
-				'group': 'math',
-				'method': 'asin',
-				'alias': None,
-				'description': 'Arc sine of the value',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['asin', 0.1]], 'result': 0.1, 'round': 3}
-				]
-			},
-			'acos': {
-				'group': 'math',
-				'method': 'acos',
-				'alias': None,
-				'description': 'Arc cosine of the value',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['acos', 0.1]], 'result': 1.471, 'round': 3}
-				]
-			},
-			'atan': {
-				'group': 'math',
-				'method': 'atan',
-				'alias': None,
-				'description': 'Arc tangent of the value',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['atan', 0.1]], 'result': 0.1, 'round': 3}
-				]
-			},
-			'asinh': {
-				'group': 'math',
-				'method': 'asinh',
-				'alias': None,
-				'description': 'Arc hyperbolic sine of the value',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['asinh', 0.1]], 'result': 0.1, 'round': 3}
-				]
-			},
-			'acosh': {
-				'group': 'math',
-				'method': 'acosh',
-				'alias': None,
-				'description': 'Arc hyperbolic cosine of the value',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['acosh', 2]], 'result': 1.317, 'round': 3}
-				]
-			},
-			'atanh': {
-				'group': 'math',
-				'method': 'atanh',
-				'alias': None,
-				'description': 'Arc hyperbolic tangent of the value',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['atanh', 0.1]], 'result': 0.1, 'round': 3}
-				]
-			},
-			'round': {
-				'group': 'math',
-				'method': 'round',
-				'alias': None,
-				'description': 'Rounds a number to the nearest integer or to the specified number of decimal places',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['round', 0.1]], 'result': 0},
-					{'code': [['round', 0.7]], 'result': 1},
-					{'code': [['round', -0.7]], 'result': -1},
-					{'code': [['round', 0.123, 2]], 'result': 0.12}
-				]
-			},
-			'floor': {
-				'group': 'math',
-				'method': 'floor',
-				'alias': None,
-				'description': 'Largest integer less than or equal to a number',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['floor', 0.1]], 'result': 0},
-					{'code': [['floor', 0.1]], 'result': 0},
-					{'code': [['floor', 0.7]], 'result': 0},
-					{'code': [['floor', -0.7]], 'result': -1}
-				]
-			},
-			'ceil': {
-				'group': 'math',
-				'method': 'ceil',
-				'alias': None,
-				'description': 'Smallest integer greater than or equal to a number',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['ceil', 0.1]], 'result': 1},
-					{'code': [['ceil', 0.7]], 'result': 1},
-					{'code': [['ceil', -0.7]], 'result': 0}
-				]
-			},
-			'log': {
-				'group': 'math',
-				'method': 'log',
-				'alias': None,
-				'description': 'Logarithm (natural by default) of a number',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'},
-					{'name': 'base', 'type': 'number', 'default': None}
-				],
-				'example': [
-					{'code': [['log', 0.1]], 'result': -2.303, 'round': 3},
-					{'code': [['log', 0.1, 2]], 'result': -3.322, 'round': 3},
-					{'code': [['log', 0.1, 10]], 'result': -1, 'round': 3}
-				]
-			},
-			'fact': {
-				'group': 'math',
-				'method': 'factorial',
-				'alias': None,
-				'description': 'Factorial of a given non-negative number',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['fact', 5]], 'result': 120},
-					{'code': [['fact', 0]], 'result': 1}
-				]
-			},
-			'fib': {
-				'group': 'math',
-				'method': 'fibonacci',
-				'alias': None,
-				'description': 'Fibonacci numbers up to a specified index',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'number', 'type': 'number', 'default': 10},
-					{'name': 'multiply', 'type': 'number', 'default': 1},
-					{'name': 'shift', 'type': 'number', 'default': 0}
-				],
-				'example': [
-					{'code': [['fib', 5]], 'result': [0, 1, 1, 2, 3]},
-					{'code': [['fib', 7]], 'result': [0, 1, 1, 2, 3, 5, 8]},
-					{'code': [['fib', 5, 3, 1]], 'result': [1, 4, 4, 7, 10]},
-				]
-			},
-			'gr': {
-				'group': 'math',
-				'method': 'golden_ratio',
-				'alias': None,
-				'description': 'Golden ratio of a number',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'},
-					{'name': 'part', 'type': 'number', 'default': None}
-				],
-				'example': [
-					{'code': [['gr', 10]], 'result': {'short': 3.820, 'long': 6.180, 'total': 10}, 'round': 3},
-					{'code': [['gr', 10, 'short']], 'result': {'short': 10, 'long': 16.18, 'total': 26.18}, 'round': 3},
-					{'code': [['gr', 10, 'long']], 'result': {'short': 6.18, 'long': 10, 'total': 16.18}, 'round': 3}
-				]
-			},
-			'abs': {
-				'group': 'math',
-				'method': 'abs',
-				'alias': None,
-				'description': 'Absolute value of a number',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'value', 'type': 'number'}
-				],
-				'example': [
-					{'code': [['abs', -5]], 'result': 5},
-					{'code': [['abs', 3.14]], 'result': 3.14}
-				]
-			},
-			'min': {
-				'group': 'math',
-				'method': 'min',
-				'alias': None,
-				'description': 'Smallest of a list of numbers',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'list', 'type': 'list'}
-				],
-				'example': [
-					{'code': [['min', [5, 3, 8, 1]]], 'result': 1},
-					{'code': [['min', [-2, -5, 0]]], 'result': -5}
-				]
-			},
-			'max': {
-				'group': 'math',
-				'method': 'max',
-				'alias': None,
-				'description': 'Largest of a list of numbers',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'list', 'type': 'list'}
-				],
-				'example': [
-					{'code': [['max', [5, 3, 8, 1]]], 'result': 8},
-					{'code': [['max', [-2, -5, 0]]], 'result': 0}
-				]
-			},
-			'avg': {
-				'group': 'math',
-				'method': 'avg',
-				'alias': None,
-				'description': 'Average value of a list of numbers',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'list', 'type': 'list'}
-				],
-				'example': [
-					{'code': [['avg', [1, 2, 3, 4, 5]]], 'result': 3},
-					{'code': [['avg', [10, 20]]], 'result': 15}
-				]
-			},
-			'sum': {
-				'group': 'math',
-				'method': 'sum',
-				'alias': None,
-				'description': 'Sum of a list of numbers',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'list', 'type': 'list'}
-				],
-				'example': [
-					{'code': [['sum', [1, 2, 3, 4, 5]]], 'result': 15},
-					{'code': [['sum', [10, 20, 30]]], 'result': 60}
-				]
-			},
-			'random': {
-				'group': 'math',
-				'method': 'random',
-				'alias': None,
-				'description': 'Generates a pseudo-random number',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'from', 'type': ['number', 'text', 'dict', 'list'], 'default': None},
-					{'name': 'to', 'type': 'number', 'default': None}
-				],
-				'example': [
-					{'code': [['random']], 'type': 'number', 'range': [0, 1]},
-					{'code': [['random', 10]], 'type': 'number', 'range': [0, 10]},
-					{'code': [['random', 10, 20]], 'type': 'number', 'range': [10, 20]},
-					{'code': [['random', True]], 'type': 'bool'},
-					{'code': [['random', 'abcd']], 'type': 'text', 'length': 1},
-					{'code': [['random', [1, 2, 3]]], 'type': 'number', 'range': [1, 3]},
-					{'code': [['random', {'a': 1, 'b': 2}]], 'type': 'number', 'range': [1, 2]}
-				]
-			},
-			'random.seed': {
-				'group': 'math',
-				'method': 'random_seed',
-				'alias': None,
-				'description': 'Sets or gets the seed for the random number generator to produce reproducible results',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'seed', 'type': 'text', 'default': None}
-				],
-				'example': [
-					{'code': [
-						['random.seed', 'uniqueseed'],
-						['random.seed']
-					], 'result': 'uniqueseed'}
-				]
-			},
-
-			# time
-
-			'time': {
-				'group': 'time',
-				'method': 'time',
-				'alias': None,
-				'description': 'Provides current time since the epoch (1970-01-01 00:00:00 UTC) or calculates time passed since a given start time',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'dot', 'type': 'number', 'default': 0}
-				],
-				'example': [
-					{'code': [['time']], 'result': 1678901234, 'test': False},
-					{'code': [['time', 1678901234]], 'result': 34, 'test': False}
-				]
-			},
-			'timer': {
-				'group': 'time',
-				'method': 'timer',
-				'alias': None,
-				'description': 'Creates a timer that can be used to trigger events at specific intervals',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['timer', 'start', 5]], 'result': 'timer_id_1'}
-				]
-			},
-			'timer.remove': {
-				'group': 'time',
-				'method': 'timer_remove',
-				'alias': None,
-				'description': 'Removes previously created timer',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['timer.remove', 'timer_id_1']], 'result': True}
-				]
-			},
-			'timecheck': {
-				'group': 'time',
-				'method': 'timecheck',
-				'alias': 't',
-				'description': 'Stopwatch for calculating the time spent on operations',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['t', 'start']], 'result': None},
-					{'code': [['t', 'stop']], 'result': 1.234, 'round': 3}
-				]
-			},
-			'wait': {
-				'group': 'time',
-				'method': 'wait',
-				'alias': None,
-				'description': 'Pauses execution for a specified number of seconds',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'seconds', 'type': 'number', 'default': 1}
-				],
-				'example': [
-					{'code': [['wait', 0.1]], 'result': None}
-				]
-			},
-
-			# crypto
-
-			'encrypt': {
-				'group': 'crypto',
-				'method': 'encrypt',
-				'alias': None,
-				'description': 'Encrypts data using a specified key',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['encrypt', 'secret', 'mykey']], 'result': 'aGVsbG8='}
-				]
-			},
-			'decrypt': {
-				'group': 'crypto',
-				'method': 'decrypt',
-				'alias': None,
-				'description': 'Decrypts previously encrypted data using the specified key',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['decrypt', 'aGVsbG8=', 'mykey']], 'result': 'secret'}
-				]
-			},
-			'hash': {
-				'group': 'crypto',
-				'method': 'hash',
-				'alias': None,
-				'description': 'Generates a hash for the data or generates a random text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['hash', 'hello']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
-				]
-			},
-			'uuid': {
-				'group': 'crypto',
-				'method': 'uuid',
-				'alias': None,
-				'description': 'Generates a universally unique identifier',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['uuid']], 'result': '550e8400-e29b-41d4-a716-446655440000'}
-				]
-			},
-			'md5': {
-				'group': 'crypto',
-				'method': 'md5',
-				'alias': None,
-				'description': 'Generates an MD5 hash of a text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['md5', 'hello']], 'result': '5d41402abc4b2a76b9719d911017c592'}
-				]
-			},
-			'sha1': {
-				'group': 'crypto',
-				'method': 'sha1',
-				'alias': None,
-				'description': 'Generates an SHA-1 hash of a text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['sha1', 'hello']], 'result': 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d'}
-				]
-			},
-			'sha256': {
-				'group': 'crypto',
-				'method': 'sha256',
-				'alias': None,
-				'description': 'Generates an SHA-256 hash of a text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['sha256', 'hello']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
-				]
-			},
-			'sha512': {
-				'group': 'crypto',
-				'method': 'sha512',
-				'alias': None,
-				'description': 'Generates an SHA-512 hash of a text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['sha512', 'hello']], 'result': '9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043'}
-				]
-			},
-			'crc32': {
-				'group': 'crypto',
-				'method': 'crc32',
-				'alias': None,
-				'description': 'Calculates the CRC32 checksum of a text',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['crc32', 'hello']], 'result': 907060870}
-				]
-			},
-			'base64': {
-				'group': 'crypto',
-				'method': 'base64_encode',
-				'alias': None,
-				'description': 'Encodes the data into Base64 format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['base64', 'hello']], 'result': 'aGVsbG8='}
-				]
-			},
-			'base64.decode': {
-				'group': 'crypto',
-				'method': 'base64_decode',
-				'alias': None,
-				'description': 'Decodes Base64 encoded data back to its original form',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['base64.decode', 'aGVsbG8=']], 'result': 'hello'}
-				]
-			},
-			'base85': {
-				'group': 'crypto',
-				'method': 'base85_encode',
-				'alias': None,
-				'description': 'Encodes the data into Base85 format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['base64', 'hello']], 'result': 'aGVsbG8='}
-				]
-			},
-			'base85.decode': {
-				'group': 'crypto',
-				'method': 'base85_decode',
-				'alias': None,
-				'description': 'Decodes Base85 encoded data back to its original form',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['base64.decode', 'aGVsbG8=']], 'result': 'hello'}
-				]
-			},
-			'gzip': {
-				'group': 'crypto',
-				'method': 'gzip_encode',
-				'alias': None,
-				'description': 'Compresses data using the GZip compression algorithm',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['gzip', 'hello']], 'result': 'H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA=='}
-				]
-			},
-			'gzip.decode': {
-				'group': 'crypto',
-				'method': 'gzip_decode',
-				'alias': None,
-				'description': 'Decompresses GZip compressed data',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['gzip.decode', 'H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==']], 'result': 'hello'}
-				]
-			},
-			'rsa': {
-				'group': 'crypto',
-				'method': 'rsa_encode',
-				'alias': None,
-				'description': 'Encrypts data using RSA encryption with a public key',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['rsa', 'secret', 'public_key']], 'result': 'encrypted_data'}
-				]
-			},
-			'rsa.decode': {
-				'group': 'crypto',
-				'method': 'rsa_decode',
-				'alias': None,
-				'description': 'Decrypts data encrypted with RSA using the corresponding private key',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['rsa.decode', 'encrypted_data', 'private_key']], 'result': 'secret'}
-				]
-			},
-			'ssl': {
-				'group': 'crypto',
-				'method': 'ssl_encode',
-				'alias': None,
-				'description': 'Performs SSL encryption on data to secure communication',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['ssl', 'data']], 'result': 'encrypted_ssl_data'}
-				]
-			},
-			'ssl.decode': {
-				'group': 'crypto',
-				'method': 'ssl_decode',
-				'alias': None,
-				'description': 'Decrypts data encrypted with SSL for secure data transfer',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['ssl.decode', 'encrypted_ssl_data']], 'result': 'data'}
-				]
-			},
-			'bcrypt': {
-				'group': 'crypto',
-				'method': 'bcrypt_encode',
-				'alias': None,
-				'description': 'Hashes a password using the bcrypt algorithm for secure storage',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['bcrypt', 'password']], 'result': '$2a$12$saltpasswordhash'}
-				]
-			},
-			'bcrypt.check': {
-				'group': 'crypto',
-				'method': 'bcrypt_check',
-				'alias': None,
-				'description': 'Verifies a password against a bcrypt hashed password',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['bcrypt.check', 'password', '$2a$12$saltpasswordhash']], 'result': True}
-				]
-			},
-
-			# file
-
-			'file': {
-				'group': 'file',
-				'method': 'file',
-				'alias': None,
-				'description': 'Read or write data to a file at a specified path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file', 'read', 'test.txt']], 'result': 'file contents'},
-					{'code': [['file', 'write', 'test.txt', 'new content']], 'result': True}
-				]
-			},
-			'file.exists': {
-				'group': 'file',
-				'method': 'file_exists',
-				'alias': None,
-				'description': 'Checks if a specified file exists at the given path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.exists', 'test.txt']], 'result': True}
-				]
-			},
-			'file.lines': {
-				'group': 'file',
-				'method': 'file_read_lines',
-				'alias': None,
-				'description': 'Reads a specified file line by line into a list',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.read.lines', 'test.txt']], 'result': ['line1', 'line2', 'line3']}
-				]
-			},
-			'file.remove': {
-				'group': 'file',
-				'method': 'file_remove',
-				'alias': None,
-				'description': 'Removes a specified file from the file system',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.remove', 'test.txt']], 'result': True}
-				]
-			},
-			'file.move': {
-				'group': 'file',
-				'method': 'file_move',
-				'alias': None,
-				'description': 'Moves a specified file to a new location',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.move', 'old.txt', 'new.txt']], 'result': True}
-				]
-			},
-			'file.copy': {
-				'group': 'file',
-				'method': 'file_copy',
-				'alias': None,
-				'description': 'Copies a specified file to a new location',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.copy', 'source.txt', 'dest.txt']], 'result': True}
-				]
-			},
-			'file.rename': {
-				'group': 'file',
-				'method': 'file_rename',
-				'alias': None,
-				'description': 'Renames a specified file',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.rename', 'old.txt', 'new.txt']], 'result': True}
-				]
-			},
-			'file.link': {
-				'group': 'file',
-				'method': 'file_link',
-				'alias': None,
-				'description': 'Creates a hard link to a specified file',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.link', 'source.txt', 'link.txt']], 'result': True}
-				]
-			},
-			'file.link.exists': {
-				'group': 'file',
-				'method': 'file_link_exists',
-				'alias': None,
-				'description': 'Checks if a hard link exists at the given path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.link.exists', 'link.txt']], 'result': True}
-				]
-			},
-			'file.info': {
-				'group': 'file',
-				'method': 'file_info',
-				'alias': None,
-				'description': 'Retrieves information about a specified file',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.info', 'test.txt']], 'result': {'size': 1024, 'modified': 1678901234}}
-				]
-			},
-			'file.size': {
-				'group': 'file',
-				'method': 'file_size',
-				'alias': None,
-				'description': 'Returns the size of a specified file in bytes',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.size', 'test.txt']], 'result': 1024}
-				]
-			},
-			'file.permission': {
-				'group': 'file',
-				'method': 'file_permission',
-				'alias': None,
-				'description': 'Retrieves or sets permissions for a specified file',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.permission', 'test.txt', 'rw-r--r--']], 'result': True}
-				]
-			},
-			'file.time': {
-				'group': 'file',
-				'method': 'file_time',
-				'alias': None,
-				'description': 'Gets or sets the modified timestamp for a specified file',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.time', 'test.txt']], 'result': 1678901234}
-				]
-			},
-			'file.sha256': {
-				'group': 'file',
-				'method': 'file_sha256',
-				'alias': None,
-				'description': 'Computes the SHA256 checksum of a specified file',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [
-					{'name': 'path', 'type': 'text'}
-				],
-				'example': [
-					{'code': [['file.sha256', 'test.txt']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
-				]
-			},
-			'file.sha512': {
-				'group': 'file',
-				'method': 'file_sha512',
-				'alias': None,
-				'description': 'Computes the SHA512 checksum of a specified file',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [
-					{'name': 'path', 'type': 'text'}
-				],
-				'example': [
-					{'code': [['file.sha256', 'test.txt']], 'result': '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'}
-				]
-			},
-			'file.crc32': {
-				'group': 'file',
-				'method': 'file_crc32',
-				'alias': None,
-				'description': 'Computes the CRC32 checksum for a specified file',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.crc32', 'test.txt']], 'result': 907060870}
-				]
-			},
-			'file.base64': {
-				'group': 'file',
-				'method': 'file_base64',
-				'alias': None,
-				'description': 'Encodes a specified file to base64 format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.base64', 'test.txt']], 'result': 'aGVsbG8='}
-				]
-			},
-			'file.zip': {
-				'group': 'file',
-				'method': 'file_zip',
-				'alias': None,
-				'description': 'Compresses a specified file into a ZIP archive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.zip', 'test.txt', 'archive.zip']], 'result': True}
-				]
-			},
-			'file.zip.list': {
-				'group': 'file',
-				'method': 'file_zip_list',
-				'alias': None,
-				'description': 'Lists the files contained within a ZIP archive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.zip.list', 'archive.zip']], 'result': ['test.txt']}
-				]
-			},
-			'file.zip.exists': {
-				'group': 'file',
-				'method': 'file_zip_exists',
-				'alias': None,
-				'description': 'Checks if a specific file exists within a ZIP archive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.zip.exists', 'archive.zip', 'test.txt']], 'result': True}
-				]
-			},
-			'file.zip.read': {
-				'group': 'file',
-				'method': 'file_zip_read',
-				'alias': None,
-				'description': 'Reads a specific file from within a ZIP archive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.zip.read', 'archive.zip', 'test.txt']], 'result': 'file contents'}
-				]
-			},
-			'file.zip.remove': {
-				'group': 'file',
-				'method': 'file_zip_remove',
-				'alias': None,
-				'description': 'Removes a specific file from a ZIP archive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.zip.remove', 'archive.zip', 'test.txt']]}
-				]
-			},
-			'file.unzip': {
-				'group': 'file',
-				'method': 'file_unzip',
-				'alias': None,
-				'description': 'Extracts files from a ZIP archive into a specified directory',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.unzip', 'archive.zip', 'destination']]}
-				]
-			},
-			'file.gzip': {
-				'group': 'file',
-				'method': 'file_gzip',
-				'alias': None,
-				'description': 'Compresses a specified file using GZip compression',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.gzip', 'test.txt', 'test.txt.gz']]}
-				]
-			},
-			'file.ungzip': {
-				'group': 'file',
-				'method': 'file_ungzip',
-				'alias': None,
-				'description': 'Decompresses a GZip-compressed file',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.ungzip', 'test.txt.gz', 'test.txt']], 'result': True}
-				]
-			},
-			'file.void': {
-				'group': 'file',
-				'method': 'file_void',
-				'alias': None,
-				'description': 'Compresses the specified file using GZip compression and places it in a Void container',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.void', 'test.txt', 'test.void']], 'result': True}
-				]
-			},
-			'file.unvoid': {
-				'group': 'file',
-				'method': 'file_unvoid',
-				'alias': None,
-				'description': 'Decompresses a GZip-compressed files and directories from a Void container',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['file.unvoid', 'test.void', 'output']], 'result': True}
-				]
-			},
-			'dir': {
-				'group': 'file',
-				'method': 'dir',
-				'alias': None,
-				'description': 'Lists the contents of a specified directory',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.list', 'folder']], 'result': ['file1.txt', 'file2.txt', 'subfolder']},
-					{'code': [['dir.list', 'project/src']], 'result': ['main.py', 'utils.py']}
-				]
-			},
-			'dir.create': {
-				'group': 'file',
-				'method': 'dir_create',
-				'alias': None,
-				'description': 'Creates a new directory at a specified path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.create', 'new_folder']], 'test': False},
-					{'code': [['dir.create', 'path/to/folder']], 'test': False}
-				]
-			},
-			'dir.exists': {
-				'group': 'file',
-				'method': 'dir_exists',
-				'alias': None,
-				'description': 'Checks if a specified directory exists',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.exists', 'folder']], 'result': True},
-					{'code': [['dir.exists', 'nonexistent']], 'result': False}
-				]
-			},
-			'dir.remove': {
-				'group': 'file',
-				'method': 'dir_remove',
-				'alias': None,
-				'description': 'Removes a specified directory and its contents',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.remove', 'temp']], 'test': False},
-					{'code': [['dir.remove', 'old_backup']], 'test': False}
-				]
-			},
-			'dir.move': {
-				'group': 'file',
-				'method': 'dir_move',
-				'alias': None,
-				'description': 'Moves a specified directory to a new location',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.move', 'old', 'new']], 'test': False},
-					{'code': [['dir.move', 'temp', 'perm']], 'test': False}
-				]
-			},
-			'dir.copy': {
-				'group': 'file',
-				'method': 'dir_copy',
-				'alias': None,
-				'description': 'Copies a specified directory and its contents to a new location',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.copy', 'source', 'destination']], 'test': False},
-					{'code': [['dir.copy', 'backup', 'archive/backup']], 'test': False}
-				]
-			},
-			'dir.rename': {
-				'group': 'file',
-				'method': 'dir_rename',
-				'alias': None,
-				'description': 'Renames a specified directory',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.rename', 'old_name', 'new_name']], 'test': False},
-					{'code': [['dir.rename', 'temp', 'final']], 'test': False}
-				]
-			},
-			'dir.clear': {
-				'group': 'file',
-				'method': 'dir_clear',
-				'alias': None,
-				'description': 'Clears all contents of a specified directory without deleting the directory itself',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.clear', 'temp']], 'test': False},
-					{'code': [['dir.clear', 'cache']], 'test': False}
-				]
-			},
-			'dir.info': {
-				'group': 'file',
-				'method': 'dir_info',
-				'alias': None,
-				'description': 'Retrieves information about a specified directory',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.info', 'folder']], 'result': {'size': 1024, 'files': 10, 'modified': 1672531200}, 'test': False},
-					{'code': [['dir.info', 'project']], 'result': {'size': 2048, 'files': 15, 'modified': 1672531200}, 'test': False}
-				]
-			},
-			'dir.size': {
-				'group': 'file',
-				'method': 'dir_size',
-				'alias': None,
-				'description': 'Calculates the total size of a specified directory and its contents',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.size', 'data']], 'result': 1048576},
-					{'code': [['dir.size', 'downloads']], 'result': 5242880}
-				]
-			},
-			'dir.permission': {
-				'group': 'file',
-				'method': 'dir_permission',
-				'alias': None,
-				'description': 'Gets or sets the permissions of a specified directory',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.permission', 'scripts', '755']], 'test': False},
-					{'code': [['dir.permission', 'uploads', '775']], 'test': False}
-				]
-			},
-			'dir.time': {
-				'group': 'file',
-				'method': 'dir_time',
-				'alias': None,
-				'description': 'Gets or sets the timestamps of a specified directory',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.time', 'logs']], 'result': 1672531200, 'test': False},
-					{'code': [['dir.time', 'backups', 'created']], 'result': 1672531200, 'test': False}
-				]
-			},
-			'dir.zip': {
-				'group': 'file',
-				'method': 'dir_zip',
-				'alias': None,
-				'description': 'Compresses a specified directory into a ZIP archive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.zip', 'archive.zip', 'folder']], 'test': False},
-					{'code': [['dir.zip', 'backup.zip', 'data']], 'test': False}
-				]
-			},
-			'dir.void': {
-				'group': 'file',
-				'method': 'dir_void',
-				'alias': None,
-				'description': 'Compresses a specified directory into a Void container',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['dir.void', 'data']], 'result': 'data.void', 'test': False},
-					{'code': [['dir.void', 'project', 'backup.void']], 'test': False}
-				]
-			},
-			'drive': {
-				'group': 'file',
-				'method': 'drive_list',
-				'alias': None,
-				'description': 'Lists all available drives on the system',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.list']], 'result': ['C:', 'D:', 'E:'], 'test': False},
-					{'code': [['drive.list', 'removable']], 'result': ['D:', 'E:'], 'test': False}
-				]
-			},
-			'drive.name': {
-				'group': 'file',
-				'method': 'drive_name',
-				'alias': None,
-				'description': 'Gets or sets the name of a specified drive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.name', 'C:']], 'result': 'System'},
-					{'code': [['drive.name', 'D:', 'Data']], 'test': False}
-				]
-			},
-			'drive.size': {
-				'group': 'file',
-				'method': 'drive_size',
-				'alias': None,
-				'description': 'Total size of a specified drive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.size', 'C:']], 'result': 256000000000},
-					{'code': [['drive.size', 'D:']], 'result': 1000000000000}
-				]
-			},
-			'drive.used': {
-				'group': 'file',
-				'method': 'drive_used',
-				'alias': None,
-				'description': 'Amount of used space on a specified drive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.used', 'C:']], 'result': 128000000000},
-					{'code': [['drive.used', 'D:']], 'result': 500000000000}
-				]
-			},
-			'drive.free': {
-				'group': 'file',
-				'method': 'drive_free',
-				'alias': None,
-				'description': 'Amount of free space on a specified drive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.free', 'C:']], 'result': 128000000000},
-					{'code': [['drive.free', 'D:']], 'result': 500000000000}
-				]
-			},
-			'drive.info': {
-				'group': 'file',
-				'method': 'drive_info',
-				'alias': None,
-				'description': 'Retrieves information about a specified drive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.info', 'C:']], 'result': {'size': 256000000000, 'free': 128000000000, 'type': 'SSD'}, 'test': False},
-					{'code': [['drive.info', 'D:']], 'result': {'size': 1000000000000, 'free': 500000000000, 'type': 'HDD'}, 'test': False}
-				]
-			},
-			'drive.mount': {
-				'group': 'file',
-				'method': 'drive_mount',
-				'alias': None,
-				'description': 'Mounts a drive to make it accessible',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.mount', '/dev/sdb1', 'D:']], 'test': False},
-					{'code': [['drive.mount', 'image.iso', 'E:']], 'test': False}
-				]
-			},
-			'drive.unmount': {
-				'group': 'file',
-				'method': 'drive_unmount',
-				'alias': None,
-				'description': 'Unmounts a drive',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.unmount', 'D:']], 'test': False},
-					{'code': [['drive.unmount', 'E:']], 'test': False}
-				]
-			},
-			'drive.create': {
-				'group': 'file',
-				'method': 'drive_create',
-				'alias': None,
-				'description': 'Creates a new virtual drive or volume',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.create', 'virtual', 1000000000]], 'test': False},
-					{'code': [['drive.create', 'ramdisk', 4000000000, 'RAM']], 'test': False}
-				]
-			},
-			'drive.resize': {
-				'group': 'file',
-				'method': 'drive_resize',
-				'alias': None,
-				'description': 'Resizes an existing drive partition or volume',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.resize', 'virtual', 2000000000]], 'test': False},
-					{'code': [['drive.resize', 'D:', 1500000000000]], 'test': False}
-				]
-			},
-			'drive.format': {
-				'group': 'file',
-				'method': 'drive_format',
-				'alias': None,
-				'description': 'Formats a drive with a specified file system',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.format', 'D:', 'NTFS']], 'test': False},
-					{'code': [['drive.format', 'E:', 'FAT32']], 'test': False}
-				]
-			},
-			'drive.remove': {
-				'group': 'file',
-				'method': 'drive_remove',
-				'alias': None,
-				'description': 'Removes or deletes a specified drive or partition',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['drive.remove', 'virtual']], 'test': False},
-					{'code': [['drive.remove', 'ramdisk']], 'test': False}
-				]
-			},
-			'path': {
-				'group': 'file',
-				'method': 'path',
-				'alias': None,
-				'description': 'Returns components of a specified file path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['path.drive', 'C:/Windows/System32']], 'result': 'C:'},
-					{'code': [['path.drive', '/mnt/data/file.txt']], 'result': ''}
-				]
-			},
-			'path.drive': {
-				'group': 'file',
-				'method': 'path_drive',
-				'alias': None,
-				'description': 'Drive component of a specified file path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['path.drive', 'C:/Windows/System32']], 'result': 'C:'},
-					{'code': [['path.drive', '/mnt/data/file.txt']], 'result': ''}
-				]
-			},
-			'path.dir': {
-				'group': 'file',
-				'method': 'path_dir',
-				'alias': None,
-				'description': 'Directory portion of a specified file path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['path.dir', 'C:/Windows/System32/kernel32.dll']], 'result': 'C:/Windows/System32'},
-					{'code': [['path.dir', '/home/user/docs/file.txt']], 'result': '/home/user/docs'}
-				]
-			},
-			'path.file': {
-				'group': 'file',
-				'method': 'path_file',
-				'alias': None,
-				'description': 'File portion of a specified file path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['path.file', 'C:/Windows/System32/kernel32.dll']], 'result': 'kernel32.dll'},
-					{'code': [['path.file', '/home/user/docs/report.pdf']], 'result': 'report.pdf'}
-				]
-			},
-			'path.name': {
-				'group': 'file',
-				'method': 'path_name',
-				'alias': None,
-				'description': 'Name of the file without extension from a specified path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['path.name', 'document.txt']], 'result': 'document'},
-					{'code': [['path.name', '/path/to/file.name.ext']], 'result': 'file.name'}
-				]
-			},
-			'path.extension': {
-				'group': 'file',
-				'method': 'path_extension',
-				'alias': None,
-				'description': 'File extension from a specified file path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['path.extension', 'image.png']], 'result': '.png'},
-					{'code': [['path.extension', 'archive.tar.gz']], 'result': '.gz'}
-				]
-			},
-			'path.strip': {
-				'group': 'file',
-				'method': 'path_strip',
-				'alias': None,
-				'description': 'Removes the extension from a specified path',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['path.strip', 'file.txt']], 'result': 'file'},
-					{'code': [['path.strip', '/path/to/document.pdf']], 'result': '/path/to/document'}
-				]
-			},
-
-			# format
-
-			'void': {
-				'group': 'format',
-				'method': 'void_encode',
-				'alias': None,
-				'description': 'Encodes data into the Void format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [
-					{'name': 'data', 'type': 'any'},
-					{'name': 'indent', 'type': 'text', 'default': '\t'}
-				],
-				'example': [
-					{'code': [['void', {'key': 'value'}]], 'result': '{\n\t\'key\': \'value\'\n}'},
-					{'code': [['void', [1, 2, 3], '  ']], 'result': '[\n  1,\n  2,\n  3\n]'}
-				]
-			},
-			'void.decode': {
-				'group': 'format',
-				'method': 'void_decode',
-				'alias': None,
-				'description': 'Decodes data from the Void format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['void.decode', '{\'key\':\'value\'}']], 'result': {'key': 'value'}},
-					{'code': [['void.decode', '[1,2,3]']], 'result': [1, 2, 3]}
-				]
-			},
-			'json': {
-				'group': 'format',
-				'method': 'json_encode',
-				'alias': None,
-				'description': 'Encodes data into the JSON format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['json', {'name': 'John', 'age': 30}]], 'result': '{\'name\':\'John\',\'age\':30}'},
-					{'code': [['json', [True, False]]], 'result': '[true,false]'}
-				]
-			},
-			'json.decode': {
-				'group': 'format',
-				'method': 'json_decode',
-				'alias': None,
-				'description': 'Decodes data from the JSON format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['json.decode', '{\'x\':5,\'y\':10}']], 'result': {'x': 5, 'y': 10}},
-					{'code': [['json.decode', '[\'a\',\'b\']']], 'result': ['a', 'b']}
-				]
-			},
-			'csv': {
-				'group': 'format',
-				'method': 'csv_encode',
-				'alias': None,
-				'description': 'Encodes data into the CSV format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['csv', [['Name', 'Age'], ['John', 30], ['Alice', 25]]]], 'result': 'Name,Age\nJohn,30\nAlice,25'},
-					{'code': [['csv', {'a': [1,2], 'b': [3,4]}]], 'result': 'a,b\n1,3\n2,4'}
-				]
-			},
-			'csv.decode': {
-				'group': 'format',
-				'method': 'csv_decode',
-				'alias': None,
-				'description': 'Decodes data from the CSV format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['csv.decode', 'a,b,c\n1,2,3']], 'result': [{'a':'1','b':'2','c':'3'}]},
-					{'code': [['csv.decode', 'x;y\n4;5', ';']], 'result': [{'x':'4','y':'5'}]}
-				]
-			},
-			'yaml': {
-				'group': 'format',
-				'method': 'yaml_encode',
-				'alias': None,
-				'description': 'Encodes data into the YAML format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['yaml', {'name': 'John', 'skills': ['Python', 'JS']}]], 'result': 'name: John\nskills:\n  - Python\n  - JS'},
-					{'code': [['yaml', [1, 2, 3]]], 'result': '- 1\n- 2\n- 3'}
-				]
-			},
-			'yaml.decode': {
-				'group': 'format',
-				'method': 'yaml_decode',
-				'alias': None,
-				'description': 'Decodes data from the YAML format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['yaml.decode', 'key: value']], 'result': {'key': 'value'}},
-					{'code': [['yaml.decode', '- 1\n- 2']], 'result': [1, 2]}
-				]
-			},
-			'ini': {
-				'group': 'format',
-				'method': 'ini_encode',
-				'alias': None,
-				'description': 'Encodes data into the INI format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['ini', {'section': {'key': 'value'}}]], 'result': '[section]\nkey=value'},
-					{'code': [['ini', {'user': {'name': 'John'}, 'db': {'port': 3306}}]], 'result': '[user]\nname=John\n\n[db]\nport=3306'}
-				]
-			},
-			'ini.decode': {
-				'group': 'format',
-				'method': 'ini_decode',
-				'alias': None,
-				'description': 'Decodes data from the INI format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['ini.decode', '[section]\nkey=value']], 'result': {'section': {'key': 'value'}}},
-					{'code': [['ini.decode', '[user]\nname=John']], 'result': {'user': {'name': 'John'}}}
-				]
-			},
-			'xml': {
-				'group': 'format',
-				'method': 'xml_encode',
-				'alias': None,
-				'description': 'Encodes data into the XML format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['xml', {'root': {'item': ['a', 'b']}}]], 'result': '<root><item>a</item><item>b</item></root>'},
-					{'code': [['xml', {'person': {'@id': 1, 'name': 'John'}}]], 'result': '<person id=\'1\'><name>John</name></person>'}
-				]
-			},
-			'xml.decode': {
-				'group': 'format',
-				'method': 'xml_decode',
-				'alias': None,
-				'description': 'Decodes data from the XML format',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['xml.decode', '<root><x>1</x></root>']], 'result': {'root': {'x': '1'}}},
-					{'code': [['xml.decode', '<person id=\'1\'><name>John</name></person>']], 'result': {'person': {'@id': '1', 'name': 'John'}}}
-				]
-			},
-
-			# communication
-
-			'cloud': {
-				'group': 'communication',
-				'method': 'cloud',
-				'alias': None,
-				'description': 'Runs cloud storage or services for data management',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': True,
-				'param': [],
-				'example': [
-					{'code': [['cloud', 'start']], 'test': False},
-					{'code': [['cloud', 'status']], 'result': 'running', 'test': False}
-				]
-			},
-			'request': {
-				'group': 'communication',
-				'method': 'request',
-				'alias': 'r',
-				'description': 'Sends an HTTP (GET by default) request to a specified URL',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': {
-					'get': {},
-					'post': {},
-					'put': {},
-					'delete': {},
-					'method': {},
-					'url': {},
-					'header': {},
-					'cookie': {},
-					'data': {},
-					'done': {},
-					'error': {}
-				},
-				'param': [],
-				'example': [
-					{'code': [['r', 'https://api.example.com/data']], 'test': False},
-					{'code': [['r', 'https://example.com', {'headers': {'Accept': 'application/json'}}]], 'test': False}
-				]
-			},
-			'download': {
-				'group': 'communication',
-				'method': 'download',
-				'alias': 'd',
-				'description': 'Downloads content from a specified URL',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': {
-					'url': {},
-					'video': {},
-					'audio': {},
-					'subtitles': {},
-					'': {},
-					'': {},
-					'': {},
-					'': {},
-					'': {},
-					'': {},
-				},
-				'param': [],
-				'example': [
-					{'code': [['dl', 'https://example.com/file.txt', 'local.txt']], 'test': False},
-					{'code': [['dl', 'https://example.com/image.jpg']], 'test': False}
-				]
-			},
-			'cookie': {
-				'group': 'communication',
-				'method': 'cookie',
-				'alias': None,
-				'description': 'Gets or sets a specified cookie',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['cookie', 'session', 'abc123']], 'test': False},
-					{'code': [['cookie', 'user']], 'result': 'john_doe', 'test': False}
-				]
-			},
-			'cookie.remove': {
-				'group': 'communication',
-				'method': 'cookie_remove',
-				'alias': None,
-				'description': 'Removes a specified cookie from the client\'s storage',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['cookie.remove', 'session']], 'test': False},
-					{'code': [['cookie.remove', 'temp']], 'test': False}
-				]
-			},
-			'social': {
-				'group': 'communication',
-				'method': 'social',
-				'alias': None,
-				'description': 'Interacting with social API',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': True,
-				'param': [],
-				'example': [
-					{'code': [['social', 'tiktok', 'upload', 'clip.mp4']], 'test': False},
-					{'code': [['social', 'telegram', 'send', '@name', 'Text']], 'test': False},
-					{'code': [['social', 'telegram', 'bot', 'bot_action']], 'test': False}
-				]
-			},
-			'notification': {
-				'group': 'communication',
-				'method': 'notification',
-				'alias': None,
-				'description': 'Send notification',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['notification', 'New message']], 'test': False},
-					{'code': [['notification', 'Alert', {'sound': True}]], 'test': False}
-				]
-			},
-			'mail': {
-				'group': 'communication',
-				'method': 'mail',
-				'alias': None,
-				'description': 'Send mail',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['mail', 'user@example.com', 'Subject', 'Body']], 'test': False},
-					{'code': [['mail', 'test@example.com', 'Hello', 'Content', {'cc': 'copy@example.com'}]], 'test': False}
-				]
-			},
-			'call': {
-				'group': 'communication',
-				'method': 'call',
-				'alias': None,
-				'description': 'Initiate a voice or video call to a specified recipient',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['call', '+1234567890']], 'test': False},
-					{'code': [['call', 'user@domain.com', 'video']], 'test': False}
-				]
-			},
-			'sms': {
-				'group': 'communication',
-				'method': 'sms',
-				'alias': None,
-				'description': 'Send a text message (SMS) to a specified recipient',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['sms', '+1234567890', 'Hello']], 'test': False},
-					{'code': [['sms', '+0987654321', 'Your code: 1234']], 'test': False}
-				]
-			},
-
-			# device
-
-			'device': {
-				'group': 'device',
-				'method': 'device',
-				'alias': None,
-				'description': 'Information related to the hardware device',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['device']], 'result': {'model': 'iPhone12,1', 'manufacturer': 'Apple'}, 'test': False},
-					{'code': [['device', 'id']], 'result': 'A12B3C4D', 'test': False}
-				]
-			},
-			'cpu': {
-				'group': 'device',
-				'method': 'cpu',
-				'alias': None,
-				'description': 'Information about the CPU, including its usage and specifications',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['cpu']], 'result': {'cores': 8, 'usage': 34.5}, 'test': False},
-					{'code': [['cpu', 'temperature']], 'result': 65.2, 'test': False}
-				]
-			},
-			'fps': {
-				'group': 'device',
-				'method': 'fps',
-				'alias': None,
-				'description': 'Frames per second for video or graphical rendering',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['fps']], 'result': 60, 'test': False},
-					{'code': [['fps', 'set', 30]], 'test': False}
-				]
-			},
-			'vsync': {
-				'group': 'device',
-				'method': 'vsync',
-				'alias': None,
-				'description': 'Vertical sync settings to reduce screen tearing during rendering',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['vsync']], 'result': True, 'test': False},
-					{'code': [['vsync', 'set', False]], 'test': False}
-				]
-			},
-			'resolution': {
-				'group': 'device',
-				'method': 'resolution',
-				'alias': None,
-				'description': 'Screen resolution',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['resolution']], 'result': [1920, 1080], 'test': False},
-					{'code': [['resolution', 'set', 1280, 720]], 'test': False}
-				]
-			},
-			'orientation': {
-				'group': 'device',
-				'method': 'orientation',
-				'alias': None,
-				'description': 'Orientation of a device\'s display (landscape or portrait)',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['orientation']], 'result': 'landscape', 'test': False},
-					{'code': [['orientation', 'set', 'portrait']], 'test': False}
-				]
-			},
-			'dark': {
-				'group': 'device',
-				'method': 'darkmode',
-				'alias': None,
-				'description': 'Dark mode setting for user interfaces',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['darkmode']], 'result': True, 'test': False},
-					{'code': [['darkmode', 'set', False]], 'test': False}
-				]
-			},
-			'pixel': {
-				'group': 'device',
-				'method': 'pixel',
-				'alias': None,
-				'description': 'Color of the pixel displayed on the screen',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['pixel', 100, 200]], 'result': [255, 0, 0], 'test': False},
-					{'code': [['pixel', 'set', 150, 300, [0, 255, 0]]], 'test': False}
-				]
-			},
-			'char': {
-				'group': 'device',
-				'method': 'textmode_character',
-				'alias': None,
-				'description': 'Symbol on the screen in text mode',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['textmode.character', 10, 5]], 'result': 'A', 'test': False},
-					{'code': [['textmode.character', 'set', 12, 7, 'B']], 'test': False}
-				]
-			},
-			'cursor': {
-				'group': 'device',
-				'method': 'textmode_cursor',
-				'alias': None,
-				'description': 'Cursor position on the screen in text mode',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['textmode.cursor']], 'result': [5, 10], 'test': False},
-					{'code': [['textmode.cursor', 'set', 0, 0]], 'test': False}
-				]
-			},
-			'clear': {
-				'group': 'device',
-				'method': 'textmode_clear',
-				'alias': None,
-				'description': 'Clears the screen in text mode',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['textmode.clear']], 'test': False},
-					{'code': [['textmode.clear', 'green']], 'test': False}
-				]
-			},
-			'light': {
-				'group': 'device',
-				'method': 'flashlight',
-				'alias': None,
-				'description': 'Turns on or off the device\'s flashlight',
-				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['flashlight', 'on']], 'test': False},
-					{'code': [['flashlight', 'off']], 'test': False}
-				]
-			},
-			'location': {
-				'group': 'device',
-				'method': 'location',
-				'alias': None,
-				'description': 'Retrieves the current geographic location using GPS or network triangulation',
-				'language': ['js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['location']], 'result': {'lat': 55.7558, 'lon': 37.6173}, 'test': False},
-					{'code': [['location', 'accuracy', 10]], 'test': False}
-				]
-			},
-			'gyroscope': {
-				'group': 'device',
-				'method': 'gyroscope',
-				'alias': None,
-				'description': 'Provides access to the gyroscope sensor for motion detection',
-				'language': ['js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['gyroscope']], 'result': {'x': 0.1, 'y': -0.2, 'z': 0.05}, 'test': False},
-					{'code': [['gyroscope', 'frequency', 10]], 'test': False}
-				]
-			},
-			'accelerometer': {
-				'group': 'device',
-				'method': 'accelerometer',
-				'alias': None,
-				'description': 'Provides access to the accelerometer sensor to detect acceleration forces',
-				'language': ['js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['accelerometer']], 'result': {'x': 0.0, 'y': 0.0, 'z': 9.8}, 'test': False},
-					{'code': [['accelerometer', 'calibrate']], 'test': False}
-				]
-			},
-			'compass': {
-				'group': 'device',
-				'method': 'compass',
-				'alias': None,
-				'description': 'Accesses the magnetic compass sensor to determine orientation relative to the Earth\'s magnetic field',
-				'language': ['js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['compass']], 'result': 180.5, 'test': False},
-					{'code': [['compass', 'calibrate']], 'test': False}
-				]
-			},
-			'proximity': {
-				'group': 'device',
-				'method': 'proximity',
-				'alias': None,
-				'description': 'Detects the proximity of objects in relation to the device\'s proximity sensor',
-				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['proximity']], 'result': 5.2, 'test': False},
-					{'code': [['proximity', 'threshold', 10]], 'test': False}
-				]
-			},
-			'brightness': {
-				'group': 'device',
-				'method': 'brightness',
-				'alias': None,
-				'description': 'Manages the screen brightness level of the device',
-				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['brightness']], 'result': 80, 'test': False},
-					{'code': [['brightness', 'set', 50]], 'test': False}
-				]
-			},
-			'calendar': {
-				'group': 'device',
-				'method': 'calendar',
-				'alias': None,
-				'description': 'Calendar events on a device',
-				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['calendar', 'events']], 'result': [], 'test': False},
-					{'code': [['calendar', 'add', 'Meeting', '2023-12-01 14:00']], 'test': False}
-				]
-			},
-			'gallery': {
-				'group': 'device',
-				'method': 'gallery',
-				'alias': None,
-				'description': 'Photo and video library on a device',
-				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['gallery', 'photos']], 'result': ['photo1.jpg', 'photo2.jpg'], 'test': False},
-					{'code': [['gallery', 'save', 'new.jpg']], 'test': False}
-				]
-			},
-			'contacts': {
-				'group': 'device',
-				'method': 'contacts',
-				'alias': None,
-				'description': 'Contact list on a device',
-				'language': ['swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': False,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['contacts']], 'result': [{'name': 'John', 'phone': '+1234567890'}], 'test': False},
-					{'code': [['contacts', 'add', 'Alice', '+0987654321']], 'test': False}
-				]
-			},
-			'keyboard': {
-				'group': 'device',
-				'method': 'keyboard',
-				'alias': None,
-				'description': 'Keyboard information',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['keyboard']], 'result': {'layout': 'QWERTY', 'language': 'en-US'}}
-				]
-			},
-			'mouse': {
-				'group': 'device',
-				'method': 'mouse',
-				'alias': None,
-				'description': 'Mouse information',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['mouse']], 'result': {'x': 500, 'y': 300, 'buttons': 0}}
-				]
-			},
-			'gamepad': {
-				'group': 'device',
-				'method': 'gamepad',
-				'alias': None,
-				'description': 'Gamepad information',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['gamepad', 0]], 'result': {'buttons': [False], 'axes': [0.0]}}
-				]
-			},
-			'tap': {
-				'group': 'device',
-				'method': 'tap',
-				'alias': None,
-				'description': 'Simulates a tap gesture',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['tap', 100, 200]], 'result': True}
-				]
-			},
-			'key': {
-				'group': 'device',
-				'method': 'key',
-				'alias': None,
-				'description': 'Key binding',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': None,
-				'param': [],
-				'example': [
-					{'code': [['key', 'Ctrl+S', 'save']], 'result': True}
-				]
-			},
-
-			# content
-
-			'image': {
-				'group': 'content',
-				'method': 'image',
-				'alias': None,
-				'description': 'Create an image',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': True,
-				'param': [],
-				'example': [
-					{'code': [['image', 'A sunset over mountains']], 'result': 'image.png'}
-				]
-			},
-			'video': {
-				'group': 'content',
-				'method': 'video',
-				'alias': ['movie', 'anime'],
-				'description': 'Create a video',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': True,
-				'param': [],
-				'example': [
-					{'code': [['video', 'A beach sunset', 10]], 'result': 'video.mp4'}
-				]
-			},
-			'sound': {
-				'group': 'content',
-				'method': 'sound',
-				'alias': None,
-				'description': 'Create audio track',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': True,
-				'param': [],
-				'example': [
-					{'code': [['sound', 'Ocean waves', 30]], 'result': 'sound.mp3'}
-				]
-			},
-			'music': {
-				'group': 'content',
-				'method': 'music',
-				'alias': None,
-				'description': 'Generates music',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': True,
-				'param': [],
-				'example': [
-					{'code': [['music', 'Relaxing piano', 180]], 'result': 'music.mp3'}
-				]
-			},
-			'model': {
-				'group': 'content',
-				'method': 'model',
-				'alias': None,
-				'description': 'Create 3D model',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': True,
-				'param': [],
-				'example': []
-			},
-			'book': {
-				'group': 'content',
-				'method': 'book',
-				'alias': ['novel', 'manga'],
-				'description': 'Create a book, comic, manga',
-				'language': ['python', 'js', 'swift', 'kotlin', 'gdscript', 'c++'],
-				'safe': True,
-				'container': True,
-				'param': [],
-				'example': []
-			}
-		},
-		'alias': {
-			'.': 'print',
-			'..': 'printn',
-			'...': 'input',
-			'?': 'if',
-			'c': 'convert',
-			'd': 'download',
-			'e': 'escape',
-			'h': 'help',
-			'i': 'info',
-			'l': 'length',
-			'o': 'loop',
-			'r': 'request',
-			't': 'timecheck',
-			'x': 'break',
-			'x>': 'continue',
-			'<x': 'repeat',
-			'X': 'return',
-			'response': 'return',
-			'xx': 'exit',
-			'app': 'ui',
-			'game': 'ui',
-			'web': 'ui',
-			'cli': 'ui'
-		},
-		'pi': 3.1415926535,
-		'pi2': 9.8696044011,
-		'2pi': 6.2831853071,
-		'e': 2.7182818284,
-		'epi': 23.1406926327,
-		'pie': 1.1557273498,
-		'phi': 1.6180339887,
-		'sqrt2': 1.4142135623,
-		'sqrt3': 1.7320508075,
-		'sqrt5': 2.2360679775,
-		'ln2': 0.6931471805,
-		'ln10': 2.3025850929,
-		'gamma': 0.5772156649,
-		'app': {
-			'path': '',
-			'name': '',
-			'argument': []
-		},
-		'device': {
-			'fps': None,
-			'cpu': {},
-			'gpu': {}
-		},
-		'os': {
-			'type': None,
-			'name': None,
-			'version': None
-		},
-		'cloud': {
-			'mime': {
-				# data
-				'void': 'application/void',
-				'json': 'application/json',
-				'jsonl': 'application/jsonl',
-				'jsonld': 'application/ld+json',
-				'yaml': 'application/x-yaml',
-				'csv': 'text/csv',
-				'ini': 'text/plain',
-				'xml': 'application/xml',
-				'sql': 'application/sql',
-				'bin': 'application/octet-stream',
-				# document
-				'text': 'text/plain',
-				'txt': 'text/plain',
-				'pdf': 'application/pdf',
-				'djvu': 'image/vnd.djvu',
-				'doc': 'application/msword',
-				'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-				'xls': 'application/vnd.ms-excel',
-				'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-				'ppt': 'application/vnd.ms-powerpoint',
-				'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-				'rtf': 'application/rtf',
-				'epub': 'application/epub+zip',
-				'abw': 'application/x-abiword',
-				'azw': 'application/vnd.amazon.ebook',
-				'odp': 'application/vnd.oasis.opendocument.presentation',
-				'ods': 'application/vnd.oasis.opendocument.spreadsheet',
-				'odt': 'application/vnd.oasis.opendocument.text',
-				'ics': 'text/calendar',
-				# html
-				'html': 'text/html',
-				'htm': 'text/html',
-				'xhtml': 'application/xhtml+xml',
-				'css': 'text/css',
-				# font
-				'ttf': 'font/ttf',
-				'otf': 'font/otf',
-				'sfnt': 'font/sfnt',
-				'woff': 'font/woff',
-				'woff2': 'font/woff2',
-				'eot': 'application/vnd.ms-fontobject',
-				# image
-				'jpeg': 'image/jpeg',
-				'jpg': 'image/jpeg',
-				'png': 'image/png',
-				'apng': 'image/apng',
-				'gif': 'image/gif',
-				'svg': 'image/svg+xml',
-				'webp': 'image/webp',
-				'heif': 'image/heif',
-				'heic': 'image/heic',
-				'tiff': 'image/tiff',
-				'tif': 'image/tiff',
-				'avif': 'image/avif',
-				'ico': 'image/x-icon',
-				'icon': 'image/vnd.microsoft.icon',
-				'icns': 'image/x-icns',
-				# audio
-				'mp3': 'audio/mpeg',
-				'mpa': 'audio/mpeg',
-				'mp2': 'audio/mpeg',
-				'wma': 'audio/x-ms-wma',
-				'wav': 'audio/x-wav',
-				'flac': 'audio/flac',
-				'ogg': 'application/ogg',
-				'oga': 'audio/ogg',
-				'weba': 'audio/webm',
-				'cda': 'application/x-cdf',
-				'aac': 'audio/aac',
-				'ac3': 'audio/ac3',
-				'mid': 'audio/midi',
-				'midi': 'audio/x-midi',
-				's3m': 'audio/s3m',
-				'it':  'audio/it',
-				'mod': 'audio/x-mod',
-				'xm':  'audio/xm',
-				# video
-				'mp4': 'video/mp4',
-				'mpeg': 'video/mpeg',
-				'mpg': 'video/mpeg',
-				'mpv': 'video/mpeg',
-				'webm': 'video/webm',
-				'ogx': 'application/ogg',
-				'ogv': 'video/ogg',
-				'qt': 'video/quicktime',
-				'mov': 'ideo/quicktime',
-				'm4v': 'video/x-m4v',
-				'wmv': 'video/x-ms-wmv',
-				'avi': 'video/x-msvideo',
-				'mkv': 'application/x-matroska',
-				'mjpeg': 'multipart/x-mixed-replace',
-				'ts': 'video/mp2t',
-				# 3d
-				'gltf': 'model/gltf+json',
-				'glb': 'model/gltf-binary',
-				'obj': 'model/obj',
-				'stl': 'model/stl',
-				'fbx': 'application/vnd.autodesk.fbx',
-				'dae': 'model/vnd.collada+xml',
-				'3ds': 'model/x-3ds',
-				'ply': 'model/ply',
-				'usd': 'model/vnd.usd',
-				'usdz': 'model/vnd.usdz+zip',
-				'x3d': 'model/x3d+xml',
-				'wrl': 'model/vrml',
-				'vrml': 'model/vrml',
-				# archive
-				'zip': 'application/zip',
-				'gz': 'application/gzip',
-				'7z': 'application/x-7z-compressed',
-				'tar': 'application/x-tar',
-				'arc': 'application/x-freearc',
-				'rar': 'application/vnd.rar',
-				'bz': 'application/x-bzip',
-				'bz2': 'application/x-bzip2',
-				'mpkg': 'application/vnd.apple.installer+xml',
-				# code
-				'py': 'applycation/x-python-code',
-				'php': 'application/x-httpd-php',
-				'java': 'application/java',
-				'jar': 'application/java-archive',
-				'kt':  'text/x-kotlin',
-				'swift': 'application/swift',
-				'c':   'text/x-csrc',
-				'cpp': 'text/x-c++src',
-				'h':   'text/x-chdr',
-				'cs': 'text/x-csharp',
-				'gd': 'text/x-gdscript',
-				'js': 'text/javascript',
-				'mjs': 'text/javascript',
-				'lua': 'text/x-lua',
-				'sh': 'application/x-sh',
-				'csh': 'application/x-csh',
-				'bat': 'application/x-bat',
-				'ps1': 'text/x-powershell',
-				# form
-				'form data': 'multipart/form-data',
-				'form mixed': 'multipart/mixed',
-				'form alternative': 'multipart/alternative',
-				'form text': 'application/x-www-form-urlencoded'
-			},
-			'code': {
-				100: 'Continue',
-				101: 'Switching protocols',
-				102: 'Processing',
-				103: 'Early Hints',
-				200: 'OK',
-				201: 'Created',
-				202: 'Accepted',
-				203: 'Non-Authoritative Information',
-				204: 'No Content',
-				205: 'Reset Content',
-				206: 'Partial Content',
-				207: 'Multi-Status',
-				208: 'Already Reported',
-				226: 'IM Used',
-				300: 'Multiple Choices',
-				301: 'Moved Permanently',
-				302: 'Found (Previously \'Moved Temporarily\')',
-				303: 'See Other',
-				304: 'Not Modified',
-				305: 'Use Proxy',
-				306: 'Switch Proxy',
-				307: 'Temporary Redirect',
-				308: 'Permanent Redirect',
-				400: 'Bad Request',
-				401: 'Unauthorized',
-				402: 'Payment Required',
-				403: 'Forbidden',
-				404: 'Not Found',
-				405: 'Method Not Allowed',
-				406: 'Not Acceptable',
-				407: 'Proxy Authentication Required',
-				408: 'Request Timeout',
-				409: 'Conflict',
-				410: 'Gone',
-				411: 'Length Required',
-				412: 'Precondition Failed',
-				413: 'Payload Too Large',
-				414: 'URI Too Long',
-				415: 'Unsupported Media Type',
-				416: 'Range Not Satisfiable',
-				417: 'Expectation Failed',
-				418: 'I\'m a Teapot',
-				421: 'Misdirected Request',
-				422: 'Unprocessable Entity',
-				423: 'Locked',
-				424: 'Failed Dependency',
-				425: 'Too Early',
-				426: 'Upgrade Required',
-				428: 'Precondition Required',
-				429: 'Too Many Requests',
-				431: 'Request Header Fields Too Large',
-				451: 'Unavailable For Legal Reasons',
-				500: 'Internal Server Error',
-				501: 'Not Implemented',
-				502: 'Bad Gateway',
-				503: 'Service Unavailable',
-				504: 'Gateway Timeout',
-				505: 'HTTP Version Not Supported',
-				506: 'Variant Also Negotiates',
-				507: 'Insufficient Storage',
-				508: 'Loop Detected',
-				510: 'Not Extended',
-				511: 'Network Authentication Required'
-			}
-		},
-		'info': {},
-		'db': {},
-		'ai': {},
-		'run': [],
-		'action': {},
-		'text': {
-			'void': {
-				'style': {
-					'price': {
-						'dot': 5,
-						'before': '∞',
-						'group': ' '
-					}
-				}
-			}
-		}
-	}
-
-	# value
-
-	def get(name, default = None, data = None):
-		if '/' in name or '\\' in name:
-			path_outer = void.path_dir(name)
-			path_extension = void.path_extension(path_outer).lower()
-			if path_extension in ['void', 'json', 'csv', 'yaml', 'ini', 'xml'] and void.file_exists(path_outer):
-				data = void.file(path_outer)
-				name = void.path_file(name)
-			else:
-				return default
-		elif data == None:
-			data = void.data
-		names = name.split('.')
-		names.reverse()
-		while len(names) > 0:
-			subname = names.pop()
-			subtype = type(data)
-			last = len(names) == 0
-			if subtype is dict:
-				if subname not in data:
-					return default
-				if last:
-					return data[subname]
-				data = data[subname]
-			elif subtype is list:
-				try:
-					subname = int(subname)
-				except:
-					return default
-				if len(data) <= subname:
-					return default
-				if last:
-					return data[subname]
-				data = data[subname]
-			else:
-				return default
-
-	def set(name: str, value = None, data = None):
-		if '/' in name or '\\' in name:
-			path_outer = void.path_dir(name)
-			path_extension = void.path_extension(path_outer).lower()
-			if path_extension in ['void', 'json', 'csv', 'yaml', 'ini', 'xml'] and void.file_exists(path_outer):
-				data_file = void.file(path_outer)
-				data = data_file
-				name = void.path_file(name)
-				file = True
-			else:
-				return
-		elif data == None:
-			data = void.data
-			file = False
-		names = name.split('.')
-		names.reverse()
-		while len(names) > 0:
-			subname = names.pop()
-			subtype = type(data)
-			last = len(names) == 0
-			if subtype is dict:
-				if subname not in data:
-					data[subname] = {}
-				if last:
-					data[subname] = value
-					if file:
-						void.file(path_outer, data_file)
-					return
-				data = data[subname]
-			elif subtype is list:
-				try:
-					subname = int(subname)
-				except:
-					return
-				if len(data) <= subname:
-					if len(data) == subname:
-						data.append({})
-					else:
-						return
-				if last:
-					data[subname] = value
-					if file:
-						void.file(path_outer, data_file)
-					return
-				data = data[subname]
-			else:
-				return
-
-	def remove(name: str, data = None):
-		if '/' in name or '\\' in name:
-			path_outer = void.path_dir(name)
-			path_extension = void.path_extension(path_outer).lower()
-			if path_extension in ['void', 'json', 'csv', 'yaml', 'ini', 'xml'] and void.file_exists(path_outer):
-				data_file = void.file(path_outer)
-				data = data_file
-				name = void.path_file(name)
-				file = True
-			else:
-				return
-		elif data == None:
-			data = void.data
-			file = False
-		names = name.split('.')
-		names.reverse()
-		while len(names) > 0:
-			subname = names.pop()
-			subtype = type(data)
-			last = len(names) == 0
-			if subtype is dict:
-				if subname not in data:
-					return
-				if last:
-					del data[subname]
-					if file:
-						void.file(path_outer, data_file)
-					return
-				data = data[subname]
-			elif subtype is list:
-				try:
-					subname = int(subname)
-				except:
-					return
-				if len(data) <= subname:
-					return
-				if last:
-					del data[subname]
-					if file:
-						void.file(path_outer, data_file)
-					return
-				data = data[subname]
-			else:
-				return
-
-	def type(data):
-		data_type = type(data)
-		if data_type is str:
-			return 'text'
-		elif data_type in [float, int]:
-			return 'number'
-		elif data_type is bool:
-			return 'bool'
-		elif data_type is list:
-			return 'list'
-		elif data_type is dict:
-			return 'dict'
-		elif data_type is bytes:
-			return 'binary'
-		return 'none'
-
-	def type_text(data, style = {}):
-		result = ''
-		if type(style) is str:
-			style = void.get('text.void.style.' + style, {})
-		if type(style) != dict:
-			style = {}
-		data_type = type(data)
-		if data_type is str:
-			result = data
-		elif data_type in [float, int]:
-			group = void.get('group', '', style)
-			if data_type is float:
-				fraction = void.get('fraction', '.', style)
-				dot = int(void.get('dot', 10, style))
-				result = f'{data:_.{dot}f}'.replace('_', group).replace('.', fraction)
-			else:
-				if group != '':
-					result = f'{data:_}'.replace('_', group)
-				else:
-					result = str(data)
-		elif data_type is bool:
-			result = 'true' if data else 'false'
-		elif data_type in [list, dict]:
-			result = void.void_encode(data)
-		elif data_type is bytes:
-			result = data.decode('utf-8')
-		else:
-			result = 'none'
-		if style != None:
-			if type(style) is str:
-				style = void.get('text.void.style.' + style)
-			if type(style) is dict:
-				for name in style:
-					value = style[name]
-					match name:
-						case 'length':
-							align = void.get('align', 'start', style)
-							space = void.get('space', ' ', style)[:1]
-							length = int(value)
-							if len(result) > length:
-								result = result[:length]
-							else:
-								match align:
-									case 'start':
-										result = result.ljust(length, space)
-									case 'end':
-										result = result.rjust(length, space)
-									case 'center':
-										result = result.center(length, space)
-						case 'before':
-							result = str(value) + result
-						case 'after':
-							result = result + str(value)
-		return result
-
-	def type_int(data):
-		try:
-			return int(data)
-		except:
-			return 0
-
-	def type_float(data):
-		try:
-			return float(data)
-		except:
-			return 0.0
-
-	def type_number(data):
-		try:
-			data = float(data)
-		except:
-			return 0
-		return data if data % 1 != 0 else int(data)
-
-	def type_bool(data):
-		return data not in [0, '0', b'0', 'false', 'none', False, None, [], {}]
-
-	def type_list(data):
-		return list(data) if type(data) is list else [data]
-
-	def type_dict(data):
-		if type(data) is dict:
-			return dict(data)
-		if type(data) is list:
-			result = {}
-			for value in data:
-				if type(value) is list and len(value) == 2:
-					result[value[0]] = value[1]
-				else:
-					result[len(result)] = value
-			return result
-		return {}
-
-	def type_binary(data):
-		if type(data) is str:
-			return data.encode('utf-8')
-		if type(data) is bytes:
-			return data
-		return void.type_text(data).encode('utf-8')
-
-	def length(data):
-		data_type = type(data)
-		if data_type in [str, list, dict, bytes]:
-			return len(data)
-		elif data_type is int:
-			return (data.bit_length() + 7) // 8
-		elif data_type is float:
-			return 8
-		return 0
-
-	def expression_plus(first = None, second = None):
-		match first:
-			case bool():
-				return first or bool(second)
-			case int() | float():
-				if second is None:
-					return first + 1
-				if type(second) in [int, float]:
-					return first + second
-				if type(second) is str:
-					return void.number(second)
-			case str():
-				if second is None:
-					return first + ' '
-				if type(second) is str:
-					return first + second
-				if type(second) is int:
-					return first + ' ' * second
-			case list():
-				if second is None:
-					return first + first
-				if type(second) is list:
-					return first + second
-				if type(second) is int:
-					return first + [None for _ in range(second)]
-			case dict():
-				if type(second) is dict:
-					return void.merge(first, second)
-				if type(second) is str:
-					return void.merge(first, {second: None})
-				if type(second) is int and second > 0:
-					return [first for _ in range(second + 1)]
-			case bytes():
-				if second is None:
-					return first + first
-				if type(second) is bytes:
-					return first + second
-				if type(second) is str:
-					return first + second.encode()
-				if type(second) in [int, float]:
-					return first + bytes(str(second).encode())
-				if type(second) is bool:
-					return first + bytes(int(second))
-
-	def expression_minus(first, second):
-		match first:
-			case bool():
-				return first and not bool(second)
-			case int() | float():
-				if second is None:
-					return first + 1
-				if type(second) in [int, float]:
-					return first + second
-				if type(second) is str:
-					return void.number(second)
-			case str():
-				if second is None:
-					return first.strip()
-				if type(second) is str:
-					return first + second
-				if type(second) is int:
-					return first + first * second
-			case list():
-				if second is None:
-					return first + first
-				if type(second) is list:
-					return first + second
-				if type(second) is int:
-					return first + first * second
-			case dict():
-				if type(second) is dict:
-					return void.merge(first, second)
-			case bytes():
-				if second is None:
-					return first + first
-				if type(second) is bytes:
-					return first + second
-				if type(second) is str:
-					return first + second.encode()
-				if type(second) is int:
-					return first + first * second
-
-	def expression_multiply(first, second):
-		pass
-
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-	def expression_(first, second):
-		pass
-
-	# control
-
-	def print(data, end: str ='\n'):
-		result = None
-		data_type = type(data)
-		if data_type is str:
-			result = data
-		elif data_type in [int, float, bool, bytes]:
-			result = str(data)
-		elif data_type in [dict, list]:
-			result = void.void_encode(data, 4)
-		print(result, end=end)
-
-	def print_raw(data):
-		print(data, end='')
-
-	def action(action):
-		doc = void.data['doc']
-		alias = void.data['alias']
-		variable = {
-			'result': None
-		}
-		result = None
-		for action in (action if type(action) is list else [action]):
-			if type(action) is not list:
-				action = [action]
-			elif len(action) == 0:
-				continue
-			name = action[0]
-			name_type = type(name)
-			if name_type is str:
-				if name in alias:
-					name = alias[name]
-				if name in doc:
-					info = doc[name]
-					params = action[1:]
-					if 'param' in info:
-						index = 0
-						skip = False
-						for param in info['param']:
-							if index >= len(params):
-								if 'default' in param:
-									params.append(param['default'])
-									index += 1
-									continue
-								else:
-									skip = True
-									break
-							value = params[index]
-							if 'type' in param:
-								type_list = param['type'] if type(param['type']) is list else [param['type']]
-								for param_type in type_list:
-									match param_type:
-										case 'text':
-											if type(value) is str:
-												value = str(value)
-												found = True
-												break
-										case 'number':
-											if type(value) in [int, float]:
-												try:
-													value = float(value)
-													if value % 1 == 0:
-														value = int(value)
-													found = True
-													break
-												except:
-													pass
-										case 'int':
-											if type(value) is int:
-												try:
-													value = int(value)
-													found = True
-													break
-												except:
-													pass
-										case 'float':
-											if type(value) is float:
-												try:
-													value = float(value)
-													found = True
-													break
-												except:
-													pass
-										case 'bool':
-											if type(value) is bool:
-												try:
-													value = bool(value)
-													found = True
-													break
-												except:
-													pass
-										case 'list':
-											if type(value) is str:
-												value = list(void.json_decode(value))
-											elif type(value) is not list:
-												value = [value]
-											found = True
-											break
-										case 'dict':
-											if type(value) is str:
-												value_decoded = void.json_decode(value)
-												if type(value_decoded) is not dict:
-													continue
-												else:
-													value = value_decoded
-											elif type(value) is not dict:
-												continue
-											found = True
-											break
-										case 'any':
-											found = True
-											break
-								if not found:
-									value = param['default'] if 'default' in param else None
-								params[index] = value
-							index += 1
-						if skip:
-							continue
-					if 'method' in info and info['method'] != None:
-						for index in range(len(params)):
-							if type(params[index]) is str:
-								if params[index] == '{}':
-									params[index] = result
-						method = getattr(void, str(info['method']))
-						#params.append(variable)
-						result = method(*params)
-					else:
-						pass
-				else:
-					action = void.get('action.' + name)
-					if action != None: 
-						result = void.action(action)
-			else:
-				result = name
-		return result
-
-	def open(text: str):
-		if text in ['', None]:
-			return
-		process = subprocess.Popen(text.split(' '))
-		return {
-			'pid': process.pid
-		}
-
-	def close(name, soft: bool = False):
-		if type(name) not in [str, int]:
-			return False
-		if type(name) is int or name.isdigit():
-			try:
-				os.kill(int(name), signal.SIGTERM if soft else signal.SIGKILL)
-				return True
-			except ProcessLookupError:
-				return False
-		else:
-			system = platform.system()			
-			try:
-				match void.get('os.type'):
-					case 'windows':
-						subprocess.run(['taskkill', '/f' if not soft else '', '/t', '/im', name], check=True)
-						return True
-					case 'linux' | 'mac':
-						subprocess.run(['pkill', name], check=True)
-						return True
-					case _:
-						return False
-			except subprocess.CalledProcessError:
-				return False
-			except FileNotFoundError:
-				return False
-
-	def code(text: str):
-		exec(text)
-
-	def exit(code = -1):
-		if type(code) is not int:
-			void.print(code)
-			exit(-1)
-		exit(code)
-
-	def l(name: str, data):
-		pass
-
-	def convert(name_from: str, name_to: str, value = None):
-		pass
-
-	def export():
-		pass
-
-	def update(name: str = None):
-		pass
-
-	def test(name: str = None):
-		start = time.time()
-		doc = void.data['doc']
-		if name in set(action['group'] for action in doc.values()):
-			doc = {action_name: action for action_name, action in doc.items() if action['group'] == name}
-		else:
-			if name in doc:
-				doc = {name: doc[name]}
-		tested = []
-		try:
-			for name in doc:
-				tested.append(name)
-				action = doc[name]
-				if 'example' not in action:
+			.
+				group
+					control
+				method
+					print
+				alias
+					print
+				description
+					Output data to the console
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type many
+				example
+					[code [[. Hi! World]]  output 'Hi! World\n
+					[code [[. text text text]]  output 'text text text\n
+					[code [[. text none]]  output text
+					[code [[. 42]]  output '42\n
+					[code [[. [1 2 3]]]  output '[1 2 3\n
+					[code [[. [a 1  b 2]]]  output '[a 1  b 2\n
+					[code [[. *text]]  output 'text\n
+			..
+				group
+					control
+				method
+					input
+				alias
+					input
+				description
+					Input text from the user
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name text  type text  default none
+				example
+					[code [..]  input void  result void
+					[code [[.. 'Enter name: ']]  input void  result void
+			?
+				group
+					control
+				method
+					control_if
+				alias
+					if
+				description
+					Evaluate a conditional expression
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[code [[? 1 > 2]]  result false
+					[code [[? a # [a b c]]]  result true
+					[code [[? a # [a b c]]]  result true
+					[code [[? [{}  [[1 []] [2 []] [3 []]] ]]]  test false
+			o
+				group
+					control
+				method
+					control_loop
+				alias
+					loop
+				description
+					Perform a loop operation
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any  default none
+					[name action  type [text list]  default []
+				example
+					[code [0 [o 10 [+ 1]]]  result 10
+					[code [0 [o [1 5] [+ 1]]]  result 5
+					[code [0 [o [1 2 3] [+ {index}]]]  result 6
+					[code [data = [1 2 3] [o {data} [+ {index}]]]  result 6
+					[code [0 [o [a 1  b 2  c 3] [+ {value}]]]  result 6
+					[code ['' [o [a 1  b 2  c 3] [+ {name}]]]  result abc
+					[code ['' [o text [+ ' ' + {value}]]]  result ' t e x t
+					[code [[o [[. infinite]]]]  test false
+					[code [[o [fps 60] [[. 60 fps]]]]  test false
+			x
+				group
+					control
+				method
+					control_break
+				alias
+					break
+				description
+					Exit the current loop or action
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name count  type number  default 1
+				example
+					[code [0 [o 10 [[? [{index} > 2] x] [+ 1] ]]]  result 3
+					[code [0 [o 10 [[o 10 [[? [{index} > 2] [x 2]] [+ 1] ]]] ]]  result 3
+			->
+				group
+					control
+				method
+					control_continue
+				alias
 					continue
-				for example in action['example']:
-					if 'test' in example and not example['test']:
-						continue
-					code = list(example['code'])
-					if 'before' in example:
-						code = list(example['before']) + code
-					if 'after' in example:
-						code += list(example['after'])
-					result = void.action(code)
-					if 'clean' in example:
-						void.action(list(example['clean']))
-					if 'round' in example:
-						if type(result) is dict:
-							for name in result:
-								result[name] = round(result[name], int(example['round'])) if result != None else None
-						elif type(result) is list:
-							for index in range(len(result)):
-								result[index] = round(result[index], int(example['round'])) if result != None else None
-						else:
-							result = round(result, int(example['round'])) if result != None else None
-					error = False
-					if 'length' in example and type(result) in [str, list, dict]:
-						error = len(result) != example['length']
-					if 'result' in example:
-						if result != example['result']:
-							error = True					
-					if 'type' in example:
-						match example['type']:
-							case 'text':
-								if type(result) is not str:
-									error = True
-								else:
-									if 'range' in example and type(example['range']) in [list, int, float, str]:
-										rng = example['range']
-										if type(rng) in [int, float, str]:
-											if len(result) != int(rng):
-												error = True
-										elif type(rng) is list:
-											if len(rng) > 2:
-												range_from = int(rng[0])
-												range_to = int(rng[1])
-												if len(result) < range_from or len(result) > range_to:
-													error = True											
-											elif len(rng) == 1:
-												if len(result) != int(rng[0]):
-													error = True
-									if 'symbol' in example:
-										if not re.fullmatch('[' + str(example['symbol']) + ']{' + str(len(result)) + '}', result):
-											error = True
-							case 'number':
-								if type(result) not in [int, float]:
-									error = True
-								else:
-									if 'range' in example and type(example['range']) in [list, int, float, str]:
-										rng = example['range']
-										if type(rng) in [int, float, str]:
-											if result != int(rng):
-												error = True
-										elif type(rng) is list:
-											if len(rng) > 2:
-												range_from = int(rng[0])
-												range_to = int(rng[1])
-												if result < range_from or result > range_to:
-													error = True											
-											elif len(rng) == 1:
-												if len(result) != int(rng[0]):
-													error = True
-							case 'bool':
-								if type(result) is not bool:
-									error = True
-							case 'dict':
-								if type(result) is not dict:
-									error = True
-							case 'list':
-								if type(result) is not list:
-									error = True
-							case 'none':
-								if result != None:
-									error = True
-							case _:
-								error = True
-					if error:
-						expected = {}
-						if 'result' in example:
-							expected['result'] = example['result']
-						if 'type' in example:
-							expected['type'] = example['type']
-						if 'range' in example:
-							expected['range'] = example['range']
-						if 'symbol' in example:
-							expected['symbol'] = example['symbol']
-						if len(expected) == 1 and 'result' in expected:
-							expected = expected['result']
-						elif len(expected) == 0:
-							expected = None
-						return {
-							'test': tested,
-							'error': {
-								'action': name,
-								'example': example['code'],
-								'expected': expected,
-								'found': result
-							}}
-		except Exception as e:
-			_, message, trace = sys.exc_info()
-			last_frame = traceback.extract_tb(trace)[-1]
-			return {
-				'test': tested,
-				'error': {
-					'reason': str(e),
-					'line': last_frame.lineno,
-					'text': last_frame.line
-				}
-			}
-		return {
-			'test': tested,
-			'time': void.date(time.time() - start, '(second) sec'),
-			'result': 'ok'
-		}
+				description
+					Skip to the next iteration of the loop
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name count  type number  default 1
+				example
+					[code [0 [o 10 [+ 1 ->]]]  result 1
+					[code [0 [o 10 [[? [{index} % 2] ->] [+ 1]] ]]  result 5
+					[code [0 [o 10 [[? [{index} = 2] [[-> 2]]] [+ 1]] ]]  result 8
+			<-
+				group
+					control
+				method
+					control_repeat
+				alias
+					repeat
+				description
+					Repeat the current iteration of the loop
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name count  type number  default 1
+				example
+					[code [0 [o 10 [+ 1 <-]] ]  result 11
+					[code [0 [o 10 [+ 1 [<- 2]]] ]  result 12
+			_
+				group
+					control
+				method
+					control_return
+				alias
+					__
+					return
+					response
+				description
+					Return a result from an action
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any  default none
+				example
+					[code [[action [1 + 1]]]  result 2
+					[code [[action [1 + 1 _ + 1]]]  result none
+					[code [[action [1 + 1 [_ {}] + 1]]]  result 2
+					[code [[action [1 + 1 __ + 1]]]  result 2
+					[code [[action [1 + 1 [_ 4] + 1]]]  result 4
+			action
+				group
+					control
+				method
+					action
+				alias
+					none
+				description
+					Call or initiate an action
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name action  type [text list
+					[name data  type [text list
+				example
+					[code [[action [[upper text]]]]  result TEXT
+					[code [[action to_upper [[upper text] __]]]  result none
+					[code [[action [to_upper]]]  test false
+					[code [[action to_upper]]  test false
+			open
+				group
+					control
+				method
+					open
+				alias
+					none
+				description
+					Open a link in standard way or execute shell command or get a list of open applications
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name	type text  default none
+				example
+					[code [open]  test false
+					[code [[open https://voidsp.com]]  test false
+					[code [[open tol@voidsp.com]]]  test false
+					[code [[open +123456789]]]  test false
+					[code [[open /path]]]  test false
+					[code [[open /path/app]]]  test false
+					[code [[open /path/void [file.copy /path_from/file /path_to]]]  test false
+					[code [[open pip3 [install voidlang]]]  test false
+					[code [[open /path/ffmpeg [i file.mov  an none  none file.mp4]]]  test false
+			close
+				group
+					control
+				method
+					close
+				alias
+					none
+				description
+					Close an application by name or PID
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type [text number list]  default none
+				example
+					[code [[close App Name]]  test false
+					[code [[close 31337]]  test false
+					[code [[close [31337 1337]]]  test false
+					[code [close]  test false
+			code
+				group
+					control
+				method
+					code
+				alias
+					none
+				description
+					Execute a block of native code
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name code  type text
+				example
+					[code [[code 'print("Hi! World")']]  test false
+					[code [[code print("Hi! World")]]  test false
+					[code [[code 'console.log("Hi! World")']]  test false
+			debug
+				group
+					control
+				method
+					log
+				alias
+					l
+					d
+					w
+					e
+				description
+					Log debug information
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name tag  type any
+					[name message  type any  default none
+					[name data  type any  default none
+				example
+					[code [l app info]  test false
+					[code [d app debug]  test false
+					[code [w app warning]  test false
+					[code [e app error]  test false
+					[code [l message]  test false
+					[code [l [a 1  b 2  c 3]]  test false
+			test
+				group
+					control
+				method
+					action.test
+				alias
+					none
+				description
+					Test one, group or all actions
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type [text many]  default none
+				example
+					[code [test]  test false
+					[code [[test math]]  test false
+					[code [[test upper]]  test false
+					[code [[test upper lower replace]]  test false
+			update
+				group
+					control
+				method
+					action.update
+				alias
+					none
+				description
+					Update all code or only the specified action
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name version  type [text number list]  default none
+				example
+					[code [update]  test false
+					[code [update 2026.01.01]  test false
+					[code [update 1777211505]  test false
+					[code [update encode]  test false
+					[code [update [encode decode lz4]]  test false
+					[code [update new.action]  test false
+			exit
+				group
+					control
+				method
+					exit
+				alias
+					xx
+				description
+					Exit the current application with an exit code
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name message  type many  default none
+				example
+					[code [exit]  test false
+					[code [xx]  test false
+					[code [[xx 500]]  test false
+					[code [[xx 500 something went wrong]]  test false
+					[code [[xx something went wrong]]  test false
+					[code [[xx something went wrong 500]]  test false
+			os
+				group
+					control
+				method
+					os
+				alias
+					none
+				description
+					Running the operating system shell
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name shell  type text  subname true  default none
+				example
+					[code [os]  test false
+					[code [[os panels]]  test false
+					[code [os.panels]  test false
+			info
+				group
+					control
+				method
+					action.info
+				alias
+					i
+					help
+				description
+					Get info about V O I D lang, os, device, file, directory, drive, url, text, image, video, sound, model, thesaurus or other data
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type text  default none
+				example
+					[code [info]  type dict
+					[code [[info file.jpg]]  type dict  test false
+					[code [[info file.txt]]  type dict  test false
+					[code [[info /path]]  type dict  test false
+					[code [[info c:]]  type dict  test false
+					[code [[info https://voidsp.com]]  type dict  test false
+					[code [[info {text}]]  type dict  test false
+					[code [[info {image}]]  type dict  test false
+					[code [[info laptop]]  type dict  test false
+					[code [[info australia]]  type dict  test false
+					[code [[info jpy]]  type dict  test false
+					[code [[info nvda]]  type dict  test false
+			convert
+				group
+					control
+				method
+					action.convert
+				alias
+					c
+				description
+					Convert data from one format to another
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name from  type text  subname true  default none
+					[name to  type text  subname true  default none
+					[name data  type any
+					[name param  type any  default none
+				example
+					[code [[convert json [x 10]]]  result '{"x": 10}
+					[code [[convert yaml [x 10]]]  result 'x: 10\n
+					[code [[convert usd eur 1000]]  test false
+					[code [[convert.usd.eur 1000]]  test false
+					[code [[convert.inr 1000]]  test false
+					[code [[convert AA]]  result 170
+					[code [[convert.dec AA]]  result 170
+					[code [[convert.hex.dec AA]]  result 170
+					[code [[convert.ascii text]]  result *text
+					[code [[convert image.jpg image.webp]]  test false
+					[code [[convert image.jpg image.webp lossless]]  test false
+					[code [[convert image.webp image.jpg 0.9]]  test false
+					[code [[convert image.webp image.jpg 90%]]  test false
+					[code [[convert video.mov video.mp4]]  test false
+					[code [[convert video.webm video.mp4 nosound]]  test false
+					[code [[convert video.webm video.mp4 [sound false  quality 70%]]]  test false
+					[code [[convert data.json data.void]]  test false
+					[code [[convert game.void game.exe]]  test false
+					[code [[convert video.mp4 video(frame).png]]  test false
+					[code [[convert video(frame).png video.mp4 [fps 60  width 1920  height 1080]]]  test false
+			clipboard
+				group
+					control
+				method
+					clipboard
+				alias
+					none
+				description
+					Storing or retrieving clipboard temporary data
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type many  default none
+				example
+					[code [[clipboard copied text] clipboard]]  clean [[clipboard '']]  result copied text
+					[code [[clipboard 123] clipboard]]  clean [[clipboard '']]  result 123
+			sql
+				group
+					control
+				method
+					sql
+				alias
+					none
+				description
+					Execute an SQL query
+				safe
+					false
+				container
+					connect
+						[ ]
+					disconnect
+						[ ]
+					use
+						[ ]
+					transaction
+						[ ]
+					commit
+						[ ]
+					rollback
+						[ ]
+					select
+						[ ]
+					create
+						[ ]
+					insert
+						[ ]
+					update
+						[ ]
+					delete
+						[ ]
+					view
+						[ ]
+					function
+						[ ]
+					index
+						[ ]
+					fetch
+						[ ]
+					all
+						[ ]
+					cursor
+						[ ]
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name param  type many  subname true
+				example
+					[code [[sql connect server database login password]]  test false
+					[code [[sql [[connect server database login password]] ]]  test false
+					[code [[sql.servername disconnect]]  test false
+					[code [sql.servername.disconnect]  test false
+					[code [[sql use db]]  test false
+					[code [[sql SELECT * FROM user]]  test false
+					[code [[sql 'INSERT INTO log VALUES ({1},{2})' [{date} {message}]]  test false
+					[code [[sql.servername SELECT * FROM notification]]  test false
+			chat
+				group
+					control
+				method
+					chat
+				alias
+					:
+				description
+					AI conversation and interaction through text
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name text  type many  default none
+				example
+					[code [[chat 10 facts about cats]]  test false
+					[code [[: 2+2]]  test false
+					[code [[. let's have a chat] chat]  text false
+			say
+				group
+					control
+				method
+					say
+				alias
+					none
+				description
+					Text voicing with different voices
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type many
+					[name language  type text  subname true
+				example
+					[code [[say Hi! World]]  test false
+					[code ['Hi! World' say]  test false
+					[code [[say.en Hi! World]]  test false
+					[code [[say 'Hi! World' en-us]]  test false
+					[code [[say 'Hi! World' file.mp3]]  test false
+			recognize
+				group
+					control
+				method
+					recognize
+				alias
+					none
+				description
+					Convert voice, image or video to text
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name file  type str  default none
+				example
+					[code [[. 'say…'] recognize]  test false
+					[code [[say voice voice.mp3] [recognize voice.mp3]]  test false
+					[code [[image cat cat.jpg] [recognize cat.jpg]]  test false
+			ui
+				group
+					control
+				method
+					ui
+				alias
+					app
+					game
+					web
+					cli
+				description
+					Create a user interface
+				safe
+					true
+				container
+					title
+						[ ]
+					icon
+						[ ]
+					meta
+						[ ]
+					size
+						[ ]
+					border
+						[ ]
+					bg
+						[ ]
+					menu
+						[ ]
+					ontop
+						[ ]
+					show
+						[ ]
+					hide
+						[ ]
+					maximize
+						[ ]
+					minimize
+						[ ]
+					fullscreen
+						[ ]
+					window
+						[ ]
+					close
+						[ ]
+					position
+						[ ]
+					center
+						[ ]
+					panel
+						[ ]
+					text
+						[ ]
+					button
+						[ ]
+					check
+						[ ]
+					select
+						[ ]
+					slider
+						[ ]
+					progress
+						[ ]
+					crop
+						[ ]
+					tile
+						[ ]
+					list
+						[ ]
+					chart
+						[ ]
+					gallery
+						[ ]
+					ok
+						[ ]
+					dialog
+						example
+							[code [[dialog.file]]  test false
+							[code [[dialog.date]]  test false
+							[code [[dialog.color]]  test false
+							[code [[dialog.text]]  test false
+							[code [[dialog.select]]  test false
+					web
+						[ ]
+					map
+						[ ]
+					draw
+						[ ]
+					image
+						[ ]
+					video
+						[ ]
+					sound
+						[ ]
+					file
+						[ ]
+					date
+						[ ]
+					color
+						[ ]
+					drop
+						[ ]
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name param  type many  subname true
+				example
+					[code [[ui title 'App name']]  test false
+					[code [[ui title App name]]  test false
+					[code [[ui size 400 200]]  test false
+					[code [[ui size [400 200]]]  test false
+					[code [ui.center]  test false
+					[code [ui.button [title OK  action [exit]]]  test false
+					[code [ui.button OK [exit]]  test false
+					[code [ui ['press button' [button OK [exit]]]  test false
 
-	def help(name: str = None):
-		doc = void.data['doc']
-		if name == None:
-			return void.data['about']
-		elif name == 'all':
-			return list(doc.keys())
-		elif name == 'full':
-			return doc
-		elif name in doc:
-			return {name: doc[name]}
-		else:
-			result = []
-			for action_name in doc:
-				if name in action_name:
-					result.append(action_name)
-			return result if len(result) > 0 else ''
+		  .: text :.
 
-	def v(name: str, action = None):
+			lower
+				group
+					text
+				method
+					lower
+				alias
+					none
+				description
+					Convert text to lowercase
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name text  type text
+				example
+					[[code [[lower TeXt]]  result text
+			upper
+				group
+					text
+				method
+					upper
+				alias
+					none
+				description
+					Convert text to uppercase
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name text  type text
+				example
+					[[code [[upper text]]  result TEXT
+			starts
+				group
+					text
+				method
+					starts
+				alias
+					none
+				description
+					Check if text starts with a specific substring
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name subtext  type text
+				example
+					[code [[starts 'Hi! World' Hi]]  result true
+					[code [[starts 'Hi! World' World]]  result false
+			ends
+				group
+					text
+				method
+					ends
+				alias
+					none
+				description
+					Check if text ends with a specific substring
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name subtext  type text
+				example
+					[code [[ends 'Hi! World' World]]  result true
+					[code [[ends 'Hi! World' Hi]]  result false
+			strip
+				group
+					text
+				method
+					strip
+				alias
+					none
+				description
+					Remove leading and trailing characters from text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name subtext  type text  default [' ' '\r' '\n' '\t'
+				example
+					[code [[strip '\ttext\n']]  result text
+					[code [[strip '- text -' '- ']]  result 'text -'
+					[code [[strip '- text -' [- ' ']]]  result text
+			strip.start
+				group
+					text
+				method
+					strip_start
+				alias
+					none
+				description
+					Remove leading characters from text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name subtext  type text  default [' ' '\r' '\n' '\t'
+				example
+					[code [[strip.start '\ttext\n']]  result 'text\n'
+					[code [[strip.start '- text -' '- ']]  result 'text -'
+					[code [[strip.start '- text -' [- ' ']]]  result 'text -'
+			strip.end
+				group
+					text
+				method
+					strip_end
+				alias
+					none
+				description
+					Remove trailing characters from text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name subtext  type text  default [' ' '\r' '\n' '\t'
+				example
+					[code [[strip.end '\ttext\n']]  result '\ttext'
+					[code [[strip.end '- text -' ' -']]  result '- text'
+					[code [[strip.end '- text -' [- ' ']]]  result '- text'
+			replace
+				group
+					text
+				method
+					replace
+				alias
+					none
+				description
+					Replace occurrences of a substring within text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name search  type [text dict]
+					[name replace  type [text dict]
+				example
+					[code [[replace 'Hi! World' World There]]  result 'Hi! There'
+					[code [[replace aabbcc b x]]  result aaxxcc
+					[code [[replace aabbcc [a x  b y  c z]]]  result xxyyzz
+			find
+				group
+					text
+				method
+					find
+				alias
+					none
+				description
+					Locate a substring within text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name subtext  type text
+					[name from  type int  default none
+					[name to  type int  default none
+				example
+					[code [[find 'Hi! World' World]]  result 4
+					[code [[find abcabc b]]  result 1
+					[code [[find abcabc b 2]]  result 4
+					[code [[find abcabc b 2 4]]  result none
+					[code [[find abcabc b -1]]  result 4
+			parse
+				group
+					text
+				method
+					parse
+				alias
+					none
+				description
+					Parse text into structured data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name rule  type dict  default none
+				example
+					[code [[parse 'text1 1\ntext2 2' [apply  rules example]]]  result [[text1 1] [text2 2]]
+			part
+				group
+					text
+				method
+					part
+				alias
+					none
+				description
+					Extract a part of the text or list
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name from  type [int dict
+					[name to  type int  default none
+				example
+					[code [[part 'Hi! World' 0 3]] result Hi!
+					[code [[part 'Hi! World' 4]] result World
+					[code [[part 'Hi! World' 4 -3]] result Wo
+					[code [[part 'Hi! World' -1]] result d
+					[code [[part 'Hi! World' -5]] result World
+					[code [[part 'Hi! World' -5 2]] result Wo
+					[code [[part 'Hi! World' [length  3]]] result Hi!
+					[code [[part 'Hi! World' [from 4  length 2]]] result Wo
+					[code [[part 'Hi! World' [end  5]]] result World
+					[code [[part [1 2 3 4 5] 0 3]] result [1 2 3 4]
+					[code [[part [1 2 3 4 5] -1]] result [5]
+					[code [[part [1 2 3 4 5] [end  2]]] result [4 5]
+			split
+				group
+					text
+				method
+					split
+				alias
+					none
+				description
+					Split text into parts based on a delimiter or list based on a length
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type [text list]
+					[name delimiter  type [text number]  default none
+				example
+					[code [[split 'text text']]  result [text text]
+					[code [[split a,b,c ,]]result [a b c]
+					[code [[split texttexttext 4]]  result [text text text]
+					[code [[split [1 2 3 4] 2]]  result [[1 2] [3 4]]
+			join
+				group
+					text
+				method
+					join
+				alias
+					none
+				description
+					Join a list of text into a single text with a delimiter
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type list
+					[name delimiter  type text  default none
+				example
+					[code [[join [text text]]]  result 'text text
+					[code [[join [a b c] ,]]  result a,b,c
+					[code [[join [2026 12 31] -]]  result 2023-12-31
+			escape
+				group
+					text
+				method
+					escape
+				alias
+					s
+				description
+					Escape special characters in a text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name format  type text  subname true  default none
+				example
+					[code [[escape <div>text</div>]]  result &lt;div&gt;text&lt;/div&gt;
+					[code [[s <div>text</div> html]]  result &lt;div&gt;text&lt;/div&gt;
+					[code [[s.html ''text'']]  result &quot;text&quot;
+					[code [[s.url https://voidsp.com]]  result https%3A%2F%2Fvoidsp.com
+					[code [s.sql text'text]]  result text''text
+					[code [s.json text"]]  result text\\"
+			unescape
+				group
+					text
+				method
+					unescape
+				alias
+					u
+				description
+					Unescape special characters in a text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name format  type text  subname true  default none
+				example
+					[code [[unescape &lt;div&gt;text&lt;/div&gt;]]  result <div>text</div>
+					[code [[u &lt;div&gt;text&lt;/div&gt; html]]  result <div>text</div>
+					[code [[u.html &quot;text&quot;]]  result ''text''
+					[code [[u.url https%3A%2F%2Fvoidsp.com]]  result https://voidsp.com
+					[code [u.sql text''text]]  result text'text
+					[code [u.json text\\"]]  result text"
+			translate
+				group
+					text
+				method
+					translate
+				alias
+					;
+				description
+					Translate text from one language to another
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name from  type text subname true  default none
+					[name to  type text subname true  default none
+				example
+					[code [[; Hi! World]]  test false
+					[code [[; 'Hi! World' en es]]  test false
+					[code [[; 'Hi! World' en]]  test false
+					[code [[translate.en Hi! World]]  test false
+					[code [[translate.en.es Hi! World]]  test false
+			check
+				group
+					text
+				method
+					check
+				alias
+					none
+				description
+					Spell check in different languages
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name language  type text  subname true  default none
+				example
+					[code [[check 'Hi! Warld']]  result [text 'Hi! World'  explain [[position 5  error a  correct o]]  test false
+					[code [[check 'Hi! Warld' en]]  result [text 'Hi! World'  explain [[position 5  error a  correct o]]  test false
+					[code [[check.en 'Hi! Warld']]  result [text 'Hi! World'  explain [[position 5  error a  correct o]]  test false
+
+		  .: list :.
+
+			push
+				group
+					list
+				method
+					push
+				alias
+					none
+				description
+					Add an element to the list
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type list
+					[name value  type any  default none
+					[name index  type [int text]  subname true  default none
+				example
+					[code [[push [1 2] 3]]  result [1 2 3]
+					[code [[push [1 2] 3 0]]  result [3 1 2]
+					[code [[push.start [1 2] 3]]  result [3 1 2]
+			pop
+				group
+					list
+				method
+					pop
+				alias
+					none
+				description
+					Remove and return an element from the list
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type list
+					[name index  type [int text]  subname true  default none
+				example
+					[code [[pop [1 2 3]]]  result 3
+					[code [[pop [1 2 3] 0]]  result 1
+					[code [[pop.start [1 2 3]]]  result 1
+			reverse
+				group
+					list
+				method
+					reverse
+				alias
+					none
+				description
+					Reverse the order of elements in a list
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type list
+				example
+					[code [[reverse [1 2 3]]]  result [3 2 1]
+					[code [[reverse [a b]]]  result [b a]
+			unique
+				group
+					list
+				method
+					unique
+				alias
+					none
+				description
+					Leave only unique values in a list
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type list
+				example
+					[code [[reverse [1 2 2 1 3]]]  result [1 2 3]
+					[code [[reverse [a b a c]]]  result [a b c]
+			map
+				group
+					list
+				method
+					map
+				alias
+					none
+				description
+					Apply an action to each element in a list
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type list
+					[name action  type [text list]
+				example
+					[code [[map [1 2 3] [[* 2]] ]]  result [2 4 6]
+					[code [[map [a b] upper ]]  result [A B]
+			reduce
+				group
+					list
+				method
+					reduce
+				alias
+					none
+				description
+					Apply an action cumulatively to the elements in a list
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type list
+					[name action  type [text list]
+				example
+					[code [[reduce [1 2 3 4] [[* {value}]] ]]  result 24
+					[code [[reduce [1 2 3 4] +]]  result 10
+			filter
+				group
+					list
+				method
+					filter
+				alias
+					none
+				description
+					Apply a filter action to each element in a list
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type list
+					[name action  type [text list]
+				example
+					[code [[filter [1 2 3 4] [[> 2]] ]]  result [3 4]
+					[code [[filter [t te tex text] [[? [n {}] > 2]] ]]  result [tex text]
+			names
+				group
+					list
+				method
+					names
+				alias
+					indexes
+					keys
+				description
+					Retrieve all indexes from a list or attribute names from a dictionary
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type dict
+				example
+					[[code [[values [x 1  y 2]]]  result [x y]
+			values
+				group
+					list
+				method
+					values
+				alias
+					none
+				description
+					Retrieve all values from a dictionary
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type dict
+				example
+					[[code [[values [x 1  y 2]]]  result [1 2]
+
+		  .: math :.
+
+			sin
+				group
+					math
+				method
+					sin
+				alias
+					none
+				description
+					Sine of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[sin 1]]  round 4  result 0.8415
+			cos
+				group
+					math
+				method
+					cos
+				alias
+					none
+				description
+					Cosine of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[cos 1]]  round 4  result 0.5403
+			tan
+				group
+					math
+				method
+					tan
+				alias
+					none
+				description
+					Tangent of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[tan 1]]  round 4  result 1.5574
+			sinh
+				group
+					math
+				method
+					sinh
+				alias
+					none
+				description
+					Hyperbolic sine of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[sinh 1]]  round 4  result 1.1752
+			cosh
+				group
+					math
+				method
+					cosh
+				alias
+					none
+				description
+					Hyperbolic cosine of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[cosh 1]]  round 4  result 1.5431
+			tanh
+				group
+					math
+				method
+					tanh
+				alias
+					none
+				description
+					Hyperbolic tangent of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[tanh 1]]  round 4  result 0.7616
+			asin
+				group
+					math
+				method
+					asin
+				alias
+					none
+				description
+					Arc sine of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[asin 1]]  round 4  result 1.5708
+			acos
+				group
+					math
+				method
+					acos
+				alias
+					none
+				description
+					Arc cosine of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[acos 0.5]]  round 4  result 1.0472
+			atan
+				group
+					math
+				method
+					atan
+				alias
+					none
+				description
+					Arc tangent of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[atan 1]]  round 4  result 0.7854
+			asinh
+				group
+					math
+				method
+					asinh
+				alias
+					none
+				description
+					Arc hyperbolic sine of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[asinh 0.5]]  round 3  result 0.4812
+			acosh
+				group
+					math
+				method
+					acosh
+				alias
+					none
+				description
+					Arc hyperbolic cosine of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[acosh 1.5]]  round 3  result 0.9624
+			atanh
+				group
+					math
+				method
+					atanh
+				alias
+					none
+				description
+					Arc hyperbolic tangent of the value
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[[code [[atanh 0.5]]  round 3  result 0.5493
+			round
+				group
+					math
+				method
+					round
+				alias
+					none
+				description
+					Rounds a number to the nearest integer or to the specified number of decimal places
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name value  type number
+					[name fraction  type number  default 0
+				result
+					number
+				example
+					[code [[round 0.1]]  result 0
+					[code [[round 0.7]]  result 1
+					[code [[round -0.7]]  result -1
+					[code [[round 0.123 2]]  result 0.12
+			floor
+				group
+					math
+				method
+					floor
+				alias
+					none
+				description
+					Largest integer less than or equal to a number
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name value  type number
+					[name fraction  type number  default 0
+				result
+					number
+				example
+					[code [[floor 0.1]]  result 0
+					[code [[floor 0.7]]  result 0
+					[code [[floor -0.7]]  result -1
+			ceil
+				group
+					math
+				method
+					ceil
+				alias
+					none
+				description
+					Smallest integer greater than or equal to a number
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name value  type number
+					[name fraction  type number  default 0
+				result
+					number
+				example
+					[code [[ceil 0.1]]  result 1
+					[code [[ceil 0.7]]  result 1
+					[code [[ceil -0.7]]  result 0
+			log
+				group
+					math
+				method
+					log
+				alias
+					none
+				description
+					Logarithm of a number (natural by default)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name value  type number
+					[name base  type number
+				result
+					number
+				example
+					[code [[log 0.1]]  round 4  result -2.3026
+					[code [[log 0.1 2]]  round 4  result -3.3219
+					[code [[log 0.1 10]]  result -1
+			fact
+				group
+					math
+				method
+					factorial
+				alias
+					none
+				description
+					Factorial of a given non-negative number
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[code [[fact 5]]  result 120
+					[code [[fact 0]]  result 1
+			fib
+				group
+					math
+				method
+					fibonacci
+				alias
+					none
+				description
+					Fibonacci numbers up to a specified index
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name number  type number
+					[name multiply  type number  default 1
+					[name shift  type number  default 0
+				result
+					number
+				example
+					[code [[fib 5]]  result [0 1 1 2 3
+					[code [[fib 7]]  result [0 1 1 2 3 5 8
+					[code [[fib 5 3 1]]  result [1 4 4 7 10
+			gold
+				group
+					math
+				method
+					gold
+				alias
+					g
+				description
+					Golden ratio of a number
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name value  type number
+					[name part  type text
+				result
+					dict
+				example
+					[code [[gold 10]]  round 4  result [short 3.8197  long 6.1803  total 10
+					[code [[gold 10 short]]  round 4  result [short 10  long 16.1803  total 26.1803
+					[code [[gold 10 long]]  round 4  result [short 6.1803  long 10  total 16.1803
+			abs
+				group
+					math
+				method
+					abs
+				alias
+					none
+				description
+					Absolute value of a number
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type number
+				result
+					number
+				example
+					[code [[abs -3.14]]  result 3.14
+					[code [[abs 3.14]]  result 3.14
+			min
+				group
+					math
+				method
+					min
+				alias
+					none
+				description
+					Smallest of a list of numbers
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type list
+				result
+					number
+				example
+					[code [[min [5 3 8 1]]]  result 1
+					[code [[min [-2 -5 0]]]  result -5
+			max
+				group
+					math
+				method
+					max
+				alias
+					none
+				description
+					Largest of a list of numbers
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type list
+				result
+					number
+				example
+					[code [[max [5 3 8 1]]]  result 8
+					[code [[max [-2 -5 0]]]  result 0
+			sum
+				group
+					math
+				method
+					sum
+				alias
+					none
+				description
+					Sum of a list of numbers
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type list
+				result
+					number
+				example
+					[code [[sum [1 2 3 4 5]]]  result 15
+					[code [[sum [10 20]]]  result 30
+			avg
+				group
+					math
+				method
+					avg
+				alias
+					none
+				description
+					Average value of a list of numbers
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name value  type list
+				result
+					number
+				example
+					[code [[avg [1 2 3 4 5]]]  result 3
+					[code [[avg [10 20]]]  result 15
+			random
+				group
+					math
+				method
+					random
+				alias
+					none
+				description
+					Generates a pseudo-random number
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name from  type [number bool text list dict]  default none
+					[name to  type number  default none
+				result
+					[number bool text list
+				example
+					[code [random]  range [0 1
+					[code [[random 10]]  range [0 10
+					[code [[random 10 20]]  range [10 20
+					[code [[random true]]  in [true false
+					[code [[random abcd]]  in [a b c d
+					[code [[random [1 2 3]]] in [1 2 3
+					[code [[random [a 1  b 2]]]  in [[a 1] [b 2
+			random.seed
+				group
+					math
+				method
+					random_seed
+				alias
+					none
+				description
+					Receives, sets or refreshes the seed for the random number generator to produce reproducible results
+				safe
+					false
+				container
+					none
+				language
+					[python gdscript c++ asm86
+				param
+					[[name seed  type text  default none
+				result
+					text
+				example
+					[code [[random.seed uniqueseed] random.seed]  result uniqueseed
+					[code [[random.seed ''] random.seed]  type text  length 256
+
+		  .: time :.
+
+			time
+				group
+					time
+				method
+					time
+				alias
+					none
+				description
+					Provides current time since the epoch or calculates time passed since a given start time
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name fraction  type number  default 0
+				result
+					number
+				example
+					[code [time]  type number
+					[code [[time 4]]  type number
+			timer
+				group
+					time
+				method
+					timer
+				alias
+					none
+				description
+					Creates a timer that can be used to trigger events at specific intervals
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name action type [text list]
+					[name name  type text  default none
+					[name seconds  type number  default 1
+					[name repeat  type [bool number]  default false
+				result
+					text
+				example
+					[code [timer [[. time!]]  output time!
+					[code [[timer [[. time!]] tik 1]]  output time!
+					[code [[timer [[. time!]] tik 1 2]]  output 'time!\ntime!
+					[code [[timer [[. time!]] tik 1 true]]  clear [timer.remove]
+			timer.remove
+				group
+					time
+				method
+					timer_remove
+				alias
+					none
+				description
+					Removes previously created timer
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type text  default none
+				result
+					none
+				example
+					[code [[timer [[. time!]] tik 1 true] [timer.remove tik]]  output none
+					[code [timer.remove
+			wait
+				group
+					time
+				method
+					wait
+				alias
+					none
+				description
+					Pauses execution for a specified number of seconds
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name seconds  type number  default 1
+				result
+					none
+				example
+					[[code [[wait 0.1]]  result none
+			stopwatch
+				group
+					time
+				method
+					stopwatch
+				alias
+					t
+				description
+					Stopwatch for calculating the time spent on operations
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name tag  type text  default none
+					[name name  type text  default none
+				result
+					number
+				example
+					[code [t]  type number
+					[code [[t start]]  type number
+					[code [[t start] [t stop] [t list]]  type list
+					[code [[t laps lap1] [t laps lap2] [t laps list]]  type list
+			date
+				group
+					time
+				method
+					date
+				alias
+					none
+				description
+					Format or parse date-related information
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name time  type [text number]  default none
+					[name format  type text  default none
+				result
+					[number text
+				example
+					[code [date]  type text
+					[code [[date (hour):(minute):(second)]]  length 8
+					[code [[date 1678901234]]  type text
+					[code [[date 1744095313.123 '(year)-(month)-(day) (hour):(minute):(second).(millisecond)']]  result '2025-04-08 06:55:13.123
+					[code [[date 1744095313 (year short).(month short)]]  result '2025.4
+					[code [[date '2025-04-08 06:55:13.123' '(year)-(month)-(day) (hour):(minute):(second).(millisecond)']]  result 1744095313.123
+					[code [[date '2025-04-08 06:55:13.123']]  result 1744095313.123
+
+		  .: crypto :.
+
+			encrypt
+				group
+					crypto
+				method
+					encrypt
+				alias
+					none
+				description
+					Encrypts data using the AES256 algorithm and the specified key
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name key  type text
+				example
+					[[code [[encrypt secret key]]  result aGVsbG8=
+			decrypt
+				group
+					crypto
+				method
+					decrypt
+				alias
+					none
+				description
+					Decrypts previously encrypted data using the AES256 algorithm and the specified key
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name hash  type [text binary
+					[name key  type text
+				example
+					[[code [[decrypt aGVsbG8= key]]  result secret
+			password
+				group
+					crypto
+				method
+					bcrypt_encode
+				alias
+					none
+				description
+					Hashes a password using the Argon2 algorithm for secure storage
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name password  type text
+				example
+					[[code [[password password]]  result $2a$12$saltpasswordhash
+			password.check
+				group
+					crypto
+				method
+					bcrypt_check
+				alias
+					none
+				description
+					Verifies a password against a Argon2 hashed password
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name hash  type text
+					[name password  type text
+				example
+					[[code [[password.check $2a$12$saltpasswordhash password]]  result true
+			hash
+				group
+					crypto
+				method
+					hash
+				alias
+					none
+				description
+					Generates a hash for the data or generates a random text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any  default none
+					[name algorithm  type text  subname true  default none
+				example
+					[code [[hash hello]]  result 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
+					[code [hash]  type text
+					[code [hash 10]  type text
+					[code [hash 10 letters]  type text
+					[code [hash.letters]  type text
+					[code [hash.letters 10]  type text
+					[code [hash.numbers 10]  type text
+					[code [hash.special 10]  type text
+			uuid
+				group
+					crypto
+				method
+					uuid
+				alias
+					none
+				description
+					Generates a universally unique identifier
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[[code [uuid]  type text
+			sha1
+				group
+					crypto
+				method
+					sha1
+				alias
+					none
+				description
+					Generates an SHA-1 hash of a text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[sha1 hello]]  result aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d
+			sha256
+				group
+					crypto
+				method
+					sha256
+				alias
+					none
+				description
+					Generates an SHA-256 hash of a text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[sha256 hello]]  result 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
+			sha512
+				group
+					crypto
+				method
+					sha512
+				alias
+					none
+				description
+					Generates an SHA-512 hash of a text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[sha512 hello]]  result 9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043
+			crc32
+				group
+					crypto
+				method
+					crc32
+				alias
+					none
+				description
+					Calculates the CRC32 checksum of a text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[crc32 hello]]  result 907060870
+			base64
+				group
+					crypto
+				method
+					base64_encode
+				alias
+					none
+				description
+					Encodes the data into Base64 format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[base64 hello]]  result aGVsbG8=
+			base64.decode
+				group
+					crypto
+				method
+					base64_decode
+				alias
+					none
+				description
+					Decodes Base64 encoded data back to its original form
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type text
+				example
+					[code [[base64.decode aGVsbG8=]]  result hello
+					[code [[base64.decode aGVsbG8]]  result hello
+			gzip
+				group
+					crypto
+				method
+					gzip_encode
+				alias
+					none
+				description
+					Compresses data using the GZip compression algorithm (popular compression)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name level  type [number text  subname true  default none
+				example
+					[code [[gzip hello]]  result *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==
+					[code [[gzip hello 1]]  test false
+					[code [[gzip hello 9]]  test false
+					[code [[gzip hello fast]]  test false
+					[code [[gzip hello best]]  test false
+					[code [[gzip.fast hello]]  test false
+					[code [[gzip.best hello]]  test false
+			gzip.decode
+				group
+					crypto
+				method
+					gzip_decode
+				alias
+					none
+				description
+					Decompresses GZip compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name data  type any
+				example
+					[[code [[gzip.decode *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==]]  result hello
+			lzma
+				group
+					crypto
+				method
+					lzma_encode
+				alias
+					none
+				description
+					Compresses data using the LZMA2 compression algorithm (best compression)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name level  type [number text  subname true  default none
+				example
+					[[code [[lzma hello]]  result *...
+					[code [[lzma hello 1]]  test false
+					[code [[lzma hello 9]]  test false
+					[code [[lzma hello fast]]  test false
+					[code [[lzma hello best]]  test false
+					[code [[lzma.fast hello]]  test false
+					[code [[lzma.best hello]]  test false
+			lzma.decode
+				group
+					crypto
+				method
+					lzma_decode
+				alias
+					none
+				description
+					Decompresses LZMA2 compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name data  type any
+				example
+					[code [[lzma.decode *...]]  result hello
+			lzss
+				group
+					crypto
+				method
+					lzss_encode
+				alias
+					none
+				description
+					Compresses data using the LZSS compression algorithm (fastest compression)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name level  type [number text]  subname true  default none
+				example
+					[[code [[lzss hello]]  result *...
+					[code [[lzss hello 1]]  test false
+					[code [[lzss hello 9]]  test false
+					[code [[lzss hello fast]]  test false
+					[code [[lzss hello best]]  test false
+					[code [[lzss.fast hello]]  test false
+					[code [[lzss.best hello]]  test false
+			lzss.decode
+				group
+					crypto
+				method
+					lzss_decode
+				alias
+					none
+				description
+					Decompresses LZSS compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[code [[lzss.decode *...]]  result hello
+			lz4
+				group
+					crypto
+				method
+					lzss_encode
+				alias
+					none
+				description
+					Compresses data using the LZ4 compression algorithm (fastest decompression)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name level  type [number text]  subname true  default none
+				example
+					[code [[lz4 hello]]  result *...
+					[code [[lz4 hello 1]]  test false
+					[code [[lz4 hello 9]]  test false
+					[code [[lz4 hello fast]]  test false
+					[code [[lz4 hello best]]  test false
+					[code [[lz4.fast hello]]  test false
+					[code [[lz4.best hello]]  test false
+			lz4.decode
+				group
+					crypto
+				method
+					lzss_decode
+				alias
+					none
+				description
+					Decompresses LZ4 compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name data  type any
+				example
+					[code [[lz4.decode *...]]  result hello
+			rsa
+				group
+					crypto
+				method
+					rsa_encode
+				alias
+					none
+				description
+					Encrypts data using RSA encryption with a public key
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name public_key  type text
+				example
+					[code [[rsa secret {public_key}]]  type binary  test false
+			rsa.decode
+				group
+					crypto
+				method
+					rsa_decode
+				alias
+					none
+				description
+					Decrypts data encrypted with RSA encryption
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name private_key  type text
+				example
+					[code [[rsa.decode {encrypted} {private_key}]]  type [text binary]  test false
+			ecdhe
+				group
+					crypto
+				method
+					ecdhe_encode
+				alias
+					none
+				description
+					Encrypts data using ECDHE encryption with a disposable key
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name public_key  type text
+				example
+					[code [[ecdhe secret {public_key}]]  type binary  test false
+			ecdhe.decode
+				group
+					crypto
+				method
+					ecdhe_decode
+				alias
+					none
+				description
+					Decrypts data encrypted with ECDHE encryption
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name private_key  type text
+				example
+					[code [[ecdhe.decode {encrypted} {private key}]]  type [text binary]  test false
+			barcode
+				group
+					crypto
+				method
+					barcode_encode
+				alias
+					qr
+				description
+					Encodes text into a barcode image
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name standard  type text  subname true  default none
+				example
+					[code [[qr https://voidsp.com]]  type binary  test false
+					[code [[barcode 012345678]]  type binary  test false
+					[code [[barcode 012345678 ean]]  type binary  test false
+					[code [[barcode.ean 012345678]]  type binary  test false
+					[code [[barcode.upc 012345678]]  type binary  test false
+					[code [[barcode.128 012345678]]  type binary  test false
+					[code [[barcode.matrix 012345678]]  type binary  test false
+			barcode.decode
+				group
+					crypto
+				method
+					barcode_decode
+				alias
+					qr.decode
+				description
+					Decodes the barcode image into text
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name standard  type text  subname true  default none
+				example
+					[code [[barcode.decode {image}]]  type text
+					[code [[barcode.decode.ean {image}]]  type text
+
+		  .: file :.
+
+			file
+				group
+					file
+				method
+					file
+				alias
+					<<<
+					>>>
+				description
+					Read or write data to a file at a specified path
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name path  type text
+					[name data  type any  default none
+					[name format  type text  subname true  default none
+				example
+					[code [[file file.txt]]  type [text binary]  test false
+					[code [[<<< file.txt]]  type [text binary]  test false
+					[code [[file data.void]]  type any  test false
+					[code [[file data.json]]  type any  test false
+					[code [[file data.csv]]  type list  test false
+					[code [[file.line file.txt]]  type list  test false
+					[code [[file.utf8 file.txt]]  type text  test false
+					[code [[file.1252 file.txt]]  type text  test false
+					[code [[file file.txt text]]  test false
+					[code [[>>> file.txt text]]  test false
+					[code [[file.utf8 file.txt {text}]]  test false
+					[code [[file.1252 file.txt {text}]]  test false
+					[code [[file data.void {data}]]  test false
+					[code [[file data.json {data}]]  test false
+					[code [[file data.csv {data}]]  type any  test false
+			file.exists
+				group
+					file
+				method
+					file_exists
+				alias
+					none
+				description
+					Checks if a specified file exists at the given path
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[code [[file.exists file.txt]]  type bool  test false
+					[code [[file.exists /path/to/file.txt]]  type bool  test false
+			file.remove
+				group
+					file
+				method
+					file_remove
+				alias
+					file.trash
+				description
+					Removes a specified file
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[code [[file.remove file.txt]]  test false
+					[code [[file.remove /path/to/file.txt]]  test false
+					[code [[file.trash file.txt]]  test false
+			file.copy
+				group
+					file
+				method
+					file_copy
+				alias
+					none
+				description
+					Copies a specified file to a new location
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type text
+					[name destination  type text  default none
+				example
+					[code [[file.copy /path/to/file.txt /path/destination/file.txt]]  test false
+					[code [[file.copy /path/to/file.txt /path/destination]]  test false
+					[code [[file.copy /path/to/file.txt]]  test false
+			file.move
+				group
+					file
+				method
+					file_move
+				alias
+					rename
+				description
+					Moves a specified file to a new location or renames it
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type text
+					[name destination  type text
+				example
+					[code [[file.move /path/to/file.txt /path/destination/file.txt]]  test false
+					[code [[file.move /path/to/file.txt /path/destination]]  test false
+					[code [[file.rename file.txt backup.txt]]  test false
+					[code [[file.rename /path/to/file.txt backup.txt]]  test false
+					[code [[file.rename /path/to/file.txt /path/destination/file.txt]]  test false
+			file.link
+				group
+					file
+				method
+					file_link
+				alias
+					none
+				description
+					Creates a hard link to a specified file or checks if a hard link exists at the given path
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type text
+					[name destination  type text  default none
+				example
+					[code [[file.link /path/to/file.txt /link.txt]]  test false
+					[code [[file.link /link.txt]]  type bool  test false
+			file.info
+				group
+					file
+				method
+					file_info
+				alias
+					none
+				description
+					Retrieves information about a specified file
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name path  type text
+					[name data  type any  default true
+					[name component  type text  subname true  default none
+				example
+					[code [[file.info /path/to/file.txt]]  type dict  test false
+					[code [[file.info.name /path/to/file.txt]]  type text  test false
+					[code [[file.info.extension /path/to/file.txt]]  type text  test false
+					[code [[file.info.file /path/to/file.txt]]  type text  test false
+					[code [[file.info.dir /path/to/file.txt]]  type text  test false
+					[code [[file.info.drive /path/to/file.txt]]  type text  test false
+					[code [[file.info.size /path/to/file.txt]]  type number  test false
+					[code [[file.info.owner /path/to/file.txt]]  type text  test false
+					[code [[file.info.group /path/to/file.txt]]  type text  test false
+					[code [[file.info.permission /path/to/file.txt]]  type dict  test false
+					[code [[file.info.time /path/to/file.txt]]  type number  test false
+					[code [[file.info.time.create /path/to/file.txt]]  type number  test false
+					[code [[file.info.permission /path/to/file.txt [read true  write true]]]  test false
+					[code [[file.info.permission /path/to/file.txt [owner [read true  write true]  group [read true  write true]]]]  test false
+					[code [[file.info.permission /path/to/file.txt hidden]]  test false
+					[code [[file.info.permission /path/to/file.txt readonly]]  test false
+					[code [[file.owner /path/to/file.txt]]  type text  test false
+					[code [[file.time /path/to/file.txt]]  type number  test false
+					[code [[file.permission /path/to/file.txt [read true  write true]]]  test false
+					[code [[info.owner /path/to/file.txt]]  type text  test false
+					[code [[info.time /path/to/file.txt]]  type number  test false
+			file.sha256
+				group
+					file
+				method
+					file_sha256
+				alias
+					none
+				description
+					Computes the SHA256 checksum of a specified file
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[file.sha256 file.txt]]  type text  test false
+			file.sha512
+				group
+					file
+				method
+					file_sha512
+				alias
+					none
+				description
+					Computes the SHA512 checksum of a specified file
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[file.sha512 file.txt]]  type text  test false
+			file.crc32
+				group
+					file
+				method
+					file_crc32
+				alias
+					none
+				description
+					Computes the CRC32 checksum of a specified file
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[file.crc32 file.txt]]  type text  test false
+			file.base64
+				group
+					file
+				method
+					file_base64
+				alias
+					none
+				description
+					Encodes a specified file to base64 format
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[file.base64 file.txt]]  type text  test false
+			file.zip
+				group
+					file
+				method
+					file_zip
+				alias
+					none
+				description
+					Compresses a specified file into a ZIP archive
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name source  type [text list
+					[name destination  type text  default none
+					[name param  type [text number dict]  default none
+				example
+					[code [[file.zip file.txt file.zip]]  test false
+					[code [[file.zip file.txt]]  test false
+					[code [[file.zip file.txt file.zip 7]]  test false
+					[code [[file.zip file.txt 7]]  test false
+					[code [[file.zip file.txt file.zip best]]  test false
+					[code [[file.zip file.txt file.zip fast]]  test false
+					[code [[file.zip file.txt file.zip [compression 9  overwrite true]]]  test false
+					[code [[file.zip /path/to/file.txt /destination/file.zip]]  test false
+					[code [[file.zip [file1.txt file2.txt] files.zip]]  test false
+			file.gzip
+				group
+					file
+				method
+					file_gzip
+				alias
+					none
+				description
+					Compresses a specified file using GZip compression
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name source  type text
+					[name destination  type text  default none
+					[name param  type [text number dct]  default none
+				example
+					[code [[file.gzip file.txt file.gz]]  test false
+					[code [[file.gzip file.txt]]  test false
+					[code [[file.gzip file.txt file.txt.gz 7]]  test false
+					[code [[file.gzip file.txt 7]]  test false
+					[code [[file.gzip file.txt file.txt.gz best]]  test false
+					[code [[file.gzip file.txt file.txt.gz fast]]  test false
+					[code [[file.gzip file.txt file.txt.gz [compression  9]]]  test false
+					[code [[file.gzip /path/to/file.txt /destination/file.gz]]  test false
+			file.void
+				group
+					file
+				method
+					file_void
+				alias
+					none
+				description
+					Compresses the specified file using LZMA2 compression and places it in a container
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type [text list
+					[name destination  type [text dict]  default none
+					[name param  type [text number dct]  default none
+				example
+					[code [[file.void file.txt file.void]]  test false
+					[code [[file.void file.txt]]  test false
+					[code [[file.void file.txt file.void 7]]  test false
+					[code [[file.void file.txt 7]]  test false
+					[code [[file.void file.txt file.void best]]  test false
+					[code [[file.void file.txt file.void fast]]  test false
+					[code [[file.void file.txt [compression 9  key password]]]  test false
+					[code [[file.void file.txt file.void password]]  test false
+					[code [[file.void file.txt file.void key.txt]]  test false
+					[code [[file.void /path/to/file.txt /destination/file.void]]  test false
+					[code [[file.void [file1.txt file2.txt] files.void]]  test false
+			file.extract
+				group
+					file
+				method
+					file_extract
+				alias
+					none
+				description
+					Decompresses a compressed files and directories from an archive
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type [text list
+					[name destination  type text  default none
+					[name param  type [text number dct]  default none
+				example
+					[code [[file.extract file.void]]  test false
+					[code [[file.extract file.void /path/to/extract]]  test false
+					[code [[file.extract file.void /path/to/extract password]]  test false
+					[code [[file.extract file.void /path/to/extract key.txt]]  test false
+					[code [[file.extract file.void [source [file1.txt file2.txt]  destination /path/to/extract  key password]]]  test false
+					[code [[file.extract file.zip]]  test false
+					[code [[file.extract file.zip [file1.txt file2.txt]]]  test false
+					[code [[file.extract file.zip [source [file1.txt file2.txt]  destination /path/to/extract  overwrite true  remove true]]]  test false
+					[code [[file.extract file.txt.gz]]  test false
+			dir
+				group
+					file
+				method
+					dir
+				alias
+					none
+				description
+					Lists the contents of a specified directory
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[dir /path]]  type list  test false
+			dir.create
+				group
+					file
+				method
+					dir_create
+				alias
+					none
+				description
+					Creates a new directory at a specified path
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name path  type text
+					[name param  type dict  default none
+				example
+					[code [[dir.create /path/to/create]]  test false
+					[code [[dir.create /path/to/create [owner root  user root  permission [others [read true  write true]]] ]]  test false
+			dir.exists
+				group
+					file
+				method
+					dir_exists
+				alias
+					none
+				description
+					Checks if a specified directory exists
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[dir.exists /path]]  type bool  test false
+			dir.remove
+				group
+					file
+				method
+					dir_remove
+				alias
+					dir.trash
+				description
+					Removes a specified directory and its contents
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[code [[dir.remove /path/to/remove]]  test false
+					[code [[dir.trash /path/to/remove]]  test false
+			dir.copy
+				group
+					file
+				method
+					dir_copy
+				alias
+					none
+				description
+					Copies a specified directory and its contents to a new location
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type text
+					[name destination  type text  default none
+				example
+					[code [[dir.copy /path/to/copy /path/destination]]  test false
+					[code [[dir.copy /path/to/copy]]  test false
+			dir.move
+				group
+					file
+				method
+					dir_move
+				alias
+					dir.rename
+				description
+					Moves a specified directory to a new location
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type text
+					[name destination  type text
+				example
+					[code [[dir.move /path/to/move /]]  test false
+					[code [[dir.move /path/to/move /destination]]  test false
+					[code [[dir.rename path backup]]  test false
+					[code [[dir.rename /path/to/rename /path/destination]]  test false
+			dir.clear
+				group
+					file
+				method
+					dir_clear
+				alias
+					none
+				description
+					Clears all contents of a specified directory without removing the directory itself
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[dir.clear /path/to/clear]]
+			dir.info
+				group
+					file
+				method
+					dir_info
+				alias
+					none
+				description
+					Retrieves information about a specified directory
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name path  type text
+					[name data  type any  default true
+					[name component  type text  subname true  default none
+				example
+					[code [[dir.info /path]]  type dict  test false
+					[code [[dir.info.drive /path]]  type text  test false
+					[code [[dir.info.files /path]]  type number  test false
+					[code [[dir.info.size /path]]  type number  test false
+					[code [[dir.info.owner /path]]  type text  test false
+					[code [[dir.info.group /path]]  type text  test false
+					[code [[dir.info.permission /path]]  type dict  test false
+					[code [[dir.info.time /path]]  type number  test false
+					[code [[dir.info.time.create /path]]  type number  test false
+					[code [[dir.info.permission /path [read true  write true]]]  test false
+					[code [[dir.info.permission /path [owner [read true  write true]  group [read true  write true]]]]  test false
+					[code [[dir.info.permission /path hidden]]  test false
+					[code [[dir.info.permission /path readonly]]  test false
+					[code [[dir.owner /path]]  type text  test false
+					[code [[dir.time /path]  type number  test false
+					[code [[dir.permission /path [read true  write true]]]  test false
+					[code [[info.owner /path]]  type text  test false
+					[code [[info.time /path]]  type number  test false
+			dir.zip
+				group
+					file
+				method
+					dir_zip
+				alias
+					none
+				description
+					Compresses a specified directory into a ZIP archive
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type text
+					[name destination  type text  default none
+					[name param  type [text number dict]  default none
+				example
+					[code [[dir.zip /path backup.zip]]  test false
+					[code [[dir.zip /path backup.zip 7]]  test false
+					[code [[dir.zip /path 7]]  test false
+					[code [[dir.zip /path backup.zip fast]]  test false
+					[code [[dir.zip /path backup.zip best]]  test false
+					[code [[dir.zip /path backup.zip [compression 9  overwrite true]]]  test false
+			dir.void
+				group
+					file
+				method
+					dir_void
+				alias
+					none
+				description
+					Compresses a specified directory into a void container
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type text
+					[name destination  type text  default none
+					[name param  type [text number dict]  default none
+				example
+					[code [[dir.void /path backup.void]]  test false
+					[code [[dir.void /path]]  test false
+					[code [[dir.void /path backup.void 7]]  test false
+					[code [[dir.void /path 7]]  test false
+					[code [[dir.void /path backup.void best]]  test false
+					[code [[dir.void /path backup.void fast]]  test false
+					[code [[dir.void /path [compression 9  key password]]]  test false
+					[code [[dir.void /path backup.void password]]  test false
+					[code [[dir.void /path backup.void key.txt]]  test false
+			drive
+				group
+					file
+				method
+					drive
+				alias
+					none
+				description
+					Lists all available drives on the system or retrives information about a volume or partition
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text  default none
+					[name info  type text  subname true  default none
+				example
+					[code [drive]  type list
+					[code [[drive data]]  type dict
+					[code [[drive E]]  type dict
+					[code [[drive.name data]]  type text
+					[code [[drive.name E]]  type text
+					[code [[drive.format data]]  type text
+					[code [[drive.format E]]  type text
+					[code [[drive.partition data]]  type text
+					[code [[drive.partition E]]  type text
+					[code [[drive.size data]]  type number
+					[code [[drive.size E]]  type number
+					[code [[drive.used data]]  type number
+					[code [[drive.used E]]  type number
+					[code [[drive.free data]]  type number
+					[code [[drive.free E]]  type number
+			drive.mount
+				group
+					file
+				method
+					action.drive.mount
+				alias
+					none
+				description
+					Mounts a volume to make it accessible
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name path  type text  default none
+				example
+					[code [[drive.mount data]]  test false
+					[code [[drive.mount {id} /mnt/backup]]  test false
+					[code [[drive.mount /path/to/data.iso E]]  test false
+			drive.unmount
+				group
+					file
+				method
+					action.drive.unmount
+				alias
+					none
+				description
+					Unmounts a volume
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type text
+				example
+					[code [[drive.unmount data]]  test false
+					[code [[drive.unmount E]]  test false
+			drive.create
+				group
+					file
+				method
+					action.drive.create
+				alias
+					none
+				description
+					Creates a new volume or partition
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name info  type dict
+				example
+					[code [[drive.create [name data  size 2gb  partition {partition.id}  format ext4]]  test false
+					[code [[drive.create [name data  size 2gb  partition {partition.id}  format fat32  mbr {mbr}]]  test false
+					[code [[drive.create [size 2gb]]  test false
+			drive.resize
+				group
+					file
+				method
+					action.drive.resize
+				alias
+					none
+				description
+					Resizes an existing volume or partition
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text
+					[name size  type [number text
+				example
+					[code [[drive.resize data 2gb]]  test false
+					[code [[drive.resize data 2000000000]]  test false
+					[code [[drive.resize {partition.id} 2gb]]  test false
+			drive.clear
+				group
+					file
+				method
+					action.drive.clear
+				alias
+					none
+				description
+					Clears a specified volume or partition
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type text
+				example
+					[code [[drive.clear data]]  test false
+					[code [[drive.clear /mnt/data]]  test false
+					[code [[drive.clear E]]  test false
+					[code [[drive.clear {partition.id}]]  test false
+			drive.remove
+				group
+					file
+				method
+					action.drive.remove
+				alias
+					none
+				description
+					Removes a specified volume or partition
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type text
+				example
+					[code [[drive.remove data]]  test false
+					[code [[drive.remove E]]  test false
+					[code [[drive.remove {partition.id}]]  test false
+			path
+				group
+					file
+				method
+					path
+				alias
+					none
+				description
+					Returns components of a specified path
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name path  type [text list
+					[name component  type text  subname true  default none
+				example
+					[code [[path /path/to/file.txt]]  type dict
+					[code [[path.name /path/to/file.txt]]]  result file
+					[code [[path.extension /path/to/file.txt]]  result txt
+					[code [[path.extension /path/to/file.tar.gz]]  result gz
+					[code [[path.file /path/to/file.txt]]  result file.txt
+					[code [[path.dir /path/to/file.txt]]  result /path/to
+					[code [[path.drive c:/path/to/file.txt]]  result c
+					[code [[path.drive /mnt/data/file.txt]]  result data
+					[code [[path.strip file.txt]]  result file
+					[code [[path.strip /path/to/file.tar.gz]]  result /path/to/file.tar
+					[code [[path.strip /path/to/file.tar]]  result /path/to/file
+					[code [[path.strip /path/to/file]]  result /path/to
+					[code [[path.strip /path/to]]  result /path
+					[code [[path.strip /path]]  result /
+
+		  .: format :.
+
+			void
+				group
+					format
+				method
+					void_encode
+				alias
+					none
+				description
+					Encodes data into the V O I D format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name param  type dict  default none
+				example
+					[code [[void {'key':'value'}]]	result '{\n\t\'key\': \'value\'\n}']
+					[code [[void [1,2,3] '	']]	result '[\n	1,\n	2,\n	3\n]']
+			void.decode
+				group
+					format
+				method
+					void_decode
+				alias
+					none
+				description
+					Decodes data from the V O I D format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name param  type dict  default none
+				example
+					[code [[void.decode '{\'key\':\'value\'}']]	result {'key':'value'}]
+					[code [[void.decode '[1,2,3]']]	result [1,2,3]]
+			json
+				group
+					format
+				method
+					json_encode
+				alias
+					none
+				description
+					Encodes data into the JSON format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name param  type [dict text]  default none
+				example
+					[code [[json.encode text]]  result "text"
+					[code [[json.encode 'text\r\n\t']]  result text\r\n\t
+					[code [[json.encode 123]]  result 123
+					[code [[json.encode true]]  result 'true
+					[code [[json.encode false]]  result 'false
+					[code [[json.encode none]]  result null
+					[code [[json.encode ☺ [unicode  false]]]  result "\u263A"
+					[code [[json.encode [[name Thomas  age 25] [name Alice  age 20]] ]]  result [{"name":"Thomas","age":25},{"name":"Alice","age":20}]
+					[code [[json.encode [[name Thomas  age 25] [name Alice  age 20]] short]]  result [{"name":"Thomas","age":25},{"name":"Alice","age":20}]
+					[code [[json.encode [[name Thomas  age 25] [name Alice  age 20]] [indent  2]]]  result '[\n  {\n    "name": "Thomas",\n    "age": 25\n  },\n  {\n    "name": "Alice",\n    "age": 20\n  }\n]
+					[code [[json.encode [[name Thomas  age 25] [name Alice  age 20]] 2]]  result '[\n  {\n    "name": "Thomas",\n    "age": 25\n  },\n  {\n    "name": "Alice",\n    "age": 20\n  }\n]
+					[code [[json.encode [[name Thomas  age 25] [name Alice  age 20]] '\t']]  result '[\n\t{\n\t\t "name": "Thomas",\n\t\t"age": 25\n\t},\n\t{\n\t\t"name": "Alice",\n\t\t"age": 20\n\t}\n]
+					[code [[json.encode [[name Thomas  age 25] [name Alice  age 20]] full]]  result '[\n\t{\n\t\t "name": "Thomas",\n\t\t"age": 25\n\t},\n\t{\n\t\t"name": "Alice",\n\t\t"age": 20\n\t}\n]
+			json.decode
+				group
+					format
+				method
+					json_decode
+				alias
+					none
+				description
+					Decodes data from the JSON format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name param  type [text dict]  default none
+				example
+					[code [[json.decode "text"]]  result text
+					[code [[json.decode 123]]  result 123
+					[code [[json.decode 'true']]  result true
+					[code [[json.decode 'false']]  result false
+					[code [[json.decode null]]  result none
+					[code [[json.decode "\u263A"]]  result ☺
+					[code [[json.decode [{"name":"Thomas","age":25},{"name":"Alice","age":20}] ]]  result [[name Thomas  age 25] [name Alice  age 20
+			csv
+				group
+					format
+				method
+					action.csv.encode
+				alias
+					none
+				description
+					Encodes data into the CSV format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name param  type [text dict]  default [delimiter  ,]
+				example
+					[code [[csv [[Name Age] [Thomas 25] [Alice 20]] ]]  result 'Name,Age\nThomas,25\nAlice,20
+					[code [[csv [[Name Age] [Thomas 25] [Alice 20]] ;]]  result 'Name;Age\nThomas;25\nAlice;20
+					[code [[csv [[Name Age] [Thomas 25] [Alice 20]] [delimiter  ;]]]  result 'Name;Age\nThomas;25\nAlice;20
+					[code [[csv [[text text"text]] ]]  result text,"text""text"
+			csv.decode
+				group
+					format
+				method
+					action.csv.decode
+				alias
+					none
+				description
+					Decodes data from the CSV format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name param  type dict  default [delimiter  ,]
+				example
+					[code [[csv.decode 'Name,Age\nThomas,25\nAlice,20']]  result [[Name Age] [Thomas 25] [Alice 20
+					[code [[csv.decode 'Name;Age\nThomas;25\nAlice;20' ;]]  result [[Name Age] [Thomas 25] [Alice 20
+					[code [[csv.decode text,"text""text" ]]  result [[text text"text]]
+			yaml
+				group
+					format
+				method
+					yaml_encode
+				alias
+					none
+				description
+					Encodes data into the YAML format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name param  type [text dict]  default none
+				example
+					[code [[yaml.encode text]]  result text
+					[code [[yaml.encode 'text\r\n\t']]  result "text\r\n\t"
+					[code [[yaml.encode 123]]  result 123
+					[code [[yaml.encode true]]  result 'true
+					[code [[yaml.encode false]]  result 'false
+					[code [[yaml.encode none]]  result null
+					[code [[yaml.encode ☺ [unicode  false]]]  result "\u263A"
+					[code [[yaml.encode [[name Thomas  age 25] [name Alice  age 20]] ]]  result '- name: Thomas\n  age: 25\n- name: Alice\n  age: 20
+					[code [[yaml.encode [[name Thomas  age 25] [name Alice  age 20]] full]]  result '- name: Thomas\n  age: 25\n- name: Alice\n  age: 20
+					[code [[yaml.encode [[name Thomas  age 25] [name Alice  age 20]] short]]  result [{"name":"Thomas","age":25},{"name":"Alice","age":20}]
+			yaml.decode
+				group
+					format
+				method
+					yaml_decode
+				alias
+					none
+				description
+					Decodes data from the YAML format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name text  type text
+					[name param  type dict  default none
+				example
+					[code [[yaml.decode text]]  result text
+					[code [[yaml.decode 123]]  result 123
+					[code [[yaml.decode 'true']]  result true
+					[code [[yaml.decode 'false']]  result false
+					[code [[yaml.decode null]]  result none
+					[code [[yaml.decode "\u263A"]]  result ☺
+					[code [[yaml.decode '- name: Thomas\n  age: 25\n- name: Alice\n  age: 20']]  result [[name Thomas  age 25] [name Alice  age 20
+					[code [[yaml.decode '[{"name":"Thomas","age":25},{"name":"Alice","age":20}]']]  result [[name Thomas  age 25] [name Alice  age 20
+			ini
+				group
+					format
+				method
+					action.ini.encode
+				alias
+					none
+				description
+					Encodes data into the INI format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name param  type dict  default [delimiter  ,]
+				example
+					[code [[ini [section  [name  data]]]]  result '[section]\nname=data
+					[code [[ini [user  [name Thomas  task [10 20 30]]] ]]  result '[user]\nname=Thomas\ntask=10,20,30
+					[code [[ini [user  [name Thomas  task [10 20 30]]] |]]  result '[user]\nname=Thomas\ntask=10|20|30
+					[code [[ini [user  [name Thomas  task [10 20 30]]] [list  |]]]  result '[user]\nname=Thomas\ntask=10|20|30
+			ini.decode
+				group
+					format
+				method
+					action.ini.decode
+				alias
+					none
+				description
+					Decodes data from the INI format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name param  type dict  default [delimiter  ,]
+				example
+					[code [[ini.decode '[section]\nname=data']]  result [section  [name  data
+					[code [[ini.decode '[user]\nname=Thomas\ntask=10,20,30']]  result [user  [name Thomas  task [10 20 30
+					[code [[ini.decode '[user]\nname=Thomas\ntask=10,20,30' none]]  result [user  [name Thomas  task 10,20,30
+			xml
+				group
+					format
+				method
+					action.xml.encode
+				alias
+					none
+				description
+					Encodes data into the XML format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name param  type dict  default [attribute  @]
+				example
+					[code [[xml [root  item [a b]]]]  result '<root><item>a</item><item>b</item></root>
+					[code [[xml [person  [@id 1  name Thomas]]]]  result '<person id="1"><name>John</name></person>
+					[code [[xml [person  [#id 1  name Thomas]] [attribute  #]]]  result '<person id="1"><name>John</name></person>
+			xml.decode
+				group
+					format
+				method
+					action.xml.decode
+				alias
+					none
+				description
+					Decodes data from the XML format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name param  type dict  default [attribute  @]
+				example
+					[code [[xml.decode '<root><item>a</item><item>b</item></root>']]  result [root  item [a b
+					[code [[xml.decode '<person id="1"><name>Thomas</name></person>']]  result [person  [@id 1  name Thomas
+					[code [[xml.decode '<person id="1"><name>Thomas</name></person>' [attribute  #]]]  result [person  [#id 1  name Thomas
+
+		  .: cloud :.
+
+			cloud
+				group
+					cloud
+				method
+					cloud
+				alias
+					none
+				description
+					Runs cloud services for data management
+				safe
+					false
+				container
+					true
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name type  type text  default none
+					[name param  type any  default none
+				example
+					[code [cloud]  test false
+					[code [cloud.file]  test false
+					[code [[cloud.file /path/to/share]]  test false
+					[code [cloud.web]  test false
+					[code [[cloud.web {param}]]  test false
+					[code [[cloud.api {param}]]  test false
+					[code [[cloud.void {param}]]  test false
+					[code [[cloud.mail {param}]]  test false
+					[code [[cloud.proxy {param}]]  test false
+					[code [[cloud.vpn {param}]]  test false
+					[code [[cloud.screen {param}]]  test false
+			request
+				group
+					cloud
+				method
+					request
+				alias
+					r
+				description
+					Sends an HTTP request to a specified URL
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name url  type text
+					[name param  type dict  default none
+					[name method  type text  subname true  default none
+				example
+					[code [[r https://voidsp.com]]	type dict  test false
+					[code [[r.get https://voidsp.com]]	type dict	test false
+					[code [[r https://voidsp.com [method post  header [key {key}  name {name}]  type json  data [1 2 3] ]]]  type dict  test false
+					[code [[r.post [url https://voidsp.com  header [key {key}  Content-Type multipart/form-data]  form [name {name}  data {data}] ]]]  type dict  test false
+					[code [[info https://voidsp.com]]  type dict  test false
+			download
+				group
+					cloud
+				method
+					download
+				alias
+					d
+				description
+					Downloads content from a specified URL
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name url  type [text list
+					[name path  type text  default none
+					[name component  type text  subname true  default none
+				example
+					[code [[d https://voidsp.com/video.mp4]]  test false
+					[code [[d https://voidsp.com/video.mp4 /path/to/download.mp4]]  test false
+					[code [[d youtube.com/watch?v=12345ABCDEF]]  test false
+					[code [[d.info youtube.com/watch?v=12345ABCDEF]]  type dict  test false
+					[code [[d.720 youtube.com/watch?v=12345ABCDEF]]  test false
+					[code [[d.video youtube.com/watch?v=12345ABCDEF]]  test false
+					[code [[d.video.720 youtube.com/watch?v=12345ABCDEF]]  test false
+					[code [[d.sound youtube.com/watch?v=12345ABCDEF]]  test false
+					[code [[d.subtitle youtube.com/watch?v=12345ABCDEF]]  test false
+					[code [[info youtube.com/watch?v=12345ABCDEF]]  type dict  test false
+			cookie
+				group
+					cloud
+				method
+					cookie
+				alias
+					none
+				description
+					Receives or sets a specified cookie
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name name  type text
+					[name data  type any  default none
+					[name param  type any  subname true  default none
+				example
+					[code [cookie]  test false
+					[code [[cookie session]]  test false
+					[code [[cookie session {session.id}]]  test false
+					[code [[cookie session {session.id} 86400]]  test false
+					[code [[cookie session {session.id} day]]  test false
+					[code [[cookie session {session.id} 1776865494]]  test false
+					[code [[cookie [name session  data {session.id}  expired day  domain /]]]  test false
+					[code [[cookie session none 0]]  test false
+					[code [[cookie.remove session]]  test false
+			social
+				group
+					cloud
+				method
+					social
+				alias
+					none
+				description
+					Interacting with social API
+				safe
+					false
+				container
+					true
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name name  type text  subname true
+					[name data  type dict
+				example
+					[code [[social telegram.bot [name bot  token {token}  action {action}]]  test false
+					[code [[social telegram.send [token {token}  to {account}  text {text}  attachment [{image1} {image2}]]]  test false
+					[code [[social.youtube.upload [token {token}  title {title}  description {desctipion}  tags {tags}  video {video}  publish true]]]  test false
+					[code [[social.tiktok.upload [token {token}  title {title}  description {desctipion}  tags {tags}  video {video}  publish true]]]  test false
+			notify
+				group
+					cloud
+				method
+					notify
+					mail
+				alias
+					none
+				description
+					Send notification
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[code [notify]  test false
+					[code [[notify message]]  test false
+					[code [[notify.sms +123456789 message]]  test false
+					[code [[notify.call +123456789 message]]  test false
+					[code [[notify.mail to@voidsp.com message]]  test false
+					[code [[notify.mail [to [to1@voidsp.com to2@voidsp.com]  text {html}  from from@voidsp.com  copy copy@mvoidsp.com  attachment [{file1} {file2}]]]  test false
+					[code [[notify.push {token} message]]  test false
+					[code [[notify.push [token {token}  text message  sound sound.wav  badge 3  image {image}]]  test false
+
+		  .: device :.
+
+			device
+				group
+					device
+				method
+					device
+				alias
+					none
+				description
+					Retrieves or sets hardware device parameters
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name name  type text  subname true  default none
+					[name data  type any  default none
+				example
+					[code [device]  type dict
+					[code [[device name]]  type dict
+					[code [device.name]  type dict
+					[code [[device orientation landscape]]  test false
+					[code [[device.orientation landscape]]  test false
+			cpu
+				group
+					device
+				method
+					cpu
+				alias
+					none
+				description
+					Current CPU usage
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[[code [cpu]  type number
+			gpu
+				group
+					device
+				method
+					gpu
+				alias
+					none
+				description
+					Current GPU usage
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[]
+				example
+					[[code [gpu]  type number
+			memory
+				group
+					device
+				method
+					memory
+				alias
+					none
+				description
+					Current memory usage
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[[code [memory]  type dict
+			battery
+				group
+					device
+				method
+					battery
+				alias
+					none
+				description
+					Remaining battery charge
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[]
+				example
+					[[code [battery]  type number
+			fps
+				group
+					device
+				method
+					fps
+				alias
+					none
+				description
+					Retrieves or sets frames per second for video or graphical rendering
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name fps  type number  default none
+				example
+					[code [fps]  type number
+					[code [[fps 60]]  test false
+			vsync
+				group
+					device
+				method
+					vsync
+				alias
+					none
+				description
+					Vertical sync settings to prevent screen tearing
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name vsync  type bool  subname true  default none
+				example
+					[code [vsync]  type bool
+					[code [[vsync true]]  test false
+					[code [vsync.on]  test false
+					[code [vsync.off]  test false
+					[code [vsync.toggle]  test false
+			resolution
+				group
+					device
+				method
+					resolution
+				alias
+					none
+				description
+					Retrieves or stes the screen resolution
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name resolution  type list  default none
+				example
+					[code [resolution]  type list  test false
+					[code [[resolution [1920 1080]]]  test false
+					[code [[resolution 1920 1080]]  test false
+			orientation
+				group
+					device
+				method
+					orientation
+				alias
+					none
+				description
+					Retrieves or stes the orientation of a device's display
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name orientation  type text  default none
+				example
+					[code [orientation]  type text  test false
+					[code [[orientation portrait]]  test false
+					[code [[orientation landscape]]  test false
+					[code [[orientation portrait upside down]]  test false
+			dark
+				group
+					device
+				method
+					dark
+				alias
+					none
+				description
+					Retrieves or stes the dark mode setting for user interfaces
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name dark  type bool  default none
+				example
+					[code [dark]  type bool  test false
+					[code [[dark true]]  test false
+					[code [[dark on]]  test false
+					[code [[dark.off]]  test false
+					[code [[dark.toggle]]  test false
+			pixel
+				group
+					device
+				method
+					pixel
+				alias
+					none
+				description
+					Retrieves or sets the color of the pixel displayed on the screen
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name position  type list
+					[name color  type [text list]  default none
+				example
+					[code [[pixel [10 10]]]  type list  test false
+					[code [[pixel 10 10]]  type list  test false
+					[code [[pixel [10 10] green]]  type list  test false
+					[code [[pixel 10 10 green]]  type list  test false
+					[code [[pixel [10 10] green]]  type list  test false
+					[code [[pixel [10 10] [100 150 200]]]  type list  test false
+					[code [[pixel [10 10] [0.39 0.59 0.78]]]  type list  test false
+			symbol
+				group
+					device
+				method
+					symbol
+				alias
+					none
+				description
+					Retrieves or sets the symbol on the screen in text mode
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name position  type list
+					[name symbol  type text  default none
+				example
+					[code [[symbol [10 10]]]  type text  test false
+					[code [[symbol 10 10]]  type text  test false
+					[code [[symbol [10 10] A]]  type text  test false
+					[code [[symbol 10 10 A]]  type text  test false
+			cursor
+				group
+					device
+				method
+					cursor
+				alias
+					none
+				description
+					Retrieves or sets the cursor position on the screen and its visibility in text mode
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name position  type list  default none
+					[name visibility  type bool  subname true  default none
+				example
+					[code [cursor]  type list  test false
+					[code [[cursor [10 10]]]  test false
+					[code [[cursor 10 10]]  test false
+					[code [[cursor [10 10] true]]  test false
+					[code [[cursor [10 10] hide]]  test false
+					[code [cursor.visibility]  type bool  test false
+					[code [cursor.show]  test false
+					[code [cursor.hide]  test false
+					[code [[cursor show]]  test false
+					[code [[cursor hide]]  test false
+			clear
+				group
+					device
+				method
+					clear
+				alias
+					none
+				description
+					Clears the screen in text mode
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name color  type text  subname true  default none
+				example
+					[code [clear]  test false
+					[code [[clear green]]  test false
+					[code [clear.green]  test false
+			flashlight
+				group
+					device
+				method
+					flashlight
+				alias
+					none
+				description
+					Turns on or off the device's flashlight
+				safe
+					false
+				container
+					none
+				language
+					[swift kotlin gdscript c++
+				param
+					[[name level  type [number bool]  subname true  default none
+				example
+					[code [flashlight]  test false
+					[code [[flashlight true]]  test false
+					[code [flashlight.on]  test false
+					[code [flashlight.off]  test false
+					[code [flashlight.toggle]  test false
+					[code [[flashlight 0.8]]  test false
+					[code [[flashlight 80%]]  test false
+			location
+				group
+					device
+				method
+					location
+				alias
+					none
+				description
+					Retrieves the current geographic location using GPS or network triangulation
+				safe
+					false
+				container
+					none
+				language
+					[js swift kotlin gdscript c++
+				param
+					[[name switch  type bool  default none
+				example
+					[code [location]  type dict  test false
+					[code [[location true]]  test false
+					[code [location.on]  test false
+					[code [location.off]  test false
+			gyroscope
+				group
+					device
+				method
+					gyroscope
+				alias
+					none
+				description
+					Provides access to the gyroscope sensor for motion detection
+				safe
+					false
+				container
+					none
+				language
+					[js swift kotlin gdscript c++
+				param
+					[]
+				example
+					[[code [gyroscope]  type dict  test false
+			accelerometer
+				group
+					device
+				method
+					accelerometer
+				alias
+					none
+				description
+					Provides access to the accelerometer sensor to detect acceleration forces
+				safe
+					false
+				container
+					none
+				language
+					[js swift kotlin gdscript c++
+				param
+					[]
+				example
+					[[code [accelerometer]  type dict  test false
+			compass
+				group
+					device
+				method
+					compass
+				alias
+					none
+				description
+					Accesses the magnetic compass sensor to determine orientation relative to the Earth's magnetic field
+				safe
+					false
+				container
+					none
+				language
+					[js swift kotlin gdscript c++
+				param
+					[name latitude  type number  default none
+					[name longitude  type number  default none
+				example
+					[code [compass]  type number  test false
+					[code [[compass [40 30]]]  type number  test false
+					[code [[compass 40 30]]  type number  test false
+			proximity
+				group
+					device
+				method
+					proximity
+				alias
+					none
+				description
+					Detects the proximity of objects in relation to the device's proximity sensor
+				safe
+					false
+				container
+					none
+				language
+					[swift kotlin gdscript c++
+				param
+					[[name distance  type number  default none
+				example
+					[code [proximity]  type dict  test false
+					[code [[proximity 0.5]  type number  test false
+			brightness
+				group
+					device
+				method
+					brightness
+				alias
+					none
+				description
+					Manages the screen brightness level of the device
+				safe
+					false
+				container
+					none
+				language
+					[swift kotlin gdscript c++
+				param
+					[[name level  type number  default none
+				example
+					[code [brightness]  type number  test false
+					[code [[brightness 0.8]]  type number  test false
+					[code [[brightness 80%]]  type number  test false
+			volume
+				group
+					device
+				method
+					volume
+				alias
+					none
+				description
+					Manages the sound level of the device
+				safe
+					false
+				container
+					none
+				language
+					[swift kotlin gdscript c++
+				param
+					[name level  type number  default none
+					[name name  type text  subname true  default true
+				example
+					[code [volume]  type number  test false
+					[code [[volume 0.8]]  test false
+					[code [[volume 80%]]  test false
+					[code [volume.music]  type number  test false
+					[code [[volume 0.8 music]]  test false
+			calendar
+				group
+					device
+				method
+					calendar
+				alias
+					none
+				description
+					Calendar events on a device
+				safe
+					false
+				container
+					none
+				language
+					[swift kotlin gdscript c++
+				param
+					[name date  type [text number]  default none
+					[name time  type [text number]  default none
+					[name text  type text  default none
+					[name param  type [text dict]  default none
+					[name action  type text  subname true  default none
+				example
+					[code [calendar]  type dict  test false
+					[code [[calendar 2026.01.01]]  type dict  test false
+					[code [[calendar 2026.01.01 11:30]]  type dict  test false
+					[code [[calendar 2026.01.01 11:30-12:30 meeting]]  test false
+					[code [[calendar 2026.01.01 11:30-12:30 meeting alert]]  test false
+					[code [[calendar.remove 2026.01.01 11:30]]  test false
+					[code [[calendar.clear]]  test false
+			gallery
+				group
+					device
+				method
+					gallery
+				alias
+					none
+				description
+					Photo and video library on a device
+				safe
+					false
+				container
+					none
+				language
+					[swift kotlin gdscript c++
+				param
+					[name data  type [text number binary list dict]  default none
+					[name action  type text  subname true  default none
+				example
+					[code [gallery]  type dict  test false
+					[code [[gallery 10]]  type list  test false
+					[code [[gallery 2026.01.01]]  type list  test false
+					[code [[gallery {id}]]  type dict  test false
+					[code [[gallery {image}]]  type dict  test false
+					[code [[gallery.remove {id}]]  test false
+			contacts
+				group
+					device
+				method
+					contacts
+				alias
+					none
+				description
+					Contact list on a device
+				safe
+					false
+				container
+					none
+				language
+					[swift kotlin gdscript c++
+				param
+					[name data  type [text number dict]  default none
+					[name action  type text  subname true  default none
+				example
+					[code [contacts]  type dict  test false
+					[code [[contacts {id}]]  type dict  test false
+					[code [[contacts [name Thomas  phone +123456789]]]  test false
+					[code [[contacts.remove {id}]]  type dict  test false
+			call
+				group
+					device
+				method
+					call
+				alias
+					none
+				description
+					Initiate a voice or video call to a specified recipient
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[]
+				example
+					[code [call]  test false
+					[code [[call +123456789]]  test false
+			sms
+				group
+					device
+				method
+					sms
+				alias
+					none
+				description
+					Send a text message (SMS) to a specified recipient
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[]
+				example
+					[code [sms]  test false
+					[code [[sms +123456789 Hi!]]  test false
+			net
+				group
+					device
+				method
+					net
+				alias
+					none
+				description
+					Retrieves information about Network or connect
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name action  type text  subname true  default none
+					[name name  type text  default none
+				example
+					[code [net]  type dict  test false
+					[code [net.connect]  test false
+					[code [[net.connect name]]  test false
+					[code [net.disconnect]  test false
+			wifi
+				group
+					device
+				method
+					wifi
+				alias
+					none
+				description
+					Retrieves information about Wi-Fi or connect
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name action  type text  subname true  default none
+					[name name  type text  default none
+					[name password  type text  default none
+				example
+					[code [wifi]  type dict  test false
+					[code [[wifi.connect name]]  test false
+					[code [[wifi.connect name password]]  test false
+					[code [wifi.disconnect]  test false
+			bluetooth
+				group
+					device
+				method
+					bluetooth
+				alias
+					none
+				description
+					Retrieves information about Bluetooth or connect
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name action  type text  subname true  default none
+					[name name  type text  default none
+					[name data  type any  default none
+				example
+					[code [bluetooth]  type dict  test false
+					[code [[bluetooth.connect name]]  test false
+					[code [[bluetooth.send name {data}]]  test false
+					[code [bluetooth.disconnect]  test false
+			cellular
+				group
+					device
+				method
+					cellular
+				alias
+					none
+				description
+					Retrieves information about Cellular or connect
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name action  type text  subname true  default none
+					[name name  type text  default none
+				example
+					[code [cellular]  type dict  test false
+					[code [cellular.connect]  test false
+					[code [[cellular.connect name]]  test false
+					[code [cellular.disconnect]  test false
+			stream
+				group
+					device
+				method
+					stream
+				alias
+					none
+				description
+					Retrieves information about screen streaming or start streaming
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name action  type text  default none
+					[name param  type dict  default none
+				example
+					[code [stream]  type dict  test false
+					[code [stream.start]  test false
+					[code [[stream.start {param}]]  test false
+					[code [stream.stop]  test false
+			keyboard
+				group
+					device
+				method
+					keyboard
+				alias
+					none
+				description
+					Keyboard information
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name action  type text  default none
+				example
+					[code [keyboard]  test false
+					[code [keyboard.show]  test false
+					[code [keyboard.hide]  test false
+					[code [keyboard.toggle]  test false
+					[code [keyboard.size]  test false
+			mouse
+				group
+					device
+				method
+					mouse
+				alias
+					none
+				description
+					Mouse information
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name action  type text  subname true  default none
+					[name data  type any  default none
+				example
+					[code [mouse]  test false
+					[code [mouse.show]  test false
+					[code [mouse.hide]  test false
+					[code [mouse.toggle]  test false
+					[code [mouse.cursor]  test false
+					[code [[mouse.cursor wait]]  test false
+					[code [[mouse.cursor hand]]  test false
+					[code [mouse.wait]  test false
+					[code [mouse.hand]  test false
+					[code [mouse.normal]  test false
+					[code [mouse.position]  type dict  test false
+			gamepad
+				group
+					device
+				method
+					gamepad
+				alias
+					none
+				description
+					Gamepad information
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[]
+				example
+					[[code [gamepad]  type dict  test false
+			tap
+				group
+					device
+				method
+					tap
+				alias
+					none
+				description
+					Simulates a tap gesture
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name position  type [text number list]  default none
+					[name duration  type number  default none
+					[name gesture  type text  subname true  default none
+				example
+					[code [tap]  test false
+					[code [[tap 100 100]]  test false
+					[code [[tap [100 100]]]  test false
+					[code [[tap 100 100 0.5]]  test false
+					[code [tap 0.5]  test false
+					[code [tap.long]  test false
+					[code [tap.double]  test false
+					[code [tap.zoomin 0.5]  test false
+					[code [tap.zoomout 0.5]  test false
+					[code [tap.rotate 180]  test false
+					[code [tap.rotate -180]  test false
+					[code [tap.scroll 10%]  test false
+			key
+				group
+					device
+				method
+					key
+				alias
+					none
+				description
+					Key binding
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name key  type text  subname true  default none
+					[name action  type [text list]  default none
+				example
+					[code [key]  type dict  test false
+					[code [key.a]  test false
+					[code [key.space]  test false
+					[code [key a [[. 'a tap']]]  test false
+					[code [key space [[. 'space tap']]]  test false
+					[code [key.write text]  test false
+
+		  .: content :.
+
+			image
+				group
+					content
+				method
+					image
+				alias
+					none
+				description
+					Create an image
+				safe
+					true
+				container
+					crop
+						[ ]
+					size
+						[ ]
+					zoom
+						[ ]
+					flip
+						[ ]
+					rotate
+						[ ]
+					grayscale
+						[ ]
+					rgb
+						[ ]
+					yuv
+						[ ]
+					indexed
+						[ ]
+					color
+						[ ]
+					levels
+						[ ]
+					curves
+						[ ]
+					monochrome
+						[ ]
+					brightness
+						[ ]
+					contrast
+						[ ]
+					hue
+						[ ]
+					saturation
+						[ ]
+					lightness
+						[ ]
+					sharpness
+						[ ]
+					vignette
+						[ ]
+					style
+						[ ]
+					blur
+						[ ]
+					distort
+						[ ]
+					noise
+						[ ]
+					border
+						[ ]
+					fill
+						[ ]
+					paint
+						[ ]
+					bezier
+						[ ]
+					select
+						[ ]
+					copy
+						[ ]
+					paste
+						[ ]
+					mask
+						[ ]
+					text
+						[ ]
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[]
+			video
+				group
+					content
+				method
+					video
+				alias
+					movie
+					clip
+					anime
+				description
+					Create a video
+				safe
+					true
+				container
+					speed
+						[ ]
+					reverse
+						[ ]
+					mute
+						[ ]
+					gain
+						[ ]
+					pan
+						[ ]
+					pitch
+						[ ]
+					fade.in
+						[ ]
+					fade.out
+						[ ]
+					crop
+						[ ]
+					size
+						[ ]
+					zoom
+						[ ]
+					flip
+						[ ]
+					rotate
+						[ ]
+					grayscale
+						[ ]
+					color
+						[ ]
+					levels
+						[ ]
+					curves
+						[ ]
+					monochrome
+						[ ]
+					brightness
+						[ ]
+					contrast
+						[ ]
+					hue
+						[ ]
+					saturation
+						[ ]
+					lightness
+						[ ]
+					sharpness
+						[ ]
+					vignette
+						[ ]
+					style
+						[ ]
+					blur
+						[ ]
+					distort
+						[ ]
+					noise
+						[ ]
+					border
+						[ ]
+					fill
+						[ ]
+					paint
+						[ ]
+					bezier
+						[ ]
+					select
+						[ ]
+					copy
+						[ ]
+					paste
+						[ ]
+					mask
+						[ ]
+					text
+						[ ]
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[]
+			sound
+				group
+					content
+				method
+					sound
+				alias
+					music
+				description
+					Create an audio track
+				safe
+					true
+				container
+					speed
+						[ ]
+					reverse
+						[ ]
+					mute
+						[ ]
+					gain
+						[ ]
+					pan
+						[ ]
+					pitch
+						[ ]
+					fade.in
+						[ ]
+					fade.out
+						[ ]
+					crop
+						[ ]
+					clean
+						[ ]
+					novoice
+						[ ]
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[]
+			model
+				group
+					content
+				method
+					model
+				alias
+					none
+				description
+					Create a 3D model
+				safe
+					true
+				container
+					true
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[]
+			book
+				group
+					content
+				method
+					book
+				alias
+					document
+					spreadsheet
+					presentation
+					comics
+					manga
+				description
+					Create a book, comic or manga
+				safe
+					true
+				container
+					true
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[]
+			game
+				group
+					content
+				method
+					game
+				alias
+					2d
+					3d
+					vn
+				description
+					Create a 2D, 3D or visual novel game
+				safe
+					true
+				container
+					true
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[]
+				example
+					[]
+		alias
+			[ ]
+		pi
+			3.14159265358979323846
+		e
+			2.71828182845904523536
+		phi
+			1.61803398874989484820
+		gamma
+			0.57721566490153286060
+		os
+			none
+		language
+			none
+		info
+			os
+				type
+				name
+				version
+				user
+				language
+			device
+				name
+				imei
+				fps
+				cpu
+				gpu
+			file
+				path
+				name
+				param
+		cloud
+			mime
+
+			  .: data :.
+
+				void
+					application/void
+				json
+					application/json
+				jsonl
+					application/jsonl
+				jsonld
+					application/ld+json
+				yaml
+					application/x-yaml
+				csv
+					text/csv
+				ini
+					text/plain
+				xml
+					application/xml
+				sql
+					application/sql
+				bin
+					application/octet-stream
+
+			  .: document :.
+
+				text
+					text/plain
+				txt
+					text/plain
+				pdf
+					application/pdf
+				djvu
+					image/vnd.djvu
+				doc
+					application/msword
+				docx
+					application/vnd.openxmlformats-officedocument.wordprocessingml.document
+				xls
+					application/vnd.ms-excel
+				xlsx
+					application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+				ppt
+					application/vnd.ms-powerpoint
+				pptx
+					application/vnd.openxmlformats-officedocument.presentationml.presentation
+				rtf
+					application/rtf
+				epub
+					application/epub+zip
+				abw
+					application/x-abiword
+				azw
+					application/vnd.amazon.ebook
+				odp
+					application/vnd.oasis.opendocument.presentation
+				ods
+					application/vnd.oasis.opendocument.spreadsheet
+				odt
+					application/vnd.oasis.opendocument.text
+				ics
+					text/calendar
+
+			  .: html :.
+
+				html
+					text/html
+				htm
+					text/html
+				xhtml
+					application/xhtml+xml
+				css
+					text/css
+
+			  .: font :.
+
+				ttf
+					font/ttf
+				otf
+					font/otf
+				sfnt
+					font/sfnt
+				woff
+					font/woff
+				woff2
+					font/woff2
+				eot
+					application/vnd.ms-fontobject
+
+			  .: image :.
+
+				jpeg
+					image/jpeg
+				jpg
+					image/jpeg
+				png
+					image/png
+				apng
+					image/apng
+				gif
+					image/gif
+				svg
+					image/svg+xml
+				webp
+					image/webp
+				heif
+					image/heif
+				heic
+					image/heic
+				tiff
+					image/tiff
+				tif
+					image/tiff
+				avif
+					image/avif
+				ico
+					image/x-icon
+				icon
+					image/vnd.microsoft.icon
+				icns
+					image/x-icns
+
+			  .: audio :.
+
+				mp3
+					audio/mpeg
+				mpa
+					audio/mpeg
+				mp2
+					audio/mpeg
+				wma
+					audio/x-ms-wma
+				wav
+					audio/x-wav
+				flac
+					audio/flac
+				ogg
+					application/ogg
+				oga
+					audio/ogg
+				weba
+					audio/webm
+				cda
+					application/x-cdf
+				aac
+					audio/aac
+				ac3
+					audio/ac3
+				mid
+					audio/midi
+				midi
+					audio/x-midi
+				s3m
+					audio/s3m
+				it
+					audio/it
+				mod
+					audio/x-mod
+				xm
+					audio/xm
+
+			  .: video :.
+
+				mp4
+					video/mp4
+				mpeg
+					video/mpeg
+				mpg
+					video/mpeg
+				mpv
+					video/mpeg
+				webm
+					video/webm
+				ogx
+					application/ogg
+				ogv
+					video/ogg
+				qt
+					video/quicktime
+				mov
+					ideo/quicktime
+				m4v
+					video/x-m4v
+				wmv
+					video/x-ms-wmv
+				avi
+					video/x-msvideo
+				mkv
+					application/x-matroska
+				mjpeg
+					multipart/x-mixed-replace
+				ts
+					video/mp2t
+
+			  .: 3d :.
+
+				gltf
+					model/gltf+json
+				glb
+					model/gltf-binary
+				obj
+					model/obj
+				stl
+					model/stl
+				fbx
+					application/vnd.autodesk.fbx
+				dae
+					model/vnd.collada+xml
+				3ds
+					model/x-3ds
+				ply
+					model/ply
+				usd
+					model/vnd.usd
+				usdz
+					model/vnd.usdz+zip
+				x3d
+					model/x3d+xml
+				wrl
+					model/vrml
+				vrml
+					model/vrml
+
+			  .: archive :.
+
+				zip
+					application/zip
+				gz
+					application/gzip
+				7z
+					application/x-7z-compressed
+				tar
+					application/x-tar
+				rar
+					application/vnd.rar
+				bz
+					application/x-bzip
+				bz2
+					application/x-bzip2
+
+			  .: code :.
+
+				py
+					applycation/x-python-code
+				php
+					application/x-httpd-php
+				java
+					application/java
+				jar
+					application/java-archive
+				kt
+					text/x-kotlin
+				swift
+					application/swift
+				m
+					text/x-objective-c
+				mm
+					text/x-objective-c++
+				c
+					text/x-csrc
+				cpp
+					text/x-c++src
+				h
+					text/x-chdr
+				cs
+					text/x-csharp
+				rs
+					text/rust
+				gd
+					text/x-gdscript
+				js
+					text/javascript
+				mjs
+					text/javascript
+				lua
+					text/x-lua
+				sh
+					application/x-sh
+				csh
+					application/x-csh
+				bat
+					application/x-bat
+
+			  .: form :.
+
+				form data
+					multipart/form-data
+				form mixed
+					multipart/mixed
+				form alternative
+					multipart/alternative
+				form text
+					application/x-www-form-urlencoded
+			code
+				100
+					Continue
+				101
+					Switching protocols
+				102
+					Processing
+				103
+					Early Hints
+				200
+					OK
+				201
+					Created
+				202
+					Accepted
+				203
+					Non-Authoritative Information
+				204
+					No Content
+				205
+					Reset Content
+				206
+					Partial Content
+				207
+					Multi-Status
+				208
+					Already Reported
+				226
+					IM Used
+				300
+					Multiple Choices
+				301
+					Moved Permanently
+				302
+					Found Redirection
+				303
+					See Other
+				304
+					Not Modified
+				305
+					Use Proxy
+				306
+					Switch Proxy
+				307
+					Temporary Redirect
+				308
+					Permanent Redirect
+				400
+					Bad Request
+				401
+					Unauthorized
+				402
+					Payment Required
+				403
+					Forbidden
+				404
+					Not Found
+				405
+					Method Not Allowed
+				406
+					Not Acceptable
+				407
+					Proxy Authentication Required
+				408
+					Request Timeout
+				409
+					Conflict
+				410
+					Gone
+				411
+					Length Required
+				412
+					Precondition Failed
+				413
+					Payload Too Large
+				414
+					URI Too Long
+				415
+					Unsupported Media Type
+				416
+					Range Not Satisfiable
+				417
+					Expectation Failed
+				418
+					I'm a Teapot
+				421
+					Misdirected Request
+				422
+					Unprocessable Entity
+				423
+					Locked
+				424
+					Failed Dependency
+				425
+					Too Early
+				426
+					Upgrade Required
+				428
+					Precondition Required
+				429
+					Too Many Requests
+				431
+					Request Header Fields Too Large
+				451
+					Unavailable For Legal Reasons
+				500
+					Internal Server Error
+				501
+					Not Implemented
+				502
+					Bad Gateway
+				503
+					Service Unavailable
+				504
+					Gateway Timeout
+				505
+					HTTP Version Not Supported
+				506
+					Variant Also Negotiates
+				507
+					Insufficient Storage
+				508
+					Loop Detected
+				510
+					Not Extended
+				511
+					Network Authentication Required
+		db
+			[ ]
+		log
+			none
+		ai
+			chatgpt
+				key
+				url
+			deepeek
+				key
+				url
+			ollama
+				key
+				url
+			claude
+				key
+				url
+			gemini
+				key
+				url
+		void
+			[ ]
+		run
+			[]
+		action
+			convert
+				[]
+			info
+				[]
+			test
+				[]
+			drive
+				mount
+					[? {os}
+						[mac linux
+							[]
+						windows
+							[]
+				unmount
+					[? {os}
+						[mac linux
+							[]
+						windows
+							[]
+				create
+					[? {os}
+						[mac linux
+							[]
+						windows
+							[]
+				resize
+					[? {os}
+						[mac linux
+							[]
+						windows
+							[]
+				clear
+					[? {os}
+						[mac linux
+							[]
+						windows
+							[]
+				remove
+					[? {os}
+						[mac linux
+							[]
+						windows
+							[]
+			csv
+				encode
+					[]
+				decode
+					[parse {text} param_csv
+					_
+			xml
+				encode
+					[]
+				decode
+					[parse {text} param_xml
+					_
+			ini
+				encode
+					[]
+				decode
+					[parse {text} param_ini
+					_
+			download
+				[]
+		text
+			void
+				language
+					en
+						English
+					ru
+						Русский
+					zh
+						...
+				memory
+					b
+					kb
+					mb
+					gb
+					tb
+					eb
+					pb
+	'''
+
+  # module
+
+	@classmethod
+	def module(cls, name: str):
+		if name in cls.modules:
+			return cls.modules[name]
+		try:
+			module = importlib.import_module(name)
+			cls.modules[name] = module
+			return module
+		except:
+			cls.error('module', name)
+
+
+  # run
+
+	@classmethod
+	def run(cls):
 		pass
 
-	def os(name: str = None):
-		match name:
-			case 'mac':
-				pass
-			case 'language':
-				pass
-			case 'user':
-				user = psutil.users()[0]
-				return {
-					'name': user.name,
-					'terminal': user.terminal,
-					'host': user.host,
-					'pid': user.pid,
-					'time': {
-						'started': user.started,
-						'passed': time.time() - user.started
-					}
-				}
 
-		if name == None:
-			return data['os']['type']
-		return data['os']['type'] == name
+  # value
 
-	# text
-
-	def lower(text: str):
-		return text.lower()
-
-	def upper(text: str):
-		return text.upper()
-
-	def starts(text: str, subtext: str):
-		return text.startswith(subtext)
-
-	def ends(text: str, subtext: str):
-		return text.endswith(subtext)
-
-	def strip():
+	@classmethod
+	def get(cls):
 		pass
 
-	def strip_start():
+	@classmethod
+	def set(cls):
 		pass
 
-	def strip_end():
+	@classmethod
+	def remove(cls):
 		pass
 
-	def replace(text: str, search, replace = None):
-		if type(search) is str:
-			if replace == None:
-				return text
-			search = {search: str(replace)}
-		if type(search) is not dict:
-			return text
-		result = text
-		for name in search:
-			if '()' in name:
-				part = name.split('()')
-				result = re.sub(r'(' + part[0] + ').*?(' + part[1] + ')', r'\1' + str(search[name]) + r'\2', text)
-			else:
-				result = result.replace(str(name), str(search[name]))
-		return result
-
-	def find(text: str, subtext: str):
+	@classmethod
+	def type(cls):
 		pass
 
-	def parse(text: str, format: str):
+	@classmethod
+	def type_text(cls):
 		pass
 
-	def similar(first: str, second: str):
-		return SequenceMatcher(None, first, second).ratio()
-
-	def part():
+	@classmethod
+	def type_number(cls):
 		pass
 
-	def split():
+	@classmethod
+	def type_bool(cls):
 		pass
 
-	def join():
+	@classmethod
+	def type_binary(cls):
 		pass
 
-	def date(timestamp: float = None, format: str = ''):
-		dt = datetime.now() if timestamp == None else datetime.fromtimestamp(timestamp)
-		timestamp = int(dt.timestamp())
-		return void.replace(format, {
-			'(time)': timestamp,
-			'(year)': dt.year,
-			'(month)': dt.month,
-			'(day)': dt.day,
-			'(hour)': dt.hour,
-			'(minute)': dt.minute,
-			'(second)': dt.second,
-			'(millisecond)': dt.microsecond // 1000 - timestamp * 1_000,
-			'(microsecond)': dt.microsecond - timestamp * 1_000_000,
-			'(nanosecond)': time.time_ns() - timestamp * 1_000_000_000,
-			'(weekday)': dt.weekday(),
-			'(yearshort)': str(dt.year)[-2:],
-			'(monthfull)': str(dt.month).zfill(2),
-			'(dayfull)': str(dt.day).zfill(2),
-			'(hourfull)': str(dt.hour).zfill(2),
-			'(minutefull)': str(dt.minute).zfill(2),
-			'(secondfull)': str(dt.second).zfill(2),
-			'(seconds)': ''
-			})
-
-	def escape(text, symbol, replace = None):
+	@classmethod
+	def length(cls):
 		pass
 
-	def escape_html(text: str):
+
+  # expression
+
+	@classmethod
+	def expression_plus(cls):
 		pass
 
-	def escape_url(text: str):
+	@classmethod
+	def expression_minus(cls):
 		pass
 
-	def escape_sql(text: str):
+	@classmethod
+	def expression_multiply(cls):
 		pass
 
-	def unescape():
+	@classmethod
+	def expression_divide(cls):
 		pass
 
-	def unescape_html(text: str):
+	@classmethod
+	def expression_modulo(cls):
 		pass
 
-	def unescape_url(text: str):
+	@classmethod
+	def expression_power(cls):
 		pass
 
-	def unescape_sql(text: str):
+	@classmethod
+	def expression_shr(cls):
 		pass
 
-	def letters(text: str):
-		return void.find(text, '{letter}')
-
-	def words(text: str):
-		return void.find(text, '{word}')['count']
-
-	def sentences(text: str):
-		return void.find(text, ['{letter}.', '\n'])['count']
-
-	def lines(text: str):
-		return void.find(text, '\n')['count']
-
-	def bytes(text: str):
-		return len(text.decode())
-
-	# list
-
-	def merge(first, second):
-		if type(first) is dict and type(second) is dict:
-			result = dict(first)
-			for name in second:
-				if name in result:
-					if (type(result[name]) is dict and type(second[name]) is dict) or (type(result[name]) is list and type(second[name]) is list):
-						result[name] = void.merge(result[name], second[name])
-					else:
-						result[name] = second[name]
-				else:
-					result[name] = second[name]
-			return result
-		elif type(first) is list and type(second) is list:
-			result = []
-			for item1, item2 in zip(first, second):
-				if (type(item1) is dict and type(item2) is dict) or (type(item1) is list and type(item2) is list):
-					result.append(void.merge(item1, item2))
-				else:
-					result.append(item2)
-			result.extend(first[len(result):])
-			result.extend(second[len(result):])
-			return result
-
-	def push(list: list, data, position: int = None):
+	@classmethod
+	def expression_shl(cls):
 		pass
 
-	def pop(list: list, position: int = None):
+	@classmethod
+	def expression_notequal(cls):
 		pass
 
-	def reverse(list: list):
+	@classmethod
+	def expression_greater(cls):
 		pass
 
-	def shuffle(list: list):
+	@classmethod
+	def expression_less(cls):
 		pass
 
-	def map(list: list, action):
+	@classmethod
+	def expression_greater_equal(cls):
 		pass
 
-	def reduce(list: list, action):
+	@classmethod
+	def expression_less_equal(cls):
 		pass
 
-	def names(dict: dict):
+	@classmethod
+	def expression_in(cls):
 		pass
 
-	def values(dict: dict):
+	@classmethod
+	def expression_notin(cls):
 		pass
 
-	# math
+	@classmethod
+	def expression_is(cls):
+		pass
 
-	def sin(value: float):
+	@classmethod
+	def expression_isnot(cls):
+		pass
+
+	@classmethod
+	def expression_assign(cls):
+		pass
+
+	@classmethod
+	def expression_plus_assign(cls):
+		pass
+
+	@classmethod
+	def expression_assign_plus(cls):
+		pass
+
+	@classmethod
+	def expression_minus_assign(cls):
+		pass
+
+	@classmethod
+	def expression_assign_minus(cls):
+		pass
+
+	@classmethod
+	def expression_multiply_assign(cls):
+		pass
+
+	@classmethod
+	def expression_divide_assign(cls):
+		pass
+
+	@classmethod
+	def expression_modulo_assign(cls):
+		pass
+
+	@classmethod
+	def expression_power_assign(cls):
+		pass
+
+	@classmethod
+	def expression_shr_assign(cls):
+		pass
+
+	@classmethod
+	def expression_shl_assign(cls):
+		pass
+
+
+  # control
+
+	@classmethod
+	def print(cls):
+		pass
+
+	@classmethod
+	def input(cls):
+		pass
+
+	@classmethod
+	def control_if(cls):
+		pass
+
+	@classmethod
+	def control_loop(cls):
+		pass
+
+	@classmethod
+	def control_break(cls):
+		pass
+
+	@classmethod
+	def control_continue(cls):
+		pass
+
+	@classmethod
+	def control_repeat(cls):
+		pass
+
+	@classmethod
+	def control_return(cls):
+		pass
+
+	@classmethod
+	def action(cls):
+		pass
+
+	@classmethod
+	def open(cls):
+		pass
+
+	@classmethod
+	def close(cls):
+		pass
+
+	@classmethod
+	def code(cls):
+		pass
+
+	@classmethod
+	def log(cls):
+		pass
+
+	@classmethod
+	def exit(cls):
+		pass
+
+	@classmethod
+	def os(cls):
+		pass
+
+	@classmethod
+	def clipboard(cls):
+		pass
+
+	@classmethod
+	def sql(cls):
+		pass
+
+	@classmethod
+	def chat(cls):
+		pass
+
+	@classmethod
+	def say(cls):
+		pass
+
+	@classmethod
+	def recognize(cls):
+		pass
+
+	@classmethod
+	def ui(cls):
+		pass
+
+
+  # text
+
+	@classmethod
+	def lower(cls):
+		pass
+
+	@classmethod
+	def upper(cls):
+		pass
+
+	@classmethod
+	def starts(cls):
+		pass
+
+	@classmethod
+	def ends(cls):
+		pass
+
+	@classmethod
+	def strip(cls):
+		pass
+
+	@classmethod
+	def strip_start(cls):
+		pass
+
+	@classmethod
+	def strip_end(cls):
+		pass
+
+	@classmethod
+	def replace(cls):
+		pass
+
+	@classmethod
+	def find(cls):
+		pass
+
+	@classmethod
+	def parse(cls):
+		pass
+
+	@classmethod
+	def part(cls):
+		pass
+
+	@classmethod
+	def split(cls):
+		pass
+
+	@classmethod
+	def join(cls):
+		pass
+
+	@classmethod
+	def escape(cls):
+		pass
+
+	@classmethod
+	def unescape(cls):
+		pass
+
+	@classmethod
+	def translate(cls):
+		pass
+
+	@classmethod
+	def check(cls):
+		pass
+
+
+  # list
+
+	@classmethod
+	def push(cls):
+		pass
+
+	@classmethod
+	def pop(cls):
+		pass
+
+	@classmethod
+	def reverse(cls):
+		pass
+
+	@classmethod
+	def unique(cls):
+		pass
+
+	@classmethod
+	def map(cls):
+		pass
+
+	@classmethod
+	def reduce(cls):
+		pass
+
+	@classmethod
+	def filter(cls):
+		pass
+
+	@classmethod
+	def names(cls):
+		pass
+
+	@classmethod
+	def values(cls):
+		pass
+
+
+  # math
+
+	@classmethod
+	def sin(cls, value: float):
 		return math.sin(value)
 
-	def cos(value: float):
+	@classmethod
+	def cos(cls, value: float):
 		return math.cos(value)
 
-	def tan(value: float):
+	@classmethod
+	def tan(cls, value: float):
 		return math.tan(value)
 
-	def sinh(value: float):
+	@classmethod
+	def sinh(cls, value: float):
 		return math.sinh(value)
 
-	def cosh(value: float):
+	@classmethod
+	def cosh(cls, value: float):
 		return math.cosh(value)
 
-	def tanh(value: float):
+	@classmethod
+	def tanh(cls, value: float):
 		return math.tanh(value)
 
-	def asin(value: float):
+	@classmethod
+	def asin(cls, value: float):
 		return math.asin(value)
 
-	def acos(value: float):
+	@classmethod
+	def acos(cls, value: float):
 		return math.acos(value)
 
-	def atan(value: float):
+	@classmethod
+	def atan(cls, value: float):
 		return math.atan(value)
 
-	def asinh(value: float):
+	@classmethod
+	def asinh(cls, value: float):
 		return math.asinh(value)
 
-	def acosh(value: float):
+	@classmethod
+	def acosh(cls, value: float):
 		return math.acosh(value)
 
-	def atanh(value: float):
+	@classmethod
+	def atanh(cls, value: float):
 		return math.atanh(value)
 
-	def round(value: float, dot: int = 0):
-		return round(value, dot)
+	@classmethod
+	def round(cls, value: float, digits: int = 0):
+		return round(value, digits)
 
-	def floor(value: float):
+	@classmethod
+	def floor(cls, value: float):
 		return math.floor(value)
 
-	def ceil(value: float):
+	@classmethod
+	def ceil(cls, value: float):
 		return math.ceil(value)
 
-	def log(value: float, base: float = None):
+	@classmethod
+	def log(cls, value: float, base: float = None):
 		return math.log(value) if base == None else math.log(value, base)
 
-	def factorial(value: float):
+	@classmethod
+	def factorial(cls, value: float):
 		return math.factorial(value)
 
-	def fibonacci(value: float, multiply: float = 1, shift: float = 0):
+	@classmethod
+	def fibonacci(cls, value: float, multiply: float = 1, shift: float = 0):
 		value = int(value)
 		if value <= 0:
 			return 0
@@ -5349,50 +7066,55 @@ class void:
 			result.append(b * multiply + shift)
 		return result
 
-	def golden_ratio(value: float, part: str = None):
-		const = 1.61803398874989484820
-		if part == 'short':
+	@classmethod
+	def gold(cls, value: float, component: str = None):
+		phi = 1.61803398874989484820
+		if component == 'short':
 			return {
 				'short': value,
-				'long': value * const,
-				'total': value * (1 + const)
+				'long': value * phi,
+				'total': value * (1 + phi)
 				}
-		elif part == 'long':
+		elif component == 'long':
 			return {
-				'short': value / const,
+				'short': value / phi,
 				'long': value,
-				'total': value * (1 + const) / const
+				'total': value * (1 + phi) / phi
 				}
-		else:
-			return {
-				'short': (2 - const) * value,
-				'long': (const - 1) * value,
-				'total': value
-				}
+		return {
+			'short': (2 - phi) * value,
+			'long': (phi - 1) * value,
+			'total': value
+			}
 
-	def abs(value: float):
+	@classmethod
+	def abs(cls, value: float):
 		return abs(value)
 
-	def min(value: list):
+	@classmethod
+	def min(cls, value: list):
 		return min(value)
 
-	def max(value: list):
+	@classmethod
+	def max(cls, value: list):
 		return max(value)
 
-	def avg(value: list):
-		if len(value) == 0:
-			return 0
-		return void.sum(value) / float(len(value))
-
-	def sum(value: list):
+	@classmethod
+	def sum(cls, value: list):
 		result = 0
 		for value in value:
 			if type(value) in [int, float]:
 				result += value
 		return result
 
-	def random(value = None, to = None):
-		print(value)
+	@classmethod
+	def avg(cls, value: list):
+		if len(value) == 0:
+			return 0
+		return cls.sum(value) / float(len(value))
+
+	@classmethod
+	def random(cls, value = None, to = None):
 		if value == None and to == None:
 			return random.random()
 		if value != None and to != None:
@@ -5415,1400 +7137,476 @@ class void:
 				return random.randint(0, value)
 			return random.uniform(0, float(value))
 
-	def random_seed(seed: str = None):
+	@classmethod
+	def random_seed(cls, seed = None):
 		if seed == None:
-			return void.get('app.seed')
-		void.set('app.seed', seed)
+			return cls.get('app.random.seed')
+		elif seed == '':
+			seed = cls.sha256(str(cls.time()) + cls.hash(64))
+		random.seed(seed)
+		cls.set('app.random.seed', seed)
 
-	def random_reseed():
-		seed = void.sha256(str(void.time()) + void.hash(40))
-		void.random_seed(seed)
 
-	# time
+  # time
 
-	def t(name: str = None):
-		void.timecheck(name)
-
-	def timecheck(name: str = None):
-		pass
-
-	def time(dot: int = 0):
-		result = time.time()
-		if dot == 0:
-			result = int(result)
-		elif dot > 0:
-			result = round(result, dot)
-		else:
-			result = round(result * (10 ** -dot))
-		return result
-
-	def timer(action, seconds: float = 1, name: str = None):
-		pass
-
-	def timer_remove(name: str):
-		pass
-
-	def timepast(time: float = None):
-		pass
-
-	def wait(seconds: float = 1):
-		time.sleep(seconds)
-
-	# crypto
-
-	def encrypt(data, key: str = None):
-		pass
-
-	def decrypt(data, key: str):
-		pass
-
-	def hash(length: str = 64, symbols: str = None):
-		chars = (string.ascii_letters + string.digits) if symbols == None else symbols
-		return ''.join(random.choices(chars, k=length))
-
-	def uuid():
-		pass
-
-	def md5(value: str):
-		return hashlib.md5(value)
-
-	def sha1(value: str):
-		pass
-
-	def sha256(value: str):
-		return '' + hashlib.sha256(value.encode()).hexdigest()
-
-	def sha512(value: str):
-		pass
-
-	def crc32(value: str):
-		pass
-
-	def base64_encode(data, charset: str = 'utf-8'):
-		if type(data) is not bool:
-			data = void.type_text(data).encode()
-		return base64.b64encode(data).decode(charset)
-
-	def base64_decode():
-		pass
-
-	def gzip_encode(value: str):
-		pass
-
-	def gzip_decode():
-		pass
-
-	def rsa_encode(value: str):
-		pass
-
-	def rsa_decode():
-		pass
-
-	def rsa_public():
-		pass
-
-	def rsa_private():
-		pass
-
-	def ssl_encode(value: str):
-		pass
-
-	def ssl_decode():
-		pass
-
-	def ssl_check():
-		pass
-
-	def bcrypt_encode(value: str):
-		pass
-
-	def bcrypt_check():
-		pass
-
-	# file
-
-	def file(path: str, data = None):
-		extension = void.path_extension(path).lower()
-		if data == None:
-			match extension:
-				case 'json':
-					return void.json_decode(void.file_read_text(path))
-				case 'void':
-					return void.void_decode(void.file_read_text(path))
-				case 'csv':
-					return void.csv_decode(void.file_read_text(path))
-				case 'yaml':
-					return void.yaml_decode(void.file_read_text(path))
-				case 'txt':
-					return void.file_read_text(path)
-				case _:
-					return void.file_read(path)
-		else:
-			match extension:
-				case 'json':
-					void.file_write(path, void.json_encode(data))
-				case 'void':
-					void.file_write(path, void.void_encode(data))
-				case 'csv':
-					void.file_write(path, void.csv_encode(data))
-				case 'yaml':
-					void.file_write(path, void.yaml_encode(data))
-				case 'txt':
-					if type(data) in [float, int]:
-						data = str(data)
-					elif type(data) is not str:
-						data = void.void_encode(data)
-					void.file_write(path, data)
-				case _:
-					if type(data) is str:
-						void.file_write(path, data)
-					elif type(data) in [bytes, bytearray, int, float]:
-						data = bytes(data)
-						void.file_write(path, data)
-					else:
-						void.file_write(path, void.void_encode(data))
-
-	def file_exists(path: str):
-		return os.path.isfile(path)
-
-	def file_read(path: str, start: int = None, length: int = None):
-		with open(path, 'rb') as file:
-			return file.read()
-
-	def file_read_text(path: str, encoding: str = 'utf-8'):
-		with open(path, 'r', encoding=encoding) as file:
-			return file.read()
-
-	def file_read_lines(path: str, encoding: str = 'utf-8', newline: str = '\n'):
-		with open(path, 'r', encoding=encoding) as file:
-			return file.read().split(newline)
-
-	def file_write(path: str, data = b''):
-		if type(data) is not bytes:
-			with open(path, 'w') as file:
-				file.write(str(data))
-		else:
-			with open(path, 'wb') as file:
-				file.write(data)
-
-	def file_append(path: str, data):
-		pass
-
-	def file_remove(path: str):
-		try:
-			os.remove(path)
-		except OSError:
-			pass
-
-	def file_move(path: str):
-		pass
-
-	def file_copy(path: str):
-		pass
-
-	def file_rename(path: str):
-		pass
-
-	def file_link(path: str):
-		pass
-
-	def file_link_exists(path: str):
-		pass
-
-	def file_info(path: str):
-		pass
-
-	def file_size(path: str):
-		pass
-
-	def file_permission(path: str):
-		pass
-
-	def file_time(path: str):
-		pass
-
-	def file_sha256(path: str):
-		try:
-			with open(path, 'rb') as file:
-				return hashlib.sha256(file.read()).hexdigest()
-		except Exception as e:
-			return None
-
-	def file_crc32(path: str):
-		pass
-
-	def file_base64(path: str):
-		pass
-
-	def file_zip(path: str):
-		pass
-
-	def file_zip_list(path: str):
-		pass
-
-	def file_zip_exists(path: str):
-		pass
-
-	def file_zip_read(path: str):
-		pass
-
-	def file_zip_remove(path: str):
-		pass
-
-	def file_unzip(path: str):
-		pass
-
-	def file_gzip(path: str):
-		pass	
-
-	def file_ungzip(path: str):
-		pass
-
-	def file_void(path: str, key: str = None):
-		pass
-
-	def file_unvoid(path: str, key: str = None):
-		pass
-
-	# dir
-
-	def dir_exists(path: str):
-		pass
-
-	def dir_create(path: str):
-		pass
-
-	def dir_copy(path: str):
-		pass
-
-	def dir_move(path: str):
-		pass
-
-	def dir_rename(path: str):
-		pass
-
-	def dir_remove(path: str):
-		pass
-
-	def dir_list(path: str):
-		pass
-
-	def dir_clear(path: str):
-		pass
-
-	def dir_info(path: str):
-		pass
-
-	def dir_size(path: str):
-		pass
-
-	def dir_permission(path: str):
-		pass
-
-	def dir_time(path: str):
-		pass
-
-	def dir_zip(path: str):
-		pass
-
-	def dir_void(path: str):
-		pass
-
-	def drive_list():
-		result = []
-		for drive in psutil.disk_partitions():
-			result.append({
-				'method': drive[0],
-				'path': drive[1],
-				'type': drive[2]
-				})
-		return result
-
-	def drive_name(path: str):
-		pass
-
-	def drive_size(path: str):
-		return psutil.disk_usage(path)[0]
-
-	def drive_used(path: str):
-		return psutil.disk_usage(path)[1]
-
-	def drive_free(path: str):
-		return psutil.disk_usage(path)[2]
-
-	def drive_info(path: str):
-		pass
-
-	def drive_mount(path: str):
-		pass
-
-	def drive_unmount(path: str):
-		pass
-
-	def drive_create(path: str):
-		pass
-
-	def drive_resize(path: str):
-		pass
-
-	def drive_format(path: str):
-		pass
-
-	def drive_remove(path: str):
-		pass
-
-	def path_drive(path: str):
-		if void.os('windows'):
-			part = path.split(':')
-			if len(part) > 1:
-				return part[0].lower()
-
-	def path_dir(path: str):
-		return os.path.dirname(path)
-
-	def path_file(path: str):
-		return os.path.basename(path)
-
-	def path_name(path: str):
-		basename = os.path.basename(path)
-		dot = basename.rfind('.')
-		return basename[0:dot] if dot > 0 else basename
-
-	def path_extension(path: str):
-		index = path.rfind('.')
-		return path[index + 1:] if index >= 0 and len(path) > (index + 1) else ''
-
-	def path_strip(path: str, strip: str = None):
-		if strip != None:
-			return path.rstrip('.' + strip)
-		index = path.rfind('.')
-		if index != -1:
-			return path[:index]
-		return path
-
-	# format
-
-	def void_encode(data, indent = '\t', level: int = 0, base64:bool = False, base85:bool = False, gzip:bool = False):
-		if type(indent) is int:
-			indent = ' ' * indent
-		data_binary = {}
-		result = void.void_encode_iterate(data, indent, level, base64, base85, gzip, False, data_binary)
-		if len(data_binary) > 0:
-			result = b'\xef\xbb\xbf' + result.encode()
-			for unique in list(data_binary):
-				result = result.replace(unique, data_binary[unique])
-				del data_binary[unique]
-		return result
-
-	def void_encode_iterate(data, indent: str = '\t', level: int = 0, base64: bool = False, base85: bool = False, gzip: bool = False, inlist: bool = False, data_binary: dict = {}):
-		prefix = indent * (level if not inlist else level - 1)
-		match data:
-			case bool():
-				return prefix + 'true' if data else prefix + 'false'
-			case int() | float():
-				return prefix + f'{data:,}'.replace(',', ' ')
-			case str():
-				if data == '':
-					result = '""'
-				elif data == '"':
-					result = '"'
-				elif data == '[':
-					result = '"['
-				elif data == ' ':
-					result = '" "'
-				else:
-					if data in ['true', 'false', 'none']:
-						result = '"' + data
-					else:
-						escape = '\r' in data or '\n' in data or '\t' in data
-						if escape:
-							result = data.replace('\\r', '\\\\r').replace('\\n', '\\\\n').replace('\\t', '\\\\t').replace('\r', '\\r').replace('\n', '\\n').replace('\t', '\\t')
-						else:
-							result = data
-						if data[0] == '"' or escape:
-							result = '"' + result
-							if result[-1] == '"':
-								result += '"'
-				return prefix + result
-			case list():
-				if len(data) == 0:
-					return prefix + '['
-				if inlist:
-					result = prefix + '[\n'
-				else:
-					result = ''
-				for value in data:
-					result += void.void_encode_iterate(value, indent=indent, level=level+1, base64=base64, base85=base85, gzip=gzip, inlist=True, data_binary=data_binary) + '\n'
-				return result.rstrip('\n')
-			case dict():
-				if len(data) == 0:
-					return prefix + '['
-				if inlist:
-					result = prefix + '[\n'
-					prefix += '\t'
-				else:
-					result = ''
-				for name in data:
-					value = data[name]
-					result += prefix + void.void_encode_iterate(str(name)) + '\n' + void.void_encode_iterate(value, indent=indent, level=level+1, base64=base64, base85=base85, gzip=gzip, data_binary=data_binary) + '\n'
-				return result.rstrip('\n')
-			case bytes():
-				if gzip:
-					data = gz.compress(data, mtime=0)
-				if base64:
-					return f'{prefix}*\n{prefix}\t' + b64.b64encode(data).decode()
-				elif base85:
-					return f'{prefix}*\n{prefix}\t' + b64.b85encode(data).decode()
-				unique = void.hash(64)
-				data_binary[unique.encode()] = data
-				return f'{prefix}*\n{prefix}\t{len(data)}\n{prefix}\t{unique}'
-			case _:
-				return prefix + 'none'
-
-	def void_decode(data, gzip:bool = True):
-		description = []
-		i = 0
-		line = b''
-		indent = 0
-
-		if type(data) is str:
-			data = data.encode()
-		elif type(data) is bytes:
-			if data.startswith(b'\xef\xbb\xbf'):
-				data = data[3:]
-		else:
-			return
-		data += b'\n'
-		while i < len(data):
-			c = data[i:i+1]
-			i += 1
-			if c == b'\n':
-				indent = 0
-				for b in line:
-					if b == 9:
-						indent += 1
-					else:
-						break
-				value = line[indent:].decode('utf-8').rstrip('\r')
-				line = b''
-				if value == '*':
-					binary_line = b''
-					i += indent + 1
-					while data[i:i+1] != b'\n':
-						binary_line += data[i:i+1]
-						i += 1
-					i += 1
-					binary_line = binary_line.rstrip(b'\r')
-					if data[i:i+indent+1] != b'\t' * (indent + 1):
-						try:
-							if re.fullmatch(r'^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$', binary_line.decode('ascii')):
-								value = b64.b64decode(binary_line, validate=True)
-							else:
-								raise Exception()
-						except Exception:
-							try:
-								value = b64.b85decode(binary_line)
-							except Exception:
-								value = None
-						if gzip and value.startswith(b'\x1f\x8b'):
-							value = gz.decompress(value)
-						try:
-							value = value.decode('utf-8')
-						except:
-							pass
-					else:
-						i += indent + 1
-						binary_length = int(binary_line.decode())
-						value = data[i:i+binary_length]
-						i += binary_length
-						if gzip and value.startswith(b'\x1f\x8b'):
-							value = gz.decompress(value)
-				else:
-					value = value.strip()
-					if len(value) == 0:
-						continue
-					match value:
-						case 'none': value = None
-						case 'true': value = True
-						case 'false': value = False
-						case '[' | '[]': value = []
-						case '""' | '': value = ''
-						case '"': value = '"'
-						case '" "': value = ' '
-						case _:
-							if value[0] == '"':
-								value = value[1:]
-								if value.endswith('"'):
-									value = value[:-1]
-								value = value.replace('\\\\r', '\x01').replace('\\\\n', '\x02').replace('\\\\t', '\x03').replace('\\r', '\r').replace('\\n', '\n').replace('\\t', '\t').replace('\x01', '\\r').replace('\x02', '\\n').replace('\x03', '\\t')
-							else:
-								number = value.replace(' ', '').replace('_', '')
-								try:
-									value = int(number)
-								except:
-									try:
-										value = float(number)
-									except:
-										pass
-				description.append((indent, value))
-			else:
-				line += c
-
-		def parse(description: list, level: int = 0):
-			result = None
-			index = 0
-			while index < len(description):
-				indent, value = description[index]
-				if indent == level:
-					if result == None:
-						result = value
-					elif type(result) is list:
-						result.append(value)
-					elif type(result) in [str, int, float, bool]:
-						result = [result, value]
-					elif type(result) is dict:
-						result[str(value)] = None
-				elif indent == level + 1:
-					if type(result) is list:
-						if not result:
-							result = parse(description[index:], level + 1)
-						else:
-							prev = result[-1]
-							if type(prev) is list:  
-								result[-1] = parse(description[index:], level + 1)
-							else:
-								result[-1] = {str(result[-1]):parse(description[index:], level + 1)}
-						while index < len(description) and description[index][0] > level:
-							index += 1
-						continue
-					elif type(result) in [str, int, float, bool]:
-						result = {str(result):parse(description[index:], level + 1)}
-						while index < len(description) and description[index][0] > level:
-							index += 1
-						continue
-					elif type(result) is dict:
-						key = description[index-1][1]
-						result[str(key)] = parse(description[index:], level + 1)
-						while index < len(description) and description[index][0] > level:
-							index += 1
-						continue
-				elif indent < level:
-					return result
-				index += 1
-			return result
-
-		return parse(description)
-
-	def json_encode(data, indent: str = '\t', separators: tuple = None):
-		try:
-			if separators != None:
-				if indent not in ['', None]: 
-					separators = (', ', ': ')
-				else:
-					separators = (',', ':')
-			return json.dumps(data, ensure_ascii=False, indent=indent, separators=separators)
-		except:
-			return ''
-
-	def json_decode(text: str):
-		try:
-			return json.loads(text)
-		except:
-			return None
-
-	def csv_encode(data):
-		pass
-
-	def csv_decode(text: str):
-		pass
-
-	def yaml_encode(text: str):
-		pass
-
-	def yaml_decode(text: str):
-		pass
-
-	def ini_encode(text: str):
-		pass
-
-	def ini_decode(text: str):
-		pass
-
-	def html_encode(text: str):
-		pass
-
-	def html_decode(text: str):
-		pass
-
-	def html_markdown(text: str):
-		pass
-
-	def xml_encode(text: str):
-		pass
-
-	def xml_decode(text: str):
-		pass
-
-	def css_encode(text: str):
-		pass
-
-	def css_decode(text: str):
-		pass
-
-	# communication
-
-	def request():
-		pass
-
-	def request_post():
-		pass
-
-	def request_put():
-		pass
-
-	def request_delete():
-		pass
-
-	def request_head():
-		pass
-
-	def cookie(name: str, value = None):
-		pass
-
-	def cookie_remove(name: str):
-		pass
-
-	def cloud():
-		pass
-
-	def cloud_file():
-		pass
-
-	def cloud_web():
-		pass
-
-	def cloud_api():
-		pass
-
-	def cloud_socket():
-		pass
-
-	def cloud_mail():
-		pass	
-
-	def cloud_proxy():
-		pass
-
-	# bot
-
-	def bot_telegram():
-		pass
-
-	def bot_discord():
-		pass
-
-	def bot_wechat():
-		pass
-
-	# social
-
-	def social():
-		pass
-
-	# notification
-
-	def notification(token: str, text: str, badge = None, image = None):
-		pass
-
-	def mail(address_from: str, address_to: str, text: str, subject: str = None, attach = None):
-		pass
-
-	def call():
-		pass
-
-	def sms():
-		pass
-
-	# sql
-
-	def sql(query, data = None):
-		pass
-
-	# device
-
-	def device():
-		cpu_used = psutil.getloadavg()
-		memory = psutil.virtual_memory()
-		swap = psutil.swap_memory()
-		network = {
-			'connection': [],
-			'interface': []
-		}
-		temperature = None
-		fan = None
-		battery = None
-		if hasattr(psutil, 'net_connections'):
-			for connection in psutil.net_connections():
-				network['connection'].append({
-					'socket': connection[0],
-					'family': connection[1],
-					'type': connection[2],
-					'local': {
-						'ip': connection[3][0] if len(connection[3]) > 0 else None,
-						'port': connection[3][1] if len(connection[3]) > 1 else None
-					},
-					'remote': {
-						'ip': connection[4][0] if len(connection[4]) > 0 else None,
-						'port': connection[4][1] if len(connection[4]) > 1 else None
-					},
-					'status': connection[5],
-					'pid': connection[6]
-					})
-		if hasattr(psutil, 'net_if_addrs'):
-			interfaces = psutil.net_if_addrs()
-			for name in interfaces:
-				protocol = []
-				for interface in interfaces[name]:
-					protocol.append({
-						'family': interface[0],
-						'address': interface[1],
-						'mask': interface[2],
-						'broadcast': interface[3],
-						'ptp': interface[4]
-						})
-				network['interface'].append({
-					'method': name,
-					'list': protocol
-					})
-		if hasattr(psutil, 'sensors_temperatures'):
-			sensor = psutil.sensors_temperatures()
-			if len(sensor) > 0:
-				temperature = []
-				for sensor in sensor:
-					temperature.append({
-						'method': sensor[0],
-						'current': sensor[1],
-						'high': sensor[2],
-						'critical': sensor[3]
-						})
-		if hasattr(psutil, 'sensors_battery'):
-			sensor = psutil.sensors_fans()
-			for name in sensor:
-				fan.append({
-					'method': name,
-					'current': sensor[name]
-					})
-		if hasattr(psutil, 'sensors_battery'):
-			sensor = psutil.sensors_battery()
-			if sensor != None:
-				battery = {
-					'percent': sensor[0],
-					'time': sensor[1],
-					'power': sensor[2]
-				}
-		return {
-			'cpu': {
-				'method': platform.processor(),
-				'count': psutil.cpu_count(logical=False),
-				'threads': psutil.cpu_count(logical=True),
-				'frequency': psutil.cpu_freq()[0],
-				'used': {
-					'current': psutil.cpu_percent(0),
-					'1m': cpu_used[0],
-					'5m': cpu_used[1],
-					'15m': cpu_used[2]
-				}
-			},
-			'memory': {
-				'size': memory[0],
-				'used': memory[3],
-				'free': memory[1]
-			},
-			'swap': {
-				'size': swap[0],
-				'used': swap[1],
-				'free': swap[2]
-			},
-			'network': network,
-			'time': {
-				'started': psutil.boot_time(),
-				'passed': time.time() - psutil.boot_time()
-			},
-			'sensor': {
-				'temperature': temperature,
-				'fan': fan,
-				'battery': battery
-			},
-			'screen': {
-				'size': '',
-				'rate': '',
-				'orientation': '',
-				'dpi': '',
-				'darkmode': '',
-				'touchscreen': ''
-			}
-		}
-
-	def cpu(seconds: float = 0):
-		return psutil.cpu_percent(seconds)
-
-	def fps():
-		pass
-
-	def vsync():
-		pass
-
-	def resolution():
-		pass
-
-	def orientation(name = None):
-		pass
-
-	def darkmode():
-		pass
-
-	def pixel():
-		pass
-
-	def textmode_character():
-		pass
-
-	def textmode_cursor():
-		pass
-
-	def textmode_clear():
-		pass
-
-	def flashlight():
-		pass
-
-	def location():
-		pass
-
-	def gyroscope():
-		pass
-
-	def accelerometer():
-		pass
-
-	def compass():
-		pass
-
-	def proximity():
-		pass
-
-	def brightness():
-		pass
-
-	def calendar():
-		pass
-
-	def gallery():
-		pass
-
-	def contacts():
-		pass
-
-	# clipboard
-
-	def clipboard(value = None):
-		pass
-
-	def clipboard_remove():
-		pass
-
-	# ai
-
-	def translate():
-		pass
-
-	def spellcheck():
-		pass
-
-	def chat():
-		pass
-
-	def image():
-		pass
-
-	def image_size():
-		pass
-
-	def image_square():
-		pass
-
-	def image_crop():
+	@classmethod
+	def time(cls):
 		pass
 
-	def image_rotate():
+	@classmethod
+	def timer(cls):
 		pass
 
-	def image_text():
+	@classmethod
+	def timer_remove(cls):
 		pass
 
-	def image_image():
+	@classmethod
+	def wait(cls):
 		pass
 
-	def image_grayscale():
+	@classmethod
+	def stopwatch(cls):
 		pass
 
-	def image_tint():
+	@classmethod
+	def date(cls):
 		pass
 
-	def image_flip_h():
-		pass
-
-	def image_flip_v():
-		pass
-
-	def image_upscale():
-		pass
-
-	def image_draw():
-		pass
-
-	def image_style():
-		pass
-
-	def image_colorize():
-		pass
-
-	def image_recognize():
-		pass
-
-	def image_face():
-		pass
-
-	def image_effect():
-		pass
-
-	def video():
-		pass
-
-	def video_crop():
-		pass
-
-	def video_text():
-		pass
 
-	def video_image():
-		pass
+  # crypto
 
-	def video_sound():
+	@classmethod
+	def encrypt(cls):
 		pass
 
-	def video_video():
+	@classmethod
+	def decrypt(cls):
 		pass
 
-	def video_trim():
+	@classmethod
+	def bcrypt_encode(cls):
 		pass
 
-	def video_size():
+	@classmethod
+	def bcrypt_check(cls):
 		pass
 
-	def video_upscale():
+	@classmethod
+	def hash(cls):
 		pass
 
-	def video_speed():
+	@classmethod
+	def uuid(cls):
 		pass
 
-	def video_volume():
+	@classmethod
+	def sha1(cls):
 		pass
 
-	def video_mute():
+	@classmethod
+	def sha256(cls):
 		pass
 
-	def video_face():
+	@classmethod
+	def sha512(cls):
 		pass
 
-	def video_effect():
+	@classmethod
+	def crc32(cls):
 		pass
 
-	def sound():
+	@classmethod
+	def base64_encode(cls):
 		pass
 
-	def sound_trim():
+	@classmethod
+	def base64_decode(cls):
 		pass
 
-	def sound_speed():
+	@classmethod
+	def gzip_encode(cls):
 		pass
 
-	def sound_volume():
+	@classmethod
+	def gzip_decode(cls):
 		pass
 
-	def sound_effect():
+	@classmethod
+	def lzma_encode(cls):
 		pass
 
-	def music():
+	@classmethod
+	def lzma_decode(cls):
 		pass
 
-	def voice(text: str = None, voice: str = None):
+	@classmethod
+	def rsa_encode(cls):
 		pass
 
-	def voice_list():
+	@classmethod
+	def rsa_decode(cls):
 		pass
 
-	def voice_recognize():
+	@classmethod
+	def ecdhe_encode(cls):
 		pass
 
-	def voice_stop():
+	@classmethod
+	def ecdhe_decode(cls):
 		pass
 
-	def voice_capture():
+	@classmethod
+	def barcode_encode(cls):
 		pass
 
-	def motion():
+	@classmethod
+	def barcode_decode(cls):
 		pass
 
-	def motion_capture():
-		pass
 
-	# google
+  # file
 
-	def google_voice():
+	@classmethod
+	def file(cls):
 		pass
 
-	def google_voice_list():
+	@classmethod
+	def file_exists(cls):
 		pass
 
-	def google_voice_recognize():
+	@classmethod
+	def file_remove(cls):
 		pass
 
-	def google_translate():
+	@classmethod
+	def file_copy(cls):
 		pass
 
-	# deepl
-
-	def deepl_translate():
+	@classmethod
+	def file_move(cls):
 		pass
-
-	# openai
 
-	def openai_chat():
+	@classmethod
+	def file_link(cls):
 		pass
 
-	def openai_image():
+	@classmethod
+	def file_info(cls):
 		pass
 
-	def openai_video():
+	@classmethod
+	def file_sha256(cls):
 		pass
 
-	def openai_translate():
+	@classmethod
+	def file_sha512(cls):
 		pass
 
-	# deepseek
-
-	def deepseek_chat():
+	@classmethod
+	def file_crc32(cls):
 		pass
 
-	def deepseek_translate():
+	@classmethod
+	def file_base64(cls):
 		pass
 
-	# claude
-
-	def claude_chat():
+	@classmethod
+	def file_zip(cls):
 		pass
-
-	# stablediffusion
 
-	def stablediffusion_image(text: str, size = None):
+	@classmethod
+	def file_gzip(cls):
 		pass
 
-	def stablediffusion_upscale():
+	@classmethod
+	def file_void(cls):
 		pass
 
-	def stablediffusion_draw():
+	@classmethod
+	def file_extract(cls):
 		pass
 
-	def stablediffusion_background():
+	@classmethod
+	def dir(cls):
 		pass
 
-	def stablediffusion_video(text: str):
+	@classmethod
+	def dir_create(cls):
 		pass
 
-	# ollama
-
-	def ollama_chat(text: str):
+	@classmethod
+	def dir_exists(cls):
 		pass
 
-	# ui
-
-	def ui():
+	@classmethod
+	def dir_remove(cls):
 		pass
 
-	def bg():
+	@classmethod
+	def dir_copy(cls):
 		pass
 
-	def show():
+	@classmethod
+	def dir_move(cls):
 		pass
 
-	def hide():
+	@classmethod
+	def dir_clear(cls):
 		pass
 
-	def enable():
+	@classmethod
+	def dir_info(cls):
 		pass
 
-	def disable():
+	@classmethod
+	def dir_zip(cls):
 		pass
 
-	def focus():
+	@classmethod
+	def dir_void(cls):
 		pass
 
-	def unfocus():
+	@classmethod
+	def drive(cls):
 		pass
 
-	def scale():
+	@classmethod
+	def path(cls):
 		pass
 
-	def ui_text(renderer: None):
-		if renderer == None:
-			renderer = void.get('ui.renderer')
-		match renderer:
-			case 'web':
-				pass
-			case 'cli':
-				pass
-			case 'app':
-				pass
 
-	def ui_image():
-		pass
+  # format
 
-	def ui_video():
+	@classmethod
+	def void_encode(cls):
 		pass
 
-	def ui_sound():
+	@classmethod
+	def void_decode(cls):
 		pass
 
-	def ui_camera():
+	@classmethod
+	def json_encode(cls):
 		pass
 
-	def ui_draw():
+	@classmethod
+	def json_decode(cls):
 		pass
 
-	def ui_header():
+	@classmethod
+	def yaml_encode(cls):
 		pass
 
-	def ui_footer():
+	@classmethod
+	def yaml_decode(cls):
 		pass
 
-	def ui_wait():
-		pass
 
-	def ui_gallery():
-		pass
+  # cloud
 
-	def ui_button():
+	@classmethod
+	def cloud(cls):
 		pass
 
-	def ui_select():
+	@classmethod
+	def request(cls):
 		pass
 
-	def ui_switch():
+	@classmethod
+	def download(cls):
 		pass
 
-	def ui_progress():
+	@classmethod
+	def cookie(cls):
 		pass
 
-	def ui_slider():
+	@classmethod
+	def social(cls):
 		pass
 
-	def ui_edit():
+	@classmethod
+	def notify(cls):
 		pass
 
-	def ui_divider():
-		pass
 
-	def ui_split_h():
-		pass
+  # device
 
-	def ui_split_v():
+	@classmethod
+	def device(cls):
 		pass
 
-	def ui_list():
+	@classmethod
+	def cpu(cls):
 		pass
 
-	def ui_tile():
+	@classmethod
+	def gpu(cls):
 		pass
 
-	def ui_color():
+	@classmethod
+	def memory(cls):
 		pass
 
-	def ui_date():
+	@classmethod
+	def battery(cls):
 		pass
 
-	def ui_menu():
+	@classmethod
+	def fps(cls):
 		pass
 
-	def ui_menu_context():
+	@classmethod
+	def vsync(cls):
 		pass
 
-	def window():
+	@classmethod
+	def resolution(cls):
 		pass
 
-	def window_list():
+	@classmethod
+	def orientation(cls):
 		pass
 
-	def title():
+	@classmethod
+	def dark(cls):
 		pass
 
-	def icon():
+	@classmethod
+	def pixel(cls):
 		pass
 
-	def size():
+	@classmethod
+	def symbol(cls):
 		pass
 
-	def size_max():
+	@classmethod
+	def cursor(cls):
 		pass
 
-	def size_min():
+	@classmethod
+	def clear(cls):
 		pass
 
-	def position():
+	@classmethod
+	def flashlight(cls):
 		pass
 
-	def direction():
+	@classmethod
+	def location(cls):
 		pass
 
-	def attention():
+	@classmethod
+	def gyroscope(cls):
 		pass
 
-	def top():
+	@classmethod
+	def accelerometer(cls):
 		pass
 
-	def nofocus():
+	@classmethod
+	def compass(cls):
 		pass
 
-	def noresize():
+	@classmethod
+	def proximity(cls):
 		pass
 
-	def center():
+	@classmethod
+	def brightness(cls):
 		pass
 
-	def fullscreen():
+	@classmethod
+	def volume(cls):
 		pass
 
-	def maximize():
+	@classmethod
+	def calendar(cls):
 		pass
 
-	def minimize():
+	@classmethod
+	def gallery(cls):
 		pass
 
-	def exclusive():
+	@classmethod
+	def contacts(cls):
 		pass
 
-	def border():
+	@classmethod
+	def call(cls):
 		pass
 
-	def filedrop():
+	@classmethod
+	def sms(cls):
 		pass
 
-	def dialog():
+	@classmethod
+	def net(cls):
 		pass
 
-	def dialog_file():
+	@classmethod
+	def wifi(cls):
 		pass
 
-	def effect():
+	@classmethod
+	def bluetooth(cls):
 		pass
 
-	def effect_remove():
+	@classmethod
+	def cellular(cls):
 		pass
-
-	#input
 
-	def tap():
+	@classmethod
+	def stream(cls):
 		pass
 
-	def key():
+	@classmethod
+	def keyboard(cls):
 		pass
 
-	def key_remove():
+	@classmethod
+	def mouse(cls):
 		pass
 
-	def key_enable():
+	@classmethod
+	def gamepad(cls):
 		pass
 
-	def key_disable():
+	@classmethod
+	def tap(cls):
 		pass
 
-	def key_press():
+	@classmethod
+	def key(cls):
 		pass
 
-	def keyboard():
-		pass
 
-	def mouse():
-		pass
+  # content
 
-	def mouse_lock():
+	@classmethod
+	def image(cls):
 		pass
 
-	def mouse_position():
+	@classmethod
+	def video(cls):
 		pass
 
-	def mouse_shape():
+	@classmethod
+	def sound(cls):
 		pass
 
-	def gamepad():
+	@classmethod
+	def model(cls):
 		pass
 
-	def gamepad_vibrate():
+	@classmethod
+	def book(cls):
 		pass
-
-	# game
 
-	def game():
+	@classmethod
+	def game(cls):
 		pass
-
-	# helper
-
-	def module(name: str):
-		if name not in void.modules or void.modules[name] == None:
-			void.modules[name] = importlib.import_module(name)
-		return void.modules[name]
-
-	# run
 
-	def run():
-		void.t('run')
-		arguments = sys.argv[1:]
-		void.set('app.name', sys.argv[0])
-		void.set('app.path', os.getcwd())
-		void.set('app.argument', arguments)
-		match platform.system():
-			case 'Windows':
-				void.set('app.type', 'windows')
-			case 'Linux':
-				void.set('app.type', 'linux')
-			case 'Darwin':
-				void.set('app.type', 'mac')
-			case _:
-				void.set('unknown')
-		void.set('app.type', arguments)
-		void.random_reseed()
-		result = None
-		if len(arguments) > 0:
-			text = arguments[0]
-			if text in void.data['doc'] or text in void.data['alias'] or text in void.data['action']:
-				result = void.action([arguments])
-			elif void.path_extension(text) == 'py':
-				text = void.file_read_text(text)
-				void.code(text)
-			else:
-				if void.path_extension(text) in ['json', 'void']:
-					action = void.file(text)
-				else:
-					action = void.json_decode(text.replace("'", '"'))
-				if action != None and len(action) > 0:
-					if type(action) in [str, list]:
-						void.action(action)
-					elif type(action) is dict:
-						void.data = void.merge(void.data, action)
-						if 'run' in void.data and type(void.data['run']) is list:
-							void.action(void.data['run'])
-		if result not in ['', None]:
-			void.print(result)
 
 if __name__ == '__main__':
-	void.run()
+	VOIDlang.run()
