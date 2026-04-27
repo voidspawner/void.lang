@@ -245,41 +245,45 @@ print(void.decrypt(encrypted['text'], encrypted['key']))
 ## How to Use
 
 1. Download **V O I D lang**
-2. Create your first app in **``run.void``** · **``run.json``** or other JSON file
+2. Create your first app in **``app.void``**・**``app.json``**・**``app.zip``**
 3. Launch app with **V O I D lang**
  
 ```console
 python void.py app.void
 python void.py app.json
-```
-
-**Alternative**
-
-```console
-python void.py app.py
-```
-```console
-python void.py . Hi World :D
-```
-```console
-python void.py cloud /path/to/share
+python void.py app.zip
 ```
 
 > [!TIP]
-> **``Linux``・``macOS``**: Add alias to **``~/.bashrc``** ・ **``~/.zshrc``** ・ **``~/.bash_profile``** (macOS)
-> ```console
-> alias void="python /path/to/void.py"
+> Create an app in **``run.void``**・**``run.json``** ・**``run.zip``** for autorun
 > ```
-> 
-> **``Windows``**: Use alias in command line
+> python void.py
+> ```
+
+> [!TIP]
+> Type alias in the **``Windows``** command line
 > ```console
 > doskey void=python /path/to/void.py
 > ```
+>
+> Add alias in **``~/.bashrc``** (Linux)・**``~/.bash_profile``** (macOS)・**``~/.zshrc``** (macOS)
 > ```console
-> void app.json
+> alias void="python /path/to/void.py"
 > ```
-> 
-> **``Swift``・``Kotlin``・``C++``**: Embed the **V O I D app (vapp)** in the source code and compile it into an executable
+> ```console
+> void app.void
+> ```
+
+> [!TIP]
+> Compile **``Python``**・**``JavaScript``**・**``Swift``**・**``Kotlin``**・**``C++``** file containing your code into the exacutable
+> ```console
+> pip install pyinstaller
+> pyinstaller --onefile void.py
+> ```
+> ```console
+> npm install -g pkg
+> pkg void.js
+> ```
 > ```console
 > swiftc void.swift
 > ```
@@ -290,42 +294,17 @@ python void.py cloud /path/to/share
 > clang++ void.cpp -o void.exe
 > ```
 
-## How to Use Game Engine
-
-1. Download **V O I D spawner** game
-2. Create your first game in **``run.void``** · **``run.json``** file
-3. Copy the **``void.exe``** file to the same directory as **``run.void``** · **``run.json``** file
-4. Sell your game or share with friends
-
-> [!NOTE]
-> Run with game engine
+> [!TIP]
+> Convert your **app**・**game** to various platforms
 > ```console
-> void.exe game.void
-> void.exe game.json
-> ```
->
-> The archive contains **``run.void``** · **``run.json``** and all game files
-> ```console
-> void.exe game.zip
-> ```
->
-> The execution directory contains **``run.void``** · **``run.json``** · **``run.zip``** file
-> ```console
-> void.exe
-> ```
->
-> **Export** your game to various platforms
-> ```console
+> void.exe convert app.void app.exe
 > void.exe convert game.void game.exe
 > ```
 
-**Alternative**
-
-1. Download **V O I D lang**
-2. Import **``void.gd``**・**``void.cpp``** into the **Godot**・**Unreal Engine**
-3. Create your first game in **``run.void``** · **``run.json``** file
-4. Export the game in the engine itself to the available platforms
-5. Sell your game or share with friends
+> [!TIP]
+> Import **``void.py``**・**``void.js``**・**``void.swift``**・**``void.kt``** into the project to create an app
+>
+> Import **``void.gd``**・**``void.cpp``** into the **Godot**・**Unreal Engine** project to create a game
 
 ## Actions
 
