@@ -1068,7 +1068,7 @@ This is an AI that makes working with data easier and improves communication.
 > 
 > **``Speech Recognition``**
 > ```
-> [recognize
+> recognize
 > [recognize talk.mp3
 > [recognize.speech video.mp4
 > [recognize.voice video.mp4
