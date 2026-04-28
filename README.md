@@ -131,17 +131,13 @@ text
 <img width="441" height="1">
 
 ```
-[. web server on port 80
-[cloud '<h1>Hi World 😄</h1>
+[[cloud '<h1>Hi World 😄</h1>
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[
-  [".", "web", "server", "on", "port", 80],
-  ["cloud", "<h1>Hi World 😄</h1>"]
-]
+[["cloud", "<h1>Hi World 😄</h1>"]]
 ```
 </td></tr></table>
 
@@ -150,17 +146,13 @@ text
 <img width="441" height="1">
 
 ```
-[. shared folder on port 80
-[cloud /path/to/share
+[[cloud /path/to/share
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[
-  [".", "shared", "folder", "on", "port", 80],
-  ["cloud", "/path/to/share"]
-]
+[["cloud", "/path/to/share"]]
 ```
 </td></tr></table>
 
@@ -221,17 +213,13 @@ upper
 <img width="441" height="1">
 
 ```
-[. native python code
-[code 'for i in range(10):print(i)
+[[code 'print("native python code")\nfor i in range(10):print(i)
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[
-  [".", "native", "python", "code"],
-  ["code", "for i in range(10):print(i)"]
-]
+[["code", "print("native python code")\nfor i in range(10):print(i)"]]
 ```
 </td></tr></table>
 
