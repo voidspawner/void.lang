@@ -556,11 +556,11 @@ V O I D format
           [1 2 3
       snake
         [1 2 3
-          1
-          2
+          text 1
+          text 2
           ]
-          1
-          2
+          text 1
+          text 2
           ] 4 5
       empty
         full
@@ -762,11 +762,11 @@ V O I D format
           "short": [1,2,3]
         },
         "snake": [1, 2, 3, [
-          1,
-          2
+          "text 1",
+          "text 2"
         ], [
-          1,
-          2
+          "text 1",
+          text 2"
         ], 4, 5],
         "empty": {
           "full": [],
