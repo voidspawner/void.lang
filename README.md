@@ -1102,7 +1102,7 @@ This is a social network that lets you communicate safely through an **AI charac
 This is an Operating System that uses **V O I D lang** to run and create games, apps and content.
 
 ## V O I D tech
-These are modular devices controlled by **[V O I D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
+These are modular devices controlled by **[V O I D os](#v-o-i-d-os)** · **[V O I D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
 
 ## V O I D ideology
 This is an ideology of creating compact production systems to meet individual everyday needs.
