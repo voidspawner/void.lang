@@ -1096,7 +1096,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV
 **⌜ V O I D game ⌟** is a game that creates an **infinite** number of games, apps and content.
 
 ## V O I D social
-**⌜ V O I D social ⌟** is a social network that lets you communicate safely through an AI character and create an infinite number of games, apps, and content.
+**⌜ V O I D social ⌟** is a social network that lets you communicate safely through an **AI character** and create games, apps, and content.
 
 ## V O I D os
 **⌜ V O I D os ⌟** is an Operating System that uses **V O I D lang** to run and create games, apps and content.
