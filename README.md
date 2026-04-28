@@ -448,7 +448,7 @@ python void.py app.zip
 | **``date``**<br>Format or parse date-related information | &nbsp; |
 
 ## V O I D format
-**⌜ V O I D format ⌟** is the data format that inherits the best features of [**JSON**](https://en.wikipedia.org/wiki/JSON), [**YAML**](https://en.wikipedia.org/wiki/YAML), [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) and [**plain text**](https://en.wikipedia.org/wiki/Plain_text) formats. Makes it easier to write and read data, both by human and by program. The format simplifies data creation by removing the use of unnecessary quotation marks, brackets, colons, commas and other symbols. It is possible to combine **text** and **binary** data.
+This is a data format that inherits the best features of [**JSON**](https://en.wikipedia.org/wiki/JSON), [**YAML**](https://en.wikipedia.org/wiki/YAML), [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) and [**plain text**](https://en.wikipedia.org/wiki/Plain_text) formats. Makes it easier to write and read data, both by human and by program. The format simplifies data creation by removing the use of unnecessary quotation marks, brackets, colons, commas and other symbols. It is possible to combine **text** and **binary** data.
 
 <table>
 <tr>
@@ -907,7 +907,7 @@ V O I D format
 > ```
 
 ## V O I D db
-A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV``** files for storage directly. Data is **cached**, **indexed** and **saved** automatically. **Easy access** to data without the need to create complex constructs.
+This is a database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV``** files for storage directly. Data is **cached**, **indexed** and **saved** automatically. **Easy access** to data without the need to create complex constructs.
 
 > **``data.json``**
 > ```json
@@ -955,7 +955,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV
 >```
 
 ## V O I D ai
-**[Artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence)** that makes it easier to work with data.
+This is an AI that makes working with data easier and improves communication.
 
 > **``Characters``**
 > ```
@@ -1093,28 +1093,28 @@ A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV
 > ```
 
 ## V O I D game
-**⌜ V O I D game ⌟** is a game that creates an **infinite** number of games, apps and content.
+This is a game that creates an **infinite** number of games, apps and content.
 
 ## V O I D social
-**⌜ V O I D social ⌟** is a social network that lets you communicate safely through an **AI character** and create games, apps, and content.
+This is a social network that lets you communicate safely through an **AI character** and create games, apps, and content.
 
 ## V O I D os
-**⌜ V O I D os ⌟** is an Operating System that uses **V O I D lang** to run and create games, apps and content.
+This is an Operating System that uses **V O I D lang** to run and create games, apps and content.
 
 ## V O I D tech
-**⌜ V O I D tech ⌟** are combinable devices controlled by **[V O I D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
+These are modular devices controlled by **[V O I D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
 
 ## V O I D ideology
-**⌜ V O I D ideology⌟** is an ideology of creating compact production systems to meet individual everyday needs.
+Is an ideology of creating compact production systems to meet individual everyday needs.
 
 ## V O I D license
-**⌜ V O I D license ⌟** is a license to distribute digital content and goods, expressed in a single sentence:
+This is a license to distribute digital content and goods, expressed in a single sentence:
 
 > **DO WHAT YOU WANT**
 
 You can use it in both **private** and **open source**. Embed it in **free** or **paid** products. **Modify**. Create your **own solutions** based on it. **No need to specify the author**.
 
 ## V O I D task
-**⌜ V O I D task ⌟** is a paid assignment for implementing **V O I D** technologies.
+This is a paid assignment for implementing **V O I D** technologies.
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
