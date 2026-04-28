@@ -376,7 +376,7 @@ python void.py app.zip
 | **``update``**<br>Update all code or only the specified action | **``drive.mount``**<br>Mounts a volume to make it accessible |
 | **``exit``** · **``xx``**<br>Exit the current application with an exit code | **``drive.unmount``**<br>Unmounts a volume |
 | **``os``**<br>Running the operating system shell | **``drive.create``**<br>Creates a new volume or partition |
-| **``info``** · **``i``** · **``help``**<br>Get info about V O I D lang, os, device, file, directory, drive, url, text, image, video, sound, model, thesaurus or other data | **``drive.resize``**<br>Resizes an existing volume or partition |
+| **``info``** · **``i``** · **``help``** · **``h``**<br>Get info about V O I D lang, os, device, file, directory, drive, url, text, image, video, sound, model, thesaurus or other data | **``drive.resize``**<br>Resizes an existing volume or partition |
 | **``convert``** · **``c``**<br>Convert data from one format to another | **``drive.clear``**<br>Clears a specified volume or partition |
 | **``clipboard``**<br>Storing or retrieving clipboard temporary data | **``drive.remove``**<br>Removes a specified volume or partition |
 | **``sql``**<br>Execute an SQL query | **``path``**<br>Returns components of a specified path |
@@ -554,20 +554,19 @@ V O I D format
           [1 2 3]
         short
           [1 2 3
+      snake
+        [1 2 3
+          1
+          2
+          ]
+          1
+          2
+          ] 4 5
       empty
         full
           []
         short
           [
-      snake
-        [1 2 3
-          4
-          5
-
-          6
-          7
-
-          8 9 10
     dictionary
       column
         name 1
@@ -587,76 +586,83 @@ V O I D format
           [name1 value1  'name 2' value 2
         one
           [name  value
-      empty
-        [ ]
       snake
         [1 2 3
           name 1
             value 1
           name 2
             value 2
-
-          name 3
-            value 3
-          name 4
-            value 4
-
-          4 5
+          ]
+          name 1
+            value 1
+          name 2
+            value 2
+          ] 4 5
+      empty
+        [ ]
     binary
       raw
-        *4 data
-      base64
-        regular
-          line
-            *ViBPIEkgRCBmb3JtYXQ=
-          multiline
-            *
-              ViBPIEk
-              gRCBmb3
-              JtYXQ=
-        safe
-          line
-            *eNoLU_BX8FRwUUjLL8pNLAEAG0QEPA
-          multiline
-            *
-              eNoLU_BX8FR
-              wUUjLL8pNLA
-              EAG0QEPA
-        gzip
-          line
-            *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
-          multiline
-            *
-              eNoLU/BX8FR
-              wUUjLL8pNLA
-              EAG0QEPA==
-        lzma
-          line
-            */Td6WFoAAATm1rRGAgAhARwAAAAQz1jM…
-          multiline
-            *
-              /Td6WFoAAATm1rRGAgAhARwAAAAQz1jM
-              AQANViBPIEkgRCBmb3JtYXQAAADXR9DD
-              lMsFngABJg4IG+AEH7bzfQEAAAAABFla
+        *4*data
       hex
         line
-          #5620 4F20 4920 4420 666F 726D 6174
+          *5620 4F20 4920 4420 666F 726D 6174
         multiline
-          #
+          *
             5620 4F20
             4920 4420
             666F 726D
             6174 AABB
       bin
         line
-          @00000111 11100111
+          **00000111 11100111
         multiline
-          @
+          **
             0000 0111
             1110 0111
+      base64
+        regular
+          line
+            ***ViBPIEkgRCBmb3JtYXQ=
+          multiline
+            ***
+              ViBPIEk
+              gRCBmb3
+              JtYXQ=
+          short
+            *ViBPIEkgRCBmb3JtYXQ=
+        safe
+          line
+            ***eNoLU_BX8FRwUUjLL8pNLAEAG0QEPA
+          multiline
+            ***
+              eNoLU_BX8FR
+              wUUjLL8pNLA
+              EAG0QEPA
+          short
+            *eNoLU_BX8FRwUUjLL8pNLAEAG0QEPA
+        gzip
+          line
+            ***eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
+          multiline
+            ***
+              eNoLU/BX8FR
+              wUUjLL8pNLA
+              EAG0QEPA==
+          short
+            *eNoLU/BX8FRwUUjLL8pNLAEAG0QEPA==
+        lzma
+          line
+            ***/Td6WFoAAATm1rRGAgAhARwAAAAQz1jM…
+          multiline
+            ***
+              /Td6WFoAAATm1rRGAgAhARwAAAAQz1jM
+              AQANViBPIEkgRCBmb3JtYXQAAADXR9DD
+              lMsFngABJg4IG+AEH7bzfQEAAAAABFla
+          short
+            */Td6WFoAAATm1rRGAgAhARwAAAAQz1jM…
   comment
+   .: C O M M E N T :.
     begins with a single space
-       .: C O M M E N T :.
 ```
 
 </td>
@@ -755,17 +761,17 @@ V O I D format
           "full": [1, 2, 3],
           "short": [1,2,3]
         },
+        "snake": [1, 2, 3, [
+          1,
+          2
+        ], [
+          1,
+          2
+        ], 4, 5],
         "empty": {
           "full": [],
           "short": []
-        },
-        "snake": [1, 2, 3, [
-          4,
-          5
-        ], [
-          6,
-          7
-        ], 8, 9, 10]
+        }
       },
       "dictionary": {
         "column": {
@@ -783,20 +789,26 @@ V O I D format
           "short": {"name1": "value1", "name 2": "value 2"},
           "one": {"name": "value"}
         },
-        "empty": {}
         "snake": [1, 2, 3, {
           "name 1": "value 1",
           "name 2": "value 2"
         }, {
-          "name 3": "value 3",
-          "name 4": "value 4"
-        }, 4, 5]
+          "name 1": "value 1",
+          "name 2": "value 2"
+        }, 4, 5],
+        "empty": {}
       },
       "binary": "impossible"
     },
     "comment": "impossible or JSONC"
   }
 }
+
+
+
+
+
+
 
 
 
