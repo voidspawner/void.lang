@@ -377,7 +377,7 @@ python void.py app.zip
 | **``exit``** · **``xx``**<br>Exit the current application with an exit code | **``drive.unmount``**<br>Unmounts a volume |
 | **``os``**<br>Running the operating system shell | **``drive.create``**<br>Creates a new volume or partition |
 | **``info``** · **``i``** · **``help``** · **``h``**<br>Get info about V O I D lang, os, device, file, directory, drive, url, text, image, video, sound, model, thesaurus or other data | **``drive.resize``**<br>Resizes an existing volume or partition |
-| **``convert``** · **``c``**<br>Convert data from one format to another | **``drive.clear``**<br>Clears a specified volume or partition |
+| **``convert``** · **``c``** · **``<>``**<br>Convert data from one format to another | **``drive.clear``**<br>Clears a specified volume or partition |
 | **``clipboard``**<br>Storing or retrieving clipboard temporary data | **``drive.remove``**<br>Removes a specified volume or partition |
 | **``sql``**<br>Execute an SQL query | **``path``**<br>Returns components of a specified path |
 | **``chat``** · **``:``**<br>AI conversation and interaction through text | &nbsp;<br>**format**<br>&nbsp; |
@@ -400,7 +400,7 @@ python void.py app.zip
 | **``join``**<br>Join a list of text into a single text with a delimiter | **``cookie``**<br>Receives or sets a specified cookie |
 | **``escape``** · **``s``**<br>Escape special characters in a text | **``social``**<br>Interacting with social API |
 | **``unescape``** · **``u``**<br>Unescape special characters in a text | **``notify``**<br>Send notification |
-| **``translate``** · **``;``**<br>Translate text from one language to another | &nbsp;<br>**device**<br>&nbsp; |
+| **``translate``**<br>Translate text from one language to another | &nbsp;<br>**device**<br>&nbsp; |
 | **``check``**<br>Spell check in different languages | **``device``**<br>Retrieves or sets hardware device parameters |
 | &nbsp;<br>**list**<br>&nbsp; | **``cpu``**<br>Current CPU usage |
 | **``push``**<br>Add an element to the list | **``gpu``**<br>Current GPU usage |
@@ -907,7 +907,7 @@ V O I D format
 > ```
 
 ## V O I D db
-A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for storage directly. Data is **cached**, **indexed** and **saved** automatically. **Easy access** to data without the need to create complex constructs.
+A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV``** files for storage directly. Data is **cached**, **indexed** and **saved** automatically. **Easy access** to data without the need to create complex constructs.
 
 > **``data.json``**
 > ```json
@@ -929,14 +929,15 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > ```
 >
 > ```
-> .  {data.json/name.subname}
-> .  {data.json/list.index.2.value}
-> =  data.json/list.index.2.value 3
+> [. {data.json/name.subname}
+> [. {data.json/list.1.value}
+> [= data.json/list.1.value 3
+> [= data.json/list.index.2.value 3
 > ```
 > 
 > ```
-> .  {https://voidsp.com/@name/file.json/data.text}
-> =  {https://voidsp.com/@name/file.json/data.text} text
+> [. {https://voidsp.com/name/file.json/path/to/data.value}
+> [= {https://voidsp.com/name/file.json/path/to/data.value} text
 >```
 
 > **``data.csv``**
@@ -947,77 +948,138 @@ A database that uses **``V O I D``** · **``JSON``** · **``CSV``** files for st
 > ```
 >
 > ```
-> .  {data.csv/index.5.value}
-> .  {data.csv/1.value}
-> =  data.csv/index.5.value 3
+> [. {data.csv/1.2}
+> [. {data.csv/1.value}
+> [. {data.csv/index.5.value}
+> [= data.csv/index.5.value 3
 >```
 
 ## V O I D ai
-**[Artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence)** that makes it easier to work with data. Third-party AI is currently connected.
+**[Artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence)** that makes it easier to work with data.
 
+> **``Characters``**
+> ```
+> chat.muryashka
+> chat.murya
+> chat.mycharacter
+> ```
+>
 > **``ChatGPT``**
 > ```
-> chat  radius of the Earth
-> chat  tell me a story
-> chat  translate to portuguese: Hi World :D
-> chat  svg ginger cat in a box
-> chat  python calculator application
-> chat  image dancing cats
+> chat.chatgpt
+> chat.chatgpt.pro
+> chat.pro
+> [chat radius of the Earth
+> [: tell me a story
+> [: translate to portuguese: Hi World :D
+> [: svg ginger cat in a box
+> [: python calculator application
+> [: image dancing cats
 > ```
 >
 > **``DeepSeek``**
 > ```
-> chat  deepseek
-> chat  radius of the Earth
+> chat.deepseek
+> chat.reasoner
+> chat.v3
+> chat.r1
+> [chat radius of the Earth
 > ```
 > 
-> **``Stable Diffusion``**
+> **``Ollama``**
 > ```
-> video  'playing cats on the lawn' cats.mp4
-> image  'playing cats on the lawn' cats.jpg
-> image  draw 'remove the cat in the center' cats.jpg cats-edited.jpg
-> image  grayscale cats.jpg cats-grayscaled.jpg
-> image  colorize cats-grayscaled.jpg cats-colorized.jpg
-> image  style cyberpunk cats.jpg cats-cyberpunk.jpg
-> image  background cats.jpg cats-without-background.png
-> image  2x cats.jpg cats-resize-2x.jpg
-> image  4x cats.jpg cats-resize-4x.jpg
-> image  swapface adult.jpg child.jpg adult-to-child.jpg
+> chat.ollama
+> [chat radius of the Earth
+> ```
+>
+> **``Gemini``**
+> ```
+> chat.gemini
+> [chat radius of the Earth
+> ```
+>
+> **``Claude``**
+> ```
+> chat.claude
+> chat.claude.opus
+> chat.claude.sonnet
+> chat.claude.haiku
+> chat.opus
+> chat.sonnet
+> chat.haiku
+> [chat radius of the Earth
+> ```
+>
+> **``Media``**
+> ```
+> image.stablediffusion
+> image.sd
+> image.openai
+> image.google
+> image.nanobanana
+> image.flux
+> video.kling
+> video.seedance
+> music.minimax
+> [image playing cats on the lawn
+> [image 'playing cats on the lawn' cats.jpg
+> [image 'remove the cat in the center' cats.jpg cats-edited.jpg
+> [image 'remove background' cats.jpg cats-without-background.png
+> [image.bg cats.jpg cats-without-background.png
+> [image 'grayscale image' cats.jpg cats-grayscaled.jpg
+> [image.grayscale cats.jpg cats-grayscaled.jpg
+> [image 'colorize image' cats-grayscaled.jpg cats-colorized.jpg
+> [image.colorize cats-grayscaled.jpg cats-colorized.jpg
+> [image 'make cyberpunk restyle' cats.jpg cats-cyberpunk.jpg
+> [image.style.cyberpunk cats.jpg cats-cyberpunk.jpg
+> [image.style.anime cats.jpg cats-cyberpunk.jpg
+> [image.2x cats.jpg cats-resize-2x.jpg
+> [image.4x cats.jpg cats-resize-4x.jpg
+> [image swapface adult.jpg child.jpg adult-to-child.jpg
+> [image.face adult.jpg child.jpg adult-to-child.jpg
+> [video 'playing cats on the lawn' cats.mp4
+> ```
+> 
+> **``Text to Speech``**
+> ```
+> voice.google
+> voice.google.en-US-Wavenet-B
+> voice.en-US-Wavenet-B
+> [say Hi World :D
 > ```
 > 
 > **``Voice Cloning``**
 > ```
-> voice  mike.mp3
-> say  Hi World :D
-> ```
-> 
-> **``Google Text-to-Speech``**
-> ```
-> voice  en-US-Wavenet-B
-> say  Hi World :D
+> [voice thomas.mp3
+> [voice thomas.mp4
+> [say Hi World :D
 > ```
 > 
 > **``Speech Recognition``**
 > ```
-> recognize
-> recognize  talk.mp3
-> recognize  video.mp4
+> [recognize
+> [recognize talk.mp3
+> [recognize.speech video.mp4
+> [recognize.voice video.mp4
+> [recognize.sound video.mp4
 > ```
 > 
-> **``Google Translate``**
+> **``Image and Video Recognition``**
 > ```
-> translate  你好，世界 :D
-> translate  pt 你好，世界 :D
+> [recognize image.jpg
+> [recognize video.mp4
 > ```
 > 
-> **``DeepL``**
+> **``Translate``**
 > ```
-> translate  deepl
-> translate  你好，世界 :D
-> translate  pt 你好，世界 :D
+> translate.google
+> translate.chatgpt
+> translate.deepseek
+> [translate 你好，世界 :D
+> [translate.pt 你好，世界 :D
+> [translate.zh.pt 你好，世界 :D
+> [<> 你好，世界 :D
 > ```
-
-Work is underway to develop a custom AI that will run on a **V O I D chip**.
 
 ## V O I D game
 **⌜ V O I D game ⌟** is a game that creates an **infinite** number of games, apps and content.
