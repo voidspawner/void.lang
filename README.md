@@ -1105,7 +1105,7 @@ This is an Operating System that uses **V O I D lang** to run and create games, 
 These are modular devices controlled by **[V O I D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
 
 ## V O I D ideology
-Is an ideology of creating compact production systems to meet individual everyday needs.
+This is an ideology of creating compact production systems to meet individual everyday needs.
 
 ## V O I D license
 This is a license to distribute digital content and goods, expressed in a single sentence:
