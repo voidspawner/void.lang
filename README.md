@@ -213,13 +213,13 @@ upper
 <img width="441" height="1">
 
 ```
-[[code 'print("native python code")\nfor i in range(10):print(i)
+[[code 'for i in range(10):print(i)
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[["code", "print("native python code")\nfor i in range(10):print(i)"]]
+[["code", "for i in range(10):print(i)"]]
 ```
 </td></tr></table>
 
