@@ -1,7 +1,7 @@
 # V O I D lang
 
 ## About
-**⌜ V O I D lang ⌟** is the language for rapidly creating applications and games in the **[V O I D](#v-o-i-d-format)** or **[JSON](https://en.wikipedia.org/wiki/JSON)** format. It is used as a replacement for the standard **``Bash``**・**``CMD``**・etc. languages and for writing **``applications``**, **``servers``** and **``games``**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. So the whole application fits in **one ``V O I D`` or ``JSON`` file**. Since the **code is presented as data**, applications can be easily generated with **``AI``**, updated, installed and launched remotely.
+**⌜ V O I D lang ⌟** is the language for rapidly creating applications and games in the **[V O I D](#v-o-i-d-format)** or **[JSON](https://en.wikipedia.org/wiki/JSON)** format. It is used as a replacement for the standard **``Bash``**・**``CMD``**・etc. languages and for creating **``games``**, **``apps``** and **``content``**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. The whole application fits in **one ``V O I D`` or ``JSON`` file**. Since the **code is presented as data**, applications can be easily generated with **``AI``**, updated, installed and launched remotely.
 
 > [!IMPORTANT]
 > **The project is in the process of development.**
@@ -170,10 +170,10 @@ text
 
 ```
 [= word 'Hi World :D
-[o letter {word}
+[o {word}
   [? {letter} = i
       [.. i!
-
+      ]
       [.. {letter}
 ```
 </td><td>
@@ -182,7 +182,7 @@ text
 ```json
 [
   ["=", "word", "Hi World :D"],
-  ["o", "letter", "{word}", [
+  ["o", "{word}", [
     ["?", "{letter}", "=", "i", [
       ["..", "i!"]
     ], [
@@ -961,15 +961,19 @@ A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV
 > ```
 > chat.muryashka
 > chat.murya
-> chat.mycharacter
+> [chat.character.kitty a cat who loves to play games often says "meow"
+> chat.kitty
+> [chat.kitty Hello Kitty
 > ```
 >
 > **``ChatGPT``**
 > ```
-> chat.chatgpt
-> chat.chatgpt.pro
+> chat.gpt
+> chat.gpt.pro
 > chat.pro
 > [chat radius of the Earth
+> [chat.gpt radius of the Earth
+> [chat.pro radius of the Earth
 > [: tell me a story
 > [: translate to portuguese: Hi World :D
 > [: svg ginger cat in a box
@@ -984,18 +988,21 @@ A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV
 > chat.v3
 > chat.r1
 > [chat radius of the Earth
+> [chat.deepseek radius of the Earth
 > ```
 > 
 > **``Ollama``**
 > ```
 > chat.ollama
 > [chat radius of the Earth
+> [chat.ollama radius of the Earth
 > ```
 >
 > **``Gemini``**
 > ```
 > chat.gemini
 > [chat radius of the Earth
+> [chat.gemini radius of the Earth
 > ```
 >
 > **``Claude``**
@@ -1008,6 +1015,7 @@ A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV
 > chat.sonnet
 > chat.haiku
 > [chat radius of the Earth
+> [chat.claude radius of the Earth
 > ```
 >
 > **``Media``**
@@ -1022,6 +1030,9 @@ A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV
 > video.seedance
 > music.minimax
 > [image playing cats on the lawn
+> [image.sd playing cats on the lawn
+> [image.openai playing cats on the lawn
+> [image.google playing cats on the lawn
 > [image 'playing cats on the lawn' cats.jpg
 > [image 'remove the cat in the center' cats.jpg cats-edited.jpg
 > [image 'remove background' cats.jpg cats-without-background.png
@@ -1085,47 +1096,25 @@ A database that uses **``V O I D``** · **``JSON``** · **``YAML``** ·  **``CSV
 **⌜ V O I D game ⌟** is a game that creates an **infinite** number of games, apps and content.
 
 ## V O I D social
-**⌜ V O I D social ⌟** is a social network where you can **quickly** and **easily** communicate with people all over the world.
+**⌜ V O I D social ⌟** is a social network that lets you communicate safely through an AI character and create an infinite number of games, apps, and content.
 
 ## V O I D os
-**⌜ V O I D os ⌟** is an Operating System that uses **V O I D lang** to run and create applications and games.
+**⌜ V O I D os ⌟** is an Operating System that uses **V O I D lang** to run and create games, apps and content.
 
 ## V O I D tech
 **⌜ V O I D tech ⌟** are combinable devices controlled by **[V O I D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
 
 ## V O I D ideology
-**⌜ V O I D ⌟**  is not only about compact technologies, but also an **ideology** that shows where these technologies are taking us.
+**⌜ V O I D ideology⌟** is an ideology of creating compact production systems to meet individual everyday needs.
 
 ## V O I D license
-**⌜ V O I D license ⌟** is a license to distribute digital content and goods. Expressed in a single sentence:
+**⌜ V O I D license ⌟** is a license to distribute digital content and goods, expressed in a single sentence:
 
 > **DO WHAT YOU WANT**
 
 You can use it in both **private** and **open source**. Embed it in **free** or **paid** products. **Modify**. Create your **own solutions** based on it. **No need to specify the author**.
 
 ## V O I D task
+**⌜ V O I D task ⌟** is a paid assignment for implementing **V O I D** technologies.
 > [!IMPORTANT]
 > By adding your code to the repository, you are publishing it under the **V O I D licence**.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
