@@ -191,7 +191,7 @@ text
 
 ```
 [replace 'Hi World :D' i i!
-[. .
+[. ..
 upper
 .
 ```
@@ -201,7 +201,7 @@ upper
 ```json
 [
   ["replace", "Hi World :D", "i", "i!"],
-  [".", "."],
+  [".", ".."],
   "upper",
   "."
 ]
