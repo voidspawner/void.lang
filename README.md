@@ -55,13 +55,13 @@
 <img width="441" height="1">
 
 ```
-. {about.version}
+. .about.version
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-". {about.version}"
+". .about.version"
 ```
 </td></tr></table>
 
@@ -71,8 +71,8 @@
 
 ```
 run
-  [. {text.hi} :D
-  [. language · {language}
+  [. .text.hi :D
+  [. language · .language
 text
   hi
     en
@@ -104,8 +104,8 @@ text
 ```json
 {
   "run": [
-    [".", "{text.hi}", ":D"],
-    [".", "language", "·", "{language}"]
+    [".", ".text.hi", ":D"],
+    [".", "language", "·", ".language"]
   ],
   "text": {
     "hi": {
@@ -162,11 +162,11 @@ text
 
 ```
 [= word 'Hi World :D
-[o {word}
-  [? {letter} = i
-      [.. i!
-      ]
-      [.. {letter}
+[o .word
+  [? .letter = i
+    [.. i!
+  ]
+    [.. .letter
 ```
 </td><td>
 <img width="441" height="1">
@@ -174,11 +174,11 @@ text
 ```json
 [
   ["=", "word", "Hi World :D"],
-  ["o", "{word}", [
-    ["?", "{letter}", "=", "i", [
+  ["o", ".word", [
+    ["?", ".letter", "=", "i", [
       ["..", "i!"]
     ], [
-      ["..", "{letter}"]
+      ["..", ".letter"]
     ]]
   ]]
 ]
@@ -191,7 +191,7 @@ text
 
 ```
 [replace 'Hi World :D' i i!
-[. {}
+[. .
 upper
 .
 ```
@@ -201,7 +201,7 @@ upper
 ```json
 [
   ["replace", "Hi World :D", "i", "i!"],
-  [".", "{}"],
+  [".", "."],
   "upper",
   "."
 ]
@@ -543,12 +543,21 @@ V O I D format
         short
           [1 2 3
       snake
-        [1 2 3
-          text 1
-          text 2
+        full
+          [1 2 3 [
+            text 1
+            text 2
+          ] [
+            text 1
+            text 2
+          ] 4 5]
+        short
+          [1 2 3
+            text 1
+            text 2
           ]
-          text 1
-          text 2
+            text 1
+            text 2
           ] 4 5
       empty
         full
@@ -575,16 +584,29 @@ V O I D format
         one
           [name  value
       snake
-        [1 2 3
-          name 1
-            value 1
-          name 2
-            value 2
+        full
+          [1 2 3 [
+            name 1
+              value 1
+            name 2
+              value 2
+          ] [
+            name 1
+              value 1
+            name 2
+              value 2
+          ] 4 5]
+        short
+          [1 2 3
+            name 1
+              value 1
+            name 2
+              value 2
           ]
-          name 1
-            value 1
-          name 2
-            value 2
+            name 1
+              value 1
+            name 2
+              value 2
           ] 4 5
       empty
         [ ]
@@ -749,13 +771,24 @@ V O I D format
           "full": [1, 2, 3],
           "short": [1,2,3]
         },
-        "snake": [1, 2, 3, [
-          "text 1",
-          "text 2"
-        ], [
-          "text 1",
-          "text 2"
-        ], 4, 5],
+        "snake": {
+          "full":
+            [1, 2, 3, [
+              "text 1",
+              "text 2"
+            ], [
+              "text 1",
+              "text 2"
+            ], 4, 5],
+          "short":
+            [1, 2, 3, [
+              "text 1",
+              "text 2"
+            ], [
+              "text 1",
+              "text 2"
+            ], 4, 5]
+        },
         "empty": {
           "full": [],
           "short": []
@@ -777,13 +810,24 @@ V O I D format
           "short": {"name1": "value1", "name 2": "value 2"},
           "one": {"name": "value"}
         },
-        "snake": [1, 2, 3, {
-          "name 1": "value 1",
-          "name 2": "value 2"
-        }, {
-          "name 1": "value 1",
-          "name 2": "value 2"
-        }, 4, 5],
+        "snake": {
+          "full":
+            [1, 2, 3, {
+              "name 1": "value 1",
+              "name 2": "value 2"
+            }, {
+              "name 1": "value 1",
+              "name 2": "value 2"
+            }, 4, 5],
+          "short":
+            [1, 2, 3, {
+              "name 1": "value 1",
+              "name 2": "value 2"
+            }, {
+              "name 1": "value 1",
+              "name 2": "value 2"
+            }, 4, 5]
+        },
         "empty": {}
       },
       "binary": "impossible"
@@ -917,15 +961,15 @@ This is a database that uses **``V O I D``** · **``JSON``** · **``YAML``** · 
 > ```
 >
 > ```
-> [. {data.json/name.subname}
-> [. {data.json/list.1.value}
+> [. .data.json/name.subname
+> [. .data.json/list.1.value
 > [= data.json/list.1.value 3
 > [= data.json/list.index.2.value 3
 > ```
 > 
 > ```
-> [. {https://voidsp.com/name/file.json/path/to/data.value}
-> [= {https://voidsp.com/name/file.json/path/to/data.value} text
+> [. .https://voidsp.com/name/file.json/path/to/data.value
+> [= https://voidsp.com/name/file.json/path/to/data.value text
 >```
 
 > **``data.csv``**
@@ -936,9 +980,9 @@ This is a database that uses **``V O I D``** · **``JSON``** · **``YAML``** · 
 > ```
 >
 > ```
-> [. {data.csv/1.2}
-> [. {data.csv/1.value}
-> [. {data.csv/index.5.value}
+> [. .data.csv/1.2
+> [. .data.csv/1.value
+> [. .data.csv/index.5.value
 > [= data.csv/index.5.value 3
 >```
 
