@@ -75,28 +75,17 @@ run
   [. language · .language
 text
   hi
-    en
-      Hi World
-    zh
-      你好世界
-    fr
-      Bonjour le monde
-    es
-      Hola Mundo
-    pt
-      Olá Mundo
-    it
-      Ciao mondo
-    de
-      Hallo Welt
-    jp
-      こんにちは世界
-    ru
-      Привет, мир
-    ar
-      مرحبا بالعالم
-    hi
-      हैलो वर्ल्ड
+    en  Hi World
+    zh  你好世界
+    fr  Bonjour le monde
+    es  Hola Mundo
+    pt  Olá Mundo
+    it  Ciao mondo
+    de  Hallo Welt
+    jp  こんにちは世界
+    ru  Привет, мир
+    ar  مرحبا بالعالم
+    hi  हैलो वर्ल्ड
 ```
 </td><td>
 <img width="441" height="1">
