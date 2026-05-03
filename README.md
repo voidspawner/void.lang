@@ -182,6 +182,8 @@ text
 [replace 'Hi World :D' i i!
 [. ..
 upper
+[. 'upper text {}
+lower
 .
 ```
 </td><td>
@@ -192,6 +194,8 @@ upper
   ["replace", "Hi World :D", "i", "i!"],
   [".", ".."],
   "upper",
+  [".", "upper text {}"],
+  "lower",
   "."
 ]
 ```
