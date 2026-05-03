@@ -74,6 +74,9 @@ class VOIDlang:
 				'                                   ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                   '
 				'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      '
 				'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
+			help
+				python.exe void.py help
+				python3 void.py help action
 		lang
 
 		  .: value :.
@@ -83,6 +86,8 @@ class VOIDlang:
 					value
 				method
 					get
+					a
+					s
 				alias
 					none
 				description
@@ -103,8 +108,8 @@ class VOIDlang:
 					[code [[get void.test.json/list.1]]  before [[file void.test.json [about [name  V O I D lang]  list [0 1 2]] ]]  clear [[file.remove void.test.json]]  result 1
 					[code [[get db.sqldbname.user]]  type list  test false
 					[code [[get db.sqldbname.user.id.12345]]  type [dict none]  test false
-					[code [[{about.name}]]  result V O I D lang
-					[code [[{about.{name}}]]  before [[= name name]]  clear [[remove name]]  result V O I D lang
+					[code [[.about.name]]  result V O I D lang
+					[code [[.about.{name}]]  before [[= name name]]  clear [[remove name]]  result V O I D lang
 			set
 				group
 					value
@@ -220,12 +225,12 @@ class VOIDlang:
 					[code [[text title [length 10  align center]]]  result '  title   '
 					[code [[text 100000 price]]  result '∞100 000
 					[code [[text 100000.1 [before ∞  after monthly  group ,  dot .  round 3]]]  result '∞100,000.100 monthly
-					[code [[text {image} [size  100]]]  test false
-					[code [[text {image} [width 100  height 100]]]  test false
+					[code [[text .image [size  100]]]  test false
+					[code [[text .image [width 100  height 100]]]  test false
 					[code [[text text + text]]  result 'text+text
 					[code [[text number ' ' 123]]  result 'number 123
 					[code [[text *abc '*{}']]  result '*abc
-					[code [[text *abc [[+ '*' {}]] ]]  result '*abc
+					[code [[text *abc [[+ '*' ..]] ]]  result '*abc
 			number
 				group
 					value
@@ -316,7 +321,7 @@ class VOIDlang:
 				method
 					length
 				alias
-					n
+					~
 					len
 				description
 					Gets the length of the data
@@ -329,14 +334,14 @@ class VOIDlang:
 				param
 					[[name data  type any  default none
 				example
-					[code [[n text]]  result 4
-					[code [[n [1 2 a]]]  result 3
-					[code [[n [a 1  b 2]]]  result 2
-					[code [[n 123]]  result 1
-					[code [[n -123]]  result 1
-					[code [[n 12345678]]  result 3
-					[code [[n 123.1]]  result 8
-					[code [[n *'123']]  result 3
+					[code [[~ text]]  result 4
+					[code [[~ [1 2 a]]]  result 3
+					[code [[~ [a 1  b 2]]]  result 2
+					[code [[~ 123]]  result 1
+					[code [[~ -123]]  result 1
+					[code [[~ 12345678]]  result 3
+					[code [[~ 123.1]]  result 8
+					[code [[~ *'123']]  result 3
 
 		  .: expression :.
 
@@ -470,7 +475,7 @@ class VOIDlang:
 				method
 					expression_modulo
 				alias
-					none
+					mod
 				description
 					Perform modulo operation
 				safe
@@ -490,7 +495,7 @@ class VOIDlang:
 				method
 					expression_power
 				alias
-					none
+					pow
 				description
 					Perform power operator
 				safe
@@ -557,13 +562,13 @@ class VOIDlang:
 					[code [[<< [a 1  b 2]]]  result [a 1  b 2
 					[code [text << 2]  result 'text  '
 					[code [*text << 2]  result *'text  '
-			!=
+			x=
 				group
 					expression
 				method
 					expression_notequal
 				alias
-					none
+					!=
 				description
 					Checks if values are not equal
 				safe
@@ -671,7 +676,7 @@ class VOIDlang:
 				example
 					[code [[<= 5 3]]  result false
 					[code [5 <= 5]  result true
-			#
+			~>
 				group
 					expression
 				method
@@ -695,7 +700,7 @@ class VOIDlang:
 					[code [[# a [a 1  b 2]]]  result true
 					[code [a # [a b c]]  result true
 					[code [d # [a b c]]  result false
-			!#
+			x>
 				group
 					expression
 				method
@@ -719,7 +724,7 @@ class VOIDlang:
 					[code [[!# a [a 1  b 2]]]  result false
 					[code [a !# [a b c]]  result false
 					[code [d !# [a b c]]  result true
-			@
+			<~
 				group
 					expression
 				method
@@ -748,7 +753,7 @@ class VOIDlang:
 					[code [[@ name [text dict]]]  result true
 					[code [[@ *text binary]]  result true
 					[code [123 @ number]  result true
-			!@
+			<x
 				group
 					expression
 				method
@@ -796,12 +801,12 @@ class VOIDlang:
 					[name name  type any
 					[name data  type any
 				example
-					[code [[= x 10] {x}]  result 10
-					[code [[= name text] {name}]  result text
-					[code [[= name.subname text] {name.subname}]  result text
-					[code [[= '' text] {}]  result text
-					[code [[= none text] {}]  result text
-					[code [[= x 10] {x} = 10]  result true
+					[code [[= x 10] .x]  result 10
+					[code [[= name text] .name]  result text
+					[code [[= name.subname text] .name.subname]  result text
+					[code [[= '' text] .]  result text
+					[code [[= none text] .]  result text
+					[code [[= x 10] .x = 10]  result true
 					[code [20 = 10]  result false
 					[code [[= 20 10]]  result false
 			+=
@@ -823,14 +828,14 @@ class VOIDlang:
 					[name name  type text
 					[name data  type any  default 1
 				example
-					[code [[= x 10] [+= x] {x}]  result 11
-					[code [[= x 10] [+= x 2] {x}]  result 12
-					[code [[= name text] [+= name] {name}]  result 'text '
-					[code [[= name text] [+= name 2] {name}]  result 'text  '
-					[code [[= name text] [+= name end] {name}]  result textend
-					[code [[= data [1 2 3]] [+= data 2] {data}]  result [1 2 3 '' ''
-					[code [[= data [a 1  b 2]] [+= data [c  3]] {data}]  result [a 1  b 2  c 3
-					[code [[= name *text] [+= name end] {name}]  result *textend
+					[code [[= x 10] [+= x] .x]  result 11
+					[code [[= x 10] [+= x 2] .x]  result 12
+					[code [[= name text] [+= name] .name]  result 'text '
+					[code [[= name text] [+= name 2] .name]  result 'text  '
+					[code [[= name text] [+= name end] .name]  result textend
+					[code [[= data [1 2 3]] [+= data 2] .data]  result [1 2 3 '' ''
+					[code [[= data [a 1  b 2]] [+= data [c  3]] .data]  result [a 1  b 2  c 3
+					[code [[= name *text] [+= name end] .name]  result *textend
 			=+
 				group
 					expression
@@ -850,14 +855,14 @@ class VOIDlang:
 					[name name  type text
 					[name data  type any  default 1
 				example
-					[code [[= x 10] [=+ x] {x}]  result 11
-					[code [[= x 10] [=+ x 2] {x}]  result 12
-					[code [[= name text] [=+ name] {name}]  result ' text
-					[code [[= name text] [=+ name 2] {name}]  result '  text
-					[code [[= name text] [=+ name start] {name}]  result starttext
-					[code [[= data [1 2 3]] [=+ data 2] {data}]  result ['' '' 1 2 3
-					[code [[= data [a 1  b 2]] [=+ data [c  3]] {data}]  result [c 3  a 1  b 2
-					[code [[= name *text] [+= name start] {name}]  result *starttext
+					[code [[= x 10] [=+ x]]  name x  result 11
+					[code [[= x 10] [=+ x 2]]  name x  result 12
+					[code [[= name text] [=+ name]]  name name  result ' text
+					[code [[= name text] [=+ name 2]]  name name  result '  text
+					[code [[= name text] [=+ name start]]  name name  result starttext
+					[code [[= data [1 2 3]] [=+ data 2]]  name data  result ['' '' 1 2 3
+					[code [[= data [a 1  b 2]] [=+ data [c  3]]]  name data  result [c 3  a 1  b 2
+					[code [[= name *text] [+= name start]]  name name  result *starttext
 			-=
 				group
 					expression
@@ -877,14 +882,14 @@ class VOIDlang:
 					[name name  type text
 					[name data  type any  default 1
 				example
-					[code [[= x 10] [-= x] {x}]  result 9
-					[code [[= x 10] [-= x 2] {x}]  result 8
-					[code [[= name text] [-= name] {name}]  result tex
-					[code [[= name text] [-= name 2] {name}]  result te
-					[code [[= name text] [-= name xt] {name}]  result te
-					[code [[= data [1 2 3]] [-= data 2] {data}]  result [1 2
-					[code [[= data [a 1  b 2]] [-= data b] {data}]  result [a 1
-					[code [[= name *text] [-= name xt] {name}]  result *te
+					[code [[= x 10] [-= x]]  name x  result 9
+					[code [[= x 10] [-= x 2]]  name x  result 8
+					[code [[= name text] [-= name]]  name name  result tex
+					[code [[= name text] [-= name 2]]  name name  result te
+					[code [[= name text] [-= name xt]]  name name  result te
+					[code [[= data [1 2 3]] [-= data 2]]  name data  result [1 2
+					[code [[= data [a 1  b 2]] [-= data b]]  name data  result [a 1
+					[code [[= name *text] [-= name xt]]  name name  result *te
 			=-
 				group
 					expression
@@ -904,14 +909,14 @@ class VOIDlang:
 					[name name  type text
 					[name data  type any   default 1
 				example
-					[code [[= x 10] [=- x] {x}]  result 9
-					[code [[= x 10] [=- x 2] {x}]  result 8
-					[code [[= name text] [=- name] {name}]  result ext
-					[code [[= name text] [=- name 2] {name}]  result xt
-					[code [[= name text] [=- name te] {name}]  result xt
-					[code [[= data [1 2 3]] [=- data 2] {data}]  result [1
-					[code [[= data [a 1  b 2]] [=- data b] {data}]  result [a 1
-					[code [[= name *text] [=- name te] {name}]  result *xt
+					[code [[= x 10] [=- x]]  name x  result 9
+					[code [[= x 10] [=- x 2]]  name x  result 8
+					[code [[= name text] [=- name]]  name name  result ext
+					[code [[= name text] [=- name 2]]  name name  result xt
+					[code [[= name text] [=- name te]]  name name  result xt
+					[code [[= data [1 2 3]] [=- data 2]]  name data  result [1
+					[code [[= data [a 1  b 2]] [=- data b]]  name data  result [a 1
+					[code [[= name *text] [=- name te]]  name name  result *xt
 			*=
 				group
 					expression
@@ -931,13 +936,13 @@ class VOIDlang:
 					[name name  type text
 					[name data  type any  default none
 				example
-					[code [[= x 10] [*= x] {x}]  result 100
-					[code [[= x 10] [*= x 2] {x}]  result 20
-					[code [[= name text] [*= name 2] {name}]  result texttext
-					[code [[= name text] [*= name ' '] {name}]  result t e x t
-					[code [[= data [1 2 3]] [*= data 2] {data}]  result [[1 2 3] [1 2 3
-					[code [[= data [a 1  b 2]] [*= data 2] {data}]  result [[a 1  b 2] [a 1  b 2
-					[code [[= name *text] [*= name ' '] {name}]  result *'t e x t
+					[code [[= x 10] [*= x]]  name x  result 100
+					[code [[= x 10] [*= x 2]]  name x  result 20
+					[code [[= name text] [*= name 2]]  name name  result texttext
+					[code [[= name text] [*= name ' ']]  name name  result t e x t
+					[code [[= data [1 2 3]] [*= data 2]]  name data  result [[1 2 3] [1 2 3
+					[code [[= data [a 1  b 2]] [*= data 2]]  name data  result [[a 1  b 2] [a 1  b 2
+					[code [[= name *text] [*= name ' ']]  name name  result *'t e x t
 			/=
 				group
 					expression
@@ -957,13 +962,13 @@ class VOIDlang:
 					[name name  type text
 					[name data  type any  default none
 				example
-					[code [[= x 100] [/= x] {x}]  result 10
-					[code [[= x 10] [/= x 2] {x}]  result 5
-					[code [[= name text] [/= name 2] {name}]  result [te xt
-					[code [[= name 'text text'] [/= name ' '] {name}]  result [text text
-					[code [[= data [1 2 3 4]] [/= data 2] {data}]  result [[1 2] [3 4
-					[code [[= data [a 1  b 2]] [/= data 2 {data}]  result [[a  1] [b  2
-					[code [[= name *text] [/= name 2] {name}]  result [*te *xt
+					[code [[= x 100] [/= x] .x]  result 10
+					[code [[= x 10] [/= x 2] .x]  result 5
+					[code [[= name text] [/= name 2] .name]  result [te xt
+					[code [[= name 'text text'] [/= name ' '] .name]  result [text text
+					[code [[= data [1 2 3 4]] [/= data 2] .data]  result [[1 2] [3 4
+					[code [[= data [a 1  b 2]] [/= data 2 .data]  result [[a  1] [b  2
+					[code [[= name *text] [/= name 2] .name]  result [*te *xt
 			%=
 				group
 					expression
@@ -983,8 +988,8 @@ class VOIDlang:
 					[name name  type text
 					[name data  type any  default 2
 				example
-					[code [[= x 4] [%= x] {x}]  result 0
-					[code [[= x 10] [%= x 3] {x}]  result 1
+					[code [[= x 4] [%= x] .x]  result 0
+					[code [[= x 10] [%= x 3] .x]  result 1
 			^=
 				group
 					expression
@@ -1004,8 +1009,8 @@ class VOIDlang:
 					[name name  type text
 					[name data  type any  default 2
 				example
-					[code [[= x 10] [^= x] {x}]  result 100
-					[code [[= x 2] [^= x 3] {x}]  result 8
+					[code [[= x 10] [^= x] .x]  result 100
+					[code [[= x 2] [^= x 3] .x]  result 8
 			>>=
 				group
 					expression
@@ -1025,12 +1030,12 @@ class VOIDlang:
 					[name name  type text
 					[name count  type number  default 1
 				example
-					[code [[= x 16] [>>= x 2] {x}]  result 4
-					[code [[= x 255] [>>= x 4] {x}]  result 15
-					[code [[= data [1 2 3]] [>>= data 2] {data}]  result [1
-					[code [[= data [a 1  b 2]] [>>= data 1] {data}]  result [a  1]
-					[code [[= name text] [>>= name 2] {name}]  result te
-					[code [[= name *text] [>>= name 2] {name}]  result *te
+					[code [[= x 16] [>>= x 2] .x]  result 4
+					[code [[= x 255] [>>= x 4] .x]  result 15
+					[code [[= data [1 2 3]] [>>= data 2] .data]  result [1
+					[code [[= data [a 1  b 2]] [>>= data 1] .data]  result [a  1]
+					[code [[= name text] [>>= name 2] .name]  result te
+					[code [[= name *text] [>>= name 2] .name]  result *te
 			<<=
 				group
 					expression
@@ -1050,11 +1055,11 @@ class VOIDlang:
 					[name name  type text
 					[name count  type number  default 1
 				example
-					[code [[= x 4] [<<= x 2] {x}]  result 16
-					[code [[= x 7] [<<= x 3] {x}]  result 56
-					[code [[= data [1 2]] [<<= data 1] {data}]  result [1 2 ''
-					[code [[= name text] [<<= name 2] {name}]  result 'text  '
-					[code [[= name *text] [<<= name 2] {name}]  result *'text  '
+					[code [[= x 4] [<<= x 2] .x]  result 16
+					[code [[= x 7] [<<= x 3] .x]  result 56
+					[code [[= data [1 2]] [<<= data 1] .data]  result [1 2 ''
+					[code [[= name text] [<<= name 2] .name]  result 'text  '
+					[code [[= name *text] [<<= name 2] .name]  result *'text  '
 
 		  .: control :.
 
@@ -1064,6 +1069,7 @@ class VOIDlang:
 				method
 					print
 				alias
+					..
 					print
 				description
 					Output data to the console
@@ -1083,7 +1089,7 @@ class VOIDlang:
 					[code [[. [1 2 3]]]  output '[1 2 3\n
 					[code [[. [a 1  b 2]]]  output '[a 1  b 2\n
 					[code [[. *text]]  output 'text\n
-			..
+			...
 				group
 					control
 				method
@@ -1124,7 +1130,6 @@ class VOIDlang:
 					[code [[? 1 > 2]]  result false
 					[code [[? a # [a b c]]]  result true
 					[code [[? a # [a b c]]]  result true
-					[code [[? [{}  [[1 []] [2 []] [3 []]] ]]]  test false
 			o
 				group
 					control
@@ -1146,11 +1151,11 @@ class VOIDlang:
 				example
 					[code [0 [o 10 [+ 1]]]  result 10
 					[code [0 [o [1 5] [+ 1]]]  result 5
-					[code [0 [o [1 2 3] [+ {index}]]]  result 6
-					[code [data = [1 2 3] [o {data} [+ {index}]]]  result 6
-					[code [0 [o [a 1  b 2  c 3] [+ {value}]]]  result 6
-					[code ['' [o [a 1  b 2  c 3] [+ {name}]]]  result abc
-					[code ['' [o text [+ ' ' + {value}]]]  result ' t e x t
+					[code [0 [o [1 2 3] [+ .index]]]  result 6
+					[code [data = [1 2 3] [o .data [+ .index]]]  result 6
+					[code [0 [o [a 1  b 2  c 3] [+ .value]]]  result 6
+					[code ['' [o [a 1  b 2  c 3] [+ .name]]]  result abc
+					[code ['' [o text [+ ' ' + .value]]]  result ' t e x t
 					[code [[o [[. infinite]]]]  test false
 					[code [[o [fps 60] [[. 60 fps]]]]  test false
 			x
@@ -1171,8 +1176,8 @@ class VOIDlang:
 				param
 					[[name count  type number  default 1
 				example
-					[code [0 [o 10 [[? [{index} > 2] x] [+ 1] ]]]  result 3
-					[code [0 [o 10 [[o 10 [[? [{index} > 2] [x 2]] [+ 1] ]]] ]]  result 3
+					[code [0 [o 10 [[? [.index > 2] x] [+ 1] ]]]  result 3
+					[code [0 [o 10 [[o 10 [[? [.index > 2] [x 2]] [+ 1] ]]] ]]  result 3
 			->
 				group
 					control
@@ -1192,8 +1197,8 @@ class VOIDlang:
 					[[name count  type number  default 1
 				example
 					[code [0 [o 10 [+ 1 ->]]]  result 1
-					[code [0 [o 10 [[? [{index} % 2] ->] [+ 1]] ]]  result 5
-					[code [0 [o 10 [[? [{index} = 2] [[-> 2]]] [+ 1]] ]]  result 8
+					[code [0 [o 10 [[? [.index % 2] ->] [+ 1]] ]]  result 5
+					[code [0 [o 10 [[? [.index = 2] [[-> 2]]] [+ 1]] ]]  result 8
 			<-
 				group
 					control
@@ -1236,7 +1241,7 @@ class VOIDlang:
 				example
 					[code [[action [1 + 1]]]  result 2
 					[code [[action [1 + 1 _ + 1]]]  result none
-					[code [[action [1 + 1 [_ {}] + 1]]]  result 2
+					[code [[action [1 + 1 [_ ..] + 1]]]  result 2
 					[code [[action [1 + 1 __ + 1]]]  result 2
 					[code [[action [1 + 1 [_ 4] + 1]]]  result 4
 			action
@@ -1332,18 +1337,15 @@ class VOIDlang:
 					[code [[code 'print("Hi! World")']]  test false
 					[code [[code print("Hi! World")]]  test false
 					[code [[code 'console.log("Hi! World")']]  test false
-			debug
+			logger
 				group
 					control
 				method
-					log
+					logger
 				alias
 					l
-					d
-					w
-					e
 				description
-					Log debug information
+					Log information
 				safe
 					false
 				container
@@ -1351,16 +1353,21 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name tag  type any
+					[name tag  subname true  type any
 					[name message  type any  default none
 					[name data  type any  default none
 				example
-					[code [l app info]  test false
-					[code [d app debug]  test false
-					[code [w app warning]  test false
-					[code [e app error]  test false
 					[code [l message]  test false
 					[code [l [a 1  b 2  c 3]]  test false
+					[code [l.tag info]  test false
+					[code [l.d.tag debug]  test false
+					[code [l.w.tag warning]  test false
+					[code [l.e.tag error]  test false
+					[code [l.f.tag fatal]  test false
+					[code [l.debug.tag debug]  test false
+					[code [l.warning.tag warning]  test false
+					[code [l.error.tag error]  test false
+					[code [l.fatal.tag fatal]  test false
 			test
 				group
 					control
@@ -1460,6 +1467,7 @@ class VOIDlang:
 				alias
 					i
 					help
+					h
 				description
 					Get info about V O I D lang, os, device, file, directory, drive, url, text, image, video, sound, model, thesaurus or other data
 				safe
@@ -1477,8 +1485,8 @@ class VOIDlang:
 					[code [[info /path]]  type dict  test false
 					[code [[info c:]]  type dict  test false
 					[code [[info https://voidsp.com]]  type dict  test false
-					[code [[info {text}]]  type dict  test false
-					[code [[info {image}]]  type dict  test false
+					[code [[info .text]]  type dict  test false
+					[code [[info .image]]  type dict  test false
 					[code [[info laptop]]  type dict  test false
 					[code [[info australia]]  type dict  test false
 					[code [[info jpy]]  type dict  test false
@@ -1490,6 +1498,7 @@ class VOIDlang:
 					action.convert
 				alias
 					c
+					<>
 				description
 					Convert data from one format to another
 				safe
@@ -2085,7 +2094,7 @@ class VOIDlang:
 				method
 					escape
 				alias
-					s
+					e
 				description
 					Escape special characters in a text
 				safe
@@ -2135,7 +2144,7 @@ class VOIDlang:
 				method
 					translate
 				alias
-					;
+					none
 				description
 					Translate text from one language to another
 				safe
@@ -2160,7 +2169,7 @@ class VOIDlang:
 				method
 					check
 				alias
-					none
+					#
 				description
 					Spell check in different languages
 				safe
@@ -2304,7 +2313,7 @@ class VOIDlang:
 					[name data  type list
 					[name action  type [text list]
 				example
-					[code [[reduce [1 2 3 4] [[* {value}]] ]]  result 24
+					[code [[reduce [1 2 3 4] [[* .value]] ]]  result 24
 					[code [[reduce [1 2 3 4] +]]  result 10
 			filter
 				group
@@ -2326,7 +2335,7 @@ class VOIDlang:
 					[name action  type [text list]
 				example
 					[code [[filter [1 2 3 4] [[> 2]] ]]  result [3 4]
-					[code [[filter [t te tex text] [[? [n {}] > 2]] ]]  result [tex text]
+					[code [[filter [t te tex text] [[? [~ ..] > 2]] ]]  result [tex text]
 			names
 				group
 					list
@@ -2941,7 +2950,7 @@ class VOIDlang:
 				container
 					none
 				language
-					[python gdscript c++ asm86
+					[python gdscript asm86
 				param
 					[[name seed  type text  default none
 				result
@@ -3539,7 +3548,7 @@ class VOIDlang:
 					[name data  type any
 					[name public_key  type text
 				example
-					[code [[rsa secret {public_key}]]  type binary  test false
+					[code [[rsa secret .public_key]]  type binary  test false
 			rsa.decode
 				group
 					crypto
@@ -3559,7 +3568,7 @@ class VOIDlang:
 					[name data  type any
 					[name private_key  type text
 				example
-					[code [[rsa.decode {encrypted} {private_key}]]  type [text binary]  test false
+					[code [[rsa.decode .encrypted .private_key]]  type [text binary]  test false
 			ecdhe
 				group
 					crypto
@@ -3579,7 +3588,7 @@ class VOIDlang:
 					[name data  type any
 					[name public_key  type text
 				example
-					[code [[ecdhe secret {public_key}]]  type binary  test false
+					[code [[ecdhe secret .public_key]]  type binary  test false
 			ecdhe.decode
 				group
 					crypto
@@ -3599,7 +3608,7 @@ class VOIDlang:
 					[name data  type any
 					[name private_key  type text
 				example
-					[code [[ecdhe.decode {encrypted} {private key}]]  type [text binary]  test false
+					[code [[ecdhe.decode .encrypted .private key]]  type [text binary]  test false
 			barcode
 				group
 					crypto
@@ -3645,8 +3654,8 @@ class VOIDlang:
 					[name data  type any
 					[name standard  type text  subname true  default none
 				example
-					[code [[barcode.decode {image}]]  type text
-					[code [[barcode.decode.ean {image}]]  type text
+					[code [[barcode.decode .image]]  type text
+					[code [[barcode.decode.ean .image]]  type text
 
 		  .: file :.
 
@@ -3681,11 +3690,11 @@ class VOIDlang:
 					[code [[file.1252 file.txt]]  type text  test false
 					[code [[file file.txt text]]  test false
 					[code [[>>> file.txt text]]  test false
-					[code [[file.utf8 file.txt {text}]]  test false
-					[code [[file.1252 file.txt {text}]]  test false
-					[code [[file data.void {data}]]  test false
-					[code [[file data.json {data}]]  test false
-					[code [[file data.csv {data}]]  type any  test false
+					[code [[file.utf8 file.txt .text]]  test false
+					[code [[file.1252 file.txt .text]]  test false
+					[code [[file data.void .data]]  test false
+					[code [[file data.json .data]]  test false
+					[code [[file data.csv .data]]  type any  test false
 			file.exists
 				group
 					file
@@ -4263,6 +4272,44 @@ class VOIDlang:
 					[code [[dir.void /path [compression 9  key password]]]  test false
 					[code [[dir.void /path backup.void password]]  test false
 					[code [[dir.void /path backup.void key.txt]]  test false
+			dir.magic
+				group
+					file
+				method
+					dir_magic
+				alias
+					none
+				description
+					Automatically convert files in the specified directory
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name path  type text
+					[name effect  type text  subname true
+					[name param  type many  default none
+				example
+					[code [[dir.magic.jpg /path/to/magic]]  test false
+					[code [[dir.magic.jpg /path/to/magic 90%]]  test false
+					[code [[dir.magic.png /path/to/magic]]  test false
+					[code [[dir.magic.webp /path/to/magic]]  test false
+					[code [[dir.magic.webp.lossless /path/to/magic]]  test false
+					[code [[dir.magic.webp.loop /path/to/magic]]  test false
+					[code [[dir.magic.gif /path/to/magic]]  test false
+					[code [[dir.magic.video /path/to/magic mykey]]  test false
+					[code [[dir.magic.mp4 /path/to/magic mykey]]  test false
+					[code [[dir.magic.unique /path/to/magic]]  test false
+					[code [[dir.magic.zip /path/to/magic]]  test false
+					[code [[dir.magic.cloud /path/to/magic]]  test false
+					[code [[dir.magic.encrypt /path/to/magic]]  test false
+					[code [[dir.magic.manga /path/to/magic translate colorize]]  test false
+					[code [[dir.magic.x2 /path/to/magic]]  test false
+					[code [[dir.magic.grayscale /path/to/magic]]  test false
+					[code [[dir.magic.crop /path/to/magic [width 200  height 100]]]  test false
+					[code [[dir.magic.run /path/to/magic]]  test false
 			drive
 				group
 					file
@@ -4317,7 +4364,7 @@ class VOIDlang:
 					[name path  type text  default none
 				example
 					[code [[drive.mount data]]  test false
-					[code [[drive.mount {id} /mnt/backup]]  test false
+					[code [[drive.mount .id /mnt/backup]]  test false
 					[code [[drive.mount /path/to/data.iso E]]  test false
 			drive.unmount
 				group
@@ -4357,8 +4404,8 @@ class VOIDlang:
 				param
 					[[name info  type dict
 				example
-					[code [[drive.create [name data  size 2gb  partition {partition.id}  format ext4]]  test false
-					[code [[drive.create [name data  size 2gb  partition {partition.id}  format fat32  mbr {mbr}]]  test false
+					[code [[drive.create [name data  size 2gb  partition .partition.id  format ext4]]  test false
+					[code [[drive.create [name data  size 2gb  partition .partition.id  format fat32  mbr .mbr]]  test false
 					[code [[drive.create [size 2gb]]  test false
 			drive.resize
 				group
@@ -4381,7 +4428,7 @@ class VOIDlang:
 				example
 					[code [[drive.resize data 2gb]]  test false
 					[code [[drive.resize data 2000000000]]  test false
-					[code [[drive.resize {partition.id} 2gb]]  test false
+					[code [[drive.resize .partition.id 2gb]]  test false
 			drive.clear
 				group
 					file
@@ -4403,7 +4450,7 @@ class VOIDlang:
 					[code [[drive.clear data]]  test false
 					[code [[drive.clear /mnt/data]]  test false
 					[code [[drive.clear E]]  test false
-					[code [[drive.clear {partition.id}]]  test false
+					[code [[drive.clear .partition.id]]  test false
 			drive.remove
 				group
 					file
@@ -4424,7 +4471,7 @@ class VOIDlang:
 				example
 					[code [[drive.remove data]]  test false
 					[code [[drive.remove E]]  test false
-					[code [[drive.remove {partition.id}]]  test false
+					[code [[drive.remove .partition.id]]  test false
 			path
 				group
 					file
@@ -4777,13 +4824,13 @@ class VOIDlang:
 					[code [cloud.file]  test false
 					[code [[cloud.file /path/to/share]]  test false
 					[code [cloud.web]  test false
-					[code [[cloud.web {param}]]  test false
-					[code [[cloud.api {param}]]  test false
-					[code [[cloud.void {param}]]  test false
-					[code [[cloud.mail {param}]]  test false
-					[code [[cloud.proxy {param}]]  test false
-					[code [[cloud.vpn {param}]]  test false
-					[code [[cloud.screen {param}]]  test false
+					[code [[cloud.web .param]]  test false
+					[code [[cloud.api .param]]  test false
+					[code [[cloud.void .param]]  test false
+					[code [[cloud.mail .param]]  test false
+					[code [[cloud.proxy .param]]  test false
+					[code [[cloud.vpn .param]]  test false
+					[code [[cloud.screen .param]]  test false
 			request
 				group
 					cloud
@@ -4806,8 +4853,8 @@ class VOIDlang:
 				example
 					[code [[r https://voidsp.com]]	type dict  test false
 					[code [[r.get https://voidsp.com]]	type dict	test false
-					[code [[r https://voidsp.com [method post  header [key {key}  name {name}]  type json  data [1 2 3] ]]]  type dict  test false
-					[code [[r.post [url https://voidsp.com  header [key {key}  Content-Type multipart/form-data]  form [name {name}  data {data}] ]]]  type dict  test false
+					[code [[r https://voidsp.com [method post  header [key .key  name .name]  type json  data [1 2 3] ]]]  type dict  test false
+					[code [[r.post [url https://voidsp.com  header [key .key  Content-Type multipart/form-data]  form [name .name  data .data] ]]]  type dict  test false
 					[code [[info https://voidsp.com]]  type dict  test false
 			download
 				group
@@ -4861,11 +4908,11 @@ class VOIDlang:
 				example
 					[code [cookie]  test false
 					[code [[cookie session]]  test false
-					[code [[cookie session {session.id}]]  test false
-					[code [[cookie session {session.id} 86400]]  test false
-					[code [[cookie session {session.id} day]]  test false
-					[code [[cookie session {session.id} 1776865494]]  test false
-					[code [[cookie [name session  data {session.id}  expired day  domain /]]]  test false
+					[code [[cookie session .session.id]]  test false
+					[code [[cookie session .session.id 86400]]  test false
+					[code [[cookie session .session.id day]]  test false
+					[code [[cookie session .session.id 1776865494]]  test false
+					[code [[cookie [name session  data .session.id  expired day  domain /]]]  test false
 					[code [[cookie session none 0]]  test false
 					[code [[cookie.remove session]]  test false
 			social
@@ -4887,10 +4934,10 @@ class VOIDlang:
 					[name name  type text  subname true
 					[name data  type dict
 				example
-					[code [[social telegram.bot [name bot  token {token}  action {action}]]  test false
-					[code [[social telegram.send [token {token}  to {account}  text {text}  attachment [{image1} {image2}]]]  test false
-					[code [[social.youtube.upload [token {token}  title {title}  description {desctipion}  tags {tags}  video {video}  publish true]]]  test false
-					[code [[social.tiktok.upload [token {token}  title {title}  description {desctipion}  tags {tags}  video {video}  publish true]]]  test false
+					[code [[social telegram.bot [name bot  token .token  action .action]]  test false
+					[code [[social telegram.send [token .token  to .account  text .text  attachment [.image1 .image2]]]  test false
+					[code [[social.youtube.upload [token .token  title .title  description .desctipion  tags .tags  video .video  publish true]]]  test false
+					[code [[social.tiktok.upload [token .token  title .title  description .desctipion  tags .tags  video .video  publish true]]]  test false
 			notify
 				group
 					cloud
@@ -4915,9 +4962,9 @@ class VOIDlang:
 					[code [[notify.sms +123456789 message]]  test false
 					[code [[notify.call +123456789 message]]  test false
 					[code [[notify.mail to@voidsp.com message]]  test false
-					[code [[notify.mail [to [to1@voidsp.com to2@voidsp.com]  text {html}  from from@voidsp.com  copy copy@mvoidsp.com  attachment [{file1} {file2}]]]  test false
-					[code [[notify.push {token} message]]  test false
-					[code [[notify.push [token {token}  text message  sound sound.wav  badge 3  image {image}]]  test false
+					[code [[notify.mail [to [to1@voidsp.com to2@voidsp.com]  text .html  from from@voidsp.com  copy copy@mvoidsp.com  attachment [.file1 .file2]]]  test false
+					[code [[notify.push .token message]]  test false
+					[code [[notify.push [token .token  text message  sound sound.wav  badge 3  image .image]]  test false
 
 		  .: device :.
 
@@ -5452,9 +5499,9 @@ class VOIDlang:
 					[code [gallery]  type dict  test false
 					[code [[gallery 10]]  type list  test false
 					[code [[gallery 2026.01.01]]  type list  test false
-					[code [[gallery {id}]]  type dict  test false
-					[code [[gallery {image}]]  type dict  test false
-					[code [[gallery.remove {id}]]  test false
+					[code [[gallery .id]]  type dict  test false
+					[code [[gallery .image]]  type dict  test false
+					[code [[gallery.remove .id]]  test false
 			contacts
 				group
 					device
@@ -5475,9 +5522,9 @@ class VOIDlang:
 					[name action  type text  subname true  default none
 				example
 					[code [contacts]  type dict  test false
-					[code [[contacts {id}]]  type dict  test false
+					[code [[contacts .id]]  type dict  test false
 					[code [[contacts [name Thomas  phone +123456789]]]  test false
-					[code [[contacts.remove {id}]]  type dict  test false
+					[code [[contacts.remove .id]]  type dict  test false
 			call
 				group
 					device
@@ -5587,7 +5634,7 @@ class VOIDlang:
 				example
 					[code [bluetooth]  type dict  test false
 					[code [[bluetooth.connect name]]  test false
-					[code [[bluetooth.send name {data}]]  test false
+					[code [[bluetooth.send name .data]]  test false
 					[code [bluetooth.disconnect]  test false
 			cellular
 				group
@@ -5633,7 +5680,7 @@ class VOIDlang:
 				example
 					[code [stream]  type dict  test false
 					[code [stream.start]  test false
-					[code [[stream.start {param}]]  test false
+					[code [[stream.start .param]]  test false
 					[code [stream.stop]  test false
 			keyboard
 				group
@@ -6064,7 +6111,7 @@ class VOIDlang:
 			none
 		language
 			none
-		info
+		app
 			os
 				type
 				name
@@ -6077,10 +6124,20 @@ class VOIDlang:
 				fps
 				cpu
 				gpu
+			ui
+				cli
 			file
-				path
-				name
-				param
+			path
+			param
+			cli
+				color
+					true
+				indent
+					2
+		stopwatch
+			[ ]
+		timer
+			[ ]
 		cloud
 			mime
 
@@ -6536,59 +6593,65 @@ class VOIDlang:
 				[]
 			drive
 				mount
-					[? {os}
-						[mac linux
+					[? .os
+						[[mac linux]
 							[]
+					]
 						windows
 							[]
 				unmount
-					[? {os}
-						[mac linux
+					[? .os
+						[[mac linux]
 							[]
+					]
 						windows
 							[]
 				create
-					[? {os}
-						[mac linux
+					[? .os
+						[[mac linux]
 							[]
+					]
 						windows
 							[]
 				resize
-					[? {os}
-						[mac linux
+					[? .os
+						[[mac linux]
 							[]
+					]
 						windows
 							[]
 				clear
-					[? {os}
-						[mac linux
+					[? .os
+						[[mac linux]
 							[]
+					]
 						windows
 							[]
 				remove
-					[? {os}
-						[mac linux
+					[? .os
+						[[mac linux]
 							[]
+					]
 						windows
 							[]
 			csv
 				encode
 					[]
 				decode
-					[parse {text} param_csv
-					_
+					[parse .text .parse.csv
+					__
 			xml
 				encode
 					[]
 				decode
-					[parse {text} param_xml
-					_
+					[parse .text .parse.xml
+					__
 			ini
 				encode
 					[]
 				decode
-					[parse {text} param_ini
-					_
+					[parse .text .parse.ini
+					__
 			download
 				[]
 		text
@@ -6628,17 +6691,81 @@ class VOIDlang:
 
 	@classmethod
 	def run(cls):
-		pass
+		cls.t('run')
+		file = sys.argv[0]
+		path = os.getcwd()
+		param = sys.argv[1:]
+		cls.set('app.file', file)
+		cls.set('app.path', path)
+		cls.set('app.param', param)
+		match platform.system():
+			case 'Windows':
+				os_type = 'windows'
+			case 'Linux':
+				os_type = 'linux'
+			case 'Darwin':
+				os_type = 'mac'
+			case _:
+				os_type = 'unknown'
+		cls.set('os', os_type)
+		cls.set('app.os.type', os_type)
+		cls.random_reseed()
+		if len(param) > 0:
+			text = str(param[0]).strip()
+			result = None
+			if cls.path_extension(text, 'py'):
+				cls.code(cls.file(text))
+			elif cls.path_extension(text, 'void', 'json', 'yaml'):
+				result = cls.action(cls.file(text))
+			elif cls.path_extension(text, 'zip'):
+				path_archive = text if cls.file_exists(text) else cls.path(path, text)
+				if cls.file_exists(path_archive):
+					path_extract = cls.path(cls.path_dir(path_archive), 'void.' + cls.hash())
+					cls.file_extract(path_archive, path_extract)
+					if cls.file_exists(cls.path(path_extract, 'run.void')):
+						result = cls.action(cls.file(cls.path(path_extract, 'run.void')))
+					elif cls.file_exists(cls.path(path_extract, 'run.json')):
+						result = cls.action(cls.file(cls.path(path_extract, 'run.json')))
+					elif cls.file_exists(cls.path(path_extract, 'run.yaml')):
+						result = cls.action(cls.file(cls.path(path_extract, 'run.yaml')))
+					cls.dir_remove(path_extract)
+			else:
+				if text.startswith('{') or text.startswith('['):
+					data = cls.json_decode(text)
+					if data is None:
+						data = cls.yaml_decode(text)
+						if data is None:
+							data = cls.void_decode(text)
+					if data is not None:
+						result = cls.action(data)
+					else:
+						result = cls.action([param])
+		elif cls.file_exists(path + '/run.void'):
+			result = cls.action(cls.file(path + '/run.void'))
+		elif cls.file_exists(path + '/run.json'):
+			result = cls.action(cls.file(path + '/run.json'))
+		elif cls.file_exists(path + '/run.yaml'):
+			result = cls.action(cls.file(path + '/run.yaml'))
+		elif cls.file_exists(path + '/run.zip/run.void'):
+			result = cls.action(cls.file(path + '/run.zip/run.void'))
+		elif cls.file_exists(path + '/run.zip/run.json'):
+			result = cls.action(cls.file(path + '/run.zip/run.json'))
+		elif cls.file_exists(path + '/run.zip/run.yaml'):
+			result = cls.action(cls.file(path + '/run.zip/run.yaml'))
+		else:
+			result = app.get('about')
+		if result not in ['', None] and cls.get('app.ui') == 'cli':
+			cls.print(result)
 
 
   # value
 
 	@classmethod
-	def get(cls):
+	def get(cls, name: str = None):
 		pass
 
 	@classmethod
-	def set(cls):
+	def set(cls, name: str, data = None):
 		pass
 
 	@classmethod
@@ -6836,7 +6963,7 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def log(cls):
+	def logger(cls):
 		pass
 
 	@classmethod
@@ -7146,6 +7273,10 @@ class VOIDlang:
 		random.seed(seed)
 		cls.set('app.random.seed', seed)
 
+	@classmethod
+	def random_reseed(cls):
+		cls.random_seed('')
+
 
   # time
 
@@ -7166,8 +7297,12 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def stopwatch(cls):
+	def stopwatch(cls, tag: str = None):
 		pass
+
+	@classmethod
+	def t(cls, tag: str = None):
+		return cls.stopwatch(tag)
 
 	@classmethod
 	def date(cls):
