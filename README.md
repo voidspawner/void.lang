@@ -207,14 +207,14 @@ lower
 
 ```
 [[code 'for i in range(10):print(i)
-[[code.c++ 'for (int i = 0; i < 10; ++i) std::cout << i << '\n';
+[[code.c++ 'int i = 10; std::cout << i;
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
 [["code", "for i in range(10):print(i)"]]
-[["code", "for (int i = 0; i < 10; ++i) std::cout << i << '\n';"]]
+[["code", "int i = 10; std::cout << i;"]]
 ```
 </td></tr></table>
 
