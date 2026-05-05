@@ -214,7 +214,7 @@ lower
   
 ```json
 [["code", "for i in range(10):print(i)"]]
-[["code", "int i = 10; std::cout << i;"]]
+[["code.c++", "int i = 10; std::cout << i;"]]
 ```
 </td></tr></table>
 
