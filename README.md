@@ -206,15 +206,17 @@ lower
 <img width="441" height="1">
 
 ```
-[[code 'for i in range(10):print(i)
-[[code.c++ 'int i = 10; std::cout << i;
+[code 'for i in range(10):print(i)
+[code.c++ 'int i = 10; std::cout << i;
 ```
 </td><td>
 <img width="441" height="1">
   
 ```json
-[["code", "for i in range(10):print(i)"]]
-[["code.c++", "int i = 10; std::cout << i;"]]
+[
+  ["code", "for i in range(10):print(i)"],
+  ["code.c++", "int i = 10; std::cout << i;"]
+]
 ```
 </td></tr></table>
 
