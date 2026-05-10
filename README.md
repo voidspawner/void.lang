@@ -246,35 +246,45 @@ print(void.decrypt(encrypted['text'], encrypted['key']))
 3. Launch app with **V O I D lang**
  
 ```console
-python void.py app.void
-python void.py app.json
-python void.py app.zip
+python3 void.py app.void
+python3 void.py app.json
+python3 void.py app.zip
 ```
 
 > [!TIP]
 > Create an app in **``run.void``**・**``run.json``** ・**``run.zip``** for autorun
 > ```
-> python void.py
+> python3 void.py
 > ```
 
 > [!TIP]
 > Type alias in the **``Windows``** command line
 > ```console
-> doskey void=python /path/to/void.py
+> doskey void=python3 /path/to/void.py
 > ```
 >
 > Add alias in **``~/.bashrc``** (Linux)・**``~/.bash_profile``** (macOS)・**``~/.zshrc``** (macOS)
 > ```console
-> alias void="python /path/to/void.py"
+> alias void="python3 /path/to/void.py"
 > ```
 > ```console
 > void app.void
 > ```
 
 > [!TIP]
+> To install Python on **``Windows``**, press **``Win``** + **``R``** and enter command
+> ```console
+> winget install --id Python.Python -h --accept-package-agreements --accept-source-agreements
+> ```
+> To install Python on **``macOS``**, enter the command in the terminal and follow the instructions
+> ```console
+> python3
+> ```
+
+> [!TIP]
 > Compile **``Python``**・**``JavaScript``**・**``Swift``**・**``Kotlin``**・**``C++``** file containing your code into the exacutable
 > ```console
-> pip install pyinstaller
+> pip3 install pyinstaller
 > pyinstaller --onefile void.py
 > ```
 > ```console
@@ -309,8 +319,8 @@ python void.py app.zip
 > Use **Help** to display a description of the action
 > 
 > ```console
-> python void.py help
-> python void.py h upper
+> python3 void.py help
+> python3 void.py h upper
 > ```
 
 > Number of actions **``240``**
