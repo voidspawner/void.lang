@@ -122,11 +122,17 @@ text
 ```
 [[cloud '<h1>Hi World 😄</h1>
 ```
+```
+[[cloud page.html
+```
 </td><td>
 <img width="441" height="1">
   
 ```json
 [["cloud", "<h1>Hi World 😄</h1>"]]
+```
+```json
+[["cloud", "page.html"]]
 ```
 </td></tr></table>
 
