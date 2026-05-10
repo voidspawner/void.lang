@@ -125,6 +125,9 @@ text
 ```
 [[cloud page.html
 ```
+```
+[[cloud /path/to/site
+```
 </td><td>
 <img width="441" height="1">
   
@@ -133,6 +136,9 @@ text
 ```
 ```json
 [["cloud", "page.html"]]
+```
+```json
+[["cloud", "/path/to/site"]]
 ```
 </td></tr></table>
 
