@@ -1,16 +1,13 @@
+import io
 import os
 import re
 import sys
-import json
-import gzip
-import lzma
 import time
 import math
 import signal
 import struct
 import string
 import random
-import base64
 import hashlib
 import platform
 import datetime
@@ -22,7 +19,6 @@ import subprocess
 
 class VOIDlang:
 
-	modules = {}
 	data = '''
 		about
 			type
@@ -35,9 +31,9 @@ class VOIDlang:
 				python
 			version
 				time
-					1777211505
+					1778403797
 				date
-					2026 · 04 · 26
+					2026 · 05 · 10
 			license
 				name
 					V O I D license
@@ -88,6 +84,8 @@ class VOIDlang:
 					get
 					a
 					s
+				action
+					none
 				alias
 					none
 				description
@@ -115,6 +113,8 @@ class VOIDlang:
 					value
 				method
 					set
+				action
+					none
 				alias
 					none
 				description
@@ -140,6 +140,8 @@ class VOIDlang:
 					value
 				method
 					remove
+				action
+					none
 				alias
 					del
 				description
@@ -164,6 +166,8 @@ class VOIDlang:
 					value
 				method
 					type
+				action
+					none
 				alias
 					none
 				description
@@ -191,6 +195,8 @@ class VOIDlang:
 					value
 				method
 					type_text
+				action
+					none
 				alias
 					none
 				description
@@ -236,6 +242,8 @@ class VOIDlang:
 					value
 				method
 					type_number
+				action
+					none
 				alias
 					none
 				description
@@ -264,6 +272,8 @@ class VOIDlang:
 					value
 				method
 					type_bool
+				action
+					none
 				alias
 					none
 				description
@@ -295,6 +305,8 @@ class VOIDlang:
 					value
 				method
 					type_binary
+				action
+					none
 				alias
 					none
 				description
@@ -320,6 +332,8 @@ class VOIDlang:
 					value
 				method
 					length
+				action
+					none
 				alias
 					~
 					len
@@ -350,6 +364,8 @@ class VOIDlang:
 					expression
 				method
 					expression_plus
+				action
+					none
 				alias
 					and
 				description
@@ -384,6 +400,8 @@ class VOIDlang:
 					expression
 				method
 					expression_minus
+				action
+					none
 				alias
 					not
 				description
@@ -414,6 +432,8 @@ class VOIDlang:
 					expression
 				method
 					expression_multiply
+				action
+					none
 				alias
 					xor
 				description
@@ -444,6 +464,8 @@ class VOIDlang:
 					expression
 				method
 					expression_divide
+				action
+					none
 				alias
 					or
 				description
@@ -474,6 +496,8 @@ class VOIDlang:
 					expression
 				method
 					expression_modulo
+				action
+					none
 				alias
 					mod
 				description
@@ -494,6 +518,8 @@ class VOIDlang:
 					expression
 				method
 					expression_power
+				action
+					none
 				alias
 					pow
 				description
@@ -516,6 +542,8 @@ class VOIDlang:
 					expression
 				method
 					expression_shr
+				action
+					none
 				alias
 					shr
 				description
@@ -542,6 +570,8 @@ class VOIDlang:
 					expression
 				method
 					expression_shl
+				action
+					none
 				alias
 					shl
 				description
@@ -567,6 +597,8 @@ class VOIDlang:
 					expression
 				method
 					expression_notequal
+				action
+					none
 				alias
 					!=
 				description
@@ -593,6 +625,8 @@ class VOIDlang:
 					expression
 				method
 					expression_greater
+				action
+					none
 				alias
 					none
 				description
@@ -617,6 +651,8 @@ class VOIDlang:
 					expression
 				method
 					expression_less
+				action
+					none
 				alias
 					none
 				description
@@ -641,6 +677,8 @@ class VOIDlang:
 					expression
 				method
 					expression_greater_equal
+				action
+					none
 				alias
 					none
 				description
@@ -661,6 +699,8 @@ class VOIDlang:
 					expression
 				method
 					expression_less_equal
+				action
+					none
 				alias
 					none
 				description
@@ -681,6 +721,8 @@ class VOIDlang:
 					expression
 				method
 					expression_in
+				action
+					none
 				alias
 					in
 				description
@@ -705,6 +747,8 @@ class VOIDlang:
 					expression
 				method
 					expression_notin
+				action
+					none
 				alias
 					notin
 				description
@@ -729,6 +773,8 @@ class VOIDlang:
 					expression
 				method
 					expression_is
+				action
+					none
 				alias
 					is
 				description
@@ -758,6 +804,8 @@ class VOIDlang:
 					expression
 				method
 					expression_isnot
+				action
+					none
 				alias
 					isnot
 				description
@@ -787,6 +835,8 @@ class VOIDlang:
 					expression
 				method
 					expression_assign
+				action
+					none
 				alias
 					==
 				description
@@ -814,6 +864,8 @@ class VOIDlang:
 					expression
 				method
 					expression_plus_assign
+				action
+					none
 				alias
 					none
 				description
@@ -841,6 +893,8 @@ class VOIDlang:
 					expression
 				method
 					expression_assign_plus
+				action
+					none
 				alias
 					none
 				description
@@ -868,6 +922,8 @@ class VOIDlang:
 					expression
 				method
 					expression_minus_assign
+				action
+					none
 				alias
 					none
 				description
@@ -895,6 +951,8 @@ class VOIDlang:
 					expression
 				method
 					expression_assign_minus
+				action
+					none
 				alias
 					none
 				description
@@ -922,6 +980,8 @@ class VOIDlang:
 					expression
 				method
 					expression_multiply_assign
+				action
+					none
 				alias
 					none
 				description
@@ -948,6 +1008,8 @@ class VOIDlang:
 					expression
 				method
 					expression_divide_assign
+				action
+					none
 				alias
 					none
 				description
@@ -974,6 +1036,8 @@ class VOIDlang:
 					expression
 				method
 					expression_modulo_assign
+				action
+					none
 				alias
 					none
 				description
@@ -995,6 +1059,8 @@ class VOIDlang:
 					expression
 				method
 					expression_power_assign
+				action
+					none
 				alias
 					none
 				description
@@ -1016,6 +1082,8 @@ class VOIDlang:
 					expression
 				method
 					expression_shr_assign
+				action
+					none
 				alias
 					none
 				description
@@ -1041,6 +1109,8 @@ class VOIDlang:
 					expression
 				method
 					expression_shl_assign
+				action
+					none
 				alias
 					none
 				description
@@ -1068,6 +1138,8 @@ class VOIDlang:
 					control
 				method
 					print
+				action
+					none
 				alias
 					..
 					print
@@ -1094,6 +1166,8 @@ class VOIDlang:
 					control
 				method
 					input
+				action
+					none
 				alias
 					input
 				description
@@ -1114,6 +1188,8 @@ class VOIDlang:
 					control
 				method
 					control_if
+				action
+					none
 				alias
 					if
 				description
@@ -1135,6 +1211,8 @@ class VOIDlang:
 					control
 				method
 					control_loop
+				action
+					none
 				alias
 					loop
 				description
@@ -1163,6 +1241,8 @@ class VOIDlang:
 					control
 				method
 					control_break
+				action
+					none
 				alias
 					break
 				description
@@ -1183,6 +1263,8 @@ class VOIDlang:
 					control
 				method
 					control_continue
+				action
+					none
 				alias
 					continue
 				description
@@ -1204,6 +1286,8 @@ class VOIDlang:
 					control
 				method
 					control_repeat
+				action
+					none
 				alias
 					repeat
 				description
@@ -1224,6 +1308,8 @@ class VOIDlang:
 					control
 				method
 					control_return
+				action
+					none
 				alias
 					__
 					return
@@ -1249,6 +1335,8 @@ class VOIDlang:
 					control
 				method
 					action
+				action
+					none
 				alias
 					none
 				description
@@ -1272,6 +1360,8 @@ class VOIDlang:
 					control
 				method
 					open
+				action
+					none
 				alias
 					none
 				description
@@ -1299,6 +1389,8 @@ class VOIDlang:
 					control
 				method
 					close
+				action
+					none
 				alias
 					none
 				description
@@ -1321,6 +1413,8 @@ class VOIDlang:
 					control
 				method
 					code
+				action
+					none
 				alias
 					none
 				description
@@ -1332,16 +1426,21 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name code  type text
+					[name code  type text
+					[name language  type text  subname true  default none
 				example
 					[code [[code 'print("Hi! World")']]  test false
 					[code [[code print("Hi! World")]]  test false
 					[code [[code 'console.log("Hi! World")']]  test false
+					[code [[code.js 'console.log("Hi! World")']]  test false
+					[code [[code.c++ 'int i = 10; std::cout << i << std::endl;']]  test false
 			logger
 				group
 					control
 				method
 					logger
+				action
+					none
 				alias
 					l
 				description
@@ -1372,7 +1471,9 @@ class VOIDlang:
 				group
 					control
 				method
-					action.test
+					test
+				action
+					test
 				alias
 					none
 				description
@@ -1394,7 +1495,9 @@ class VOIDlang:
 				group
 					control
 				method
-					action.update
+					update
+				action
+					update
 				alias
 					none
 				description
@@ -1419,8 +1522,11 @@ class VOIDlang:
 					control
 				method
 					exit
+				action
+					none
 				alias
 					xx
+					error
 				description
 					Exit the current application with an exit code
 				safe
@@ -1443,6 +1549,8 @@ class VOIDlang:
 					control
 				method
 					os
+				action
+					none
 				alias
 					none
 				description
@@ -1463,7 +1571,9 @@ class VOIDlang:
 				group
 					control
 				method
-					action.info
+					info
+				action
+					info
 				alias
 					i
 					help
@@ -1495,7 +1605,9 @@ class VOIDlang:
 				group
 					control
 				method
-					action.convert
+					convert
+				action
+					convert
 				alias
 					c
 					<>
@@ -1538,6 +1650,8 @@ class VOIDlang:
 					control
 				method
 					clipboard
+				action
+					none
 				alias
 					none
 				description
@@ -1558,6 +1672,8 @@ class VOIDlang:
 					control
 				method
 					sql
+				action
+					none
 				alias
 					none
 				description
@@ -1617,6 +1733,8 @@ class VOIDlang:
 					control
 				method
 					chat
+				action
+					none
 				alias
 					:
 				description
@@ -1638,6 +1756,8 @@ class VOIDlang:
 					control
 				method
 					say
+				action
+					none
 				alias
 					none
 				description
@@ -1662,6 +1782,8 @@ class VOIDlang:
 					control
 				method
 					recognize
+				action
+					none
 				alias
 					none
 				description
@@ -1683,11 +1805,10 @@ class VOIDlang:
 					control
 				method
 					ui
+				action
+					none
 				alias
-					app
-					game
-					web
-					cli
+					none
 				description
 					Create a user interface
 				safe
@@ -1801,6 +1922,8 @@ class VOIDlang:
 					text
 				method
 					lower
+				action
+					none
 				alias
 					none
 				description
@@ -1820,6 +1943,8 @@ class VOIDlang:
 					text
 				method
 					upper
+				action
+					none
 				alias
 					none
 				description
@@ -1839,6 +1964,8 @@ class VOIDlang:
 					text
 				method
 					starts
+				action
+					none
 				alias
 					none
 				description
@@ -1860,6 +1987,8 @@ class VOIDlang:
 					text
 				method
 					ends
+				action
+					none
 				alias
 					none
 				description
@@ -1881,6 +2010,8 @@ class VOIDlang:
 					text
 				method
 					strip
+				action
+					none
 				alias
 					none
 				description
@@ -1903,6 +2034,8 @@ class VOIDlang:
 					text
 				method
 					strip_start
+				action
+					none
 				alias
 					none
 				description
@@ -1925,6 +2058,8 @@ class VOIDlang:
 					text
 				method
 					strip_end
+				action
+					none
 				alias
 					none
 				description
@@ -1947,6 +2082,8 @@ class VOIDlang:
 					text
 				method
 					replace
+				action
+					none
 				alias
 					none
 				description
@@ -1970,6 +2107,8 @@ class VOIDlang:
 					text
 				method
 					find
+				action
+					none
 				alias
 					none
 				description
@@ -1996,6 +2135,8 @@ class VOIDlang:
 					text
 				method
 					parse
+				action
+					none
 				alias
 					none
 				description
@@ -2016,6 +2157,8 @@ class VOIDlang:
 					text
 				method
 					part
+				action
+					none
 				alias
 					none
 				description
@@ -2048,6 +2191,8 @@ class VOIDlang:
 					text
 				method
 					split
+				action
+					none
 				alias
 					none
 				description
@@ -2071,6 +2216,8 @@ class VOIDlang:
 					text
 				method
 					join
+				action
+					none
 				alias
 					none
 				description
@@ -2093,6 +2240,8 @@ class VOIDlang:
 					text
 				method
 					escape
+				action
+					none
 				alias
 					e
 				description
@@ -2118,6 +2267,8 @@ class VOIDlang:
 					text
 				method
 					unescape
+				action
+					none
 				alias
 					u
 				description
@@ -2143,6 +2294,8 @@ class VOIDlang:
 					text
 				method
 					translate
+				action
+					none
 				alias
 					none
 				description
@@ -2168,6 +2321,8 @@ class VOIDlang:
 					text
 				method
 					check
+				action
+					none
 				alias
 					#
 				description
@@ -2193,6 +2348,8 @@ class VOIDlang:
 					list
 				method
 					push
+				action
+					none
 				alias
 					none
 				description
@@ -2216,6 +2373,8 @@ class VOIDlang:
 					list
 				method
 					pop
+				action
+					none
 				alias
 					none
 				description
@@ -2238,6 +2397,8 @@ class VOIDlang:
 					list
 				method
 					reverse
+				action
+					none
 				alias
 					none
 				description
@@ -2258,6 +2419,8 @@ class VOIDlang:
 					list
 				method
 					unique
+				action
+					none
 				alias
 					none
 				description
@@ -2278,6 +2441,8 @@ class VOIDlang:
 					list
 				method
 					map
+				action
+					none
 				alias
 					none
 				description
@@ -2299,6 +2464,8 @@ class VOIDlang:
 					list
 				method
 					reduce
+				action
+					none
 				alias
 					none
 				description
@@ -2320,6 +2487,8 @@ class VOIDlang:
 					list
 				method
 					filter
+				action
+					none
 				alias
 					none
 				description
@@ -2341,6 +2510,8 @@ class VOIDlang:
 					list
 				method
 					names
+				action
+					none
 				alias
 					indexes
 					keys
@@ -2361,6 +2532,8 @@ class VOIDlang:
 					list
 				method
 					values
+				action
+					none
 				alias
 					none
 				description
@@ -2383,6 +2556,8 @@ class VOIDlang:
 					math
 				method
 					sin
+				action
+					none
 				alias
 					none
 				description
@@ -2404,6 +2579,8 @@ class VOIDlang:
 					math
 				method
 					cos
+				action
+					none
 				alias
 					none
 				description
@@ -2425,6 +2602,8 @@ class VOIDlang:
 					math
 				method
 					tan
+				action
+					none
 				alias
 					none
 				description
@@ -2446,6 +2625,8 @@ class VOIDlang:
 					math
 				method
 					sinh
+				action
+					none
 				alias
 					none
 				description
@@ -2467,6 +2648,8 @@ class VOIDlang:
 					math
 				method
 					cosh
+				action
+					none
 				alias
 					none
 				description
@@ -2488,6 +2671,8 @@ class VOIDlang:
 					math
 				method
 					tanh
+				action
+					none
 				alias
 					none
 				description
@@ -2509,6 +2694,8 @@ class VOIDlang:
 					math
 				method
 					asin
+				action
+					none
 				alias
 					none
 				description
@@ -2530,6 +2717,8 @@ class VOIDlang:
 					math
 				method
 					acos
+				action
+					none
 				alias
 					none
 				description
@@ -2551,6 +2740,8 @@ class VOIDlang:
 					math
 				method
 					atan
+				action
+					none
 				alias
 					none
 				description
@@ -2572,6 +2763,8 @@ class VOIDlang:
 					math
 				method
 					asinh
+				action
+					none
 				alias
 					none
 				description
@@ -2593,6 +2786,8 @@ class VOIDlang:
 					math
 				method
 					acosh
+				action
+					none
 				alias
 					none
 				description
@@ -2614,6 +2809,8 @@ class VOIDlang:
 					math
 				method
 					atanh
+				action
+					none
 				alias
 					none
 				description
@@ -2635,6 +2832,8 @@ class VOIDlang:
 					math
 				method
 					round
+				action
+					none
 				alias
 					none
 				description
@@ -2660,6 +2859,8 @@ class VOIDlang:
 					math
 				method
 					floor
+				action
+					none
 				alias
 					none
 				description
@@ -2684,6 +2885,8 @@ class VOIDlang:
 					math
 				method
 					ceil
+				action
+					none
 				alias
 					none
 				description
@@ -2708,6 +2911,8 @@ class VOIDlang:
 					math
 				method
 					log
+				action
+					none
 				alias
 					none
 				description
@@ -2732,6 +2937,8 @@ class VOIDlang:
 					math
 				method
 					factorial
+				action
+					none
 				alias
 					none
 				description
@@ -2754,6 +2961,8 @@ class VOIDlang:
 					math
 				method
 					fibonacci
+				action
+					none
 				alias
 					none
 				description
@@ -2779,6 +2988,8 @@ class VOIDlang:
 					math
 				method
 					gold
+				action
+					none
 				alias
 					g
 				description
@@ -2803,6 +3014,8 @@ class VOIDlang:
 					math
 				method
 					abs
+				action
+					none
 				alias
 					none
 				description
@@ -2825,6 +3038,8 @@ class VOIDlang:
 					math
 				method
 					min
+				action
+					none
 				alias
 					none
 				description
@@ -2847,6 +3062,8 @@ class VOIDlang:
 					math
 				method
 					max
+				action
+					none
 				alias
 					none
 				description
@@ -2869,6 +3086,8 @@ class VOIDlang:
 					math
 				method
 					sum
+				action
+					none
 				alias
 					none
 				description
@@ -2891,6 +3110,8 @@ class VOIDlang:
 					math
 				method
 					avg
+				action
+					none
 				alias
 					none
 				description
@@ -2913,6 +3134,8 @@ class VOIDlang:
 					math
 				method
 					random
+				action
+					none
 				alias
 					none
 				description
@@ -2941,8 +3164,10 @@ class VOIDlang:
 					math
 				method
 					random_seed
-				alias
+				action
 					none
+				alias
+					random.reseed
 				description
 					Receives, sets or refreshes the seed for the random number generator to produce reproducible results
 				safe
@@ -2957,7 +3182,7 @@ class VOIDlang:
 					text
 				example
 					[code [[random.seed uniqueseed] random.seed]  result uniqueseed
-					[code [[random.seed ''] random.seed]  type text  length 256
+					[code [[random.reseed] random.seed]  type text  length 256
 
 		  .: time :.
 
@@ -2966,6 +3191,8 @@ class VOIDlang:
 					time
 				method
 					time
+				action
+					none
 				alias
 					none
 				description
@@ -2988,6 +3215,8 @@ class VOIDlang:
 					time
 				method
 					timer
+				action
+					none
 				alias
 					none
 				description
@@ -3015,6 +3244,8 @@ class VOIDlang:
 					time
 				method
 					timer_remove
+				action
+					none
 				alias
 					none
 				description
@@ -3037,6 +3268,8 @@ class VOIDlang:
 					time
 				method
 					wait
+				action
+					none
 				alias
 					none
 				description
@@ -3058,6 +3291,8 @@ class VOIDlang:
 					time
 				method
 					stopwatch
+				action
+					none
 				alias
 					t
 				description
@@ -3083,6 +3318,8 @@ class VOIDlang:
 					time
 				method
 					date
+				action
+					none
 				alias
 					none
 				description
@@ -3114,6 +3351,8 @@ class VOIDlang:
 					crypto
 				method
 					encrypt
+				action
+					none
 				alias
 					none
 				description
@@ -3126,14 +3365,17 @@ class VOIDlang:
 					[python js swift kotlin gdscript c++ asm86
 				param
 					[name data  type any
-					[name key  type text
+					[name key  type text  default none
 				example
-					[[code [[encrypt secret key]]  result aGVsbG8=
+					[code [[encrypt text key]]  type binary
+					[code [[encrypt text]]  type dict
 			decrypt
 				group
 					crypto
 				method
 					decrypt
+				action
+					none
 				alias
 					none
 				description
@@ -3145,19 +3387,22 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name hash  type [text binary
+					[name data  type [text binary
 					[name key  type text
 				example
-					[[code [[decrypt aGVsbG8= key]]  result secret
+					[code [[decrypt .data key]]  test false
+					[code [[decrypt U3tBg8cZyAM5Ir5w0sovXIiXSI9lCYGY3kdHHWmDHiBo key]]  result text
 			password
 				group
 					crypto
 				method
 					bcrypt_encode
+				action
+					none
 				alias
 					none
 				description
-					Hashes a password using the Argon2 algorithm for secure storage
+					Hashes a password using the Argon2, Bcrypt or PBKDF2 algorithm for secure storage
 				safe
 					true
 				container
@@ -3165,18 +3410,23 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name password  type text
+					[name password  type text
+					[name name  type text  default none
 				example
-					[[code [[password password]]  result $2a$12$saltpasswordhash
+					[code [[password password]]  type text
+					[code [[password password argon]]  type text
+					[code [[password password bcrypt]]  type text
 			password.check
 				group
 					crypto
 				method
 					bcrypt_check
+				action
+					none
 				alias
 					none
 				description
-					Verifies a password against a Argon2 hashed password
+					Verifies a password against a Argon2, Bcrypt or PBKDF2 hashed password
 				safe
 					true
 				container
@@ -3187,12 +3437,14 @@ class VOIDlang:
 					[name hash  type text
 					[name password  type text
 				example
-					[[code [[password.check $2a$12$saltpasswordhash password]]  result true
+					[[code [[password.check .hash password]]  type bool  test false
 			hash
 				group
 					crypto
 				method
 					hash
+				action
+					none
 				alias
 					none
 				description
@@ -3209,17 +3461,22 @@ class VOIDlang:
 				example
 					[code [[hash hello]]  result 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
 					[code [hash]  type text
-					[code [hash 10]  type text
-					[code [hash 10 letters]  type text
-					[code [hash.letters]  type text
-					[code [hash.letters 10]  type text
-					[code [hash.numbers 10]  type text
-					[code [hash.special 10]  type text
+					[code [hash 10]  type text  length 10
+					[code [hash 10 letter]  type text  length 10
+					[code [hash.letter 10]  type text  length 10
+					[code [hash.lower]  type text
+					[code [hash.upper]  type text
+					[code [hash.number]  type text
+					[code [hash.symbol]  type text
+					[code [hash text sha1]  result 372ea08cab33e71c02c651dbc83a474d32c676ea
+					[code [hash.sha1 text]  result 372ea08cab33e71c02c651dbc83a474d32c676ea
 			uuid
 				group
 					crypto
 				method
 					uuid
+				action
+					none
 				alias
 					none
 				description
@@ -3239,6 +3496,8 @@ class VOIDlang:
 					crypto
 				method
 					sha1
+				action
+					none
 				alias
 					none
 				description
@@ -3258,6 +3517,8 @@ class VOIDlang:
 					crypto
 				method
 					sha256
+				action
+					none
 				alias
 					none
 				description
@@ -3277,6 +3538,8 @@ class VOIDlang:
 					crypto
 				method
 					sha512
+				action
+					none
 				alias
 					none
 				description
@@ -3296,6 +3559,8 @@ class VOIDlang:
 					crypto
 				method
 					crc32
+				action
+					none
 				alias
 					none
 				description
@@ -3314,7 +3579,9 @@ class VOIDlang:
 				group
 					crypto
 				method
-					base64_encode
+					base64
+				action
+					none
 				alias
 					none
 				description
@@ -3334,6 +3601,8 @@ class VOIDlang:
 					crypto
 				method
 					base64_decode
+				action
+					none
 				alias
 					none
 				description
@@ -3345,15 +3614,19 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name data  type text
+					[name data  type text
+					[name safe  type bool  subname true  default true
 				example
 					[code [[base64.decode aGVsbG8=]]  result hello
 					[code [[base64.decode aGVsbG8]]  result hello
+					[code [[base64.decode.safe aGVsbG8]]  result hello
 			gzip
 				group
 					crypto
 				method
-					gzip_encode
+					gzip
+				action
+					none
 				alias
 					none
 				description
@@ -3369,17 +3642,19 @@ class VOIDlang:
 					[name level  type [number text  subname true  default none
 				example
 					[code [[gzip hello]]  result *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==
-					[code [[gzip hello 1]]  test false
-					[code [[gzip hello 9]]  test false
-					[code [[gzip hello fast]]  test false
-					[code [[gzip hello best]]  test false
-					[code [[gzip.fast hello]]  test false
-					[code [[gzip.best hello]]  test false
+					[code [[gzip hello 1]]  type binary
+					[code [[gzip hello 9]]  type binary
+					[code [[gzip hello fast]]  type binary
+					[code [[gzip hello best]]  type binary
+					[code [[gzip.fast hello]]  type binary
+					[code [[gzip.best hello]]  type binary
 			gzip.decode
 				group
 					crypto
 				method
 					gzip_decode
+				action
+					none
 				alias
 					none
 				description
@@ -3398,7 +3673,9 @@ class VOIDlang:
 				group
 					crypto
 				method
-					lzma_encode
+					lzma
+				action
+					none
 				alias
 					none
 				description
@@ -3413,7 +3690,7 @@ class VOIDlang:
 					[name data  type any
 					[name level  type [number text  subname true  default none
 				example
-					[[code [[lzma hello]]  result *...
+					[[code [[lzma hello]]  result */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==
 					[code [[lzma hello 1]]  test false
 					[code [[lzma hello 9]]  test false
 					[code [[lzma hello fast]]  test false
@@ -3425,6 +3702,8 @@ class VOIDlang:
 					crypto
 				method
 					lzma_decode
+				action
+					none
 				alias
 					none
 				description
@@ -3438,57 +3717,14 @@ class VOIDlang:
 				param
 					[[name data  type any
 				example
-					[code [[lzma.decode *...]]  result hello
-			lzss
-				group
-					crypto
-				method
-					lzss_encode
-				alias
-					none
-				description
-					Compresses data using the LZSS compression algorithm (fastest compression)
-				safe
-					true
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[name data  type any
-					[name level  type [number text]  subname true  default none
-				example
-					[[code [[lzss hello]]  result *...
-					[code [[lzss hello 1]]  test false
-					[code [[lzss hello 9]]  test false
-					[code [[lzss hello fast]]  test false
-					[code [[lzss hello best]]  test false
-					[code [[lzss.fast hello]]  test false
-					[code [[lzss.best hello]]  test false
-			lzss.decode
-				group
-					crypto
-				method
-					lzss_decode
-				alias
-					none
-				description
-					Decompresses LZSS compressed data
-				safe
-					true
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[[name data  type any
-				example
-					[code [[lzss.decode *...]]  result hello
+					[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result hello
 			lz4
 				group
 					crypto
 				method
-					lzss_encode
+					lz4
+				action
+					none
 				alias
 					none
 				description
@@ -3503,9 +3739,9 @@ class VOIDlang:
 					[name data  type any
 					[name level  type [number text]  subname true  default none
 				example
-					[code [[lz4 hello]]  result *...
-					[code [[lz4 hello 1]]  test false
-					[code [[lz4 hello 9]]  test false
+					[code [[lz4 hello]]  result *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==
+					[code [[lz4 hello 0]]  test false
+					[code [[lz4 hello 16]]  test false
 					[code [[lz4 hello fast]]  test false
 					[code [[lz4 hello best]]  test false
 					[code [[lz4.fast hello]]  test false
@@ -3514,7 +3750,9 @@ class VOIDlang:
 				group
 					crypto
 				method
-					lzss_decode
+					lz4_decode
+				action
+					none
 				alias
 					none
 				description
@@ -3528,16 +3766,110 @@ class VOIDlang:
 				param
 					[[name data  type any
 				example
-					[code [[lz4.decode *...]]  result hello
+					[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result hello
+			lzss
+				group
+					crypto
+				method
+					lzss
+				action
+					none
+				alias
+					none
+				description
+					Compresses data using the LZSS compression algorithm (best and fastest retro compression with minimal memory usage)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[lzss hello]]  result *H2hlbGxv
+					[code [[lzss hello 1]]  test false
+					[code [[lzss hello 9]]  test false
+					[code [[lzss hello fast]]  test false
+					[code [[lzss hello best]]  test false
+					[code [[lzss.fast hello]]  test false
+					[code [[lzss.best hello]]  test false
+			lzss.decode
+				group
+					crypto
+				method
+					lzss_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses LZSS compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[lzss.decode *H2hlbGxv]]  result hello
+			aes
+				group
+					crypto
+				method
+					aes
+				action
+					none
+				alias
+					none
+				description
+					Encrypts binary data using the AES256 algorithm and the specified key
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type binary
+					[name key  type text
+				example
+					[[code [[aes *'text' key]]  type binary
+			aes.decode
+				group
+					crypto
+				method
+					aes_decode
+				action
+					none
+				alias
+					none
+				description
+					Decrypts previously encrypted binary data using the AES256 algorithm and the specified key
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type binary
+					[name key  type text
+				example
+					[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text'
 			rsa
 				group
 					crypto
 				method
 					rsa_encode
+				action
+					none
 				alias
 					none
 				description
-					Encrypts data using RSA encryption with a public key
+					Encrypts data using RSA encryption with a public key or generates keys (the maximum data length and encryption speed depends on the key size 4096 = 446 bytes)
 				safe
 					true
 				container
@@ -3546,14 +3878,24 @@ class VOIDlang:
 					[python js swift kotlin gdscript c++
 				param
 					[name data  type any
-					[name public_key  type text
+					[name public  type text
+					[name password  type text  default none
+					[name length  type [int text]  default none
 				example
-					[code [[rsa secret .public_key]]  type binary  test false
+					[code [rsa]  type dict
+					[code [[rsa text .public_key]]  type binary  test false
+					[code [[rsa text none .extra_password .key_size]]  type binary  test false
+					[code [[rsa.fast 128bytes .public_key]]  type binary  test false
+					[code [[rsa.128 128bytes .public_key]]  type binary  test false
+					[code [[rsa.446 446bytes .public_key]]  type binary  test false
+					[code [[rsa.4096 446bytes .public_key]]  type binary  test false
 			rsa.decode
 				group
 					crypto
 				method
 					rsa_decode
+				action
+					none
 				alias
 					none
 				description
@@ -3567,17 +3909,21 @@ class VOIDlang:
 				param
 					[name data  type any
 					[name private_key  type text
+					[name password  type text  default none
 				example
-					[code [[rsa.decode .encrypted .private_key]]  type [text binary]  test false
+					[code [[rsa.decode .encrypted .private_key]]  type binary  test false
+					[code [[rsa.decode .encrypted .private_key .extra_password]]  type binary  test false
 			ecdhe
 				group
 					crypto
 				method
 					ecdhe_encode
+				action
+					none
 				alias
 					none
 				description
-					Encrypts data using ECDHE encryption with a disposable key
+					Creates a pair of keys or creates a shared key from the public and private keys of the sides
 				safe
 					true
 				container
@@ -3585,39 +3931,23 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name data  type any
-					[name public_key  type text
+					[name public_key  type text  default none
+					[name private_key  type text  default none
 				example
-					[code [[ecdhe secret .public_key]]  type binary  test false
-			ecdhe.decode
-				group
-					crypto
-				method
-					ecdhe_decode
-				alias
-					none
-				description
-					Decrypts data encrypted with ECDHE encryption
-				safe
-					true
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[name data  type any
-					[name private_key  type text
-				example
-					[code [[ecdhe.decode .encrypted .private key]]  type [text binary]  test false
+					[code [ecdhe]  type dict
+					[code [ecdhe .side1_public_key .side2_private_key]  type text
+					[code [ecdhe .side2_public_key .side1_private_key]  type text
 			barcode
 				group
 					crypto
 				method
 					barcode_encode
+				action
+					none
 				alias
 					qr
 				description
-					Encodes text into a barcode image
+					Encodes text into a barcode or returns a list of supported code formats
 				safe
 					true
 				container
@@ -3625,21 +3955,23 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name data  type any
-					[name standard  type text  subname true  default none
+					[name text  type any
+					[name format  type text  subname true  default none
 				example
-					[code [[qr https://voidsp.com]]  type binary  test false
-					[code [[barcode 012345678]]  type binary  test false
-					[code [[barcode 012345678 ean]]  type binary  test false
-					[code [[barcode.ean 012345678]]  type binary  test false
-					[code [[barcode.upc 012345678]]  type binary  test false
-					[code [[barcode.128 012345678]]  type binary  test false
-					[code [[barcode.matrix 012345678]]  type binary  test false
+					[code [barcode]  type dict
+					[code [[barcode 8410564006257]]  type dict
+					[code [[barcode 8410564006257 ean13]]  type dict
+					[code [[barcode.ean13 8410564006257]]  type dict
+					[code [[barcode.upc 712345000019]]  type dict
+					[code [[barcode.code128 text]]  type dict
+					[code [[qr https://voidsp.com]]  type dict
 			barcode.decode
 				group
 					crypto
 				method
 					barcode_decode
+				action
+					none
 				alias
 					qr.decode
 				description
@@ -3651,11 +3983,13 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name data  type any
-					[name standard  type text  subname true  default none
+					[name image  type binary
+					[name format  type text  subname true  default none
 				example
 					[code [[barcode.decode .image]]  type text
-					[code [[barcode.decode.ean .image]]  type text
+					[code [[barcode.decode .image ean13]]  type text
+					[code [[barcode.decode.ean13 .image]]  type text
+					[code [[qr.decode .image]]  type text
 
 		  .: file :.
 
@@ -3664,9 +3998,13 @@ class VOIDlang:
 					file
 				method
 					file
+				action
+					none
 				alias
 					<<<
 					>>>
+					file.create
+					file.clear
 				description
 					Read or write data to a file at a specified path
 				safe
@@ -3695,11 +4033,15 @@ class VOIDlang:
 					[code [[file data.void .data]]  test false
 					[code [[file data.json .data]]  test false
 					[code [[file data.csv .data]]  type any  test false
+					[code [[file.create file.txt]]  test false
+					[code [[file.clear file.txt]]  test false
 			file.exists
 				group
 					file
 				method
 					file_exists
+				action
+					none
 				alias
 					none
 				description
@@ -3720,6 +4062,8 @@ class VOIDlang:
 					file
 				method
 					file_remove
+				action
+					none
 				alias
 					file.trash
 				description
@@ -3731,16 +4075,20 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name path  type text
+					[name path  type [text list
+					[name trash  type bool  default none
 				example
 					[code [[file.remove file.txt]]  test false
 					[code [[file.remove /path/to/file.txt]]  test false
+					[code [[file.remove file1.txt file2.txt]]  test false
 					[code [[file.trash file.txt]]  test false
 			file.copy
 				group
 					file
 				method
 					file_copy
+				action
+					none
 				alias
 					none
 				description
@@ -3755,16 +4103,18 @@ class VOIDlang:
 					[name source  type text
 					[name destination  type text  default none
 				example
-					[code [[file.copy /path/to/file.txt /path/destination/file.txt]]  test false
-					[code [[file.copy /path/to/file.txt /path/destination]]  test false
+					[code [[file.copy /path/to/file.txt /destination/file.txt]]  test false
+					[code [[file.copy /path/to/file.txt /destination]]  test false
 					[code [[file.copy /path/to/file.txt]]  test false
 			file.move
 				group
 					file
 				method
 					file_move
+				action
+					none
 				alias
-					rename
+					file.rename
 				description
 					Moves a specified file to a new location or renames it
 				safe
@@ -3777,37 +4127,17 @@ class VOIDlang:
 					[name source  type text
 					[name destination  type text
 				example
-					[code [[file.move /path/to/file.txt /path/destination/file.txt]]  test false
-					[code [[file.move /path/to/file.txt /path/destination]]  test false
+					[code [[file.move /path/to/file.txt /destination/file.txt]]  test false
+					[code [[file.move /path/to/file.txt /destination]]  test false
 					[code [[file.rename file.txt backup.txt]]  test false
 					[code [[file.rename /path/to/file.txt backup.txt]]  test false
-					[code [[file.rename /path/to/file.txt /path/destination/file.txt]]  test false
-			file.link
-				group
-					file
-				method
-					file_link
-				alias
-					none
-				description
-					Creates a hard link to a specified file or checks if a hard link exists at the given path
-				safe
-					false
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[name source  type text
-					[name destination  type text  default none
-				example
-					[code [[file.link /path/to/file.txt /link.txt]]  test false
-					[code [[file.link /link.txt]]  type bool  test false
 			file.info
 				group
 					file
 				method
 					file_info
+				action
+					none
 				alias
 					none
 				description
@@ -3842,6 +4172,8 @@ class VOIDlang:
 					[code [[file.owner /path/to/file.txt]]  type text  test false
 					[code [[file.time /path/to/file.txt]]  type number  test false
 					[code [[file.permission /path/to/file.txt [read true  write true]]]  test false
+					[code [[file.permission.execute.owner /path/to/file.txt true]]  test false
+					[code [[file.permission.execute /path/to/file.txt true]]  test false
 					[code [[info.owner /path/to/file.txt]]  type text  test false
 					[code [[info.time /path/to/file.txt]]  type number  test false
 			file.sha256
@@ -3849,6 +4181,8 @@ class VOIDlang:
 					file
 				method
 					file_sha256
+				action
+					none
 				alias
 					none
 				description
@@ -3868,6 +4202,8 @@ class VOIDlang:
 					file
 				method
 					file_sha512
+				action
+					none
 				alias
 					none
 				description
@@ -3887,6 +4223,8 @@ class VOIDlang:
 					file
 				method
 					file_crc32
+				action
+					none
 				alias
 					none
 				description
@@ -3906,6 +4244,8 @@ class VOIDlang:
 					file
 				method
 					file_base64
+				action
+					none
 				alias
 					none
 				description
@@ -3920,11 +4260,43 @@ class VOIDlang:
 					[[name path  type text
 				example
 					[[code [[file.base64 file.txt]]  type text  test false
+			file.gzip
+				group
+					file
+				method
+					file_gzip
+				action
+					none
+				alias
+					none
+				description
+					Compresses a specified file using GZip compression
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name source  type text
+					[name destination  type text  default none
+					[name param  type [text number dct]  default none
+				example
+					[code [[file.gzip file.txt file.gz]]  test false
+					[code [[file.gzip file.txt]]  test false
+					[code [[file.gzip file.txt file.txt.gz 7]]  test false
+					[code [[file.gzip file.txt 7]]  test false
+					[code [[file.gzip file.txt file.txt.gz best]]  test false
+					[code [[file.gzip file.txt file.txt.gz fast]]  test false
+					[code [[file.gzip file.txt file.txt.gz [compression  9]]]  test false
+					[code [[file.gzip /path/to/file.txt /destination/file.gz]]  test false
 			file.zip
 				group
 					file
 				method
 					file_zip
+				action
+					none
 				alias
 					none
 				description
@@ -3949,41 +4321,16 @@ class VOIDlang:
 					[code [[file.zip file.txt file.zip [compression 9  overwrite true]]]  test false
 					[code [[file.zip /path/to/file.txt /destination/file.zip]]  test false
 					[code [[file.zip [file1.txt file2.txt] files.zip]]  test false
-			file.gzip
-				group
-					file
-				method
-					file_gzip
-				alias
-					none
-				description
-					Compresses a specified file using GZip compression
-				safe
-					false
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++
-				param
-					[name source  type text
-					[name destination  type text  default none
-					[name param  type [text number dct]  default none
-				example
-					[code [[file.gzip file.txt file.gz]]  test false
-					[code [[file.gzip file.txt]]  test false
-					[code [[file.gzip file.txt file.txt.gz 7]]  test false
-					[code [[file.gzip file.txt 7]]  test false
-					[code [[file.gzip file.txt file.txt.gz best]]  test false
-					[code [[file.gzip file.txt file.txt.gz fast]]  test false
-					[code [[file.gzip file.txt file.txt.gz [compression  9]]]  test false
-					[code [[file.gzip /path/to/file.txt /destination/file.gz]]  test false
 			file.void
 				group
 					file
 				method
 					file_void
-				alias
+				action
 					none
+				alias
+					dir.void
+					drive.void
 				description
 					Compresses the specified file using LZMA2 compression and places it in a container
 				safe
@@ -4013,6 +4360,8 @@ class VOIDlang:
 					file
 				method
 					file_extract
+				action
+					none
 				alias
 					none
 				description
@@ -4036,12 +4385,61 @@ class VOIDlang:
 					[code [[file.extract file.zip]]  test false
 					[code [[file.extract file.zip [file1.txt file2.txt]]]  test false
 					[code [[file.extract file.zip [source [file1.txt file2.txt]  destination /path/to/extract  overwrite true  remove true]]]  test false
-					[code [[file.extract file.txt.gz]]  test false
+					[code [[file.extract file.txt.gz /path/to/extract]]  test false
+					[code [[file.extract dir.tar.gz /path/to/extract]]  test false
+					[code [[file.extract dir.tar /path/to/extract]]  test false
+			link
+				group
+					file
+				method
+					link
+				action
+					none
+				alias
+					none
+				description
+					Creates a symlink at the given path
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name source  type text
+					[name destination  type text
+				example
+					[code [[link /path/to/file.txt /path/to/link]]  type bool  test false
+					[code [[link /path /path/to/link]]  type bool  test false
+					[code [[link /mnt/drive /path/to/link]]  type bool  test false
+			link.exists
+				group
+					file
+				method
+					link_exists
+				action
+					none
+				alias
+					none
+				description
+					Checks if a specified symlink exists at the given path
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[link.exists /path/to/link]]  type bool  test false
 			dir
 				group
 					file
 				method
 					dir
+				action
+					none
 				alias
 					none
 				description
@@ -4053,39 +4451,24 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name path  type text
+					[name path  type text
+					[name param  type [bool list]  default none
 				example
-					[[code [[dir /path]]  type list  test false
+					[code [dir]  type list  test false
+					[code [[dir /path]]  type list  test false
+					[code [[dir /path owner]]  type list  test false
+					[code [[dir /path [owner time sha256 sort]]]  type list  test false
 			dir.create
 				group
 					file
 				method
 					dir_create
+				action
+					none
 				alias
 					none
 				description
-					Creates a new directory at a specified path
-				safe
-					false
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[name path  type text
-					[name param  type dict  default none
-				example
-					[code [[dir.create /path/to/create]]  test false
-					[code [[dir.create /path/to/create [owner root  user root  permission [others [read true  write true]]] ]]  test false
-			dir.exists
-				group
-					file
-				method
-					dir_exists
-				alias
-					none
-				description
-					Checks if a specified directory exists
+					Creates a new directory
 				safe
 					false
 				container
@@ -4095,16 +4478,39 @@ class VOIDlang:
 				param
 					[[name path  type text
 				example
-					[[code [[dir.exists /path]]  type bool  test false
+					[[code [[dir.create /path/to/create]  test false
+			dir.exists
+				group
+					file
+				method
+					dir_exists
+				action
+					none
+				alias
+					none
+				description
+					Checks if a specified directory exists at the given path
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[dir.exists /path/to/check]]  type bool  test false
 			dir.remove
 				group
 					file
 				method
 					dir_remove
+				action
+					none
 				alias
 					dir.trash
 				description
-					Removes a specified directory and its contents
+					Removes a specified directory
 				safe
 					false
 				container
@@ -4116,15 +4522,38 @@ class VOIDlang:
 				example
 					[code [[dir.remove /path/to/remove]]  test false
 					[code [[dir.trash /path/to/remove]]  test false
+			dir.clear
+				group
+					file
+				method
+					dir_clear
+				action
+					none
+				alias
+					none
+				description
+					Clears all contents of a directory without removing itself
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[dir.clear /path/to/clear]]  test false
 			dir.copy
 				group
 					file
 				method
 					dir_copy
+				action
+					none
 				alias
 					none
 				description
-					Copies a specified directory and its contents to a new location
+					Copies a directory to a new location
 				safe
 					false
 				container
@@ -4135,17 +4564,24 @@ class VOIDlang:
 					[name source  type text
 					[name destination  type text  default none
 				example
+					[code [[file.copy /path/to/file.txt /path/destination/file.txt]]  test false
+					[code [[file.copy /path/to/file.txt /path/destination]]  test false
+					[code [[file.copy /path/to/file.txt]]  test false
 					[code [[dir.copy /path/to/copy /path/destination]]  test false
 					[code [[dir.copy /path/to/copy]]  test false
+					[code [[drive.copy e f]]  test false
+					[code [[drive.copy /mnt/drive /mnt/backup]]  test false
 			dir.move
 				group
 					file
 				method
 					dir_move
+				action
+					none
 				alias
 					dir.rename
 				description
-					Moves a specified directory to a new location
+					Moves a specified directory to a new location or renames it
 				safe
 					false
 				container
@@ -4156,34 +4592,24 @@ class VOIDlang:
 					[name source  type text
 					[name destination  type text
 				example
+					[code [[file.move /path/to/file.txt /path/destination/file.txt]]  test false
+					[code [[file.move /path/to/file.txt /path/destination]]  test false
 					[code [[dir.move /path/to/move /]]  test false
 					[code [[dir.move /path/to/move /destination]]  test false
-					[code [[dir.rename path backup]]  test false
-					[code [[dir.rename /path/to/rename /path/destination]]  test false
-			dir.clear
-				group
-					file
-				method
-					dir_clear
-				alias
-					none
-				description
-					Clears all contents of a specified directory without removing the directory itself
-				safe
-					false
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[[name path  type text
-				example
-					[[code [[dir.clear /path/to/clear]]
+					[code [[dir.move e f]]  test false
+					[code [[dir.move /mnt/drive /mnt/backup]]  test false
+					[code [[file.rename file.txt backup.txt]]  test false
+					[code [[file.rename /path/to/file.txt backup.txt]]  test false
+					[code [[dir.rename /path backup]]  test false
+					[code [[drive.rename e name]]  test false
+					[code [[drive.rename /mnt/drive name]]  test false
 			dir.info
 				group
 					file
 				method
 					dir_info
+				action
+					none
 				alias
 					none
 				description
@@ -4200,58 +4626,133 @@ class VOIDlang:
 					[name component  type text  subname true  default none
 				example
 					[code [[dir.info /path]]  type dict  test false
-					[code [[dir.info.drive /path]]  type text  test false
-					[code [[dir.info.files /path]]  type number  test false
 					[code [[dir.info.size /path]]  type number  test false
 					[code [[dir.info.owner /path]]  type text  test false
-					[code [[dir.info.group /path]]  type text  test false
-					[code [[dir.info.permission /path]]  type dict  test false
-					[code [[dir.info.time /path]]  type number  test false
-					[code [[dir.info.time.create /path]]  type number  test false
-					[code [[dir.info.permission /path [read true  write true]]]  test false
-					[code [[dir.info.permission /path [owner [read true  write true]  group [read true  write true]]]]  test false
-					[code [[dir.info.permission /path hidden]]  test false
-					[code [[dir.info.permission /path readonly]]  test false
-					[code [[dir.owner /path]]  type text  test false
-					[code [[dir.time /path]  type number  test false
-					[code [[dir.permission /path [read true  write true]]]  test false
+					[code [[dir.info.files /path]]  type number  test false
+					[code [[dir.info.permission.read.owner /path true]]  test false
+					[code [[dir.info.permission.read /path true]]  test false
 					[code [[info.owner /path]]  type text  test false
 					[code [[info.time /path]]  type number  test false
+			dir.sha256
+				group
+					file
+				method
+					dir_sha256
+				action
+					none
+				alias
+					none
+				description
+					Computes the SHA256 checksum of a specified directory
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[dir.sha256 /path/to/hash]]  type text  test false
+			dir.sha512
+				group
+					file
+				method
+					dir_sha512
+				action
+					none
+				alias
+					none
+				description
+					Computes the SHA512 checksum of a specified directory
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[[code [[dir.sha512 /path/to/hash]]  type text  test false
+			dir.gzip
+				group
+					file
+				method
+					dir_gzip
+				action
+					none
+				alias
+					none
+				description
+					Compresses a specified file, directory or drive using GZip compression
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name source  type text
+					[name destination  type text  default none
+					[name param  type [text number dct]  default none
+				example
+					[code [[file.gzip file.txt file.gz]]  test false
+					[code [[file.gzip file.txt]]  test false
+					[code [[file.gzip file.txt file.txt.gz 7]]  test false
+					[code [[file.gzip file.txt 7]]  test false
+					[code [[file.gzip file.txt file.txt.gz best]]  test false
+					[code [[file.gzip file.txt file.txt.gz fast]]  test false
+					[code [[file.gzip file.txt file.txt.gz [compression  9]]]  test false
+					[code [[file.gzip /path/to/file.txt /destination/file.gz]]  test false
+					[code [[dir.gzip /path dir.tar.gz]]  test false
+					[code [[drive.gzip e drive.tar.gz]]  test false
+					[code [[drive.gzip /mnt/drive drive.tar.gz]]  test false
 			dir.zip
 				group
 					file
 				method
 					dir_zip
+				action
+					none
 				alias
 					none
 				description
-					Compresses a specified directory into a ZIP archive
+					Compresses a specified file, directory or drive into a ZIP archive
 				safe
 					false
 				container
 					none
 				language
-					[python js swift kotlin gdscript c++ asm86
+					[python js swift kotlin gdscript c++
 				param
-					[name source  type text
+					[name source  type [text list
 					[name destination  type text  default none
 					[name param  type [text number dict]  default none
 				example
-					[code [[dir.zip /path backup.zip]]  test false
-					[code [[dir.zip /path backup.zip 7]]  test false
-					[code [[dir.zip /path 7]]  test false
-					[code [[dir.zip /path backup.zip fast]]  test false
-					[code [[dir.zip /path backup.zip best]]  test false
-					[code [[dir.zip /path backup.zip [compression 9  overwrite true]]]  test false
+					[code [[file.zip file.txt file.zip]]  test false
+					[code [[file.zip file.txt]]  test false
+					[code [[file.zip file.txt file.zip 7]]  test false
+					[code [[file.zip file.txt 7]]  test false
+					[code [[file.zip file.txt file.zip best]]  test false
+					[code [[file.zip file.txt file.zip fast]]  test false
+					[code [[file.zip file.txt file.zip [compression 9  overwrite true]]]  test false
+					[code [[file.zip /path/to/file.txt /destination/file.zip]]  test false
+					[code [[file.zip [file1.txt file2.txt] files.zip]]  test false
+					[code [[dir.zip /path dir.zip]]  test false
+					[code [[drive.zip e drive.zip]]  test false
+					[code [[drive.zip /mnt/drive drive.zip]]  test false
 			dir.void
 				group
 					file
 				method
 					dir_void
+				action
+					none
 				alias
 					none
 				description
-					Compresses a specified directory into a void container
+					Compresses the specified file, directory or drive using LZMA2 compression and places it in a container
 				safe
 					false
 				container
@@ -4259,24 +4760,31 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name source  type text
-					[name destination  type text  default none
-					[name param  type [text number dict]  default none
+					[name source  type [text list
+					[name destination  type [text dict]  default none
+					[name param  type [text number dct]  default none
 				example
-					[code [[dir.void /path backup.void]]  test false
-					[code [[dir.void /path]]  test false
-					[code [[dir.void /path backup.void 7]]  test false
-					[code [[dir.void /path 7]]  test false
-					[code [[dir.void /path backup.void best]]  test false
-					[code [[dir.void /path backup.void fast]]  test false
-					[code [[dir.void /path [compression 9  key password]]]  test false
-					[code [[dir.void /path backup.void password]]  test false
-					[code [[dir.void /path backup.void key.txt]]  test false
+					[code [[file.void file.txt file.void]]  test false
+					[code [[file.void file.txt]]  test false
+					[code [[file.void file.txt file.void 7]]  test false
+					[code [[file.void file.txt 7]]  test false
+					[code [[file.void file.txt file.void best]]  test false
+					[code [[file.void file.txt file.void fast]]  test false
+					[code [[file.void file.txt [compression 9  key password]]]  test false
+					[code [[file.void file.txt file.void password]]  test false
+					[code [[file.void file.txt file.void key.txt]]  test false
+					[code [[file.void /path/to/file.txt /destination/file.void]]  test false
+					[code [[file.void [file1.txt file2.txt] files.void]]  test false
+					[code [[dir.void /path dir.void]]  test false
+					[code [[drive.void e drive.void]]  test false
+					[code [[drive.void /mnt/drive drive.void]]  test false
 			dir.magic
 				group
 					file
 				method
 					dir_magic
+				action
+					none
 				alias
 					none
 				description
@@ -4315,10 +4823,12 @@ class VOIDlang:
 					file
 				method
 					drive
+				action
+					none
 				alias
 					none
 				description
-					Lists all available drives on the system or retrives information about a volume or partition
+					Lists all available drives on the system
 				safe
 					false
 				container
@@ -4326,29 +4836,16 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name name  type text  default none
-					[name info  type text  subname true  default none
+					[]
 				example
-					[code [drive]  type list
-					[code [[drive data]]  type dict
-					[code [[drive E]]  type dict
-					[code [[drive.name data]]  type text
-					[code [[drive.name E]]  type text
-					[code [[drive.format data]]  type text
-					[code [[drive.format E]]  type text
-					[code [[drive.partition data]]  type text
-					[code [[drive.partition E]]  type text
-					[code [[drive.size data]]  type number
-					[code [[drive.size E]]  type number
-					[code [[drive.used data]]  type number
-					[code [[drive.used E]]  type number
-					[code [[drive.free data]]  type number
-					[code [[drive.free E]]  type number
+					[[code [drive]  type list
 			drive.mount
 				group
 					file
 				method
-					action.drive.mount
+					drive_mount
+				action
+					drive.mount
 				alias
 					none
 				description
@@ -4370,7 +4867,9 @@ class VOIDlang:
 				group
 					file
 				method
-					action.drive.unmount
+					drive_unmount
+				action
+					drive.unmount
 				alias
 					none
 				description
@@ -4386,32 +4885,13 @@ class VOIDlang:
 				example
 					[code [[drive.unmount data]]  test false
 					[code [[drive.unmount E]]  test false
-			drive.create
-				group
-					file
-				method
-					action.drive.create
-				alias
-					none
-				description
-					Creates a new volume or partition
-				safe
-					false
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[[name info  type dict
-				example
-					[code [[drive.create [name data  size 2gb  partition .partition.id  format ext4]]  test false
-					[code [[drive.create [name data  size 2gb  partition .partition.id  format fat32  mbr .mbr]]  test false
-					[code [[drive.create [size 2gb]]  test false
 			drive.resize
 				group
 					file
 				method
-					action.drive.resize
+					drive_resize
+				action
+					drive.resize
 				alias
 					none
 				description
@@ -4429,15 +4909,17 @@ class VOIDlang:
 					[code [[drive.resize data 2gb]]  test false
 					[code [[drive.resize data 2000000000]]  test false
 					[code [[drive.resize .partition.id 2gb]]  test false
-			drive.clear
+			drive.os
 				group
 					file
 				method
-					action.drive.clear
+					drive_os
+				action
+					drive.os
 				alias
 					none
 				description
-					Clears a specified volume or partition
+					Makes the drive bootable or retrieves a list of available operating system images
 				safe
 					false
 				container
@@ -4445,42 +4927,24 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name name  type text
+					[name path  type text
+					[name os  type text  default none
 				example
-					[code [[drive.clear data]]  test false
-					[code [[drive.clear /mnt/data]]  test false
-					[code [[drive.clear E]]  test false
-					[code [[drive.clear .partition.id]]  test false
-			drive.remove
-				group
-					file
-				method
-					action.drive.remove
-				alias
-					none
-				description
-					Removes a specified volume or partition
-				safe
-					false
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[[name name  type text
-				example
-					[code [[drive.remove data]]  test false
-					[code [[drive.remove E]]  test false
-					[code [[drive.remove .partition.id]]  test false
+					[code [drive.os]  type list  test false
+					[code [[drive.os /mnt/drive]]  test false
+					[code [[drive.os /mnt/drive osname]]  test false
+					[code [[drive.os /mnt/drive /path/to/os.iso]]  test false
 			path
 				group
 					file
 				method
 					path
+				action
+					none
 				alias
 					none
 				description
-					Returns components of a specified path
+					Returns components of a specified path or builds a path
 				safe
 					true
 				container
@@ -4492,19 +4956,24 @@ class VOIDlang:
 					[name component  type text  subname true  default none
 				example
 					[code [[path /path/to/file.txt]]  type dict
+					[code [[path.full path/to/file.txt]]  type str
+					[code [[path.file /path/to/file.txt]]  result file.txt
 					[code [[path.name /path/to/file.txt]]]  result file
 					[code [[path.extension /path/to/file.txt]]  result txt
 					[code [[path.extension /path/to/file.tar.gz]]  result gz
-					[code [[path.file /path/to/file.txt]]  result file.txt
 					[code [[path.dir /path/to/file.txt]]  result /path/to
-					[code [[path.drive c:/path/to/file.txt]]  result c
+					[code [[path.drive c:\path\to\file.txt]]  result C
 					[code [[path.drive /mnt/data/file.txt]]  result data
+					[code [[path.drive /Volumes/data/file.txt]]  result data
 					[code [[path.strip file.txt]]  result file
 					[code [[path.strip /path/to/file.tar.gz]]  result /path/to/file.tar
 					[code [[path.strip /path/to/file.tar]]  result /path/to/file
 					[code [[path.strip /path/to/file]]  result /path/to
 					[code [[path.strip /path/to]]  result /path
 					[code [[path.strip /path]]  result /
+					[code [[path.build /path to file.txt]]  result /path/to/file.txt
+					[code [[path /path to file.txt]]  result /path/to/file.txt
+					[code [[path [/path to file.txt]]]  result /path/to/file.txt
 
 		  .: format :.
 
@@ -4512,7 +4981,9 @@ class VOIDlang:
 				group
 					format
 				method
-					void_encode
+					void
+				action
+					none
 				alias
 					none
 				description
@@ -4534,6 +5005,8 @@ class VOIDlang:
 					format
 				method
 					void_decode
+				action
+					none
 				alias
 					none
 				description
@@ -4554,7 +5027,9 @@ class VOIDlang:
 				group
 					format
 				method
-					json_encode
+					json
+				action
+					none
 				alias
 					none
 				description
@@ -4587,6 +5062,8 @@ class VOIDlang:
 					format
 				method
 					json_decode
+				action
+					none
 				alias
 					none
 				description
@@ -4612,7 +5089,9 @@ class VOIDlang:
 				group
 					format
 				method
-					action.csv.encode
+					csv
+				action
+					csv.encode
 				alias
 					none
 				description
@@ -4635,7 +5114,9 @@ class VOIDlang:
 				group
 					format
 				method
-					action.csv.decode
+					csv_decode
+				action
+					csv.decode
 				alias
 					none
 				description
@@ -4657,7 +5138,9 @@ class VOIDlang:
 				group
 					format
 				method
-					yaml_encode
+					yaml
+				action
+					none
 				alias
 					none
 				description
@@ -4687,6 +5170,8 @@ class VOIDlang:
 					format
 				method
 					yaml_decode
+				action
+					none
 				alias
 					none
 				description
@@ -4713,7 +5198,9 @@ class VOIDlang:
 				group
 					format
 				method
-					action.ini.encode
+					ini
+				action
+					ini.encode
 				alias
 					none
 				description
@@ -4736,7 +5223,9 @@ class VOIDlang:
 				group
 					format
 				method
-					action.ini.decode
+					ini_decode
+				action
+					ini.decode
 				alias
 					none
 				description
@@ -4758,7 +5247,9 @@ class VOIDlang:
 				group
 					format
 				method
-					action.xml.encode
+					xml
+				action
+					xml.encode
 				alias
 					none
 				description
@@ -4780,7 +5271,9 @@ class VOIDlang:
 				group
 					format
 				method
-					action.xml.decode
+					xml_decode
+				action
+					xml.decode
 				alias
 					none
 				description
@@ -4806,6 +5299,8 @@ class VOIDlang:
 					cloud
 				method
 					cloud
+				action
+					none
 				alias
 					none
 				description
@@ -4836,6 +5331,8 @@ class VOIDlang:
 					cloud
 				method
 					request
+				action
+					none
 				alias
 					r
 				description
@@ -4861,6 +5358,8 @@ class VOIDlang:
 					cloud
 				method
 					download
+				action
+					none
 				alias
 					d
 				description
@@ -4891,6 +5390,8 @@ class VOIDlang:
 					cloud
 				method
 					cookie
+				action
+					none
 				alias
 					none
 				description
@@ -4920,6 +5421,8 @@ class VOIDlang:
 					cloud
 				method
 					social
+				action
+					none
 				alias
 					none
 				description
@@ -4944,6 +5447,8 @@ class VOIDlang:
 				method
 					notify
 					mail
+				action
+					none
 				alias
 					none
 				description
@@ -4973,6 +5478,8 @@ class VOIDlang:
 					device
 				method
 					device
+				action
+					none
 				alias
 					none
 				description
@@ -4997,6 +5504,8 @@ class VOIDlang:
 					device
 				method
 					cpu
+				action
+					none
 				alias
 					none
 				description
@@ -5016,6 +5525,8 @@ class VOIDlang:
 					device
 				method
 					gpu
+				action
+					none
 				alias
 					none
 				description
@@ -5035,6 +5546,8 @@ class VOIDlang:
 					device
 				method
 					memory
+				action
+					none
 				alias
 					none
 				description
@@ -5054,6 +5567,8 @@ class VOIDlang:
 					device
 				method
 					battery
+				action
+					none
 				alias
 					none
 				description
@@ -5073,6 +5588,8 @@ class VOIDlang:
 					device
 				method
 					fps
+				action
+					none
 				alias
 					none
 				description
@@ -5093,6 +5610,8 @@ class VOIDlang:
 					device
 				method
 					vsync
+				action
+					none
 				alias
 					none
 				description
@@ -5116,6 +5635,8 @@ class VOIDlang:
 					device
 				method
 					resolution
+				action
+					none
 				alias
 					none
 				description
@@ -5137,6 +5658,8 @@ class VOIDlang:
 					device
 				method
 					orientation
+				action
+					none
 				alias
 					none
 				description
@@ -5159,6 +5682,8 @@ class VOIDlang:
 					device
 				method
 					dark
+				action
+					none
 				alias
 					none
 				description
@@ -5182,6 +5707,8 @@ class VOIDlang:
 					device
 				method
 					pixel
+				action
+					none
 				alias
 					none
 				description
@@ -5208,6 +5735,8 @@ class VOIDlang:
 					device
 				method
 					symbol
+				action
+					none
 				alias
 					none
 				description
@@ -5231,6 +5760,8 @@ class VOIDlang:
 					device
 				method
 					cursor
+				action
+					none
 				alias
 					none
 				description
@@ -5260,6 +5791,8 @@ class VOIDlang:
 					device
 				method
 					clear
+				action
+					none
 				alias
 					none
 				description
@@ -5281,6 +5814,8 @@ class VOIDlang:
 					device
 				method
 					flashlight
+				action
+					none
 				alias
 					none
 				description
@@ -5306,6 +5841,8 @@ class VOIDlang:
 					device
 				method
 					location
+				action
+					none
 				alias
 					none
 				description
@@ -5328,6 +5865,8 @@ class VOIDlang:
 					device
 				method
 					gyroscope
+				action
+					none
 				alias
 					none
 				description
@@ -5347,6 +5886,8 @@ class VOIDlang:
 					device
 				method
 					accelerometer
+				action
+					none
 				alias
 					none
 				description
@@ -5366,6 +5907,8 @@ class VOIDlang:
 					device
 				method
 					compass
+				action
+					none
 				alias
 					none
 				description
@@ -5388,6 +5931,8 @@ class VOIDlang:
 					device
 				method
 					proximity
+				action
+					none
 				alias
 					none
 				description
@@ -5408,6 +5953,8 @@ class VOIDlang:
 					device
 				method
 					brightness
+				action
+					none
 				alias
 					none
 				description
@@ -5429,6 +5976,8 @@ class VOIDlang:
 					device
 				method
 					volume
+				action
+					none
 				alias
 					none
 				description
@@ -5453,6 +6002,8 @@ class VOIDlang:
 					device
 				method
 					calendar
+				action
+					none
 				alias
 					none
 				description
@@ -5482,6 +6033,8 @@ class VOIDlang:
 					device
 				method
 					gallery
+				action
+					none
 				alias
 					none
 				description
@@ -5507,6 +6060,8 @@ class VOIDlang:
 					device
 				method
 					contacts
+				action
+					none
 				alias
 					none
 				description
@@ -5530,6 +6085,8 @@ class VOIDlang:
 					device
 				method
 					call
+				action
+					none
 				alias
 					none
 				description
@@ -5550,6 +6107,8 @@ class VOIDlang:
 					device
 				method
 					sms
+				action
+					none
 				alias
 					none
 				description
@@ -5570,6 +6129,8 @@ class VOIDlang:
 					device
 				method
 					net
+				action
+					none
 				alias
 					none
 				description
@@ -5593,6 +6154,8 @@ class VOIDlang:
 					device
 				method
 					wifi
+				action
+					none
 				alias
 					none
 				description
@@ -5617,6 +6180,8 @@ class VOIDlang:
 					device
 				method
 					bluetooth
+				action
+					none
 				alias
 					none
 				description
@@ -5641,6 +6206,8 @@ class VOIDlang:
 					device
 				method
 					cellular
+				action
+					none
 				alias
 					none
 				description
@@ -5664,6 +6231,8 @@ class VOIDlang:
 					device
 				method
 					stream
+				action
+					none
 				alias
 					none
 				description
@@ -5687,6 +6256,8 @@ class VOIDlang:
 					device
 				method
 					keyboard
+				action
+					none
 				alias
 					none
 				description
@@ -5710,6 +6281,8 @@ class VOIDlang:
 					device
 				method
 					mouse
+				action
+					none
 				alias
 					none
 				description
@@ -5740,6 +6313,8 @@ class VOIDlang:
 					device
 				method
 					gamepad
+				action
+					none
 				alias
 					none
 				description
@@ -5759,6 +6334,8 @@ class VOIDlang:
 					device
 				method
 					tap
+				action
+					none
 				alias
 					none
 				description
@@ -5791,6 +6368,8 @@ class VOIDlang:
 					device
 				method
 					key
+				action
+					none
 				alias
 					none
 				description
@@ -5819,6 +6398,8 @@ class VOIDlang:
 					content
 				method
 					image
+				action
+					none
 				alias
 					none
 				description
@@ -5903,6 +6484,8 @@ class VOIDlang:
 					content
 				method
 					video
+				action
+					none
 				alias
 					movie
 					clip
@@ -5999,6 +6582,8 @@ class VOIDlang:
 					content
 				method
 					sound
+				action
+					none
 				alias
 					music
 				description
@@ -6039,6 +6624,8 @@ class VOIDlang:
 					content
 				method
 					model
+				action
+					none
 				alias
 					none
 				description
@@ -6058,6 +6645,8 @@ class VOIDlang:
 					content
 				method
 					book
+				action
+					none
 				alias
 					document
 					spreadsheet
@@ -6081,6 +6670,8 @@ class VOIDlang:
 					content
 				method
 					game
+				action
+					none
 				alias
 					2d
 					3d
@@ -6097,8 +6688,6 @@ class VOIDlang:
 					[]
 				example
 					[]
-		alias
-			[ ]
 		pi
 			3.14159265358979323846
 		e
@@ -6118,6 +6707,11 @@ class VOIDlang:
 				version
 				user
 				language
+				delimiter
+					path
+						/
+					line
+						'\n
 			device
 				name
 				imei
@@ -6134,454 +6728,519 @@ class VOIDlang:
 					true
 				indent
 					2
-		stopwatch
-			[ ]
-		timer
-			[ ]
-		cloud
-			mime
+			stopwatch
+				[ ]
+			timer
+				[ ]
+			cloud
+				mime
 
-			  .: data :.
+				  .: data :.
 
-				void
-					application/void
-				json
-					application/json
-				jsonl
-					application/jsonl
-				jsonld
-					application/ld+json
-				yaml
-					application/x-yaml
-				csv
-					text/csv
-				ini
-					text/plain
-				xml
-					application/xml
-				sql
-					application/sql
-				bin
-					application/octet-stream
+					void
+						application/void
+					json
+						application/json
+					jsonl
+						application/jsonl
+					jsonld
+						application/ld+json
+					yaml
+						application/x-yaml
+					csv
+						text/csv
+					ini
+						text/plain
+					xml
+						application/xml
+					sql
+						application/sql
+					log
+						text/plain
+					bin
+						application/octet-stream
 
-			  .: document :.
+				  .: document :.
 
+					text
+						text/plain
+					txt
+						text/plain
+					pdf
+						application/pdf
+					djvu
+						image/vnd.djvu
+					doc
+						application/msword
+					docx
+						application/vnd.openxmlformats-officedocument.wordprocessingml.document
+					xls
+						application/vnd.ms-excel
+					xlsx
+						application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+					ppt
+						application/vnd.ms-powerpoint
+					pptx
+						application/vnd.openxmlformats-officedocument.presentationml.presentation
+					rtf
+						application/rtf
+					epub
+						application/epub+zip
+					abw
+						application/x-abiword
+					azw
+						application/vnd.amazon.ebook
+					odp
+						application/vnd.oasis.opendocument.presentation
+					ods
+						application/vnd.oasis.opendocument.spreadsheet
+					odt
+						application/vnd.oasis.opendocument.text
+					ics
+						text/calendar
+
+				  .: html :.
+
+					html
+						text/html
+					htm
+						text/html
+					xhtml
+						application/xhtml+xml
+					css
+						text/css
+
+				  .: font :.
+
+					ttf
+						font/ttf
+					otf
+						font/otf
+					sfnt
+						font/sfnt
+					woff
+						font/woff
+					woff2
+						font/woff2
+					eot
+						application/vnd.ms-fontobject
+
+				  .: subtitle :.
+
+					vtt
+						text/vtt
+					srt
+						application/x-subrip
+					ass
+						text/x-ssa
+					ssa
+						text/x-ssa
+					ttml
+						application/ttml+xml
+					sub
+						text/x-microdvd
+					smi
+						application/x-sami
+					sami
+						application/x-sami
+
+				  .: image :.
+
+					jpeg
+						image/jpeg
+					jpg
+						image/jpeg
+					png
+						image/png
+					apng
+						image/apng
+					gif
+						image/gif
+					svg
+						image/svg+xml
+					webp
+						image/webp
+					heif
+						image/heif
+					heic
+						image/heic
+					tiff
+						image/tiff
+					tif
+						image/tiff
+					avif
+						image/avif
+					ico
+						image/x-icon
+					icon
+						image/vnd.microsoft.icon
+					icns
+						image/x-icns
+
+				  .: audio :.
+
+					mp3
+						audio/mpeg
+					mpa
+						audio/mpeg
+					mp2
+						audio/mpeg
+					wma
+						audio/x-ms-wma
+					wav
+						audio/x-wav
+					flac
+						audio/flac
+					ogg
+						application/ogg
+					oga
+						audio/ogg
+					weba
+						audio/webm
+					cda
+						application/x-cdf
+					aac
+						audio/aac
+					ac3
+						audio/ac3
+					mid
+						audio/midi
+					midi
+						audio/x-midi
+					s3m
+						audio/s3m
+					it
+						audio/it
+					mod
+						audio/x-mod
+					xm
+						audio/xm
+
+				  .: video :.
+
+					mp4
+						video/mp4
+					mpeg
+						video/mpeg
+					mpg
+						video/mpeg
+					mpv
+						video/mpeg
+					webm
+						video/webm
+					ogx
+						application/ogg
+					ogv
+						video/ogg
+					qt
+						video/quicktime
+					mov
+						ideo/quicktime
+					m4v
+						video/x-m4v
+					wmv
+						video/x-ms-wmv
+					avi
+						video/x-msvideo
+					mkv
+						application/x-matroska
+					mjpeg
+						multipart/x-mixed-replace
+					ts
+						video/mp2t
+
+				  .: 3d :.
+
+					gltf
+						model/gltf+json
+					glb
+						model/gltf-binary
+					obj
+						model/obj
+					stl
+						model/stl
+					fbx
+						application/vnd.autodesk.fbx
+					dae
+						model/vnd.collada+xml
+					3ds
+						model/x-3ds
+					ply
+						model/ply
+					usd
+						model/vnd.usd
+					usdz
+						model/vnd.usdz+zip
+					x3d
+						model/x3d+xml
+					wrl
+						model/vrml
+					vrml
+						model/vrml
+
+				  .: archive :.
+
+					zip
+						application/zip
+					gz
+						application/gzip
+					7z
+						application/x-7z-compressed
+					tar
+						application/x-tar
+					rar
+						application/vnd.rar
+					bz
+						application/x-bzip
+					bz2
+						application/x-bzip2
+
+				  .: code :.
+
+					py
+						applycation/x-python-code
+					php
+						application/x-httpd-php
+					java
+						application/java
+					jar
+						application/java-archive
+					kt
+						text/x-kotlin
+					swift
+						application/swift
+					m
+						text/x-objective-c
+					mm
+						text/x-objective-c++
+					c
+						text/x-csrc
+					cpp
+						text/x-c++src
+					h
+						text/x-chdr
+					cs
+						text/x-csharp
+					rs
+						text/rust
+					gd
+						text/x-gdscript
+					js
+						text/javascript
+					mjs
+						text/javascript
+					lua
+						text/x-lua
+					sh
+						application/x-sh
+					csh
+						application/x-csh
+					bat
+						application/x-bat
+
+				  .: form :.
+
+					form data
+						multipart/form-data
+					form mixed
+						multipart/mixed
+					form alternative
+						multipart/alternative
+					form text
+						application/x-www-form-urlencoded
+				code
+					100
+						Continue
+					101
+						Switching protocols
+					102
+						Processing
+					103
+						Early Hints
+					200
+						OK
+					201
+						Created
+					202
+						Accepted
+					203
+						Non-Authoritative Information
+					204
+						No Content
+					205
+						Reset Content
+					206
+						Partial Content
+					207
+						Multi-Status
+					208
+						Already Reported
+					226
+						IM Used
+					300
+						Multiple Choices
+					301
+						Moved Permanently
+					302
+						Found Redirection
+					303
+						See Other
+					304
+						Not Modified
+					305
+						Use Proxy
+					306
+						Switch Proxy
+					307
+						Temporary Redirect
+					308
+						Permanent Redirect
+					400
+						Bad Request
+					401
+						Unauthorized
+					402
+						Payment Required
+					403
+						Forbidden
+					404
+						Not Found
+					405
+						Method Not Allowed
+					406
+						Not Acceptable
+					407
+						Proxy Authentication Required
+					408
+						Request Timeout
+					409
+						Conflict
+					410
+						Gone
+					411
+						Length Required
+					412
+						Precondition Failed
+					413
+						Payload Too Large
+					414
+						URI Too Long
+					415
+						Unsupported Media Type
+					416
+						Range Not Satisfiable
+					417
+						Expectation Failed
+					418
+						I'm a Teapot
+					421
+						Misdirected Request
+					422
+						Unprocessable Entity
+					423
+						Locked
+					424
+						Failed Dependency
+					425
+						Too Early
+					426
+						Upgrade Required
+					428
+						Precondition Required
+					429
+						Too Many Requests
+					431
+						Request Header Fields Too Large
+					451
+						Unavailable For Legal Reasons
+					500
+						Internal Server Error
+					501
+						Not Implemented
+					502
+						Bad Gateway
+					503
+						Service Unavailable
+					504
+						Gateway Timeout
+					505
+						HTTP Version Not Supported
+					506
+						Variant Also Negotiates
+					507
+						Insufficient Storage
+					508
+						Loop Detected
+					510
+						Not Extended
+					511
+						Network Authentication Required
+			db
+				[ ]
+			log
+				none
+			format
 				text
-					text/plain
-				txt
-					text/plain
-				pdf
-					application/pdf
-				djvu
-					image/vnd.djvu
-				doc
-					application/msword
-				docx
-					application/vnd.openxmlformats-officedocument.wordprocessingml.document
-				xls
-					application/vnd.ms-excel
-				xlsx
-					application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-				ppt
-					application/vnd.ms-powerpoint
-				pptx
-					application/vnd.openxmlformats-officedocument.presentationml.presentation
-				rtf
-					application/rtf
-				epub
-					application/epub+zip
-				abw
-					application/x-abiword
-				azw
-					application/vnd.amazon.ebook
-				odp
-					application/vnd.oasis.opendocument.presentation
-				ods
-					application/vnd.oasis.opendocument.spreadsheet
-				odt
-					application/vnd.oasis.opendocument.text
-				ics
-					text/calendar
-
-			  .: html :.
-
-				html
-					text/html
-				htm
-					text/html
-				xhtml
-					application/xhtml+xml
-				css
-					text/css
-
-			  .: font :.
-
-				ttf
-					font/ttf
-				otf
-					font/otf
-				sfnt
-					font/sfnt
-				woff
-					font/woff
-				woff2
-					font/woff2
-				eot
-					application/vnd.ms-fontobject
-
-			  .: image :.
-
-				jpeg
-					image/jpeg
-				jpg
-					image/jpeg
-				png
-					image/png
-				apng
-					image/apng
-				gif
-					image/gif
-				svg
-					image/svg+xml
-				webp
-					image/webp
-				heif
-					image/heif
-				heic
-					image/heic
-				tiff
-					image/tiff
-				tif
-					image/tiff
-				avif
-					image/avif
-				ico
-					image/x-icon
-				icon
-					image/vnd.microsoft.icon
-				icns
-					image/x-icns
-
-			  .: audio :.
-
-				mp3
-					audio/mpeg
-				mpa
-					audio/mpeg
-				mp2
-					audio/mpeg
-				wma
-					audio/x-ms-wma
-				wav
-					audio/x-wav
-				flac
-					audio/flac
-				ogg
-					application/ogg
-				oga
-					audio/ogg
-				weba
-					audio/webm
-				cda
-					application/x-cdf
-				aac
-					audio/aac
-				ac3
-					audio/ac3
-				mid
-					audio/midi
-				midi
-					audio/x-midi
-				s3m
-					audio/s3m
-				it
-					audio/it
-				mod
-					audio/x-mod
-				xm
-					audio/xm
-
-			  .: video :.
-
-				mp4
-					video/mp4
-				mpeg
-					video/mpeg
-				mpg
-					video/mpeg
-				mpv
-					video/mpeg
-				webm
-					video/webm
-				ogx
-					application/ogg
-				ogv
-					video/ogg
-				qt
-					video/quicktime
-				mov
-					ideo/quicktime
-				m4v
-					video/x-m4v
-				wmv
-					video/x-ms-wmv
-				avi
-					video/x-msvideo
-				mkv
-					application/x-matroska
-				mjpeg
-					multipart/x-mixed-replace
-				ts
-					video/mp2t
-
-			  .: 3d :.
-
-				gltf
-					model/gltf+json
-				glb
-					model/gltf-binary
-				obj
-					model/obj
-				stl
-					model/stl
-				fbx
-					application/vnd.autodesk.fbx
-				dae
-					model/vnd.collada+xml
-				3ds
-					model/x-3ds
-				ply
-					model/ply
-				usd
-					model/vnd.usd
-				usdz
-					model/vnd.usdz+zip
-				x3d
-					model/x3d+xml
-				wrl
-					model/vrml
-				vrml
-					model/vrml
-
-			  .: archive :.
-
-				zip
-					application/zip
-				gz
-					application/gzip
-				7z
-					application/x-7z-compressed
-				tar
-					application/x-tar
-				rar
-					application/vnd.rar
-				bz
-					application/x-bzip
-				bz2
-					application/x-bzip2
-
-			  .: code :.
-
-				py
-					applycation/x-python-code
-				php
-					application/x-httpd-php
-				java
-					application/java
-				jar
-					application/java-archive
-				kt
-					text/x-kotlin
-				swift
-					application/swift
-				m
-					text/x-objective-c
-				mm
-					text/x-objective-c++
-				c
-					text/x-csrc
-				cpp
-					text/x-c++src
-				h
-					text/x-chdr
-				cs
-					text/x-csharp
-				rs
-					text/rust
-				gd
-					text/x-gdscript
-				js
-					text/javascript
-				mjs
-					text/javascript
-				lua
-					text/x-lua
-				sh
-					application/x-sh
-				csh
-					application/x-csh
-				bat
-					application/x-bat
-
-			  .: form :.
-
-				form data
-					multipart/form-data
-				form mixed
-					multipart/mixed
-				form alternative
-					multipart/alternative
-				form text
-					application/x-www-form-urlencoded
-			code
-				100
-					Continue
-				101
-					Switching protocols
-				102
-					Processing
-				103
-					Early Hints
-				200
-					OK
-				201
-					Created
-				202
-					Accepted
-				203
-					Non-Authoritative Information
-				204
-					No Content
-				205
-					Reset Content
-				206
-					Partial Content
-				207
-					Multi-Status
-				208
-					Already Reported
-				226
-					IM Used
-				300
-					Multiple Choices
-				301
-					Moved Permanently
-				302
-					Found Redirection
-				303
-					See Other
-				304
-					Not Modified
-				305
-					Use Proxy
-				306
-					Switch Proxy
-				307
-					Temporary Redirect
-				308
-					Permanent Redirect
-				400
-					Bad Request
-				401
-					Unauthorized
-				402
-					Payment Required
-				403
-					Forbidden
-				404
-					Not Found
-				405
-					Method Not Allowed
-				406
-					Not Acceptable
-				407
-					Proxy Authentication Required
-				408
-					Request Timeout
-				409
-					Conflict
-				410
-					Gone
-				411
-					Length Required
-				412
-					Precondition Failed
-				413
-					Payload Too Large
-				414
-					URI Too Long
-				415
-					Unsupported Media Type
-				416
-					Range Not Satisfiable
-				417
-					Expectation Failed
-				418
-					I'm a Teapot
-				421
-					Misdirected Request
-				422
-					Unprocessable Entity
-				423
-					Locked
-				424
-					Failed Dependency
-				425
-					Too Early
-				426
-					Upgrade Required
-				428
-					Precondition Required
-				429
-					Too Many Requests
-				431
-					Request Header Fields Too Large
-				451
-					Unavailable For Legal Reasons
-				500
-					Internal Server Error
-				501
-					Not Implemented
-				502
-					Bad Gateway
-				503
-					Service Unavailable
-				504
-					Gateway Timeout
-				505
-					HTTP Version Not Supported
-				506
-					Variant Also Negotiates
-				507
-					Insufficient Storage
-				508
-					Loop Detected
-				510
-					Not Extended
-				511
-					Network Authentication Required
-		db
-			[ ]
-		log
-			none
-		ai
-			chatgpt
-				key
-				url
-			deepeek
-				key
-				url
-			ollama
-				key
-				url
-			claude
-				key
-				url
-			gemini
-				key
-				url
-		void
-			[ ]
+					json
+					jsonl
+					jsonld
+					yaml
+					csv
+					ini
+					xml
+					sql
+					log
+					text
+					txt
+					vtt
+					srt
+					ass
+					ssa
+					ttml
+					sub
+					smi
+					sami
+					html
+					htm
+					xhtml
+					css
+					py
+					php
+					java
+					kt
+					swift
+					m
+					mm
+					c
+					cpp
+					h
+					cs
+					rs
+					gd
+					js
+					mjs
+					lua
+					sh
+					csh
+					bat
+			ai
+				chatgpt
+					key
+					url
+				deepeek
+					key
+					url
+				ollama
+					key
+					url
+				claude
+					key
+					url
+				gemini
+					key
+					url
+			void
+				[ ]
 		run
 			[]
 		action
@@ -6673,18 +7332,37 @@ class VOIDlang:
 					pb
 	'''
 
+	modules = {}
+
   # module
 
 	@classmethod
-	def module(cls, name: str):
+	def module(cls, name: str, name_install: str = None):
 		if name in cls.modules:
 			return cls.modules[name]
 		try:
 			module = importlib.import_module(name)
 			cls.modules[name] = module
 			return module
-		except:
-			cls.error('module', name)
+		except ImportError:
+			if name_install is None:
+				name_install = name
+			candidates = [
+				[sys.executable, '-m', 'pip', 'install', name_install] + (['--break-system-packages'] if sys.platform != 'win32' else []),
+				['pip3', 'install', name_install],
+				['pip', 'install', name_install]
+			]
+			for cmd in candidates:
+				try:
+					result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+					if result.returncode == 0:
+						break
+				except Exception:
+					pass
+			else:
+				cls.error('module', name)
+			os.execv(sys.executable, [sys.executable] + sys.argv)
+			cls.exit()
 
 
   # run
@@ -6754,7 +7432,7 @@ class VOIDlang:
 			result = cls.action(cls.file(path + '/run.zip/run.yaml'))
 		else:
 			result = app.get('about')
-		if result not in ['', None] and cls.get('app.ui') == 'cli':
+		if result not in ['', b'', None] and cls.get('app.ui') == 'cli':
 			cls.print(result)
 
 
@@ -6789,12 +7467,27 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def type_binary(cls):
-		pass
+	def type_binary(cls, data):
+		if type(data) is str:
+			return data.encode('utf-8')
+		if type(data) is bytes:
+			return data
+		return void.type_text(data).encode('utf-8')
 
 	@classmethod
-	def length(cls):
-		pass
+	def length(cls, data):
+		data_type = type(data)
+		if data_type in [str, list, dict, bytes]:
+			return len(data)
+		elif data_type is int:
+			return (data.bit_length() + 7) // 8
+		elif data_type is float:
+			return (sys.float_info.mant_dig + math.ceil(math.log2(sys.float_info.max_10_exp - sys.float_info.min_10_exp)) + 1) // 8
+		return 0
+
+	@classmethod
+	def len(cls, data):
+		return cls.length(data)
 
 
   # expression
@@ -6804,24 +7497,48 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def expression_and(cls):
+		return cls.expression_plus()
+
+	@classmethod
 	def expression_minus(cls):
 		pass
+
+	@classmethod
+	def expression_not(cls):
+		return cls.expression_minus()
 
 	@classmethod
 	def expression_multiply(cls):
 		pass
 
 	@classmethod
+	def expression_xor(cls):
+		return cls.expression_multiply()
+
+	@classmethod
 	def expression_divide(cls):
 		pass
+
+	@classmethod
+	def expression_or(cls):
+		return cls.expression_divide()
 
 	@classmethod
 	def expression_modulo(cls):
 		pass
 
 	@classmethod
+	def expression_mod(cls):
+		return cls.expression_modulo()
+
+	@classmethod
 	def expression_power(cls):
 		pass
+
+	@classmethod
+	def expression_pow(cls):
+		return cls.expression_power()
 
 	@classmethod
 	def expression_shr(cls):
@@ -6915,12 +7632,15 @@ class VOIDlang:
   # control
 
 	@classmethod
-	def print(cls):
-		pass
+	def print(cls, data = None):
+		if data is None or type(data) in [str, int, float, bool]:
+			print(data)
+		else:
+			print(cls.json(data))
 
 	@classmethod
-	def input(cls):
-		pass
+	def input(cls, text: str = None):
+		return input(text if text is not None else '')
 
 	@classmethod
 	def control_if(cls):
@@ -6947,7 +7667,7 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def action(cls):
+	def action(cls, action):
 		pass
 
 	@classmethod
@@ -6955,11 +7675,11 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def close(cls):
+	def close(cls, pid):
 		pass
 
 	@classmethod
-	def code(cls):
+	def code(cls, text: str):
 		pass
 
 	@classmethod
@@ -6967,15 +7687,66 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def exit(cls):
+	def l(cls):
+		return cls.logger()
+
+	@classmethod
+	def test(cls, name = None):
 		pass
+
+	@classmethod
+	def update(cls, name = None):
+		pass
+
+	@classmethod
+	def exit(cls, data = None):
+		pass
+
+	@classmethod
+	def xx(cls, text: str = None):
+		cls.exit(1)
+
+	@classmethod
+	def fatal(cls):
+		cls.exit(1)
+
+	@classmethod
+	def error(cls, tag: str, data = None):
+		print()
+		print(tag)
+		print(data)
+		print()
 
 	@classmethod
 	def os(cls):
 		pass
 
 	@classmethod
-	def clipboard(cls):
+	def info(cls, name: str):
+		pass
+
+	@classmethod
+	def i(cls, name: str):
+		return cls.info(name)
+
+	@classmethod
+	def help(cls, name: str):
+		return cls.info(name)
+
+	@classmethod
+	def h(cls, name: str):
+		return cls.info(name)
+
+	@classmethod
+	def convert(cls, value, name_from, name_to = None):
+		pass
+
+	@classmethod
+	def c(cls, value, name_from, name_to = None):
+		return cls.convert(value, name_from, name_to)
+
+	@classmethod
+	def clipboard(cls, data = None):
 		pass
 
 	@classmethod
@@ -6983,15 +7754,15 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def chat(cls):
+	def chat(cls, text: str, model: str = None, character: str = None, reference = None):
 		pass
 
 	@classmethod
-	def say(cls):
+	def say(cls, text: str, voice: str = None):
 		pass
 
 	@classmethod
-	def recognize(cls):
+	def recognize(cls, data, text: str = None):
 		pass
 
 	@classmethod
@@ -7180,6 +7951,10 @@ class VOIDlang:
 		return math.factorial(value)
 
 	@classmethod
+	def fact(cls, value: float):
+		return cls.factorial(value)
+
+	@classmethod
 	def fibonacci(cls, value: float, multiply: float = 1, shift: float = 0):
 		value = int(value)
 		if value <= 0:
@@ -7192,6 +7967,10 @@ class VOIDlang:
 			a, b = b, a + b
 			result.append(b * multiply + shift)
 		return result
+
+	@classmethod
+	def fib(cls, value: float, multiply: float = 1, shift: float = 0):
+		return cls.fibonacci(value)
 
 	@classmethod
 	def gold(cls, value: float, component: str = None):
@@ -7213,6 +7992,10 @@ class VOIDlang:
 			'long': (phi - 1) * value,
 			'total': value
 			}
+
+	@classmethod
+	def g(cls, value: float, component: str = None):
+		return cls.gold(value, component)
 
 	@classmethod
 	def abs(cls, value: float):
@@ -7281,20 +8064,27 @@ class VOIDlang:
   # time
 
 	@classmethod
-	def time(cls):
-		pass
+	def time(cls, digit: int = None):
+		result = time.time()
+		if digit is not None:
+			if digit == 0:
+				return int(result)
+			if digit > 0:
+				return round(result, digit)
+			return int(result * (10 ** -digit))
+		return result
 
 	@classmethod
 	def timer(cls):
 		pass
 
 	@classmethod
-	def timer_remove(cls):
+	def timer_remove(cls, name: str = None):
 		pass
 
 	@classmethod
-	def wait(cls):
-		pass
+	def wait(cls, seconds: float = 1):
+		time.sleep(seconds)
 
 	@classmethod
 	def stopwatch(cls, tag: str = None):
@@ -7312,233 +8102,1313 @@ class VOIDlang:
   # crypto
 
 	@classmethod
-	def encrypt(cls):
-		pass
+	def encrypt(cls, data, key: str = None):
+		if data is None:
+			data = b'n'
+		elif data == True:
+			data = b'1'
+		elif data == False:
+			data = b'0'
+		elif isinstance(data, bytes):
+			data = data + b'b'
+		elif isinstance(data, str):
+			data = data.encode() + b't'
+		elif isinstance(data, int):
+			data = str(data).encode() + b'i'
+		elif isinstance(data, float):
+			data = str(data).encode() + b'f'
+		elif isinstance(data, (list, dict)):
+			data = cls.json(data).encode() + b'j'
+		else:
+			data = str(data).encode() + b'b'
+		if key is not None:
+			return cls.aes(data, key)
+		key = cls.hash(64)
+		return {
+			'data': cls.aes(data, key),
+			'key': key
+		}
 
 	@classmethod
-	def decrypt(cls):
-		pass
+	def decrypt(cls, data, key: str):
+		if isinstance(data, str):
+			data = cls.base64_decode(data)
+		data = cls.aes_decode(data, key)
+		if data is not None and len(data) > 0:
+			data_type = data[-1:]
+			data = data[:-1]
+			match data_type:
+				case b'n':
+					return None
+				case b'1':
+					return True
+				case b'0':
+					return False
+				case b'b':
+					return data
+				case b't':
+					return data.decode('utf-8')
+				case b'i':
+					return int(data)
+				case b'f':
+					return float(data)
+				case b'j':
+					return cls.json_decode(data.decode('utf-8'))
 
 	@classmethod
-	def bcrypt_encode(cls):
-		pass
+	def password(cls, password: str, name: str = None):
+		if not password: return None
+		match name:
+			case 'argon' | 'argon2':
+				argon = cls.module('argon2', 'argon2-cffi').PasswordHasher()
+				return argon.hash(password)
+			case 'bcrypt':
+				bcrypt = cls.module('bcrypt')
+				return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+			case _:
+				base64 = cls.module('base64')
+				salt = os.urandom(32)
+				rounds = 600_000
+				key = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, rounds)
+				salt_base64 = base64.b64encode(salt).decode()
+				key_base64 = base64.b64encode(key).decode()
+				return f'$pbkdf2${rounds}${salt_base64}${key_base64}'
 
 	@classmethod
-	def bcrypt_check(cls):
-		pass
+	def password_check(cls, password_hashed: str, password: str):
+		if not password_hashed or not password: return False
+		try:
+			if password_hashed.startswith('$argon2'):
+				argon = cls.module('argon2', 'argon2-cffi').PasswordHasher()
+				argon.verify(password_hashed, password)
+				return True
+			elif password_hashed.startswith(('$2b$', '$2a$', '$2y$')):
+				bcrypt = cls.module('bcrypt')
+				return bcrypt.checkpw(password.encode(), password_hashed.encode())
+			elif password_hashed.startswith('$pbkdf2$'):
+				hmac = cls.module('hmac')
+				base64 = cls.module('base64')
+				_, _, rounds, salt_base64, key_base64 = password_hashed.split('$')
+				salt = base64.b64decode(salt_base64)
+				rounds = int(rounds)
+				original_key = base64.b64decode(key_base64)
+				key = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, rounds)
+				return hmac.compare_digest(original_key, key)
+			else:
+				cls.error('password.check', 'unknown hash format')
+				return False
+		except Exception as e:
+			cls.error('password.check', e)
+			return False
 
 	@classmethod
-	def hash(cls):
-		pass
+	def hash(cls, data = 32, *param):
+		if data is None:
+			data = 32
+		if type(data) is int:
+			alphabet_lower = 'abcdefghijklmnopqrstuvwxyz'
+			alphabet_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+			number = '0123456789'
+			symbol = '!@#$%^&*()_+-=`~:;.,<>|/{}[]'
+			characters = ''
+			if 'letter' in param or 'letters' in param or 'alphabet' in param:
+				characters += alphabet_lower + alphabet_upper
+			else:
+				if 'lower' in param:
+					characters += alphabet_lower
+				if 'upper' in param:
+					characters += alphabet_upper
+			if 'number' in param or 'numbers' in param or 'digit' in param:
+				characters += number
+			if 'symbol' in param or 'symbols' in param or'special' in param:
+				characters += symbol
+			if len(characters) == 0:
+				if len(param) == 1 and type(param[0]) is str:
+					characters = param[0]
+				else:
+					characters = alphabet_lower + alphabet_upper + number
+			secrets = cls.module('secrets')
+			if data <= 1000:
+				return ''.join(secrets.choice(characters) for _ in range(data))
+			return ''.join([
+				*(secrets.choice(characters) for _ in range(1000)),
+				*random.choices(characters, k=data - 1000)
+			])
+		match str(param[0]) if len(param) > 0 else '':
+			case 'sha1':
+				return cls.sha1(data)
+			case 'sha256':
+				return cls.sha256(data)
+			case 'sha512':
+				return cls.sha512(data)
+			case 'crc32':
+				return cls.crc32(data)
+			case 'base64':
+				return cls.base64(data)
+			case 'argon' | 'argon2':
+				return cls.password(str(data), 'argon') 
+			case 'bcrypt':
+				return cls.password(str(data), 'bcrypt')
+			case 'pbk' | 'pbkdf' | 'pbkdf2':
+				return cls.password(str(data), 'pbkdf2')
+			case 'number' | 'digit':
+				result = int(hashlib.sha256(data if isinstance(data, bytes) else str(data).encode()).hexdigest(), 16)
+				if len(param) > 1 and type(param[1]) is int:
+					result = int(str(result)[:param[1]])
+				return result
+			case _:
+				return cls.sha256(data)
 
 	@classmethod
-	def uuid(cls):
-		pass
+	def uuid(cls, clean: bool = False):
+		uuid = cls.module('uuid')
+		result = uuid.uuid4()
+		return str(result) if not clean else result.hex
 
 	@classmethod
-	def sha1(cls):
-		pass
+	def sha1(cls, data):
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		return hashlib.sha1(data).hexdigest()
 
 	@classmethod
-	def sha256(cls):
-		pass
+	def sha256(cls, data):
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		return hashlib.sha256(data).hexdigest()
 
 	@classmethod
-	def sha512(cls):
-		pass
+	def sha512(cls, data):
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		return hashlib.sha512(data).hexdigest()
 
 	@classmethod
-	def crc32(cls):
-		pass
+	def crc32(cls, data):
+		zlib = cls.module('zlib')
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		return zlib.crc32(data)
 
 	@classmethod
-	def base64_encode(cls):
-		pass
+	def base64(cls, data, safe: bool = False):
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		base64 = cls.module('base64')
+		data = base64.b64encode(data if type(data) is bytes else str(data).encode()).decode()
+		return data if not safe else data.replace('/', '_').replace('=', '')
 
 	@classmethod
-	def base64_decode(cls):
-		pass
+	def base64_safe(cls, data):
+		return cls.base64(data, True)
 
 	@classmethod
-	def gzip_encode(cls):
-		pass
+	def base64_decode(cls, data, safe: bool = False, format: str = 'text'):
+		base64 = cls.module('base64')
+		if not isinstance(data, bytes):
+			data = str(data)
+			if safe:
+				if '_' in data:
+					data = data.replace('_', '/')
+				if len(data) % 4 != 0:
+					data += '=' * (4 - len(data) % 4)
+			data = data.encode()
+		try:
+			data = base64.b64decode(data)
+		except: return
+		if format not in [None, '', 'binary']:
+			try:
+				return data.decode('utf-8' if format == 'text' else format)
+			except: return data
 
 	@classmethod
-	def gzip_decode(cls):
-		pass
+	def base64_decode_safe(cls, data):
+		return cls.base64_decode(data, True)
 
 	@classmethod
-	def lzma_encode(cls):
-		pass
+	def gzip(cls, data, compression = None):
+		gzip = cls.module('gzip')
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		if compression in ['best', None]:
+			compression = 9
+		elif compression == 'fast':
+			compression = 1
+		else:
+			try:
+				compression = int(compression)
+				if compression < 0:
+					compression = 0
+				elif compression > 9:
+					compression = 9
+			except:
+				compression = 9
+		buffer = io.BytesIO()
+		with gzip.GzipFile(fileobj=buffer, mode='wb', compresslevel=compression, mtime=0) as temp:
+			temp.write(data)
+		return buffer.getvalue()
 
 	@classmethod
-	def lzma_decode(cls):
-		pass
+	def gzip_fast(cls, data):
+		return cls.gzip(data, 'fast')
 
 	@classmethod
-	def rsa_encode(cls):
-		pass
+	def gzip_best(cls, data):
+		return cls.gzip(data, 'best')
 
 	@classmethod
-	def rsa_decode(cls):
-		pass
+	def gzip_decode(cls, data: bytes):
+		if not data: return
+		gzip = cls.module('gzip')
+		try:
+			return gzip.decompress(data)
+		except: return
 
 	@classmethod
-	def ecdhe_encode(cls):
-		pass
+	def lzma(cls, data, compression = None):
+		lzma = cls.module('lzma')
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		if compression in ['best', None]:
+			compression = lzma.PRESET_EXTREME
+		elif compression == 'fast':
+			compression = 0
+		else:
+			try:
+				compression = int(compression)
+				if compression < 0:
+					compression = 0
+				elif compression > 9:
+					compression = 9
+			except:
+				compression = 9
+		return lzma.compress(bytes(data), preset=compression)
 
 	@classmethod
-	def ecdhe_decode(cls):
-		pass
+	def lzma_fast(cls, data):
+		return cls.lzma(data, 'fast')
 
 	@classmethod
-	def barcode_encode(cls):
-		pass
+	def lzma_best(cls, data):
+		return cls.lzma(data, 'best')
 
 	@classmethod
-	def barcode_decode(cls):
-		pass
+	def lzma_decode(cls, data: bytes):
+		if not data: return
+		lzma = cls.module('lzma')
+		try:
+			return lzma.decompress(data)
+		except: return
+
+	@classmethod
+	def lz4(cls, data, compression = None):
+		lz4_frame = cls.module('lz4.frame')
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		if compression in ['best', None]:
+			compression = lz4_frame.COMPRESSIONLEVEL_MAX
+		elif compression == 'fast':
+			compression = 0
+		else:
+			try:
+				compression = int(compression)
+				if compression < 0:
+					compression = 0
+				elif compression > 16:
+					compression = 16
+			except:
+				compression = 16
+		return lz4_frame.compress(data, compression_level=compression)
+
+	@classmethod
+	def lz4_fast(cls, data):
+		return cls.lz4(data, 'fast')
+
+	@classmethod
+	def lz4_best(cls, data):
+		return cls.lz4(data, 'best')
+
+	@classmethod
+	def lz4_decode(cls, data):
+		if not data: return
+		lz4_frame = cls.module('lz4.frame')
+		return lz4_frame.decompress(data)
+
+	@classmethod
+	def lzss(cls, data):
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		window_size = 4096
+		match_max = 18
+		match_min = 3
+		res = bytearray()
+		si, n = 0, len(data)
+		pos_hash = {}
+		while si < n:
+			control_idx = len(res)
+			res.append(0)
+			control_byte = 0			
+			for bit in range(8):
+				if si >= n: break
+				best_len, best_off = 0, 0
+				if si + match_min <= n:
+					three_gram = data[si:si+3]
+					if three_gram in pos_hash:
+						window_start = si - window_size
+						for old_pos in reversed(pos_hash[three_gram]):
+							if old_pos < window_start: break 
+							cur_len = 3
+							while cur_len < match_max and si + cur_len < n and \
+								  data[old_pos + cur_len] == data[si + cur_len]:
+								cur_len += 1
+							if cur_len > best_len:
+								best_len = cur_len
+								best_off = si - old_pos
+								if best_len == match_max: break
+				if best_len >= match_min:
+					packet = (((best_off - 1) & 0xFFF) << 4) | ((best_len - match_min) & 0x0F)
+					res.append((packet >> 8) & 0xFF); res.append(packet & 0xFF)
+					for i in range(best_len):
+						if si + i + 3 <= n:
+							tg = data[si+i:si+i+3]
+							if tg not in pos_hash: pos_hash[tg] = []
+							pos_hash[tg].append(si+i)
+					si += best_len
+				else:
+					control_byte |= (1 << bit)
+					res.append(data[si])
+					if si + 3 <= n:
+						tg = data[si:si+3]
+						if tg not in pos_hash: pos_hash[tg] = []
+						pos_hash[tg].append(si)
+					si += 1
+			res[control_idx] = control_byte
+			if si % 10000 == 0:
+				threshold = si - window_size
+				for k in list(pos_hash.keys()):
+					pos_hash[k] = [p for p in pos_hash[k] if p >= threshold]
+					if not pos_hash[k]: del pos_hash[k]
+		return bytes(res)
+
+	@classmethod
+	def lzss_decode(cls, data: bytes):
+		if not data: return
+		match_min = 3
+		res = bytearray()
+		si, data_len = 0, len(data)
+		while si < data_len:
+			control = data[si]
+			si += 1
+			for bit in range(8):
+				if si >= data_len: break
+				if (control >> bit) & 1:
+					res.append(data[si])
+					si += 1
+				else:
+					if si + 1 >= data_len: break
+					packet = (data[si] << 8) | data[si+1]
+					si += 2
+					offset = (packet >> 4) + 1
+					length = (packet & 0x0F) + match_min
+					curr_res_len = len(res)
+					start_pos = curr_res_len - offset
+					if offset >= length:
+						res.extend(res[start_pos : start_pos + length])
+					else:
+						for i in range(length):
+							res.append(res[len(res) - offset])
+		return bytes(res)
+
+	@classmethod
+	def aes(cls, data, key: str):
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		try:
+			aes_gcm = cls.module('cryptography.hazmat.primitives.ciphers.aead', 'cryptography').AESGCM
+			hashes = cls.module('cryptography.hazmat.primitives.hashes', 'cryptography')
+			digest = hashes.Hash(hashes.SHA256())
+			digest.update(key.encode())
+			key_bytes = digest.finalize()
+			aes = aes_gcm(key_bytes)
+			nonce = os.urandom(12)
+			return nonce + aes.encrypt(nonce, data, None)
+		except Exception:
+			cls.error('aes.encode')
+
+	@classmethod
+	def aes_decode(cls, data: bytes, key: str):
+		if data is None or len(data) < 12: return
+		try:
+			aes_gcm = cls.module('cryptography.hazmat.primitives.ciphers.aead', 'cryptography').AESGCM
+			hashes = cls.module('cryptography.hazmat.primitives.hashes', 'cryptography')
+			digest = hashes.Hash(hashes.SHA256())
+			digest.update(key.encode())
+			key_bytes = digest.finalize()
+			aes = aes_gcm(key_bytes)
+			nonce = data[:12]
+			encrypted = data[12:]
+			return aes.decrypt(nonce, encrypted, None)
+		except Exception:
+			cls.error('aes.decode')
+			return
+
+	@classmethod
+	def rsa(cls, data = None, public_key = None, password: str = None, length = None):
+		try:
+			serialization = cls.module('cryptography.hazmat.primitives.serialization', 'cryptography')
+			padding = cls.module('cryptography.hazmat.primitives.asymmetric.padding', 'cryptography')
+			hashes = cls.module('cryptography.hazmat.primitives.hashes', 'cryptography')
+			if length == None:
+				key_size = 4096
+				length = 446
+			elif length == 'fast':
+				key_size = 1552
+				length = 128
+			else:
+				length = int(length) 
+				if length % 8 != 0 or length < 1024:
+					key_size = (length + 66) * 8
+				else:
+					key_size = length
+					length = key_size // 8 - (2 * (256 // 8)) - 2
+				if key_size < 1024:
+					key_size = 1024
+			result = None
+			if public_key is None:
+				rsa = cls.module('cryptography.hazmat.primitives.asymmetric.rsa', 'cryptography')
+				encryption = serialization.NoEncryption() if password is None else serialization.BestAvailableEncryption(password.encode())
+				private_key = rsa.generate_private_key(public_exponent=65537, key_size=key_size)
+				public_key = private_key.public_key()
+				public_key_pem = public_key.public_bytes(encoding=serialization.Encoding.PEM, format=serialization.PublicFormat.SubjectPublicKeyInfo).decode()
+				private_key_pem = private_key.private_bytes(encoding=serialization.Encoding.PEM, format=serialization.PrivateFormat.PKCS8, encryption_algorithm=encryption).decode()
+				public_key_base64 = ''.join(public_key_pem.strip().splitlines()[1:-1])
+				private_key_base64 = ''.join(private_key_pem.strip().splitlines()[1:-1])
+				result = {
+					'public': public_key_base64,
+					'private': private_key_base64,
+					'pem': {
+						'public': public_key_pem,
+						'private': private_key_pem
+					}
+				}
+				if data is None:
+					return result
+			if not isinstance(data, bytes):
+				data = str(data if data is not None else '').encode()
+			if len(data) > length:
+				cls.error('rsa.encode', f'max length {length} exceeded')
+				return
+			if isinstance(public_key, str):
+				if 'PUBLIC KEY' not in public_key:
+					public_key = f"-----BEGIN PUBLIC KEY-----\n{public_key}\n-----END PUBLIC KEY-----"
+				public_key = serialization.load_pem_public_key(str(public_key).encode())
+			data_encrypted = public_key.encrypt(data, padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
+			return data_encrypted if result is None else (result | {'data': data_encrypted})
+		except Exception as e:
+			cls.error('rsa.encode', e)
+
+	@classmethod
+	def rsa_fast(cls, data: bytes = None, public_key = None, password: str = None):
+		return cls.rsa(data, public_key, password, 'fast')
+
+	@classmethod
+	def rsa_decode(cls, data: bytes, private_key, password: str = None):
+		if not data: return
+		try:
+			serialization = cls.module('cryptography.hazmat.primitives.serialization', 'cryptography')
+			padding = cls.module('cryptography.hazmat.primitives.asymmetric.padding', 'cryptography')
+			hashes = cls.module('cryptography.hazmat.primitives.hashes', 'cryptography')
+			if not isinstance(private_key, bytes):
+				private_key = str(private_key)
+				if 'PRIVATE KEY' not in private_key:
+					encrypted = 'ENCRYPTED ' if password is not None else ''
+					private_key = f"-----BEGIN {encrypted}PRIVATE KEY-----\n{private_key}\n-----END {encrypted}PRIVATE KEY-----"
+				private_key = serialization.load_pem_private_key(private_key.encode(),  password=password.encode() if password is not None else None)
+				return private_key.decrypt(data, padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
+		except Exception as e:
+			cls.error('rsa.decode', e)
+
+	@classmethod
+	def ecdhe(cls, public_key: str = None, private_key: str = None):
+		try:
+			ec = cls.module('cryptography.hazmat.primitives.asymmetric.ec', 'cryptography')
+			serialization = cls.module('cryptography.hazmat.primitives.serialization', 'cryptography')
+			hashes = cls.module('cryptography.hazmat.primitives.hashes', 'cryptography')
+			if public_key is None or private_key is None:
+				private_key = ec.generate_private_key(ec.SECP256R1())
+				public_key = private_key.public_key()
+				public_bytes = public_key.public_bytes(serialization.Encoding.PEM, serialization.PublicFormat.SubjectPublicKeyInfo).decode().strip().splitlines()[1:-1]
+				private_bytes = private_key.private_bytes(serialization.Encoding.PEM, serialization.PrivateFormat.PKCS8, serialization.NoEncryption()).decode().strip().splitlines()[1:-1]		
+				return {
+					'public': ''.join(public_bytes),
+					'private': ''.join(private_bytes)
+				}
+			private_key_pem = f'-----BEGIN PRIVATE KEY-----\n{private_key}\n-----END PRIVATE KEY-----'
+			private_key_obj = serialization.load_pem_private_key(private_key_pem.encode(), password=None)
+			public_key_pem = f'-----BEGIN PUBLIC KEY-----\n{public_key}\n-----END PUBLIC KEY-----'
+			public_key_obj = serialization.load_pem_public_key(public_key_pem.encode())
+			shared_key = private_key_obj.exchange(ec.ECDH(), public_key_obj)
+			digest = hashes.Hash(hashes.SHA256())
+			digest.update(shared_key)
+			return digest.finalize()
+		except Exception as e:
+			cls.error('ecdhe', e)
+
+	@classmethod
+	def barcode(cls, text = None, format: str = None):
+		try:
+			if text == None:
+				barcode = cls.module('barcode', 'python-barcode')
+				formats = barcode.PROVIDED_BARCODES + ['qr']
+				return formats
+			text = str(text)
+			if format:
+				format = format.lower()
+			if format in ['qr', 'qrcode']:
+				qrcode = cls.module('qrcode')
+				qr = qrcode.QRCode(version=1, border=1)
+				qr.add_data(text)
+				qr.make(fit=True)
+				result = io.StringIO()
+				qr.print_ascii(out=result, invert=True)
+				return {
+					'data': qr.get_matrix(),
+					'text': result.getvalue()
+				}
+			if not text.isdigit():
+				format = 'code128'
+			else:
+				match len(text):
+					case 8:
+						format = 'ean8'
+					case 12:
+						format = 'upca'
+					case 13:
+						format = 'ean13'
+					case 14:
+						format = 'itf14'
+					case _:
+						format = 'code128'
+			barcode = cls.module('barcode', 'python-barcode')
+			code_class = barcode.get_barcode_class(format)
+			code_obj = code_class(text)
+			code_lines = code_obj.build()
+			one = len(code_lines) == 1 
+			result = {
+				'data': [char == '1' for char in code_lines[0]] if one else code_lines,
+				'text': '' if one else []
+			}
+			for line in code_lines:
+				if len(line) % 2 != 0:
+					line += '0'
+				bars = []
+				for i in range(0, len(line), 2):
+					pair = line[i:i+2]
+					if pair == '11':
+						bars.append('█')
+					elif pair == '10':
+						bars.append('▌')
+					elif pair == '01':
+						bars.append('▐')
+					else:
+						bars.append(' ')
+				line_text = ''.join(bars)
+				if one:
+					result['text'] = '\n'.join([line_text] * 10)
+					result['line'] = line_text
+				else:
+					result['text'].append(line_text) 
+			if not one:
+				result['text'] = '\n'.join(result['text'])
+			return result
+		except Exception as e:
+			cls.error('barcode', e)
+
+	@classmethod
+	def barcode_decode(cls, image, format: str = None):
+		return cls.recognize(image, format)
+
+	@classmethod
+	def qr(cls, text: str):
+		return cls.barcode(text, 'qr')
+
+	@classmethod
+	def qr_decode(cls, image):
+		return cls.barcode_decode(image, 'qr')
 
 
   # file
 
 	@classmethod
-	def file(cls):
+	def file(cls, path: str, data = None, format: str = None, extra = None):
+		if format is None:
+			format = cls.path_extension(path).lower()
+			auto = True
+		else:
+			auto = False
+		if data == None:
+			if not cls.file_exists(path): return
+			match format:
+				case 'binary':
+					with open(path, 'rb') as file:
+						return file.read()
+				case 'text' | 'txt':
+					with open(path, 'r', encoding='utf-8') as file:
+						return file.read()
+				case 'line':
+					with open(path, 'r', encoding='utf-8') as file:
+						data = file.read()
+						if '\r\n' in data:
+							return data.split('\r\n')
+						return data.split('\n')
+				case 'void':
+					with open(path, 'rb') as file:
+						return cls.void_decode(file.read())
+				case 'json':
+					with open(path, 'r', encoding='utf-8') as file:
+						return cls.json_decode(file.read())
+				case 'csv':
+					delimiter = extra if type(extra) is str else ','
+					with open(path, 'r', encoding='utf-8') as file:
+						return cls.csv_decode(file.read(), delimiter=delimiter)
+				case 'yaml':
+					with open(path, 'r', encoding='utf-8') as file:
+						return cls.yaml_decode(file.read())
+				case 'xml':
+					with open(path, 'r', encoding='utf-8') as file:
+						return cls.xml_decode(file.read())
+				case 'ini':
+					with open(path, 'r', encoding='utf-8') as file:
+						return cls.ini_decode(file.read())
+				case _:
+					if format in ['php', 'text', 'txt', 'py', 'json']: #cls.get('app.format.text')
+						with open(path, 'r', encoding='utf-8') as file:
+							return file.read()
+					with open(path, 'rb') as file:
+						data = file.read()
+					boms = [
+							('utf-32', b'\xff\xfe\x00\x00'),
+							('utf-32', b'\x00\x00\xfe\xff'),
+							('utf-16', b'\xff\xfe'),
+							('utf-16', b'\xfe\xff'),
+							('utf-8',  b'\xef\xbb\xbf')
+						]
+					for encoding, signature in boms:
+						if data.startswith(signature):
+							try:
+								return data.decode(encoding)
+							except UnicodeDecodeError:
+								continue
+					try:
+						 return data.decode(format)
+					except:
+						return data
+		else:
+			match format:
+				case 'binary':
+					with open(path, 'wb') as file:
+						file.write(data)
+				case 'text' | 'txt':
+					with open(path, 'w', encoding='utf-8') as file:
+						file.write(str(data))
+				case 'line':
+					if type(data) is list:
+						delimiter = '\n'#cls.get('app.os.delimiter.line')
+						data = delimiter.join(map(str,data))
+					else:
+						data = str(data)
+					with open(path, 'w', encoding='utf-8') as file:
+						file.write(data)
+				case 'void':
+					data = void.void(data)
+					with open(path, 'w', encoding='utf-8') as file:
+						file.write(data if data is not None else '')
+				case 'json':
+					data = void.json(data)
+					with open(path, 'w', encoding='utf-8') as file:
+						file.write(data if data is not None else '')
+				case 'csv':
+					delimiter = extra if type(extra) is str else ','
+					data = cls.csv(data, delimiter)
+					with open(path, 'w', encoding='utf-8') as file:
+						file.write(data if data is not None else '')
+				case 'yaml':
+					data = void.yaml(data)
+					with open(path, 'w', encoding='utf-8') as file:
+						file.write(data if data is not None else '')
+				case 'xml':
+					data = cls.xml(data)
+					data = '<?xml version="1.0" encoding="UTF-8"?>' + (('\n' + data) if type(data) is str else '')
+					with open(path, 'w', encoding='utf-8') as file:
+						file.write(data)
+				case 'ini':
+					data = cls.ini(data)
+					with open(path, 'w', encoding='utf-8') as file:
+						file.write(data if data is not None else '')
+				case _:
+					try:
+						if auto:
+							if type(data) is str:
+								with open(path, 'w', encoding='utf-8') as file:
+									file.write(str(data) if data is not None else '')
+							else:
+								with open(path, 'wb') as file:
+									file.write(bytes(data) if data is not None else b'')
+						else:
+							if data is None:
+								data = ''
+							elif type(data) is bytes:
+								data = data.decode(format)
+							else:
+								data = str(data)
+							with open(path, 'w', encoding=format) as file:
+								file.write(data)
+					except Exception as e:
+						cls.error('file.write', e)
+
+	@classmethod
+	def file_binary(cls, path: str, data = None):
+		return cls.file(path, data, 'binary')
+
+	@classmethod
+	def file_text(cls, path: str, data = None):
+		return cls.file(path, data, 'text')
+
+	@classmethod
+	def file_line(cls, path: str, data = None):
+		return cls.file(path, data, 'line')
+
+	@classmethod
+	def file_ascii(cls, path: str, data = None):
+		return cls.file(path, data, 'ascii')
+
+	@classmethod
+	def file_void(cls, path: str, data = None):
+		return cls.file(path, data, 'void')
+
+	@classmethod
+	def file_json(cls, path: str, data = None):
+		return cls.file(path, data, 'json')
+
+	@classmethod
+	def file_csv(cls, path: str, data = None, delimiter: str = None):
+		return cls.file(path, data, 'csv', delimiter)
+
+	@classmethod
+	def file_yaml(cls, path: str, data = None):
+		return cls.file(path, data, 'yaml')
+
+	@classmethod
+	def file_xml(cls, path: str, data = None):
+		return cls.file(path, data, 'xml')
+
+	@classmethod
+	def file_ini(cls, path: str, data = None):
+		return cls.file(path, data, 'ini')
+
+	@classmethod
+	def file_create(cls, path: str):
+		cls.file(path, b'', 'binary')
+
+	@classmethod
+	def file_clear(cls, path: str):
+		cls.file(path, b'', 'binary')
+
+	@classmethod
+	def file_exists(cls, path: str):
+		return os.path.isfile(path)
+
+	@classmethod
+	def file_remove(cls, path: str, trash: bool = False):
 		pass
 
 	@classmethod
-	def file_exists(cls):
+	def file_trash(cls, path: str, trash: bool = False):
+		cls.file_remove(path, trash)
+
+	@classmethod
+	def file_copy(cls, source: str, destination: str = None):
 		pass
 
 	@classmethod
-	def file_remove(cls):
+	def file_move(cls, source: str, destination: str = None):
 		pass
 
 	@classmethod
-	def file_copy(cls):
+	def file_rename(cls, path: str, name: str = None):
 		pass
 
 	@classmethod
-	def file_move(cls):
+	def file_info(cls, path: str):
 		pass
 
 	@classmethod
-	def file_link(cls):
+	def file_sha256(cls, path: str):
+		data = cls.file_binary(path)
+		if data is not None:
+			return cls.sha256(data)
+
+	@classmethod
+	def file_sha512(cls, path: str):
+		data = cls.file_binary(path)
+		if data is not None:
+			return cls.sha512(data)
+
+	@classmethod
+	def file_crc32(cls, path: str):
 		pass
 
 	@classmethod
-	def file_info(cls):
+	def file_base64(cls, path: str):
 		pass
 
 	@classmethod
-	def file_sha256(cls):
+	def file_gzip(cls, source: str, destination: str = None, compression = None):
 		pass
 
 	@classmethod
-	def file_sha512(cls):
+	def file_zip(cls, source, destination: str = None, compression = None):
 		pass
 
 	@classmethod
-	def file_crc32(cls):
+	def file_void(cls, source, destination: str = None, compression = None, key: str = None):
 		pass
 
 	@classmethod
-	def file_base64(cls):
+	def file_extract(cls, source, destination: str = None):
 		pass
 
 	@classmethod
-	def file_zip(cls):
+	def link(cls, source: str, destination: str):
 		pass
 
 	@classmethod
-	def file_gzip(cls):
+	def link_exists(cls, path: str):
 		pass
 
 	@classmethod
-	def file_void(cls):
+	def dir(cls, path: str):
 		pass
 
 	@classmethod
-	def file_extract(cls):
+	def dir_create(cls, path: str, recursive: bool = True):
 		pass
 
 	@classmethod
-	def dir(cls):
+	def dir_exists(cls, path: str):
 		pass
 
 	@classmethod
-	def dir_create(cls):
+	def dir_remove(cls, path: str, trash: bool = False):
 		pass
 
 	@classmethod
-	def dir_exists(cls):
+	def dir_trash(cls, path: str):
+		cls.dir_remove(path) 
+
+	@classmethod
+	def dir_clear(cls, path: str):
 		pass
 
 	@classmethod
-	def dir_remove(cls):
+	def dir_copy(cls, source: str, destination: str = None):
 		pass
 
 	@classmethod
-	def dir_copy(cls):
+	def dir_move(cls, source: str, destination: str = None):
 		pass
 
 	@classmethod
-	def dir_move(cls):
+	def dir_rename(cls, path: str, name: str = None):
 		pass
 
 	@classmethod
-	def dir_clear(cls):
+	def dir_info(cls, path: str):
 		pass
 
 	@classmethod
-	def dir_info(cls):
+	def dir_sha256(cls, path: str, content: bool = True, time: bool = True, size: bool = True, permission: bool = True):
 		pass
 
 	@classmethod
-	def dir_zip(cls):
+	def dir_sha512(cls, path: str, content: bool = True, time: bool = True, size: bool = True, permission: bool = True):
 		pass
 
 	@classmethod
-	def dir_void(cls):
+	def dir_gzip(cls, source: str, destination: str = None, compression = None):
 		pass
 
 	@classmethod
-	def drive(cls):
+	def dir_zip(cls, source, destination: str = None, compression = None):
 		pass
 
 	@classmethod
-	def path(cls):
+	def dir_void(cls, source, destination: str = None, compression = None, key: str = None):
 		pass
+
+	@classmethod
+	def drive(cls, id: str = None):
+		pass
+
+	@classmethod
+	def drive_info(cls, id: str = None):
+		return cls.drive(path)
+
+	@classmethod
+	def drive_create(cls, id: str, size, format: str = None, name: str = None):
+		pass
+
+	@classmethod
+	def drive_exists(cls, id: str):
+		pass
+
+	@classmethod
+	def drive_remove(cls, id: str):
+		pass
+
+	@classmethod
+	def drive_clear(cls, id: str, format: str = None, name: str = None):
+		pass
+
+	@classmethod
+	def drive_format(cls, id: str, format: str = None, name: str = None):
+		cls.drive_clear(id, format, name)
+
+	@classmethod
+	def drive_rename(cls, id: str, name: str):
+		pass
+
+	@classmethod
+	def drive_mount(cls, id: str):
+		pass
+
+	@classmethod
+	def drive_unmount(cls, id: str):
+		pass
+
+	@classmethod
+	def drive_resize(cls, id: str, size):
+		pass
+
+	@classmethod
+	def drive_check(cls, id: str):
+		pass
+
+	@classmethod
+	def drive_defrag(cls, id: str):
+		pass
+
+	@classmethod
+	def path(cls, *path):
+		if len(path) == 0:
+			return os.getcwd()
+		if len(path) == 1 and type(path[0]) is str:
+			path = path[0]
+			return {
+				'full': cls.path_full(path),
+				'file': cls.path_file(path),
+				'name': cls.path_name(path),
+				'extension': cls.path_extension(path),
+				'dir': cls.path_dir(path),
+				'drive': cls.path_drive(path)
+			}
+		#delimiter = cls.get('app.os.delimiter.path')
+		delimiter = '/'
+		if len(path) == 2 and path[1] in ['full', 'file', 'name', 'extension', 'dir', 'drive', 'strip']:
+			component = path[1]
+			path = str(path[0])
+		else:
+			component = 'build'
+			if len(path) > 0 and type(path[0]) is list:
+				path = path[0]
+		match component:
+			case 'full':
+				if len(path) > 0:
+					if path[0] == '/':
+						return path
+					if len(path) > 1 and path[1] == ':':
+						return path + ('\\' if len(path) == 2 else '')
+				return os.getcwd() + delimiter + path
+			case 'file':
+				index = path.rfind('/')
+				if index >= 0:
+					return path[index+1:]
+				index = path.rfind('\\')
+				if index >= 0:
+					return path[index+1:]
+			case 'name':
+				index = path.rfind('/')
+				if index >= 0:
+					path = path[index+1:]
+				else:
+					index = path.rfind('\\')
+					if index >= 0:
+						path = path[index+1:]
+				index = path.rfind('.')
+				if index >= 0:
+					return path[0:index]
+				return path
+			case 'extension':
+				index = path.rfind('.')
+				if index >= 0:
+					return path[index+1:]
+			case 'dir':
+				if path.rfind('.') > 0:
+					index = path.rfind('/')
+					if index >= 0:
+						return path[0:index]
+					index = path.rfind('\\')
+					if index >= 0:
+						path = path[0:index]
+						if len(path) == 2 and path[1] == ':':
+							return path + '\\'
+				return path
+			case 'drive':
+				index = path.find(':')
+				if index >= 0:
+					return path[0:index].upper()
+				if path.startswith('/mnt/') and len(path) > 5:
+					path = path[5:]
+					index = path.find('/')
+					if index >= 0:
+						return path[:index]
+					return
+				if path.startswith('/Volumes/') and len(path) > 9:
+					path = path[9:]
+					index = path.find('/')
+					if index >= 0:
+						return path[:index]
+					return
+			case 'strip':
+				index = path.rfind('.')
+				if index >= 0:
+					return path[0:index]
+				index = path.rfind('/')
+				if index >= 0:
+					return path[0:index]
+				index = path.rfind('\\')
+				if index >= 0:
+					path = path[0:index]
+					if len(path) == 2 and path[1] == ':':
+						path += '\\'
+					return path
+			case _:
+				result = ''
+				for index, name in enumerate(path):
+					name = str(name).strip().rstrip('/').rstrip('\\')
+					if index == 0:
+						if not (name.startswith('/') or (len(name) > 1 and name[1] == ':')):
+							name = os.getcwd() + delimiter + name
+					else:
+						name = name.lstrip('/').lstrip('\\')
+						name = delimiter + name
+					result += name
+				return result
+
+	@classmethod
+	def path_full(cls, path: str):
+		return cls.path(path, 'full')
+
+	@classmethod
+	def path_file(cls, path: str):
+		return cls.path(path, 'file')
+
+	@classmethod
+	def path_name(cls, path: str):
+		return cls.path(path, 'name')
+
+	@classmethod
+	def path_extension(cls, path: str):
+		return cls.path(path, 'extension')
+
+	@classmethod
+	def path_dir(cls, path: str):
+		return cls.path(path, 'dir')
+
+	@classmethod
+	def path_drive(cls, path: str):
+		return cls.path(path, 'drive')
+
+	@classmethod
+	def path_strip(cls, path: str):
+		return cls.path(path, 'strip')
+
+	@classmethod
+	def path_build(cls, *path):
+		return cls.path(path, 'build')
 
 
   # format
 
 	@classmethod
-	def void_encode(cls):
+	def void(cls, data, style: str = None, indent = '\t', level: int = 0):
 		pass
 
 	@classmethod
-	def void_decode(cls):
+	def void_decode(cls, data):
 		pass
 
 	@classmethod
-	def json_encode(cls):
-		pass
+	def json(cls, data, compact: bool = False, indent = 2, unicode: bool = True):
+		try:
+			json = cls.module('json')
+			if not compact:
+				separators = (', ', ': ')
+			else:
+				indent = None
+				separators = (',', ':')
+			return json.dumps(data, ensure_ascii=not unicode, indent=indent, separators=separators)
+		except:
+			return
 
 	@classmethod
-	def json_decode(cls):
-		pass
+	def json_decode(cls, text: str):
+		try:
+			json = cls.module('json')
+			return json.loads(text)
+		except:
+			return
 
 	@classmethod
-	def yaml_encode(cls):
-		pass
+	def yaml(cls, data, compact: bool = False, sort: bool = False, unicode: bool = True):
+		try:
+			yaml = cls.module('yaml', 'pyyaml')
+			return yaml.dump(data, default_flow_style=compact, sort_keys=sort, allow_unicode=unicode)
+		except:
+			return
 
 	@classmethod
-	def yaml_decode(cls):
-		pass
+	def yaml_decode(cls, text: str):
+		try:
+			yaml = cls.module('yaml', 'pyyaml')
+			return yaml.safe_load(text)
+		except:
+			return
+
+	@classmethod
+	def csv(cls, data, delimiter: str = ','):
+		try:
+			csv = cls.module('csv')
+			result = io.StringIO()
+			writer = csv.writer(result, delimiter=delimiter)
+			for row in data:
+				writer.writerow(row)
+			return result.getvalue()
+		except:
+			return
+
+	@classmethod
+	def csv_decode(cls, text: str, delimiter: str = ','):
+		try:
+			csv = cls.module('csv')
+			return list(csv.reader(io.StringIO(text), delimiter=delimiter))
+		except:
+			return
+
+	@classmethod
+	def xml(cls, data: dict, compact: bool = False, indent = 2):
+		try:
+			xml = cls.module('xml.etree.ElementTree')
+			def build(parent, data_item):
+				if isinstance(data_item, dict):
+					for name, value in data_item.items():
+						if name.startswith('@'):
+							parent.set(name[1:], str(value))
+						elif name == '#text':
+							parent.text = str(value)
+						elif isinstance(value, list):
+							for item in value:
+								child = xml.SubElement(parent, name)
+								build(child, item)
+						else:
+							child = xml.SubElement(parent, name)
+							build(child, value)
+				else:
+					parent.text = str(data_item)
+			if len(data) == 1:
+				root = list(data.keys())[0]
+				root_element = xml.Element(root)
+				build(root_element, data[root])
+			else:
+				root_element = xml.Element('xml')
+				build(root_element, data)
+			if not compact and hasattr(xml, 'indent'):
+				if type(indent) is int:
+					indent = ' ' * indent
+				elif type(indent) is not str:
+					indent = '  '
+				xml.indent(root_element, space=indent, level=0)
+			return xml.tostring(root_element, encoding='unicode')
+		except Exception as e:
+			return
+
+	@classmethod
+	def xml_decode(cls, text: str):
+		try:
+			xml = cls.module('xml.etree.ElementTree')
+			def build(element):
+				res = {'@' + name: value for name, value in element.attrib.items()}
+				children = list(element)
+				if children:
+					for child in children:
+						child_data = build(child)
+						for tag, value in child_data.items():
+							if tag in res:
+								if not isinstance(res[tag], list):
+									res[tag] = [res[tag]]
+								res[tag].append(value)
+							else:
+								res[tag] = value
+				else:
+					if element.text and element.text.strip():
+						text_value = element.text.strip()
+						if not res:
+							return {element.tag: text_value}
+						res['#text'] = text_value
+				if not res and not children:
+					return {element.tag: None}					
+				return {element.tag: res}
+			root_node = xml.fromstring(text)
+			return build(root_node)
+		except Exception as e:
+			return
+
+	@classmethod
+	def ini(cls, data: dict):
+		try:
+			configparser = cls.module('configparser')
+			config = configparser.ConfigParser()
+			for section, content in data.items():
+				if isinstance(content, dict):
+					config[str(section)] = {str(k): str(v) for k, v in content.items()}
+				else:
+					if 'DEFAULT' not in config:
+						config['DEFAULT'] = {}
+					config['DEFAULT'][str(section)] = str(content)
+			
+			output = io.StringIO()
+			config.write(output)
+			return output.getvalue()
+		except:
+			return
+
+	@classmethod
+	def ini_decode(cls, text: str):
+		try:
+			configparser = cls.module('configparser')
+			config = configparser.ConfigParser()
+			config.read_string(text)
+			result = {}
+			for section in config.sections():
+				result[section] = dict(config.items(section))
+			if dict(config.defaults()):
+				result['DEFAULT'] = dict(config.defaults())				
+			return result
+		except:
+			return None
 
 
-  # cloud
+	# cloud
 
 	@classmethod
 	def cloud(cls):
@@ -7727,8 +9597,24 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def movie(cls):
+		return cls.video()
+
+	@classmethod
+	def clip(cls):
+		return cls.video()
+
+	@classmethod
+	def anime(cls):
+		return cls.video()
+
+	@classmethod
 	def sound(cls):
 		pass
+
+	@classmethod
+	def music(cls):
+		return cls.sound()
 
 	@classmethod
 	def model(cls):
@@ -7739,8 +9625,40 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def document(cls):
+		return cls.book()
+
+	@classmethod
+	def spreadsheet(cls):
+		return cls.book()
+
+	@classmethod
+	def presentation(cls):
+		return cls.book()
+
+	@classmethod
+	def comics(cls):
+		return cls.book()
+
+	@classmethod
+	def manga(cls):
+		return cls.book()
+
+	@classmethod
 	def game(cls):
 		pass
+
+	@classmethod
+	def game_2d(cls):
+		return cls.game()
+
+	@classmethod
+	def game_3d(cls):
+		return cls.game()
+
+	@classmethod
+	def game_vn(cls):
+		return cls.game()
 
 
 if __name__ == '__main__':
