@@ -448,9 +448,9 @@ This is a data format that inherits the best features of [**JSON**](https://en.w
 V O I D format
   extension
     regular
-      .void
+      void
     retro file system
-      .v
+      v
   mime type
     application/void
   influenced by
@@ -681,8 +681,8 @@ V O I D format
 {
   "V O I D format": {
     "extension": {
-      "regular": ".void",
-      "retro file system": ".v"
+      "regular": "void",
+      "retro file system": "v"
     },
     "mime type": "application/void",
     "influenced by": [
