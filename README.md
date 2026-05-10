@@ -236,7 +236,7 @@ lower
 ```python
 from path.to.void import VOIDlang as void
 encrypted = void.encrypt('Hi World :D')
-print(void.decrypt(encrypted['text'], encrypted['key']))
+print(void.decrypt(encrypted['data'], encrypted['key']))
 ```
 
 ## How to Use
