@@ -610,6 +610,8 @@ V O I D format
     binary
       raw
         *4*data
+      text
+        *'text'
       hex
         line
           *5620 4F20 4920 4420 666F 726D 6174
@@ -832,6 +834,8 @@ V O I D format
     "comment": "impossible or JSONC"
   }
 }
+
+
 
 
 
