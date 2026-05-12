@@ -31,9 +31,9 @@ class VOIDlang:
 				python
 			version
 				time
-					1778403797
+					1778613350
 				date
-					2026 · 05 · 10
+					2026 · 05 · 13
 			license
 				name
 					V O I D license
@@ -8078,9 +8078,11 @@ class VOIDlang:
 
 	@classmethod
 	def debug(cls, tag: str, data = None):
+		pass
 
 	@classmethod
 	def warning(cls, tag: str, data = None):
+		pass
 
 	@classmethod
 	def error(cls, tag: str, data = None):
