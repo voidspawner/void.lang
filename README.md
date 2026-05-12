@@ -272,7 +272,7 @@ python3 void.py app.zip
 > ```
 
 > [!TIP]
-> To install Python on **``Windows``**, press **``Win``** + **``R``** and enter command
+> To install Python on **``Windows``**, press **``Win``** + **``R``** and paste the command
 > ```console
 > winget install --id Python.Python -h --accept-package-agreements --accept-source-agreements
 > ```
