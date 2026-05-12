@@ -337,6 +337,7 @@ class VOIDlang:
 				alias
 					~
 					len
+					mem
 				description
 					Gets the length of the data
 				safe
@@ -1438,11 +1439,14 @@ class VOIDlang:
 				group
 					control
 				method
-					logger
+					logs
 				action
 					none
 				alias
 					l
+					debug
+					warning
+					error
 				description
 					Log information
 				safe
@@ -1456,17 +1460,24 @@ class VOIDlang:
 					[name message  type any  default none
 					[name data  type any  default none
 				example
-					[code [l message]  test false
-					[code [l [a 1  b 2  c 3]]  test false
-					[code [l.tag info]  test false
-					[code [l.d.tag debug]  test false
-					[code [l.w.tag warning]  test false
-					[code [l.e.tag error]  test false
-					[code [l.f.tag fatal]  test false
-					[code [l.debug.tag debug]  test false
-					[code [l.warning.tag warning]  test false
-					[code [l.error.tag error]  test false
-					[code [l.fatal.tag fatal]  test false
+					[code [l]  test false
+					[code [[l message]]  test false
+					[code [[l [time .time  message .message  data .data]]]  test false
+					[code [[l.tag info]]  test false
+					[code [[l.i.tag info]]  test false
+					[code [[l.d.tag debug]]  test false
+					[code [[l.w.tag warning]  test false
+					[code [[l.e.tag error]  test false
+					[code [[l.f.tag fatal]  test false
+					[code [[l.info.tag info]  test false
+					[code [[l.debug.tag debug]  test false
+					[code [[l.warning.tag warning]  test false
+					[code [[l.error.tag error]  test false
+					[code [[l.fatal.tag fatal]  test false
+					[code [[logger tag message]]  test false
+					[code [[debug tag message]]  test false
+					[code [[warning tag message]]  test false
+					[code [[error tag message]]  test false
 			test
 				group
 					control
@@ -1525,8 +1536,8 @@ class VOIDlang:
 				action
 					none
 				alias
+					fatal
 					xx
-					error
 				description
 					Exit the current application with an exit code
 				safe
@@ -1737,6 +1748,7 @@ class VOIDlang:
 					none
 				alias
 					:
+					ai
 				description
 					AI conversation and interaction through text
 				safe
@@ -2122,7 +2134,7 @@ class VOIDlang:
 				param
 					[name text  type text
 					[name subtext  type text
-					[name from  type int  default none
+					[name from  type [int text]  subname true  default none
 					[name to  type int  default none
 				example
 					[code [[find 'Hi! World' World]]  result 4
@@ -2130,6 +2142,7 @@ class VOIDlang:
 					[code [[find abcabc b 2]]  result 4
 					[code [[find abcabc b 2 4]]  result none
 					[code [[find abcabc b -1]]  result 4
+					[code [[find.end abcabc c]]  result 5
 			parse
 				group
 					text
@@ -2914,7 +2927,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					ln
 				description
 					Logarithm of a number (natural by default)
 				safe
@@ -2932,6 +2945,8 @@ class VOIDlang:
 					[code [[log 0.1]]  round 4  result -2.3026
 					[code [[log 0.1 2]]  round 4  result -3.3219
 					[code [[log 0.1 10]]  result -1
+					[code [log]  type number
+					[code [ln]  type number
 			fact
 				group
 					math
@@ -3194,7 +3209,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					timestamp
 				description
 					Provides current time since the epoch or calculates time passed since a given start time
 				safe
@@ -3204,12 +3219,15 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name fraction  type number  default 0
+					[[name fraction  type [number text]  subname true  default 0
 				result
 					number
 				example
 					[code [time]  type number
 					[code [[time 4]]  type number
+					[code [time.milli]  type number
+					[code [time.micro]  type number
+					[code [timestamp]  type number
 			timer
 				group
 					time
@@ -3281,11 +3299,14 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name seconds  type number  default 1
+					[[name seconds  type [number text]  subname true  default 1
 				result
 					none
 				example
-					[[code [[wait 0.1]]  result none
+					[code [[wait 0.01]]
+					[code [[wait 1m]]  test false
+					[code [[wait 1h]]  test false
+					[code [wait.h]  test false
 			stopwatch
 				group
 					time
@@ -3775,9 +3796,9 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					deflate
 				description
-					Compresses data using the LZSS compression algorithm (best and fastest retro compression with minimal memory usage)
+					Compresses data using the LZSS or LZSS + Huffman compression algorithm (best and fastest retro compression with minimal memory usage)
 				safe
 					true
 				container
@@ -3785,7 +3806,8 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name data  type any
+					[name data  type any
+					[name huffman  type bool  default false
 				example
 					[[code [[lzss hello]]  result *H2hlbGxv
 					[code [[lzss hello 1]]  test false
@@ -3802,7 +3824,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					deflate.decode
 				description
 					Decompresses LZSS compressed data
 				safe
@@ -4003,6 +4025,8 @@ class VOIDlang:
 				alias
 					<<<
 					>>>
+					file.read
+					file.write
 					file.create
 					file.clear
 				description
@@ -4043,7 +4067,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					is_file
 				description
 					Checks if a specified file exists at the given path
 				safe
@@ -4420,7 +4444,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					is_link
 				description
 					Checks if a specified symlink exists at the given path
 				safe
@@ -4487,7 +4511,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					is_dir
 				description
 					Checks if a specified directory exists at the given path
 				safe
@@ -4826,7 +4850,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					drive.info
 				description
 					Lists all available drives on the system
 				safe
@@ -4836,9 +4860,131 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[]
+					[[name path  type text  default none
 				example
-					[[code [drive]  type list
+					[code [drive]  type list
+					[code [drive /mnt/storage]  type dict  test false
+					[code [drive E]  type dict  test false
+					[code [drive.info /mnt/storage]  type dict  test false
+			drive.create
+				group
+					file
+				method
+					drive_create
+				action
+					drive.create
+				alias
+					none
+				description
+					Creates a volume or partition with the specified parameters
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name path  type text
+					[name size [int text]  default none
+					[name format  type text   default none
+					[name name  type text  default none
+				example
+					[code [[drive.create .id 100gb ext4 backup]]  test false
+					[code [[drive.create .id 100_000_000_000 ext4 backup]]  test false
+			drive.exists
+				group
+					file
+				method
+					drive_exists
+				action
+					none
+				alias
+					is_drive
+				description
+					Checks if a specified drive exists at the given path
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[code [[drive.exists /mnt/storage]]  type bool  test false
+					[code [[drive.exists .id]]  type bool  test false
+					[code [[is_drive .id]]  type bool  test false
+			drive.remove
+				group
+					file
+				method
+					drive_
+				action
+					drive.
+				alias
+					none
+				description
+					Removes a volume or partition
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[code [[drive.remove /mnt/storage]]  test false
+					[code [[drive.remove E]]  test false
+					[code [[drive.remove .partition.id]]  test false
+			drive.clear
+				group
+					file
+				method
+					drive_clear
+				action
+					drive.clear
+				alias
+					drive.format
+				description
+					 Clears or format a volume
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name path  type text
+					[name format  type text  default none
+				example
+					[code [[drive.clear /mnt/storage]]  test false
+					[code [[drive.clear E]]  test false
+					[code [[drive.clear .volume.id]]  test false
+					[code [[drive.format E fat32]]  test false
+			drive.rename
+				group
+					file
+				method
+					drive_rename
+				action
+					drive.rename
+				alias
+					none
+				description
+					Renames a volume
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name path  type text
+					[name name  type text]
+				example
+					[code [[drive.rename /mnt/storage backup]]  test false
+					[code [[drive.rename E backup]]  test false
 			drive.mount
 				group
 					file
@@ -4861,8 +5007,8 @@ class VOIDlang:
 					[name path  type text  default none
 				example
 					[code [[drive.mount data]]  test false
-					[code [[drive.mount .id /mnt/backup]]  test false
-					[code [[drive.mount /path/to/data.iso E]]  test false
+					[code [[drive.mount .id /mnt/storage]]  test false
+					[code [[drive.mount storage.iso E]]  test false
 			drive.unmount
 				group
 					file
@@ -4883,7 +5029,8 @@ class VOIDlang:
 				param
 					[[name name  type text
 				example
-					[code [[drive.unmount data]]  test false
+					[code [[drive.unmount storage]]  test false
+					[code [[drive.unmount /mnt/storage]]  test false
 					[code [[drive.unmount E]]  test false
 			drive.resize
 				group
@@ -4906,9 +5053,53 @@ class VOIDlang:
 					[name name  type text
 					[name size  type [number text
 				example
-					[code [[drive.resize data 2gb]]  test false
-					[code [[drive.resize data 2000000000]]  test false
-					[code [[drive.resize .partition.id 2gb]]  test false
+					[code [[drive.resize storage 100gb]]  test false
+					[code [[drive.resize storage 100_000_000_000]]  test false
+					[code [[drive.resize .partition.id 100gb]]  test false
+			drive.check
+				group
+					file
+				method
+					drive_
+				action
+					drive.
+				alias
+					none
+				description
+					Checks the volume for errors and corrects them
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[code [[drive.check /mnt/storage]]  test false
+					[code [[drive.check E]]  test false
+			drive.defrag
+				group
+					file
+				method
+					drive_defrag
+				action
+					drive.defrag
+				alias
+					none
+				description
+					Defragments the files on the volume
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name path  type text
+				example
+					[code [[drive.defrag /mnt/storage]]  test false
+					[code [[drive.defrag E]]  test false
 			drive.os
 				group
 					file
@@ -4919,7 +5110,7 @@ class VOIDlang:
 				alias
 					none
 				description
-					Makes the drive bootable or retrieves a list of available operating system images
+					Makes the volume bootable or retrieves a list of available operating system images
 				safe
 					false
 				container
@@ -4931,9 +5122,9 @@ class VOIDlang:
 					[name os  type text  default none
 				example
 					[code [drive.os]  type list  test false
-					[code [[drive.os /mnt/drive]]  test false
-					[code [[drive.os /mnt/drive osname]]  test false
-					[code [[drive.os /mnt/drive /path/to/os.iso]]  test false
+					[code [[drive.os /mnt/storage]]  test false
+					[code [[drive.os /mnt/storage osname]]  test false
+					[code [[drive.os /mnt/storage /path/to/os.iso]]  test false
 			path
 				group
 					file
@@ -5194,6 +5385,54 @@ class VOIDlang:
 					[code [[yaml.decode "\u263A"]]  result ☺
 					[code [[yaml.decode '- name: Thomas\n  age: 25\n- name: Alice\n  age: 20']]  result [[name Thomas  age 25] [name Alice  age 20
 					[code [[yaml.decode '[{"name":"Thomas","age":25},{"name":"Alice","age":20}]']]  result [[name Thomas  age 25] [name Alice  age 20
+			xml
+				group
+					format
+				method
+					xml
+				action
+					xml.encode
+				alias
+					none
+				description
+					Encodes data into the XML format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name param  type dict  default [attribute  @]
+				example
+					[code [[xml [root  item [a b]]]]  result '<root><item>a</item><item>b</item></root>
+					[code [[xml [person  [@id 1  name Thomas]]]]  result '<person id="1"><name>John</name></person>
+					[code [[xml [person  [#id 1  name Thomas]] [attribute  #]]]  result '<person id="1"><name>John</name></person>
+			xml.decode
+				group
+					format
+				method
+					xml_decode
+				action
+					xml.decode
+				alias
+					none
+				description
+					Decodes data from the XML format
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name text  type text
+					[name param  type dict  default [attribute  @]
+				example
+					[code [[xml.decode '<root><item>a</item><item>b</item></root>']]  result [root  item [a b
+					[code [[xml.decode '<person id="1"><name>Thomas</name></person>']]  result [person  [@id 1  name Thomas
+					[code [[xml.decode '<person id="1"><name>Thomas</name></person>' [attribute  #]]]  result [person  [#id 1  name Thomas
 			ini
 				group
 					format
@@ -5243,54 +5482,6 @@ class VOIDlang:
 					[code [[ini.decode '[section]\nname=data']]  result [section  [name  data
 					[code [[ini.decode '[user]\nname=Thomas\ntask=10,20,30']]  result [user  [name Thomas  task [10 20 30
 					[code [[ini.decode '[user]\nname=Thomas\ntask=10,20,30' none]]  result [user  [name Thomas  task 10,20,30
-			xml
-				group
-					format
-				method
-					xml
-				action
-					xml.encode
-				alias
-					none
-				description
-					Encodes data into the XML format
-				safe
-					true
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[name data  type any
-					[name param  type dict  default [attribute  @]
-				example
-					[code [[xml [root  item [a b]]]]  result '<root><item>a</item><item>b</item></root>
-					[code [[xml [person  [@id 1  name Thomas]]]]  result '<person id="1"><name>John</name></person>
-					[code [[xml [person  [#id 1  name Thomas]] [attribute  #]]]  result '<person id="1"><name>John</name></person>
-			xml.decode
-				group
-					format
-				method
-					xml_decode
-				action
-					xml.decode
-				alias
-					none
-				description
-					Decodes data from the XML format
-				safe
-					true
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[name text  type text
-					[name param  type dict  default [attribute  @]
-				example
-					[code [[xml.decode '<root><item>a</item><item>b</item></root>']]  result [root  item [a b
-					[code [[xml.decode '<person id="1"><name>Thomas</name></person>']]  result [person  [@id 1  name Thomas
-					[code [[xml.decode '<person id="1"><name>Thomas</name></person>' [attribute  #]]]  result [person  [#id 1  name Thomas
 
 		  .: cloud :.
 
@@ -5321,11 +5512,10 @@ class VOIDlang:
 					[code [cloud.web]  test false
 					[code [[cloud.web .param]]  test false
 					[code [[cloud.api .param]]  test false
-					[code [[cloud.void .param]]  test false
 					[code [[cloud.mail .param]]  test false
 					[code [[cloud.proxy .param]]  test false
 					[code [[cloud.vpn .param]]  test false
-					[code [[cloud.screen .param]]  test false
+					[code [[cloud.desktop .param]]  test false
 			request
 				group
 					cloud
@@ -5393,7 +5583,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					cookie.remove
 				description
 					Receives or sets a specified cookie
 				safe
@@ -5416,37 +5606,11 @@ class VOIDlang:
 					[code [[cookie [name session  data .session.id  expired day  domain /]]]  test false
 					[code [[cookie session none 0]]  test false
 					[code [[cookie.remove session]]  test false
-			social
-				group
-					cloud
-				method
-					social
-				action
-					none
-				alias
-					none
-				description
-					Interacting with social API
-				safe
-					false
-				container
-					true
-				language
-					[python js swift kotlin gdscript c++
-				param
-					[name name  type text  subname true
-					[name data  type dict
-				example
-					[code [[social telegram.bot [name bot  token .token  action .action]]  test false
-					[code [[social telegram.send [token .token  to .account  text .text  attachment [.image1 .image2]]]  test false
-					[code [[social.youtube.upload [token .token  title .title  description .desctipion  tags .tags  video .video  publish true]]]  test false
-					[code [[social.tiktok.upload [token .token  title .title  description .desctipion  tags .tags  video .video  publish true]]]  test false
 			notify
 				group
 					cloud
 				method
 					notify
-					mail
 				action
 					none
 				alias
@@ -5460,16 +5624,46 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[]
+					[name message  type any  default none
+					[name name  type text  subname true  default none
 				example
 					[code [notify]  test false
 					[code [[notify message]]  test false
-					[code [[notify.sms +123456789 message]]  test false
-					[code [[notify.call +123456789 message]]  test false
-					[code [[notify.mail to@voidsp.com message]]  test false
-					[code [[notify.mail [to [to1@voidsp.com to2@voidsp.com]  text .html  from from@voidsp.com  copy copy@mvoidsp.com  attachment [.file1 .file2]]]  test false
+					[code [[notify.os message]]  test false
 					[code [[notify.push .token message]]  test false
 					[code [[notify.push [token .token  text message  sound sound.wav  badge 3  image .image]]  test false
+					[code [[notify.mail to@voidsp.com message]]  test false
+					[code [[notify.mail [to [to1@voidsp.com to2@voidsp.com]  text .html  from from@voidsp.com  copy copy@mvoidsp.com  attachment [.file1 .file2]]]  test false
+					[code [[notify.sms +123456789 message]]  test false
+					[code [[notify.call +123456789 message]]  test false
+					[code [[notify.social.telegram account message]]  test false
+					[code [[notify.telegram account message]]  test false
+			social
+				group
+					cloud
+				method
+					social
+				action
+					none
+				alias
+					none
+				description
+					Interact with social API or get a list of available social networks
+				safe
+					false
+				container
+					true
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name name  type text  subname true  default none
+					[name data  type dict  default none
+				example
+					[code [social]  type list
+					[code [[social telegram.bot [name bot  token .token  action .action]]  test false
+					[code [[social telegram.send [token .token  to .account  text .text  attachment [.image1 .image2]]]  test false
+					[code [[social.youtube.upload [token .token  title .title  description .desctipion  tags .tags  video .video  publish true]]]  test false
+					[code [[social.tiktok.upload [token .token  title .title  description .desctipion  tags .tags  video .video  publish true]]]  test false
 
 		  .: device :.
 
@@ -5738,7 +5932,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					clear
 				description
 					Retrieves or sets the symbol on the screen in text mode
 				safe
@@ -5755,6 +5949,7 @@ class VOIDlang:
 					[code [[symbol 10 10]]  type text  test false
 					[code [[symbol [10 10] A]]  type text  test false
 					[code [[symbol 10 10 A]]  type text  test false
+					[code [clear]  test false
 			cursor
 				group
 					device
@@ -5786,17 +5981,17 @@ class VOIDlang:
 					[code [cursor.hide]  test false
 					[code [[cursor show]]  test false
 					[code [[cursor hide]]  test false
-			clear
+			camera
 				group
 					device
 				method
-					clear
+					camera
 				action
 					none
 				alias
-					none
+					cam
 				description
-					Clears the screen in text mode
+					Capturing image and video from a built-in or external camera
 				safe
 					false
 				container
@@ -5804,11 +5999,37 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[[name color  type text  subname true  default none
+					[[name name  type text  subname true  default none
 				example
-					[code [clear]  test false
-					[code [[clear green]]  test false
-					[code [clear.green]  test false
+					[code [camera]  test false
+					[code [camera.name]  test false
+					[code [camera.image]  test false
+					[code [camera.record]  test false
+					[code [camera.stop]  test false
+			microphone
+				group
+					device
+				method
+					camera
+				action
+					none
+				alias
+					mic
+				description
+					Capturing audio from a built-in or external microphone
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name name  type text  subname true  default none
+				example
+					[code [mic]  test false
+					[code [mic.name]  test false
+					[code [mic.record]  test false
+					[code [mic.stop]  test false
 			flashlight
 				group
 					device
@@ -5860,27 +6081,6 @@ class VOIDlang:
 					[code [[location true]]  test false
 					[code [location.on]  test false
 					[code [location.off]  test false
-			gyroscope
-				group
-					device
-				method
-					gyroscope
-				action
-					none
-				alias
-					none
-				description
-					Provides access to the gyroscope sensor for motion detection
-				safe
-					false
-				container
-					none
-				language
-					[js swift kotlin gdscript c++
-				param
-					[]
-				example
-					[[code [gyroscope]  type dict  test false
 			accelerometer
 				group
 					device
@@ -5926,6 +6126,27 @@ class VOIDlang:
 					[code [compass]  type number  test false
 					[code [[compass [40 30]]]  type number  test false
 					[code [[compass 40 30]]  type number  test false
+			gyroscope
+				group
+					device
+				method
+					gyroscope
+				action
+					none
+				alias
+					none
+				description
+					Provides access to the gyroscope sensor for motion detection
+				safe
+					false
+				container
+					none
+				language
+					[js swift kotlin gdscript c++
+				param
+					[]
+				example
+					[[code [gyroscope]  type dict  test false
 			proximity
 				group
 					device
@@ -6226,31 +6447,6 @@ class VOIDlang:
 					[code [cellular.connect]  test false
 					[code [[cellular.connect name]]  test false
 					[code [cellular.disconnect]  test false
-			stream
-				group
-					device
-				method
-					stream
-				action
-					none
-				alias
-					none
-				description
-					Retrieves information about screen streaming or start streaming
-				safe
-					false
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++
-				param
-					[name action  type text  default none
-					[name param  type dict  default none
-				example
-					[code [stream]  type dict  test false
-					[code [stream.start]  test false
-					[code [[stream.start .param]]  test false
-					[code [stream.stop]  test false
 			keyboard
 				group
 					device
@@ -6259,7 +6455,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					key
 				description
 					Keyboard information
 				safe
@@ -6276,6 +6472,10 @@ class VOIDlang:
 					[code [keyboard.hide]  test false
 					[code [keyboard.toggle]  test false
 					[code [keyboard.size]  test false
+					[code [key.a [[. key A pressed]]]  test false
+					[code [key.space [[. key SPACE pressed]]]  test false
+					[code [key.esc [[. key ESC pressed]]]  test false
+					[code [key.shift.a [[. key SHIFT+A pressed]]]  test false
 			mouse
 				group
 					device
@@ -6308,6 +6508,12 @@ class VOIDlang:
 					[code [mouse.hand]  test false
 					[code [mouse.normal]  test false
 					[code [mouse.position]  type dict  test false
+					[code [[mouse.left [[. left button pressed]]]]  test false
+					[code [[mouse.right [[. right button pressed]]]]  test false
+					[code [[mouse.middle [[. middle button pressed]]]]  test false
+					[code [[mouse.scroll [[. scroll]]]]  test false
+					[code [[mouse.scroll.up [[. scroll up]]]]  test false
+					[code [[mouse.scroll.down [[. scroll up]]]]  test false
 			gamepad
 				group
 					device
@@ -6337,9 +6543,9 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					click
 				description
-					Simulates a tap gesture
+					Simulates a tap or click gesture
 				safe
 					true
 				container
@@ -6363,33 +6569,12 @@ class VOIDlang:
 					[code [tap.rotate 180]  test false
 					[code [tap.rotate -180]  test false
 					[code [tap.scroll 10%]  test false
-			key
-				group
-					device
-				method
-					key
-				action
-					none
-				alias
-					none
-				description
-					Key binding
-				safe
-					true
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[name key  type text  subname true  default none
-					[name action  type [text list]  default none
-				example
-					[code [key]  type dict  test false
-					[code [key.a]  test false
-					[code [key.space]  test false
-					[code [key a [[. 'a tap']]]  test false
-					[code [key space [[. 'space tap']]]  test false
-					[code [key.write text]  test false
+					[code [tap.key.a]  test false
+					[code [tap.key.shift.a]  test false
+					[code [tap.mouse.left]  test false
+					[code [tap.gamepad.x]  test false
+					[code [tap.gamepad.left]  test false
+
 
 		  .: content :.
 
@@ -6712,17 +6897,22 @@ class VOIDlang:
 						/
 					line
 						'\n
+				path
+					ffmpeg
+						none
+					yt-dlp
+						none
 			device
 				name
 				imei
 				fps
 				cpu
 				gpu
-			ui
-				cli
 			file
 			path
 			param
+			ui
+				cli
 			cli
 				color
 					true
@@ -6747,12 +6937,12 @@ class VOIDlang:
 						application/ld+json
 					yaml
 						application/x-yaml
+					xml
+						application/xml
 					csv
 						text/csv
 					ini
 						text/plain
-					xml
-						application/xml
 					sql
 						application/sql
 					log
@@ -7360,7 +7550,7 @@ class VOIDlang:
 				except Exception:
 					pass
 			else:
-				cls.error('module', name)
+				cls.xx('module', 'not installed', name)
 			os.execv(sys.executable, [sys.executable] + sys.argv)
 			cls.exit()
 
@@ -7373,6 +7563,7 @@ class VOIDlang:
 		file = sys.argv[0]
 		path = os.getcwd()
 		param = sys.argv[1:]
+		param = [cls.void_decode(text) for text in param]
 		cls.set('app.file', file)
 		cls.set('app.path', path)
 		cls.set('app.param', param)
@@ -7389,47 +7580,51 @@ class VOIDlang:
 		cls.set('app.os.type', os_type)
 		cls.random_reseed()
 		if len(param) > 0:
-			text = str(param[0]).strip()
+			name = str(param[0]).strip()
 			result = None
-			if cls.path_extension(text, 'py'):
-				cls.code(cls.file(text))
-			elif cls.path_extension(text, 'void', 'json', 'yaml'):
-				result = cls.action(cls.file(text))
-			elif cls.path_extension(text, 'zip'):
-				path_archive = text if cls.file_exists(text) else cls.path(path, text)
-				if cls.file_exists(path_archive):
-					path_extract = cls.path(cls.path_dir(path_archive), 'void.' + cls.hash())
-					cls.file_extract(path_archive, path_extract)
-					if cls.file_exists(cls.path(path_extract, 'run.void')):
-						result = cls.action(cls.file(cls.path(path_extract, 'run.void')))
-					elif cls.file_exists(cls.path(path_extract, 'run.json')):
-						result = cls.action(cls.file(cls.path(path_extract, 'run.json')))
-					elif cls.file_exists(cls.path(path_extract, 'run.yaml')):
-						result = cls.action(cls.file(cls.path(path_extract, 'run.yaml')))
-					cls.dir_remove(path_extract)
+			if cls.path_extension(name, 'py') and cls.file_exists(name):
+				cls.code(cls.file(name))
+			elif cls.path_extension(name, 'void', 'json', 'yaml') and cls.file_exists(name):
+				result = cls.action(cls.file(name))
+			elif cls.path_extension(name, 'zip') and cls.file_exists(name):
+				path_extract = cls.path(cls.path_dir(name), 'void.' + cls.hash(8))
+				cls.file_extract(name, path_extract)
+				if cls.file_exists(cls.path(path_extract, 'run.void')):
+					result = cls.action(cls.file(cls.path(path_extract, 'run.void')))
+				elif cls.file_exists(cls.path(path_extract, 'run.json')):
+					result = cls.action(cls.file(cls.path(path_extract, 'run.json')))
+				elif cls.file_exists(cls.path(path_extract, 'run.yaml')):
+					result = cls.action(cls.file(cls.path(path_extract, 'run.yaml')))
+				cls.dir_remove(path_extract)
 			else:
-				if text.startswith('{') or text.startswith('['):
-					data = cls.json_decode(text)
+				if name.startswith('['):
+					data = cls.json_decode(name)
 					if data is None:
-						data = cls.yaml_decode(text)
+						data = cls.yaml_decode(name)
 						if data is None:
-							data = cls.void_decode(text)
+							data = cls.void_decode(name)
 					if data is not None:
 						result = cls.action(data)
-					else:
-						result = cls.action([param])
-		elif cls.file_exists(path + '/run.void'):
-			result = cls.action(cls.file(path + '/run.void'))
-		elif cls.file_exists(path + '/run.json'):
-			result = cls.action(cls.file(path + '/run.json'))
-		elif cls.file_exists(path + '/run.yaml'):
-			result = cls.action(cls.file(path + '/run.yaml'))
-		elif cls.file_exists(path + '/run.zip/run.void'):
-			result = cls.action(cls.file(path + '/run.zip/run.void'))
-		elif cls.file_exists(path + '/run.zip/run.json'):
-			result = cls.action(cls.file(path + '/run.zip/run.json'))
-		elif cls.file_exists(path + '/run.zip/run.yaml'):
-			result = cls.action(cls.file(path + '/run.zip/run.yaml'))
+				elif name.startswith('{'):
+					data = cls.json_decode(name)
+					if data is None:
+						data = cls.yaml_decode(name)
+					if data is not None:
+						result = cls.action(data)
+				else:
+					result = cls.action([param])
+		elif cls.file_exists('run.void'):
+			result = cls.action(cls.file('run.void'))
+		elif cls.file_exists('run.json'):
+			result = cls.action(cls.file('run.json'))
+		elif cls.file_exists('run.yaml'):
+			result = cls.action(cls.file('run.yaml'))
+		elif cls.file_exists('run.zip/run.void'):
+			result = cls.action(cls.file('run.zip/run.void'))
+		elif cls.file_exists('run.zip/run.json'):
+			result = cls.action(cls.file('run.zip/run.json'))
+		elif cls.file_exists('run.zip/run.yaml'):
+			result = cls.action(cls.file('run.zip/run.yaml'))
 		else:
 			result = app.get('about')
 		if result not in ['', b'', None] and cls.get('app.ui') == 'cli':
@@ -7439,55 +7634,229 @@ class VOIDlang:
   # value
 
 	@classmethod
-	def get(cls, name: str = None):
-		pass
+	def get(cls, name: str = None, default = None, storage = None):
+		if '/' in name or '\\' in name:
+			path = cls.path_start(name)
+			path_extension = cls.path_extension(path).lower()
+			if path_extension in ['void', 'json', 'csv', 'yaml', 'xml', 'ini'] and cls.file_exists(path):
+				storage = cls.file(path)
+				if not isinstance(storage, (dict, list)):
+					return default
+				name = cls.path_end(name)
+			else:
+				return default
+		else:
+			if storage is None:
+				storage = cls.data
+		if name is None:
+			return storage
+		for part in name.split('.'):
+			if isinstance(storage, dict) and part in storage:
+				storage = storage[part]
+			elif isinstance(storage, list):
+				try:
+					index = int(part)
+					if 0 <= index < len(storage):
+						storage = storage[index]
+					else:
+						return default
+				except ValueError:
+					return default
+			else:
+				return default
+		return storage
 
 	@classmethod
-	def set(cls, name: str, data = None):
-		pass
+	def set(cls, name: str, data = None, storage = None):
+		if '/' in name or '\\' in name:
+			path = cls.path_start(name)
+			path_extension = cls.path_extension(path).lower()
+			if path_extension in ['void', 'json', 'csv', 'yaml', 'xml', 'ini'] and cls.file_exists(path):
+				storage = cls.file(path)
+				if not isinstance(storage, (dict, list)):
+					return default
+				name = cls.path_end(name)
+				storage_type = 'file'
+				storage_data = storage
+			else:
+				return
+		else:
+			if storage == None:
+				storage = cls.data
+			storage_type = None
+		parts = name.split('.')
+		for index, part in enumerate(parts[:-1]):
+			if isinstance(storage, dict):
+				if part not in storage or not isinstance(storage[part], (dict, list)):
+					storage[part] = [] if parts[index+1].isdigit() else {}
+				storage = storage[part]
+			elif isinstance(storage, list):
+				try:
+					storage = storage[int(part)]
+				except (ValueError, IndexError):
+					return
+		last = parts[-1]
+		if isinstance(storage, dict):
+			storage[last] = data
+		elif isinstance(storage, list):
+			try:
+				index = int(last)
+				if index == len(storage):
+					storage.append(data)
+				else:
+					storage[index] = data
+			except ValueError:
+				pass
+		if storage_type is not None:
+			match storage_type:
+				case 'file':
+					cls.file(path, storage_data)
 
 	@classmethod
-	def remove(cls):
-		pass
+	def remove(cls, name: str, storage = None):
+		if '/' in name or '\\' in name:
+			path = cls.path_start(name)
+			path_extension = cls.path_extension(path).lower()
+			if path_extension in ['void', 'json', 'csv', 'yaml', 'xml', 'ini'] and cls.file_exists(path):
+				storage = cls.file(path)
+				if not isinstance(storage, (dict, list)):
+					return default
+				name = cls.path_end(name)
+				storage_type = 'file'
+				storage_data = storage
+			else:
+				return
+		else:
+			if storage == None:
+				storage = cls.data
+			storage_type = None
+		parts = name.split('.')		
+		for part in parts[:-1]:
+			if isinstance(storage, dict) and part in storage:
+				storage = storage[part]
+			elif isinstance(storage, list):
+				try:
+					storage = storage[int(part)]
+				except (ValueError, IndexError):
+					return
+			else:
+				return
+		last = parts[-1]
+		try:
+			if isinstance(storage, dict) and last in storage:
+				del storage[last]
+			elif isinstance(storage, list):
+				del storage[int(last)]
+			if storage_type is not None:
+				match storage_type:
+					case 'file':
+						cls.file(path, storage_data)
+		except (ValueError, IndexError):
+			pass
 
 	@classmethod
-	def type(cls):
-		pass
+	def type(cls, data):
+		if data is None:
+			return 'none'
+		if isinstance(data, bool):
+			return 'bool'
+		if isinstance(data, str):
+			return 'text'
+		if isinstance(data, (float, int)):
+			return 'number'
+		if isinstance(data, list):
+			return 'list'
+		if isinstance(data, dict):
+			return 'dict'
+		if isinstance(data, bytes):
+			return 'binary'
 
 	@classmethod
-	def type_text(cls):
-		pass
-
-	@classmethod
-	def type_number(cls):
-		pass
-
-	@classmethod
-	def type_bool(cls):
-		pass
-
-	@classmethod
-	def type_binary(cls, data):
-		if type(data) is str:
-			return data.encode('utf-8')
-		if type(data) is bytes:
+	def text(cls, data):
+		if data is None:
+			return 'none'
+		if data == True:
+			return 'true'
+		if data == False:
+			return 'false'
+		if isinstance(data, str):
 			return data
-		return void.type_text(data).encode('utf-8')
+		if isinstance(data, (int, float)):
+			return str(data)
+		if isinstance(data, bytes):
+			try:
+				return data.decode('utf-8')
+			except:
+				return ''
+		if isinstance(data, (list, dict)):
+			return cls.json(data)
+		return ''
 
 	@classmethod
-	def length(cls, data):
-		data_type = type(data)
-		if data_type in [str, list, dict, bytes]:
+	def number(cls, data, digits: int = 0):
+		if isinstance(data, (int, float)):
+			result = data
+		elif data is None:
+			result = 0
+		elif data == True:
+			result = 1
+		elif data == False:
+			result = 0
+		elif isinstance(data, (str, bytes)):
+			try:
+				result = int(data)
+			except:
+				try:
+					result = float(data)
+				except:
+					result = 0
+		elif isinstance(data, (list, dict)):
+			result = len(data)
+		else:
+			result = 0
+		if digits is not None:
+			if digits == 0:
+				result = int(result)
+			elif digits > 0:
+				result = round(result, digits)
+			else:
+				result = int(result * (10 ** -digits))
+		return result
+
+	@classmethod
+	def bool(cls, data):
+		return bool(data)
+
+	@classmethod
+	def binary(cls, data):
+		if isinstance(data, str):
+			return data.encode('utf-8')
+		if isinstance(data, bytes):
+			return data
+		return cls.text(data).encode('utf-8')
+
+	@classmethod
+	def length(cls, data, real: bool = False):
+		if real:
+			sys.getsizeof(data)
+		if data is None:
+			return 0
+		if isinstance(data, (str, list, dict, bytes)):
 			return len(data)
-		elif data_type is int:
+		if isinstance(data, bool):
+			return 1
+		if isinstance(data, int):
 			return (data.bit_length() + 7) // 8
-		elif data_type is float:
+		if isinstance(data, float):
 			return (sys.float_info.mant_dig + math.ceil(math.log2(sys.float_info.max_10_exp - sys.float_info.min_10_exp)) + 1) // 8
-		return 0
 
 	@classmethod
 	def len(cls, data):
 		return cls.length(data)
+
+	@classmethod
+	def mem(cls, data):
+		return cls.length(data, True)
 
 
   # expression
@@ -7632,11 +8001,22 @@ class VOIDlang:
   # control
 
 	@classmethod
-	def print(cls, data = None):
-		if data is None or type(data) in [str, int, float, bool]:
-			print(data)
+	def print(cls, *data):
+		if len(data) > 0:
+			data = [('true' if value == True else ('false' if value == False else ('none' if value is None else value))) for value in data]
+			if len(data) == 1:
+				if isinstance(data[0], (list, dict)):
+					print(cls.json(data[0]))
+				else:
+					print(*data)
+			else:
+				print(*data)
 		else:
-			print(cls.json(data))
+			print()
+
+	@classmethod
+	def printn(cls, *data):
+		cls.print(*data, {'newline': None})
 
 	@classmethod
 	def input(cls, text: str = None):
@@ -7668,7 +8048,13 @@ class VOIDlang:
 
 	@classmethod
 	def action(cls, action):
-		pass
+		result = None
+		for action_data in action:
+			name = action_data[0].replace('.', '_')
+			if hasattr(cls, name):
+				method = getattr(cls, name)
+				result = method(*action_data[1:])
+		return result
 
 	@classmethod
 	def open(cls):
@@ -7679,8 +8065,8 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def code(cls, text: str):
-		pass
+	def code(void, text: str):
+		exec(text)
 
 	@classmethod
 	def logger(cls):
@@ -7691,6 +8077,19 @@ class VOIDlang:
 		return cls.logger()
 
 	@classmethod
+	def debug(cls, tag: str, data = None):
+
+	@classmethod
+	def warning(cls, tag: str, data = None):
+
+	@classmethod
+	def error(cls, tag: str, data = None):
+		print()
+		print(tag)
+		print(data)
+		print()
+
+	@classmethod
 	def test(cls, name = None):
 		pass
 
@@ -7699,23 +8098,23 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def exit(cls, data = None):
-		pass
+	def exit(cls, *data):
+		if len(data) > 0 and isinstance(data[0], int):
+			code = data[0]
+			data = data[1:]
+		else:
+			code = 0
+		if len(data):
+			cls.print(*data)
+		exit(code)
 
 	@classmethod
-	def xx(cls, text: str = None):
-		cls.exit(1)
+	def xx(cls, *data):
+		cls.exit(1, *data)
 
 	@classmethod
-	def fatal(cls):
-		cls.exit(1)
-
-	@classmethod
-	def error(cls, tag: str, data = None):
-		print()
-		print(tag)
-		print(data)
-		print()
+	def fatal(cls, *data):
+		cls.exit(1, *data)
 
 	@classmethod
 	def os(cls):
@@ -7756,6 +8155,10 @@ class VOIDlang:
 	@classmethod
 	def chat(cls, text: str, model: str = None, character: str = None, reference = None):
 		pass
+
+	@classmethod
+	def ai(cls, text: str, model: str = None, character: str = None, reference = None):
+		return cls.chat(text, model, character, reference)
 
 	@classmethod
 	def say(cls, text: str, voice: str = None):
@@ -7809,6 +8212,10 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def find_end(cls):
+		pass
+
+	@classmethod
 	def parse(cls):
 		pass
 
@@ -7825,12 +8232,20 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def escape(cls):
+	def escape(cls, text: str, format: str = None):
 		pass
 
 	@classmethod
-	def unescape(cls):
+	def e(cls, text: str, format: str = None):
+		return cls.escape(text, format)
+
+	@classmethod
+	def unescape(cls, text: str, format: str = None):
 		pass
+
+	@classmethod
+	def u(cls, text: str, format: str = None):
+		return cls.uescape(text, format)
 
 	@classmethod
 	def translate(cls):
@@ -7945,6 +8360,10 @@ class VOIDlang:
 	@classmethod
 	def log(cls, value: float, base: float = None):
 		return math.log(value) if base == None else math.log(value, base)
+
+	@classmethod
+	def ln(cls, value: float, base: float = None):
+		return cls.log(value)
 
 	@classmethod
 	def factorial(cls, value: float):
@@ -8064,15 +8483,20 @@ class VOIDlang:
   # time
 
 	@classmethod
-	def time(cls, digit: int = None):
-		result = time.time()
-		if digit is not None:
-			if digit == 0:
-				return int(result)
-			if digit > 0:
-				return round(result, digit)
-			return int(result * (10 ** -digit))
-		return result
+	def time(cls, digits: int = None):
+		return time.time() if digits is None else cls.number(time.time(), digits)
+
+	@classmethod
+	def timestamp(cls):
+		return cls.time(0)
+
+	@classmethod
+	def time_milli(cls):
+		return cls.time(-3)
+
+	@classmethod
+	def time_micro(cls):
+		return cls.time(-6)
 
 	@classmethod
 	def timer(cls):
@@ -8087,12 +8511,17 @@ class VOIDlang:
 		time.sleep(seconds)
 
 	@classmethod
-	def stopwatch(cls, tag: str = None):
-		pass
+	def stopwatch(cls, tag: str = '', digits: int = None):
+		result = time.time()
+		if digits is None or tag not in cls.data['t']:
+			cls.data['t'][tag] = result
+		else:
+			cls.print(f'{tag} · {cls.number(result - cls.data["t"][tag], digits)}')
+		return result
 
 	@classmethod
-	def t(cls, tag: str = None):
-		return cls.stopwatch(tag)
+	def t(cls, tag: str = None, digits: int = None):
+		return cls.stopwatch(tag, digits)
 
 	@classmethod
 	def date(cls):
@@ -8520,6 +8949,14 @@ class VOIDlang:
 		return bytes(res)
 
 	@classmethod
+	def deflate(cls, data, compression = None):
+		pass
+
+	@classmethod
+	def deflate_decode(cls, data):
+		pass
+
+	@classmethod
 	def aes(cls, data, key: str):
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
@@ -8725,12 +9162,12 @@ class VOIDlang:
 			cls.error('barcode', e)
 
 	@classmethod
-	def barcode_decode(cls, image, format: str = None):
-		return cls.recognize(image, format)
-
-	@classmethod
 	def qr(cls, text: str):
 		return cls.barcode(text, 'qr')
+
+	@classmethod
+	def barcode_decode(cls, image, format: str = None):
+		return cls.recognize(image, format)
 
 	@classmethod
 	def qr_decode(cls, image):
@@ -8781,7 +9218,7 @@ class VOIDlang:
 					with open(path, 'r', encoding='utf-8') as file:
 						return cls.ini_decode(file.read())
 				case _:
-					if format in ['php', 'text', 'txt', 'py', 'json']: #cls.get('app.format.text')
+					if format in cls.get('app.format.text'):
 						with open(path, 'r', encoding='utf-8') as file:
 							return file.read()
 					with open(path, 'rb') as file:
@@ -8813,18 +9250,18 @@ class VOIDlang:
 						file.write(str(data))
 				case 'line':
 					if type(data) is list:
-						delimiter = '\n'#cls.get('app.os.delimiter.line')
-						data = delimiter.join(map(str,data))
+						delimiter = cls.get('app.os.delimiter.line')
+						data = delimiter.join(map(str, data))
 					else:
 						data = str(data)
 					with open(path, 'w', encoding='utf-8') as file:
 						file.write(data)
 				case 'void':
-					data = void.void(data)
+					data = cls.void(data)
 					with open(path, 'w', encoding='utf-8') as file:
 						file.write(data if data is not None else '')
 				case 'json':
-					data = void.json(data)
+					data = cls.json(data)
 					with open(path, 'w', encoding='utf-8') as file:
 						file.write(data if data is not None else '')
 				case 'csv':
@@ -8833,7 +9270,7 @@ class VOIDlang:
 					with open(path, 'w', encoding='utf-8') as file:
 						file.write(data if data is not None else '')
 				case 'yaml':
-					data = void.yaml(data)
+					data = cls.yaml(data)
 					with open(path, 'w', encoding='utf-8') as file:
 						file.write(data if data is not None else '')
 				case 'xml':
@@ -8848,16 +9285,27 @@ class VOIDlang:
 				case _:
 					try:
 						if auto:
-							if type(data) is str:
+							if isinstance(data, str) or format in cls.get('app.format.text'):
 								with open(path, 'w', encoding='utf-8') as file:
 									file.write(str(data) if data is not None else '')
 							else:
 								with open(path, 'wb') as file:
-									file.write(bytes(data) if data is not None else b'')
+									if data is None:
+										file.write(b'')
+									elif data == True:
+										file.write(b'\x01')
+									elif data == False:
+										file.write(b'\x00')
+									elif isinstance(data, str):
+										file.write(data.encode())
+									elif not isinstance(data, bytes):
+										file.write(str(data).encode())
+									else:
+										file.write(data)
 						else:
 							if data is None:
 								data = ''
-							elif type(data) is bytes:
+							elif isinstance(data, bytes):
 								data = data.decode(format)
 							else:
 								data = str(data)
@@ -8865,6 +9313,14 @@ class VOIDlang:
 								file.write(data)
 					except Exception as e:
 						cls.error('file.write', e)
+
+	@classmethod
+	def file_read(cls, path: str):
+		return cls.file(path)
+
+	@classmethod
+	def file_write(cls, path: str, data = None, format: str = None, extra = None):
+		return cls.file(path, data if data is not None else b'', format, extra)
 
 	@classmethod
 	def file_binary(cls, path: str, data = None):
@@ -8917,6 +9373,10 @@ class VOIDlang:
 	@classmethod
 	def file_exists(cls, path: str):
 		return os.path.isfile(path)
+
+	@classmethod
+	def is_file(cls, path: str) -> bool:
+		return cls.file_exists(path)
 
 	@classmethod
 	def file_remove(cls, path: str, trash: bool = False):
@@ -8987,6 +9447,10 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def is_link(cls, path: str) -> bool:
+		return cls.link_exists(path)
+
+	@classmethod
 	def dir(cls, path: str):
 		pass
 
@@ -8995,8 +9459,12 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def dir_exists(cls, path: str):
-		pass
+	def dir_exists(cls, path: str) -> bool:
+		return os.path.isdir(path)
+
+	@classmethod
+	def is_dir(cls, path: str) -> bool:
+		return cls.dir_exists(path)
 
 	@classmethod
 	def dir_remove(cls, path: str, trash: bool = False):
@@ -9047,55 +9515,63 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def drive(cls, id: str = None):
+	def drive(cls, path: str = None):
 		pass
 
 	@classmethod
-	def drive_info(cls, id: str = None):
+	def drive_info(cls, path: str = None):
 		return cls.drive(path)
 
 	@classmethod
-	def drive_create(cls, id: str, size, format: str = None, name: str = None):
+	def drive_create(cls, path: str, size, format: str = None, name: str = None):
 		pass
 
 	@classmethod
-	def drive_exists(cls, id: str):
+	def drive_exists(cls, path: str):
 		pass
 
 	@classmethod
-	def drive_remove(cls, id: str):
+	def is_drive(cls, path: str) -> bool:
+		return cls.drive_exists(path)
+
+	@classmethod
+	def drive_remove(cls, path: str):
 		pass
 
 	@classmethod
-	def drive_clear(cls, id: str, format: str = None, name: str = None):
+	def drive_clear(cls, path: str, format: str = None, name: str = None):
 		pass
 
 	@classmethod
-	def drive_format(cls, id: str, format: str = None, name: str = None):
+	def drive_format(cls, path: str, format: str = None, name: str = None):
 		cls.drive_clear(id, format, name)
 
 	@classmethod
-	def drive_rename(cls, id: str, name: str):
+	def drive_rename(cls, path: str, name: str):
 		pass
 
 	@classmethod
-	def drive_mount(cls, id: str):
+	def drive_mount(cls, path: str):
 		pass
 
 	@classmethod
-	def drive_unmount(cls, id: str):
+	def drive_unmount(cls, path: str):
 		pass
 
 	@classmethod
-	def drive_resize(cls, id: str, size):
+	def drive_resize(cls, path: str, size):
 		pass
 
 	@classmethod
-	def drive_check(cls, id: str):
+	def drive_check(cls, path: str):
 		pass
 
 	@classmethod
-	def drive_defrag(cls, id: str):
+	def drive_defrag(cls, path: str):
+		pass
+
+	@classmethod
+	def drive_os(cls, path: str = None, name: str = None):
 		pass
 
 	@classmethod
@@ -9114,7 +9590,7 @@ class VOIDlang:
 			}
 		#delimiter = cls.get('app.os.delimiter.path')
 		delimiter = '/'
-		if len(path) == 2 and path[1] in ['full', 'file', 'name', 'extension', 'dir', 'drive', 'strip']:
+		if len(path) == 2 and path[1] in ['full', 'file', 'name', 'extension', 'dir', 'drive', 'strip', 'start', 'end']:
 			component = path[1]
 			path = str(path[0])
 		else:
@@ -9129,7 +9605,7 @@ class VOIDlang:
 					if len(path) > 1 and path[1] == ':':
 						return path + ('\\' if len(path) == 2 else '')
 				return os.getcwd() + delimiter + path
-			case 'file':
+			case 'file' | 'end':
 				index = path.rfind('/')
 				if index >= 0:
 					return path[index+1:]
@@ -9152,7 +9628,7 @@ class VOIDlang:
 				index = path.rfind('.')
 				if index >= 0:
 					return path[index+1:]
-			case 'dir':
+			case 'dir' | 'start':
 				if path.rfind('.') > 0:
 					index = path.rfind('/')
 					if index >= 0:
@@ -9214,12 +9690,27 @@ class VOIDlang:
 		return cls.path(path, 'file')
 
 	@classmethod
+	def path_end(cls, path: str):
+		return cls.path(path, 'end')
+
+	@classmethod
 	def path_name(cls, path: str):
 		return cls.path(path, 'name')
 
 	@classmethod
-	def path_extension(cls, path: str):
-		return cls.path(path, 'extension')
+	def path_extension(cls, path: str, *extension):
+		result = cls.path(path, 'extension')
+		if len(extension):
+			return result in extension
+		return result
+
+	@classmethod
+	def path_dir(cls, path: str):
+		return cls.path(path, 'dir')
+
+	@classmethod
+	def path_start(cls, path: str):
+		return cls.path(path, 'start')
 
 	@classmethod
 	def path_dir(cls, path: str):
@@ -9246,7 +9737,16 @@ class VOIDlang:
 
 	@classmethod
 	def void_decode(cls, data):
-		pass
+		if isinstance(data, str):
+			if data == 'none':
+				return None
+			if data == 'true':
+				return True
+			if data == 'false':
+				return False
+			if data.isdigit():
+				return cls.number(data)
+		return data
 
 	@classmethod
 	def json(cls, data, compact: bool = False, indent = 2, unicode: bool = True):
@@ -9270,22 +9770,6 @@ class VOIDlang:
 			return
 
 	@classmethod
-	def yaml(cls, data, compact: bool = False, sort: bool = False, unicode: bool = True):
-		try:
-			yaml = cls.module('yaml', 'pyyaml')
-			return yaml.dump(data, default_flow_style=compact, sort_keys=sort, allow_unicode=unicode)
-		except:
-			return
-
-	@classmethod
-	def yaml_decode(cls, text: str):
-		try:
-			yaml = cls.module('yaml', 'pyyaml')
-			return yaml.safe_load(text)
-		except:
-			return
-
-	@classmethod
 	def csv(cls, data, delimiter: str = ','):
 		try:
 			csv = cls.module('csv')
@@ -9302,6 +9786,22 @@ class VOIDlang:
 		try:
 			csv = cls.module('csv')
 			return list(csv.reader(io.StringIO(text), delimiter=delimiter))
+		except:
+			return
+
+	@classmethod
+	def yaml(cls, data, compact: bool = False, sort: bool = False, unicode: bool = True):
+		try:
+			yaml = cls.module('yaml', 'pyyaml')
+			return yaml.dump(data, default_flow_style=compact, sort_keys=sort, allow_unicode=unicode)
+		except:
+			return
+
+	@classmethod
+	def yaml_decode(cls, text: str):
+		try:
+			yaml = cls.module('yaml', 'pyyaml')
+			return yaml.safe_load(text)
 		except:
 			return
 
@@ -9415,7 +9915,47 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def cloud_file(cls):
+		pass
+
+	@classmethod
+	def cloud_web(cls):
+		pass
+
+	@classmethod
+	def cloud_api(cls):
+		pass
+
+	@classmethod
+	def cloud_socket(cls):
+		pass
+
+	@classmethod
+	def cloud_mail(cls):
+		pass
+
+	@classmethod
+	def cloud_vpn(cls):
+		pass
+
+	@classmethod
+	def cloud_proxy(cls):
+		pass
+
+	@classmethod
+	def cloud_stream(cls):
+		pass
+
+	@classmethod
+	def cloud_desktop(cls):
+		pass
+
+	@classmethod
 	def request(cls):
+		pass
+
+	@classmethod
+	def r(cls):
 		pass
 
 	@classmethod
@@ -9423,7 +9963,43 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def d(cls):
+		pass
+
+	@classmethod
 	def cookie(cls):
+		pass
+
+	@classmethod
+	def cookie_remove(cls):
+		pass
+
+	@classmethod
+	def notify(cls):
+		pass
+
+	@classmethod
+	def notify_os(cls):
+		pass
+
+	@classmethod
+	def notify_push(cls):
+		pass
+
+	@classmethod
+	def notify_mail(cls):
+		pass
+
+	@classmethod
+	def notify_sms(cls):
+		pass
+
+	@classmethod
+	def notify_call(cls):
+		pass
+
+	@classmethod
+	def notify_social(cls):
 		pass
 
 	@classmethod
@@ -9431,7 +10007,75 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def notify(cls):
+	def social_google(cls):
+		pass
+
+	@classmethod
+	def social_yandex(cls):
+		pass
+
+	@classmethod
+	def social_baidu(cls):
+		pass
+
+	@classmethod
+	def social_youtube(cls):
+		pass
+
+	@classmethod
+	def social_tiktok(cls):
+		pass
+
+	@classmethod
+	def social_douyin(cls):
+		pass
+
+	@classmethod
+	def social_x(cls):
+		pass
+
+	@classmethod
+	def social_reddit(cls):
+		pass
+
+	@classmethod
+	def social_telegram(cls):
+		pass
+
+	@classmethod
+	def social_wechat(cls):
+		pass
+
+	@classmethod
+	def social_twitch(cls):
+		pass
+
+	@classmethod
+	def social_facebook(cls):
+		pass
+
+	@classmethod
+	def social_whatsapp(cls):
+		pass
+
+	@classmethod
+	def social_instagram(cls):
+		pass
+
+	@classmethod
+	def social_vk(cls):
+		pass
+
+	@classmethod
+	def social_line(cls):
+		pass
+
+	@classmethod
+	def social_linkedin(cls):
+		pass
+
+	@classmethod
+	def social_steam(cls):
 		pass
 
 
@@ -9486,11 +10130,11 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def cursor(cls):
+	def clear(cls):
 		pass
 
 	@classmethod
-	def clear(cls):
+	def cursor(cls):
 		pass
 
 	@classmethod
@@ -9502,11 +10146,11 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def gyroscope(cls):
+	def accelerometer(cls):
 		pass
 
 	@classmethod
-	def accelerometer(cls):
+	def gyroscope(cls):
 		pass
 
 	@classmethod
@@ -9562,10 +10206,6 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def stream(cls):
-		pass
-
-	@classmethod
 	def keyboard(cls):
 		pass
 
@@ -9582,8 +10222,8 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def key(cls):
-		pass
+	def click(cls):
+		return cls.tap()
 
 
   # content
@@ -9660,6 +10300,27 @@ class VOIDlang:
 	def game_vn(cls):
 		return cls.game()
 
+
+if isinstance(VOIDlang.data, str):
+	#VOIDlang.data = cls.void_decode(cls.data)
+	VOIDlang.data = {
+		'app': {
+			'os': {
+				'delimiter': {
+					'line': '\n'
+				},
+				'path': {
+					'ffmpeg': None,
+					'yt-dlp': None
+				}
+			},
+			'ui': 'cli',
+			'format': {
+				'text': ['php', 'text', 'txt', 'py', 'json']
+			}
+		},
+		't': {}
+	}
 
 if __name__ == '__main__':
 	VOIDlang.run()
