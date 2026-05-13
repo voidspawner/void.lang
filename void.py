@@ -5001,9 +5001,9 @@ class VOIDlang:
 				group
 					file
 				method
-					drive_
+					drive_remove
 				action
-					drive.
+					drive.remove
 				alias
 					none
 				description
@@ -5143,9 +5143,9 @@ class VOIDlang:
 				group
 					file
 				method
-					drive_
+					drive_check
 				action
-					drive.
+					drive.check
 				alias
 					none
 				description
