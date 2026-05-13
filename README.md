@@ -1014,11 +1014,11 @@ This is an AI that makes working with data easier and improves communication.
 
 > **``Characters``**
 > ```
-> chat.muryashka
-> chat.murya
-> [chat.character.kitty a cat who loves to play games often says "meow"
-> chat.kitty
-> [chat.kitty Hello Kitty
+> chat.Muryashka
+> chat.Murya
+> [chat.character.Kitty a cat who loves to play games often says "meow"
+> chat.Kitty
+> [chat.Kitty Hello Kitty
 > ```
 >
 > **``ChatGPT``**
@@ -1073,6 +1073,18 @@ This is an AI that makes working with data easier and improves communication.
 > [chat.claude radius of the Earth
 > ```
 >
+> **``Bot``**
+> ```
+> chat.bot.go.forward
+> [chat.bot.go [latitude .latitude  longitude .longitude]
+> chat.bot.stop
+> [chat.bot.take pencil]
+> [chat.bot.put pencil on the table]
+> [chat Murya take a pencil from the table]
+> [chat.Murya put the pencil on the table]
+> [chat.Murya go to the store and buy some milk]
+> ```
+> 
 > **``Media``**
 > ```
 > image.stablediffusion
