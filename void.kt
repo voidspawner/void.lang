@@ -14,9 +14,9 @@ class VOIDlang {
 					python
 				version
 					time
-						1777211505
+						1778668374
 					date
-						2026 · 04 · 26
+						2026 · 05 · 13
 				license
 					name
 						V O I D license
@@ -53,6 +53,9 @@ class VOIDlang {
 					'                                   ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                   '
 					'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      '
 					'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
+				help
+					python.exe void.py help
+					python3 void.py help action
 			lang
 	
 			  .: value :.
@@ -62,6 +65,10 @@ class VOIDlang {
 						value
 					method
 						get
+						a
+						s
+					action
+						none
 					alias
 						none
 					description
@@ -82,13 +89,15 @@ class VOIDlang {
 						[code [[get void.test.json/list.1]]  before [[file void.test.json [about [name  V O I D lang]  list [0 1 2]] ]]  clear [[file.remove void.test.json]]  result 1
 						[code [[get db.sqldbname.user]]  type list  test false
 						[code [[get db.sqldbname.user.id.12345]]  type [dict none]  test false
-						[code [[{about.name}]]  result V O I D lang
-						[code [[{about.{name}}]]  before [[= name name]]  clear [[remove name]]  result V O I D lang
+						[code [[.about.name]]  result V O I D lang
+						[code [[.about.{name}]]  before [[= name name]]  clear [[remove name]]  result V O I D lang
 				set
 					group
 						value
 					method
 						set
+					action
+						none
 					alias
 						none
 					description
@@ -114,6 +123,8 @@ class VOIDlang {
 						value
 					method
 						remove
+					action
+						none
 					alias
 						del
 					description
@@ -138,6 +149,8 @@ class VOIDlang {
 						value
 					method
 						type
+					action
+						none
 					alias
 						none
 					description
@@ -165,6 +178,8 @@ class VOIDlang {
 						value
 					method
 						type_text
+					action
+						none
 					alias
 						none
 					description
@@ -199,17 +214,19 @@ class VOIDlang {
 						[code [[text title [length 10  align center]]]  result '  title   '
 						[code [[text 100000 price]]  result '∞100 000
 						[code [[text 100000.1 [before ∞  after monthly  group ,  dot .  round 3]]]  result '∞100,000.100 monthly
-						[code [[text {image} [size  100]]]  test false
-						[code [[text {image} [width 100  height 100]]]  test false
+						[code [[text .image [size  100]]]  test false
+						[code [[text .image [width 100  height 100]]]  test false
 						[code [[text text + text]]  result 'text+text
 						[code [[text number ' ' 123]]  result 'number 123
 						[code [[text *abc '*{}']]  result '*abc
-						[code [[text *abc [[+ '*' {}]] ]]  result '*abc
+						[code [[text *abc [[+ '*' ..]] ]]  result '*abc
 				number
 					group
 						value
 					method
 						type_number
+					action
+						none
 					alias
 						none
 					description
@@ -238,6 +255,8 @@ class VOIDlang {
 						value
 					method
 						type_bool
+					action
+						none
 					alias
 						none
 					description
@@ -269,6 +288,8 @@ class VOIDlang {
 						value
 					method
 						type_binary
+					action
+						none
 					alias
 						none
 					description
@@ -294,9 +315,12 @@ class VOIDlang {
 						value
 					method
 						length
+					action
+						none
 					alias
-						n
+						~
 						len
+						mem
 					description
 						Gets the length of the data
 					safe
@@ -308,14 +332,14 @@ class VOIDlang {
 					param
 						[[name data  type any  default none
 					example
-						[code [[n text]]  result 4
-						[code [[n [1 2 a]]]  result 3
-						[code [[n [a 1  b 2]]]  result 2
-						[code [[n 123]]  result 1
-						[code [[n -123]]  result 1
-						[code [[n 12345678]]  result 3
-						[code [[n 123.1]]  result 8
-						[code [[n *'123']]  result 3
+						[code [[~ text]]  result 4
+						[code [[~ [1 2 a]]]  result 3
+						[code [[~ [a 1  b 2]]]  result 2
+						[code [[~ 123]]  result 1
+						[code [[~ -123]]  result 1
+						[code [[~ 12345678]]  result 3
+						[code [[~ 123.1]]  result 8
+						[code [[~ *'123']]  result 3
 	
 			  .: expression :.
 	
@@ -324,6 +348,8 @@ class VOIDlang {
 						expression
 					method
 						expression_plus
+					action
+						none
 					alias
 						and
 					description
@@ -358,6 +384,8 @@ class VOIDlang {
 						expression
 					method
 						expression_minus
+					action
+						none
 					alias
 						not
 					description
@@ -388,6 +416,8 @@ class VOIDlang {
 						expression
 					method
 						expression_multiply
+					action
+						none
 					alias
 						xor
 					description
@@ -418,6 +448,8 @@ class VOIDlang {
 						expression
 					method
 						expression_divide
+					action
+						none
 					alias
 						or
 					description
@@ -448,8 +480,10 @@ class VOIDlang {
 						expression
 					method
 						expression_modulo
-					alias
+					action
 						none
+					alias
+						mod
 					description
 						Perform modulo operation
 					safe
@@ -468,8 +502,10 @@ class VOIDlang {
 						expression
 					method
 						expression_power
-					alias
+					action
 						none
+					alias
+						pow
 					description
 						Perform power operator
 					safe
@@ -490,6 +526,8 @@ class VOIDlang {
 						expression
 					method
 						expression_shr
+					action
+						none
 					alias
 						shr
 					description
@@ -516,6 +554,8 @@ class VOIDlang {
 						expression
 					method
 						expression_shl
+					action
+						none
 					alias
 						shl
 					description
@@ -536,13 +576,15 @@ class VOIDlang {
 						[code [[<< [a 1  b 2]]]  result [a 1  b 2
 						[code [text << 2]  result 'text  '
 						[code [*text << 2]  result *'text  '
-				!=
+				x=
 					group
 						expression
 					method
 						expression_notequal
-					alias
+					action
 						none
+					alias
+						!=
 					description
 						Checks if values are not equal
 					safe
@@ -567,6 +609,8 @@ class VOIDlang {
 						expression
 					method
 						expression_greater
+					action
+						none
 					alias
 						none
 					description
@@ -591,6 +635,8 @@ class VOIDlang {
 						expression
 					method
 						expression_less
+					action
+						none
 					alias
 						none
 					description
@@ -615,6 +661,8 @@ class VOIDlang {
 						expression
 					method
 						expression_greater_equal
+					action
+						none
 					alias
 						none
 					description
@@ -635,6 +683,8 @@ class VOIDlang {
 						expression
 					method
 						expression_less_equal
+					action
+						none
 					alias
 						none
 					description
@@ -650,11 +700,13 @@ class VOIDlang {
 					example
 						[code [[<= 5 3]]  result false
 						[code [5 <= 5]  result true
-				#
+				->
 					group
 						expression
 					method
 						expression_in
+					action
+						none
 					alias
 						in
 					description
@@ -669,16 +721,18 @@ class VOIDlang {
 						[name value  type any
 						[name data  type [text list dict
 					example
-						[code [[# te text]]  result true
-						[code [[# a [a b c]]]  result true
-						[code [[# a [a 1  b 2]]]  result true
-						[code [a # [a b c]]  result true
-						[code [d # [a b c]]  result false
-				!#
+						[code [[-> te text]]  result true
+						[code [[-> a [a b c]]]  result true
+						[code [[-> a [a 1  b 2]]]  result true
+						[code [a -> [a b c]]  result true
+						[code [d -> [a b c]]  result false
+				x>
 					group
 						expression
 					method
 						expression_notin
+					action
+						none
 					alias
 						notin
 					description
@@ -693,16 +747,18 @@ class VOIDlang {
 						[name value  type any
 						[name data  type [text list dict
 					example
-						[code [[!# te text]]  result false
-						[code [[!# a [a b c]]]  result false
-						[code [[!# a [a 1  b 2]]]  result false
-						[code [a !# [a b c]]  result false
-						[code [d !# [a b c]]  result true
-				@
+						[code [[x> te text]]  result false
+						[code [[x> a [a b c]]]  result false
+						[code [[x> a [a 1  b 2]]]  result false
+						[code [a x> [a b c]]  result false
+						[code [d x> [a b c]]  result true
+				<-
 					group
 						expression
 					method
 						expression_is
+					action
+						none
 					alias
 						is
 					description
@@ -717,21 +773,24 @@ class VOIDlang {
 						[name data  type any
 						[name type  type [text none list
 					example
-						[code [[@ name text]]  result true
-						[code [[@ name number]]  result false
-						[code [[@ 123 number]]  result true
-						[code [[@ true bool]]  result true
-						[code [[@ none none]]  result true
-						[code [[@ [1 2] list]]  result true
-						[code [[@ [a 1  b 2] dict]]  result true
-						[code [[@ name [text dict]]]  result true
-						[code [[@ *text binary]]  result true
-						[code [123 @ number]  result true
-				!@
+						[code [[<- name text]]  result true
+						[code [[<- name number]]  result false
+						[code [[<- 123 number]]  result true
+						[code [[<- true bool]]  result true
+						[code [[<- none none]]  result true
+						[code [[<- [1 2] list]]  result true
+						[code [[<- [a 1  b 2] dict]]  result true
+						[code [[<- name [text dict]]]  result true
+						[code [[<- *text binary]]  result true
+						[code [123 <- number]  result true
+						[code ['123' <- text.number]  result true
+				<x
 					group
 						expression
 					method
 						expression_isnot
+					action
+						none
 					alias
 						isnot
 					description
@@ -746,21 +805,24 @@ class VOIDlang {
 						[name data  type any
 						[name type  type [text none list
 					example
-						[code [[!@ name text]]  result false
-						[code [[!@ name number]]  result true
-						[code [[!@ 123 number]]  result false
-						[code [[!@ true bool]]  result false
-						[code [[!@ none none]]  result false
-						[code [[!@ [1 2] list]]  result false
-						[code [[!@ [a 1  b 2] dict]]  result false
-						[code [[!@ name [text dict]]]  result false
-						[code [[!@ *text binary]]  result false
-						[code [123 !@ number]  result false
+						[code [[<x name text]]  result false
+						[code [[<x name number]]  result true
+						[code [[<x 123 number]]  result false
+						[code [[<x true bool]]  result false
+						[code [[<x none none]]  result false
+						[code [[<x [1 2] list]]  result false
+						[code [[<x [a 1  b 2] dict]]  result false
+						[code [[<x name [text dict]]]  result false
+						[code [[<x *text binary]]  result false
+						[code [123 <x number]  result false
+						[code ['123' <x text.number]  result false
 				=
 					group
 						expression
 					method
 						expression_assign
+					action
+						none
 					alias
 						==
 					description
@@ -775,12 +837,12 @@ class VOIDlang {
 						[name name  type any
 						[name data  type any
 					example
-						[code [[= x 10] {x}]  result 10
-						[code [[= name text] {name}]  result text
-						[code [[= name.subname text] {name.subname}]  result text
-						[code [[= '' text] {}]  result text
-						[code [[= none text] {}]  result text
-						[code [[= x 10] {x} = 10]  result true
+						[code [[= x 10] .x]  result 10
+						[code [[= name text] .name]  result text
+						[code [[= name.subname text] .name.subname]  result text
+						[code [[= '' text] .]  result text
+						[code [[= none text] .]  result text
+						[code [[= x 10] .x = 10]  result true
 						[code [20 = 10]  result false
 						[code [[= 20 10]]  result false
 				+=
@@ -788,6 +850,8 @@ class VOIDlang {
 						expression
 					method
 						expression_plus_assign
+					action
+						none
 					alias
 						none
 					description
@@ -802,19 +866,21 @@ class VOIDlang {
 						[name name  type text
 						[name data  type any  default 1
 					example
-						[code [[= x 10] [+= x] {x}]  result 11
-						[code [[= x 10] [+= x 2] {x}]  result 12
-						[code [[= name text] [+= name] {name}]  result 'text '
-						[code [[= name text] [+= name 2] {name}]  result 'text  '
-						[code [[= name text] [+= name end] {name}]  result textend
-						[code [[= data [1 2 3]] [+= data 2] {data}]  result [1 2 3 '' ''
-						[code [[= data [a 1  b 2]] [+= data [c  3]] {data}]  result [a 1  b 2  c 3
-						[code [[= name *text] [+= name end] {name}]  result *textend
+						[code [[= x 10] [+= x] .x]  result 11
+						[code [[= x 10] [+= x 2] .x]  result 12
+						[code [[= name text] [+= name] .name]  result 'text '
+						[code [[= name text] [+= name 2] .name]  result 'text  '
+						[code [[= name text] [+= name end] .name]  result textend
+						[code [[= data [1 2 3]] [+= data 2] .data]  result [1 2 3 '' ''
+						[code [[= data [a 1  b 2]] [+= data [c  3]] .data]  result [a 1  b 2  c 3
+						[code [[= name *text] [+= name end] .name]  result *textend
 				=+
 					group
 						expression
 					method
 						expression_assign_plus
+					action
+						none
 					alias
 						none
 					description
@@ -829,19 +895,21 @@ class VOIDlang {
 						[name name  type text
 						[name data  type any  default 1
 					example
-						[code [[= x 10] [=+ x] {x}]  result 11
-						[code [[= x 10] [=+ x 2] {x}]  result 12
-						[code [[= name text] [=+ name] {name}]  result ' text
-						[code [[= name text] [=+ name 2] {name}]  result '  text
-						[code [[= name text] [=+ name start] {name}]  result starttext
-						[code [[= data [1 2 3]] [=+ data 2] {data}]  result ['' '' 1 2 3
-						[code [[= data [a 1  b 2]] [=+ data [c  3]] {data}]  result [c 3  a 1  b 2
-						[code [[= name *text] [+= name start] {name}]  result *starttext
+						[code [[= x 10] [=+ x]]  name x  result 11
+						[code [[= x 10] [=+ x 2]]  name x  result 12
+						[code [[= name text] [=+ name]]  name name  result ' text
+						[code [[= name text] [=+ name 2]]  name name  result '  text
+						[code [[= name text] [=+ name start]]  name name  result starttext
+						[code [[= data [1 2 3]] [=+ data 2]]  name data  result ['' '' 1 2 3
+						[code [[= data [a 1  b 2]] [=+ data [c  3]]]  name data  result [c 3  a 1  b 2
+						[code [[= name *text] [+= name start]]  name name  result *starttext
 				-=
 					group
 						expression
 					method
 						expression_minus_assign
+					action
+						none
 					alias
 						none
 					description
@@ -856,19 +924,21 @@ class VOIDlang {
 						[name name  type text
 						[name data  type any  default 1
 					example
-						[code [[= x 10] [-= x] {x}]  result 9
-						[code [[= x 10] [-= x 2] {x}]  result 8
-						[code [[= name text] [-= name] {name}]  result tex
-						[code [[= name text] [-= name 2] {name}]  result te
-						[code [[= name text] [-= name xt] {name}]  result te
-						[code [[= data [1 2 3]] [-= data 2] {data}]  result [1 2
-						[code [[= data [a 1  b 2]] [-= data b] {data}]  result [a 1
-						[code [[= name *text] [-= name xt] {name}]  result *te
+						[code [[= x 10] [-= x]]  name x  result 9
+						[code [[= x 10] [-= x 2]]  name x  result 8
+						[code [[= name text] [-= name]]  name name  result tex
+						[code [[= name text] [-= name 2]]  name name  result te
+						[code [[= name text] [-= name xt]]  name name  result te
+						[code [[= data [1 2 3]] [-= data 2]]  name data  result [1 2
+						[code [[= data [a 1  b 2]] [-= data b]]  name data  result [a 1
+						[code [[= name *text] [-= name xt]]  name name  result *te
 				=-
 					group
 						expression
 					method
 						expression_assign_minus
+					action
+						none
 					alias
 						none
 					description
@@ -883,19 +953,21 @@ class VOIDlang {
 						[name name  type text
 						[name data  type any   default 1
 					example
-						[code [[= x 10] [=- x] {x}]  result 9
-						[code [[= x 10] [=- x 2] {x}]  result 8
-						[code [[= name text] [=- name] {name}]  result ext
-						[code [[= name text] [=- name 2] {name}]  result xt
-						[code [[= name text] [=- name te] {name}]  result xt
-						[code [[= data [1 2 3]] [=- data 2] {data}]  result [1
-						[code [[= data [a 1  b 2]] [=- data b] {data}]  result [a 1
-						[code [[= name *text] [=- name te] {name}]  result *xt
+						[code [[= x 10] [=- x]]  name x  result 9
+						[code [[= x 10] [=- x 2]]  name x  result 8
+						[code [[= name text] [=- name]]  name name  result ext
+						[code [[= name text] [=- name 2]]  name name  result xt
+						[code [[= name text] [=- name te]]  name name  result xt
+						[code [[= data [1 2 3]] [=- data 2]]  name data  result [1
+						[code [[= data [a 1  b 2]] [=- data b]]  name data  result [a 1
+						[code [[= name *text] [=- name te]]  name name  result *xt
 				*=
 					group
 						expression
 					method
 						expression_multiply_assign
+					action
+						none
 					alias
 						none
 					description
@@ -910,18 +982,20 @@ class VOIDlang {
 						[name name  type text
 						[name data  type any  default none
 					example
-						[code [[= x 10] [*= x] {x}]  result 100
-						[code [[= x 10] [*= x 2] {x}]  result 20
-						[code [[= name text] [*= name 2] {name}]  result texttext
-						[code [[= name text] [*= name ' '] {name}]  result t e x t
-						[code [[= data [1 2 3]] [*= data 2] {data}]  result [[1 2 3] [1 2 3
-						[code [[= data [a 1  b 2]] [*= data 2] {data}]  result [[a 1  b 2] [a 1  b 2
-						[code [[= name *text] [*= name ' '] {name}]  result *'t e x t
+						[code [[= x 10] [*= x]]  name x  result 100
+						[code [[= x 10] [*= x 2]]  name x  result 20
+						[code [[= name text] [*= name 2]]  name name  result texttext
+						[code [[= name text] [*= name ' ']]  name name  result t e x t
+						[code [[= data [1 2 3]] [*= data 2]]  name data  result [[1 2 3] [1 2 3
+						[code [[= data [a 1  b 2]] [*= data 2]]  name data  result [[a 1  b 2] [a 1  b 2
+						[code [[= name *text] [*= name ' ']]  name name  result *'t e x t
 				/=
 					group
 						expression
 					method
 						expression_divide_assign
+					action
+						none
 					alias
 						none
 					description
@@ -936,18 +1010,20 @@ class VOIDlang {
 						[name name  type text
 						[name data  type any  default none
 					example
-						[code [[= x 100] [/= x] {x}]  result 10
-						[code [[= x 10] [/= x 2] {x}]  result 5
-						[code [[= name text] [/= name 2] {name}]  result [te xt
-						[code [[= name 'text text'] [/= name ' '] {name}]  result [text text
-						[code [[= data [1 2 3 4]] [/= data 2] {data}]  result [[1 2] [3 4
-						[code [[= data [a 1  b 2]] [/= data 2 {data}]  result [[a  1] [b  2
-						[code [[= name *text] [/= name 2] {name}]  result [*te *xt
+						[code [[= x 100] [/= x] .x]  result 10
+						[code [[= x 10] [/= x 2] .x]  result 5
+						[code [[= name text] [/= name 2] .name]  result [te xt
+						[code [[= name 'text text'] [/= name ' '] .name]  result [text text
+						[code [[= data [1 2 3 4]] [/= data 2] .data]  result [[1 2] [3 4
+						[code [[= data [a 1  b 2]] [/= data 2 .data]  result [[a  1] [b  2
+						[code [[= name *text] [/= name 2] .name]  result [*te *xt
 				%=
 					group
 						expression
 					method
 						expression_modulo_assign
+					action
+						none
 					alias
 						none
 					description
@@ -962,13 +1038,15 @@ class VOIDlang {
 						[name name  type text
 						[name data  type any  default 2
 					example
-						[code [[= x 4] [%= x] {x}]  result 0
-						[code [[= x 10] [%= x 3] {x}]  result 1
+						[code [[= x 4] [%= x] .x]  result 0
+						[code [[= x 10] [%= x 3] .x]  result 1
 				^=
 					group
 						expression
 					method
 						expression_power_assign
+					action
+						none
 					alias
 						none
 					description
@@ -983,13 +1061,15 @@ class VOIDlang {
 						[name name  type text
 						[name data  type any  default 2
 					example
-						[code [[= x 10] [^= x] {x}]  result 100
-						[code [[= x 2] [^= x 3] {x}]  result 8
+						[code [[= x 10] [^= x] .x]  result 100
+						[code [[= x 2] [^= x 3] .x]  result 8
 				>>=
 					group
 						expression
 					method
 						expression_shr_assign
+					action
+						none
 					alias
 						none
 					description
@@ -1004,17 +1084,19 @@ class VOIDlang {
 						[name name  type text
 						[name count  type number  default 1
 					example
-						[code [[= x 16] [>>= x 2] {x}]  result 4
-						[code [[= x 255] [>>= x 4] {x}]  result 15
-						[code [[= data [1 2 3]] [>>= data 2] {data}]  result [1
-						[code [[= data [a 1  b 2]] [>>= data 1] {data}]  result [a  1]
-						[code [[= name text] [>>= name 2] {name}]  result te
-						[code [[= name *text] [>>= name 2] {name}]  result *te
+						[code [[= x 16] [>>= x 2] .x]  result 4
+						[code [[= x 255] [>>= x 4] .x]  result 15
+						[code [[= data [1 2 3]] [>>= data 2] .data]  result [1
+						[code [[= data [a 1  b 2]] [>>= data 1] .data]  result [a  1]
+						[code [[= name text] [>>= name 2] .name]  result te
+						[code [[= name *text] [>>= name 2] .name]  result *te
 				<<=
 					group
 						expression
 					method
 						expression_shl_assign
+					action
+						none
 					alias
 						none
 					description
@@ -1029,11 +1111,11 @@ class VOIDlang {
 						[name name  type text
 						[name count  type number  default 1
 					example
-						[code [[= x 4] [<<= x 2] {x}]  result 16
-						[code [[= x 7] [<<= x 3] {x}]  result 56
-						[code [[= data [1 2]] [<<= data 1] {data}]  result [1 2 ''
-						[code [[= name text] [<<= name 2] {name}]  result 'text  '
-						[code [[= name *text] [<<= name 2] {name}]  result *'text  '
+						[code [[= x 4] [<<= x 2] .x]  result 16
+						[code [[= x 7] [<<= x 3] .x]  result 56
+						[code [[= data [1 2]] [<<= data 1] .data]  result [1 2 ''
+						[code [[= name text] [<<= name 2] .name]  result 'text  '
+						[code [[= name *text] [<<= name 2] .name]  result *'text  '
 	
 			  .: control :.
 	
@@ -1042,7 +1124,10 @@ class VOIDlang {
 						control
 					method
 						print
+					action
+						none
 					alias
+						..
 						print
 					description
 						Output data to the console
@@ -1062,11 +1147,13 @@ class VOIDlang {
 						[code [[. [1 2 3]]]  output '[1 2 3\n
 						[code [[. [a 1  b 2]]]  output '[a 1  b 2\n
 						[code [[. *text]]  output 'text\n
-				..
+				...
 					group
 						control
 					method
 						input
+					action
+						none
 					alias
 						input
 					description
@@ -1087,6 +1174,8 @@ class VOIDlang {
 						control
 					method
 						control_if
+					action
+						none
 					alias
 						if
 					description
@@ -1103,12 +1192,13 @@ class VOIDlang {
 						[code [[? 1 > 2]]  result false
 						[code [[? a # [a b c]]]  result true
 						[code [[? a # [a b c]]]  result true
-						[code [[? [{}  [[1 []] [2 []] [3 []]] ]]]  test false
 				o
 					group
 						control
 					method
 						control_loop
+					action
+						none
 					alias
 						loop
 					description
@@ -1125,11 +1215,11 @@ class VOIDlang {
 					example
 						[code [0 [o 10 [+ 1]]]  result 10
 						[code [0 [o [1 5] [+ 1]]]  result 5
-						[code [0 [o [1 2 3] [+ {index}]]]  result 6
-						[code [data = [1 2 3] [o {data} [+ {index}]]]  result 6
-						[code [0 [o [a 1  b 2  c 3] [+ {value}]]]  result 6
-						[code ['' [o [a 1  b 2  c 3] [+ {name}]]]  result abc
-						[code ['' [o text [+ ' ' + {value}]]]  result ' t e x t
+						[code [0 [o [1 2 3] [+ .index]]]  result 6
+						[code [data = [1 2 3] [o .data [+ .index]]]  result 6
+						[code [0 [o [a 1  b 2  c 3] [+ .value]]]  result 6
+						[code ['' [o [a 1  b 2  c 3] [+ .name]]]  result abc
+						[code ['' [o text [+ ' ' + .value]]]  result ' t e x t
 						[code [[o [[. infinite]]]]  test false
 						[code [[o [fps 60] [[. 60 fps]]]]  test false
 				x
@@ -1137,6 +1227,8 @@ class VOIDlang {
 						control
 					method
 						control_break
+					action
+						none
 					alias
 						break
 					description
@@ -1150,13 +1242,15 @@ class VOIDlang {
 					param
 						[[name count  type number  default 1
 					example
-						[code [0 [o 10 [[? [{index} > 2] x] [+ 1] ]]]  result 3
-						[code [0 [o 10 [[o 10 [[? [{index} > 2] [x 2]] [+ 1] ]]] ]]  result 3
-				->
+						[code [0 [o 10 [[? [.index > 2] x] [+ 1] ]]]  result 3
+						[code [0 [o 10 [[o 10 [[? [.index > 2] [x 2]] [+ 1] ]]] ]]  result 3
+				~>
 					group
 						control
 					method
 						control_continue
+					action
+						none
 					alias
 						continue
 					description
@@ -1170,14 +1264,16 @@ class VOIDlang {
 					param
 						[[name count  type number  default 1
 					example
-						[code [0 [o 10 [+ 1 ->]]]  result 1
-						[code [0 [o 10 [[? [{index} % 2] ->] [+ 1]] ]]  result 5
-						[code [0 [o 10 [[? [{index} = 2] [[-> 2]]] [+ 1]] ]]  result 8
-				<-
+						[code [0 [o 10 [+ 1 ~>]]]  result 1
+						[code [0 [o 10 [[? [.index % 2] ~>] [+ 1]] ]]  result 5
+						[code [0 [o 10 [[? [.index = 2] [[~> 2]]] [+ 1]] ]]  result 8
+				<~
 					group
 						control
 					method
 						control_repeat
+					action
+						none
 					alias
 						repeat
 					description
@@ -1191,13 +1287,15 @@ class VOIDlang {
 					param
 						[[name count  type number  default 1
 					example
-						[code [0 [o 10 [+ 1 <-]] ]  result 11
-						[code [0 [o 10 [+ 1 [<- 2]]] ]  result 12
+						[code [0 [o 10 [+ 1 <~]] ]  result 11
+						[code [0 [o 10 [+ 1 [<~ 2]]] ]  result 12
 				_
 					group
 						control
 					method
 						control_return
+					action
+						none
 					alias
 						__
 						return
@@ -1215,7 +1313,7 @@ class VOIDlang {
 					example
 						[code [[action [1 + 1]]]  result 2
 						[code [[action [1 + 1 _ + 1]]]  result none
-						[code [[action [1 + 1 [_ {}] + 1]]]  result 2
+						[code [[action [1 + 1 [_ ..] + 1]]]  result 2
 						[code [[action [1 + 1 __ + 1]]]  result 2
 						[code [[action [1 + 1 [_ 4] + 1]]]  result 4
 				action
@@ -1223,6 +1321,8 @@ class VOIDlang {
 						control
 					method
 						action
+					action
+						none
 					alias
 						none
 					description
@@ -1246,6 +1346,8 @@ class VOIDlang {
 						control
 					method
 						open
+					action
+						none
 					alias
 						none
 					description
@@ -1273,6 +1375,8 @@ class VOIDlang {
 						control
 					method
 						close
+					action
+						none
 					alias
 						none
 					description
@@ -1295,6 +1399,8 @@ class VOIDlang {
 						control
 					method
 						code
+					action
+						none
 					alias
 						none
 					description
@@ -1306,23 +1412,28 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name code  type text
+						[name code  type text
+						[name language  type text  subname true  default none
 					example
 						[code [[code 'print("Hi! World")']]  test false
 						[code [[code print("Hi! World")]]  test false
 						[code [[code 'console.log("Hi! World")']]  test false
-				debug
+						[code [[code.js 'console.log("Hi! World")']]  test false
+						[code [[code.c++ 'int i = 10; std::cout << i << std::endl;']]  test false
+				logger
 					group
 						control
 					method
-						log
+						logs
+					action
+						none
 					alias
 						l
-						d
-						w
-						e
+						debug
+						warning
+						error
 					description
-						Log debug information
+						Log information
 					safe
 						false
 					container
@@ -1330,21 +1441,35 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[name tag  type any
+						[name tag  subname true  type any
 						[name message  type any  default none
 						[name data  type any  default none
 					example
-						[code [l app info]  test false
-						[code [d app debug]  test false
-						[code [w app warning]  test false
-						[code [e app error]  test false
-						[code [l message]  test false
-						[code [l [a 1  b 2  c 3]]  test false
+						[code [l]  test false
+						[code [[l message]]  test false
+						[code [[l [time .time  message .message  data .data]]]  test false
+						[code [[l.tag info]]  test false
+						[code [[l.i.tag info]]  test false
+						[code [[l.d.tag debug]]  test false
+						[code [[l.w.tag warning]  test false
+						[code [[l.e.tag error]  test false
+						[code [[l.f.tag fatal]  test false
+						[code [[l.info.tag info]  test false
+						[code [[l.debug.tag debug]  test false
+						[code [[l.warning.tag warning]  test false
+						[code [[l.error.tag error]  test false
+						[code [[l.fatal.tag fatal]  test false
+						[code [[logger tag message]]  test false
+						[code [[debug tag message]]  test false
+						[code [[warning tag message]]  test false
+						[code [[error tag message]]  test false
 				test
 					group
 						control
 					method
-						action.test
+						test
+					action
+						test
 					alias
 						none
 					description
@@ -1366,7 +1491,9 @@ class VOIDlang {
 					group
 						control
 					method
-						action.update
+						update
+					action
+						update
 					alias
 						none
 					description
@@ -1391,7 +1518,10 @@ class VOIDlang {
 						control
 					method
 						exit
+					action
+						none
 					alias
+						fatal
 						xx
 					description
 						Exit the current application with an exit code
@@ -1415,6 +1545,8 @@ class VOIDlang {
 						control
 					method
 						os
+					action
+						none
 					alias
 						none
 					description
@@ -1435,10 +1567,13 @@ class VOIDlang {
 					group
 						control
 					method
-						action.info
+						info
+					action
+						info
 					alias
 						i
 						help
+						h
 					description
 						Get info about V O I D lang, os, device, file, directory, drive, url, text, image, video, sound, model, thesaurus or other data
 					safe
@@ -1456,8 +1591,8 @@ class VOIDlang {
 						[code [[info /path]]  type dict  test false
 						[code [[info c:]]  type dict  test false
 						[code [[info https://voidsp.com]]  type dict  test false
-						[code [[info {text}]]  type dict  test false
-						[code [[info {image}]]  type dict  test false
+						[code [[info .text]]  type dict  test false
+						[code [[info .image]]  type dict  test false
 						[code [[info laptop]]  type dict  test false
 						[code [[info australia]]  type dict  test false
 						[code [[info jpy]]  type dict  test false
@@ -1466,9 +1601,12 @@ class VOIDlang {
 					group
 						control
 					method
-						action.convert
+						convert
+					action
+						convert
 					alias
 						c
+						<>
 					description
 						Convert data from one format to another
 					safe
@@ -1508,6 +1646,8 @@ class VOIDlang {
 						control
 					method
 						clipboard
+					action
+						none
 					alias
 						none
 					description
@@ -1528,6 +1668,8 @@ class VOIDlang {
 						control
 					method
 						sql
+					action
+						none
 					alias
 						none
 					description
@@ -1587,10 +1729,13 @@ class VOIDlang {
 						control
 					method
 						chat
+					action
+						none
 					alias
 						:
+						ai
 					description
-						AI conversation and interaction through text
+						AI conversation and interaction through text or control a virtual or physical bot
 					safe
 						false
 					container
@@ -1598,16 +1743,57 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++
 					param
-						[name text  type many  default none
+						[name data  type any  subname true  default none
 					example
-						[code [[chat 10 facts about cats]]  test false
-						[code [[: 2+2]]  test false
-						[code [[. let's have a chat] chat]  text false
+						[code [chat]  test false
+						[code [chat.Muryashka]  test false
+						[code [chat.Murya]  test false
+						[code [[chat.character.Kitty a cat who loves to play games often says "meow"]]  test false
+						[code [chat.Kitty]  test false
+						[code [[chat.Kitty Hello Kitty]]  test false
+						[code [chat.gpt]  test false
+						[code [chat.gpt.pro]  test false
+						[code [chat.pro]  test false
+						[code [[chat radius of the Earth]]  test false
+						[code [[chat.gpt radius of the Earth]]  test false
+						[code [[chat.pro radius of the Earth]]  test false
+						[code [[: tell me a story]]  test false
+						[code [[: translate to portuguese: Hi World :D]]  test false
+						[code [[: svg ginger cat in a box]]  test false
+						[code [[: python calculator application]]  test false
+						[code [[: image dancing cats]]  test false
+						[code [chat.deepseek]  test false
+						[code [chat.reasoner]  test false
+						[code [chat.v3]  test false
+						[code [chat.r1]  test false
+						[code [[chat.deepseek radius of the Earth]]  test false
+						[code [chat.ollama]  test false
+						[code [[chat.ollama radius of the Earth]]  test false
+						[code [chat.gemini]  test false
+						[code [[chat.gemini radius of the Earth]]  test false
+						[code [chat.claude]  test false
+						[code [chat.claude.opus]  test false
+						[code [chat.claude.sonnet]  test false
+						[code [chat.claude.haiku]  test false
+						[code [chat.opus]  test false
+						[code [chat.sonnet]  test false
+						[code [chat.haiku]  test false
+						[code [[chat.claude radius of the Earth]]  test false
+						[code [chat.bot.go.forward]  test false
+						[code [[chat.bot.go [latitude .latitude  longitude .longitude]]]  test false
+						[code [chat.bot.stop]  test false
+						[code [[chat.bot.take pencil]]  test false
+						[code [[chat.bot.put pencil on the table]]  test false
+						[code [[chat Murya take a pencil from the table]]  test false
+						[code [[chat.Murya put the pencil on the table]]  test false
+						[code [[chat.Murya go to the store and buy some milk]]  test false
 				say
 					group
 						control
 					method
 						say
+					action
+						none
 					alias
 						none
 					description
@@ -1632,6 +1818,8 @@ class VOIDlang {
 						control
 					method
 						recognize
+					action
+						none
 					alias
 						none
 					description
@@ -1643,21 +1831,20 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++
 					param
-						[[name file  type str  default none
+						[[name file  type text  default none
 					example
-						[code [[. 'say…'] recognize]  test false
-						[code [[say voice voice.mp3] [recognize voice.mp3]]  test false
-						[code [[image cat cat.jpg] [recognize cat.jpg]]  test false
+						[code [recognize]  test false
+						[code [[recognize voice.mp3]]  test false
+						[code [[recognize cat.jpg]]  test false
 				ui
 					group
 						control
 					method
 						ui
+					action
+						none
 					alias
-						app
-						game
-						web
-						cli
+						none
 					description
 						Create a user interface
 					safe
@@ -1771,6 +1958,8 @@ class VOIDlang {
 						text
 					method
 						lower
+					action
+						none
 					alias
 						none
 					description
@@ -1790,6 +1979,8 @@ class VOIDlang {
 						text
 					method
 						upper
+					action
+						none
 					alias
 						none
 					description
@@ -1809,6 +2000,8 @@ class VOIDlang {
 						text
 					method
 						starts
+					action
+						none
 					alias
 						none
 					description
@@ -1830,6 +2023,8 @@ class VOIDlang {
 						text
 					method
 						ends
+					action
+						none
 					alias
 						none
 					description
@@ -1851,6 +2046,8 @@ class VOIDlang {
 						text
 					method
 						strip
+					action
+						none
 					alias
 						none
 					description
@@ -1873,6 +2070,8 @@ class VOIDlang {
 						text
 					method
 						strip_start
+					action
+						none
 					alias
 						none
 					description
@@ -1895,6 +2094,8 @@ class VOIDlang {
 						text
 					method
 						strip_end
+					action
+						none
 					alias
 						none
 					description
@@ -1917,6 +2118,8 @@ class VOIDlang {
 						text
 					method
 						replace
+					action
+						none
 					alias
 						none
 					description
@@ -1940,6 +2143,8 @@ class VOIDlang {
 						text
 					method
 						find
+					action
+						none
 					alias
 						none
 					description
@@ -1953,7 +2158,7 @@ class VOIDlang {
 					param
 						[name text  type text
 						[name subtext  type text
-						[name from  type int  default none
+						[name from  type [int text]  subname true  default none
 						[name to  type int  default none
 					example
 						[code [[find 'Hi! World' World]]  result 4
@@ -1961,11 +2166,14 @@ class VOIDlang {
 						[code [[find abcabc b 2]]  result 4
 						[code [[find abcabc b 2 4]]  result none
 						[code [[find abcabc b -1]]  result 4
+						[code [[find.end abcabc c]]  result 5
 				parse
 					group
 						text
 					method
 						parse
+					action
+						none
 					alias
 						none
 					description
@@ -1986,6 +2194,8 @@ class VOIDlang {
 						text
 					method
 						part
+					action
+						none
 					alias
 						none
 					description
@@ -2018,6 +2228,8 @@ class VOIDlang {
 						text
 					method
 						split
+					action
+						none
 					alias
 						none
 					description
@@ -2041,6 +2253,8 @@ class VOIDlang {
 						text
 					method
 						join
+					action
+						none
 					alias
 						none
 					description
@@ -2063,8 +2277,10 @@ class VOIDlang {
 						text
 					method
 						escape
+					action
+						none
 					alias
-						s
+						e
 					description
 						Escape special characters in a text
 					safe
@@ -2088,6 +2304,8 @@ class VOIDlang {
 						text
 					method
 						unescape
+					action
+						none
 					alias
 						u
 					description
@@ -2113,8 +2331,10 @@ class VOIDlang {
 						text
 					method
 						translate
+					action
+						none
 					alias
-						;
+						none
 					description
 						Translate text from one language to another
 					safe
@@ -2138,8 +2358,10 @@ class VOIDlang {
 						text
 					method
 						check
-					alias
+					action
 						none
+					alias
+						#
 					description
 						Spell check in different languages
 					safe
@@ -2163,6 +2385,8 @@ class VOIDlang {
 						list
 					method
 						push
+					action
+						none
 					alias
 						none
 					description
@@ -2186,6 +2410,8 @@ class VOIDlang {
 						list
 					method
 						pop
+					action
+						none
 					alias
 						none
 					description
@@ -2208,6 +2434,8 @@ class VOIDlang {
 						list
 					method
 						reverse
+					action
+						none
 					alias
 						none
 					description
@@ -2228,6 +2456,8 @@ class VOIDlang {
 						list
 					method
 						unique
+					action
+						none
 					alias
 						none
 					description
@@ -2248,6 +2478,8 @@ class VOIDlang {
 						list
 					method
 						map
+					action
+						none
 					alias
 						none
 					description
@@ -2269,6 +2501,8 @@ class VOIDlang {
 						list
 					method
 						reduce
+					action
+						none
 					alias
 						none
 					description
@@ -2283,13 +2517,15 @@ class VOIDlang {
 						[name data  type list
 						[name action  type [text list]
 					example
-						[code [[reduce [1 2 3 4] [[* {value}]] ]]  result 24
+						[code [[reduce [1 2 3 4] [[* .value]] ]]  result 24
 						[code [[reduce [1 2 3 4] +]]  result 10
 				filter
 					group
 						list
 					method
 						filter
+					action
+						none
 					alias
 						none
 					description
@@ -2305,12 +2541,14 @@ class VOIDlang {
 						[name action  type [text list]
 					example
 						[code [[filter [1 2 3 4] [[> 2]] ]]  result [3 4]
-						[code [[filter [t te tex text] [[? [n {}] > 2]] ]]  result [tex text]
+						[code [[filter [t te tex text] [[? [~ ..] > 2]] ]]  result [tex text]
 				names
 					group
 						list
 					method
 						names
+					action
+						none
 					alias
 						indexes
 						keys
@@ -2331,6 +2569,8 @@ class VOIDlang {
 						list
 					method
 						values
+					action
+						none
 					alias
 						none
 					description
@@ -2353,6 +2593,8 @@ class VOIDlang {
 						math
 					method
 						sin
+					action
+						none
 					alias
 						none
 					description
@@ -2374,6 +2616,8 @@ class VOIDlang {
 						math
 					method
 						cos
+					action
+						none
 					alias
 						none
 					description
@@ -2395,6 +2639,8 @@ class VOIDlang {
 						math
 					method
 						tan
+					action
+						none
 					alias
 						none
 					description
@@ -2416,6 +2662,8 @@ class VOIDlang {
 						math
 					method
 						sinh
+					action
+						none
 					alias
 						none
 					description
@@ -2437,6 +2685,8 @@ class VOIDlang {
 						math
 					method
 						cosh
+					action
+						none
 					alias
 						none
 					description
@@ -2458,6 +2708,8 @@ class VOIDlang {
 						math
 					method
 						tanh
+					action
+						none
 					alias
 						none
 					description
@@ -2479,6 +2731,8 @@ class VOIDlang {
 						math
 					method
 						asin
+					action
+						none
 					alias
 						none
 					description
@@ -2500,6 +2754,8 @@ class VOIDlang {
 						math
 					method
 						acos
+					action
+						none
 					alias
 						none
 					description
@@ -2521,6 +2777,8 @@ class VOIDlang {
 						math
 					method
 						atan
+					action
+						none
 					alias
 						none
 					description
@@ -2542,6 +2800,8 @@ class VOIDlang {
 						math
 					method
 						asinh
+					action
+						none
 					alias
 						none
 					description
@@ -2563,6 +2823,8 @@ class VOIDlang {
 						math
 					method
 						acosh
+					action
+						none
 					alias
 						none
 					description
@@ -2584,6 +2846,8 @@ class VOIDlang {
 						math
 					method
 						atanh
+					action
+						none
 					alias
 						none
 					description
@@ -2605,6 +2869,8 @@ class VOIDlang {
 						math
 					method
 						round
+					action
+						none
 					alias
 						none
 					description
@@ -2630,6 +2896,8 @@ class VOIDlang {
 						math
 					method
 						floor
+					action
+						none
 					alias
 						none
 					description
@@ -2654,6 +2922,8 @@ class VOIDlang {
 						math
 					method
 						ceil
+					action
+						none
 					alias
 						none
 					description
@@ -2678,8 +2948,10 @@ class VOIDlang {
 						math
 					method
 						log
-					alias
+					action
 						none
+					alias
+						ln
 					description
 						Logarithm of a number (natural by default)
 					safe
@@ -2697,11 +2969,15 @@ class VOIDlang {
 						[code [[log 0.1]]  round 4  result -2.3026
 						[code [[log 0.1 2]]  round 4  result -3.3219
 						[code [[log 0.1 10]]  result -1
+						[code [log]  type number
+						[code [ln]  type number
 				fact
 					group
 						math
 					method
 						factorial
+					action
+						none
 					alias
 						none
 					description
@@ -2724,6 +3000,8 @@ class VOIDlang {
 						math
 					method
 						fibonacci
+					action
+						none
 					alias
 						none
 					description
@@ -2749,6 +3027,8 @@ class VOIDlang {
 						math
 					method
 						gold
+					action
+						none
 					alias
 						g
 					description
@@ -2773,6 +3053,8 @@ class VOIDlang {
 						math
 					method
 						abs
+					action
+						none
 					alias
 						none
 					description
@@ -2795,6 +3077,8 @@ class VOIDlang {
 						math
 					method
 						min
+					action
+						none
 					alias
 						none
 					description
@@ -2817,6 +3101,8 @@ class VOIDlang {
 						math
 					method
 						max
+					action
+						none
 					alias
 						none
 					description
@@ -2839,6 +3125,8 @@ class VOIDlang {
 						math
 					method
 						sum
+					action
+						none
 					alias
 						none
 					description
@@ -2861,6 +3149,8 @@ class VOIDlang {
 						math
 					method
 						avg
+					action
+						none
 					alias
 						none
 					description
@@ -2883,6 +3173,8 @@ class VOIDlang {
 						math
 					method
 						random
+					action
+						none
 					alias
 						none
 					description
@@ -2911,8 +3203,10 @@ class VOIDlang {
 						math
 					method
 						random_seed
-					alias
+					action
 						none
+					alias
+						random.reseed
 					description
 						Receives, sets or refreshes the seed for the random number generator to produce reproducible results
 					safe
@@ -2920,14 +3214,14 @@ class VOIDlang {
 					container
 						none
 					language
-						[python gdscript c++ asm86
+						[python gdscript asm86
 					param
 						[[name seed  type text  default none
 					result
 						text
 					example
 						[code [[random.seed uniqueseed] random.seed]  result uniqueseed
-						[code [[random.seed ''] random.seed]  type text  length 256
+						[code [[random.reseed] random.seed]  type text  length 256
 	
 			  .: time :.
 	
@@ -2936,8 +3230,10 @@ class VOIDlang {
 						time
 					method
 						time
-					alias
+					action
 						none
+					alias
+						timestamp
 					description
 						Provides current time since the epoch or calculates time passed since a given start time
 					safe
@@ -2947,17 +3243,22 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name fraction  type number  default 0
+						[[name fraction  type [number text]  subname true  default 0
 					result
 						number
 					example
 						[code [time]  type number
 						[code [[time 4]]  type number
+						[code [time.milli]  type number
+						[code [time.micro]  type number
+						[code [timestamp]  type number
 				timer
 					group
 						time
 					method
 						timer
+					action
+						none
 					alias
 						none
 					description
@@ -2985,6 +3286,8 @@ class VOIDlang {
 						time
 					method
 						timer_remove
+					action
+						none
 					alias
 						none
 					description
@@ -3007,6 +3310,8 @@ class VOIDlang {
 						time
 					method
 						wait
+					action
+						none
 					alias
 						none
 					description
@@ -3018,16 +3323,21 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name seconds  type number  default 1
+						[[name seconds  type [number text]  subname true  default 1
 					result
 						none
 					example
-						[[code [[wait 0.1]]  result none
+						[code [[wait 0.01]]
+						[code [[wait 1m]]  test false
+						[code [[wait 1h]]  test false
+						[code [wait.h]  test false
 				stopwatch
 					group
 						time
 					method
 						stopwatch
+					action
+						none
 					alias
 						t
 					description
@@ -3053,6 +3363,8 @@ class VOIDlang {
 						time
 					method
 						date
+					action
+						none
 					alias
 						none
 					description
@@ -3084,6 +3396,8 @@ class VOIDlang {
 						crypto
 					method
 						encrypt
+					action
+						none
 					alias
 						none
 					description
@@ -3096,14 +3410,17 @@ class VOIDlang {
 						[python js swift kotlin gdscript c++ asm86
 					param
 						[name data  type any
-						[name key  type text
+						[name key  type text  default none
 					example
-						[[code [[encrypt secret key]]  result aGVsbG8=
+						[code [[encrypt text key]]  type binary
+						[code [[encrypt text]]  type dict
 				decrypt
 					group
 						crypto
 					method
 						decrypt
+					action
+						none
 					alias
 						none
 					description
@@ -3115,19 +3432,22 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[name hash  type [text binary
+						[name data  type [text binary
 						[name key  type text
 					example
-						[[code [[decrypt aGVsbG8= key]]  result secret
+						[code [[decrypt .data key]]  test false
+						[code [[decrypt U3tBg8cZyAM5Ir5w0sovXIiXSI9lCYGY3kdHHWmDHiBo key]]  result text
 				password
 					group
 						crypto
 					method
 						bcrypt_encode
+					action
+						none
 					alias
 						none
 					description
-						Hashes a password using the Argon2 algorithm for secure storage
+						Hashes a password using the Argon2, Bcrypt or PBKDF2 algorithm for secure storage
 					safe
 						true
 					container
@@ -3135,18 +3455,23 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name password  type text
+						[name password  type text
+						[name name  type text  default none
 					example
-						[[code [[password password]]  result $2a$12$saltpasswordhash
+						[code [[password password]]  type text
+						[code [[password password argon]]  type text
+						[code [[password password bcrypt]]  type text
 				password.check
 					group
 						crypto
 					method
 						bcrypt_check
+					action
+						none
 					alias
 						none
 					description
-						Verifies a password against a Argon2 hashed password
+						Verifies a password against a Argon2, Bcrypt or PBKDF2 hashed password
 					safe
 						true
 					container
@@ -3157,12 +3482,14 @@ class VOIDlang {
 						[name hash  type text
 						[name password  type text
 					example
-						[[code [[password.check $2a$12$saltpasswordhash password]]  result true
+						[[code [[password.check .hash password]]  type bool  test false
 				hash
 					group
 						crypto
 					method
 						hash
+					action
+						none
 					alias
 						none
 					description
@@ -3179,17 +3506,22 @@ class VOIDlang {
 					example
 						[code [[hash hello]]  result 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
 						[code [hash]  type text
-						[code [hash 10]  type text
-						[code [hash 10 letters]  type text
-						[code [hash.letters]  type text
-						[code [hash.letters 10]  type text
-						[code [hash.numbers 10]  type text
-						[code [hash.special 10]  type text
+						[code [hash 10]  type text  length 10
+						[code [hash 10 letter]  type text  length 10
+						[code [hash.letter 10]  type text  length 10
+						[code [hash.lower]  type text
+						[code [hash.upper]  type text
+						[code [hash.number]  type text
+						[code [hash.symbol]  type text
+						[code [hash text sha1]  result 372ea08cab33e71c02c651dbc83a474d32c676ea
+						[code [hash.sha1 text]  result 372ea08cab33e71c02c651dbc83a474d32c676ea
 				uuid
 					group
 						crypto
 					method
 						uuid
+					action
+						none
 					alias
 						none
 					description
@@ -3209,6 +3541,8 @@ class VOIDlang {
 						crypto
 					method
 						sha1
+					action
+						none
 					alias
 						none
 					description
@@ -3228,6 +3562,8 @@ class VOIDlang {
 						crypto
 					method
 						sha256
+					action
+						none
 					alias
 						none
 					description
@@ -3247,6 +3583,8 @@ class VOIDlang {
 						crypto
 					method
 						sha512
+					action
+						none
 					alias
 						none
 					description
@@ -3266,6 +3604,8 @@ class VOIDlang {
 						crypto
 					method
 						crc32
+					action
+						none
 					alias
 						none
 					description
@@ -3284,7 +3624,9 @@ class VOIDlang {
 					group
 						crypto
 					method
-						base64_encode
+						base64
+					action
+						none
 					alias
 						none
 					description
@@ -3304,6 +3646,8 @@ class VOIDlang {
 						crypto
 					method
 						base64_decode
+					action
+						none
 					alias
 						none
 					description
@@ -3315,15 +3659,19 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name data  type text
+						[name data  type text
+						[name safe  type bool  subname true  default true
 					example
 						[code [[base64.decode aGVsbG8=]]  result hello
 						[code [[base64.decode aGVsbG8]]  result hello
+						[code [[base64.decode.safe aGVsbG8]]  result hello
 				gzip
 					group
 						crypto
 					method
-						gzip_encode
+						gzip
+					action
+						none
 					alias
 						none
 					description
@@ -3336,20 +3684,22 @@ class VOIDlang {
 						[python js swift kotlin gdscript c++
 					param
 						[name data  type any
-						[name level  type [number text  subname true  default none
+						[name level  type [number text]  subname true  default none
 					example
 						[code [[gzip hello]]  result *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==
-						[code [[gzip hello 1]]  test false
-						[code [[gzip hello 9]]  test false
-						[code [[gzip hello fast]]  test false
-						[code [[gzip hello best]]  test false
-						[code [[gzip.fast hello]]  test false
-						[code [[gzip.best hello]]  test false
+						[code [[gzip hello 1]]  type binary
+						[code [[gzip hello 9]]  type binary
+						[code [[gzip hello fast]]  type binary
+						[code [[gzip hello best]]  type binary
+						[code [[gzip.fast hello]]  type binary
+						[code [[gzip.best hello]]  type binary
 				gzip.decode
 					group
 						crypto
 					method
 						gzip_decode
+					action
+						none
 					alias
 						none
 					description
@@ -3368,7 +3718,9 @@ class VOIDlang {
 					group
 						crypto
 					method
-						lzma_encode
+						lzma
+					action
+						none
 					alias
 						none
 					description
@@ -3383,7 +3735,7 @@ class VOIDlang {
 						[name data  type any
 						[name level  type [number text  subname true  default none
 					example
-						[[code [[lzma hello]]  result *...
+						[[code [[lzma hello]]  result */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==
 						[code [[lzma hello 1]]  test false
 						[code [[lzma hello 9]]  test false
 						[code [[lzma hello fast]]  test false
@@ -3395,6 +3747,8 @@ class VOIDlang {
 						crypto
 					method
 						lzma_decode
+					action
+						none
 					alias
 						none
 					description
@@ -3408,57 +3762,14 @@ class VOIDlang {
 					param
 						[[name data  type any
 					example
-						[code [[lzma.decode *...]]  result hello
-				lzss
-					group
-						crypto
-					method
-						lzss_encode
-					alias
-						none
-					description
-						Compresses data using the LZSS compression algorithm (fastest compression)
-					safe
-						true
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[name data  type any
-						[name level  type [number text]  subname true  default none
-					example
-						[[code [[lzss hello]]  result *...
-						[code [[lzss hello 1]]  test false
-						[code [[lzss hello 9]]  test false
-						[code [[lzss hello fast]]  test false
-						[code [[lzss hello best]]  test false
-						[code [[lzss.fast hello]]  test false
-						[code [[lzss.best hello]]  test false
-				lzss.decode
-					group
-						crypto
-					method
-						lzss_decode
-					alias
-						none
-					description
-						Decompresses LZSS compressed data
-					safe
-						true
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[[name data  type any
-					example
-						[code [[lzss.decode *...]]  result hello
+						[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result hello
 				lz4
 					group
 						crypto
 					method
-						lzss_encode
+						lz4
+					action
+						none
 					alias
 						none
 					description
@@ -3473,9 +3784,9 @@ class VOIDlang {
 						[name data  type any
 						[name level  type [number text]  subname true  default none
 					example
-						[code [[lz4 hello]]  result *...
-						[code [[lz4 hello 1]]  test false
-						[code [[lz4 hello 9]]  test false
+						[code [[lz4 hello]]  result *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==
+						[code [[lz4 hello 0]]  test false
+						[code [[lz4 hello 16]]  test false
 						[code [[lz4 hello fast]]  test false
 						[code [[lz4 hello best]]  test false
 						[code [[lz4.fast hello]]  test false
@@ -3484,7 +3795,9 @@ class VOIDlang {
 					group
 						crypto
 					method
-						lzss_decode
+						lz4_decode
+					action
+						none
 					alias
 						none
 					description
@@ -3498,16 +3811,153 @@ class VOIDlang {
 					param
 						[[name data  type any
 					example
-						[code [[lz4.decode *...]]  result hello
+						[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result hello
+				lzss
+					group
+						crypto
+					method
+						lzss
+					action
+						none
+					alias
+						none
+					description
+						Compresses data using the LZSS compression algorithm (fastest retro compression with minimal memory usage)
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name data  type any
+					example
+						[[code [[lzss hello]]  result *H2hlbGxv
+				lzss.decode
+					group
+						crypto
+					method
+						lzss_decode
+					action
+						none
+					alias
+						none
+					description
+						Decompresses LZSS compressed data
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name data  type any
+					example
+						[[code [[lzss.decode *H2hlbGxv]]  result hello
+				deflate
+					group
+						crypto
+					method
+						deflate
+					action
+						none
+					alias
+						none
+					description
+						Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name data  type any
+						[name level  type [number text]  subname true  default none
+					example
+						[[code [[deflate hello]]  result *y0jNyckHAA==
+						[code [[deflate hello 1]]  test false
+						[code [[deflate hello 9]]  test false
+						[code [[deflate hello fast]]  test false
+						[code [[deflate hello best]]  test false
+						[code [[deflate.fast hello]]  test false
+						[code [[deflate.best hello]]  test false
+				deflate.decode
+					group
+						crypto
+					method
+						deflate_decode
+					action
+						none
+					alias
+						none
+					description
+						Decompresses Deflate (LZSS + Huffman) compressed data
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name data  type any
+					example
+						[[code [[deflate.decode *y0jNyckHAA==]]  result hello
+				aes
+					group
+						crypto
+					method
+						aes
+					action
+						none
+					alias
+						none
+					description
+						Encrypts binary data using the AES256 algorithm and the specified key
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name data  type binary
+						[name key  type text
+					example
+						[[code [[aes *'text' key]]  type binary
+				aes.decode
+					group
+						crypto
+					method
+						aes_decode
+					action
+						none
+					alias
+						none
+					description
+						Decrypts previously encrypted binary data using the AES256 algorithm and the specified key
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name data  type binary
+						[name key  type text
+					example
+						[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text'
 				rsa
 					group
 						crypto
 					method
 						rsa_encode
+					action
+						none
 					alias
 						none
 					description
-						Encrypts data using RSA encryption with a public key
+						Encrypts data using RSA encryption with a public key or generates keys (the maximum data length and encryption speed depends on the key size 4096 = 446 bytes)
 					safe
 						true
 					container
@@ -3516,14 +3966,24 @@ class VOIDlang {
 						[python js swift kotlin gdscript c++
 					param
 						[name data  type any
-						[name public_key  type text
+						[name public  type text
+						[name password  type text  default none
+						[name length  type [int text]  default none
 					example
-						[code [[rsa secret {public_key}]]  type binary  test false
+						[code [rsa]  type dict
+						[code [[rsa text .public_key]]  type binary  test false
+						[code [[rsa text none .extra_password .key_size]]  type binary  test false
+						[code [[rsa.fast 128bytes .public_key]]  type binary  test false
+						[code [[rsa.128 128bytes .public_key]]  type binary  test false
+						[code [[rsa.446 446bytes .public_key]]  type binary  test false
+						[code [[rsa.4096 446bytes .public_key]]  type binary  test false
 				rsa.decode
 					group
 						crypto
 					method
 						rsa_decode
+					action
+						none
 					alias
 						none
 					description
@@ -3537,17 +3997,21 @@ class VOIDlang {
 					param
 						[name data  type any
 						[name private_key  type text
+						[name password  type text  default none
 					example
-						[code [[rsa.decode {encrypted} {private_key}]]  type [text binary]  test false
+						[code [[rsa.decode .encrypted .private_key]]  type binary  test false
+						[code [[rsa.decode .encrypted .private_key .extra_password]]  type binary  test false
 				ecdhe
 					group
 						crypto
 					method
 						ecdhe_encode
+					action
+						none
 					alias
 						none
 					description
-						Encrypts data using ECDHE encryption with a disposable key
+						Creates a pair of keys or creates a shared key from the public and private keys of the sides
 					safe
 						true
 					container
@@ -3555,39 +4019,23 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[name data  type any
-						[name public_key  type text
+						[name public_key  type text  default none
+						[name private_key  type text  default none
 					example
-						[code [[ecdhe secret {public_key}]]  type binary  test false
-				ecdhe.decode
-					group
-						crypto
-					method
-						ecdhe_decode
-					alias
-						none
-					description
-						Decrypts data encrypted with ECDHE encryption
-					safe
-						true
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[name data  type any
-						[name private_key  type text
-					example
-						[code [[ecdhe.decode {encrypted} {private key}]]  type [text binary]  test false
+						[code [ecdhe]  type dict
+						[code [ecdhe .side1_public_key .side2_private_key]  type text
+						[code [ecdhe .side2_public_key .side1_private_key]  type text
 				barcode
 					group
 						crypto
 					method
 						barcode_encode
+					action
+						none
 					alias
 						qr
 					description
-						Encodes text into a barcode image
+						Encodes text into a barcode or returns a list of supported code formats
 					safe
 						true
 					container
@@ -3595,21 +4043,23 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[name data  type any
-						[name standard  type text  subname true  default none
+						[name text  type any
+						[name format  type text  subname true  default none
 					example
-						[code [[qr https://voidsp.com]]  type binary  test false
-						[code [[barcode 012345678]]  type binary  test false
-						[code [[barcode 012345678 ean]]  type binary  test false
-						[code [[barcode.ean 012345678]]  type binary  test false
-						[code [[barcode.upc 012345678]]  type binary  test false
-						[code [[barcode.128 012345678]]  type binary  test false
-						[code [[barcode.matrix 012345678]]  type binary  test false
+						[code [barcode]  type dict
+						[code [[barcode 8410564006257]]  type dict
+						[code [[barcode 8410564006257 ean13]]  type dict
+						[code [[barcode.ean13 8410564006257]]  type dict
+						[code [[barcode.upc 712345000019]]  type dict
+						[code [[barcode.code128 text]]  type dict
+						[code [[qr https://voidsp.com]]  type dict
 				barcode.decode
 					group
 						crypto
 					method
 						barcode_decode
+					action
+						none
 					alias
 						qr.decode
 					description
@@ -3621,11 +4071,13 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[name data  type any
-						[name standard  type text  subname true  default none
+						[name image  type binary
+						[name format  type text  subname true  default none
 					example
-						[code [[barcode.decode {image}]]  type text
-						[code [[barcode.decode.ean {image}]]  type text
+						[code [[barcode.decode .image]]  type text
+						[code [[barcode.decode .image ean13]]  type text
+						[code [[barcode.decode.ean13 .image]]  type text
+						[code [[qr.decode .image]]  type text
 	
 			  .: file :.
 	
@@ -3634,9 +4086,15 @@ class VOIDlang {
 						file
 					method
 						file
+					action
+						none
 					alias
 						<<<
 						>>>
+						file.read
+						file.write
+						file.create
+						file.clear
 					description
 						Read or write data to a file at a specified path
 					safe
@@ -3660,18 +4118,22 @@ class VOIDlang {
 						[code [[file.1252 file.txt]]  type text  test false
 						[code [[file file.txt text]]  test false
 						[code [[>>> file.txt text]]  test false
-						[code [[file.utf8 file.txt {text}]]  test false
-						[code [[file.1252 file.txt {text}]]  test false
-						[code [[file data.void {data}]]  test false
-						[code [[file data.json {data}]]  test false
-						[code [[file data.csv {data}]]  type any  test false
+						[code [[file.utf8 file.txt .text]]  test false
+						[code [[file.1252 file.txt .text]]  test false
+						[code [[file data.void .data]]  test false
+						[code [[file data.json .data]]  test false
+						[code [[file data.csv .data]]  type any  test false
+						[code [[file.create file.txt]]  test false
+						[code [[file.clear file.txt]]  test false
 				file.exists
 					group
 						file
 					method
 						file_exists
-					alias
+					action
 						none
+					alias
+						is_file
 					description
 						Checks if a specified file exists at the given path
 					safe
@@ -3690,6 +4152,8 @@ class VOIDlang {
 						file
 					method
 						file_remove
+					action
+						none
 					alias
 						file.trash
 					description
@@ -3701,16 +4165,20 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name path  type text
+						[name path  type [text list
+						[name trash  type bool  default none
 					example
 						[code [[file.remove file.txt]]  test false
 						[code [[file.remove /path/to/file.txt]]  test false
+						[code [[file.remove file1.txt file2.txt]]  test false
 						[code [[file.trash file.txt]]  test false
 				file.copy
 					group
 						file
 					method
 						file_copy
+					action
+						none
 					alias
 						none
 					description
@@ -3725,16 +4193,18 @@ class VOIDlang {
 						[name source  type text
 						[name destination  type text  default none
 					example
-						[code [[file.copy /path/to/file.txt /path/destination/file.txt]]  test false
-						[code [[file.copy /path/to/file.txt /path/destination]]  test false
+						[code [[file.copy /path/to/file.txt /destination/file.txt]]  test false
+						[code [[file.copy /path/to/file.txt /destination]]  test false
 						[code [[file.copy /path/to/file.txt]]  test false
 				file.move
 					group
 						file
 					method
 						file_move
+					action
+						none
 					alias
-						rename
+						file.rename
 					description
 						Moves a specified file to a new location or renames it
 					safe
@@ -3747,37 +4217,17 @@ class VOIDlang {
 						[name source  type text
 						[name destination  type text
 					example
-						[code [[file.move /path/to/file.txt /path/destination/file.txt]]  test false
-						[code [[file.move /path/to/file.txt /path/destination]]  test false
+						[code [[file.move /path/to/file.txt /destination/file.txt]]  test false
+						[code [[file.move /path/to/file.txt /destination]]  test false
 						[code [[file.rename file.txt backup.txt]]  test false
 						[code [[file.rename /path/to/file.txt backup.txt]]  test false
-						[code [[file.rename /path/to/file.txt /path/destination/file.txt]]  test false
-				file.link
-					group
-						file
-					method
-						file_link
-					alias
-						none
-					description
-						Creates a hard link to a specified file or checks if a hard link exists at the given path
-					safe
-						false
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[name source  type text
-						[name destination  type text  default none
-					example
-						[code [[file.link /path/to/file.txt /link.txt]]  test false
-						[code [[file.link /link.txt]]  type bool  test false
 				file.info
 					group
 						file
 					method
 						file_info
+					action
+						none
 					alias
 						none
 					description
@@ -3812,6 +4262,8 @@ class VOIDlang {
 						[code [[file.owner /path/to/file.txt]]  type text  test false
 						[code [[file.time /path/to/file.txt]]  type number  test false
 						[code [[file.permission /path/to/file.txt [read true  write true]]]  test false
+						[code [[file.permission.execute.owner /path/to/file.txt true]]  test false
+						[code [[file.permission.execute /path/to/file.txt true]]  test false
 						[code [[info.owner /path/to/file.txt]]  type text  test false
 						[code [[info.time /path/to/file.txt]]  type number  test false
 				file.sha256
@@ -3819,6 +4271,8 @@ class VOIDlang {
 						file
 					method
 						file_sha256
+					action
+						none
 					alias
 						none
 					description
@@ -3838,6 +4292,8 @@ class VOIDlang {
 						file
 					method
 						file_sha512
+					action
+						none
 					alias
 						none
 					description
@@ -3857,6 +4313,8 @@ class VOIDlang {
 						file
 					method
 						file_crc32
+					action
+						none
 					alias
 						none
 					description
@@ -3876,6 +4334,8 @@ class VOIDlang {
 						file
 					method
 						file_base64
+					action
+						none
 					alias
 						none
 					description
@@ -3890,11 +4350,43 @@ class VOIDlang {
 						[[name path  type text
 					example
 						[[code [[file.base64 file.txt]]  type text  test false
+				file.gzip
+					group
+						file
+					method
+						file_gzip
+					action
+						none
+					alias
+						none
+					description
+						Compresses a specified file using GZip compression
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++
+					param
+						[name source  type text
+						[name destination  type text  default none
+						[name param  type [text number dct]  default none
+					example
+						[code [[file.gzip file.txt file.gz]]  test false
+						[code [[file.gzip file.txt]]  test false
+						[code [[file.gzip file.txt file.txt.gz 7]]  test false
+						[code [[file.gzip file.txt 7]]  test false
+						[code [[file.gzip file.txt file.txt.gz best]]  test false
+						[code [[file.gzip file.txt file.txt.gz fast]]  test false
+						[code [[file.gzip file.txt file.txt.gz [compression  9]]]  test false
+						[code [[file.gzip /path/to/file.txt /destination/file.gz]]  test false
 				file.zip
 					group
 						file
 					method
 						file_zip
+					action
+						none
 					alias
 						none
 					description
@@ -3919,41 +4411,16 @@ class VOIDlang {
 						[code [[file.zip file.txt file.zip [compression 9  overwrite true]]]  test false
 						[code [[file.zip /path/to/file.txt /destination/file.zip]]  test false
 						[code [[file.zip [file1.txt file2.txt] files.zip]]  test false
-				file.gzip
-					group
-						file
-					method
-						file_gzip
-					alias
-						none
-					description
-						Compresses a specified file using GZip compression
-					safe
-						false
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++
-					param
-						[name source  type text
-						[name destination  type text  default none
-						[name param  type [text number dct]  default none
-					example
-						[code [[file.gzip file.txt file.gz]]  test false
-						[code [[file.gzip file.txt]]  test false
-						[code [[file.gzip file.txt file.txt.gz 7]]  test false
-						[code [[file.gzip file.txt 7]]  test false
-						[code [[file.gzip file.txt file.txt.gz best]]  test false
-						[code [[file.gzip file.txt file.txt.gz fast]]  test false
-						[code [[file.gzip file.txt file.txt.gz [compression  9]]]  test false
-						[code [[file.gzip /path/to/file.txt /destination/file.gz]]  test false
 				file.void
 					group
 						file
 					method
 						file_void
-					alias
+					action
 						none
+					alias
+						dir.void
+						drive.void
 					description
 						Compresses the specified file using LZMA2 compression and places it in a container
 					safe
@@ -3983,6 +4450,8 @@ class VOIDlang {
 						file
 					method
 						file_extract
+					action
+						none
 					alias
 						none
 					description
@@ -4006,12 +4475,61 @@ class VOIDlang {
 						[code [[file.extract file.zip]]  test false
 						[code [[file.extract file.zip [file1.txt file2.txt]]]  test false
 						[code [[file.extract file.zip [source [file1.txt file2.txt]  destination /path/to/extract  overwrite true  remove true]]]  test false
-						[code [[file.extract file.txt.gz]]  test false
+						[code [[file.extract file.txt.gz /path/to/extract]]  test false
+						[code [[file.extract dir.tar.gz /path/to/extract]]  test false
+						[code [[file.extract dir.tar /path/to/extract]]  test false
+				link
+					group
+						file
+					method
+						link
+					action
+						none
+					alias
+						none
+					description
+						Creates a symlink at the given path
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name source  type text
+						[name destination  type text
+					example
+						[code [[link /path/to/file.txt /path/to/link]]  type bool  test false
+						[code [[link /path /path/to/link]]  type bool  test false
+						[code [[link /mnt/drive /path/to/link]]  type bool  test false
+				link.exists
+					group
+						file
+					method
+						link_exists
+					action
+						none
+					alias
+						is_link
+					description
+						Checks if a specified symlink exists at the given path
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name path  type text
+					example
+						[[code [[link.exists /path/to/link]]  type bool  test false
 				dir
 					group
 						file
 					method
 						dir
+					action
+						none
 					alias
 						none
 					description
@@ -4023,39 +4541,24 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name path  type text
+						[name path  type text
+						[name param  type [bool list]  default none
 					example
-						[[code [[dir /path]]  type list  test false
+						[code [dir]  type list  test false
+						[code [[dir /path]]  type list  test false
+						[code [[dir /path owner]]  type list  test false
+						[code [[dir /path [owner time sha256 sort]]]  type list  test false
 				dir.create
 					group
 						file
 					method
 						dir_create
+					action
+						none
 					alias
 						none
 					description
-						Creates a new directory at a specified path
-					safe
-						false
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[name path  type text
-						[name param  type dict  default none
-					example
-						[code [[dir.create /path/to/create]]  test false
-						[code [[dir.create /path/to/create [owner root  user root  permission [others [read true  write true]]] ]]  test false
-				dir.exists
-					group
-						file
-					method
-						dir_exists
-					alias
-						none
-					description
-						Checks if a specified directory exists
+						Creates a new directory
 					safe
 						false
 					container
@@ -4065,16 +4568,39 @@ class VOIDlang {
 					param
 						[[name path  type text
 					example
-						[[code [[dir.exists /path]]  type bool  test false
+						[[code [[dir.create /path/to/create]  test false
+				dir.exists
+					group
+						file
+					method
+						dir_exists
+					action
+						none
+					alias
+						is_dir
+					description
+						Checks if a specified directory exists at the given path
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name path  type text
+					example
+						[[code [[dir.exists /path/to/check]]  type bool  test false
 				dir.remove
 					group
 						file
 					method
 						dir_remove
+					action
+						none
 					alias
 						dir.trash
 					description
-						Removes a specified directory and its contents
+						Removes a specified directory
 					safe
 						false
 					container
@@ -4086,15 +4612,38 @@ class VOIDlang {
 					example
 						[code [[dir.remove /path/to/remove]]  test false
 						[code [[dir.trash /path/to/remove]]  test false
+				dir.clear
+					group
+						file
+					method
+						dir_clear
+					action
+						none
+					alias
+						none
+					description
+						Clears all contents of a directory without removing itself
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name path  type text
+					example
+						[[code [[dir.clear /path/to/clear]]  test false
 				dir.copy
 					group
 						file
 					method
 						dir_copy
+					action
+						none
 					alias
 						none
 					description
-						Copies a specified directory and its contents to a new location
+						Copies a directory to a new location
 					safe
 						false
 					container
@@ -4105,17 +4654,24 @@ class VOIDlang {
 						[name source  type text
 						[name destination  type text  default none
 					example
+						[code [[file.copy /path/to/file.txt /path/destination/file.txt]]  test false
+						[code [[file.copy /path/to/file.txt /path/destination]]  test false
+						[code [[file.copy /path/to/file.txt]]  test false
 						[code [[dir.copy /path/to/copy /path/destination]]  test false
 						[code [[dir.copy /path/to/copy]]  test false
+						[code [[drive.copy e f]]  test false
+						[code [[drive.copy /mnt/drive /mnt/backup]]  test false
 				dir.move
 					group
 						file
 					method
 						dir_move
+					action
+						none
 					alias
 						dir.rename
 					description
-						Moves a specified directory to a new location
+						Moves a specified directory to a new location or renames it
 					safe
 						false
 					container
@@ -4126,34 +4682,24 @@ class VOIDlang {
 						[name source  type text
 						[name destination  type text
 					example
+						[code [[file.move /path/to/file.txt /path/destination/file.txt]]  test false
+						[code [[file.move /path/to/file.txt /path/destination]]  test false
 						[code [[dir.move /path/to/move /]]  test false
 						[code [[dir.move /path/to/move /destination]]  test false
-						[code [[dir.rename path backup]]  test false
-						[code [[dir.rename /path/to/rename /path/destination]]  test false
-				dir.clear
-					group
-						file
-					method
-						dir_clear
-					alias
-						none
-					description
-						Clears all contents of a specified directory without removing the directory itself
-					safe
-						false
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[[name path  type text
-					example
-						[[code [[dir.clear /path/to/clear]]
+						[code [[dir.move e f]]  test false
+						[code [[dir.move /mnt/drive /mnt/backup]]  test false
+						[code [[file.rename file.txt backup.txt]]  test false
+						[code [[file.rename /path/to/file.txt backup.txt]]  test false
+						[code [[dir.rename /path backup]]  test false
+						[code [[drive.rename e name]]  test false
+						[code [[drive.rename /mnt/drive name]]  test false
 				dir.info
 					group
 						file
 					method
 						dir_info
+					action
+						none
 					alias
 						none
 					description
@@ -4170,58 +4716,133 @@ class VOIDlang {
 						[name component  type text  subname true  default none
 					example
 						[code [[dir.info /path]]  type dict  test false
-						[code [[dir.info.drive /path]]  type text  test false
-						[code [[dir.info.files /path]]  type number  test false
 						[code [[dir.info.size /path]]  type number  test false
 						[code [[dir.info.owner /path]]  type text  test false
-						[code [[dir.info.group /path]]  type text  test false
-						[code [[dir.info.permission /path]]  type dict  test false
-						[code [[dir.info.time /path]]  type number  test false
-						[code [[dir.info.time.create /path]]  type number  test false
-						[code [[dir.info.permission /path [read true  write true]]]  test false
-						[code [[dir.info.permission /path [owner [read true  write true]  group [read true  write true]]]]  test false
-						[code [[dir.info.permission /path hidden]]  test false
-						[code [[dir.info.permission /path readonly]]  test false
-						[code [[dir.owner /path]]  type text  test false
-						[code [[dir.time /path]  type number  test false
-						[code [[dir.permission /path [read true  write true]]]  test false
+						[code [[dir.info.files /path]]  type number  test false
+						[code [[dir.info.permission.read.owner /path true]]  test false
+						[code [[dir.info.permission.read /path true]]  test false
 						[code [[info.owner /path]]  type text  test false
 						[code [[info.time /path]]  type number  test false
+				dir.sha256
+					group
+						file
+					method
+						dir_sha256
+					action
+						none
+					alias
+						none
+					description
+						Computes the SHA256 checksum of a specified directory
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name path  type text
+					example
+						[[code [[dir.sha256 /path/to/hash]]  type text  test false
+				dir.sha512
+					group
+						file
+					method
+						dir_sha512
+					action
+						none
+					alias
+						none
+					description
+						Computes the SHA512 checksum of a specified directory
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name path  type text
+					example
+						[[code [[dir.sha512 /path/to/hash]]  type text  test false
+				dir.gzip
+					group
+						file
+					method
+						dir_gzip
+					action
+						none
+					alias
+						none
+					description
+						Compresses a specified file, directory or drive using GZip compression
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++
+					param
+						[name source  type text
+						[name destination  type text  default none
+						[name param  type [text number dct]  default none
+					example
+						[code [[file.gzip file.txt file.gz]]  test false
+						[code [[file.gzip file.txt]]  test false
+						[code [[file.gzip file.txt file.txt.gz 7]]  test false
+						[code [[file.gzip file.txt 7]]  test false
+						[code [[file.gzip file.txt file.txt.gz best]]  test false
+						[code [[file.gzip file.txt file.txt.gz fast]]  test false
+						[code [[file.gzip file.txt file.txt.gz [compression  9]]]  test false
+						[code [[file.gzip /path/to/file.txt /destination/file.gz]]  test false
+						[code [[dir.gzip /path dir.tar.gz]]  test false
+						[code [[drive.gzip e drive.tar.gz]]  test false
+						[code [[drive.gzip /mnt/drive drive.tar.gz]]  test false
 				dir.zip
 					group
 						file
 					method
 						dir_zip
+					action
+						none
 					alias
 						none
 					description
-						Compresses a specified directory into a ZIP archive
+						Compresses a specified file, directory or drive into a ZIP archive
 					safe
 						false
 					container
 						none
 					language
-						[python js swift kotlin gdscript c++ asm86
+						[python js swift kotlin gdscript c++
 					param
-						[name source  type text
+						[name source  type [text list
 						[name destination  type text  default none
 						[name param  type [text number dict]  default none
 					example
-						[code [[dir.zip /path backup.zip]]  test false
-						[code [[dir.zip /path backup.zip 7]]  test false
-						[code [[dir.zip /path 7]]  test false
-						[code [[dir.zip /path backup.zip fast]]  test false
-						[code [[dir.zip /path backup.zip best]]  test false
-						[code [[dir.zip /path backup.zip [compression 9  overwrite true]]]  test false
+						[code [[file.zip file.txt file.zip]]  test false
+						[code [[file.zip file.txt]]  test false
+						[code [[file.zip file.txt file.zip 7]]  test false
+						[code [[file.zip file.txt 7]]  test false
+						[code [[file.zip file.txt file.zip best]]  test false
+						[code [[file.zip file.txt file.zip fast]]  test false
+						[code [[file.zip file.txt file.zip [compression 9  overwrite true]]]  test false
+						[code [[file.zip /path/to/file.txt /destination/file.zip]]  test false
+						[code [[file.zip [file1.txt file2.txt] files.zip]]  test false
+						[code [[dir.zip /path dir.zip]]  test false
+						[code [[drive.zip e drive.zip]]  test false
+						[code [[drive.zip /mnt/drive drive.zip]]  test false
 				dir.void
 					group
 						file
 					method
 						dir_void
+					action
+						none
 					alias
 						none
 					description
-						Compresses a specified directory into a void container
+						Compresses the specified file, directory or drive using LZMA2 compression and places it in a container
 					safe
 						false
 					container
@@ -4229,28 +4850,75 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[name source  type text
-						[name destination  type text  default none
-						[name param  type [text number dict]  default none
+						[name source  type [text list
+						[name destination  type [text dict]  default none
+						[name param  type [text number dct]  default none
 					example
-						[code [[dir.void /path backup.void]]  test false
-						[code [[dir.void /path]]  test false
-						[code [[dir.void /path backup.void 7]]  test false
-						[code [[dir.void /path 7]]  test false
-						[code [[dir.void /path backup.void best]]  test false
-						[code [[dir.void /path backup.void fast]]  test false
-						[code [[dir.void /path [compression 9  key password]]]  test false
-						[code [[dir.void /path backup.void password]]  test false
-						[code [[dir.void /path backup.void key.txt]]  test false
+						[code [[file.void file.txt file.void]]  test false
+						[code [[file.void file.txt]]  test false
+						[code [[file.void file.txt file.void 7]]  test false
+						[code [[file.void file.txt 7]]  test false
+						[code [[file.void file.txt file.void best]]  test false
+						[code [[file.void file.txt file.void fast]]  test false
+						[code [[file.void file.txt [compression 9  key password]]]  test false
+						[code [[file.void file.txt file.void password]]  test false
+						[code [[file.void file.txt file.void key.txt]]  test false
+						[code [[file.void /path/to/file.txt /destination/file.void]]  test false
+						[code [[file.void [file1.txt file2.txt] files.void]]  test false
+						[code [[dir.void /path dir.void]]  test false
+						[code [[drive.void e drive.void]]  test false
+						[code [[drive.void /mnt/drive drive.void]]  test false
+				dir.magic
+					group
+						file
+					method
+						dir_magic
+					action
+						none
+					alias
+						none
+					description
+						Automatically convert files in the specified directory
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name path  type text
+						[name effect  type text  subname true
+						[name param  type many  default none
+					example
+						[code [[dir.magic.jpg /path/to/magic]]  test false
+						[code [[dir.magic.jpg /path/to/magic 90%]]  test false
+						[code [[dir.magic.png /path/to/magic]]  test false
+						[code [[dir.magic.webp /path/to/magic]]  test false
+						[code [[dir.magic.webp.lossless /path/to/magic]]  test false
+						[code [[dir.magic.webp.loop /path/to/magic]]  test false
+						[code [[dir.magic.gif /path/to/magic]]  test false
+						[code [[dir.magic.video /path/to/magic mykey]]  test false
+						[code [[dir.magic.mp4 /path/to/magic mykey]]  test false
+						[code [[dir.magic.unique /path/to/magic]]  test false
+						[code [[dir.magic.zip /path/to/magic]]  test false
+						[code [[dir.magic.cloud /path/to/magic]]  test false
+						[code [[dir.magic.encrypt /path/to/magic]]  test false
+						[code [[dir.magic.manga /path/to/magic translate colorize]]  test false
+						[code [[dir.magic.x2 /path/to/magic]]  test false
+						[code [[dir.magic.grayscale /path/to/magic]]  test false
+						[code [[dir.magic.crop /path/to/magic [width 200  height 100]]]  test false
+						[code [[dir.magic.run /path/to/magic]]  test false
 				drive
 					group
 						file
 					method
 						drive
-					alias
+					action
 						none
+					alias
+						drive.info
 					description
-						Lists all available drives on the system or retrives information about a volume or partition
+						Lists all available drives on the system
 					safe
 						false
 					container
@@ -4258,29 +4926,138 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[name name  type text  default none
-						[name info  type text  subname true  default none
+						[[name path  type text  default none
 					example
 						[code [drive]  type list
-						[code [[drive data]]  type dict
-						[code [[drive E]]  type dict
-						[code [[drive.name data]]  type text
-						[code [[drive.name E]]  type text
-						[code [[drive.format data]]  type text
-						[code [[drive.format E]]  type text
-						[code [[drive.partition data]]  type text
-						[code [[drive.partition E]]  type text
-						[code [[drive.size data]]  type number
-						[code [[drive.size E]]  type number
-						[code [[drive.used data]]  type number
-						[code [[drive.used E]]  type number
-						[code [[drive.free data]]  type number
-						[code [[drive.free E]]  type number
+						[code [drive /mnt/storage]  type dict  test false
+						[code [drive E]  type dict  test false
+						[code [drive.info /mnt/storage]  type dict  test false
+				drive.create
+					group
+						file
+					method
+						drive_create
+					action
+						drive.create
+					alias
+						none
+					description
+						Creates a volume or partition with the specified parameters
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name path  type text
+						[name size [int text]  default none
+						[name format  type text   default none
+						[name name  type text  default none
+					example
+						[code [[drive.create .id 100gb ext4 backup]]  test false
+						[code [[drive.create .id 100_000_000_000 ext4 backup]]  test false
+				drive.exists
+					group
+						file
+					method
+						drive_exists
+					action
+						none
+					alias
+						is_drive
+					description
+						Checks if a specified drive exists at the given path
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name path  type text
+					example
+						[code [[drive.exists /mnt/storage]]  type bool  test false
+						[code [[drive.exists .id]]  type bool  test false
+						[code [[is_drive .id]]  type bool  test false
+				drive.remove
+					group
+						file
+					method
+						drive_remove
+					action
+						drive.remove
+					alias
+						none
+					description
+						Removes a volume or partition
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name path  type text
+					example
+						[code [[drive.remove /mnt/storage]]  test false
+						[code [[drive.remove E]]  test false
+						[code [[drive.remove .partition.id]]  test false
+				drive.clear
+					group
+						file
+					method
+						drive_clear
+					action
+						drive.clear
+					alias
+						drive.format
+					description
+						 Clears or format a volume
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name path  type text
+						[name format  type text  default none
+					example
+						[code [[drive.clear /mnt/storage]]  test false
+						[code [[drive.clear E]]  test false
+						[code [[drive.clear .volume.id]]  test false
+						[code [[drive.format E fat32]]  test false
+				drive.rename
+					group
+						file
+					method
+						drive_rename
+					action
+						drive.rename
+					alias
+						none
+					description
+						Renames a volume
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name path  type text
+						[name name  type text]
+					example
+						[code [[drive.rename /mnt/storage backup]]  test false
+						[code [[drive.rename E backup]]  test false
 				drive.mount
 					group
 						file
 					method
-						action.drive.mount
+						drive_mount
+					action
+						drive.mount
 					alias
 						none
 					description
@@ -4296,13 +5073,15 @@ class VOIDlang {
 						[name path  type text  default none
 					example
 						[code [[drive.mount data]]  test false
-						[code [[drive.mount {id} /mnt/backup]]  test false
-						[code [[drive.mount /path/to/data.iso E]]  test false
+						[code [[drive.mount .id /mnt/storage]]  test false
+						[code [[drive.mount storage.iso E]]  test false
 				drive.unmount
 					group
 						file
 					method
-						action.drive.unmount
+						drive_unmount
+					action
+						drive.unmount
 					alias
 						none
 					description
@@ -4316,34 +5095,16 @@ class VOIDlang {
 					param
 						[[name name  type text
 					example
-						[code [[drive.unmount data]]  test false
+						[code [[drive.unmount storage]]  test false
+						[code [[drive.unmount /mnt/storage]]  test false
 						[code [[drive.unmount E]]  test false
-				drive.create
-					group
-						file
-					method
-						action.drive.create
-					alias
-						none
-					description
-						Creates a new volume or partition
-					safe
-						false
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[[name info  type dict
-					example
-						[code [[drive.create [name data  size 2gb  partition {partition.id}  format ext4]]  test false
-						[code [[drive.create [name data  size 2gb  partition {partition.id}  format fat32  mbr {mbr}]]  test false
-						[code [[drive.create [size 2gb]]  test false
 				drive.resize
 					group
 						file
 					method
-						action.drive.resize
+						drive_resize
+					action
+						drive.resize
 					alias
 						none
 					description
@@ -4358,18 +5119,20 @@ class VOIDlang {
 						[name name  type text
 						[name size  type [number text
 					example
-						[code [[drive.resize data 2gb]]  test false
-						[code [[drive.resize data 2000000000]]  test false
-						[code [[drive.resize {partition.id} 2gb]]  test false
-				drive.clear
+						[code [[drive.resize storage 100gb]]  test false
+						[code [[drive.resize storage 100_000_000_000]]  test false
+						[code [[drive.resize .partition.id 100gb]]  test false
+				drive.check
 					group
 						file
 					method
-						action.drive.clear
+						drive_check
+					action
+						drive.check
 					alias
 						none
 					description
-						Clears a specified volume or partition
+						Checks the volume for errors and corrects them
 					safe
 						false
 					container
@@ -4377,21 +5140,21 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name name  type text
+						[[name path  type text
 					example
-						[code [[drive.clear data]]  test false
-						[code [[drive.clear /mnt/data]]  test false
-						[code [[drive.clear E]]  test false
-						[code [[drive.clear {partition.id}]]  test false
-				drive.remove
+						[code [[drive.check /mnt/storage]]  test false
+						[code [[drive.check E]]  test false
+				drive.defrag
 					group
 						file
 					method
-						action.drive.remove
+						drive_defrag
+					action
+						drive.defrag
 					alias
 						none
 					description
-						Removes a specified volume or partition
+						Defragments the files on the volume
 					safe
 						false
 					container
@@ -4399,20 +5162,46 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name name  type text
+						[[name path  type text
 					example
-						[code [[drive.remove data]]  test false
-						[code [[drive.remove E]]  test false
-						[code [[drive.remove {partition.id}]]  test false
+						[code [[drive.defrag /mnt/storage]]  test false
+						[code [[drive.defrag E]]  test false
+				drive.os
+					group
+						file
+					method
+						drive_os
+					action
+						drive.os
+					alias
+						none
+					description
+						Makes the volume bootable or retrieves a list of available operating system images
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name path  type text
+						[name os  type text  default none
+					example
+						[code [drive.os]  type list  test false
+						[code [[drive.os /mnt/storage]]  test false
+						[code [[drive.os /mnt/storage osname]]  test false
+						[code [[drive.os /mnt/storage /path/to/os.iso]]  test false
 				path
 					group
 						file
 					method
 						path
+					action
+						none
 					alias
 						none
 					description
-						Returns components of a specified path
+						Returns components of a specified path or builds a path
 					safe
 						true
 					container
@@ -4424,19 +5213,24 @@ class VOIDlang {
 						[name component  type text  subname true  default none
 					example
 						[code [[path /path/to/file.txt]]  type dict
+						[code [[path.full path/to/file.txt]]  type text
+						[code [[path.file /path/to/file.txt]]  result file.txt
 						[code [[path.name /path/to/file.txt]]]  result file
 						[code [[path.extension /path/to/file.txt]]  result txt
 						[code [[path.extension /path/to/file.tar.gz]]  result gz
-						[code [[path.file /path/to/file.txt]]  result file.txt
 						[code [[path.dir /path/to/file.txt]]  result /path/to
-						[code [[path.drive c:/path/to/file.txt]]  result c
+						[code [[path.drive c:\path\to\file.txt]]  result C
 						[code [[path.drive /mnt/data/file.txt]]  result data
+						[code [[path.drive /Volumes/data/file.txt]]  result data
 						[code [[path.strip file.txt]]  result file
 						[code [[path.strip /path/to/file.tar.gz]]  result /path/to/file.tar
 						[code [[path.strip /path/to/file.tar]]  result /path/to/file
 						[code [[path.strip /path/to/file]]  result /path/to
 						[code [[path.strip /path/to]]  result /path
 						[code [[path.strip /path]]  result /
+						[code [[path.build /path to file.txt]]  result /path/to/file.txt
+						[code [[path /path to file.txt]]  result /path/to/file.txt
+						[code [[path [/path to file.txt]]]  result /path/to/file.txt
 	
 			  .: format :.
 	
@@ -4444,7 +5238,9 @@ class VOIDlang {
 					group
 						format
 					method
-						void_encode
+						void
+					action
+						none
 					alias
 						none
 					description
@@ -4466,6 +5262,8 @@ class VOIDlang {
 						format
 					method
 						void_decode
+					action
+						none
 					alias
 						none
 					description
@@ -4486,7 +5284,9 @@ class VOIDlang {
 					group
 						format
 					method
-						json_encode
+						json
+					action
+						none
 					alias
 						none
 					description
@@ -4519,6 +5319,8 @@ class VOIDlang {
 						format
 					method
 						json_decode
+					action
+						none
 					alias
 						none
 					description
@@ -4544,7 +5346,9 @@ class VOIDlang {
 					group
 						format
 					method
-						action.csv.encode
+						csv
+					action
+						csv.encode
 					alias
 						none
 					description
@@ -4567,7 +5371,9 @@ class VOIDlang {
 					group
 						format
 					method
-						action.csv.decode
+						csv_decode
+					action
+						csv.decode
 					alias
 						none
 					description
@@ -4589,7 +5395,9 @@ class VOIDlang {
 					group
 						format
 					method
-						yaml_encode
+						yaml
+					action
+						none
 					alias
 						none
 					description
@@ -4619,6 +5427,8 @@ class VOIDlang {
 						format
 					method
 						yaml_decode
+					action
+						none
 					alias
 						none
 					description
@@ -4641,11 +5451,61 @@ class VOIDlang {
 						[code [[yaml.decode "\u263A"]]  result ☺
 						[code [[yaml.decode '- name: Thomas\n  age: 25\n- name: Alice\n  age: 20']]  result [[name Thomas  age 25] [name Alice  age 20
 						[code [[yaml.decode '[{"name":"Thomas","age":25},{"name":"Alice","age":20}]']]  result [[name Thomas  age 25] [name Alice  age 20
+				xml
+					group
+						format
+					method
+						xml
+					action
+						xml.encode
+					alias
+						none
+					description
+						Encodes data into the XML format
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name data  type any
+						[name param  type dict  default [attribute  @]
+					example
+						[code [[xml [root  item [a b]]]]  result '<root><item>a</item><item>b</item></root>
+						[code [[xml [person  [@id 1  name Thomas]]]]  result '<person id="1"><name>John</name></person>
+						[code [[xml [person  [#id 1  name Thomas]] [attribute  #]]]  result '<person id="1"><name>John</name></person>
+				xml.decode
+					group
+						format
+					method
+						xml_decode
+					action
+						xml.decode
+					alias
+						none
+					description
+						Decodes data from the XML format
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name text  type text
+						[name param  type dict  default [attribute  @]
+					example
+						[code [[xml.decode '<root><item>a</item><item>b</item></root>']]  result [root  item [a b
+						[code [[xml.decode '<person id="1"><name>Thomas</name></person>']]  result [person  [@id 1  name Thomas
+						[code [[xml.decode '<person id="1"><name>Thomas</name></person>' [attribute  #]]]  result [person  [#id 1  name Thomas
 				ini
 					group
 						format
 					method
-						action.ini.encode
+						ini
+					action
+						ini.encode
 					alias
 						none
 					description
@@ -4668,7 +5528,9 @@ class VOIDlang {
 					group
 						format
 					method
-						action.ini.decode
+						ini_decode
+					action
+						ini.decode
 					alias
 						none
 					description
@@ -4686,50 +5548,6 @@ class VOIDlang {
 						[code [[ini.decode '[section]\nname=data']]  result [section  [name  data
 						[code [[ini.decode '[user]\nname=Thomas\ntask=10,20,30']]  result [user  [name Thomas  task [10 20 30
 						[code [[ini.decode '[user]\nname=Thomas\ntask=10,20,30' none]]  result [user  [name Thomas  task 10,20,30
-				xml
-					group
-						format
-					method
-						action.xml.encode
-					alias
-						none
-					description
-						Encodes data into the XML format
-					safe
-						true
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[name data  type any
-						[name param  type dict  default [attribute  @]
-					example
-						[code [[xml [root  item [a b]]]]  result '<root><item>a</item><item>b</item></root>
-						[code [[xml [person  [@id 1  name Thomas]]]]  result '<person id="1"><name>John</name></person>
-						[code [[xml [person  [#id 1  name Thomas]] [attribute  #]]]  result '<person id="1"><name>John</name></person>
-				xml.decode
-					group
-						format
-					method
-						action.xml.decode
-					alias
-						none
-					description
-						Decodes data from the XML format
-					safe
-						true
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[name text  type text
-						[name param  type dict  default [attribute  @]
-					example
-						[code [[xml.decode '<root><item>a</item><item>b</item></root>']]  result [root  item [a b
-						[code [[xml.decode '<person id="1"><name>Thomas</name></person>']]  result [person  [@id 1  name Thomas
-						[code [[xml.decode '<person id="1"><name>Thomas</name></person>' [attribute  #]]]  result [person  [#id 1  name Thomas
 	
 			  .: cloud :.
 	
@@ -4738,6 +5556,8 @@ class VOIDlang {
 						cloud
 					method
 						cloud
+					action
+						none
 					alias
 						none
 					description
@@ -4756,18 +5576,19 @@ class VOIDlang {
 						[code [cloud.file]  test false
 						[code [[cloud.file /path/to/share]]  test false
 						[code [cloud.web]  test false
-						[code [[cloud.web {param}]]  test false
-						[code [[cloud.api {param}]]  test false
-						[code [[cloud.void {param}]]  test false
-						[code [[cloud.mail {param}]]  test false
-						[code [[cloud.proxy {param}]]  test false
-						[code [[cloud.vpn {param}]]  test false
-						[code [[cloud.screen {param}]]  test false
+						[code [[cloud.web .param]]  test false
+						[code [[cloud.api .param]]  test false
+						[code [[cloud.mail .param]]  test false
+						[code [[cloud.proxy .param]]  test false
+						[code [[cloud.vpn .param]]  test false
+						[code [[cloud.desktop .param]]  test false
 				request
 					group
 						cloud
 					method
 						request
+					action
+						none
 					alias
 						r
 					description
@@ -4785,14 +5606,16 @@ class VOIDlang {
 					example
 						[code [[r https://voidsp.com]]	type dict  test false
 						[code [[r.get https://voidsp.com]]	type dict	test false
-						[code [[r https://voidsp.com [method post  header [key {key}  name {name}]  type json  data [1 2 3] ]]]  type dict  test false
-						[code [[r.post [url https://voidsp.com  header [key {key}  Content-Type multipart/form-data]  form [name {name}  data {data}] ]]]  type dict  test false
+						[code [[r https://voidsp.com [method post  header [key .key  name .name]  type json  data [1 2 3] ]]]  type dict  test false
+						[code [[r.post [url https://voidsp.com  header [key .key  Content-Type multipart/form-data]  form [name .name  data .data] ]]]  type dict  test false
 						[code [[info https://voidsp.com]]  type dict  test false
 				download
 					group
 						cloud
 					method
 						download
+					action
+						none
 					alias
 						d
 					description
@@ -4823,8 +5646,10 @@ class VOIDlang {
 						cloud
 					method
 						cookie
-					alias
+					action
 						none
+					alias
+						cookie.remove
 					description
 						Receives or sets a specified cookie
 					safe
@@ -4840,42 +5665,20 @@ class VOIDlang {
 					example
 						[code [cookie]  test false
 						[code [[cookie session]]  test false
-						[code [[cookie session {session.id}]]  test false
-						[code [[cookie session {session.id} 86400]]  test false
-						[code [[cookie session {session.id} day]]  test false
-						[code [[cookie session {session.id} 1776865494]]  test false
-						[code [[cookie [name session  data {session.id}  expired day  domain /]]]  test false
+						[code [[cookie session .session.id]]  test false
+						[code [[cookie session .session.id 86400]]  test false
+						[code [[cookie session .session.id day]]  test false
+						[code [[cookie session .session.id 1776865494]]  test false
+						[code [[cookie [name session  data .session.id  expired day  domain /]]]  test false
 						[code [[cookie session none 0]]  test false
 						[code [[cookie.remove session]]  test false
-				social
-					group
-						cloud
-					method
-						social
-					alias
-						none
-					description
-						Interacting with social API
-					safe
-						false
-					container
-						true
-					language
-						[python js swift kotlin gdscript c++
-					param
-						[name name  type text  subname true
-						[name data  type dict
-					example
-						[code [[social telegram.bot [name bot  token {token}  action {action}]]  test false
-						[code [[social telegram.send [token {token}  to {account}  text {text}  attachment [{image1} {image2}]]]  test false
-						[code [[social.youtube.upload [token {token}  title {title}  description {desctipion}  tags {tags}  video {video}  publish true]]]  test false
-						[code [[social.tiktok.upload [token {token}  title {title}  description {desctipion}  tags {tags}  video {video}  publish true]]]  test false
 				notify
 					group
 						cloud
 					method
 						notify
-						mail
+					action
+						none
 					alias
 						none
 					description
@@ -4887,16 +5690,46 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[]
+						[name message  type any  default none
+						[name name  type text  subname true  default none
 					example
 						[code [notify]  test false
 						[code [[notify message]]  test false
+						[code [[notify.os message]]  test false
+						[code [[notify.push .token message]]  test false
+						[code [[notify.push [token .token  text message  sound sound.wav  badge 3  image .image]]  test false
+						[code [[notify.mail to@voidsp.com message]]  test false
+						[code [[notify.mail [to [to1@voidsp.com to2@voidsp.com]  text .html  from from@voidsp.com  copy copy@mvoidsp.com  attachment [.file1 .file2]]]  test false
 						[code [[notify.sms +123456789 message]]  test false
 						[code [[notify.call +123456789 message]]  test false
-						[code [[notify.mail to@voidsp.com message]]  test false
-						[code [[notify.mail [to [to1@voidsp.com to2@voidsp.com]  text {html}  from from@voidsp.com  copy copy@mvoidsp.com  attachment [{file1} {file2}]]]  test false
-						[code [[notify.push {token} message]]  test false
-						[code [[notify.push [token {token}  text message  sound sound.wav  badge 3  image {image}]]  test false
+						[code [[notify.social.telegram account message]]  test false
+						[code [[notify.telegram account message]]  test false
+				social
+					group
+						cloud
+					method
+						social
+					action
+						none
+					alias
+						none
+					description
+						Interact with social API or get a list of available social networks
+					safe
+						false
+					container
+						true
+					language
+						[python js swift kotlin gdscript c++
+					param
+						[name name  type text  subname true  default none
+						[name data  type dict  default none
+					example
+						[code [social]  type list
+						[code [[social telegram.bot [name bot  token .token  action .action]]  test false
+						[code [[social telegram.send [token .token  to .account  text .text  attachment [.image1 .image2]]]  test false
+						[code [[social.youtube.upload [token .token  title .title  description .desctipion  tags .tags  video .video  publish true]]]  test false
+						[code [[social.tiktok.upload [token .token  title .title  description .desctipion  tags .tags  video .video  publish true]]]  test false
 	
 			  .: device :.
 	
@@ -4905,6 +5738,8 @@ class VOIDlang {
 						device
 					method
 						device
+					action
+						none
 					alias
 						none
 					description
@@ -4929,6 +5764,8 @@ class VOIDlang {
 						device
 					method
 						cpu
+					action
+						none
 					alias
 						none
 					description
@@ -4948,6 +5785,8 @@ class VOIDlang {
 						device
 					method
 						gpu
+					action
+						none
 					alias
 						none
 					description
@@ -4967,6 +5806,8 @@ class VOIDlang {
 						device
 					method
 						memory
+					action
+						none
 					alias
 						none
 					description
@@ -4986,6 +5827,8 @@ class VOIDlang {
 						device
 					method
 						battery
+					action
+						none
 					alias
 						none
 					description
@@ -5005,6 +5848,8 @@ class VOIDlang {
 						device
 					method
 						fps
+					action
+						none
 					alias
 						none
 					description
@@ -5025,6 +5870,8 @@ class VOIDlang {
 						device
 					method
 						vsync
+					action
+						none
 					alias
 						none
 					description
@@ -5048,6 +5895,8 @@ class VOIDlang {
 						device
 					method
 						resolution
+					action
+						none
 					alias
 						none
 					description
@@ -5069,6 +5918,8 @@ class VOIDlang {
 						device
 					method
 						orientation
+					action
+						none
 					alias
 						none
 					description
@@ -5091,6 +5942,8 @@ class VOIDlang {
 						device
 					method
 						dark
+					action
+						none
 					alias
 						none
 					description
@@ -5114,6 +5967,8 @@ class VOIDlang {
 						device
 					method
 						pixel
+					action
+						none
 					alias
 						none
 					description
@@ -5140,8 +5995,10 @@ class VOIDlang {
 						device
 					method
 						symbol
-					alias
+					action
 						none
+					alias
+						clear
 					description
 						Retrieves or sets the symbol on the screen in text mode
 					safe
@@ -5158,11 +6015,14 @@ class VOIDlang {
 						[code [[symbol 10 10]]  type text  test false
 						[code [[symbol [10 10] A]]  type text  test false
 						[code [[symbol 10 10 A]]  type text  test false
+						[code [clear]  test false
 				cursor
 					group
 						device
 					method
 						cursor
+					action
+						none
 					alias
 						none
 					description
@@ -5187,15 +6047,17 @@ class VOIDlang {
 						[code [cursor.hide]  test false
 						[code [[cursor show]]  test false
 						[code [[cursor hide]]  test false
-				clear
+				camera
 					group
 						device
 					method
-						clear
-					alias
+						camera
+					action
 						none
+					alias
+						cam
 					description
-						Clears the screen in text mode
+						Capturing image and video from a built-in or external camera
 					safe
 						false
 					container
@@ -5203,16 +6065,44 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[[name color  type text  subname true  default none
+						[[name name  type text  subname true  default none
 					example
-						[code [clear]  test false
-						[code [[clear green]]  test false
-						[code [clear.green]  test false
+						[code [camera]  test false
+						[code [camera.name]  test false
+						[code [camera.image]  test false
+						[code [camera.record]  test false
+						[code [camera.stop]  test false
+				microphone
+					group
+						device
+					method
+						camera
+					action
+						none
+					alias
+						mic
+					description
+						Capturing audio from a built-in or external microphone
+					safe
+						false
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name name  type text  subname true  default none
+					example
+						[code [mic]  test false
+						[code [mic.name]  test false
+						[code [mic.record]  test false
+						[code [mic.stop]  test false
 				flashlight
 					group
 						device
 					method
 						flashlight
+					action
+						none
 					alias
 						none
 					description
@@ -5238,6 +6128,8 @@ class VOIDlang {
 						device
 					method
 						location
+					action
+						none
 					alias
 						none
 					description
@@ -5255,30 +6147,13 @@ class VOIDlang {
 						[code [[location true]]  test false
 						[code [location.on]  test false
 						[code [location.off]  test false
-				gyroscope
-					group
-						device
-					method
-						gyroscope
-					alias
-						none
-					description
-						Provides access to the gyroscope sensor for motion detection
-					safe
-						false
-					container
-						none
-					language
-						[js swift kotlin gdscript c++
-					param
-						[]
-					example
-						[[code [gyroscope]  type dict  test false
 				accelerometer
 					group
 						device
 					method
 						accelerometer
+					action
+						none
 					alias
 						none
 					description
@@ -5298,6 +6173,8 @@ class VOIDlang {
 						device
 					method
 						compass
+					action
+						none
 					alias
 						none
 					description
@@ -5315,11 +6192,34 @@ class VOIDlang {
 						[code [compass]  type number  test false
 						[code [[compass [40 30]]]  type number  test false
 						[code [[compass 40 30]]  type number  test false
+				gyroscope
+					group
+						device
+					method
+						gyroscope
+					action
+						none
+					alias
+						none
+					description
+						Provides access to the gyroscope sensor for motion detection
+					safe
+						false
+					container
+						none
+					language
+						[js swift kotlin gdscript c++
+					param
+						[]
+					example
+						[[code [gyroscope]  type dict  test false
 				proximity
 					group
 						device
 					method
 						proximity
+					action
+						none
 					alias
 						none
 					description
@@ -5340,6 +6240,8 @@ class VOIDlang {
 						device
 					method
 						brightness
+					action
+						none
 					alias
 						none
 					description
@@ -5361,6 +6263,8 @@ class VOIDlang {
 						device
 					method
 						volume
+					action
+						none
 					alias
 						none
 					description
@@ -5385,6 +6289,8 @@ class VOIDlang {
 						device
 					method
 						calendar
+					action
+						none
 					alias
 						none
 					description
@@ -5414,6 +6320,8 @@ class VOIDlang {
 						device
 					method
 						gallery
+					action
+						none
 					alias
 						none
 					description
@@ -5431,14 +6339,16 @@ class VOIDlang {
 						[code [gallery]  type dict  test false
 						[code [[gallery 10]]  type list  test false
 						[code [[gallery 2026.01.01]]  type list  test false
-						[code [[gallery {id}]]  type dict  test false
-						[code [[gallery {image}]]  type dict  test false
-						[code [[gallery.remove {id}]]  test false
+						[code [[gallery .id]]  type dict  test false
+						[code [[gallery .image]]  type dict  test false
+						[code [[gallery.remove .id]]  test false
 				contacts
 					group
 						device
 					method
 						contacts
+					action
+						none
 					alias
 						none
 					description
@@ -5454,14 +6364,16 @@ class VOIDlang {
 						[name action  type text  subname true  default none
 					example
 						[code [contacts]  type dict  test false
-						[code [[contacts {id}]]  type dict  test false
+						[code [[contacts .id]]  type dict  test false
 						[code [[contacts [name Thomas  phone +123456789]]]  test false
-						[code [[contacts.remove {id}]]  type dict  test false
+						[code [[contacts.remove .id]]  type dict  test false
 				call
 					group
 						device
 					method
 						call
+					action
+						none
 					alias
 						none
 					description
@@ -5482,6 +6394,8 @@ class VOIDlang {
 						device
 					method
 						sms
+					action
+						none
 					alias
 						none
 					description
@@ -5502,6 +6416,8 @@ class VOIDlang {
 						device
 					method
 						net
+					action
+						none
 					alias
 						none
 					description
@@ -5525,6 +6441,8 @@ class VOIDlang {
 						device
 					method
 						wifi
+					action
+						none
 					alias
 						none
 					description
@@ -5549,6 +6467,8 @@ class VOIDlang {
 						device
 					method
 						bluetooth
+					action
+						none
 					alias
 						none
 					description
@@ -5566,13 +6486,15 @@ class VOIDlang {
 					example
 						[code [bluetooth]  type dict  test false
 						[code [[bluetooth.connect name]]  test false
-						[code [[bluetooth.send name {data}]]  test false
+						[code [[bluetooth.send name .data]]  test false
 						[code [bluetooth.disconnect]  test false
 				cellular
 					group
 						device
 					method
 						cellular
+					action
+						none
 					alias
 						none
 					description
@@ -5591,36 +6513,15 @@ class VOIDlang {
 						[code [cellular.connect]  test false
 						[code [[cellular.connect name]]  test false
 						[code [cellular.disconnect]  test false
-				stream
-					group
-						device
-					method
-						stream
-					alias
-						none
-					description
-						Retrieves information about screen streaming or start streaming
-					safe
-						false
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++
-					param
-						[name action  type text  default none
-						[name param  type dict  default none
-					example
-						[code [stream]  type dict  test false
-						[code [stream.start]  test false
-						[code [[stream.start {param}]]  test false
-						[code [stream.stop]  test false
 				keyboard
 					group
 						device
 					method
 						keyboard
-					alias
+					action
 						none
+					alias
+						key
 					description
 						Keyboard information
 					safe
@@ -5637,11 +6538,17 @@ class VOIDlang {
 						[code [keyboard.hide]  test false
 						[code [keyboard.toggle]  test false
 						[code [keyboard.size]  test false
+						[code [key.a [[. key A pressed]]]  test false
+						[code [key.space [[. key SPACE pressed]]]  test false
+						[code [key.esc [[. key ESC pressed]]]  test false
+						[code [key.shift.a [[. key SHIFT+A pressed]]]  test false
 				mouse
 					group
 						device
 					method
 						mouse
+					action
+						none
 					alias
 						none
 					description
@@ -5667,11 +6574,19 @@ class VOIDlang {
 						[code [mouse.hand]  test false
 						[code [mouse.normal]  test false
 						[code [mouse.position]  type dict  test false
+						[code [[mouse.left [[. left button pressed]]]]  test false
+						[code [[mouse.right [[. right button pressed]]]]  test false
+						[code [[mouse.middle [[. middle button pressed]]]]  test false
+						[code [[mouse.scroll [[. scroll]]]]  test false
+						[code [[mouse.scroll.up [[. scroll up]]]]  test false
+						[code [[mouse.scroll.down [[. scroll up]]]]  test false
 				gamepad
 					group
 						device
 					method
 						gamepad
+					action
+						none
 					alias
 						none
 					description
@@ -5691,10 +6606,12 @@ class VOIDlang {
 						device
 					method
 						tap
-					alias
+					action
 						none
+					alias
+						click
 					description
-						Simulates a tap gesture
+						Simulates a tap or click gesture
 					safe
 						true
 					container
@@ -5718,31 +6635,12 @@ class VOIDlang {
 						[code [tap.rotate 180]  test false
 						[code [tap.rotate -180]  test false
 						[code [tap.scroll 10%]  test false
-				key
-					group
-						device
-					method
-						key
-					alias
-						none
-					description
-						Key binding
-					safe
-						true
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[name key  type text  subname true  default none
-						[name action  type [text list]  default none
-					example
-						[code [key]  type dict  test false
-						[code [key.a]  test false
-						[code [key.space]  test false
-						[code [key a [[. 'a tap']]]  test false
-						[code [key space [[. 'space tap']]]  test false
-						[code [key.write text]  test false
+						[code [tap.key.a]  test false
+						[code [tap.key.shift.a]  test false
+						[code [tap.mouse.left]  test false
+						[code [tap.gamepad.x]  test false
+						[code [tap.gamepad.left]  test false
+	
 	
 			  .: content :.
 	
@@ -5751,6 +6649,8 @@ class VOIDlang {
 						content
 					method
 						image
+					action
+						none
 					alias
 						none
 					description
@@ -5835,6 +6735,8 @@ class VOIDlang {
 						content
 					method
 						video
+					action
+						none
 					alias
 						movie
 						clip
@@ -5931,6 +6833,8 @@ class VOIDlang {
 						content
 					method
 						sound
+					action
+						none
 					alias
 						music
 					description
@@ -5971,6 +6875,8 @@ class VOIDlang {
 						content
 					method
 						model
+					action
+						none
 					alias
 						none
 					description
@@ -5990,6 +6896,8 @@ class VOIDlang {
 						content
 					method
 						book
+					action
+						none
 					alias
 						document
 						spreadsheet
@@ -6013,6 +6921,8 @@ class VOIDlang {
 						content
 					method
 						game
+					action
+						none
 					alias
 						2d
 						3d
@@ -6029,8 +6939,6 @@ class VOIDlang {
 						[]
 					example
 						[]
-			alias
-				[ ]
 			pi
 				3.14159265358979323846
 			e
@@ -6043,13 +6951,23 @@ class VOIDlang {
 				none
 			language
 				none
-			info
+			app
 				os
 					type
 					name
 					version
 					user
 					language
+					delimiter
+						path
+							/
+						line
+							'\n
+					path
+						ffmpeg
+							none
+						yt-dlp
+							none
 				device
 					name
 					imei
@@ -6057,453 +6975,528 @@ class VOIDlang {
 					cpu
 					gpu
 				file
-					path
-					name
-					param
-			cloud
-				mime
+				path
+				param
+				ui
+					cli
+				cli
+					color
+						true
+					indent
+						2
+				stopwatch
+					[ ]
+				timer
+					[ ]
+				cloud
+					mime
 	
-				  .: data :.
+					  .: data :.
 	
-					void
-						application/void
-					json
-						application/json
-					jsonl
-						application/jsonl
-					jsonld
-						application/ld+json
-					yaml
-						application/x-yaml
-					csv
-						text/csv
-					ini
-						text/plain
-					xml
-						application/xml
-					sql
-						application/sql
-					bin
-						application/octet-stream
+						void
+							application/void
+						json
+							application/json
+						jsonl
+							application/jsonl
+						jsonld
+							application/ld+json
+						yaml
+							application/x-yaml
+						xml
+							application/xml
+						csv
+							text/csv
+						ini
+							text/plain
+						sql
+							application/sql
+						log
+							text/plain
+						bin
+							application/octet-stream
 	
-				  .: document :.
+					  .: document :.
 	
+						text
+							text/plain
+						txt
+							text/plain
+						pdf
+							application/pdf
+						djvu
+							image/vnd.djvu
+						doc
+							application/msword
+						docx
+							application/vnd.openxmlformats-officedocument.wordprocessingml.document
+						xls
+							application/vnd.ms-excel
+						xlsx
+							application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+						ppt
+							application/vnd.ms-powerpoint
+						pptx
+							application/vnd.openxmlformats-officedocument.presentationml.presentation
+						rtf
+							application/rtf
+						epub
+							application/epub+zip
+						abw
+							application/x-abiword
+						azw
+							application/vnd.amazon.ebook
+						odp
+							application/vnd.oasis.opendocument.presentation
+						ods
+							application/vnd.oasis.opendocument.spreadsheet
+						odt
+							application/vnd.oasis.opendocument.text
+						ics
+							text/calendar
+	
+					  .: html :.
+	
+						html
+							text/html
+						htm
+							text/html
+						xhtml
+							application/xhtml+xml
+						css
+							text/css
+	
+					  .: font :.
+	
+						ttf
+							font/ttf
+						otf
+							font/otf
+						sfnt
+							font/sfnt
+						woff
+							font/woff
+						woff2
+							font/woff2
+						eot
+							application/vnd.ms-fontobject
+	
+					  .: subtitle :.
+	
+						vtt
+							text/vtt
+						srt
+							application/x-subrip
+						ass
+							text/x-ssa
+						ssa
+							text/x-ssa
+						ttml
+							application/ttml+xml
+						sub
+							text/x-microdvd
+						smi
+							application/x-sami
+						sami
+							application/x-sami
+	
+					  .: image :.
+	
+						jpeg
+							image/jpeg
+						jpg
+							image/jpeg
+						png
+							image/png
+						apng
+							image/apng
+						gif
+							image/gif
+						svg
+							image/svg+xml
+						webp
+							image/webp
+						heif
+							image/heif
+						heic
+							image/heic
+						tiff
+							image/tiff
+						tif
+							image/tiff
+						avif
+							image/avif
+						ico
+							image/x-icon
+						icon
+							image/vnd.microsoft.icon
+						icns
+							image/x-icns
+	
+					  .: audio :.
+	
+						mp3
+							audio/mpeg
+						mpa
+							audio/mpeg
+						mp2
+							audio/mpeg
+						wma
+							audio/x-ms-wma
+						wav
+							audio/x-wav
+						flac
+							audio/flac
+						ogg
+							application/ogg
+						oga
+							audio/ogg
+						weba
+							audio/webm
+						cda
+							application/x-cdf
+						aac
+							audio/aac
+						ac3
+							audio/ac3
+						mid
+							audio/midi
+						midi
+							audio/x-midi
+						s3m
+							audio/s3m
+						it
+							audio/it
+						mod
+							audio/x-mod
+						xm
+							audio/xm
+	
+					  .: video :.
+	
+						mp4
+							video/mp4
+						mpeg
+							video/mpeg
+						mpg
+							video/mpeg
+						mpv
+							video/mpeg
+						webm
+							video/webm
+						ogx
+							application/ogg
+						ogv
+							video/ogg
+						qt
+							video/quicktime
+						mov
+							ideo/quicktime
+						m4v
+							video/x-m4v
+						wmv
+							video/x-ms-wmv
+						avi
+							video/x-msvideo
+						mkv
+							application/x-matroska
+						mjpeg
+							multipart/x-mixed-replace
+						ts
+							video/mp2t
+	
+					  .: 3d :.
+	
+						gltf
+							model/gltf+json
+						glb
+							model/gltf-binary
+						obj
+							model/obj
+						stl
+							model/stl
+						fbx
+							application/vnd.autodesk.fbx
+						dae
+							model/vnd.collada+xml
+						3ds
+							model/x-3ds
+						ply
+							model/ply
+						usd
+							model/vnd.usd
+						usdz
+							model/vnd.usdz+zip
+						x3d
+							model/x3d+xml
+						wrl
+							model/vrml
+						vrml
+							model/vrml
+	
+					  .: archive :.
+	
+						zip
+							application/zip
+						gz
+							application/gzip
+						7z
+							application/x-7z-compressed
+						tar
+							application/x-tar
+						rar
+							application/vnd.rar
+						bz
+							application/x-bzip
+						bz2
+							application/x-bzip2
+	
+					  .: code :.
+	
+						py
+							applycation/x-python-code
+						php
+							application/x-httpd-php
+						java
+							application/java
+						jar
+							application/java-archive
+						kt
+							text/x-kotlin
+						swift
+							application/swift
+						m
+							text/x-objective-c
+						mm
+							text/x-objective-c++
+						c
+							text/x-csrc
+						cpp
+							text/x-c++src
+						h
+							text/x-chdr
+						cs
+							text/x-csharp
+						rs
+							text/rust
+						gd
+							text/x-gdscript
+						js
+							text/javascript
+						mjs
+							text/javascript
+						lua
+							text/x-lua
+						sh
+							application/x-sh
+						csh
+							application/x-csh
+						bat
+							application/x-bat
+	
+					  .: form :.
+	
+						form data
+							multipart/form-data
+						form mixed
+							multipart/mixed
+						form alternative
+							multipart/alternative
+						form text
+							application/x-www-form-urlencoded
+					code
+						100
+							Continue
+						101
+							Switching protocols
+						102
+							Processing
+						103
+							Early Hints
+						200
+							OK
+						201
+							Created
+						202
+							Accepted
+						203
+							Non-Authoritative Information
+						204
+							No Content
+						205
+							Reset Content
+						206
+							Partial Content
+						207
+							Multi-Status
+						208
+							Already Reported
+						226
+							IM Used
+						300
+							Multiple Choices
+						301
+							Moved Permanently
+						302
+							Found Redirection
+						303
+							See Other
+						304
+							Not Modified
+						305
+							Use Proxy
+						306
+							Switch Proxy
+						307
+							Temporary Redirect
+						308
+							Permanent Redirect
+						400
+							Bad Request
+						401
+							Unauthorized
+						402
+							Payment Required
+						403
+							Forbidden
+						404
+							Not Found
+						405
+							Method Not Allowed
+						406
+							Not Acceptable
+						407
+							Proxy Authentication Required
+						408
+							Request Timeout
+						409
+							Conflict
+						410
+							Gone
+						411
+							Length Required
+						412
+							Precondition Failed
+						413
+							Payload Too Large
+						414
+							URI Too Long
+						415
+							Unsupported Media Type
+						416
+							Range Not Satisfiable
+						417
+							Expectation Failed
+						418
+							I'm a Teapot
+						421
+							Misdirected Request
+						422
+							Unprocessable Entity
+						423
+							Locked
+						424
+							Failed Dependency
+						425
+							Too Early
+						426
+							Upgrade Required
+						428
+							Precondition Required
+						429
+							Too Many Requests
+						431
+							Request Header Fields Too Large
+						451
+							Unavailable For Legal Reasons
+						500
+							Internal Server Error
+						501
+							Not Implemented
+						502
+							Bad Gateway
+						503
+							Service Unavailable
+						504
+							Gateway Timeout
+						505
+							HTTP Version Not Supported
+						506
+							Variant Also Negotiates
+						507
+							Insufficient Storage
+						508
+							Loop Detected
+						510
+							Not Extended
+						511
+							Network Authentication Required
+				db
+					[ ]
+				log
+					none
+				format
 					text
-						text/plain
-					txt
-						text/plain
-					pdf
-						application/pdf
-					djvu
-						image/vnd.djvu
-					doc
-						application/msword
-					docx
-						application/vnd.openxmlformats-officedocument.wordprocessingml.document
-					xls
-						application/vnd.ms-excel
-					xlsx
-						application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-					ppt
-						application/vnd.ms-powerpoint
-					pptx
-						application/vnd.openxmlformats-officedocument.presentationml.presentation
-					rtf
-						application/rtf
-					epub
-						application/epub+zip
-					abw
-						application/x-abiword
-					azw
-						application/vnd.amazon.ebook
-					odp
-						application/vnd.oasis.opendocument.presentation
-					ods
-						application/vnd.oasis.opendocument.spreadsheet
-					odt
-						application/vnd.oasis.opendocument.text
-					ics
-						text/calendar
-	
-				  .: html :.
-	
-					html
-						text/html
-					htm
-						text/html
-					xhtml
-						application/xhtml+xml
-					css
-						text/css
-	
-				  .: font :.
-	
-					ttf
-						font/ttf
-					otf
-						font/otf
-					sfnt
-						font/sfnt
-					woff
-						font/woff
-					woff2
-						font/woff2
-					eot
-						application/vnd.ms-fontobject
-	
-				  .: image :.
-	
-					jpeg
-						image/jpeg
-					jpg
-						image/jpeg
-					png
-						image/png
-					apng
-						image/apng
-					gif
-						image/gif
-					svg
-						image/svg+xml
-					webp
-						image/webp
-					heif
-						image/heif
-					heic
-						image/heic
-					tiff
-						image/tiff
-					tif
-						image/tiff
-					avif
-						image/avif
-					ico
-						image/x-icon
-					icon
-						image/vnd.microsoft.icon
-					icns
-						image/x-icns
-	
-				  .: audio :.
-	
-					mp3
-						audio/mpeg
-					mpa
-						audio/mpeg
-					mp2
-						audio/mpeg
-					wma
-						audio/x-ms-wma
-					wav
-						audio/x-wav
-					flac
-						audio/flac
-					ogg
-						application/ogg
-					oga
-						audio/ogg
-					weba
-						audio/webm
-					cda
-						application/x-cdf
-					aac
-						audio/aac
-					ac3
-						audio/ac3
-					mid
-						audio/midi
-					midi
-						audio/x-midi
-					s3m
-						audio/s3m
-					it
-						audio/it
-					mod
-						audio/x-mod
-					xm
-						audio/xm
-	
-				  .: video :.
-	
-					mp4
-						video/mp4
-					mpeg
-						video/mpeg
-					mpg
-						video/mpeg
-					mpv
-						video/mpeg
-					webm
-						video/webm
-					ogx
-						application/ogg
-					ogv
-						video/ogg
-					qt
-						video/quicktime
-					mov
-						ideo/quicktime
-					m4v
-						video/x-m4v
-					wmv
-						video/x-ms-wmv
-					avi
-						video/x-msvideo
-					mkv
-						application/x-matroska
-					mjpeg
-						multipart/x-mixed-replace
-					ts
-						video/mp2t
-	
-				  .: 3d :.
-	
-					gltf
-						model/gltf+json
-					glb
-						model/gltf-binary
-					obj
-						model/obj
-					stl
-						model/stl
-					fbx
-						application/vnd.autodesk.fbx
-					dae
-						model/vnd.collada+xml
-					3ds
-						model/x-3ds
-					ply
-						model/ply
-					usd
-						model/vnd.usd
-					usdz
-						model/vnd.usdz+zip
-					x3d
-						model/x3d+xml
-					wrl
-						model/vrml
-					vrml
-						model/vrml
-	
-				  .: archive :.
-	
-					zip
-						application/zip
-					gz
-						application/gzip
-					7z
-						application/x-7z-compressed
-					tar
-						application/x-tar
-					rar
-						application/vnd.rar
-					bz
-						application/x-bzip
-					bz2
-						application/x-bzip2
-	
-				  .: code :.
-	
-					py
-						applycation/x-python-code
-					php
-						application/x-httpd-php
-					java
-						application/java
-					jar
-						application/java-archive
-					kt
-						text/x-kotlin
-					swift
-						application/swift
-					m
-						text/x-objective-c
-					mm
-						text/x-objective-c++
-					c
-						text/x-csrc
-					cpp
-						text/x-c++src
-					h
-						text/x-chdr
-					cs
-						text/x-csharp
-					rs
-						text/rust
-					gd
-						text/x-gdscript
-					js
-						text/javascript
-					mjs
-						text/javascript
-					lua
-						text/x-lua
-					sh
-						application/x-sh
-					csh
-						application/x-csh
-					bat
-						application/x-bat
-	
-				  .: form :.
-	
-					form data
-						multipart/form-data
-					form mixed
-						multipart/mixed
-					form alternative
-						multipart/alternative
-					form text
-						application/x-www-form-urlencoded
-				code
-					100
-						Continue
-					101
-						Switching protocols
-					102
-						Processing
-					103
-						Early Hints
-					200
-						OK
-					201
-						Created
-					202
-						Accepted
-					203
-						Non-Authoritative Information
-					204
-						No Content
-					205
-						Reset Content
-					206
-						Partial Content
-					207
-						Multi-Status
-					208
-						Already Reported
-					226
-						IM Used
-					300
-						Multiple Choices
-					301
-						Moved Permanently
-					302
-						Found Redirection
-					303
-						See Other
-					304
-						Not Modified
-					305
-						Use Proxy
-					306
-						Switch Proxy
-					307
-						Temporary Redirect
-					308
-						Permanent Redirect
-					400
-						Bad Request
-					401
-						Unauthorized
-					402
-						Payment Required
-					403
-						Forbidden
-					404
-						Not Found
-					405
-						Method Not Allowed
-					406
-						Not Acceptable
-					407
-						Proxy Authentication Required
-					408
-						Request Timeout
-					409
-						Conflict
-					410
-						Gone
-					411
-						Length Required
-					412
-						Precondition Failed
-					413
-						Payload Too Large
-					414
-						URI Too Long
-					415
-						Unsupported Media Type
-					416
-						Range Not Satisfiable
-					417
-						Expectation Failed
-					418
-						I'm a Teapot
-					421
-						Misdirected Request
-					422
-						Unprocessable Entity
-					423
-						Locked
-					424
-						Failed Dependency
-					425
-						Too Early
-					426
-						Upgrade Required
-					428
-						Precondition Required
-					429
-						Too Many Requests
-					431
-						Request Header Fields Too Large
-					451
-						Unavailable For Legal Reasons
-					500
-						Internal Server Error
-					501
-						Not Implemented
-					502
-						Bad Gateway
-					503
-						Service Unavailable
-					504
-						Gateway Timeout
-					505
-						HTTP Version Not Supported
-					506
-						Variant Also Negotiates
-					507
-						Insufficient Storage
-					508
-						Loop Detected
-					510
-						Not Extended
-					511
-						Network Authentication Required
-			db
-				[ ]
-			log
-				none
-			ai
-				chatgpt
-					key
-					url
-				deepeek
-					key
-					url
-				ollama
-					key
-					url
-				claude
-					key
-					url
-				gemini
-					key
-					url
-			void
-				[ ]
+						json
+						jsonl
+						jsonld
+						yaml
+						csv
+						ini
+						xml
+						sql
+						log
+						text
+						txt
+						vtt
+						srt
+						ass
+						ssa
+						ttml
+						sub
+						smi
+						sami
+						html
+						htm
+						xhtml
+						css
+						py
+						php
+						java
+						kt
+						swift
+						m
+						mm
+						c
+						cpp
+						h
+						cs
+						rs
+						gd
+						js
+						mjs
+						lua
+						sh
+						csh
+						bat
+				ai
+					chatgpt
+						key
+						url
+					deepeek
+						key
+						url
+					ollama
+						key
+						url
+					claude
+						key
+						url
+					gemini
+						key
+						url
+				void
+					[ ]
 			run
 				[]
 			action
@@ -6515,59 +7508,65 @@ class VOIDlang {
 					[]
 				drive
 					mount
-						[? {os}
-							[mac linux
+						[? .os
+							[[mac linux]
 								[]
+						]
 							windows
 								[]
 					unmount
-						[? {os}
-							[mac linux
+						[? .os
+							[[mac linux]
 								[]
+						]
 							windows
 								[]
 					create
-						[? {os}
-							[mac linux
+						[? .os
+							[[mac linux]
 								[]
+						]
 							windows
 								[]
 					resize
-						[? {os}
-							[mac linux
+						[? .os
+							[[mac linux]
 								[]
+						]
 							windows
 								[]
 					clear
-						[? {os}
-							[mac linux
+						[? .os
+							[[mac linux]
 								[]
+						]
 							windows
 								[]
 					remove
-						[? {os}
-							[mac linux
+						[? .os
+							[[mac linux]
 								[]
+						]
 							windows
 								[]
 				csv
 					encode
 						[]
 					decode
-						[parse {text} param_csv
-						_
+						[parse .text .parse.csv
+						__
 				xml
 					encode
 						[]
 					decode
-						[parse {text} param_xml
-						_
+						[parse .text .parse.xml
+						__
 				ini
 					encode
 						[]
 					decode
-						[parse {text} param_ini
-						_
+						[parse .text .parse.ini
+						__
 				download
 					[]
 			text
@@ -6745,13 +7744,25 @@ class VOIDlang {
 		fun code() {
 		}
 
-		fun log() {
+		fun logs() {
+		}
+
+		fun test() {
+		}
+
+		fun update() {
 		}
 
 		fun exit() {
 		}
 
 		fun os() {
+		}
+
+		fun info() {
+		}
+
+		fun convert() {
 		}
 
 		fun clipboard() {
@@ -6859,156 +7870,82 @@ class VOIDlang {
 
 	  // math
 
-		fun sin(value: Double): Double {
-			return kotlin.math.sin(value)
+		fun sin() {
 		}
 
-		fun cos(value: Double): Double {
-			return kotlin.math.cos(value)
+		fun cos() {
 		}
 
-		fun tan(value: Double): Double {
-			return kotlin.math.tan(value)
+		fun tan() {
 		}
 
-		fun sinh(value: Double): Double {
-			return kotlin.math.sinh(value)
+		fun sinh() {
 		}
 
-		fun cosh(value: Double): Double {
-			return kotlin.math.cosh(value)
+		fun cosh() {
 		}
 
-		fun tanh(value: Double): Double {
-			return kotlin.math.tanh(value)
+		fun tanh() {
 		}
 
-		fun asin(value: Double): Double {
-			return kotlin.math.asin(value)
+		fun asin() {
 		}
 
-		fun acos(value: Double): Double {
-			return kotlin.math.acos(value)
+		fun acos() {
 		}
 
-		fun atan(value: Double): Double {
-			return kotlin.math.atan(value)
+		fun atan() {
 		}
 
-		fun asinh(value: Double): Double {
-			return kotlin.math.asinh(value)
+		fun asinh() {
 		}
 
-		fun acosh(value: Double): Double {
-			return kotlin.math.acosh(value)
+		fun acosh() {
 		}
 
-		fun atanh(value: Double): Double {
-			return kotlin.math.atanh(value)
+		fun atanh() {
 		}
 
-		fun round(value: Double, digits: Int = 0): Double {
-			val factor = 10.0.pow(digits)
-			return kotlin.math.round(value * factor) / factor
+		fun round() {
 		}
 
-		fun floor(value: Double): Double {
-			return kotlin.math.floor(value)
+		fun floor() {
 		}
 
-		fun ceil(value: Double): Double {
-			return kotlin.math.ceil(value)
+		fun ceil() {
 		}
 
-		fun log(value: Double, base: Double? = null): Double {
-			return if (base == null) kotlin.math.log(value, Math.E) 
-				else kotlin.math.log(value, base)
+		fun log() {
 		}
 
-		fun factorial(value: Double): Long {
-			var res = 1L
-			for (i in 1..value.toInt()) res *= i
-			return res
+		fun factorial() {
 		}
 
-		fun fibonacci(value: Double, multiply: Double = 1.0, shift: Double = 0.0): List<Double> {
-			val n = value.toInt()
-			if (n <= 0) return listOf()
-			if (n == 1) return listOf(1.0 * multiply + shift)
-			val result = mutableListOf(0.0 + shift, 1.0 * multiply + shift)
-			var a = 0.0
-			var b = 1.0
-			for (i in 2 until n) {
-				val temp = a + b
-				a = b
-				b = temp
-				result.add(b * multiply + shift)
-			}
-			return result
+		fun fibonacci() {
 		}
 
-		fun gold(value: Double, component: String? = null): Map<String, Double> {
-			val phi = 1.6180339887498948
-			return when (component) {
-				"short" -> mapOf(
-					"short" to value,
-					"long" to value * phi,
-					"total" to value * (1 + phi)
-				)
-				"long" -> mapOf(
-					"short" to value / phi,
-					"long" to value,
-					"total" to value * (1 + phi) / phi
-				)
-				else -> mapOf(
-					"short" to (2 - phi) * value,
-					"long" to (phi - 1) * value,
-					"total" to value
-				)
-			}
+		fun gold() {
 		}
 
-		fun abs(value: Double): Double {
-			return kotlin.math.abs(value)
+		fun abs() {
 		}
 
-		fun min(value: List<Double>): Double {
-			return value.minOrNull() ?: 0.0
+		fun min() {
 		}
 
-		fun max(value: List<Double>): Double {
-			return value.maxOrNull() ?: 0.0
+		fun max() {
 		}
 
-		fun sum(value: List<Any?>): Double {
-			var result = 0.0
-			for (item in value) {
-				if (item is Number) {
-					result += item.toDouble()
-				}
-			}
-			return result
+		fun sum() {
 		}
 
-		fun avg(value: List<Any?>): Double {
-			if (value.isEmpty()) return 0.0
-			return sum(value) / value.size.toDouble()
+		fun avg() {
 		}
 
-		fun random(value: Any? = null, to: Any? = null): Any {
-			val random = Random.Default
-			if (value == null && to == null) return random.nextDouble()
-			if (value is Int && to is Int) return random.nextInt(value, to + 1)
-			if (value is Number && to is Number) return random.nextDouble(value.toDouble(), to.toDouble())
-			return when (value) {
-				is Boolean -> random.nextBoolean()
-				is String -> value.random().toString()
-				is List<*> -> value.random()!!
-				is Map<*, *> -> value.values.random()!!
-				is Int -> random.nextInt(0, value + 1)
-				is Number -> random.nextDouble(0.0, value.toDouble())
-				else -> random.nextDouble()
-			}
+		fun random() {
+		}
+
+		fun random_seed() {
 		}
 
 
@@ -7065,34 +8002,46 @@ class VOIDlang {
 		fun crc32() {
 		}
 
-		fun base64_encode() {
+		fun base64() {
 		}
 
 		fun base64_decode() {
 		}
 
-		fun gzip_encode() {
+		fun gzip() {
 		}
 
 		fun gzip_decode() {
 		}
 
-		fun lzma_encode() {
+		fun lzma() {
 		}
 
 		fun lzma_decode() {
 		}
 
-		fun lzss_encode() {
+		fun lz4() {
+		}
+
+		fun lz4_decode() {
+		}
+
+		fun lzss() {
 		}
 
 		fun lzss_decode() {
 		}
 
-		fun lzss_encode() {
+		fun deflate() {
 		}
 
-		fun lzss_decode() {
+		fun deflate_decode() {
+		}
+
+		fun aes() {
+		}
+
+		fun aes_decode() {
 		}
 
 		fun rsa_encode() {
@@ -7102,9 +8051,6 @@ class VOIDlang {
 		}
 
 		fun ecdhe_encode() {
-		}
-
-		fun ecdhe_decode() {
 		}
 
 		fun barcode_encode() {
@@ -7131,9 +8077,6 @@ class VOIDlang {
 		fun file_move() {
 		}
 
-		fun file_link() {
-		}
-
 		fun file_info() {
 		}
 
@@ -7149,16 +8092,22 @@ class VOIDlang {
 		fun file_base64() {
 		}
 
-		fun file_zip() {
+		fun file_gzip() {
 		}
 
-		fun file_gzip() {
+		fun file_zip() {
 		}
 
 		fun file_void() {
 		}
 
 		fun file_extract() {
+		}
+
+		fun link() {
+		}
+
+		fun link_exists() {
 		}
 
 		fun dir() {
@@ -7173,16 +8122,25 @@ class VOIDlang {
 		fun dir_remove() {
 		}
 
+		fun dir_clear() {
+		}
+
 		fun dir_copy() {
 		}
 
 		fun dir_move() {
 		}
 
-		fun dir_clear() {
+		fun dir_info() {
 		}
 
-		fun dir_info() {
+		fun dir_sha256() {
+		}
+
+		fun dir_sha512() {
+		}
+
+		fun dir_gzip() {
 		}
 
 		fun dir_zip() {
@@ -7191,7 +8149,43 @@ class VOIDlang {
 		fun dir_void() {
 		}
 
+		fun dir_magic() {
+		}
+
 		fun drive() {
+		}
+
+		fun drive_create() {
+		}
+
+		fun drive_exists() {
+		}
+
+		fun drive_remove() {
+		}
+
+		fun drive_clear() {
+		}
+
+		fun drive_rename() {
+		}
+
+		fun drive_mount() {
+		}
+
+		fun drive_unmount() {
+		}
+
+		fun drive_resize() {
+		}
+
+		fun drive_check() {
+		}
+
+		fun drive_defrag() {
+		}
+
+		fun drive_os() {
 		}
 
 		fun path() {
@@ -7200,22 +8194,40 @@ class VOIDlang {
 
 	  // format
 
-		fun void_encode() {
+		fun void() {
 		}
 
 		fun void_decode() {
 		}
 
-		fun json_encode() {
+		fun json() {
 		}
 
 		fun json_decode() {
 		}
 
-		fun yaml_encode() {
+		fun csv() {
+		}
+
+		fun csv_decode() {
+		}
+
+		fun yaml() {
 		}
 
 		fun yaml_decode() {
+		}
+
+		fun xml() {
+		}
+
+		fun xml_decode() {
+		}
+
+		fun ini() {
+		}
+
+		fun ini_decode() {
 		}
 
 
@@ -7233,10 +8245,10 @@ class VOIDlang {
 		fun cookie() {
 		}
 
-		fun social() {
+		fun notify() {
 		}
 
-		fun notify() {
+		fun social() {
 		}
 
 
@@ -7281,7 +8293,10 @@ class VOIDlang {
 		fun cursor() {
 		}
 
-		fun clear() {
+		fun camera() {
+		}
+
+		fun camera() {
 		}
 
 		fun flashlight() {
@@ -7290,13 +8305,13 @@ class VOIDlang {
 		fun location() {
 		}
 
-		fun gyroscope() {
-		}
-
 		fun accelerometer() {
 		}
 
 		fun compass() {
+		}
+
+		fun gyroscope() {
 		}
 
 		fun proximity() {
@@ -7335,9 +8350,6 @@ class VOIDlang {
 		fun cellular() {
 		}
 
-		fun stream() {
-		}
-
 		fun keyboard() {
 		}
 
@@ -7348,9 +8360,6 @@ class VOIDlang {
 		}
 
 		fun tap() {
-		}
-
-		fun key() {
 		}
 
 
