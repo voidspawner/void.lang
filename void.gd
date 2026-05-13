@@ -8381,6 +8381,5 @@ static func book():
 static func game():
 	pass
 
-
 func _ready():
 	VOIDlang.run()
