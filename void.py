@@ -31,7 +31,7 @@ class VOIDlang:
 				python
 			version
 				time
-					1778613350
+					1778668374
 				date
 					2026 · 05 · 13
 			license
@@ -717,7 +717,7 @@ class VOIDlang:
 				example
 					[code [[<= 5 3]]  result false
 					[code [5 <= 5]  result true
-			~>
+			->
 				group
 					expression
 				method
@@ -738,11 +738,11 @@ class VOIDlang:
 					[name value  type any
 					[name data  type [text list dict
 				example
-					[code [[# te text]]  result true
-					[code [[# a [a b c]]]  result true
-					[code [[# a [a 1  b 2]]]  result true
-					[code [a # [a b c]]  result true
-					[code [d # [a b c]]  result false
+					[code [[-> te text]]  result true
+					[code [[-> a [a b c]]]  result true
+					[code [[-> a [a 1  b 2]]]  result true
+					[code [a -> [a b c]]  result true
+					[code [d -> [a b c]]  result false
 			x>
 				group
 					expression
@@ -764,12 +764,12 @@ class VOIDlang:
 					[name value  type any
 					[name data  type [text list dict
 				example
-					[code [[!# te text]]  result false
-					[code [[!# a [a b c]]]  result false
-					[code [[!# a [a 1  b 2]]]  result false
-					[code [a !# [a b c]]  result false
-					[code [d !# [a b c]]  result true
-			<~
+					[code [[x> te text]]  result false
+					[code [[x> a [a b c]]]  result false
+					[code [[x> a [a 1  b 2]]]  result false
+					[code [a x> [a b c]]  result false
+					[code [d x> [a b c]]  result true
+			<-
 				group
 					expression
 				method
@@ -790,16 +790,17 @@ class VOIDlang:
 					[name data  type any
 					[name type  type [text none list
 				example
-					[code [[@ name text]]  result true
-					[code [[@ name number]]  result false
-					[code [[@ 123 number]]  result true
-					[code [[@ true bool]]  result true
-					[code [[@ none none]]  result true
-					[code [[@ [1 2] list]]  result true
-					[code [[@ [a 1  b 2] dict]]  result true
-					[code [[@ name [text dict]]]  result true
-					[code [[@ *text binary]]  result true
-					[code [123 @ number]  result true
+					[code [[<- name text]]  result true
+					[code [[<- name number]]  result false
+					[code [[<- 123 number]]  result true
+					[code [[<- true bool]]  result true
+					[code [[<- none none]]  result true
+					[code [[<- [1 2] list]]  result true
+					[code [[<- [a 1  b 2] dict]]  result true
+					[code [[<- name [text dict]]]  result true
+					[code [[<- *text binary]]  result true
+					[code [123 <- number]  result true
+					[code ['123' <- text.number]  result true
 			<x
 				group
 					expression
@@ -821,16 +822,17 @@ class VOIDlang:
 					[name data  type any
 					[name type  type [text none list
 				example
-					[code [[!@ name text]]  result false
-					[code [[!@ name number]]  result true
-					[code [[!@ 123 number]]  result false
-					[code [[!@ true bool]]  result false
-					[code [[!@ none none]]  result false
-					[code [[!@ [1 2] list]]  result false
-					[code [[!@ [a 1  b 2] dict]]  result false
-					[code [[!@ name [text dict]]]  result false
-					[code [[!@ *text binary]]  result false
-					[code [123 !@ number]  result false
+					[code [[<x name text]]  result false
+					[code [[<x name number]]  result true
+					[code [[<x 123 number]]  result false
+					[code [[<x true bool]]  result false
+					[code [[<x none none]]  result false
+					[code [[<x [1 2] list]]  result false
+					[code [[<x [a 1  b 2] dict]]  result false
+					[code [[<x name [text dict]]]  result false
+					[code [[<x *text binary]]  result false
+					[code [123 <x number]  result false
+					[code ['123' <x text.number]  result false
 			=
 				group
 					expression
@@ -1259,7 +1261,7 @@ class VOIDlang:
 				example
 					[code [0 [o 10 [[? [.index > 2] x] [+ 1] ]]]  result 3
 					[code [0 [o 10 [[o 10 [[? [.index > 2] [x 2]] [+ 1] ]]] ]]  result 3
-			->
+			~>
 				group
 					control
 				method
@@ -1279,10 +1281,10 @@ class VOIDlang:
 				param
 					[[name count  type number  default 1
 				example
-					[code [0 [o 10 [+ 1 ->]]]  result 1
-					[code [0 [o 10 [[? [.index % 2] ->] [+ 1]] ]]  result 5
-					[code [0 [o 10 [[? [.index = 2] [[-> 2]]] [+ 1]] ]]  result 8
-			<-
+					[code [0 [o 10 [+ 1 ~>]]]  result 1
+					[code [0 [o 10 [[? [.index % 2] ~>] [+ 1]] ]]  result 5
+					[code [0 [o 10 [[? [.index = 2] [[~> 2]]] [+ 1]] ]]  result 8
+			<~
 				group
 					control
 				method
@@ -1302,8 +1304,8 @@ class VOIDlang:
 				param
 					[[name count  type number  default 1
 				example
-					[code [0 [o 10 [+ 1 <-]] ]  result 11
-					[code [0 [o 10 [+ 1 [<- 2]]] ]  result 12
+					[code [0 [o 10 [+ 1 <~]] ]  result 11
+					[code [0 [o 10 [+ 1 [<~ 2]]] ]  result 12
 			_
 				group
 					control
@@ -1761,11 +1763,11 @@ class VOIDlang:
 					[name data  type any  subname true  default none
 				example
 					[code [chat]  test false
-					[code [chat.muryashka]  test false
-					[code [chat.murya]  test false
-					[code [[chat.character.kitty a cat who loves to play games often says "meow"]]  test false
-					[code [chat.kitty]  test false
-					[code [[chat.kitty Hello Kitty]]  test false
+					[code [chat.Muryashka]  test false
+					[code [chat.Murya]  test false
+					[code [[chat.character.Kitty a cat who loves to play games often says "meow"]]  test false
+					[code [chat.Kitty]  test false
+					[code [[chat.Kitty Hello Kitty]]  test false
 					[code [chat.gpt]  test false
 					[code [chat.gpt.pro]  test false
 					[code [chat.pro]  test false
@@ -3835,7 +3837,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					nonr
+					none
 				description
 					Compresses data using the LZSS compression algorithm (fastest retro compression with minimal memory usage)
 				safe
