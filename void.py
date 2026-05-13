@@ -1750,7 +1750,7 @@ class VOIDlang:
 					:
 					ai
 				description
-					AI conversation and interaction through text
+					AI conversation and interaction through text or control a virtual or physical bot
 				safe
 					false
 				container
@@ -1758,11 +1758,50 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++
 				param
-					[name text  type many  default none
+					[name data  type any  subname true  default none
 				example
-					[code [[chat 10 facts about cats]]  test false
-					[code [[: 2+2]]  test false
-					[code [[. let's have a chat] chat]  text false
+					[code [chat]  test false
+					[code [chat.muryashka]  test false
+					[code [chat.murya]  test false
+					[code [[chat.character.kitty a cat who loves to play games often says "meow"]]  test false
+					[code [chat.kitty]  test false
+					[code [[chat.kitty Hello Kitty]]  test false
+					[code [chat.gpt]  test false
+					[code [chat.gpt.pro]  test false
+					[code [chat.pro]  test false
+					[code [[chat radius of the Earth]]  test false
+					[code [[chat.gpt radius of the Earth]]  test false
+					[code [[chat.pro radius of the Earth]]  test false
+					[code [[: tell me a story]]  test false
+					[code [[: translate to portuguese: Hi World :D]]  test false
+					[code [[: svg ginger cat in a box]]  test false
+					[code [[: python calculator application]]  test false
+					[code [[: image dancing cats]]  test false
+					[code [chat.deepseek]  test false
+					[code [chat.reasoner]  test false
+					[code [chat.v3]  test false
+					[code [chat.r1]  test false
+					[code [[chat.deepseek radius of the Earth]]  test false
+					[code [chat.ollama]  test false
+					[code [[chat.ollama radius of the Earth]]  test false
+					[code [chat.gemini]  test false
+					[code [[chat.gemini radius of the Earth]]  test false
+					[code [chat.claude]  test false
+					[code [chat.claude.opus]  test false
+					[code [chat.claude.sonnet]  test false
+					[code [chat.claude.haiku]  test false
+					[code [chat.opus]  test false
+					[code [chat.sonnet]  test false
+					[code [chat.haiku]  test false
+					[code [[chat.claude radius of the Earth]]  test false
+					[code [chat.bot.go.forward]  test false
+					[code [[chat.bot.go [latitude .latitude  longitude .longitude]]]  test false
+					[code [chat.bot.stop]  test false
+					[code [[chat.bot.take pencil]]  test false
+					[code [[chat.bot.put pencil on the table]]  test false
+					[code [[chat Murya take a pencil from the table]]  test false
+					[code [[chat.Murya put the pencil on the table]]  test false
+					[code [[chat.Murya go to the store and buy some milk]]  test false
 			say
 				group
 					control
@@ -1926,35 +1965,6 @@ class VOIDlang:
 					[code [ui.button [title OK  action [exit]]]  test false
 					[code [ui.button OK [exit]]  test false
 					[code [ui ['press button' [button OK [exit]]]  test false
-			bot
-				group
-					control
-				method
-					bot
-				action
-					none
-				alias
-					none
-				description
-					Control a software or physical bot
-				safe
-					false
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++
-				param
-					[name command  type text  subname true  default none
-					[name description  type text  subname true  default none
-				example
-					[code [[bot.name.go forward]]  test false
-					[code [[bot.name.go [latitude .latitude  longitude .longitude]]]  test false
-					[code [bot.name.stop]  test false
-					[code [[bot.name.take pencil]  test false
-					[code [[bot.name take a pencil]  test false
-					[code [[bot.name.put pencil on the table]  test false
-					[code [[bot.name put the pencil on the table]  test false
-					[code [[bot Murya put the pencil on the table]  test false
 
 		  .: text :.
 
