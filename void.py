@@ -1807,11 +1807,11 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++
 				param
-					[[name file  type str  default none
+					[[name file  type text  default none
 				example
-					[code [[. 'say…'] recognize]  test false
-					[code [[say voice voice.mp3] [recognize voice.mp3]]  test false
-					[code [[image cat cat.jpg] [recognize cat.jpg]]  test false
+					[code [recognize]  test false
+					[code [[recognize voice.mp3]]  test false
+					[code [[recognize cat.jpg]]  test false
 			ui
 				group
 					control
@@ -1926,6 +1926,35 @@ class VOIDlang:
 					[code [ui.button [title OK  action [exit]]]  test false
 					[code [ui.button OK [exit]]  test false
 					[code [ui ['press button' [button OK [exit]]]  test false
+			bot
+				group
+					control
+				method
+					bot
+				action
+					none
+				alias
+					none
+				description
+					Control a software or physical bot
+				safe
+					false
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name command  type text  subname true  default none
+					[name description  type text  subname true  default none
+				example
+					[code [[bot.name.go forward]]  test false
+					[code [[bot.name.go [latitude .latitude  longitude .longitude]]]  test false
+					[code [bot.name.stop]  test false
+					[code [[bot.name.take pencil]  test false
+					[code [[bot.name take a pencil]  test false
+					[code [[bot.name.put pencil on the table]  test false
+					[code [[bot.name put the pencil on the table]  test false
+					[code [[bot Murya put the pencil on the table]  test false
 
 		  .: text :.
 
@@ -5189,7 +5218,7 @@ class VOIDlang:
 					[name component  type text  subname true  default none
 				example
 					[code [[path /path/to/file.txt]]  type dict
-					[code [[path.full path/to/file.txt]]  type str
+					[code [[path.full path/to/file.txt]]  type text
 					[code [[path.file /path/to/file.txt]]  result file.txt
 					[code [[path.name /path/to/file.txt]]]  result file
 					[code [[path.extension /path/to/file.txt]]  result txt
