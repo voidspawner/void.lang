@@ -351,7 +351,7 @@ python3 void.py app.zip
 | **``>=``**<br>Checks if left value is greater than or equal to right | **``deflate.decode``**<br>Decompresses Deflate (LZSS + Huffman) compressed data |
 | **``<=``**<br>Checks if left value is less than or equal to right | **``aes``**<br>Encrypts binary data using the AES256 algorithm and the specified key |
 | **``->``** · **``in``**<br>Checks if value is in a list, subtext in a text or name in a dictionary | **``aes.decode``**<br>Decrypts previously encrypted binary data using the AES256 algorithm and the specified key |
-| **``x>``** · **``notin``**<br>Checks if value is not in a list, subtext in a text or name not in a dictionary | **``rsa``**<br>Encrypts data using RSA encryption with a public key or generates keys (the maximum data length and encryption speed depends on the key size 4096 = 446 bytes) |
+| **``x>``** · **``notin``**<br>Checks if value is not in a list, subtext in a text or name not in a dictionary | **``rsa``**<br>Encrypts data using RSA encryption with a public key or generates keys |
 | **``<-``** · **``is``**<br>Checks if value matches a type or one of types | **``rsa.decode``**<br>Decrypts data encrypted with RSA encryption |
 | **``<x``** · **``isnot``**<br>Checks if value does not match a type or types | **``ecdhe``**<br>Creates a pair of keys or creates a shared key from the public and private keys of the sides |
 | **``=``** · **``==``**<br>Assign value or expression to a parameter or checks if values are equal | **``barcode``** · **``qr``**<br>Encodes text into a barcode or returns a list of supported code formats |
