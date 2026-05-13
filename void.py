@@ -3660,7 +3660,7 @@ class VOIDlang:
 					[python js swift kotlin gdscript c++
 				param
 					[name data  type any
-					[name level  type [number text  subname true  default none
+					[name level  type [number text]  subname true  default none
 				example
 					[code [[gzip hello]]  result *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==
 					[code [[gzip hello 1]]  type binary
@@ -3796,9 +3796,9 @@ class VOIDlang:
 				action
 					none
 				alias
-					deflate
+					nonr
 				description
-					Compresses data using the LZSS or LZSS + Huffman compression algorithm (best and fastest retro compression with minimal memory usage)
+					Compresses data using the LZSS compression algorithm (fastest retro compression with minimal memory usage)
 				safe
 					true
 				container
@@ -3806,16 +3806,9 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name data  type any
-					[name huffman  type bool  default false
+					[[name data  type any
 				example
 					[[code [[lzss hello]]  result *H2hlbGxv
-					[code [[lzss hello 1]]  test false
-					[code [[lzss hello 9]]  test false
-					[code [[lzss hello fast]]  test false
-					[code [[lzss hello best]]  test false
-					[code [[lzss.fast hello]]  test false
-					[code [[lzss.best hello]]  test false
 			lzss.decode
 				group
 					crypto
@@ -3824,7 +3817,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					deflate.decode
+					none
 				description
 					Decompresses LZSS compressed data
 				safe
@@ -3837,6 +3830,55 @@ class VOIDlang:
 					[[name data  type any
 				example
 					[[code [[lzss.decode *H2hlbGxv]]  result hello
+			deflate
+				group
+					crypto
+				method
+					deflate
+				action
+					none
+				alias
+					none
+				description
+					Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name level  type [number text]  subname true  default none
+				example
+					[[code [[deflate hello]]  result *y0jNyckHAA==
+					[code [[deflate hello 1]]  test false
+					[code [[deflate hello 9]]  test false
+					[code [[deflate hello fast]]  test false
+					[code [[deflate hello best]]  test false
+					[code [[deflate.fast hello]]  test false
+					[code [[deflate.best hello]]  test false
+			deflate.decode
+				group
+					crypto
+				method
+					deflate_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses Deflate (LZSS + Huffman) compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[deflate.decode *y0jNyckHAA==]]  result hello
 			aes
 				group
 					crypto
@@ -8952,11 +8994,40 @@ class VOIDlang:
 
 	@classmethod
 	def deflate(cls, data, compression = None):
-		pass
+		zlib = cls.module('zlib')
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		if compression in ['best', None]:
+			compression = 9
+		elif compression == 'fast':
+			compression = 1
+		else:
+			try:
+				compression = int(compression)
+				if compression < 0:
+					compression = 0
+				elif compression > 9:
+					compression = 9
+			except:
+				compression = 9
+		compressor = zlib.compressobj(level=compression, method=zlib.DEFLATED, wbits=-15)
+		return compressor.compress(data) + compressor.flush()
+
+	@classmethod
+	def deflate_fast(cls, data):
+		return cls.deflate(data, 'fast')
+
+	@classmethod
+	def deflate_best(cls, data):
+		return cls.deflate(data, 'best')
 
 	@classmethod
 	def deflate_decode(cls, data):
-		pass
+		if not data: return
+		zlib = cls.module('zlib')
+		try:
+			return zlib.decompress(data, -15)
+		except: return
 
 	@classmethod
 	def aes(cls, data, key: str):
