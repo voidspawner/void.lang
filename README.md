@@ -1,7 +1,7 @@
 # V O I D lang
 
 ## About
-**⌜ V O I D lang ⌟** is the language for rapidly creating applications and games in the **[V O I D](#v-o-i-d-format)** or **[JSON](https://en.wikipedia.org/wiki/JSON)** format. It is used as a replacement for the standard **``Bash``**・**``CMD``**・etc. languages and for creating **``games``**, **``apps``** and **``content``**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. The whole application fits in **one ``V O I D`` or ``JSON`` file**. Since the **code is presented as data**, applications can be easily generated with **``AI``**, updated, installed and launched remotely.
+**⌜ V O I D lang ⌟** is the language for rapidly creating applications and games in the **[V&nbsp;O&nbsp;I&nbsp;D](#v-o-i-d-format)** or **[JSON](https://en.wikipedia.org/wiki/JSON)** format. It is used as a replacement for the standard **``Bash``**・**``CMD``**・etc. languages and for creating **``games``**, **``apps``** and **``content``**. The language uses one of the languages already preinstalled in the system. So you don't need to install anything else. Code and data are not separated. The whole application fits in **one ``V O I D`` or ``JSON`` file**. Since the **code is presented as data**, applications can be easily generated with **``AI``**, updated, installed and launched remotely.
 
 > [!IMPORTANT]
 > **The project is in the process of development.**
@@ -13,16 +13,16 @@
 [**Example**](#example)・
 [**How to Use**](#how-to-use)・
 [**Actions**](#actions)・
-[**V O I D format**](#v-o-i-d-format)・
-[**V O I D db**](#v-o-i-d-db)・
-[**V O I D ai**](#v-o-i-d-ai)・
-[**V O I D game**](#v-o-i-d-game)・
-[**V O I D social**](#v-o-i-d-social)・
-[**V O I D os**](#v-o-i-d-os)・
-[**V O I D tech**](#v-o-i-d-tech)・
-[**V O I D ideology**](#v-o-i-d-ideology)・
-[**V O I D license**](#v-o-i-d-license)・
-[**V O I D task**](#v-o-i-d-task)
+[**V&nbsp;O&nbsp;I&nbsp;D format**](#v-o-i-d-format)・
+[**V&nbsp;O&nbsp;I&nbsp;D db**](#v-o-i-d-db)・
+[**V&nbsp;O&nbsp;I&nbsp;D ai**](#v-o-i-d-ai)・
+[**V&nbsp;O&nbsp;I&nbsp;D game**](#v-o-i-d-game)・
+[**V&nbsp;O&nbsp;I&nbsp;D social**](#v-o-i-d-social)・
+[**V&nbsp;O&nbsp;I&nbsp;D os**](#v-o-i-d-os)・
+[**V&nbsp;O&nbsp;I&nbsp;D tech**](#v-o-i-d-tech)・
+[**V&nbsp;O&nbsp;I&nbsp;D ideology**](#v-o-i-d-ideology)・
+[**V&nbsp;O&nbsp;I&nbsp;D license**](#v-o-i-d-license)・
+[**V&nbsp;O&nbsp;I&nbsp;D task**](#v-o-i-d-task)
 
 ## Preinstalled Language
 
@@ -240,9 +240,9 @@ print(void.decrypt(encrypted['data'], encrypted['key']))
 
 ## How to Use
 
-1. Download **V O I D lang**
+1. Download **V&nbsp;O&nbsp;I&nbsp;D lang**
 2. Create your first app in **``app.void``**・**``app.json``**・**``app.zip``**
-3. Launch app with **V O I D lang**
+3. Launch app with **V&nbsp;O&nbsp;I&nbsp;D lang**
  
 ```console
 python3 void.py app.void
@@ -943,7 +943,7 @@ V O I D format
 </table>
 
 > [!TIP]
-> Use **V O I D format [highlighting](https://github.com/voidspawner/void.storage/blob/main/settings/void.sublime-syntax)** 🔆 for **[Sublime Text](https://sublimetext.com)**.
+> Use **V&nbsp;O&nbsp;I&nbsp;D format [highlighting](https://github.com/voidspawner/void.storage/blob/main/settings/void.sublime-syntax)** 🔆 for **[Sublime Text](https://sublimetext.com)**.
 >
 > **``Tools``** → **``Developer``** → **``New Syntax…``** → **``Copy``** · **``Paste``** → Save as **``void.sublime-syntax``**
 >
@@ -1172,10 +1172,10 @@ This is a game that creates an **infinite** number of games, apps and content.
 This is a social network that lets you communicate safely through an **AI character** and create games, apps, and content.
 
 ## V O I D os
-This is an Operating System that uses **V O I D lang** to run and create games, apps and content.
+This is an Operating System that uses **V&nbsp;O&nbsp;I&nbsp;D lang** to run and create games, apps and content.
 
 ## V O I D tech
-These are modular devices controlled by **[V O I D os](#v-o-i-d-os)** · **[V O I D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
+These are modular devices controlled by **[V&nbsp;O&nbsp;I&nbsp;D os](#v-o-i-d-os)** · **[V&nbsp;O&nbsp;I&nbsp;D ai](#v-o-i-d-ai)** for creating **individual** stand-alone productions, as well as creating individual products with **unique designs** and in the required quantities.
 
 ## V O I D ideology
 This is an ideology of creating compact production systems to meet individual everyday needs.
@@ -1188,6 +1188,6 @@ This is a license to distribute digital content and goods, expressed in a single
 You can use it in both **private** and **open source**. Embed it in **free** or **paid** products. **Modify**. Create your **own solutions** based on it. **No need to specify the author**.
 
 ## V O I D task
-This is a paid assignment for implementing **V O I D** technologies.
+This is a paid assignment for implementing **V&nbsp;O&nbsp;I&nbsp;D** technologies.
 > [!IMPORTANT]
-> By adding your code to the repository, you are publishing it under the **V O I D licence**.
+> By adding your code to the repository, you are publishing it under the **V&nbsp;O&nbsp;I&nbsp;D licence**.
