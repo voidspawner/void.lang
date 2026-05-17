@@ -12,7 +12,6 @@
 [**Preinstalled Language**](#preinstalled-language)・
 [**Example**](#example)・
 [**How to Use**](#how-to-use)・
-[**How to Use Game Engine**](#how-to-use-game-engine)・
 [**Actions**](#actions)・
 [**V O I D format**](#v-o-i-d-format)・
 [**V O I D db**](#v-o-i-d-db)・
