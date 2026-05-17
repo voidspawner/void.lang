@@ -275,7 +275,7 @@ python3 void.py app.zip
 > ```console
 > winget install --id Python.Python -h --accept-package-agreements --accept-source-agreements
 > ```
-> To install Python on **``macOS``** or alternatively on **``Windows``**, enter the command in the terminal and follow the instructions
+> To install Python on **``macOS``** or **``Windows``**, enter the command in the terminal and follow the instructions
 > ```console
 > python3
 > ```
