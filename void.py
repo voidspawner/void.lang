@@ -19,7 +19,7 @@ import subprocess
 
 class VOIDlang:
 
-	data = '''
+	data = r'''
 		about
 			type
 				code
@@ -71,8 +71,10 @@ class VOIDlang:
 				'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      '
 				'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
 			help
-				python.exe void.py help
+				python3 void.py help
 				python3 void.py help action
+				python3 void.py "[[help action"
+				python3 void.py void.py
 		lang
 
 		  .: value :.
@@ -320,7 +322,7 @@ class VOIDlang:
 				param
 					[[name data  type any  default none
 				example
-					[code [[binary text]]  result *text
+					[code [[binary text]]  result *'text
 					[code [[binary 123]]  result *7B
 					[code [[binary true]]  result *01
 					[code [[binary none]]  result *00
@@ -890,7 +892,7 @@ class VOIDlang:
 					[code [[= name text] [+= name end] .name]  result textend
 					[code [[= data [1 2 3]] [+= data 2] .data]  result [1 2 3 '' ''
 					[code [[= data [a 1  b 2]] [+= data [c  3]] .data]  result [a 1  b 2  c 3
-					[code [[= name *text] [+= name end] .name]  result *textend
+					[code [[= name *text] [+= name end] .name]  result *'textend
 			=+
 				group
 					expression
@@ -919,7 +921,7 @@ class VOIDlang:
 					[code [[= name text] [=+ name start]]  name name  result starttext
 					[code [[= data [1 2 3]] [=+ data 2]]  name data  result ['' '' 1 2 3
 					[code [[= data [a 1  b 2]] [=+ data [c  3]]]  name data  result [c 3  a 1  b 2
-					[code [[= name *text] [+= name start]]  name name  result *starttext
+					[code [[= name *text] [+= name start]]  name name  result *'starttext
 			-=
 				group
 					expression
@@ -948,7 +950,7 @@ class VOIDlang:
 					[code [[= name text] [-= name xt]]  name name  result te
 					[code [[= data [1 2 3]] [-= data 2]]  name data  result [1 2
 					[code [[= data [a 1  b 2]] [-= data b]]  name data  result [a 1
-					[code [[= name *text] [-= name xt]]  name name  result *te
+					[code [[= name *text] [-= name xt]]  name name  result *'te
 			=-
 				group
 					expression
@@ -977,7 +979,7 @@ class VOIDlang:
 					[code [[= name text] [=- name te]]  name name  result xt
 					[code [[= data [1 2 3]] [=- data 2]]  name data  result [1
 					[code [[= data [a 1  b 2]] [=- data b]]  name data  result [a 1
-					[code [[= name *text] [=- name te]]  name name  result *xt
+					[code [[= name *text] [=- name te]]  name name  result *'xt
 			*=
 				group
 					expression
@@ -1032,7 +1034,7 @@ class VOIDlang:
 					[code [[= name text] [/= name 2] .name]  result [te xt
 					[code [[= name 'text text'] [/= name ' '] .name]  result [text text
 					[code [[= data [1 2 3 4]] [/= data 2] .data]  result [[1 2] [3 4
-					[code [[= data [a 1  b 2]] [/= data 2 .data]  result [[a  1] [b  2
+					[code [[= data [a 1  b 2]] [/= data 2] .data]  result [[a  1] [b  2
 					[code [[= name *text] [/= name 2] .name]  result [*te *xt
 			%=
 				group
@@ -3348,17 +3350,17 @@ class VOIDlang:
 					[code [[wait 1m]]  test false
 					[code [[wait 1h]]  test false
 					[code [wait.h]  test false
-			stopwatch
+			timepast
 				group
 					time
 				method
-					stopwatch
+					timepast
 				action
 					none
 				alias
 					t
 				description
-					Stopwatch for calculating the time spent on operations
+					Calculating the time spent on operations
 				safe
 					true
 				container
@@ -3367,14 +3369,13 @@ class VOIDlang:
 					[python js swift kotlin gdscript c++ asm86
 				param
 					[name tag  type text  default none
-					[name name  type text  default none
+					[name digits  type int  default none
 				result
 					number
 				example
 					[code [t]  type number
-					[code [[t start]]  type number
-					[code [[t start] [t stop] [t list]]  type list
-					[code [[t laps lap1] [t laps lap2] [t laps list]]  type list
+					[code [[t run] [wait 0.1] [t run]]  type number
+					[code [[t run] [wait 0.1] [t run 5]]  test false
 			date
 				group
 					time
@@ -3730,7 +3731,105 @@ class VOIDlang:
 				param
 					[[name data  type any
 				example
-					[[code [[gzip.decode *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==]]  result hello
+					[[code [[gzip.decode *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==]]  result *'hello
+			zstd
+				group
+					crypto
+				method
+					zstd
+				action
+					none
+				alias
+					none
+				description
+					Compresses data using the Zstandard compression algorithm (best compression)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name level  type [number text]  subname true  default none
+				example
+					[[code [[zstd hello]]  result *KLUv/SAFKQAAaGVsbG8=
+					[code [[zstd hello -5]]  test false
+					[code [[zstd hello 22]]  test false
+					[code [[zstd hello fast]]  test false
+					[code [[zstd hello best]]  test false
+					[code [[zstd.fast hello]]  test false
+					[code [[zstd.best hello]]  test false
+			zstd.decode
+				group
+					crypto
+				method
+					zstd_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses Zstandard compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name data  type any
+				example
+					[[code [[lzma.decode *KLUv/SAFKQAAaGVsbG8=]]  result *'hello
+			brotli
+				group
+					crypto
+				method
+					brotli
+				action
+					none
+				alias
+					none
+				description
+					Compresses data using the Brotli compression algorithm (2nd best compression)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name level  type [number text]  subname true  default none
+				example
+					[[code [[brotli hello]]  result *CwKAaGVsbG8D
+					[code [[brotli hello 1]]  test false
+					[code [[brotli hello 11]]  test false
+					[code [[brotli hello fast]]  test false
+					[code [[brotli hello best]]  test false
+					[code [[brotli.fast hello]]  test false
+					[code [[brotli.best hello]]  test false
+			brotli.decode
+				group
+					crypto
+				method
+					brotli_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses Brotli compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name data  type any
+				example
+					[[code [[brotli.decode *CwKAaGVsbG8D]]  result *'hello
 			lzma
 				group
 					crypto
@@ -3741,7 +3840,7 @@ class VOIDlang:
 				alias
 					none
 				description
-					Compresses data using the LZMA2 compression algorithm (best compression)
+					Compresses data using the LZMA2 compression algorithm (3rd best compression)
 				safe
 					true
 				container
@@ -3750,7 +3849,7 @@ class VOIDlang:
 					[python js swift kotlin gdscript c++
 				param
 					[name data  type any
-					[name level  type [number text  subname true  default none
+					[name level  type [number text]  subname true  default none
 				example
 					[[code [[lzma hello]]  result */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==
 					[code [[lzma hello 1]]  test false
@@ -3779,7 +3878,7 @@ class VOIDlang:
 				param
 					[[name data  type any
 				example
-					[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result hello
+					[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result *'hello
 			lz4
 				group
 					crypto
@@ -3828,7 +3927,56 @@ class VOIDlang:
 				param
 					[[name data  type any
 				example
-					[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result hello
+					[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result *'hello
+			deflate
+				group
+					crypto
+				method
+					deflate
+				action
+					none
+				alias
+					none
+				description
+					Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
+				Satisfiable
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name level  type [number text]  subname true  default none
+				example
+					[[code [[deflate hello]]  result *y0jNyckHAA==
+					[code [[deflate hello 1]]  test false
+					[code [[deflate hello 9]]  test false
+					[code [[deflate hello fast]]  test false
+					[code [[deflate hello best]]  test false
+					[code [[deflate.fast hello]]  test false
+					[code [[deflate.best hello]]  test false
+			deflate.decode
+				group
+					crypto
+				method
+					deflate_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses Deflate (LZSS + Huffman) compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[deflate.decode *y0jNyckHAA==]]  result *'hello
 			lzss
 				group
 					crypto
@@ -3870,46 +4018,18 @@ class VOIDlang:
 				param
 					[[name data  type any
 				example
-					[[code [[lzss.decode *H2hlbGxv]]  result hello
-			deflate
+					[[code [[lzss.decode *H2hlbGxv]]  result *'hello
+			rle
 				group
 					crypto
 				method
-					deflate
+					rle
 				action
 					none
 				alias
 					none
 				description
-					Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
-				safe
-					true
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[name data  type any
-					[name level  type [number text]  subname true  default none
-				example
-					[[code [[deflate hello]]  result *y0jNyckHAA==
-					[code [[deflate hello 1]]  test false
-					[code [[deflate hello 9]]  test false
-					[code [[deflate hello fast]]  test false
-					[code [[deflate hello best]]  test false
-					[code [[deflate.fast hello]]  test false
-					[code [[deflate.best hello]]  test false
-			deflate.decode
-				group
-					crypto
-				method
-					deflate_decode
-				action
-					none
-				alias
-					none
-				description
-					Decompresses Deflate (LZSS + Huffman) compressed data
+					Compresses data using the RLE compression algorithm (simplest retro compression)
 				safe
 					true
 				container
@@ -3919,7 +4039,28 @@ class VOIDlang:
 				param
 					[[name data  type any
 				example
-					[[code [[deflate.decode *y0jNyckHAA==]]  result hello
+					[[code [[rle '111101111']]  result *BDEBMAQx
+			rle.decode
+				group
+					crypto
+				method
+					rle_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses RLE compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[rle.decode *BDEBMAQx]]  result *'111101111
 			aes
 				group
 					crypto
@@ -3930,7 +4071,7 @@ class VOIDlang:
 				alias
 					none
 				description
-					Encrypts binary data using the AES256 algorithm and the specified key
+					Encrypts data using the AES256 algorithm and the specified key
 				safe
 					true
 				container
@@ -3938,10 +4079,10 @@ class VOIDlang:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name data  type binary
+					[name data  type any
 					[name key  type text
 				example
-					[[code [[aes *'text' key]]  type binary
+					[[code [[aes text key]]  type binary
 			aes.decode
 				group
 					crypto
@@ -3952,7 +4093,7 @@ class VOIDlang:
 				alias
 					none
 				description
-					Decrypts previously encrypted binary data using the AES256 algorithm and the specified key
+					Decrypts previously encrypted data using the AES256 algorithm and the specified key
 				safe
 					true
 				container
@@ -3963,7 +4104,7 @@ class VOIDlang:
 					[name data  type binary
 					[name key  type text
 				example
-					[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text'
+					[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text
 			rsa
 				group
 					crypto
@@ -7001,7 +7142,7 @@ class VOIDlang:
 					true
 				indent
 					2
-			stopwatch
+			t
 				[ ]
 			timer
 				[ ]
@@ -7080,6 +7221,8 @@ class VOIDlang:
 						text/html
 					xhtml
 						application/xhtml+xml
+					mhtml
+						multipart/related
 					css
 						text/css
 
@@ -7158,6 +7301,8 @@ class VOIDlang:
 						audio/mpeg
 					mp2
 						audio/mpeg
+					m4a
+						audio/mp4
 					wma
 						audio/x-ms-wma
 					wav
@@ -7472,10 +7617,12 @@ class VOIDlang:
 					ttml
 					sub
 					smi
+					svg
 					sami
 					html
 					htm
 					xhtml
+					mhtml
 					css
 					py
 					php
@@ -7642,6 +7789,40 @@ class VOIDlang:
 
 	@classmethod
 	def run(cls):
+		#VOIDlang.data = cls.void_decode(cls.data)
+		cls.data = {
+			'app': {
+				'os': {
+					'delimiter': {
+						'line': '\n'
+					},
+					'path': {
+						'ffmpeg': None,
+						'yt-dlp': None
+					}
+				},
+				'ui': 'cli',
+				'format': {
+					'text': ['json', 'jsonl', 'jsonld', 'yaml', 'csv', 'ini', 'xml', 'sql', 'log', 'text', 'txt', 'vtt', 'srt', 'ass', 'ssa', 'ttml', 'sub', 'smi', 'sami', 'html', 'htm', 'xhtml', 'mhtml', 'css', 'py', 'php', 'java', 'kt', 'swift', 'm', 'mm', 'c', 'cpp', 'h', 'cs', 'rs', 'gd', 'js', 'mjs', 'lua', 'sh', 'csh', 'bat', 'svg']
+				}
+			},
+			'cloud': {
+				'mime': {"void": "application/void", "json": "application/json", "jsonl": "application/jsonl", "jsonld": "application/ld+json", "yaml": "application/x-yaml", "xml": "application/xml", "csv": "text/csv", "ini": "text/plain", "sql": "application/sql", "log": "text/plain", "bin": "application/octet-stream", "text": "text/plain", "txt": "text/plain", "pdf": "application/pdf", "djvu": "image/vnd.djvu", "doc": "application/msword", "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "xls": "application/vnd.ms-excel", "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ppt": "application/vnd.ms-powerpoint", "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "rtf": "application/rtf", "epub": "application/epub+zip", "abw": "application/x-abiword", "azw": "application/vnd.amazon.ebook", "odp": "application/vnd.oasis.opendocument.presentation", "ods": "application/vnd.oasis.opendocument.spreadsheet", "odt": "application/vnd.oasis.opendocument.text", "ics": "text/calendar", "html": "text/html", "htm": "text/html", "xhtml": "application/xhtml+xml", "css": "text/css", "ttf": "font/ttf", "otf": "font/otf", "sfnt": "font/sfnt", "woff": "font/woff", "woff2": "font/woff2", "eot": "application/vnd.ms-fontobject", "vtt": "text/vtt", "srt": "application/x-subrip", "ass": "text/x-ssa", "ssa": "text/x-ssa", "ttml": "application/ttml+xml", "sub": "text/x-microdvd", "smi": "application/x-sami", "sami": "application/x-sami", "jpeg": "image/jpeg", "jpg": "image/jpeg", "png": "image/png", "apng": "image/apng", "gif": "image/gif", "svg": "image/svg+xml", "webp": "image/webp", "heif": "image/heif", "heic": "image/heic", "tiff": "image/tiff", "tif": "image/tiff", "avif": "image/avif", "ico": "image/x-icon", "icon": "image/vnd.microsoft.icon", "icns": "image/x-icns", "mp3": "audio/mpeg", "mpa": "audio/mpeg", "mp2": "audio/mpeg", "wma": "audio/x-ms-wma", "wav": "audio/x-wav", "flac": "audio/flac", "ogg": "application/ogg", "oga": "audio/ogg", "weba": "audio/webm", "cda": "application/x-cdf", "aac": "audio/aac", "ac3": "audio/ac3", "mid": "audio/midi", "midi": "audio/x-midi", "s3m": "audio/s3m", "it": "audio/it", "mod": "audio/x-mod", "xm": "audio/xm", "mp4": "video/mp4", "mpeg": "video/mpeg", "mpg": "video/mpeg", "mpv": "video/mpeg", "webm": "video/webm", "ogx": "application/ogg", "ogv": "video/ogg", "qt": "video/quicktime", "mov": "ideo/quicktime", "m4v": "video/x-m4v", "wmv": "video/x-ms-wmv", "avi": "video/x-msvideo", "mkv": "application/x-matroska", "mjpeg": "multipart/x-mixed-replace", "ts": "video/mp2t", "gltf": "model/gltf+json", "glb": "model/gltf-binary", "obj": "model/obj", "stl": "model/stl", "fbx": "application/vnd.autodesk.fbx", "dae": "model/vnd.collada+xml", "3ds": "model/x-3ds", "ply": "model/ply", "usd": "model/vnd.usd", "usdz": "model/vnd.usdz+zip", "x3d": "model/x3d+xml", "wrl": "model/vrml", "vrml": "model/vrml", "zip": "application/zip", "gz": "application/gzip", "7z": "application/x-7z-compressed", "tar": "application/x-tar", "rar": "application/vnd.rar", "bz": "application/x-bzip", "bz2": "application/x-bzip2", "py": "applycation/x-python-code", "php": "application/x-httpd-php", "java": "application/java", "jar": "application/java-archive", "kt": "text/x-kotlin", "swift": "application/swift", "m": "text/x-objective-c", "mm": "text/x-objective-c++", "c": "text/x-csrc", "cpp": "text/x-c++src", "h": "text/x-chdr", "cs": "text/x-csharp", "rs": "text/rust", "gd": "text/x-gdscript", "js": "text/javascript", "mjs": "text/javascript", "lua": "text/x-lua", "sh": "application/x-sh", "csh": "application/x-csh", "bat": "application/x-bat", "form data": "multipart/form-data", "form mixed": "multipart/mixed", "form alternative": "multipart/alternative", "form text": "application/x-www-form-urlencoded", "m4a": "audio/mp4", "mhtml": "multipart/related"},
+				'code': {100: "Continue",101: "Switching protocols",102: "Processing",103: "Early Hints",200: "OK",201: "Created",202: "Accepted",203: "Non-Authoritative Information",204: "No Content",205: "Reset Content",206: "Partial Content",207: "Multi-Status",208: "Already Reported",226: "IM Used",300: "Multiple Choices",301: "Moved Permanently",302: "Found Redirection",303: "See Other",304: "Not Modified",305: "Use Proxy",306: "Switch Proxy",307: "Temporary Redirect",308: "Permanent Redirect",400: "Bad Request",401: "Unauthorized",402: "Payment Required",403: "Forbidden",404: "Not Found",405: "Method Not Allowed",406: "Not Acceptable",407: "Proxy Authentication Required",408: "Request Timeout",409: "Conflict",410: "Gone",411: "Length Required",412: "Precondition Failed",413: "Payload Too Large",414: "URI Too Long",415: "Unsupported Media Type",416: "Range Not Satisfiable",417: "Expectation Failed",418: "I'm a Teapot",421: "Misdirected Request",422: "Unprocessable Entity",423: "Locked",424: "Failed Dependency",425: "Too Early",426: "Upgrade Required",428: "Precondition Required",429: "Too Many Requests",431: "Request Header Fields Too Large",451: "Unavailable For Legal Reasons",500: "Internal Server Error",501: "Not Implemented",502: "Bad Gateway",503: "Service Unavailable",504: "Gateway Timeout",505: "HTTP Version Not Supported",506: "Variant Also Negotiates",507: "Insufficient Storage",508: "Loop Detected",510: "Not Extended",511: "Network Authentication Required"}
+			},
+			'ui': {
+				'web': {
+					'file': {
+						'main': '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',
+						'list': '/Td6WFoAAATm1rRGAgAhAQwAAACPmEGc4AFoAKxdAATg7MhpOtLQhy0QJ9K+2TKhY53yvoC4EO8CGsBhsS6WSwmBvgz8+hlLBvjAzy7nCBi0bZpdZYG9FWKuctEwI8YMx2mWC9C3VlE6WYgVFrgjJwxtvgAbWW5f3D8FXaxr7nq6DDeFJvP/RgVaIRBEnHknx954VO/XEv9s6IY3HJ/Dk0oGALuD8sHYfVYmmwJCEIlYc9sNGzJj4U5u1gHnoIBkvvKF4lxngUoXg8AAHvXTFi6IJwYAAcgB6QIAAGi7fauxxGf7AgAAAAAEWVo='
+					}
+				},
+				'file': {
+					'favicon': '/Td6WFoAAATm1rRGAgAhAQwAAACPmEGc4AItAPNdAB4cysaGkgrgIUDw9iFcJNgKryHp5bEl10Kqf9PDuSa95M+6yaR/eO3b0+eVzyRNmDPA2JnInuSpL4M3OJuWM4pkuEdvTKIqqZ3pEKy9KCL2y/sixdbcAJC/knNr6Or8OvImI6kQtfOUvjYWYJq35KZxdEgDtQRE53mfbJx01balojTapQ7Fxms7kqmeqd45luZv8nfs4BAXPZ2PrPVUCwB5SlhJ17ReOwZyqgVkSYsMaxNVCEsngbR08ysxRSQwSt4AMXqkRVPr1XASj74kN/Uc+KfBKDt2b3l8T+H8hLJvrLWDt8r8tnejZ5A9xTfGEmYBYAAA5TrqKJp0PZEAAY8CrgQAAFrnzvyxxGf7AgAAAAAEWVo='
+				}
+			},
+			't': {}
+		}
 		cls.t('run')
 		file = sys.argv[0]
 		path = os.getcwd()
@@ -7650,68 +7831,97 @@ class VOIDlang:
 		cls.set('app.file', file)
 		cls.set('app.path', path)
 		cls.set('app.param', param)
+		cls.os_path = path
 		match platform.system():
 			case 'Windows':
 				os_type = 'windows'
+				cls.is_win = True
+				cls.is_nix = False
+				cls.is_mac = False
+				cls.is_linux = False
+				cls.newline = '\r\n'
+				cls.delimiter = '\\'
 			case 'Linux':
 				os_type = 'linux'
+				cls.is_win = False
+				cls.is_nix = True
+				cls.is_mac = False
+				cls.is_linux = True
+				cls.newline = '\n'
+				cls.delimiter = '/'
 			case 'Darwin':
 				os_type = 'mac'
+				cls.is_win = False
+				cls.is_nix = True
+				cls.is_mac = True
+				cls.is_linux = False
+				cls.newline = '\n'
+				cls.delimiter = '/'
 			case _:
 				os_type = 'unknown'
+				cls.is_win = False
+				cls.is_nix = False
+				cls.is_mac = False
+				cls.is_linux = False
+				cls.newline = '\n'
+				cls.delimiter = '/'
 		cls.set('os', os_type)
 		cls.set('app.os.type', os_type)
+		cls.set('app.os.delimiter.newline', cls.newline)
+		cls.set('app.os.delimiter.path', cls.delimiter)
+		cls.set('language', 'ru')
 		cls.random_reseed()
-		if len(param) > 0:
-			name = str(param[0]).strip()
-			result = None
-			if cls.path_extension(name, 'py') and cls.file_exists(name):
-				cls.code(cls.file(name))
-			elif cls.path_extension(name, 'void', 'json', 'yaml') and cls.file_exists(name):
-				result = cls.action(cls.file(name))
-			elif cls.path_extension(name, 'zip') and cls.file_exists(name):
-				path_extract = cls.path(cls.path_dir(name), 'void.' + cls.hash(8))
-				cls.file_extract(name, path_extract)
-				if cls.file_exists(cls.path(path_extract, 'run.void')):
-					result = cls.action(cls.file(cls.path(path_extract, 'run.void')))
-				elif cls.file_exists(cls.path(path_extract, 'run.json')):
-					result = cls.action(cls.file(cls.path(path_extract, 'run.json')))
-				elif cls.file_exists(cls.path(path_extract, 'run.yaml')):
-					result = cls.action(cls.file(cls.path(path_extract, 'run.yaml')))
-				cls.dir_remove(path_extract)
-			else:
-				if name.startswith('['):
-					data = cls.json_decode(name)
-					if data is None:
-						data = cls.yaml_decode(name)
-						if data is None:
-							data = cls.void_decode(name)
-					if data is not None:
-						result = cls.action(data)
-				elif name.startswith('{'):
-					data = cls.json_decode(name)
-					if data is None:
-						data = cls.yaml_decode(name)
-					if data is not None:
-						result = cls.action(data)
+		if __name__ == '__main__':
+			if len(param) > 0:
+				name = str(param[0]).strip()
+				result = None
+				if cls.path_extension(name, 'py') and cls.file_exists(name):
+					cls.code(cls.file(name))
+				elif cls.path_extension(name, 'void', 'json', 'yaml') and cls.file_exists(name):
+					result = cls.action(cls.file(name))
+				elif cls.path_extension(name, 'zip') and cls.file_exists(name):
+					path_extract = cls.path(cls.path_dir(name), 'void.' + cls.hash(8))
+					cls.file_extract(name, path_extract)
+					if cls.file_exists(cls.path(path_extract, 'run.void')):
+						result = cls.action(cls.file(cls.path(path_extract, 'run.void')))
+					elif cls.file_exists(cls.path(path_extract, 'run.json')):
+						result = cls.action(cls.file(cls.path(path_extract, 'run.json')))
+					elif cls.file_exists(cls.path(path_extract, 'run.yaml')):
+						result = cls.action(cls.file(cls.path(path_extract, 'run.yaml')))
+					cls.dir_remove(path_extract)
 				else:
-					result = cls.action([param])
-		elif cls.file_exists('run.void'):
-			result = cls.action(cls.file('run.void'))
-		elif cls.file_exists('run.json'):
-			result = cls.action(cls.file('run.json'))
-		elif cls.file_exists('run.yaml'):
-			result = cls.action(cls.file('run.yaml'))
-		elif cls.file_exists('run.zip/run.void'):
-			result = cls.action(cls.file('run.zip/run.void'))
-		elif cls.file_exists('run.zip/run.json'):
-			result = cls.action(cls.file('run.zip/run.json'))
-		elif cls.file_exists('run.zip/run.yaml'):
-			result = cls.action(cls.file('run.zip/run.yaml'))
-		else:
-			result = app.get('about')
-		if result not in ['', b'', None] and cls.get('app.ui') == 'cli':
-			cls.print(result)
+					if name.startswith('['):
+						data = cls.json_decode(name)
+						if data is None:
+							data = cls.yaml_decode(name)
+							if data is None:
+								data = cls.void_decode(name)
+						if data is not None:
+							result = cls.action(data)
+					elif name.startswith('{'):
+						data = cls.json_decode(name)
+						if data is None:
+							data = cls.yaml_decode(name)
+						if data is not None:
+							result = cls.action(data)
+					else:
+						result = cls.action([param])
+			elif cls.file_exists('run.void'):
+				result = cls.action(cls.file('run.void'))
+			elif cls.file_exists('run.json'):
+				result = cls.action(cls.file('run.json'))
+			elif cls.file_exists('run.yaml'):
+				result = cls.action(cls.file('run.yaml'))
+			elif cls.file_exists('run.zip/run.void'):
+				result = cls.action(cls.file('run.zip/run.void'))
+			elif cls.file_exists('run.zip/run.json'):
+				result = cls.action(cls.file('run.zip/run.json'))
+			elif cls.file_exists('run.zip/run.yaml'):
+				result = cls.action(cls.file('run.zip/run.yaml'))
+			else:
+				result = cls.get('about')
+			if result not in ['', b'', None] and cls.get('app.ui') == 'cli':
+				cls.print(result)
 
 
   # value
@@ -7855,16 +8065,64 @@ class VOIDlang:
 			return 'binary'
 
 	@classmethod
-	def text(cls, data):
+	def text(cls, data, format = None):
 		if data is None:
 			return 'none'
-		if data == True:
-			return 'true'
-		if data == False:
-			return 'false'
 		if isinstance(data, str):
+			if format and isinstance(format, dict):
+				for name in format:
+					match name:
+						case 'align':
+							if 'length' in format:
+								length = int(cls.number(format['length']))
+								if length > len(data):
+									match format['align']:
+										case 'center':
+											padding = (length - len(data)) // 2
+											data = ' ' * padding + data + ' ' * (length - len(data) - padding)
+										case 'right':
+											data = ' ' * (length - len(data)) + data
+										case 'left':
+											data = data + ' ' * (length - len(data))
 			return data
+		if isinstance(data, bool):
+			return 'true' if data else 'false'
 		if isinstance(data, (int, float)):
+			match format:
+				case 'time':
+					if data < 60:
+						return 'now'
+					minute = 60
+					hour = minute * 60
+					day = hour * 24
+					month = day * 30.44
+					year = day * 365.25
+					if data < hour:
+						minutes = max(1, int(data // minute))
+						return f'{minutes}m'
+					elif data < day:
+						return f'{int(data // hour)}h'
+					elif data < month:
+						return f'{int(data // day)}d'
+					elif data < year:
+						return f'{int(data // month)}mo'
+					else:
+						return f'{int(data // year)}y'
+				case 'time.ago':
+					return cls.text(time.time() - data, 'time')
+				case 'byte':
+					if data <= 0:
+						return '0B'
+					labels = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'ZB', 'YB', 'RB', 'QB']
+					for index, label in enumerate(labels):
+						byte = data / (1024 ** index)
+						if byte < 1024 or index == len(labels) - 1:
+							return f'{int(byte)}{label}'
+							# if byte == int(byte):
+							# 	return f'{int(byte)}{label}'
+							# else:
+							# 	return f'{round(byte, 1)}{label}'
+					return f'{int(data)}B'
 			return str(data)
 		if isinstance(data, bytes):
 			try:
@@ -8140,8 +8398,18 @@ class VOIDlang:
 		return result
 
 	@classmethod
-	def open(cls):
-		pass
+	def open(cls, command):
+		if isinstance(command, str):
+			command = command.split(' ')
+		process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+		text, error = process.communicate()
+		result = {
+			'code': process.returncode,
+			'pid': process.pid,
+			'text': text
+		} | ({'error': error} if error else {})
+		cls.debug('open', result)
+		return result
 
 	@classmethod
 	def close(cls, pid):
@@ -8152,27 +8420,32 @@ class VOIDlang:
 		exec(text)
 
 	@classmethod
-	def logger(cls):
-		pass
+	def logger(cls, *data):
+		result = {}
+		if len(data) > 0:
+			result['name'] = str(data[0])
+		if len(data) > 1:
+			result['tag'] = str(data[1])
+		if len(data) > 2:
+			result['data'] = data[2:]
+		cls.print(result)
 
 	@classmethod
-	def l(cls):
-		return cls.logger()
+	def l(cls, tag: str, *data):
+		cls.logger('info', tag, *data)
 
 	@classmethod
-	def debug(cls, tag: str, data = None):
-		pass
+	def debug(cls, tag: str, *data):
+		cls.logger('debug', tag, *data)
 
 	@classmethod
-	def warning(cls, tag: str, data = None):
-		pass
+	def warning(cls, tag: str, *data):
+		cls.logger('warning', tag, *data)
 
 	@classmethod
-	def error(cls, tag: str, data = None):
-		print()
-		print(tag)
-		print(data)
-		print()
+	def error(cls, tag: str, *data):
+		data = [str(data) for data in data]
+		cls.logger('error', tag, *data)		
 
 	@classmethod
 	def test(cls, name = None):
@@ -8195,15 +8468,31 @@ class VOIDlang:
 
 	@classmethod
 	def xx(cls, *data):
-		cls.exit(1, *data)
+		cls.logger('fatal', *data)
+		cls.exit(1)
 
 	@classmethod
 	def fatal(cls, *data):
-		cls.exit(1, *data)
+		cls.logger('fatal', *data)
+		cls.exit(1)
 
 	@classmethod
 	def os(cls):
 		pass
+
+	@classmethod
+	def os_limit(cls, limit: int = None):
+		if cls.is_nix:
+			resource = cls.module('resource')
+			soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+			if limit:
+				soft = min(int(limit), hard)
+				try:
+					resource.setrlimit(resource.RLIMIT_NOFILE, (soft, hard))
+				except ValueError as e:
+					cls.error('limit', e)
+			else:
+				return {'soft': soft, 'hard': hard} 
 
 	@classmethod
 	def info(cls, name: str):
@@ -8222,11 +8511,55 @@ class VOIDlang:
 		return cls.info(name)
 
 	@classmethod
-	def convert(cls, value, name_from, name_to = None):
-		pass
+	def convert(cls, value, name_from = None, name_to = None):
+		match name_from.lower():
+			case 'windows' | 'exe':
+				pass
+				# import PyInstaller.__main__
+				# args = ['void.py', '--onefile', '--icon=my_logo.ico']
+				# PyInstaller.__main__.run(args)
+			case 'mac':
+				pass
+			case 'linux' | 'steam' | 'steamdeck' | 'steammachine':
+				pass
+			case 'android':
+				pass
+			case 'playstation' | 'ps':
+				pass
+			case 'switch':
+				pass
+			case 'xbox':
+				pass
+			case 'html.image':
+				if isinstance(value, str):
+					value = value.strip()
+					if value.startswith('<svg'):
+						return 'data:image/svg+xml,' + cls.escape(''.join([line.strip() for line in value.split('\n')]), 'html.image')
+				elif isinstance(value, bytes):
+					pass
+			case 'c':
+				if cls.is_file(value):
+					path = value
+					name = cls.path_name(path)
+					extension = cls.path_extension(path).lower()
+					match extension:
+						case 'c':
+							result = cls.open(f'gcc -O3 {path} -o {name}')
+							if 'error' in result:
+								print(result['error'])
+			case 'c++' | 'cpp':
+				pass
+			case 'swift':
+				pass
+			case 'java':
+				pass
+			case 'kotlin':
+				pass
+			case 'asm':
+				pass
 
 	@classmethod
-	def c(cls, value, name_from, name_to = None):
+	def c(cls, value, name_from = None, name_to = None):
 		return cls.convert(value, name_from, name_to)
 
 	@classmethod
@@ -8254,8 +8587,28 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def ui(cls):
-		pass
+	def ui(cls, name: str, param = None):
+		if not name.startswith('ui.'):
+			name = 'ui.' + name
+		if name.startswith('ui.web'):
+			ui = cls.get(name)
+			if type(ui) is str:
+				ui = cls.lzma_decode(cls.base64_decode(ui))
+				cls.set(name, ui)
+			if isinstance(param, dict):
+				for content_name, content in param.items():
+					if type(content_name) is not bytes:
+						content_name = content_name.encode()
+					if type(content) is not bytes:
+						content = content.encode()
+					ui = ui.replace(content_name, content)
+			return ui
+		elif name.startswith('ui.file'):
+			file = cls.get(name)
+			if type(file) is str:
+				file = cls.lzma_decode(cls.base64_decode(file))
+				cls.set(name, file)
+			return file
 
 
   # text
@@ -8317,20 +8670,45 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def escape(cls, text: str, format: str = None):
+	def size(cls):
 		pass
+
+	@classmethod
+	def ago(cls, from_time: float, to_time: float = None):
+		pass
+
+	@classmethod
+	def escape(cls, text: str, format: str = None):
+		match format:
+			case 'url':
+				parse = cls.module('urllib.parse')
+				return parse.quote(text)
+			case 'html.image':
+				parse = cls.module('urllib.parse')
+				return parse.quote(text, safe="=/ '")
 
 	@classmethod
 	def e(cls, text: str, format: str = None):
 		return cls.escape(text, format)
 
 	@classmethod
+	def escape_url(cls, text: str, format: str = None):
+		return cls.escape(text, 'url')
+
+	@classmethod
 	def unescape(cls, text: str, format: str = None):
-		pass
+		match format:
+			case 'url':
+				parse = cls.module('urllib.parse')
+				return parse.unquote(text)
 
 	@classmethod
 	def u(cls, text: str, format: str = None):
-		return cls.uescape(text, format)
+		return cls.unescape(text, format)
+
+	@classmethod
+	def unescape_url(cls, text: str, format: str = None):
+		return cls.unescape(text, 'url')
 
 	@classmethod
 	def translate(cls):
@@ -8596,17 +8974,21 @@ class VOIDlang:
 		time.sleep(seconds)
 
 	@classmethod
-	def stopwatch(cls, tag: str = '', digits: int = None):
-		result = time.time()
-		if digits is None or tag not in cls.data['t']:
+	def timepast(cls, tag: str = '', digits: int = None):
+		result = time.perf_counter()
+		if tag not in cls.data['t']:
 			cls.data['t'][tag] = result
 		else:
-			cls.print(f'{tag} · {cls.number(result - cls.data["t"][tag], digits)}')
+			result -= cls.data['t'][tag]
+			if digits is not None:
+				number = f'{result:.{digits}f}'
+				cls.print(f'{tag} · {number}')
+			del cls.data['t'][tag]
 		return result
 
 	@classmethod
 	def t(cls, tag: str = None, digits: int = None):
-		return cls.stopwatch(tag, digits)
+		return cls.timepast(tag, digits)
 
 	@classmethod
 	def date(cls):
@@ -8810,7 +9192,7 @@ class VOIDlang:
 			data = str(data if data is not None else '').encode()
 		base64 = cls.module('base64')
 		data = base64.b64encode(data if type(data) is bytes else str(data).encode()).decode()
-		return data if not safe else data.replace('/', '_').replace('=', '')
+		return data if not safe else data.replace('/', '_').replace('+', '-').rstrip('=')
 
 	@classmethod
 	def base64_safe(cls, data):
@@ -8822,22 +9204,28 @@ class VOIDlang:
 		if not isinstance(data, bytes):
 			data = str(data)
 			if safe:
-				if '_' in data:
-					data = data.replace('_', '/')
+				data = data.replace('_', '/').data.replace('-', '+')
 				if len(data) % 4 != 0:
 					data += '=' * (4 - len(data) % 4)
 			data = data.encode()
 		try:
 			data = base64.b64decode(data)
-		except: return
+		except Exception as e:
+			cls.error('base64.decode', e)
+			return
 		if format not in [None, '', 'binary']:
 			try:
 				return data.decode('utf-8' if format == 'text' else format)
-			except: return data
+			except: pass
+		return data
 
 	@classmethod
-	def base64_decode_safe(cls, data):
-		return cls.base64_decode(data, True)
+	def base64_decode_binary(cls, data, safe: bool = False):
+		return cls.base64_decode(data, safe=safe, format='binary')
+
+	@classmethod
+	def base64_decode_safe(cls, data, format: str = 'text'):
+		return cls.base64_decode(data, True, format=format)
 
 	@classmethod
 	def gzip(cls, data, compression = None):
@@ -8877,6 +9265,78 @@ class VOIDlang:
 		try:
 			return gzip.decompress(data)
 		except: return
+
+	@classmethod
+	def zstd(cls, data, compression = None):
+		zstandard = cls.module('zstandard')
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		if compression in ['best', None]:
+			compression = 22
+		elif compression == 'fast':
+			compression = -5
+		else:
+			try:
+				compression = int(compression)
+				if compression < -131072:
+					compression = -131072
+				elif compression > 22:
+					compression = 22
+			except:
+				compression = 22
+		try:
+			return zstandard.ZstdCompressor(level=compression).compress(data)
+		except Exception as e:
+			cls.error('zstd', e)
+
+	@classmethod
+	def zstd_fast(cls, data):
+		return cls.zstd(data, 'fast')
+
+	@classmethod
+	def zstd_best(cls, data):
+		return cls.zstd(data, 'best')
+
+	@classmethod
+	def zstd_decode(cls, data: bytes) -> bytes:
+		if not data: return
+		zstandard = cls.module('zstandard')
+		try:
+			return zstandard.ZstdDecompressor().decompress(data)
+		except Exception as e:
+			cls.error('zstd.decode', e)
+
+	@classmethod
+	def brotli(cls, data, compression = None):
+		brotli = cls.module('brotli')
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		if compression in ['best', None]:
+			compression = 11
+		elif compression == 'fast':
+			compression = 1
+		else:
+			try:
+				compression = int(compression)
+				if compression < 0:
+					compression = 0
+				elif compression > 11:
+					compression = 11
+			except:
+				compression = 11
+		try:
+			return brotli.compress(data, quality=compression)
+		except Exception as e:
+			cls.error('brotli', e)
+
+	@classmethod
+	def brotli_decode(cls, data: bytes):
+		if not data: return
+		brotli = cls.module('brotli')
+		try:
+			return brotli.decompress(data)
+		except Exception as e:
+			cls.error('brotli.decode', e)
 
 	@classmethod
 	def lzma(cls, data, compression = None):
@@ -8943,95 +9403,10 @@ class VOIDlang:
 		return cls.lz4(data, 'best')
 
 	@classmethod
-	def lz4_decode(cls, data):
+	def lz4_decode(cls, data: bytes):
 		if not data: return
 		lz4_frame = cls.module('lz4.frame')
 		return lz4_frame.decompress(data)
-
-	@classmethod
-	def lzss(cls, data):
-		if not isinstance(data, bytes):
-			data = str(data if data is not None else '').encode()
-		window_size = 4096
-		match_max = 18
-		match_min = 3
-		res = bytearray()
-		si, n = 0, len(data)
-		pos_hash = {}
-		while si < n:
-			control_idx = len(res)
-			res.append(0)
-			control_byte = 0			
-			for bit in range(8):
-				if si >= n: break
-				best_len, best_off = 0, 0
-				if si + match_min <= n:
-					three_gram = data[si:si+3]
-					if three_gram in pos_hash:
-						window_start = si - window_size
-						for old_pos in reversed(pos_hash[three_gram]):
-							if old_pos < window_start: break 
-							cur_len = 3
-							while cur_len < match_max and si + cur_len < n and \
-								  data[old_pos + cur_len] == data[si + cur_len]:
-								cur_len += 1
-							if cur_len > best_len:
-								best_len = cur_len
-								best_off = si - old_pos
-								if best_len == match_max: break
-				if best_len >= match_min:
-					packet = (((best_off - 1) & 0xFFF) << 4) | ((best_len - match_min) & 0x0F)
-					res.append((packet >> 8) & 0xFF); res.append(packet & 0xFF)
-					for i in range(best_len):
-						if si + i + 3 <= n:
-							tg = data[si+i:si+i+3]
-							if tg not in pos_hash: pos_hash[tg] = []
-							pos_hash[tg].append(si+i)
-					si += best_len
-				else:
-					control_byte |= (1 << bit)
-					res.append(data[si])
-					if si + 3 <= n:
-						tg = data[si:si+3]
-						if tg not in pos_hash: pos_hash[tg] = []
-						pos_hash[tg].append(si)
-					si += 1
-			res[control_idx] = control_byte
-			if si % 10000 == 0:
-				threshold = si - window_size
-				for k in list(pos_hash.keys()):
-					pos_hash[k] = [p for p in pos_hash[k] if p >= threshold]
-					if not pos_hash[k]: del pos_hash[k]
-		return bytes(res)
-
-	@classmethod
-	def lzss_decode(cls, data: bytes):
-		if not data: return
-		match_min = 3
-		res = bytearray()
-		si, data_len = 0, len(data)
-		while si < data_len:
-			control = data[si]
-			si += 1
-			for bit in range(8):
-				if si >= data_len: break
-				if (control >> bit) & 1:
-					res.append(data[si])
-					si += 1
-				else:
-					if si + 1 >= data_len: break
-					packet = (data[si] << 8) | data[si+1]
-					si += 2
-					offset = (packet >> 4) + 1
-					length = (packet & 0x0F) + match_min
-					curr_res_len = len(res)
-					start_pos = curr_res_len - offset
-					if offset >= length:
-						res.extend(res[start_pos : start_pos + length])
-					else:
-						for i in range(length):
-							res.append(res[len(res) - offset])
-		return bytes(res)
 
 	@classmethod
 	def deflate(cls, data, compression = None):
@@ -9063,7 +9438,7 @@ class VOIDlang:
 		return cls.deflate(data, 'best')
 
 	@classmethod
-	def deflate_decode(cls, data):
+	def deflate_decode(cls, data: bytes):
 		if not data: return
 		zlib = cls.module('zlib')
 		try:
@@ -9071,7 +9446,128 @@ class VOIDlang:
 		except: return
 
 	@classmethod
+	def lzss(cls, data):
+		if not data: return
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		window_size = 4096
+		match_max = 18
+		match_min = 3
+		result = bytearray()
+		si, n = 0, len(data)
+		pos_hash = {}
+		while si < n:
+			control_idx = len(result)
+			result.append(0)
+			control_byte = 0			
+			for bit in range(8):
+				if si >= n: break
+				best_len, best_off = 0, 0
+				if si + match_min <= n:
+					three_gram = data[si:si+3]
+					if three_gram in pos_hash:
+						window_start = si - window_size
+						for old_pos in reversed(pos_hash[three_gram]):
+							if old_pos < window_start: break 
+							cur_len = 3
+							while cur_len < match_max and si + cur_len < n and \
+								  data[old_pos + cur_len] == data[si + cur_len]:
+								cur_len += 1
+							if cur_len > best_len:
+								best_len = cur_len
+								best_off = si - old_pos
+								if best_len == match_max: break
+				if best_len >= match_min:
+					packet = (((best_off - 1) & 0xFFF) << 4) | ((best_len - match_min) & 0x0F)
+					result.append((packet >> 8) & 0xFF); result.append(packet & 0xFF)
+					for i in range(best_len):
+						if si + i + 3 <= n:
+							tg = data[si+i:si+i+3]
+							if tg not in pos_hash: pos_hash[tg] = []
+							pos_hash[tg].append(si+i)
+					si += best_len
+				else:
+					control_byte |= (1 << bit)
+					result.append(data[si])
+					if si + 3 <= n:
+						tg = data[si:si+3]
+						if tg not in pos_hash: pos_hash[tg] = []
+						pos_hash[tg].append(si)
+					si += 1
+			result[control_idx] = control_byte
+			if si % 10000 == 0:
+				threshold = si - window_size
+				for k in list(pos_hash.keys()):
+					pos_hash[k] = [p for p in pos_hash[k] if p >= threshold]
+					if not pos_hash[k]: del pos_hash[k]
+		return bytes(result)
+
+	@classmethod
+	def lzss_decode(cls, data: bytes):
+		if not data: return
+		match_min = 3
+		result = bytearray()
+		si, data_len = 0, len(data)
+		while si < data_len:
+			control = data[si]
+			si += 1
+			for bit in range(8):
+				if si >= data_len: break
+				if (control >> bit) & 1:
+					result.append(data[si])
+					si += 1
+				else:
+					if si + 1 >= data_len: break
+					packet = (data[si] << 8) | data[si+1]
+					si += 2
+					offset = (packet >> 4) + 1
+					length = (packet & 0x0F) + match_min
+					curr_res_len = len(result)
+					start_pos = curr_res_len - offset
+					if offset >= length:
+						result.extend(result[start_pos : start_pos + length])
+					else:
+						for i in range(length):
+							result.append(result[len(result) - offset])
+		return bytes(result)
+
+	@classmethod
+	def rle(cls, data) -> bytes:
+		if not data: return
+		if not isinstance(data, bytes):
+			data = str(data if data is not None else '').encode()
+		try:
+			result = bytearray()
+			run_count = 1
+			prev_byte = data[0]
+			for current_byte in data[1:]:
+				if current_byte == prev_byte and run_count < 255:
+					run_count += 1
+				else:
+					result.append(run_count)
+					result.append(prev_byte)
+					run_count = 1
+					prev_byte = current_byte
+			result.append(run_count)
+			result.append(prev_byte)        
+			return bytes(result)
+		except Exception as e:
+			cls.error('rle.encode', e)
+
+	@classmethod
+	def rle_decode(cls, data: bytes) -> bytes:
+		if not data: return
+		try:
+			result = bytearray()
+			for index in range(0, len(data), 2):
+				result.extend([data[index + 1]] * data[index])
+			return bytes(result)
+		except Exception as e:
+			cls.error('rle.decode', e)
+
+	@classmethod
 	def aes(cls, data, key: str):
+		if not data: return
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
 		try:
@@ -9083,8 +9579,8 @@ class VOIDlang:
 			aes = aes_gcm(key_bytes)
 			nonce = os.urandom(12)
 			return nonce + aes.encrypt(nonce, data, None)
-		except Exception:
-			cls.error('aes.encode')
+		except  Exception as e:
+			cls.error('aes.encode', e)
 
 	@classmethod
 	def aes_decode(cls, data: bytes, key: str):
@@ -9099,12 +9595,13 @@ class VOIDlang:
 			nonce = data[:12]
 			encrypted = data[12:]
 			return aes.decrypt(nonce, encrypted, None)
-		except Exception:
-			cls.error('aes.decode')
+		except  Exception as e:
+			cls.error('aes.decode', e)
 			return
 
 	@classmethod
 	def rsa(cls, data = None, public_key = None, password: str = None, length = None):
+		if not data: return
 		try:
 			serialization = cls.module('cryptography.hazmat.primitives.serialization', 'cryptography')
 			padding = cls.module('cryptography.hazmat.primitives.asymmetric.padding', 'cryptography')
@@ -9222,9 +9719,11 @@ class VOIDlang:
 				qr.make(fit=True)
 				result = io.StringIO()
 				qr.print_ascii(out=result, invert=True)
+				matrix = qr.get_matrix()
 				return {
-					'data': qr.get_matrix(),
-					'text': result.getvalue()
+					'data': matrix,
+					'text': result.getvalue().strip(),
+					'size': len(matrix[0])
 				}
 			if not text.isdigit():
 				format = 'code128'
@@ -9517,6 +10016,22 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def file_size(cls, path: str):
+		return os.path.getsize(path)
+
+	@classmethod
+	def file_time(cls, path: str):
+		return os.path.getmtime(path)
+
+	@classmethod
+	def file_owner(cls, path: str):
+		pass
+
+	@classmethod
+	def file_permission(cls, path: str):
+		pass
+
+	@classmethod
 	def file_sha256(cls, path: str):
 		data = cls.file_binary(path)
 		if data is not None:
@@ -9530,11 +10045,15 @@ class VOIDlang:
 
 	@classmethod
 	def file_crc32(cls, path: str):
-		pass
+		data = cls.file_binary(path)
+		if data is not None:
+			return cls.crc32(data)
 
 	@classmethod
 	def file_base64(cls, path: str):
-		pass
+		data = cls.file_binary(path)
+		if data is not None:
+			return cls.base64(data)
 
 	@classmethod
 	def file_gzip(cls, source: str, destination: str = None, compression = None):
@@ -9565,8 +10084,10 @@ class VOIDlang:
 		return cls.link_exists(path)
 
 	@classmethod
-	def dir(cls, path: str):
-		pass
+	def dir(cls, path: str = None):
+		if not path:
+			path = cls.get('app.path')
+		return os.listdir(path)
 
 	@classmethod
 	def dir_create(cls, path: str, recursive: bool = True):
@@ -9606,6 +10127,22 @@ class VOIDlang:
 
 	@classmethod
 	def dir_info(cls, path: str):
+		pass
+
+	@classmethod
+	def dir_size(cls, path: str):
+		return os.path.getsize(path)
+
+	@classmethod
+	def dir_time(cls, path: str):
+		return os.path.getmtime(path)
+
+	@classmethod
+	def dir_owner(cls, path: str):
+		pass
+
+	@classmethod
+	def dir_permission(cls, path: str):
 		pass
 
 	@classmethod
@@ -9691,121 +10228,122 @@ class VOIDlang:
 	@classmethod
 	def path(cls, *path):
 		if len(path) == 0:
-			return os.getcwd()
-		if len(path) == 1 and type(path[0]) is str:
-			path = path[0]
-			return {
-				'full': cls.path_full(path),
-				'file': cls.path_file(path),
-				'name': cls.path_name(path),
-				'extension': cls.path_extension(path),
-				'dir': cls.path_dir(path),
-				'drive': cls.path_drive(path)
-			}
-		#delimiter = cls.get('app.os.delimiter.path')
-		delimiter = '/'
-		if len(path) == 2 and path[1] in ['full', 'file', 'name', 'extension', 'dir', 'drive', 'strip', 'start', 'end']:
-			component = path[1]
-			path = str(path[0])
-		else:
-			component = 'build'
-			if len(path) > 0 and type(path[0]) is list:
-				path = path[0]
-		match component:
-			case 'full':
-				if len(path) > 0:
-					if path[0] == '/':
-						return path
-					if len(path) > 1 and path[1] == ':':
-						return path + ('\\' if len(path) == 2 else '')
-				return os.getcwd() + delimiter + path
-			case 'file' | 'end':
-				index = path.rfind('/')
-				if index >= 0:
-					return path[index+1:]
-				index = path.rfind('\\')
-				if index >= 0:
-					return path[index+1:]
-			case 'name':
-				index = path.rfind('/')
-				if index >= 0:
-					path = path[index+1:]
-				else:
-					index = path.rfind('\\')
-					if index >= 0:
-						path = path[index+1:]
-				index = path.rfind('.')
-				if index >= 0:
-					return path[0:index]
+			return cls.os_path
+		if len(path) == 1:
+			if isinstance(path[0], str):
+				path = str(path[0])
+				if cls.delimiter == '/' and len(path) > 0 and path[0] != '/':
+					return cls.os_path + '/' + path
+				if cls.delimiter == '\\' and len(path) > 1 and path[1] != ':':
+					return cls.os_path + '\\' + path
 				return path
-			case 'extension':
-				index = path.rfind('.')
-				if index >= 0:
-					return path[index+1:]
-			case 'dir' | 'start':
-				if path.rfind('.') > 0:
+			else:
+				path = [*path[0]]
+		elif len(path) == 2:
+			match path[1]:
+				case 'file' | 'end':
+					path = str(path[0])
 					index = path.rfind('/')
 					if index >= 0:
+						return path[index+1:]
+					index = path.rfind('\\')
+					if index >= 0:
+						return path[index+1:]
+				case 'name':
+					path = str(path[0])
+					index = path.rfind('/')
+					if index >= 0:
+						path = path[index+1:]
+					else:
+						index = path.rfind('\\')
+						if index >= 0:
+							path = path[index+1:]
+					index = path.rfind('.')
+					if index >= 0:
 						return path[0:index]
+					return path
+				case 'extension':
+					path = str(path[0])
+					index = path.rfind('.')
+					if index >= 0:
+						return path[index+1:]
+				case 'dir' | 'start':
+					path = str(path[0])
+					if path.rfind('.') > 0:
+						index = path.rfind('/')
+						if index > 0:
+							return path[0:index]
+						index = path.rfind('\\')
+						if index >= 0:
+							path = path[0:index]
+							if len(path) == 2 and path[1] == ':':
+								return path + '\\'
+							return path
+						return None
+					return path
+				case 'drive':
+					path = str(path[0])
+					index = path.find(':')
+					if index >= 0:
+						return path[0:index].upper()
+					if path.startswith('/mnt/') and len(path) > 5:
+						path = path[5:]
+						index = path.find('/')
+						if index >= 0:
+							return '/mnt/' + path[:index]
+						return
+					if path.startswith('/Volumes/') and len(path) > 9:
+						path = path[9:]
+						index = path.find('/')
+						if index >= 0:
+							return '/Volumes/' + path[:index]
+						return
+				case 'strip':
+					path = str(path[0])
+					index = path.rfind('.')
+					if index >= 0:
+						return path[0:index]
+					index = path.rfind('/')
+					if index > 0:
+						return path[0:index]
+					elif index == 0:
+						return '/'
 					index = path.rfind('\\')
 					if index >= 0:
 						path = path[0:index]
 						if len(path) == 2 and path[1] == ':':
-							return path + '\\'
-				return path
-			case 'drive':
-				index = path.find(':')
-				if index >= 0:
-					return path[0:index].upper()
-				if path.startswith('/mnt/') and len(path) > 5:
-					path = path[5:]
-					index = path.find('/')
-					if index >= 0:
-						return path[:index]
-					return
-				if path.startswith('/Volumes/') and len(path) > 9:
-					path = path[9:]
-					index = path.find('/')
-					if index >= 0:
-						return path[:index]
-					return
-			case 'strip':
-				index = path.rfind('.')
-				if index >= 0:
-					return path[0:index]
-				index = path.rfind('/')
-				if index >= 0:
-					return path[0:index]
-				index = path.rfind('\\')
-				if index >= 0:
-					path = path[0:index]
-					if len(path) == 2 and path[1] == ':':
-						path += '\\'
+							path += '\\'
 					return path
-			case _:
-				result = ''
-				for index, name in enumerate(path):
-					name = str(name).strip().rstrip('/').rstrip('\\')
-					if index == 0:
-						if not (name.startswith('/') or (len(name) > 1 and name[1] == ':')):
-							name = os.getcwd() + delimiter + name
-					else:
-						name = name.lstrip('/').lstrip('\\')
-						name = delimiter + name
-					result += name
-				return result
-
-	@classmethod
-	def path_full(cls, path: str):
-		return cls.path(path, 'full')
+				case 'strip.dir':
+					path = str(path[0])
+					index = path.rfind('/')
+					if index > 0:
+						return path[0:index]
+					elif index == 0:
+						return '/'
+					index = path.rfind('\\')
+					if index >= 0:
+						path = path[0:index]
+						if len(path) == 2 and path[1] == ':':
+							path += '\\'
+					return path
+				case 'strip.extension':
+					path = str(path[0])
+					index = path.rfind('.')
+					if index >= 0:
+						return path[0:index]
+					return path
+		try:
+			path_list = []
+			for name in path:
+				if name:
+					path_list.append(str(name))
+			return cls.delimiter.join(path_list)
+		except: return
 
 	@classmethod
 	def path_file(cls, path: str):
 		return cls.path(path, 'file')
-
-	@classmethod
-	def path_end(cls, path: str):
-		return cls.path(path, 'end')
 
 	@classmethod
 	def path_name(cls, path: str):
@@ -9823,24 +10361,28 @@ class VOIDlang:
 		return cls.path(path, 'dir')
 
 	@classmethod
+	def path_drive(cls, path: str):
+		return cls.path(path, 'drive')
+
+	@classmethod
 	def path_start(cls, path: str):
 		return cls.path(path, 'start')
 
 	@classmethod
-	def path_dir(cls, path: str):
-		return cls.path(path, 'dir')
-
-	@classmethod
-	def path_drive(cls, path: str):
-		return cls.path(path, 'drive')
+	def path_end(cls, path: str):
+		return cls.path(path, 'end')
 
 	@classmethod
 	def path_strip(cls, path: str):
 		return cls.path(path, 'strip')
 
 	@classmethod
-	def path_build(cls, *path):
-		return cls.path(path, 'build')
+	def path_strip_dir(cls, path: str):
+		return cls.path(path, 'strip.dir')
+
+	@classmethod
+	def path_strip_extension(cls, path: str):
+		return cls.path(path, 'strip.extension')
 
 
   # format
@@ -10025,20 +10567,394 @@ class VOIDlang:
 	# cloud
 
 	@classmethod
-	def cloud(cls):
-		pass
+	def cloud(cls, param = None, name: str = None, address: str = None, port: int = None, limit: int = None):
+		cls.os_limit(limit or 65535)
+		if not name:
+			if isinstance(param, str):
+				name = 'file'
+		match name:
+			case 'web':
+				pass
+			case 'api':
+				pass
+			case 'file':
+				path = cls.path(str(param)) if param else cls.os_path
+				if cls.is_dir(path):
+					cls.cloud_server({
+						'address': address or '0.0.0.0',
+						'port': port or 80,
+						'cloud': 'dir',
+						'path': path
+					})
+				elif cls.is_file(path):
+					cls.cloud_server({
+						'address': address or '0.0.0.0',
+						'port': port or 80,
+						'cloud': 'file',
+						'path': path
+					})
+			case 'mail':
+				pass
+			case 'vpn':
+				pass
+			case 'proxy':
+				pass
+			case 'stream':
+				pass
+			case 'desktop':
+				pass
+			case _:
+				pass
 
 	@classmethod
-	def cloud_file(cls):
-		pass
+	def cloud_handler(cls, param: dict, request: dict):
+		result = {
+			'code': 404
+		}
+		match param['cloud']:
+			case 'web':
+				pass
+			case 'file':
+				if request['path'] == '/favicon.ico':
+					return {
+						'code': 200,
+						'format': 'svg',
+						'data': cls.ui('file.favicon')
+					}
+				if cls.is_file(param['path']):
+					result = {
+						'code': 200,
+						'file': param['path']
+					}
+			case 'dir':
+				path = cls.path(param['path'], request['path'][1:])
+				if request['path'] == '/favicon.ico' and not cls.is_file(path) and not cls.is_dir(path):
+					return {
+						'code': 200,
+						'format': 'svg',
+						'data': cls.ui('file.favicon')
+					}
+				if request['query'] == 'd' and cls.is_file(path):
+					return {
+						'code': 200,
+						'format': 'bin',
+						'file': path
+					}
+				ui_list = []
+				if cls.is_dir(path):
+					dir_list = []
+					file_list = []
+					for name in cls.dir(path):
+						if name.startswith('.'):
+							continue
+						subpath = cls.path(path, name)
+						if cls.is_dir(subpath):
+							dir_list.append((name, subpath))
+						elif cls.is_file(subpath):
+							file_list.append((name, subpath))
+					dir_list.sort()
+					file_list.sort()
+					root = ((request['path'] if len(request['path']) > 1 else '') + '/').encode()
+					for name, subpath in dir_list:
+						url = root + cls.escape_url(name).encode()
+						ui_list.append(cls.ui('web.file.list', {
+							b'(name)': name.encode(),
+							b'(url)': url,
+							b'(download)': b'',
+							b'(download.url)': url,
+							b'(data.time)': b'-1',
+							b'(data.size)': b'-1',
+							b'(time)': b'',
+							b'(size)': b'\xf0\x9f\x93\x81'
+							}))
+					for name, subpath in file_list:
+						url = root + cls.escape_url(name).encode()
+						data_time = cls.file_time(subpath)
+						data_size = cls.file_size(subpath)
+						ui_list.append(cls.ui('web.file.list', {
+							b'(name)': name.encode(),
+							b'(url)': url,
+							b'(download)': b'download',
+							b'(download.url)': url,
+							b'(data.time)': str(data_time).encode(),
+							b'(data.size)': str(data_size).encode(),
+							b'(time)': cls.text(data_time, 'time.ago').encode(),
+							b'(size)': cls.text(data_size, 'byte').encode(),
+							}))
+				elif cls.is_file(path):
+					return {
+						'code': 200,
+						'file': path
+					}
+				if request['path'] != '/':
+					title = cls.path_end(request['path'])
+					if len(title) > 30:
+						title = title[:26] + '…'
+					title = b'\xf0\x9f\x93\x81 ' + title.encode()
+				else:
+					title = b'\xf0\x9f\x93\x81'
+				ui = cls.ui('web.file.main', {
+					'(language)': cls.get('language'),
+					'(title)': title,
+					'(back.url)': cls.path_strip_dir(request['path']).encode() if request['path'] != '/' else b'/',
+					'(back.class)': b'hide' if request['path'] == '/' else b'',
+					'(files)': b''.join(ui_list)
+					})
+				result = {
+					'code': 200,
+					'format': 'html',
+					'data': ui
+				}
+		return result
+
+	@staticmethod
+	async def cloud_handle(cls, reader, writer, param: dict):
+		asyncio = cls.module('asyncio')
+		socket = cls.module('socket')
+		socket_obj = writer.get_extra_info('socket')
+		if socket_obj:
+			socket_obj.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+		transport = writer.transport
+		try:
+			while True:
+				try:
+					header_data = await asyncio.wait_for(reader.readuntil(b'\r\n\r\n'), timeout=5.0)
+				except (asyncio.IncompleteReadError, asyncio.TimeoutError, Exception) as e:
+					cls.error('cloud.handle.header.read', e)
+					break
+				if not header_data:
+					writer.close()
+					return
+				if len(header_data) > 65536:
+					writer.write(b'HTTP/1.1 431 Request Header Fields Too Large\r\n\r\n')
+					writer.close()
+					return
+				header = header_data.decode('utf-8', errors='ignore')
+				header_lines = header.split('\r\n')
+				request = {
+					'path': '/',
+					'alive': False,
+					'header': {
+						'text': header,
+						'line': header_lines
+					}
+				}
+				for index, line in enumerate(header_lines):
+					if index == 0:
+						request['path'], _, request['query'] = (cls.unescape_url(line.split()[1])).partition('?')
+					line = line.lower()
+					if line.startswith('host:'):
+						request['host'] = line[5:].strip()
+					if line.startswith('referer:'):
+						request['referer'] = line[8:].strip()
+					if line.startswith('connection:'):
+						request['alive'] = line[11:].strip() == 'keep-alive'
+					if line.startswith('user-agent:'):
+						request['agent'] = line[11:].strip()
+					if line.startswith('accept:'):
+						request['format'] = line[7:].strip()
+					if line.startswith('accept-encoding:'):
+						request['encoding'] = line[16:].strip()
+					if line.startswith('accept-language:'):
+						request['language'] = line[16:].strip().split(';')[0].split(',')
+					if line.startswith('range:'):
+						try:
+							content_range = line[6:].strip().split('=')[1]
+							part = content_range.split('-')
+							request['range']['start'] = int(part[0]) if part[0].strip() else 0
+							request['range']['end'] = int(part[1]) if len(part) > 1 and part[1].strip() else None
+						except Exception:
+							request['range'] = {
+								'start': 0,
+								'end': None
+							}
+				response = cls.cloud_handler(param, request)
+				if type(response) is not bytes:
+					connection = b'keep-alive' if request['alive'] else b'close'
+					code = b'200 OK' if response['code'] == 200 else (str(response['code']) + ' ' + cls.get('cloud.code.' + str(code))).encode()
+					if 'data' in response:
+						content_type = b'text/html; charset=utf-8' if response['format'] == 'html' else cls.get('cloud.mime.' + response['format'], 'application/octet-stream').encode()
+						length = str(len(response['data'])).encode()
+						data = [
+							b'HTTP/1.1 ' + code,
+							b'Connection: ' + connection,
+							b'Content-Type: ' + content_type,
+							b'Content-Length: ' + length,
+							b'Accept-Ranges: bytes',
+							b'\r\n',
+							response['data']]
+						transport.write(b'\r\n'.join(data))
+					elif 'file' in response:
+						path = response['file']
+						size = os.path.getsize(path)
+						format = cls.path_extension(path).lower() if 'format' not in response else response['format']
+						if format == 'bin':
+							content_type = b'application/octet-stream'	
+						elif format in cls.data['app']['format']['text']:
+							content_type = b'text/plain; charset=utf-8'
+						else:
+							content_type = cls.get('cloud.mime.' + format, 'application/octet-stream').encode()	
+						if 'range' in request:
+							code = b'206 Partial Content'
+							content_start = request['range']['start']
+							content_end = request['range']['end'] if request['range']['end'] else (size - 1)
+							content_length = str(content_end + 1 - content_start).encode()
+							content_range = f'bytes {content_start}-{content_end}/{size}'.encode()
+							header = [
+								b'HTTP/1.1 ' + code,
+								b'Connection: ' + connection,
+								b'Content-Type: ' + content_type,
+								b'Content-Length: ' + content_length,
+								b'Content-Range: ' + content_range,
+								b'Accept-Ranges: bytes',
+								b'\r\n']
+						else:
+							header = [
+								b'HTTP/1.1 ' + code,
+								b'Connection: ' + connection,
+								b'Content-Type: ' + content_type,
+								b'Content-Length: ' + str(size).encode(),
+								b'Accept-Ranges: bytes',
+								b'\r\n']
+						transport.write(b'\r\n'.join(header))
+						file = open(path, 'rb')
+						try:
+							if 'range' in request:
+								file.seek(content_start)
+							await asyncio.get_event_loop().sendfile(transport, file)
+							await writer.drain()
+						except Exception as e:
+							cls.error('cloud.handle.file', e)
+						finally:
+							file.close()
+					else:
+						header = [
+							b'HTTP/1.1 ' + code,
+							b'Connection: ' + connection,
+							b'Accept-Ranges: bytes',
+							b'\r\n']
+						transport.write(b'\r\n'.join(header))
+				else:
+					transport.write(response)
+				if not request['alive']: break
+		except Exception as e:
+			cls.error('cloud.handle', e)
+		finally:
+			writer.close()
+			try:
+				await writer.wait_closed()
+			except Exception: pass
 
 	@classmethod
-	def cloud_web(cls):
-		pass
+	def cloud_server(cls, param: dict):
+		try:
+			socket = cls.module('socket')
+			multiprocessing = cls.module('multiprocessing')
+			workers_number = multiprocessing.cpu_count()
+			socket_main = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			socket_main.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+			if hasattr(socket, 'SO_REUSEPORT'):
+				socket_main.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+			socket_main.bind((param['address'], param['port']))
+			socket_main.setblocking(False)
+			socket_main.listen(8192)
+			processes = []
+			address_list = cls.ip_local() if param['address'] == '0.0.0.0' else [param['address']]
+			for index, address in enumerate(address_list):
+				port = '' if param['port'] == 80 else f':{port}'
+				url = 'http://' + address + port
+				qr = cls.qr(url)
+				center = {'align': 'center', 'length': qr['size']}
+				if index == 0:
+					print()
+					print(cls.text('V O I D cloud', center))
+				print(cls.text(url, center))
+				print(qr['text'])
+				if index < len(address_list) - 1:
+					print()
+			for _ in range(workers_number):
+				process = multiprocessing.Process(target=cls.cloud_worker, args=(cls, socket_main, param))
+				process.start()
+				processes.append(process)
+			try:
+				for process in processes: process.join()
+			except KeyboardInterrupt:
+				for process in processes: process.terminate()
+		except Exception as e: cls.error('cloud.server', e)
+
+	@staticmethod
+	def cloud_worker(cls, socket_main, param: dict):
+		asyncio = cls.module('asyncio')
+		async def serve():
+			async def handler(reader, writer):
+				await cls.cloud_handle(cls, reader, writer, param)
+			server = await asyncio.start_server(handler, sock=socket_main, limit=32768)
+			server.get_loop if hasattr(server, 'get_loop') else None
+			async with server:
+				await server.serve_forever()
+		try:
+			asyncio.run(serve())
+		except KeyboardInterrupt: pass
 
 	@classmethod
-	def cloud_api(cls):
-		pass
+	def alive(cls, url, count: int = None , concurrency: int = None, timeout: int = 5, limit: int = None):
+		request = cls.module('urllib.request')
+		statistics = cls.module('statistics')
+		futures = cls.module('concurrent.futures')
+		cls.os_limit(limit or 65535)
+		def fetch(url):
+			try:
+				t = time.perf_counter()
+				with request.urlopen(url, timeout=timeout) as response:
+					response.read()
+					status = response.getcode()
+				return (time.perf_counter() - t), status
+			except Exception as e:
+				return None, str(e)
+		def benchmark(url, count: int, concurrency: int):
+			times = []
+			errors = 0
+			error_message = []		
+			t = time.perf_counter()
+			with futures.ThreadPoolExecutor(max_workers=concurrency) as executor:
+				result = list(executor.map(fetch, [url] * count))
+			timepast = time.perf_counter() - t
+			for latency, status in result:
+				if latency is not None and status == 200:
+					times.append(latency)
+				else:
+					errors += 1
+					if status not in error_message:
+						error_message.append(status)
+			if count == 1:
+				return not errors
+			return {
+				'url': url,
+				'count': count,
+				'concurrency': concurrency,
+				'timeout': timeout,
+				'time': round(timepast, 5),
+				'rps': round(count / timepast, 5),
+				'min': round(min(times), 5) if times else None,
+				'max': round(max(times), 5) if times else None,
+				'avg': round(statistics.mean(times), 5) if times else None,
+				'median': round(statistics.median(times), 5) if times else None,
+				'deviation': round(statistics.stdev(times), 5) if len(times) > 1 else None,
+				'errors': errors
+				} | ({'message': error_message if len(error_message) > 1 else error_message[0]} if error_message else {})
+		return benchmark(url, max(count, concurrency or 0) if count and count > 0 else 1, concurrency if concurrency and concurrency > 0 else 1)
+
+	@classmethod
+	def cloud_file(cls, path: str = None):
+		cls.cloud(path, 'file')
+
+	@classmethod
+	def cloud_web(cls, param):
+		cls.cloud(param, 'web')
+
+	@classmethod
+	def cloud_api(cls, path: str = None):
+		cls.cloud(path, 'api')
 
 	@classmethod
 	def cloud_socket(cls):
@@ -10065,12 +10981,21 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def request(cls):
-		pass
+	def request(cls, url: str):
+		request = cls.module('urllib.request')
+		try:
+			with request.urlopen(url, timeout=5) as response:
+				return response.read().decode('utf-8').strip()
+		except Exception as e:
+			return
 
 	@classmethod
-	def r(cls):
-		pass
+	def r(cls, url: str):
+		return cls.request(url)
+
+	@classmethod
+	def url(cls, url: str):
+		return cls.request(url)
 
 	@classmethod
 	def download(cls):
@@ -10305,7 +11230,41 @@ class VOIDlang:
 
 	@classmethod
 	def net(cls):
-		pass
+		return {
+			'localhost': '127.0.0.1',
+			'local': cls.ip_local(),
+			'public': cls.ip_public(),
+			'provider': cls.ip_provider()
+		}
+
+	@classmethod
+	def ip_local(cls):
+		socket = cls.module('socket')
+		hostname = socket.gethostname()
+		addresses = socket.getaddrinfo(hostname, None)
+		ipv4 = list(set(addr[4][0] for addr in addresses if addr[0] == socket.AF_INET and addr[4][0] != '127.0.0.1'))
+		return ipv4
+
+	@classmethod
+	def ip_public(cls):
+		return cls.url('https://ident.me')
+
+	@classmethod
+	def ip_global(cls):
+		return cls.ip_public()
+
+	@classmethod
+	def ip_provider(cls):
+		socket = cls.module('socket')
+		sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		try:
+			sock.connect(('8.8.8.8', 8081))
+			result = sock.getsockname()[0]
+		except Exception:
+			result = '127.0.0.1'
+		finally:
+			sock.close()
+		return result
 
 	@classmethod
 	def wifi(cls):
@@ -10415,26 +11374,4 @@ class VOIDlang:
 		return cls.game()
 
 
-if isinstance(VOIDlang.data, str):
-	#VOIDlang.data = cls.void_decode(cls.data)
-	VOIDlang.data = {
-		'app': {
-			'os': {
-				'delimiter': {
-					'line': '\n'
-				},
-				'path': {
-					'ffmpeg': None,
-					'yt-dlp': None
-				}
-			},
-			'ui': 'cli',
-			'format': {
-				'text': ['php', 'text', 'txt', 'py', 'json']
-			}
-		},
-		't': {}
-	}
-
-if __name__ == '__main__':
-	VOIDlang.run()
+VOIDlang.run()
