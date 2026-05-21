@@ -8118,10 +8118,6 @@ class VOIDlang:
 						byte = data / (1024 ** index)
 						if byte < 1024 or index == len(labels) - 1:
 							return f'{int(byte)}{label}'
-							# if byte == int(byte):
-							# 	return f'{int(byte)}{label}'
-							# else:
-							# 	return f'{round(byte, 1)}{label}'
 					return f'{int(data)}B'
 			return str(data)
 		if isinstance(data, bytes):
@@ -10388,8 +10384,92 @@ class VOIDlang:
   # format
 
 	@classmethod
-	def void(cls, data, style: str = None, indent = '\t', level: int = 0):
-		pass
+	def void(cls, data, format: str = None, indent = '\t', level: int = 0):
+		if data is None:
+			return 'none'
+		elif isinstance(data, str):
+			if not data:
+				return "''"
+			result = ''
+			if (len(data) > 0 and data[0] in ["'", '[']) or (len(data) > 1 and data[0] == '*' and data[1] not in [' ', '\t']):
+				result = "'" + data
+			match format:
+				case 'full':
+					return f"'{data}'"
+				case 'short':
+					return f"'{data}"
+				case 'multiline':
+					return '\n'.join(result)
+				case 'multinewline':
+					return '\n'.join(result)
+				case _:
+					result = data
+			return result
+		elif isinstance(data, bool):
+			return 'true' if data else 'false'
+		elif isinstance(data, (int, float)):
+			match format:
+				case 'group' | 'underline':
+					delimiter = ' ' if format == 'group' else '_'
+					if isinstance(data, int):
+						return f'{data:,}'.replace(',', delimiter)
+					data_int = int(data)
+					data_text = str(data)
+					fraction = data_text[data_text.find('.') + 1:]
+					fraction = delimiter.join(fraction[index:index+3] for index in range(0, len(fraction), 3))
+					return f'{data_int:,}'.replace(',', delimiter) + '.' + fraction
+				case _:
+					return str(data)
+			return str(data)
+		elif isinstance(data, list):
+			if not data:
+				return '[]' if format != 'full' else '[]'
+		elif isinstance(data, dict):
+			if not data:
+				return '[ ]'
+		elif isinstance(data, bytes):
+			if not data:
+				return "*''"
+			format = format.split('.') if format is not None else 'base64'
+			match format[0]:
+				case 'raw':
+					return f'*{len(data)}*'.encode() + data
+				case 'text':
+					try:
+						return f"*'{data.decode('utf-8')}'"
+					except:
+						pass
+				case 'hex':
+					result = data.hex().upper()
+					if len(format) > 1:
+						delimiter = ' ' if format[1] == 'group' else '_'
+						result = delimiter.join(result[index:index+4] for index in range(0, len(result), 4))
+					return f'*{result}'
+				case 'bin':
+					delimiter = (' ' if format[1] == 'group' else '_') if len(format) > 1 else ''
+					return '*' + delimiter.join(f'{byte:08b}' for byte in data)
+				case 'gzip':
+					compression = format[1] if len(format) > 1 and format[1] != 'safe' else None
+					data = cls.gzip(data, compression)
+				case 'zstd':
+					compression = format[1] if len(format) > 1 and format[1] != 'safe' else None
+					data = cls.zstd(data, compression)
+				case 'brotli':
+					compression = format[1] if len(format) > 1 and format[1] != 'safe' else None
+					data = cls.brotli(data, compression)
+				case 'lzma':
+					compression = format[1] if len(format) > 1 and format[1] != 'safe' else None
+					data = cls.lzma(data, compression)
+				case _:
+					pass
+			result = cls.base64(data)
+			if 'safe' in format:
+				result = result.replace('/', '_').replace('+', '-').rstrip('=')
+			try:
+				int(result, 16)
+				return '***' + result
+			except:
+				return '*' + result
 
 	@classmethod
 	def void_decode(cls, data):
