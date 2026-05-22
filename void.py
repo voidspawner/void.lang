@@ -5400,7 +5400,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					v
 				description
 					Encodes data into the V O I D format
 				safe
@@ -5423,7 +5423,7 @@ class VOIDlang:
 				action
 					none
 				alias
-					none
+					v.decode
 				description
 					Decodes data from the V O I D format
 				safe
@@ -10384,10 +10384,13 @@ class VOIDlang:
   # format
 
 	@classmethod
-	def void(cls, data, format: str = None, indent = '\t', level: int = 0):
+	def void(cls, data, format = None, indent = '\t', level: int = 0):
 		if data is None:
 			return 'none'
-		elif isinstance(data, str):
+		if isinstance(format, str):
+			format = format.split('.')
+		elif isinstance(format, str):
+		if isinstance(data, str):
 			if not data:
 				return "''"
 			result = ''
@@ -10424,9 +10427,37 @@ class VOIDlang:
 		elif isinstance(data, list):
 			if not data:
 				return '[]' if format != 'full' else '[]'
+			match format:
+				case 'line':
+					pass
+				case 'column':
+					pass
+				case 'table':
+					pass
+				case 'snake':
+					pass
+				case _:
+					pass
 		elif isinstance(data, dict):
 			if not data:
 				return '[ ]'
+			if len(data) == 1:
+				return ''
+			match format:
+				case 'line':
+					short = 'short' in format
+					pass
+				case 'column':
+					pass
+				case 'table':						
+					for name, value in data.items():
+						if len(data) == 1:
+							return '[' + cls.void(str(name), 'name') + '  ' + cls.void(value, 'line.full') + ']'
+						result.append(cls.void(str(name, 'name') + '  ' + cls.void(value, 'line.full')
+				case 'snake':
+					pass
+				case _:
+					pass
 		elif isinstance(data, bytes):
 			if not data:
 				return "*''"
