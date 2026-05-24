@@ -31,9 +31,9 @@ class VOIDlang:
 				python
 			version
 				time
-					1778668374
+					1779632087
 				date
-					2026 · 05 · 13
+					2026 · 05 · 24
 			license
 				name
 					V O I D license
@@ -7752,8 +7752,6 @@ class VOIDlang:
 					pb
 	'''
 
-	modules = {}
-
   # module
 
 	@classmethod
@@ -7832,6 +7830,21 @@ class VOIDlang:
 		cls.set('app.path', path)
 		cls.set('app.param', param)
 		cls.os_path = path
+		cls.indent_cache = {}
+		cls.escape_map = {
+			'void.text': {
+				'\\r': '\\\\r',
+				'\\n': '\\\\n',
+				'\\t': '\\\\t',
+				'\r': '\\r',
+				'\n': '\\n',
+				'\t': '\\t'
+				}
+			}
+		cls.char = {
+			'hex': set('0123456789abcdefABCDEF')
+			}
+		cls.modules = {}
 		match platform.system():
 			case 'Windows':
 				os_type = 'windows'
@@ -8682,6 +8695,8 @@ class VOIDlang:
 			case 'html.image':
 				parse = cls.module('urllib.parse')
 				return parse.quote(text, safe="=/ '")
+			case 'void.text':
+				return text.translate(cls.escape_map['void.text'])
 
 	@classmethod
 	def e(cls, text: str, format: str = None):
@@ -10385,122 +10400,256 @@ class VOIDlang:
 
 	@classmethod
 	def void(cls, data, format = None, indent = '\t', level: int = 0):
+		indent_key = (indent, level)
+		if indent_key not in cls.indent_cache:
+			if isinstance(indent, int):
+				indent = ' ' * indent
+			elif not isinstance(indent, str):
+				indent = '\t'
+			cls.indent_cache[indent_key] = indent * level
+		indent_text = cls.indent_cache[indent_key]
 		if data is None:
-			return 'none'
-		if isinstance(format, str):
-			format = format.split('.')
-		elif isinstance(format, str):
+			return indent_text + 'none'
 		if isinstance(data, str):
 			if not data:
-				return "''"
-			result = ''
-			if (len(data) > 0 and data[0] in ["'", '[']) or (len(data) > 1 and data[0] == '*' and data[1] not in [' ', '\t']):
-				result = "'" + data
+				return indent_text + "''"
+			length = len(data)
+			if '\r' in data or '\n' in data or '\t' in data:
+				data = cls.escape(data, 'void.text')
+			special = len(data) != length or (length > 1 and ((data[0] in ["'", '[']) or (data[0] == '*' and data[1] not in [' ', '\t'])))
+			special_end = data[-1] == "'"
+			if isinstance(format, list):
+				for format in format:
+					if format.startswith('text'):
+						format = format[5:]
+						break
 			match format:
 				case 'full':
-					return f"'{data}'"
+					if not special:
+						data = data.replace('\\r', '\\\\r').replace('\\n', '\\\\n').replace('\\t', '\\\\t')
+					return f"{indent_text}'{data}'"
 				case 'short':
-					return f"'{data}"
+					if not special:
+						data = data.replace('\\r', '\\\\r').replace('\\n', '\\\\n').replace('\\t', '\\\\t')
+					return f"{indent_text}'{data}" if not special_end else f"{indent_text}'{data}'"
+				case 'column':
+					if len(data) == 1:
+						return indent_text + data
+					if special:
+						return f"{indent_text}'{data}" if not special_end else f"{indent_text}'{data}"
 				case 'multiline':
-					return '\n'.join(result)
-				case 'multinewline':
-					return '\n'.join(result)
-				case _:
-					result = data
-			return result
+					max_length = 100
+					indent_text_next = indent_text + indent
+					return f"{indent_text}'\n" + '\n'.join((indent_text_next + data[index:index+max_length]) for index in range(0, len(data), max_length))
+				case 'newline':
+					indent_text_next = indent_text + indent
+					if special:
+						data = data.replace('\\n', '\n').replace('\\r\\n', '\n').replace('\\r', ' ').split('\n')
+					return f'{indent_text}"\n' + '\n'.join([indent_text_next + text for text in data])
+				case 'list' | 'list.last':
+					if special or ' ' in data:
+						data = data.replace('\\r', '\\\\r').replace('\\n', '\\\\n').replace('\\t', '\\\\t')
+						if format == 'list':
+							return f"'{data}'"
+						else:
+							return f"'{data}"
+					return data
+			return (indent_text + data) if not special else f"{indent_text}'{data}"
 		elif isinstance(data, bool):
-			return 'true' if data else 'false'
+			return indent_text + ('true' if data else 'false')
 		elif isinstance(data, (int, float)):
-			match format:
-				case 'group' | 'underline':
-					delimiter = ' ' if format == 'group' else '_'
-					if isinstance(data, int):
-						return f'{data:,}'.replace(',', delimiter)
-					data_int = int(data)
-					data_text = str(data)
-					fraction = data_text[data_text.find('.') + 1:]
-					fraction = delimiter.join(fraction[index:index+3] for index in range(0, len(fraction), 3))
-					return f'{data_int:,}'.replace(',', delimiter) + '.' + fraction
-				case _:
-					return str(data)
-			return str(data)
+			if isinstance(format, list):
+				for format in format:
+					if format.startswith('number'):
+						format = format[7:]
+						break
+			if format in ['group', 'underline']:
+				delimiter = ' ' if format == 'group' else '_'
+				if isinstance(data, int):
+					return f'{indent_text}{data:,}'.replace(',', delimiter)
+				data_int = int(data)
+				data_text = str(data)
+				fraction = data_text[data_text.find('.') + 1:]
+				fraction = delimiter.join(fraction[index:index+3] for index in range(0, len(fraction), 3))
+				return f'{indent_text}{data_int:,}'.replace(',', delimiter) + '.' + fraction
+			return f'{indent_text}{data}'
 		elif isinstance(data, list):
 			if not data:
-				return '[]' if format != 'full' else '[]'
+				return indent_text + "[]"
+			if isinstance(format, list):
+				for format in format:
+					if format.startswith('list'):
+						format = format[5:]
+						break
 			match format:
-				case 'line':
-					pass
-				case 'column':
-					pass
+				case 'column' | 'column.inside':
+					result = []
+					if format == 'column.inside':
+						start = f'[\n{indent_text}'
+						level += 1
+					else:
+						start = ''
+					for index, value in enumerate(data):
+						format_value = [
+							'text.column',
+							'list.column.inside',
+							'dict.column.inside',
+							'binary.text'
+							]
+						result.append(cls.void(value, format_value, indent, level))
+					data = start + f'\n{indent_text}'.join(result)
+				case 'line.short' | 'line.full':
+					result = []
+					for index, value in enumerate(data):
+						format_value = [
+							'text.list.last' if index == (len(data) - 1) and format.endswith('short') else 'text.list',
+							'list.line.short' if index == (len(data) - 1) and format.endswith('short') else 'list.line.full',
+							'dict.line.short' if index == (len(data) - 1) and format.endswith('short') else 'dict.line.full',
+							'binary.text'
+							]
+						result.append(cls.void(value, format_value))
+					data = '[' + ' '.join(result) + (']' if format.endswith('full') else '')
 				case 'table':
-					pass
-				case 'snake':
-					pass
-				case _:
-					pass
+					result = []
+					lines =[]
+					size = []
+					format_value = [
+						'text.column',
+						'list.line',
+						'dict.line',
+						'binary.text'
+						]
+					for value in data:
+						if isinstance(value, list):
+							lines.append([])
+							if not size:
+								size = [0] * len(value)
+							for index, value in enumerate(value):
+								value = cls.void(value, format_value)
+								lines[-1].append(value)
+								size[index] = max(size[index], len(value))
+					for value in lines:
+						result.append('  '.join([f'{value:<{size[index]}}' for index, value in enumerate(value)]))
+					data = f'\n{indent_text}'.join(result)
+			return f'{indent_text}{data}'
 		elif isinstance(data, dict):
 			if not data:
-				return '[ ]'
-			if len(data) == 1:
-				return ''
+				return indent_text + "[ ]"
+			if isinstance(format, list):
+				for format in format:
+					if format.startswith('dict'):
+						format = format[5:]
+						break
 			match format:
-				case 'line':
-					short = 'short' in format
-					pass
 				case 'column':
-					pass
-				case 'table':						
+					result = []
+					format_value = [
+						'text.column',
+						'list.column',
+						'dict.column',
+						'binary.text'
+						]
 					for name, value in data.items():
-						if len(data) == 1:
-							return '[' + cls.void(str(name), 'name') + '  ' + cls.void(value, 'line.full') + ']'
-						result.append(cls.void(str(name, 'name') + '  ' + cls.void(value, 'line.full')
-				case 'snake':
-					pass
-				case _:
-					pass
+						name = cls.void(name, format_value, indent, level)
+						value = cls.void(value, format_value, indent, level + 1)
+						result.append(f'{name}\n{value}')
+					data = '\n'.join(result)[len(indent_text):]
+				case 'line.short' | 'line.full':
+					result = []
+					index = 0
+					for name, value in data.items():
+						format_value = [
+							'text.list.last' if index == (len(data) - 1) and format.endswith('short') else 'text.list',
+							'list.line.short' if index == (len(data) - 1) and format.endswith('short') else 'list.line.full',
+							'dict.line.short' if index == (len(data) - 1) and format.endswith('short') else 'dict.line.full',
+							'binary.text'
+							]
+						if index == 0 and len(data) == 1:
+							return '[' + cls.void(name, format_value) + '  ' + cls.void(value, format_value) + (']' if format.endswith('full') else '')
+						result.append(cls.void(name, format_value) + ' ' + cls.void(value, format_value))
+						index += 1
+					return '[' + '  '.join(result) + (']' if format.endswith('full') else '')
+				case 'table':
+					result = {}
+					format_value = [
+						'text.column',
+						'list.line',
+						'dict.line',
+						'binary.text'
+						]
+					length = 0
+					for name, value in data.items():
+						value = cls.void(value, format_value)
+						result[name] = value
+						length = max(length, len(name))
+					data = f'\n{indent_text}'.join([f'{name:<{length}}  {value}' for name, value in result.items()])
+			return f'{indent_text}{data}'
 		elif isinstance(data, bytes):
 			if not data:
 				return "*''"
-			format = format.split('.') if format is not None else 'base64'
-			match format[0]:
+			if isinstance(format, list):
+				for format in format:
+					if format.startswith('binary'):
+						format = format[7:]
+						break
+			match format:
 				case 'raw':
-					return f'*{len(data)}*'.encode() + data
+					return f'{indent_text}*{len(data)}*'.encode() + data
 				case 'text':
 					try:
-						return f"*'{data.decode('utf-8')}'"
+						return f"{indent_text}*'{data.decode('utf-8')}'"
 					except:
 						pass
-				case 'hex':
-					result = data.hex().upper()
-					if len(format) > 1:
-						delimiter = ' ' if format[1] == 'group' else '_'
-						result = delimiter.join(result[index:index+4] for index in range(0, len(result), 4))
-					return f'*{result}'
-				case 'bin':
-					delimiter = (' ' if format[1] == 'group' else '_') if len(format) > 1 else ''
-					return '*' + delimiter.join(f'{byte:08b}' for byte in data)
-				case 'gzip':
-					compression = format[1] if len(format) > 1 and format[1] != 'safe' else None
-					data = cls.gzip(data, compression)
-				case 'zstd':
-					compression = format[1] if len(format) > 1 and format[1] != 'safe' else None
-					data = cls.zstd(data, compression)
-				case 'brotli':
-					compression = format[1] if len(format) > 1 and format[1] != 'safe' else None
-					data = cls.brotli(data, compression)
-				case 'lzma':
-					compression = format[1] if len(format) > 1 and format[1] != 'safe' else None
-					data = cls.lzma(data, compression)
-				case _:
-					pass
-			result = cls.base64(data)
-			if 'safe' in format:
-				result = result.replace('/', '_').replace('+', '-').rstrip('=')
-			try:
-				int(result, 16)
-				return '***' + result
-			except:
-				return '*' + result
+				case 'hex' | 'hex.group' | 'hex.underline' | 'hex.multiline' | 'hex.multiline.group' | 'hex.multiline.underline':
+					data = data.hex().upper()
+					delimiter = None if format in ['hex', 'hex.multiline'] else (' ' if 'group' in format else '_')
+					if not format.startswith('hex.multiline'):
+						if delimiter is not None:
+							data = delimiter.join(data[index:index+4] for index in range(0, len(data), 4))
+						return f'{indent_text}*{data}'
+					else:
+						max_length = 2 * 20
+						indent_text_next = indent_text + indent
+						if delimiter is not None:
+							data = [data[index:index+max_length] for index in range(0, len(data), max_length)]
+							data = [indent_text_next + delimiter.join(line[index:index+4] for index in range(0, len(line), 4)) for line in data]
+						else:
+							data = [(indent_text_next + data[index:index+max_length]) for index in range(0, len(data), max_length)]
+						return f"{indent_text}*\n" + '\n'.join(data)
+				case 'bin' | 'bin.group' | 'bin.underline' | 'bin.multiline' | 'bin.multiline.group' | 'bin.multiline.underline':
+					data = ''.join(f'{byte:08b}' for byte in data)
+					delimiter = '' if format in ['bin', 'bin.multiline'] else (' ' if 'group' in format else '_')
+					if not format.startswith('bin.multiline'):
+						if delimiter != '':
+							data = delimiter.join(data[index:index+8] for index in range(0, len(data), 8))
+						return f'{indent_text}**{data}'
+					else:
+						max_length = 8 * 10
+						indent_text_next = indent_text + indent
+						if delimiter != '':
+							data = [data[index:index+max_length] for index in range(0, len(data), max_length)]
+							data = [indent_text_next + delimiter.join(line[index:index+8] for index in range(0, len(line), 8)) for line in data]
+						else:
+							data = [(indent_text_next + data[index:index+max_length]) for index in range(0, len(data), max_length)]
+						return f"{indent_text}**\n" + '\n'.join(data)
+					return f'{indent_text}**{data}'
+
+				case 'gzip' | 'gzip.fast' | 'gzip.safe' | 'gzip.fast.safe':
+					data = cls.gzip(data, 'fast' if 'fast' in format else 'best')
+				case 'zstd' | 'zstd.fast' | 'zstd.safe' | 'zstd.fast.safe':
+					data = cls.zstd(data, 'fast' if 'fast' in format else 'best')
+				case 'brotli' | 'brotli.fast' | 'brotli.safe' | 'brotli.fast.safe':
+					data = cls.brotli(data, 'fast' if 'fast' in format else 'best')
+				case 'lzma' | 'lzma.fast' | 'lzma.safe' | 'lzma.fast.safe':
+					data = cls.lzma(data, 'fast' if 'fast' in format else 'best')
+			data = cls.base64(data)
+			if isinstance(format, str) and format.endswith('safe'):
+				data = data.replace('/', '_').replace('+', '-').rstrip('=')
+			if data.isalnum() and set(data).issubset(cls.char['hex']):
+				return f'{indent_text}***{data}'
+			else:
+				return f'{indent_text}*{data}'
+		return cls.void(str(data), format, indent, level)
 
 	@classmethod
 	def void_decode(cls, data):
