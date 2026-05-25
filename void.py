@@ -7756,11 +7756,11 @@ class VOIDlang:
 
 	@classmethod
 	def module(cls, name: str, name_install: str = None):
-		if name in cls.modules:
-			return cls.modules[name]
+		if name in cls.cache_module:
+			return cls.cache_module[name]
 		try:
 			module = importlib.import_module(name)
-			cls.modules[name] = module
+			cls.cache_module[name] = module
 			return module
 		except ImportError:
 			if name_install is None:
@@ -7822,6 +7822,23 @@ class VOIDlang:
 			't': {}
 		}
 		cls.t('run')
+		cls.cache_module = {}
+		cls.cache_indent = {}
+		cls.cache_escape = {
+			'void.text': {
+				'pattern': re.compile(r'\\r|\\n|\\t|\r|\n|\t'),
+				'map': {
+					'\\r': '\\\\r',
+					'\\n': '\\\\n',
+					'\\t': '\\\\t',
+					'\r': '\\r',
+					'\n': '\\n',
+					'\t': '\\t'
+				}
+			}}
+		cls.cache_symbol = {
+			'hex': set('0123456789abcdefABCDEF')
+			}
 		file = sys.argv[0]
 		path = os.getcwd()
 		param = sys.argv[1:]
@@ -7830,21 +7847,6 @@ class VOIDlang:
 		cls.set('app.path', path)
 		cls.set('app.param', param)
 		cls.os_path = path
-		cls.indent_cache = {}
-		cls.escape_map = {
-			'void.text': {
-				'\\r': '\\\\r',
-				'\\n': '\\\\n',
-				'\\t': '\\\\t',
-				'\r': '\\r',
-				'\n': '\\n',
-				'\t': '\\t'
-				}
-			}
-		cls.char = {
-			'hex': set('0123456789abcdefABCDEF')
-			}
-		cls.modules = {}
 		match platform.system():
 			case 'Windows':
 				os_type = 'windows'
@@ -8300,6 +8302,12 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def is_hex(cls, data):
+		if isinstance(data, (str, bytes)):
+			return data.isalnum() and set(data).issubset(cls.cache_symbol['hex'])
+		return False
+
+	@classmethod
 	def expression_isnot(cls):
 		pass
 
@@ -8696,7 +8704,8 @@ class VOIDlang:
 				parse = cls.module('urllib.parse')
 				return parse.quote(text, safe="=/ '")
 			case 'void.text':
-				return text.translate(cls.escape_map['void.text'])
+				escape = cls.cache_escape['void.text']
+				return escape['pattern'].sub(lambda match: escape['map'][match.group(0)], text)
 
 	@classmethod
 	def e(cls, text: str, format: str = None):
@@ -10400,17 +10409,34 @@ class VOIDlang:
 
 	@classmethod
 	def void(cls, data, format = None, indent = '\t', level: int = 0):
-		indent_key = (indent, level)
-		if indent_key not in cls.indent_cache:
+		cache_indent_key = (indent, level)
+		if cache_indent_key not in cls.cache_indent:
 			if isinstance(indent, int):
 				indent = ' ' * indent
 			elif not isinstance(indent, str):
 				indent = '\t'
-			cls.indent_cache[indent_key] = indent * level
-		indent_text = cls.indent_cache[indent_key]
+			indent_text = indent * level
+			cls.cache_indent[cache_indent_key] = indent_text
+		else:
+			indent_text = cls.cache_indent[cache_indent_key]
 		if data is None:
 			return indent_text + 'none'
-		if isinstance(data, str):
+		elif isinstance(data, bool):
+			return indent_text + ('true' if data else 'false')
+		elif isinstance(data, (int, float)):
+			if isinstance(format, list):
+				format = next((name.removeprefix('number.') for name in format if name.startswith('number.')), format)
+			if format in ['group', 'underline']:
+				delimiter = ' ' if format == 'group' else '_'
+				if isinstance(data, int):
+					return f'{indent_text}{data:,}'.replace(',', delimiter)
+				data_int = int(data)
+				data_text = str(data)
+				fraction = data_text[data_text.find('.') + 1:]
+				fraction = delimiter.join(fraction[index:index+3] for index in range(0, len(fraction), 3))
+				return f'{indent_text}{data_int:,}'.replace(',', delimiter) + '.' + fraction
+			return f'{indent_text}{data}'
+		elif isinstance(data, str):
 			if not data:
 				return indent_text + "''"
 			length = len(data)
@@ -10419,10 +10445,7 @@ class VOIDlang:
 			special = len(data) != length or (length > 1 and ((data[0] in ["'", '[']) or (data[0] == '*' and data[1] not in [' ', '\t'])))
 			special_end = data[-1] == "'"
 			if isinstance(format, list):
-				for format in format:
-					if format.startswith('text'):
-						format = format[5:]
-						break
+				format = next((name.removeprefix('text.') for name in format if name.startswith('text.')), format)
 			match format:
 				case 'full':
 					if not special:
@@ -10455,49 +10478,12 @@ class VOIDlang:
 							return f"'{data}"
 					return data
 			return (indent_text + data) if not special else f"{indent_text}'{data}"
-		elif isinstance(data, bool):
-			return indent_text + ('true' if data else 'false')
-		elif isinstance(data, (int, float)):
-			if isinstance(format, list):
-				for format in format:
-					if format.startswith('number'):
-						format = format[7:]
-						break
-			if format in ['group', 'underline']:
-				delimiter = ' ' if format == 'group' else '_'
-				if isinstance(data, int):
-					return f'{indent_text}{data:,}'.replace(',', delimiter)
-				data_int = int(data)
-				data_text = str(data)
-				fraction = data_text[data_text.find('.') + 1:]
-				fraction = delimiter.join(fraction[index:index+3] for index in range(0, len(fraction), 3))
-				return f'{indent_text}{data_int:,}'.replace(',', delimiter) + '.' + fraction
-			return f'{indent_text}{data}'
 		elif isinstance(data, list):
 			if not data:
-				return indent_text + "[]"
+				return indent_text + '[]'
 			if isinstance(format, list):
-				for format in format:
-					if format.startswith('list'):
-						format = format[5:]
-						break
+				format = next((name.removeprefix('list.') for name in format if name.startswith('list.')), format)
 			match format:
-				case 'column' | 'column.inside':
-					result = []
-					if format == 'column.inside':
-						start = f'[\n{indent_text}'
-						level += 1
-					else:
-						start = ''
-					for index, value in enumerate(data):
-						format_value = [
-							'text.column',
-							'list.column.inside',
-							'dict.column.inside',
-							'binary.text'
-							]
-						result.append(cls.void(value, format_value, indent, level))
-					data = start + f'\n{indent_text}'.join(result)
 				case 'line.short' | 'line.full':
 					result = []
 					for index, value in enumerate(data):
@@ -10509,6 +10495,7 @@ class VOIDlang:
 							]
 						result.append(cls.void(value, format_value))
 					data = '[' + ' '.join(result) + (']' if format.endswith('full') else '')
+					return f'{indent_text}{data}'
 				case 'table':
 					result = []
 					lines =[]
@@ -10531,29 +10518,29 @@ class VOIDlang:
 					for value in lines:
 						result.append('  '.join([f'{value:<{size[index]}}' for index, value in enumerate(value)]))
 					data = f'\n{indent_text}'.join(result)
-			return f'{indent_text}{data}'
+					return f'{indent_text}{data}'
+				case 'column' | 'column.inside' | _:
+					result = []
+					if format == 'column.inside':
+						start = '[\n'
+						level += 1
+					else:
+						start = ''
+					for index, value in enumerate(data):
+						format_value = [
+							'text.column',
+							'list.column.inside',
+							'dict.column.inside',
+							'binary.text'
+							]
+						result.append(cls.void(value, format_value, indent, level))
+					return start + '\n'.join(result)
 		elif isinstance(data, dict):
 			if not data:
-				return indent_text + "[ ]"
+				return indent_text + '[ ]'
 			if isinstance(format, list):
-				for format in format:
-					if format.startswith('dict'):
-						format = format[5:]
-						break
+				format = next((name.removeprefix('dict.') for name in format if name.startswith('dict.')), format)
 			match format:
-				case 'column':
-					result = []
-					format_value = [
-						'text.column',
-						'list.column',
-						'dict.column',
-						'binary.text'
-						]
-					for name, value in data.items():
-						name = cls.void(name, format_value, indent, level)
-						value = cls.void(value, format_value, indent, level + 1)
-						result.append(f'{name}\n{value}')
-					data = '\n'.join(result)[len(indent_text):]
 				case 'line.short' | 'line.full':
 					result = []
 					index = 0
@@ -10583,15 +10570,25 @@ class VOIDlang:
 						result[name] = value
 						length = max(length, len(name))
 					data = f'\n{indent_text}'.join([f'{name:<{length}}  {value}' for name, value in result.items()])
-			return f'{indent_text}{data}'
+					return f'{indent_text}{data}'
+				case 'column' | _:
+					result = []
+					format_value = [
+						'text.column',
+						'list.column',
+						'dict.column',
+						'binary.text'
+						]
+					for name, value in data.items():
+						name = cls.void(name, format_value, indent, level)
+						value = cls.void(value, format_value, indent, level + 1)
+						result.append(f'{name}\n{value}')
+					return '\n'.join(result)
 		elif isinstance(data, bytes):
 			if not data:
-				return "*''"
+				return indent_text + "*''"
 			if isinstance(format, list):
-				for format in format:
-					if format.startswith('binary'):
-						format = format[7:]
-						break
+				format = next((name.removeprefix('binary.') for name in format if name.startswith('binary.')), format)
 			match format:
 				case 'raw':
 					return f'{indent_text}*{len(data)}*'.encode() + data
@@ -10633,7 +10630,6 @@ class VOIDlang:
 							data = [(indent_text_next + data[index:index+max_length]) for index in range(0, len(data), max_length)]
 						return f"{indent_text}**\n" + '\n'.join(data)
 					return f'{indent_text}**{data}'
-
 				case 'gzip' | 'gzip.fast' | 'gzip.safe' | 'gzip.fast.safe':
 					data = cls.gzip(data, 'fast' if 'fast' in format else 'best')
 				case 'zstd' | 'zstd.fast' | 'zstd.safe' | 'zstd.fast.safe':
@@ -10642,13 +10638,9 @@ class VOIDlang:
 					data = cls.brotli(data, 'fast' if 'fast' in format else 'best')
 				case 'lzma' | 'lzma.fast' | 'lzma.safe' | 'lzma.fast.safe':
 					data = cls.lzma(data, 'fast' if 'fast' in format else 'best')
-			data = cls.base64(data)
-			if isinstance(format, str) and format.endswith('safe'):
-				data = data.replace('/', '_').replace('+', '-').rstrip('=')
-			if data.isalnum() and set(data).issubset(cls.char['hex']):
-				return f'{indent_text}***{data}'
-			else:
-				return f'{indent_text}*{data}'
+			safe = isinstance(format, str) and format.endswith('safe')
+			data = cls.base64(data, safe)
+			return f'{indent_text}*{data}' if not cls.is_hex(data) else f'{indent_text}***{data}'
 		return cls.void(str(data), format, indent, level)
 
 	@classmethod
