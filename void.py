@@ -7825,7 +7825,7 @@ class VOIDlang:
 		cls.cache_module = {}
 		cls.cache_indent = {}
 		cls.cache_escape = {
-			'void.text': {
+			'void.special': {
 				'pattern': re.compile(r'\\r|\\n|\\t|\r|\n|\t'),
 				'map': {
 					'\\r': '\\\\r',
@@ -7835,10 +7835,28 @@ class VOIDlang:
 					'\n': '\\n',
 					'\t': '\\t'
 				}
-			}}
+			},
+			'void.text': {
+				'pattern': re.compile(r'\\r|\\n|\\t'),
+				'map': {
+					'\\r': '\\\\r',
+					'\\n': '\\\\n',
+					'\\t': '\\\\t'
+				}
+			},
+			'void.newline': {
+				'pattern': re.compile(r'\\n|\\r\\n|\\r'),
+				'map': {
+					'\\n': '\n',
+					'\\r\\n': '\n',
+					'\\r': ' '
+				}
+			}
+		}
 		cls.cache_symbol = {
 			'hex': set('0123456789abcdefABCDEF')
 			}
+		cls.cache_void_muliline_length = 100
 		file = sys.argv[0]
 		path = os.getcwd()
 		param = sys.argv[1:]
@@ -8703,8 +8721,8 @@ class VOIDlang:
 			case 'html.image':
 				parse = cls.module('urllib.parse')
 				return parse.quote(text, safe="=/ '")
-			case 'void.text':
-				escape = cls.cache_escape['void.text']
+			case 'void.special' | 'void.text' | 'void.newline':
+				escape = cls.cache_escape[format]
 				return escape['pattern'].sub(lambda match: escape['map'][match.group(0)], text)
 
 	@classmethod
@@ -10426,14 +10444,15 @@ class VOIDlang:
 		elif isinstance(data, (int, float)):
 			if isinstance(format, list):
 				format = next((name.removeprefix('number.') for name in format if name.startswith('number.')), format)
-			if format in ['group', 'underline']:
-				delimiter = ' ' if format == 'group' else '_'
+			if format in ['group', 'underline', 'group.fraction', 'underline.fraction']:
+				delimiter = ' ' if format in ['group', 'group.fraction'] else '_'
 				if isinstance(data, int):
 					return f'{indent_text}{data:,}'.replace(',', delimiter)
 				data_int = int(data)
 				data_text = str(data)
 				fraction = data_text[data_text.find('.') + 1:]
-				fraction = delimiter.join(fraction[index:index+3] for index in range(0, len(fraction), 3))
+				if format in ['group.fraction', 'underline.fraction']:
+					fraction = delimiter.join(fraction[index:index+3] for index in range(0, len(fraction), 3))
 				return f'{indent_text}{data_int:,}'.replace(',', delimiter) + '.' + fraction
 			return f'{indent_text}{data}'
 		elif isinstance(data, str):
@@ -10441,43 +10460,38 @@ class VOIDlang:
 				return indent_text + "''"
 			length = len(data)
 			if '\r' in data or '\n' in data or '\t' in data:
-				data = cls.escape(data, 'void.text')
+				data = cls.escape(data, 'void.special')
 			special = len(data) != length or (length > 1 and ((data[0] in ["'", '[']) or (data[0] == '*' and data[1] not in [' ', '\t'])))
-			special_end = data[-1] == "'"
+			special_end = special and data[-1] == "'"
 			if isinstance(format, list):
 				format = next((name.removeprefix('text.') for name in format if name.startswith('text.')), format)
 			match format:
 				case 'full':
 					if not special:
-						data = data.replace('\\r', '\\\\r').replace('\\n', '\\\\n').replace('\\t', '\\\\t')
+						data = cls.escape(data, 'void.text')
 					return f"{indent_text}'{data}'"
 				case 'short':
 					if not special:
-						data = data.replace('\\r', '\\\\r').replace('\\n', '\\\\n').replace('\\t', '\\\\t')
+						data = cls.escape(data, 'void.text')
 					return f"{indent_text}'{data}" if not special_end else f"{indent_text}'{data}'"
-				case 'column':
-					if len(data) == 1:
-						return indent_text + data
-					if special:
-						return f"{indent_text}'{data}" if not special_end else f"{indent_text}'{data}"
 				case 'multiline':
-					max_length = 100
 					indent_text_next = indent_text + indent
-					return f"{indent_text}'\n" + '\n'.join((indent_text_next + data[index:index+max_length]) for index in range(0, len(data), max_length))
+					return f"{indent_text}'\n" + '\n'.join((indent_text_next + data[index:index+cls.cache_void_muliline_length]) for index in range(0, len(data), cls.cache_void_muliline_length))
 				case 'newline':
 					indent_text_next = indent_text + indent
 					if special:
-						data = data.replace('\\n', '\n').replace('\\r\\n', '\n').replace('\\r', ' ').split('\n')
+						data = cls.escape(data, 'void.newline').split('\n')
 					return f'{indent_text}"\n' + '\n'.join([indent_text_next + text for text in data])
 				case 'list' | 'list.last':
 					if special or ' ' in data:
-						data = data.replace('\\r', '\\\\r').replace('\\n', '\\\\n').replace('\\t', '\\\\t')
+						data = cls.escape(data, 'void.text')
 						if format == 'list':
 							return f"'{data}'"
 						else:
 							return f"'{data}"
 					return data
-			return (indent_text + data) if not special else f"{indent_text}'{data}"
+				case _:
+					return (indent_text + data) if not special else (f"{indent_text}'{data}" if not special_end else f"{indent_text}'{data}'")
 		elif isinstance(data, list):
 			if not data:
 				return indent_text + '[]'
@@ -10501,7 +10515,6 @@ class VOIDlang:
 					lines =[]
 					size = []
 					format_value = [
-						'text.column',
 						'list.line',
 						'dict.line',
 						'binary.text'
@@ -10528,7 +10541,6 @@ class VOIDlang:
 						start = ''
 					for index, value in enumerate(data):
 						format_value = [
-							'text.column',
 							'list.column.inside',
 							'dict.column.inside',
 							'binary.text'
@@ -10559,7 +10571,6 @@ class VOIDlang:
 				case 'table':
 					result = {}
 					format_value = [
-						'text.column',
 						'list.line',
 						'dict.line',
 						'binary.text'
