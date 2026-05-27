@@ -529,7 +529,6 @@ V O I D format
       'text with space'
       '
       ''
-      '''
       '
         text
         in a
@@ -760,7 +759,6 @@ V O I D format
         "text with space",
         "'",
         "",
-        "'",
         "textin aline",
         "text\nmulti\nline",
         "tab \t",
