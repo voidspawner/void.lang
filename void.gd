@@ -9,12 +9,12 @@ static var data = """
 		site
 			https://voidsp.com
 		language
-			python
+			gdscript
 		version
 			time
-				1778668374
+				1779902786
 			date
-				2026 · 05 · 13
+				2026 · 05 · 27
 		license
 			name
 				V O I D license
@@ -52,8 +52,10 @@ static var data = """
 			'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      '
 			'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
 		help
-			python.exe void.py help
+			python3 void.py help
 			python3 void.py help action
+			python3 void.py "[[help action"
+			python3 void.py void.py
 	lang
 
 	  .: value :.
@@ -301,7 +303,7 @@ static var data = """
 			param
 				[[name data  type any  default none
 			example
-				[code [[binary text]]  result *text
+				[code [[binary text]]  result *'text
 				[code [[binary 123]]  result *7B
 				[code [[binary true]]  result *01
 				[code [[binary none]]  result *00
@@ -871,7 +873,7 @@ static var data = """
 				[code [[= name text] [+= name end] .name]  result textend
 				[code [[= data [1 2 3]] [+= data 2] .data]  result [1 2 3 '' ''
 				[code [[= data [a 1  b 2]] [+= data [c  3]] .data]  result [a 1  b 2  c 3
-				[code [[= name *text] [+= name end] .name]  result *textend
+				[code [[= name *text] [+= name end] .name]  result *'textend
 		=+
 			group
 				expression
@@ -900,7 +902,7 @@ static var data = """
 				[code [[= name text] [=+ name start]]  name name  result starttext
 				[code [[= data [1 2 3]] [=+ data 2]]  name data  result ['' '' 1 2 3
 				[code [[= data [a 1  b 2]] [=+ data [c  3]]]  name data  result [c 3  a 1  b 2
-				[code [[= name *text] [+= name start]]  name name  result *starttext
+				[code [[= name *text] [+= name start]]  name name  result *'starttext
 		-=
 			group
 				expression
@@ -929,7 +931,7 @@ static var data = """
 				[code [[= name text] [-= name xt]]  name name  result te
 				[code [[= data [1 2 3]] [-= data 2]]  name data  result [1 2
 				[code [[= data [a 1  b 2]] [-= data b]]  name data  result [a 1
-				[code [[= name *text] [-= name xt]]  name name  result *te
+				[code [[= name *text] [-= name xt]]  name name  result *'te
 		=-
 			group
 				expression
@@ -958,7 +960,7 @@ static var data = """
 				[code [[= name text] [=- name te]]  name name  result xt
 				[code [[= data [1 2 3]] [=- data 2]]  name data  result [1
 				[code [[= data [a 1  b 2]] [=- data b]]  name data  result [a 1
-				[code [[= name *text] [=- name te]]  name name  result *xt
+				[code [[= name *text] [=- name te]]  name name  result *'xt
 		*=
 			group
 				expression
@@ -1013,7 +1015,7 @@ static var data = """
 				[code [[= name text] [/= name 2] .name]  result [te xt
 				[code [[= name 'text text'] [/= name ' '] .name]  result [text text
 				[code [[= data [1 2 3 4]] [/= data 2] .data]  result [[1 2] [3 4
-				[code [[= data [a 1  b 2]] [/= data 2 .data]  result [[a  1] [b  2
+				[code [[= data [a 1  b 2]] [/= data 2] .data]  result [[a  1] [b  2
 				[code [[= name *text] [/= name 2] .name]  result [*te *xt
 		%=
 			group
@@ -3329,17 +3331,17 @@ static var data = """
 				[code [[wait 1m]]  test false
 				[code [[wait 1h]]  test false
 				[code [wait.h]  test false
-		stopwatch
+		timepast
 			group
 				time
 			method
-				stopwatch
+				timepast
 			action
 				none
 			alias
 				t
 			description
-				Stopwatch for calculating the time spent on operations
+				Calculating the time spent on operations
 			safe
 				true
 			container
@@ -3348,14 +3350,13 @@ static var data = """
 				[python js swift kotlin gdscript c++ asm86
 			param
 				[name tag  type text  default none
-				[name name  type text  default none
+				[name digits  type int  default none
 			result
 				number
 			example
 				[code [t]  type number
-				[code [[t start]]  type number
-				[code [[t start] [t stop] [t list]]  type list
-				[code [[t laps lap1] [t laps lap2] [t laps list]]  type list
+				[code [[t run] [wait 0.1] [t run]]  type number
+				[code [[t run] [wait 0.1] [t run 5]]  test false
 		date
 			group
 				time
@@ -3711,7 +3712,105 @@ static var data = """
 			param
 				[[name data  type any
 			example
-				[[code [[gzip.decode *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==]]  result hello
+				[[code [[gzip.decode *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==]]  result *'hello
+		zstd
+			group
+				crypto
+			method
+				zstd
+			action
+				none
+			alias
+				none
+			description
+				Compresses data using the Zstandard compression algorithm (best compression)
+			safe
+				true
+			container
+				none
+			language
+				[python js swift kotlin gdscript c++
+			param
+				[name data  type any
+				[name level  type [number text]  subname true  default none
+			example
+				[[code [[zstd hello]]  result *KLUv/SAFKQAAaGVsbG8=
+				[code [[zstd hello -5]]  test false
+				[code [[zstd hello 22]]  test false
+				[code [[zstd hello fast]]  test false
+				[code [[zstd hello best]]  test false
+				[code [[zstd.fast hello]]  test false
+				[code [[zstd.best hello]]  test false
+		zstd.decode
+			group
+				crypto
+			method
+				zstd_decode
+			action
+				none
+			alias
+				none
+			description
+				Decompresses Zstandard compressed data
+			safe
+				true
+			container
+				none
+			language
+				[python js swift kotlin gdscript c++
+			param
+				[[name data  type any
+			example
+				[[code [[lzma.decode *KLUv/SAFKQAAaGVsbG8=]]  result *'hello
+		brotli
+			group
+				crypto
+			method
+				brotli
+			action
+				none
+			alias
+				none
+			description
+				Compresses data using the Brotli compression algorithm (2nd best compression)
+			safe
+				true
+			container
+				none
+			language
+				[python js swift kotlin gdscript c++
+			param
+				[name data  type any
+				[name level  type [number text]  subname true  default none
+			example
+				[[code [[brotli hello]]  result *CwKAaGVsbG8D
+				[code [[brotli hello 1]]  test false
+				[code [[brotli hello 11]]  test false
+				[code [[brotli hello fast]]  test false
+				[code [[brotli hello best]]  test false
+				[code [[brotli.fast hello]]  test false
+				[code [[brotli.best hello]]  test false
+		brotli.decode
+			group
+				crypto
+			method
+				brotli_decode
+			action
+				none
+			alias
+				none
+			description
+				Decompresses Brotli compressed data
+			safe
+				true
+			container
+				none
+			language
+				[python js swift kotlin gdscript c++
+			param
+				[[name data  type any
+			example
+				[[code [[brotli.decode *CwKAaGVsbG8D]]  result *'hello
 		lzma
 			group
 				crypto
@@ -3722,7 +3821,7 @@ static var data = """
 			alias
 				none
 			description
-				Compresses data using the LZMA2 compression algorithm (best compression)
+				Compresses data using the LZMA2 compression algorithm (3rd best compression)
 			safe
 				true
 			container
@@ -3731,7 +3830,7 @@ static var data = """
 				[python js swift kotlin gdscript c++
 			param
 				[name data  type any
-				[name level  type [number text  subname true  default none
+				[name level  type [number text]  subname true  default none
 			example
 				[[code [[lzma hello]]  result */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==
 				[code [[lzma hello 1]]  test false
@@ -3760,7 +3859,7 @@ static var data = """
 			param
 				[[name data  type any
 			example
-				[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result hello
+				[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result *'hello
 		lz4
 			group
 				crypto
@@ -3809,7 +3908,56 @@ static var data = """
 			param
 				[[name data  type any
 			example
-				[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result hello
+				[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result *'hello
+		deflate
+			group
+				crypto
+			method
+				deflate
+			action
+				none
+			alias
+				none
+			description
+				Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
+			Satisfiable
+				true
+			container
+				none
+			language
+				[python js swift kotlin gdscript c++ asm86
+			param
+				[name data  type any
+				[name level  type [number text]  subname true  default none
+			example
+				[[code [[deflate hello]]  result *y0jNyckHAA==
+				[code [[deflate hello 1]]  test false
+				[code [[deflate hello 9]]  test false
+				[code [[deflate hello fast]]  test false
+				[code [[deflate hello best]]  test false
+				[code [[deflate.fast hello]]  test false
+				[code [[deflate.best hello]]  test false
+		deflate.decode
+			group
+				crypto
+			method
+				deflate_decode
+			action
+				none
+			alias
+				none
+			description
+				Decompresses Deflate (LZSS + Huffman) compressed data
+			safe
+				true
+			container
+				none
+			language
+				[python js swift kotlin gdscript c++ asm86
+			param
+				[[name data  type any
+			example
+				[[code [[deflate.decode *y0jNyckHAA==]]  result *'hello
 		lzss
 			group
 				crypto
@@ -3851,46 +3999,18 @@ static var data = """
 			param
 				[[name data  type any
 			example
-				[[code [[lzss.decode *H2hlbGxv]]  result hello
-		deflate
+				[[code [[lzss.decode *H2hlbGxv]]  result *'hello
+		rle
 			group
 				crypto
 			method
-				deflate
+				rle
 			action
 				none
 			alias
 				none
 			description
-				Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
-			safe
-				true
-			container
-				none
-			language
-				[python js swift kotlin gdscript c++ asm86
-			param
-				[name data  type any
-				[name level  type [number text]  subname true  default none
-			example
-				[[code [[deflate hello]]  result *y0jNyckHAA==
-				[code [[deflate hello 1]]  test false
-				[code [[deflate hello 9]]  test false
-				[code [[deflate hello fast]]  test false
-				[code [[deflate hello best]]  test false
-				[code [[deflate.fast hello]]  test false
-				[code [[deflate.best hello]]  test false
-		deflate.decode
-			group
-				crypto
-			method
-				deflate_decode
-			action
-				none
-			alias
-				none
-			description
-				Decompresses Deflate (LZSS + Huffman) compressed data
+				Compresses data using the RLE compression algorithm (simplest retro compression)
 			safe
 				true
 			container
@@ -3900,7 +4020,28 @@ static var data = """
 			param
 				[[name data  type any
 			example
-				[[code [[deflate.decode *y0jNyckHAA==]]  result hello
+				[[code [[rle '111101111']]  result *BDEBMAQx
+		rle.decode
+			group
+				crypto
+			method
+				rle_decode
+			action
+				none
+			alias
+				none
+			description
+				Decompresses RLE compressed data
+			safe
+				true
+			container
+				none
+			language
+				[python js swift kotlin gdscript c++ asm86
+			param
+				[[name data  type any
+			example
+				[[code [[rle.decode *BDEBMAQx]]  result *'111101111
 		aes
 			group
 				crypto
@@ -3911,7 +4052,7 @@ static var data = """
 			alias
 				none
 			description
-				Encrypts binary data using the AES256 algorithm and the specified key
+				Encrypts data using the AES256 algorithm and the specified key
 			safe
 				true
 			container
@@ -3919,10 +4060,10 @@ static var data = """
 			language
 				[python js swift kotlin gdscript c++ asm86
 			param
-				[name data  type binary
+				[name data  type any
 				[name key  type text
 			example
-				[[code [[aes *'text' key]]  type binary
+				[[code [[aes text key]]  type binary
 		aes.decode
 			group
 				crypto
@@ -3933,7 +4074,7 @@ static var data = """
 			alias
 				none
 			description
-				Decrypts previously encrypted binary data using the AES256 algorithm and the specified key
+				Decrypts previously encrypted data using the AES256 algorithm and the specified key
 			safe
 				true
 			container
@@ -3944,7 +4085,7 @@ static var data = """
 				[name data  type binary
 				[name key  type text
 			example
-				[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text'
+				[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text
 		rsa
 			group
 				crypto
@@ -5240,7 +5381,7 @@ static var data = """
 			action
 				none
 			alias
-				none
+				v
 			description
 				Encodes data into the V O I D format
 			safe
@@ -5263,7 +5404,7 @@ static var data = """
 			action
 				none
 			alias
-				none
+				v.decode
 			description
 				Decodes data from the V O I D format
 			safe
@@ -6982,7 +7123,7 @@ static var data = """
 				true
 			indent
 				2
-		stopwatch
+		t
 			[ ]
 		timer
 			[ ]
@@ -7061,6 +7202,8 @@ static var data = """
 					text/html
 				xhtml
 					application/xhtml+xml
+				mhtml
+					multipart/related
 				css
 					text/css
 
@@ -7139,6 +7282,8 @@ static var data = """
 					audio/mpeg
 				mp2
 					audio/mpeg
+				m4a
+					audio/mp4
 				wma
 					audio/x-ms-wma
 				wav
@@ -7453,10 +7598,12 @@ static var data = """
 				ttml
 				sub
 				smi
+				svg
 				sami
 				html
 				htm
 				xhtml
+				mhtml
 				css
 				py
 				php
@@ -7868,83 +8015,155 @@ static func values():
 
 # math
 
-static func sin():
-	pass
+static func sin(value: float) -> float:
+	return sin(value)
 
-static func cos():
-	pass
+static func cos(value: float) -> float:
+	return cos(value)
 
-static func tan():
-	pass
+static func tan(value: float) -> float:
+	return tan(value)
 
-static func sinh():
-	pass
+static func sinh(value: float) -> float:
+	return sinh(value)
 
-static func cosh():
-	pass
+static func cosh(value: float) -> float:
+	return cosh(value)
 
-static func tanh():
-	pass
+static func tanh(value: float) -> float:
+	return tanh(value)
 
-static func asin():
-	pass
+static func asin(value: float) -> float:
+	return asin(value)
 
-static func acos():
-	pass
+static func acos(value: float) -> float:
+	return acos(value)
 
-static func atan():
-	pass
+static func atan(value: float) -> float:
+	return atan(value)
 
-static func asinh():
-	pass
+static func asinh(value: float) -> float:
+	return asinh(value)
 
-static func acosh():
-	pass
+static func acosh(value: float) -> float:
+	return acosh(value)
 
-static func atanh():
-	pass
+static func atanh(value: float) -> float:
+	return atanh(value)
 
-static func round():
-	pass
+static func round(value: float, digits: int = 0) -> float:
+	if digits == 0:
+		return round(value)
+	var multiplier = pow(10, digits)
+	return round(value * multiplier) / multiplier
 
-static func floor():
-	pass
+static func floor(value: float) -> float:
+	return floor(value)
 
-static func ceil():
-	pass
+static func ceil(value: float) -> float:
+	return ceil(value)
 
-static func log():
-	pass
+static func log(value: float, base: Variant = null) -> float:
+	if base == null:
+		return log(value) # Натуральный логарифм
+	else:
+		return log(value) / log(float(base))
 
-static func factorial():
-	pass
+static func factorial(value: float) -> int:
+	var res = 1
+	for i in range(2, int(value) + 1):
+		res *= i
+	return res
 
-static func fibonacci():
-	pass
+static func fibonacci(value: float, multiply: float = 1.0, shift: float = 0.0) -> Array:
+	var n = int(value)
+	if n <= 0: return []
+	if n == 1: return [0.0 + shift]
+	var a = 0.0
+	var b = 1.0
+	var result = [0.0 + shift, 1.0 * multiply + shift]
+	for i in range(2, n):
+		var next = a + b
+		a = b
+		b = next
+		result.append(b * multiply + shift)
+	return result
 
-static func gold():
-	pass
+static func gold(value: float, component: Variant = null) -> Dictionary:
+	var phi = 1.61803398874989
+	if str(component) == "short":
+		return {
+			"short": value,
+			"long": value * phi,
+			"total": value * (1.0 + phi)
+		}
+	elif str(component) == "long":
+		return {
+			"short": value / phi,
+			"long": value,
+			"total": value * (1.0 + phi) / phi
+		}
+	return {
+		"short": (2.0 - phi) * value,
+		"long": (phi - 1.0) * value,
+		"total": value
+	}
 
-static func abs():
-	pass
+static func abs(value: float) -> float:
+	return abs(value)
 
-static func min():
-	pass
+static func min(value: Array) -> Variant:
+	return value.min()
 
-static func max():
-	pass
+static func max(value: Array) -> Variant:
+	return value.max()
 
-static func sum():
-	pass
+static func sum(value: Array) -> float:
+	var result = 0.0
+	for v in value:
+		if v is int or v is float:
+			result += v
+	return result
 
-static func avg():
-	pass
+static func avg(value: Array) -> float:
+	if value.size() == 0:
+		return 0.0
+	return sum(value) / float(value.size())
 
-static func random():
-	pass
+static func random(value: Variant = null, to: Variant = null) -> Variant:
+	if value == null and to == null:
+		return randf()
+	if value != null and to != null:
+		if value is int and to is int:
+			return randi_range(value, to)
+		return randf_range(float(value), float(to))
+	if value == null and to != null:
+		value = to
+		to = null
+	if value is bool:
+		return randf() > 0.5
+	if value is String:
+		return value[randi() % value.length()]
+	if value is Array:
+		return value.pick_random()
+	if value is Dictionary:
+		return value.values().pick_random()
+	if value != null and to == null:
+		if value is int:
+			return randi_range(0, value)
+		return randf_range(0.0, float(value))
+	return null
 
-static func random_seed():
-	pass
+static func random_seed(seed_value: Variant = null) -> void:
+	if seed_value == null:
+		# В GDScript нет прямого аналога получения текущего сида из коробки 
+		# без сохранения его вручную.
+		return
+	if seed_value is String and seed_value == "":
+		seed_value = hash(str(Time.get_unix_time_from_system()))
+	if seed_value is String:
+		seed_value = hash(seed_value)
+	seed(int(seed_value))
 
 
 # time
@@ -7961,7 +8180,7 @@ static func timer_remove():
 static func wait():
 	pass
 
-static func stopwatch():
+static func timepast():
 	pass
 
 static func date():
@@ -8012,6 +8231,18 @@ static func gzip():
 static func gzip_decode():
 	pass
 
+static func zstd():
+	pass
+
+static func zstd_decode():
+	pass
+
+static func brotli():
+	pass
+
+static func brotli_decode():
+	pass
+
 static func lzma():
 	pass
 
@@ -8024,16 +8255,22 @@ static func lz4():
 static func lz4_decode():
 	pass
 
+static func deflate():
+	pass
+
+static func deflate_decode():
+	pass
+
 static func lzss():
 	pass
 
 static func lzss_decode():
 	pass
 
-static func deflate():
+static func rle():
 	pass
 
-static func deflate_decode():
+static func rle_decode():
 	pass
 
 static func aes():
@@ -8380,6 +8617,7 @@ static func book():
 
 static func game():
 	pass
+
 
 func _ready():
 	VOIDlang.run()
