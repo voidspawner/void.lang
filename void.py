@@ -31,9 +31,9 @@ class VOIDlang:
 				python
 			version
 				time
-					1779632087
+					1779902786
 				date
-					2026 · 05 · 24
+					2026 · 05 · 27
 			license
 				name
 					V O I D license
@@ -10498,14 +10498,13 @@ class VOIDlang:
 			if isinstance(format, list):
 				format = next((name.removeprefix('list.') for name in format if name.startswith('list.')), format)
 			match format:
-				case 'line.short' | 'line.full':
+				case 'line' | 'line.full':
 					result = []
 					for index, value in enumerate(data):
 						format_value = [
-							'text.list.last' if index == (len(data) - 1) and format.endswith('short') else 'text.list',
-							'list.line.short' if index == (len(data) - 1) and format.endswith('short') else 'list.line.full',
-							'dict.line.short' if index == (len(data) - 1) and format.endswith('short') else 'dict.line.full',
-							'binary.text'
+							'text.list.last' if index == (len(data) - 1) and format == 'line' else 'text.list',
+							'list.line' if index == (len(data) - 1) and format == 'line' else 'list.line.full',
+							'dict.line' if index == (len(data) - 1) and format == 'line' else 'dict.line.full',
 							]
 						result.append(cls.void(value, format_value))
 					data = '[' + ' '.join(result) + (']' if format.endswith('full') else '')
@@ -10517,7 +10516,6 @@ class VOIDlang:
 					format_value = [
 						'list.line',
 						'dict.line',
-						'binary.text'
 						]
 					for value in data:
 						if isinstance(value, list):
@@ -10529,39 +10527,37 @@ class VOIDlang:
 								lines[-1].append(value)
 								size[index] = max(size[index], len(value))
 					for value in lines:
-						result.append('  '.join([f'{value:<{size[index]}}' for index, value in enumerate(value)]))
+						result.append('  '.join([(f'{value:<{size[index]}}' if index < len(size) - 1 else value) for index, value in enumerate(value)]))
 					data = f'\n{indent_text}'.join(result)
 					return f'{indent_text}{data}'
-				case 'column' | 'column.inside' | _:
+				case 'column' | _:
+					format_value = [
+						'list.column',
+						'dict.column',
+						]
+					if len(data) == 1:
+						if not isinstance(data[0], (list, dict)):
+							return f'{indent_text}[' + cls.void(data[0], format_value, indent)
+						else:
+							return f'{indent_text}[\n' + cls.void(data[0], format_value, indent, level + 1)
 					result = []
-					if format == 'column.inside':
-						start = '[\n'
-						level += 1
-					else:
-						start = ''
 					for index, value in enumerate(data):
-						format_value = [
-							'list.column.inside',
-							'dict.column.inside',
-							'binary.text'
-							]
 						result.append(cls.void(value, format_value, indent, level))
-					return start + '\n'.join(result)
+					return '\n'.join(result)
 		elif isinstance(data, dict):
 			if not data:
 				return indent_text + '[ ]'
 			if isinstance(format, list):
 				format = next((name.removeprefix('dict.') for name in format if name.startswith('dict.')), format)
 			match format:
-				case 'line.short' | 'line.full':
+				case 'line' | 'line.full':
 					result = []
 					index = 0
 					for name, value in data.items():
 						format_value = [
-							'text.list.last' if index == (len(data) - 1) and format.endswith('short') else 'text.list',
-							'list.line.short' if index == (len(data) - 1) and format.endswith('short') else 'list.line.full',
-							'dict.line.short' if index == (len(data) - 1) and format.endswith('short') else 'dict.line.full',
-							'binary.text'
+							'text.list.last' if index == (len(data) - 1) and format == 'line' else 'text.list',
+							'list.line' if index == (len(data) - 1) and format == 'line' else 'list.line.full',
+							'dict.line' if index == (len(data) - 1) and format == 'line' else 'dict.line.full',
 							]
 						if index == 0 and len(data) == 1:
 							return '[' + cls.void(name, format_value) + '  ' + cls.void(value, format_value) + (']' if format.endswith('full') else '')
@@ -10573,7 +10569,6 @@ class VOIDlang:
 					format_value = [
 						'list.line',
 						'dict.line',
-						'binary.text'
 						]
 					length = 0
 					for name, value in data.items():
@@ -10585,10 +10580,8 @@ class VOIDlang:
 				case 'column' | _:
 					result = []
 					format_value = [
-						'text.column',
 						'list.column',
 						'dict.column',
-						'binary.text'
 						]
 					for name, value in data.items():
 						name = cls.void(name, format_value, indent, level)
@@ -10606,8 +10599,7 @@ class VOIDlang:
 				case 'text':
 					try:
 						return f"{indent_text}*'{data.decode('utf-8')}'"
-					except:
-						pass
+					except: pass
 				case 'hex' | 'hex.group' | 'hex.underline' | 'hex.multiline' | 'hex.multiline.group' | 'hex.multiline.underline':
 					data = data.hex().upper()
 					delimiter = None if format in ['hex', 'hex.multiline'] else (' ' if 'group' in format else '_')
