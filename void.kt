@@ -11,12 +11,12 @@ class VOIDlang {
 				site
 					https://voidsp.com
 				language
-					python
+					kotlin
 				version
 					time
-						1778668374
+						1779902786
 					date
-						2026 · 05 · 13
+						2026 · 05 · 27
 				license
 					name
 						V O I D license
@@ -54,8 +54,10 @@ class VOIDlang {
 					'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      '
 					'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
 				help
-					python.exe void.py help
+					python3 void.py help
 					python3 void.py help action
+					python3 void.py "[[help action"
+					python3 void.py void.py
 			lang
 	
 			  .: value :.
@@ -303,7 +305,7 @@ class VOIDlang {
 					param
 						[[name data  type any  default none
 					example
-						[code [[binary text]]  result *text
+						[code [[binary text]]  result *'text
 						[code [[binary 123]]  result *7B
 						[code [[binary true]]  result *01
 						[code [[binary none]]  result *00
@@ -873,7 +875,7 @@ class VOIDlang {
 						[code [[= name text] [+= name end] .name]  result textend
 						[code [[= data [1 2 3]] [+= data 2] .data]  result [1 2 3 '' ''
 						[code [[= data [a 1  b 2]] [+= data [c  3]] .data]  result [a 1  b 2  c 3
-						[code [[= name *text] [+= name end] .name]  result *textend
+						[code [[= name *text] [+= name end] .name]  result *'textend
 				=+
 					group
 						expression
@@ -902,7 +904,7 @@ class VOIDlang {
 						[code [[= name text] [=+ name start]]  name name  result starttext
 						[code [[= data [1 2 3]] [=+ data 2]]  name data  result ['' '' 1 2 3
 						[code [[= data [a 1  b 2]] [=+ data [c  3]]]  name data  result [c 3  a 1  b 2
-						[code [[= name *text] [+= name start]]  name name  result *starttext
+						[code [[= name *text] [+= name start]]  name name  result *'starttext
 				-=
 					group
 						expression
@@ -931,7 +933,7 @@ class VOIDlang {
 						[code [[= name text] [-= name xt]]  name name  result te
 						[code [[= data [1 2 3]] [-= data 2]]  name data  result [1 2
 						[code [[= data [a 1  b 2]] [-= data b]]  name data  result [a 1
-						[code [[= name *text] [-= name xt]]  name name  result *te
+						[code [[= name *text] [-= name xt]]  name name  result *'te
 				=-
 					group
 						expression
@@ -960,7 +962,7 @@ class VOIDlang {
 						[code [[= name text] [=- name te]]  name name  result xt
 						[code [[= data [1 2 3]] [=- data 2]]  name data  result [1
 						[code [[= data [a 1  b 2]] [=- data b]]  name data  result [a 1
-						[code [[= name *text] [=- name te]]  name name  result *xt
+						[code [[= name *text] [=- name te]]  name name  result *'xt
 				*=
 					group
 						expression
@@ -1015,7 +1017,7 @@ class VOIDlang {
 						[code [[= name text] [/= name 2] .name]  result [te xt
 						[code [[= name 'text text'] [/= name ' '] .name]  result [text text
 						[code [[= data [1 2 3 4]] [/= data 2] .data]  result [[1 2] [3 4
-						[code [[= data [a 1  b 2]] [/= data 2 .data]  result [[a  1] [b  2
+						[code [[= data [a 1  b 2]] [/= data 2] .data]  result [[a  1] [b  2
 						[code [[= name *text] [/= name 2] .name]  result [*te *xt
 				%=
 					group
@@ -3331,17 +3333,17 @@ class VOIDlang {
 						[code [[wait 1m]]  test false
 						[code [[wait 1h]]  test false
 						[code [wait.h]  test false
-				stopwatch
+				timepast
 					group
 						time
 					method
-						stopwatch
+						timepast
 					action
 						none
 					alias
 						t
 					description
-						Stopwatch for calculating the time spent on operations
+						Calculating the time spent on operations
 					safe
 						true
 					container
@@ -3350,14 +3352,13 @@ class VOIDlang {
 						[python js swift kotlin gdscript c++ asm86
 					param
 						[name tag  type text  default none
-						[name name  type text  default none
+						[name digits  type int  default none
 					result
 						number
 					example
 						[code [t]  type number
-						[code [[t start]]  type number
-						[code [[t start] [t stop] [t list]]  type list
-						[code [[t laps lap1] [t laps lap2] [t laps list]]  type list
+						[code [[t run] [wait 0.1] [t run]]  type number
+						[code [[t run] [wait 0.1] [t run 5]]  test false
 				date
 					group
 						time
@@ -3713,7 +3714,105 @@ class VOIDlang {
 					param
 						[[name data  type any
 					example
-						[[code [[gzip.decode *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==]]  result hello
+						[[code [[gzip.decode *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==]]  result *'hello
+				zstd
+					group
+						crypto
+					method
+						zstd
+					action
+						none
+					alias
+						none
+					description
+						Compresses data using the Zstandard compression algorithm (best compression)
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++
+					param
+						[name data  type any
+						[name level  type [number text]  subname true  default none
+					example
+						[[code [[zstd hello]]  result *KLUv/SAFKQAAaGVsbG8=
+						[code [[zstd hello -5]]  test false
+						[code [[zstd hello 22]]  test false
+						[code [[zstd hello fast]]  test false
+						[code [[zstd hello best]]  test false
+						[code [[zstd.fast hello]]  test false
+						[code [[zstd.best hello]]  test false
+				zstd.decode
+					group
+						crypto
+					method
+						zstd_decode
+					action
+						none
+					alias
+						none
+					description
+						Decompresses Zstandard compressed data
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++
+					param
+						[[name data  type any
+					example
+						[[code [[lzma.decode *KLUv/SAFKQAAaGVsbG8=]]  result *'hello
+				brotli
+					group
+						crypto
+					method
+						brotli
+					action
+						none
+					alias
+						none
+					description
+						Compresses data using the Brotli compression algorithm (2nd best compression)
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++
+					param
+						[name data  type any
+						[name level  type [number text]  subname true  default none
+					example
+						[[code [[brotli hello]]  result *CwKAaGVsbG8D
+						[code [[brotli hello 1]]  test false
+						[code [[brotli hello 11]]  test false
+						[code [[brotli hello fast]]  test false
+						[code [[brotli hello best]]  test false
+						[code [[brotli.fast hello]]  test false
+						[code [[brotli.best hello]]  test false
+				brotli.decode
+					group
+						crypto
+					method
+						brotli_decode
+					action
+						none
+					alias
+						none
+					description
+						Decompresses Brotli compressed data
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++
+					param
+						[[name data  type any
+					example
+						[[code [[brotli.decode *CwKAaGVsbG8D]]  result *'hello
 				lzma
 					group
 						crypto
@@ -3724,7 +3823,7 @@ class VOIDlang {
 					alias
 						none
 					description
-						Compresses data using the LZMA2 compression algorithm (best compression)
+						Compresses data using the LZMA2 compression algorithm (3rd best compression)
 					safe
 						true
 					container
@@ -3733,7 +3832,7 @@ class VOIDlang {
 						[python js swift kotlin gdscript c++
 					param
 						[name data  type any
-						[name level  type [number text  subname true  default none
+						[name level  type [number text]  subname true  default none
 					example
 						[[code [[lzma hello]]  result */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==
 						[code [[lzma hello 1]]  test false
@@ -3762,7 +3861,7 @@ class VOIDlang {
 					param
 						[[name data  type any
 					example
-						[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result hello
+						[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result *'hello
 				lz4
 					group
 						crypto
@@ -3811,7 +3910,56 @@ class VOIDlang {
 					param
 						[[name data  type any
 					example
-						[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result hello
+						[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result *'hello
+				deflate
+					group
+						crypto
+					method
+						deflate
+					action
+						none
+					alias
+						none
+					description
+						Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
+					Satisfiable
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[name data  type any
+						[name level  type [number text]  subname true  default none
+					example
+						[[code [[deflate hello]]  result *y0jNyckHAA==
+						[code [[deflate hello 1]]  test false
+						[code [[deflate hello 9]]  test false
+						[code [[deflate hello fast]]  test false
+						[code [[deflate hello best]]  test false
+						[code [[deflate.fast hello]]  test false
+						[code [[deflate.best hello]]  test false
+				deflate.decode
+					group
+						crypto
+					method
+						deflate_decode
+					action
+						none
+					alias
+						none
+					description
+						Decompresses Deflate (LZSS + Huffman) compressed data
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name data  type any
+					example
+						[[code [[deflate.decode *y0jNyckHAA==]]  result *'hello
 				lzss
 					group
 						crypto
@@ -3853,46 +4001,18 @@ class VOIDlang {
 					param
 						[[name data  type any
 					example
-						[[code [[lzss.decode *H2hlbGxv]]  result hello
-				deflate
+						[[code [[lzss.decode *H2hlbGxv]]  result *'hello
+				rle
 					group
 						crypto
 					method
-						deflate
+						rle
 					action
 						none
 					alias
 						none
 					description
-						Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
-					safe
-						true
-					container
-						none
-					language
-						[python js swift kotlin gdscript c++ asm86
-					param
-						[name data  type any
-						[name level  type [number text]  subname true  default none
-					example
-						[[code [[deflate hello]]  result *y0jNyckHAA==
-						[code [[deflate hello 1]]  test false
-						[code [[deflate hello 9]]  test false
-						[code [[deflate hello fast]]  test false
-						[code [[deflate hello best]]  test false
-						[code [[deflate.fast hello]]  test false
-						[code [[deflate.best hello]]  test false
-				deflate.decode
-					group
-						crypto
-					method
-						deflate_decode
-					action
-						none
-					alias
-						none
-					description
-						Decompresses Deflate (LZSS + Huffman) compressed data
+						Compresses data using the RLE compression algorithm (simplest retro compression)
 					safe
 						true
 					container
@@ -3902,7 +4022,28 @@ class VOIDlang {
 					param
 						[[name data  type any
 					example
-						[[code [[deflate.decode *y0jNyckHAA==]]  result hello
+						[[code [[rle '111101111']]  result *BDEBMAQx
+				rle.decode
+					group
+						crypto
+					method
+						rle_decode
+					action
+						none
+					alias
+						none
+					description
+						Decompresses RLE compressed data
+					safe
+						true
+					container
+						none
+					language
+						[python js swift kotlin gdscript c++ asm86
+					param
+						[[name data  type any
+					example
+						[[code [[rle.decode *BDEBMAQx]]  result *'111101111
 				aes
 					group
 						crypto
@@ -3913,7 +4054,7 @@ class VOIDlang {
 					alias
 						none
 					description
-						Encrypts binary data using the AES256 algorithm and the specified key
+						Encrypts data using the AES256 algorithm and the specified key
 					safe
 						true
 					container
@@ -3921,10 +4062,10 @@ class VOIDlang {
 					language
 						[python js swift kotlin gdscript c++ asm86
 					param
-						[name data  type binary
+						[name data  type any
 						[name key  type text
 					example
-						[[code [[aes *'text' key]]  type binary
+						[[code [[aes text key]]  type binary
 				aes.decode
 					group
 						crypto
@@ -3935,7 +4076,7 @@ class VOIDlang {
 					alias
 						none
 					description
-						Decrypts previously encrypted binary data using the AES256 algorithm and the specified key
+						Decrypts previously encrypted data using the AES256 algorithm and the specified key
 					safe
 						true
 					container
@@ -3946,7 +4087,7 @@ class VOIDlang {
 						[name data  type binary
 						[name key  type text
 					example
-						[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text'
+						[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text
 				rsa
 					group
 						crypto
@@ -5242,7 +5383,7 @@ class VOIDlang {
 					action
 						none
 					alias
-						none
+						v
 					description
 						Encodes data into the V O I D format
 					safe
@@ -5265,7 +5406,7 @@ class VOIDlang {
 					action
 						none
 					alias
-						none
+						v.decode
 					description
 						Decodes data from the V O I D format
 					safe
@@ -6984,7 +7125,7 @@ class VOIDlang {
 						true
 					indent
 						2
-				stopwatch
+				t
 					[ ]
 				timer
 					[ ]
@@ -7063,6 +7204,8 @@ class VOIDlang {
 							text/html
 						xhtml
 							application/xhtml+xml
+						mhtml
+							multipart/related
 						css
 							text/css
 	
@@ -7141,6 +7284,8 @@ class VOIDlang {
 							audio/mpeg
 						mp2
 							audio/mpeg
+						m4a
+							audio/mp4
 						wma
 							audio/x-ms-wma
 						wav
@@ -7455,10 +7600,12 @@ class VOIDlang {
 						ttml
 						sub
 						smi
+						svg
 						sami
 						html
 						htm
 						xhtml
+						mhtml
 						css
 						py
 						php
@@ -7870,82 +8017,156 @@ class VOIDlang {
 
 	  // math
 
-		fun sin() {
+		fun sin(value: Double): Double {
+			return kotlin.math.sin(value)
 		}
 
-		fun cos() {
+		fun cos(value: Double): Double {
+			return kotlin.math.cos(value)
 		}
 
-		fun tan() {
+		fun tan(value: Double): Double {
+			return kotlin.math.tan(value)
 		}
 
-		fun sinh() {
+		fun sinh(value: Double): Double {
+			return kotlin.math.sinh(value)
 		}
 
-		fun cosh() {
+		fun cosh(value: Double): Double {
+			return kotlin.math.cosh(value)
 		}
 
-		fun tanh() {
+		fun tanh(value: Double): Double {
+			return kotlin.math.tanh(value)
 		}
 
-		fun asin() {
+		fun asin(value: Double): Double {
+			return kotlin.math.asin(value)
 		}
 
-		fun acos() {
+		fun acos(value: Double): Double {
+			return kotlin.math.acos(value)
 		}
 
-		fun atan() {
+		fun atan(value: Double): Double {
+			return kotlin.math.atan(value)
 		}
 
-		fun asinh() {
+		fun asinh(value: Double): Double {
+			return kotlin.math.asinh(value)
 		}
 
-		fun acosh() {
+		fun acosh(value: Double): Double {
+			return kotlin.math.acosh(value)
 		}
 
-		fun atanh() {
+		fun atanh(value: Double): Double {
+			return kotlin.math.atanh(value)
 		}
 
-		fun round() {
+		fun round(value: Double, digits: Int = 0): Double {
+			val factor = 10.0.pow(digits)
+			return kotlin.math.round(value * factor) / factor
 		}
 
-		fun floor() {
+		fun floor(value: Double): Double {
+			return kotlin.math.floor(value)
 		}
 
-		fun ceil() {
+		fun ceil(value: Double): Double {
+			return kotlin.math.ceil(value)
 		}
 
-		fun log() {
+		fun log(value: Double, base: Double? = null): Double {
+			return if (base == null) kotlin.math.log(value, Math.E) 
+				else kotlin.math.log(value, base)
 		}
 
-		fun factorial() {
+		fun factorial(value: Double): Long {
+			var res = 1L
+			for (i in 1..value.toInt()) res *= i
+			return res
 		}
 
-		fun fibonacci() {
+		fun fibonacci(value: Double, multiply: Double = 1.0, shift: Double = 0.0): List<Double> {
+			val n = value.toInt()
+			if (n <= 0) return listOf()
+			if (n == 1) return listOf(1.0 * multiply + shift)
+			val result = mutableListOf(0.0 + shift, 1.0 * multiply + shift)
+			var a = 0.0
+			var b = 1.0
+			for (i in 2 until n) {
+				val temp = a + b
+				a = b
+				b = temp
+				result.add(b * multiply + shift)
+			}
+			return result
 		}
 
-		fun gold() {
+		fun gold(value: Double, component: String? = null): Map<String, Double> {
+			val phi = 1.6180339887498948
+			return when (component) {
+				"short" -> mapOf(
+					"short" to value,
+					"long" to value * phi,
+					"total" to value * (1 + phi)
+				)
+				"long" -> mapOf(
+					"short" to value / phi,
+					"long" to value,
+					"total" to value * (1 + phi) / phi
+				)
+				else -> mapOf(
+					"short" to (2 - phi) * value,
+					"long" to (phi - 1) * value,
+					"total" to value
+				)
+			}
 		}
 
-		fun abs() {
+		fun abs(value: Double): Double {
+			return kotlin.math.abs(value)
 		}
 
-		fun min() {
+		fun min(value: List<Double>): Double {
+			return value.minOrNull() ?: 0.0
 		}
 
-		fun max() {
+		fun max(value: List<Double>): Double {
+			return value.maxOrNull() ?: 0.0
 		}
 
-		fun sum() {
+		fun sum(value: List<Any?>): Double {
+			var result = 0.0
+			for (item in value) {
+				if (item is Number) {
+					result += item.toDouble()
+				}
+			}
+			return result
 		}
 
-		fun avg() {
+		fun avg(value: List<Any?>): Double {
+			if (value.isEmpty()) return 0.0
+			return sum(value) / value.size.toDouble()
 		}
 
-		fun random() {
-		}
-
-		fun random_seed() {
+		fun random(value: Any? = null, to: Any? = null): Any {
+			val random = Random.Default
+			if (value == null && to == null) return random.nextDouble()
+			if (value is Int && to is Int) return random.nextInt(value, to + 1)
+			if (value is Number && to is Number) return random.nextDouble(value.toDouble(), to.toDouble())
+			return when (value) {
+				is Boolean -> random.nextBoolean()
+				is String -> value.random().toString()
+				is List<*> -> value.random()!!
+				is Map<*, *> -> value.values.random()!!
+				is Int -> random.nextInt(0, value + 1)
+				is Number -> random.nextDouble(0.0, value.toDouble())
+				else -> random.nextDouble()
+			}
 		}
 
 
@@ -7963,7 +8184,7 @@ class VOIDlang {
 		fun wait() {
 		}
 
-		fun stopwatch() {
+		fun timepast() {
 		}
 
 		fun date() {
@@ -8014,6 +8235,18 @@ class VOIDlang {
 		fun gzip_decode() {
 		}
 
+		fun zstd() {
+		}
+
+		fun zstd_decode() {
+		}
+
+		fun brotli() {
+		}
+
+		fun brotli_decode() {
+		}
+
 		fun lzma() {
 		}
 
@@ -8026,16 +8259,22 @@ class VOIDlang {
 		fun lz4_decode() {
 		}
 
+		fun deflate() {
+		}
+
+		fun deflate_decode() {
+		}
+
 		fun lzss() {
 		}
 
 		fun lzss_decode() {
 		}
 
-		fun deflate() {
+		fun rle() {
 		}
 
-		fun deflate_decode() {
+		fun rle_decode() {
 		}
 
 		fun aes() {
