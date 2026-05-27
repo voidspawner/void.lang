@@ -16,9 +16,9 @@ public:
 				python
 			version
 				time
-					1778668374
+					1779902786
 				date
-					2026 · 05 · 13
+					2026 · 05 · 27
 			license
 				name
 					V O I D license
@@ -56,8 +56,10 @@ public:
 				'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      '
 				'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
 			help
-				python.exe void.py help
+				python3 void.py help
 				python3 void.py help action
+				python3 void.py "[[help action"
+				python3 void.py void.py
 		lang
 
 		  .: value :.
@@ -305,7 +307,7 @@ public:
 				param
 					[[name data  type any  default none
 				example
-					[code [[binary text]]  result *text
+					[code [[binary text]]  result *'text
 					[code [[binary 123]]  result *7B
 					[code [[binary true]]  result *01
 					[code [[binary none]]  result *00
@@ -875,7 +877,7 @@ public:
 					[code [[= name text] [+= name end] .name]  result textend
 					[code [[= data [1 2 3]] [+= data 2] .data]  result [1 2 3 '' ''
 					[code [[= data [a 1  b 2]] [+= data [c  3]] .data]  result [a 1  b 2  c 3
-					[code [[= name *text] [+= name end] .name]  result *textend
+					[code [[= name *text] [+= name end] .name]  result *'textend
 			=+
 				group
 					expression
@@ -904,7 +906,7 @@ public:
 					[code [[= name text] [=+ name start]]  name name  result starttext
 					[code [[= data [1 2 3]] [=+ data 2]]  name data  result ['' '' 1 2 3
 					[code [[= data [a 1  b 2]] [=+ data [c  3]]]  name data  result [c 3  a 1  b 2
-					[code [[= name *text] [+= name start]]  name name  result *starttext
+					[code [[= name *text] [+= name start]]  name name  result *'starttext
 			-=
 				group
 					expression
@@ -933,7 +935,7 @@ public:
 					[code [[= name text] [-= name xt]]  name name  result te
 					[code [[= data [1 2 3]] [-= data 2]]  name data  result [1 2
 					[code [[= data [a 1  b 2]] [-= data b]]  name data  result [a 1
-					[code [[= name *text] [-= name xt]]  name name  result *te
+					[code [[= name *text] [-= name xt]]  name name  result *'te
 			=-
 				group
 					expression
@@ -962,7 +964,7 @@ public:
 					[code [[= name text] [=- name te]]  name name  result xt
 					[code [[= data [1 2 3]] [=- data 2]]  name data  result [1
 					[code [[= data [a 1  b 2]] [=- data b]]  name data  result [a 1
-					[code [[= name *text] [=- name te]]  name name  result *xt
+					[code [[= name *text] [=- name te]]  name name  result *'xt
 			*=
 				group
 					expression
@@ -1017,7 +1019,7 @@ public:
 					[code [[= name text] [/= name 2] .name]  result [te xt
 					[code [[= name 'text text'] [/= name ' '] .name]  result [text text
 					[code [[= data [1 2 3 4]] [/= data 2] .data]  result [[1 2] [3 4
-					[code [[= data [a 1  b 2]] [/= data 2 .data]  result [[a  1] [b  2
+					[code [[= data [a 1  b 2]] [/= data 2] .data]  result [[a  1] [b  2
 					[code [[= name *text] [/= name 2] .name]  result [*te *xt
 			%=
 				group
@@ -3333,17 +3335,17 @@ public:
 					[code [[wait 1m]]  test false
 					[code [[wait 1h]]  test false
 					[code [wait.h]  test false
-			stopwatch
+			timepast
 				group
 					time
 				method
-					stopwatch
+					timepast
 				action
 					none
 				alias
 					t
 				description
-					Stopwatch for calculating the time spent on operations
+					Calculating the time spent on operations
 				safe
 					true
 				container
@@ -3352,14 +3354,13 @@ public:
 					[python js swift kotlin gdscript c++ asm86
 				param
 					[name tag  type text  default none
-					[name name  type text  default none
+					[name digits  type int  default none
 				result
 					number
 				example
 					[code [t]  type number
-					[code [[t start]]  type number
-					[code [[t start] [t stop] [t list]]  type list
-					[code [[t laps lap1] [t laps lap2] [t laps list]]  type list
+					[code [[t run] [wait 0.1] [t run]]  type number
+					[code [[t run] [wait 0.1] [t run 5]]  test false
 			date
 				group
 					time
@@ -3715,7 +3716,105 @@ public:
 				param
 					[[name data  type any
 				example
-					[[code [[gzip.decode *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==]]  result hello
+					[[code [[gzip.decode *H4sIAAAAAAAA/8tIzcnJVyjPL8pJAQCFEUoNCwAAAA==]]  result *'hello
+			zstd
+				group
+					crypto
+				method
+					zstd
+				action
+					none
+				alias
+					none
+				description
+					Compresses data using the Zstandard compression algorithm (best compression)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name level  type [number text]  subname true  default none
+				example
+					[[code [[zstd hello]]  result *KLUv/SAFKQAAaGVsbG8=
+					[code [[zstd hello -5]]  test false
+					[code [[zstd hello 22]]  test false
+					[code [[zstd hello fast]]  test false
+					[code [[zstd hello best]]  test false
+					[code [[zstd.fast hello]]  test false
+					[code [[zstd.best hello]]  test false
+			zstd.decode
+				group
+					crypto
+				method
+					zstd_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses Zstandard compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name data  type any
+				example
+					[[code [[lzma.decode *KLUv/SAFKQAAaGVsbG8=]]  result *'hello
+			brotli
+				group
+					crypto
+				method
+					brotli
+				action
+					none
+				alias
+					none
+				description
+					Compresses data using the Brotli compression algorithm (2nd best compression)
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[name data  type any
+					[name level  type [number text]  subname true  default none
+				example
+					[[code [[brotli hello]]  result *CwKAaGVsbG8D
+					[code [[brotli hello 1]]  test false
+					[code [[brotli hello 11]]  test false
+					[code [[brotli hello fast]]  test false
+					[code [[brotli hello best]]  test false
+					[code [[brotli.fast hello]]  test false
+					[code [[brotli.best hello]]  test false
+			brotli.decode
+				group
+					crypto
+				method
+					brotli_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses Brotli compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++
+				param
+					[[name data  type any
+				example
+					[[code [[brotli.decode *CwKAaGVsbG8D]]  result *'hello
 			lzma
 				group
 					crypto
@@ -3726,7 +3825,7 @@ public:
 				alias
 					none
 				description
-					Compresses data using the LZMA2 compression algorithm (best compression)
+					Compresses data using the LZMA2 compression algorithm (3rd best compression)
 				safe
 					true
 				container
@@ -3735,7 +3834,7 @@ public:
 					[python js swift kotlin gdscript c++
 				param
 					[name data  type any
-					[name level  type [number text  subname true  default none
+					[name level  type [number text]  subname true  default none
 				example
 					[[code [[lzma hello]]  result */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==
 					[code [[lzma hello 1]]  test false
@@ -3764,7 +3863,7 @@ public:
 				param
 					[[name data  type any
 				example
-					[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result hello
+					[[code [[lzma.decode */Td6WFoAAATm1rRGAgAhAQwAAACPmEGcAQAEaGVsbG8AAAAAsTe52+XaHpsAAR0FuC2Arx+2830BAAAAAARZWg==]]  result *'hello
 			lz4
 				group
 					crypto
@@ -3813,7 +3912,56 @@ public:
 				param
 					[[name data  type any
 				example
-					[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result hello
+					[[code [[lz4.decode *BCJNGGhABQAAAAAAAABhBQAAgGhlbGxvAAAAAA==]]  result *'hello
+			deflate
+				group
+					crypto
+				method
+					deflate
+				action
+					none
+				alias
+					none
+				description
+					Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
+				Satisfiable
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[name data  type any
+					[name level  type [number text]  subname true  default none
+				example
+					[[code [[deflate hello]]  result *y0jNyckHAA==
+					[code [[deflate hello 1]]  test false
+					[code [[deflate hello 9]]  test false
+					[code [[deflate hello fast]]  test false
+					[code [[deflate hello best]]  test false
+					[code [[deflate.fast hello]]  test false
+					[code [[deflate.best hello]]  test false
+			deflate.decode
+				group
+					crypto
+				method
+					deflate_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses Deflate (LZSS + Huffman) compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[deflate.decode *y0jNyckHAA==]]  result *'hello
 			lzss
 				group
 					crypto
@@ -3855,46 +4003,18 @@ public:
 				param
 					[[name data  type any
 				example
-					[[code [[lzss.decode *H2hlbGxv]]  result hello
-			deflate
+					[[code [[lzss.decode *H2hlbGxv]]  result *'hello
+			rle
 				group
 					crypto
 				method
-					deflate
+					rle
 				action
 					none
 				alias
 					none
 				description
-					Compresses data using the Deflate (LZSS + Huffman) compression algorithm (best retro compression)
-				safe
-					true
-				container
-					none
-				language
-					[python js swift kotlin gdscript c++ asm86
-				param
-					[name data  type any
-					[name level  type [number text]  subname true  default none
-				example
-					[[code [[deflate hello]]  result *y0jNyckHAA==
-					[code [[deflate hello 1]]  test false
-					[code [[deflate hello 9]]  test false
-					[code [[deflate hello fast]]  test false
-					[code [[deflate hello best]]  test false
-					[code [[deflate.fast hello]]  test false
-					[code [[deflate.best hello]]  test false
-			deflate.decode
-				group
-					crypto
-				method
-					deflate_decode
-				action
-					none
-				alias
-					none
-				description
-					Decompresses Deflate (LZSS + Huffman) compressed data
+					Compresses data using the RLE compression algorithm (simplest retro compression)
 				safe
 					true
 				container
@@ -3904,7 +4024,28 @@ public:
 				param
 					[[name data  type any
 				example
-					[[code [[deflate.decode *y0jNyckHAA==]]  result hello
+					[[code [[rle '111101111']]  result *BDEBMAQx
+			rle.decode
+				group
+					crypto
+				method
+					rle_decode
+				action
+					none
+				alias
+					none
+				description
+					Decompresses RLE compressed data
+				safe
+					true
+				container
+					none
+				language
+					[python js swift kotlin gdscript c++ asm86
+				param
+					[[name data  type any
+				example
+					[[code [[rle.decode *BDEBMAQx]]  result *'111101111
 			aes
 				group
 					crypto
@@ -3915,7 +4056,7 @@ public:
 				alias
 					none
 				description
-					Encrypts binary data using the AES256 algorithm and the specified key
+					Encrypts data using the AES256 algorithm and the specified key
 				safe
 					true
 				container
@@ -3923,10 +4064,10 @@ public:
 				language
 					[python js swift kotlin gdscript c++ asm86
 				param
-					[name data  type binary
+					[name data  type any
 					[name key  type text
 				example
-					[[code [[aes *'text' key]]  type binary
+					[[code [[aes text key]]  type binary
 			aes.decode
 				group
 					crypto
@@ -3937,7 +4078,7 @@ public:
 				alias
 					none
 				description
-					Decrypts previously encrypted binary data using the AES256 algorithm and the specified key
+					Decrypts previously encrypted data using the AES256 algorithm and the specified key
 				safe
 					true
 				container
@@ -3948,7 +4089,7 @@ public:
 					[name data  type binary
 					[name key  type text
 				example
-					[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text'
+					[[code [[decrypt *vBDRK4FnebbWvIF6PaCgKVkEvLb/TYC8DWThEDmnLJA= key]]  result *'text
 			rsa
 				group
 					crypto
@@ -5244,7 +5385,7 @@ public:
 				action
 					none
 				alias
-					none
+					v
 				description
 					Encodes data into the V O I D format
 				safe
@@ -5267,7 +5408,7 @@ public:
 				action
 					none
 				alias
-					none
+					v.decode
 				description
 					Decodes data from the V O I D format
 				safe
@@ -6986,7 +7127,7 @@ public:
 					true
 				indent
 					2
-			stopwatch
+			t
 				[ ]
 			timer
 				[ ]
@@ -7065,6 +7206,8 @@ public:
 						text/html
 					xhtml
 						application/xhtml+xml
+					mhtml
+						multipart/related
 					css
 						text/css
 
@@ -7143,6 +7286,8 @@ public:
 						audio/mpeg
 					mp2
 						audio/mpeg
+					m4a
+						audio/mp4
 					wma
 						audio/x-ms-wma
 					wav
@@ -7457,10 +7602,12 @@ public:
 					ttml
 					sub
 					smi
+					svg
 					sami
 					html
 					htm
 					xhtml
+					mhtml
 					css
 					py
 					php
@@ -7872,83 +8019,170 @@ public:
 
   // math
 
-	static void sin() {
+	static double sin(double v) {
+		return std::sin(v);
 	}
 
-	static void cos() {
+	static double cos(double v) {
+		return std::cos(v);
 	}
 
-	static void tan() {
+	static double tan(double v) {
+		return std::tan(v);
 	}
 
-	static void sinh() {
+	static double sinh(double v) {
+		return std::sinh(v);
 	}
 
-	static void cosh() {
+	static double cosh(double v) {
+		return std::cosh(v);
 	}
 
-	static void tanh() {
+	static double tanh(double v) {
+		return std::tanh(v);
 	}
 
-	static void asin() {
+	static double asin(double v) {
+		return std::asin(v);
 	}
 
-	static void acos() {
+	static double acos(double v) {
+		return std::acos(v);
 	}
 
-	static void atan() {
+	static double atan(double v) {
+		return std::atan(v);
 	}
 
-	static void asinh() {
+	static double asinh(double v) {
+		return std::asinh(v);
 	}
 
-	static void acosh() {
+	static double acosh(double v) {
+		return std::acosh(v);
 	}
 
-	static void atanh() {
+	static double atanh(double v) {
+		return std::atanh(v);
 	}
 
-	static void round() {
+	static double round(double v, int digits = 0) {
+		double multiplier = std::pow(10.0, digits);
+		return std::round(v * multiplier) / multiplier;
 	}
 
-	static void floor() {
+	static double floor(double v) {
+		return std::floor(v);
 	}
 
-	static void ceil() {
+	static double ceil(double v) {
+		return std::ceil(v);
 	}
 
-	static void log() {
+	static double log(double v, double base = std::exp(1.0)) {
+		return std::log(v) / std::log(base);
 	}
 
-	static void factorial() {
+	static double factorial(double v) {
+		return std::tgamma(v + 1);
 	}
 
-	static void fibonacci() {
+	static std::vector<double> fibonacci(double value, double multiply = 1.0, double shift = 0.0) {
+		int n = static_cast<int>(value);
+		if (n <= 0) return {0.0};
+		if (n == 1) return {1.0};
+
+		std::vector<double> result = {0.0 + shift, 1.0 * multiply + shift};
+		double a = 0, b = 1;
+		for (int i = 2; i < n; ++i) {
+			double temp = a + b;
+			a = b;
+			b = temp;
+			result.push_back(b * multiply + shift);
+		}
+		return result;
 	}
 
-	static void gold() {
+	static std::map<std::string, double> gold(double value, std::string component = "") {
+		const double phi = 1.61803398874989484820;
+		std::map<std::string, double> res;
+		if (component == "short") {
+			res["short"] = value;
+			res["long"] = value * phi;
+			res["total"] = value * (1 + phi);
+		} else if (component == "long") {
+			res["short"] = value / phi;
+			res["long"] = value;
+			res["total"] = value * (1 + phi) / phi;
+		} else {
+			res["short"] = (2 - phi) * value;
+			res["long"] = (phi - 1) * value;
+			res["total"] = value;
+		}
+		return res;
 	}
 
-	static void abs() {
+	static double abs(double v) {
+		return std::abs(v);
 	}
 
-	static void min() {
+	static double min(const std::vector<double>& values) {
+		return *std::min_element(values.begin(), values.end());
 	}
 
-	static void max() {
+	static double max(const std::vector<double>& values) {
+		return *std::max_element(values.begin(), values.end());
 	}
 
-	static void sum() {
+	static double sum(const std::vector<double>& values) {
+		return std::accumulate(values.begin(), values.end(), 0.0);
 	}
 
-	static void avg() {
+	static double avg(const std::vector<double>& values) {
+		if (values.empty()) return 0.0;
+		return sum(values) / values.size();
 	}
 
-	static void random() {
-	}
-
-	static void random_seed() {
-	}
+	template<typename T = double>
+    static std::any random(std::any value = std::any(), std::any to = std::any()) {
+        static std::mt19937 gen(std::random_device{}());
+        if (!value.has_value() && !to.has_value()) {
+            return std::uniform_real_distribution<double>(0.0, 1.0)(gen);
+        }
+        if (value.has_value() && to.has_value()) {
+            if (value.type() == typeid(int) && to.type() == typeid(int)) {
+                return std::uniform_int_distribution<int>(std::any_cast<int>(value), std::any_cast<int>(to))(gen);
+            }
+            double start = (value.type() == typeid(int)) ? std::any_cast<int>(value) : std::any_cast<double>(value);
+            double end = (to.type() == typeid(int)) ? std::any_cast<int>(to) : std::any_cast<double>(to);
+            return std::uniform_real_distribution<double>(start, end)(gen);
+        }
+        if (value.has_value() && !to.has_value()) {
+            if (value.type() == typeid(bool)) {
+                return (std::uniform_int_distribution<int>(0, 1)(gen) == 1);
+            }
+            if (value.type() == typeid(std::string)) {
+                std::string s = std::any_cast<std::string>(value);
+                return std::string(1, s[std::uniform_int_distribution<int>(0, s.length() - 1)(gen)]);
+            }
+            if (value.type() == typeid(std::vector<int>)) {
+                auto& v = std::any_cast<const std::vector<int>&>(value);
+                return v[std::uniform_int_distribution<int>(0, v.size() - 1)(gen)];
+            }
+            if (value.type() == typeid(std::vector<std::string>)) {
+                auto& v = std::any_cast<const std::vector<std::string>&>(value);
+                return v[std::uniform_int_distribution<int>(0, v.size() - 1)(gen)];
+            }
+            if (value.type() == typeid(int)) {
+                return std::uniform_int_distribution<int>(0, std::any_cast<int>(value))(gen);
+            }
+            if (value.type() == typeid(double)) {
+                return std::uniform_real_distribution<double>(0.0, std::any_cast<double>(value))(gen);
+            }
+        }
+        return 0.0;
+    }
 
 
   // time
@@ -7965,7 +8199,7 @@ public:
 	static void wait() {
 	}
 
-	static void stopwatch() {
+	static void timepast() {
 	}
 
 	static void date() {
@@ -8016,6 +8250,18 @@ public:
 	static void gzip_decode() {
 	}
 
+	static void zstd() {
+	}
+
+	static void zstd_decode() {
+	}
+
+	static void brotli() {
+	}
+
+	static void brotli_decode() {
+	}
+
 	static void lzma() {
 	}
 
@@ -8028,16 +8274,22 @@ public:
 	static void lz4_decode() {
 	}
 
+	static void deflate() {
+	}
+
+	static void deflate_decode() {
+	}
+
 	static void lzss() {
 	}
 
 	static void lzss_decode() {
 	}
 
-	static void deflate() {
+	static void rle() {
 	}
 
-	static void deflate_decode() {
+	static void rle_decode() {
 	}
 
 	static void aes() {
