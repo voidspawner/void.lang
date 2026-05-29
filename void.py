@@ -7824,35 +7824,8 @@ class VOIDlang:
 		cls.t('run')
 		cls.cache_module = {}
 		cls.cache_indent = {}
-		cls.cache_escape = {
-			'void.special': {
-				'pattern': re.compile(r'\\r|\\n|\\t|\r|\n|\t'),
-				'map': {
-					'\\r': '\\\\r',
-					'\\n': '\\\\n',
-					'\\t': '\\\\t',
-					'\r': '\\r',
-					'\n': '\\n',
-					'\t': '\\t'
-				}
-			},
-			'void.text': {
-				'pattern': re.compile(r'\\r|\\n|\\t'),
-				'map': {
-					'\\r': '\\\\r',
-					'\\n': '\\\\n',
-					'\\t': '\\\\t'
-				}
-			},
-			'void.newline': {
-				'pattern': re.compile(r'\\n|\\r\\n|\\r'),
-				'map': {
-					'\\n': '\n',
-					'\\r\\n': '\n',
-					'\\r': ' '
-				}
-			}
-		}
+		cls.cache_escape = {}
+		cls.cache_unescape = {}
 		cls.cache_symbol = {
 			'hex': set('0123456789abcdefABCDEF')
 			}
@@ -8163,34 +8136,35 @@ class VOIDlang:
 		return ''
 
 	@classmethod
-	def number(cls, data, digits: int = 0):
+	def number(cls, data, digits: int = None):
 		if isinstance(data, (int, float)):
-			result = data
+			return data
 		elif data is None:
-			result = 0
+			return 0
 		elif data == True:
-			result = 1
+			return 1
 		elif data == False:
-			result = 0
+			return 0
 		elif isinstance(data, (str, bytes)):
 			try:
-				result = int(data)
+				if isinstance(data, str):
+					data = data.replace(' ', '').replace('_', '').strip()
+				else:
+					data = data.replace(b' ', b'').replace(b'_', b'').strip()
+				result = float(data) if '.' in data else int(data)
 			except:
-				try:
-					result = float(data)
-				except:
-					result = 0
+				return 0
 		elif isinstance(data, (list, dict)):
 			result = len(data)
 		else:
-			result = 0
+			return 0
 		if digits is not None:
 			if digits == 0:
-				result = int(result)
+				return int(result)
 			elif digits > 0:
-				result = round(result, digits)
+				return round(result, digits)
 			else:
-				result = int(result * (10 ** -digits))
+				return int(result * (10 ** -digits))
 		return result
 
 	@classmethod
@@ -8480,7 +8454,7 @@ class VOIDlang:
 	@classmethod
 	def error(cls, tag: str, *data):
 		data = [str(data) for data in data]
-		cls.logger('error', tag, *data)		
+		cls.logger('error', tag, *data)
 
 	@classmethod
 	def test(cls, name = None):
@@ -8722,6 +8696,36 @@ class VOIDlang:
 				parse = cls.module('urllib.parse')
 				return parse.quote(text, safe="=/ '")
 			case 'void.special' | 'void.text' | 'void.newline':
+				if not cls.cache_escape:
+					cls.cache_escape = {
+						'void.special': {
+							'pattern': re.compile(r'\\r|\\n|\\t|\r|\n|\t'),
+							'map': {
+								'\\r': '\\\\r',
+								'\\n': '\\\\n',
+								'\\t': '\\\\t',
+								'\r': '\\r',
+								'\n': '\\n',
+								'\t': '\\t'
+							}
+						},
+						'void.text': {
+							'pattern': re.compile(r'\\r|\\n|\\t'),
+							'map': {
+								'\\r': '\\\\r',
+								'\\n': '\\\\n',
+								'\\t': '\\\\t'
+							}
+						},
+						'void.newline': {
+							'pattern': re.compile(r'\\n|\\r\\n|\\r'),
+							'map': {
+								'\\n': '\n',
+								'\\r\\n': '\n',
+								'\\r': ' '
+							}
+						}
+					}
 				escape = cls.cache_escape[format]
 				return escape['pattern'].sub(lambda match: escape['map'][match.group(0)], text)
 
@@ -8739,6 +8743,40 @@ class VOIDlang:
 			case 'url':
 				parse = cls.module('urllib.parse')
 				return parse.unquote(text)
+			case 'html.image':
+				parse = cls.module('urllib.parse')
+				return parse.unquote(text, safe="=/ '")
+			case 'void.special' | 'void.text' | 'void.newline':
+				if not cls.cache_unescape:
+					cls.cache_unescape = {
+						'void.special': {
+							'pattern': re.compile(r'\\\\r|\\\\n|\\\\t|\\r|\\n|\\t'),
+							'map': {
+								'\\r': '\r',
+								'\\n': '\n',
+								'\\t': '\t',
+								'\\\\r': '\\r',
+								'\\\\n': '\\n',
+								'\\\\t': '\\t'
+							}
+						},
+						'void.text': {
+							'pattern': re.compile(r'\\\\r|\\\\n|\\\\t'),
+							'map': {
+								'\\\\r': '\\r',
+								'\\\\n': '\\n',
+								'\\\\t': '\\t'
+							}
+						},
+						'void.newline': {
+							'pattern': re.compile(r'\n'),
+							'map': {
+								'\n': '\\n'
+							}
+						}
+					}
+				escape = cls.cache_unescape[format]
+				return escape['pattern'].sub(lambda match: escape['map'][match.group(0)], text)
 
 	@classmethod
 	def u(cls, text: str, format: str = None):
@@ -9242,7 +9280,7 @@ class VOIDlang:
 		if not isinstance(data, bytes):
 			data = str(data)
 			if safe:
-				data = data.replace('_', '/').data.replace('-', '+')
+				data = data.replace('_', '/').replace('-', '+')
 				if len(data) % 4 != 0:
 					data += '=' * (4 - len(data) % 4)
 			data = data.encode()
@@ -10637,8 +10675,6 @@ class VOIDlang:
 					data = cls.gzip(data, 'fast' if 'fast' in format else 'best')
 				case 'zstd' | 'zstd.fast' | 'zstd.safe' | 'zstd.fast.safe':
 					data = cls.zstd(data, 'fast' if 'fast' in format else 'best')
-				case 'brotli' | 'brotli.fast' | 'brotli.safe' | 'brotli.fast.safe':
-					data = cls.brotli(data, 'fast' if 'fast' in format else 'best')
 				case 'lzma' | 'lzma.fast' | 'lzma.safe' | 'lzma.fast.safe':
 					data = cls.lzma(data, 'fast' if 'fast' in format else 'best')
 			safe = isinstance(format, str) and format.endswith('safe')
@@ -10647,17 +10683,79 @@ class VOIDlang:
 		return cls.void(str(data), format, indent, level)
 
 	@classmethod
-	def void_decode(cls, data):
-		if isinstance(data, str):
-			if data == 'none':
-				return None
-			if data == 'true':
-				return True
-			if data == 'false':
-				return False
-			if data.isdigit():
-				return cls.number(data)
-		return data
+	def void_decode(cls, text: str):
+		if not isinstance(text, str): return
+		text_original = text
+		text = text.strip()
+		# base
+		if not text: return ''
+		if text == 'none': return None
+		if text == 'true': return True
+		if text == 'false': return False
+		if text == '[]': return []
+		if text == '[ ]': return {}
+		if text == "''": return ''
+		if text == "*''": return b''
+		if len(text) == 1:
+			return text if not text.isdigit() else int(text)
+		# text
+		if text.startswith("'") or text.startswith('"'):
+			multiline = '\n' in text
+			if text.startswith("'"):
+				if not multiline:
+					text = text[1:-1] if text.endswith("'") and len(text) > 0 else text[1:]
+					return cls.unescape(text, 'void.text')
+				return cls.unescape(''.join(line[1:] for line in text[1:].split('\n')), 'void.special')
+			if multiline:
+				return '\n'.join(line[1:] for line in text[1:].split('\n'))
+			return text
+		# list + dict | line
+		if text.startswith('['):
+			pass
+		# binary
+		if text.startswith('*'):
+			# text
+			if text.startswith("*'") and text.endswith("'"):
+				try:
+					return text[2:-1].encode('utf-8')
+				except: return
+			# bin
+			if text.startswith('**'):
+				text = text[2:].replace(' ', '').replace('_', '').strip()
+				if '\n' in text:
+					text = ''.join(line.strip() for line in text.split('\n'))
+				return bytes(int(text[i:i+8], 2) for i in range(0, len(text), 8))
+			# hex
+			text_clean = text[1:].replace(' ', '').replace('_', '').strip()
+			if '\n' in text_clean:
+				text_clean = ''.join(line.strip() for line in text.split('\n'))
+			if cls.is_hex(text_clean) and len(text_clean) % 2 == 0:
+				try:
+					return bytes.fromhex(text_clean)
+				except ValueError: pass
+			# base64
+			data = cls.base64_decode_binary(text[1:], safe=True)
+			if data:
+				# gzip
+				if data.startswith(b'\x1f\x8b'):
+					result = cls.gzip_decode(data)
+					if result is not None: return result
+				# zstd
+				if data.startswith(b'\x28\xb5\x2f\xfd'):
+					result = cls.zstd_decode(data)
+					if result is not None: return result
+				# lzma
+				if data.startswith(b'\xfd7zXZ') or data.startswith(b'\x5d\x00'):
+					result = cls.lzma_decode(data)
+					if result is not None: return result
+				return data
+		# number
+		if re.match(r'^-?[0-9_ ]+(\.[0-9_ ]+)?$', text):
+			return cls.number(text)
+		# list + dict | column + table
+		if '\n' in text_original:
+			pass
+		return text
 
 	@classmethod
 	def json(cls, data, compact: bool = False, indent = 2, unicode: bool = True):
