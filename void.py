@@ -10472,9 +10472,9 @@ class VOIDlang:
 			elif not isinstance(indent, str):
 				indent = '\t'
 			indent_text = indent * level
-			cls.cache_indent[cache_indent_key] = indent_text
+			cls.cache_indent[cache_indent_key] = (indent_text, indent)
 		else:
-			indent_text = cls.cache_indent[cache_indent_key]
+			indent_text, indent = cls.cache_indent[cache_indent_key]
 		if data is None:
 			return indent_text + 'none'
 		elif isinstance(data, bool):
@@ -10534,7 +10534,10 @@ class VOIDlang:
 			if not data:
 				return indent_text + '[]'
 			if isinstance(format, list):
+				format_list = format
 				format = next((name.removeprefix('list.') for name in format if name.startswith('list.')), format)
+			else:
+				format_list = [format] if format is not None else []
 			match format:
 				case 'line' | 'line.full':
 					result = []
@@ -10543,7 +10546,7 @@ class VOIDlang:
 							'text.list.last' if index == (len(data) - 1) and format == 'line' else 'text.list',
 							'list.line' if index == (len(data) - 1) and format == 'line' else 'list.line.full',
 							'dict.line' if index == (len(data) - 1) and format == 'line' else 'dict.line.full',
-							]
+							] + format_list
 						result.append(cls.void(value, format_value))
 					data = '[' + ' '.join(result) + (']' if format.endswith('full') else '')
 					return f'{indent_text}{data}'
@@ -10552,9 +10555,10 @@ class VOIDlang:
 					lines =[]
 					size = []
 					format_value = [
+						'text.plain',
 						'list.line',
 						'dict.line',
-						]
+						] + format_list
 					for value in data:
 						if isinstance(value, list):
 							lines.append([])
@@ -10572,7 +10576,7 @@ class VOIDlang:
 					format_value = [
 						'list.column',
 						'dict.column',
-						]
+						] + format_list
 					if len(data) == 1:
 						if not isinstance(data[0], (list, dict)):
 							return f'{indent_text}[' + cls.void(data[0], format_value, indent)
@@ -10586,7 +10590,10 @@ class VOIDlang:
 			if not data:
 				return indent_text + '[ ]'
 			if isinstance(format, list):
+				format_list = format
 				format = next((name.removeprefix('dict.') for name in format if name.startswith('dict.')), format)
+			else:
+				format_list = [format] if format is not None else []
 			match format:
 				case 'line' | 'line.full':
 					result = []
@@ -10596,7 +10603,7 @@ class VOIDlang:
 							'text.list.last' if index == (len(data) - 1) and format == 'line' else 'text.list',
 							'list.line' if index == (len(data) - 1) and format == 'line' else 'list.line.full',
 							'dict.line' if index == (len(data) - 1) and format == 'line' else 'dict.line.full',
-							]
+							] + format_list
 						if index == 0 and len(data) == 1:
 							return '[' + cls.void(name, format_value) + '  ' + cls.void(value, format_value) + (']' if format.endswith('full') else '')
 						result.append(cls.void(name, format_value) + ' ' + cls.void(value, format_value))
@@ -10607,7 +10614,7 @@ class VOIDlang:
 					format_value = [
 						'list.line',
 						'dict.line',
-						]
+						] + format_list
 					length = 0
 					for name, value in data.items():
 						value = cls.void(value, format_value)
@@ -10620,7 +10627,7 @@ class VOIDlang:
 					format_value = [
 						'list.column',
 						'dict.column',
-						]
+						] + format_list
 					for name, value in data.items():
 						name = cls.void(name, format_value, indent, level)
 						value = cls.void(value, format_value, indent, level + 1)
@@ -10707,7 +10714,7 @@ class VOIDlang:
 					return cls.unescape(text, 'void.text')
 				return cls.unescape(''.join(line[1:] for line in text[1:].split('\n')), 'void.special')
 			if multiline:
-				return '\n'.join(line[1:] for line in text[1:].split('\n'))
+				return '\n'.join(line[1:] for line in text[2:].split('\n'))
 			return text
 		# list + dict | line
 		if text.startswith('['):
@@ -10752,9 +10759,78 @@ class VOIDlang:
 		# number
 		if re.match(r'^-?[0-9_ ]+(\.[0-9_ ]+)?$', text):
 			return cls.number(text)
-		# list + dict | column + table
+		# list + dict
 		if '\n' in text_original:
-			pass
+			# table
+			lines = [line for line in text_original.split('\n') if line.strip()]
+			table_tokens = []
+			all_starts = []
+			all_ends = []
+			for line in lines:
+				tokens_with_positions = [(m.group(), m.start(), m.end()) for m in re.finditer(r'\S+', line)]
+				table_tokens.append([t[0] for t in tokens_with_positions])
+				all_starts.append([t[1] for t in tokens_with_positions])
+				all_ends.append([t[2] for t in tokens_with_positions])
+			is_table = False
+			if len(lines) > 1 and len(set(len(row) for row in table_tokens)) == 1:
+				col_count = len(table_tokens[0])
+				if col_count >= 2:
+					is_table = True
+					for col_idx in range(1, col_count):
+						start_positions = set(pos_row[col_idx] for pos_row in all_starts)
+						end_positions = set(pos_row[col_idx] for pos_row in all_ends)
+						if len(start_positions) > 1 and len(end_positions) > 1:
+							is_table = False
+							break
+			if is_table:
+				decoded_table = []
+				for row in table_tokens:
+					decoded_table.append([cls.void_decode(cell) for cell in row])
+				first_col = [row[0] for row in decoded_table]
+				unique = len(first_col) == len(set(first_col))
+				col_count = len(decoded_table[0])
+				if col_count == 2 and unique:
+					return {row[0]: row[1] for row in decoded_table}
+				else:
+					return decoded_table
+			# column
+			has_indent = any(line.startswith('\t') or line.startswith(' ') for line in text_original.split('\n') if line.strip())
+			if has_indent:
+				lines = text_original.split('\n')
+				parsed_elements = []
+				for line in lines:
+					if not line.strip(): continue
+					lstripped = line.lstrip('\t')
+					if len(lstripped) == len(line):
+						lstripped = line.lstrip(' ')
+						indent = (len(line) - len(lstripped))
+					else:
+						indent = len(line) - len(lstripped)					
+					content = line.strip()
+					parsed_elements.append((indent, content))
+				if not parsed_elements:
+					return []
+				base_indent = parsed_elements[0][0]
+				if all(item[0] == base_indent for item in parsed_elements):
+					return [cls.void_decode(item[1]) for item in parsed_elements]
+				result_dict = {}
+				current_key = None
+				val_lines = []
+				for indent, content in parsed_elements:
+					if indent == base_indent:
+						if current_key is not None:
+							result_dict[cls.void_decode(current_key)] = cls.void_decode('\n'.join(val_lines))
+						current_key = content
+						val_lines = []
+					else:
+						val_lines.append('\t' * (indent - base_indent - 1) + content)
+				if current_key is not None:
+					result_dict[cls.void_decode(current_key)] = cls.void_decode('\n'.join(val_lines))
+				if len(result_dict) == 1 and list(result_dict.keys())[0] == '[':
+					return [list(result_dict.values())[0]]
+				return result_dict
+			# list
+			return [cls.void_decode(line.strip()) for line in lines]
 		return text
 
 	@classmethod
@@ -11143,6 +11219,8 @@ class VOIDlang:
 						format = cls.path_extension(path).lower() if 'format' not in response else response['format']
 						if format == 'bin':
 							content_type = b'application/octet-stream'	
+						elif format in ['htm', 'html']:
+							content_type = b'text/html; charset=utf-8'
 						elif format in cls.data['app']['format']['text']:
 							content_type = b'text/plain; charset=utf-8'
 						else:
