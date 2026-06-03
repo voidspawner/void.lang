@@ -7789,6 +7789,38 @@ class VOIDlang:
 	def run(cls):
 		#VOIDlang.data = cls.void_decode(cls.data)
 		cls.data = {
+			'about': {
+				'logo': [
+					'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                         ',
+					'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                     ',
+					'                                  ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                  ',
+					'                               ∞∞∞∞∞∞∞∞∞∞∞                ∞∞∞∞∞∞∞∞∞∞                                ',
+					'                              ∞∞∞∞∞∞∞∞                        ∞∞∞∞∞∞∞∞                              ',
+					'                            ∞∞∞∞∞∞∞                              ∞∞∞∞∞∞∞                            ',
+					'                           ∞∞∞∞∞∞                                  ∞∞∞∞∞∞                           ',
+					'                          ∞∞∞∞∞      ∞∞∞∞∞∞           ∞∞∞∞∞∞        ∞∞∞∞∞∞                          ',
+					'                         ∞∞∞∞∞      ∞∞∞∞∞∞∞           ∞∞∞∞∞∞∞         ∞∞∞∞∞                         ',
+					'                        ∞∞∞∞∞       ∞∞∞∞∞∞             ∞∞∞∞∞           ∞∞∞∞∞                        ',
+					'                       ∞∞∞∞∞∞                                          ∞∞∞∞∞                        ',
+					'                       ∞∞∞∞∞           ∞∞∞∞∞           ∞∞∞∞             ∞∞∞∞∞                       ',
+					'                ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞      ∞∞∞∞∞           ∞∞∞∞       ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞             ',
+					'            ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          ',
+					'          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞    ∞∞∞∞∞      ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          ',
+					'         ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞∞∞∞∞∞∞∞∞∞      ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          ',
+					'          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞∞∞∞∞∞∞∞∞         ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞           ',
+					'            ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞            ∞∞                  ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞               ',
+					'                 ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                    ∞∞∞∞∞∞                        ',
+					'                         ∞∞∞∞∞                                       ∞∞∞∞∞∞                         ',
+					'                          ∞∞∞∞∞∞                                    ∞∞∞∞∞∞                          ',
+					'                           ∞∞∞∞∞∞                                 ∞∞∞∞∞∞∞                           ',
+					'                            ∞∞∞∞∞∞∞                             ∞∞∞∞∞∞∞∞                            ',
+					'                              ∞∞∞∞∞∞∞∞                       ∞∞∞∞∞∞∞∞∞                              ',
+					'                                ∞∞∞∞∞∞∞∞∞∞                ∞∞∞∞∞∞∞∞∞∞                                ',
+					'                                   ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                   ',
+					'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      ',
+					'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
+				]
+			},
 			'app': {
 				'os': {
 					'delimiter': {
@@ -7950,8 +7982,17 @@ class VOIDlang:
 		if name is None:
 			return storage
 		for part in name.split('.'):
-			if isinstance(storage, dict) and part in storage:
-				storage = storage[part]
+			if isinstance(storage, dict):
+				if part in storage:
+					storage = storage[part]
+				elif part.isdigit():
+					part = int(part)
+					if part in storage:
+						storage = storage[part]
+					else:
+						return default
+				else:
+					return default
 			elif isinstance(storage, list):
 				try:
 					index = int(part)
@@ -8300,6 +8341,10 @@ class VOIDlang:
 		return False
 
 	@classmethod
+	def is_path(cls, data):
+		return isinstance(data, str) and len(data) > 0 and (cls.file_exists(data) or cls.dir_exists(data))
+
+	@classmethod
 	def expression_isnot(cls):
 		pass
 
@@ -8453,7 +8498,16 @@ class VOIDlang:
 
 	@classmethod
 	def error(cls, tag: str, *data):
-		data = [str(data) for data in data]
+		if len(data) > 0 and isinstance(data[0], Exception):
+			exception_type, exception_value, exception_traceback = sys.exc_info()
+			traceback_details = traceback.extract_tb(exception_traceback)[-1]
+			data = [{
+				'reason': str(exception_value),
+				'line': traceback_details.lineno,
+				'script': traceback_details.filename
+			}]
+		else:
+			data = [str(data) for data in data]
 		cls.logger('error', tag, *data)
 
 	@classmethod
@@ -8650,9 +8704,22 @@ class VOIDlang:
 	def strip_end(cls):
 		pass
 
-	@classmethod
-	def replace(cls):
-		pass
+	@classmethod	
+	def replace(cls, text: str, search, replace = None):
+		if type(search) is str:
+			if replace == None:
+				return text
+			search = {search: str(replace)}
+		if type(search) is not dict:
+			return text
+		result = text
+		for name in search:
+			if '()' in name:
+				part = name.split('()')
+				result = re.sub(r'(' + part[0] + ').*?(' + part[1] + ')', r'\1' + str(search[name]) + r'\2', text)
+			else:
+				result = result.replace(str(name), str(search[name]))
+		return result
 
 	@classmethod
 	def find(cls):
@@ -9067,9 +9134,30 @@ class VOIDlang:
 		return cls.timepast(tag, digits)
 
 	@classmethod
-	def date(cls):
-		pass
-
+	def date(cls, timestamp: float = None, format: str = ''):
+		dt = datetime.datetime.now() if timestamp is None else datetime.datetime.fromtimestamp(timestamp)
+		timestamp = int(dt.timestamp())
+		return cls.replace(format, {
+			'(time)': timestamp,
+			'(year)': dt.year,
+			'(month)': dt.month,
+			'(day)': dt.day,
+			'(hour)': dt.hour,
+			'(minute)': dt.minute,
+			'(second)': dt.second,
+			'(millisecond)': dt.microsecond // 1000 - timestamp * 1_000,
+			'(microsecond)': dt.microsecond - timestamp * 1_000_000,
+			'(nanosecond)': time.time_ns() - timestamp * 1_000_000_000,
+			'(weekday)': dt.weekday(),
+			'(year.full)': str(dt.year),
+			'(year.short)': str(dt.year)[-2:],
+			'(month.full)': str(dt.month).zfill(2),
+			'(day.full)': str(dt.day).zfill(2),
+			'(hour.full)': str(dt.hour).zfill(2),
+			'(minute.full)': str(dt.minute).zfill(2),
+			'(second.full)': str(dt.second).zfill(2),
+			'(seconds)': ''
+			})
 
   # crypto
 
@@ -10891,7 +10979,7 @@ class VOIDlang:
 			return
 
 	@classmethod
-	def xml(cls, data: dict, compact: bool = False, indent = 2):
+	def xml(cls, data: dict, compact: bool = False, indent = 2, header = None):
 		try:
 			xml = cls.module('xml.etree.ElementTree')
 			def build(parent, data_item):
@@ -10923,7 +11011,11 @@ class VOIDlang:
 				elif type(indent) is not str:
 					indent = '  '
 				xml.indent(root_element, space=indent, level=0)
-			return xml.tostring(root_element, encoding='unicode')
+			if not isinstance(header, str):
+				header = '<?xml version="1.0" encoding="UTF-8" ?>' if header else ''
+			if header and not compact:
+				header += '\n'
+			return f"{header}{xml.tostring(root_element, encoding='unicode')}"
 		except Exception as e:
 			return
 
@@ -10931,32 +11023,37 @@ class VOIDlang:
 	def xml_decode(cls, text: str):
 		try:
 			xml = cls.module('xml.etree.ElementTree')
+			def clean_tag(tag):
+				if tag.startswith('{'):
+					return tag.split('}', 1)[1]
+				return tag
 			def build(element):
-				res = {'@' + name: value for name, value in element.attrib.items()}
+				tag_name = clean_tag(element.tag)
+				res = {'@' + clean_tag(name): value for name, value in element.attrib.items()}
 				children = list(element)
 				if children:
 					for child in children:
-						child_data = build(child)
-						for tag, value in child_data.items():
-							if tag in res:
-								if not isinstance(res[tag], list):
-									res[tag] = [res[tag]]
-								res[tag].append(value)
-							else:
-								res[tag] = value
+						child_tag, child_value = build(child)
+						if child_tag in res:
+							if not isinstance(res[child_tag], list):
+								res[child_tag] = [res[child_tag]]
+							res[child_tag].append(child_value)
+						else:
+							res[child_tag] = child_value
 				else:
-					if element.text and element.text.strip():
-						text_value = element.text.strip()
+					text_value = element.text.strip() if element.text else ''
+					if text_value:
 						if not res:
-							return {element.tag: text_value}
-						res['#text'] = text_value
+							return tag_name, text_value
+						res['#text'] = text_value				
 				if not res and not children:
-					return {element.tag: None}					
-				return {element.tag: res}
+					return tag_name, None
+				return tag_name, res
 			root_node = xml.fromstring(text)
-			return build(root_node)
+			root_tag, root_data = build(root_node)
+			return {root_tag: root_data}			
 		except Exception as e:
-			return
+			cls.error('xml.decode', e)
 
 	@classmethod
 	def ini(cls, data: dict):
@@ -10996,32 +11093,133 @@ class VOIDlang:
 	# cloud
 
 	@classmethod
-	def cloud(cls, param = None, name: str = None, address: str = None, port: int = None, limit: int = None):
-		cls.os_limit(limit or 65535)
-		if not name:
-			if isinstance(param, str):
-				name = 'file'
+	def cloud(cls, param = None, name: str = None):
+		if isinstance(param, dict):
+			name = cls.get('name', name, param)
+			address = cls.get('address', '0.0.0.0', param)
+			port = cls.get('port', None, param)
+			limit = cls.get('limit', 65535, param)
+			cache = cls.get('cache', False, param)
+			compression = cls.get('compression', False, param)
+			path = cls.get('path', None, param)
+			handler = cls.get('handler', None, param)
+			firewall = cls.get('firewall', None, param)
+			analytics = cls.get('analytics', None, param)
+		elif cls.is_path(param or cls.os_path):
+			name = name or 'file'
+			path = param or cls.os_path
+			address = '0.0.0.0'
+			port = None
+			limit = 65535
+			cache = False
+			compression = False
+			handler = None
+			firewall = None
+			analytics = None
+		else:
+			return
+		cls.os_limit(limit)
 		match name:
 			case 'web':
-				pass
+				page = {}
+				if isinstance(param, dict):
+					page = cls.get('page', {}, param)
+					robots = cls.get('robots', False, param)
+					sitemap = cls.get('sitemap', False, param)
+					domain = cls.get('domain', '', param)
+					if sitemap:
+						if not isinstance(sitemap, str):
+							if isinstance(sitemap, dict):
+								sitemap = cls.xml(sitemap, compact=True, header=True)
+							elif isinstance(sitemap, list):
+								url_list = []
+								for url in sitemap:
+									url_list.append({'loc': url if not url.startswith('/') else f'{domain}{url}', 'lastmod': cls.date(format='(year.full)-(month.full)-(day.full)'), 'changefreq': 'daily', 'priority': '0.8'})
+								sitemap = cls.xml({'urlset': {'url': url_list, '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}}, compact=True, header=True)
+						if isinstance(sitemap, str):
+							page['/sitemap.xml'] = {
+								'format': 'xml',
+								'data': sitemap.encode()
+							}
+						else:
+							sitemap = None
+					if robots:
+						page['/robots.txt'] = {
+							'format': 'txt',
+							'data': (robots if isinstance(robots, str) else '#' + '\n#'.join(cls.get('about.logo')) + '\n\nUser-agent: *\nDisallow:' + (f'\nSitemap: {domain}/sitemap.xml' if sitemap else '')).encode()
+						}
+				if callable(handler):
+					cls.cloud_server({
+						'address': address,
+						'port': port or 80,
+						'cloud': 'web',
+						'handler': handler,
+						'compression': compression,
+						'cache': cache,
+						'page': page
+					})
+				else:
+					path = path or cls.os_path
+					if cls.is_dir(path) and cls.is_file(cls.path(path, 'index.html')):
+						cls.cloud_server({
+							'address': address,
+							'port': port or 80,
+							'cloud': 'web',
+							'path': path,
+							'compression': compression,
+							'cache': cache,
+							'page': page
+						})
+					elif len(page) > 0:
+						cls.cloud_server({
+							'address': address,
+							'port': port or 80,
+							'cloud': 'web',
+							'compression': compression,
+							'cache': cache,
+							'page': page
+						})						
 			case 'api':
-				pass
+				if isinstance(param, dict):
+					response = cls.get('response', {}, param)
+				if callable(handler):
+					cls.cloud_server({
+						'address': address,
+						'port': port or 80,
+						'cloud': 'api',
+						'handler': handler,
+						'compression': compression,
+						'cache': cache,
+						'response': response
+					})
+				elif len(response) > 0:
+					cls.cloud_server({
+						'address': address,
+						'port': port or 80,
+						'cloud': 'api',
+						'compression': compression,
+						'cache': cache,
+						'response': response
+					})
 			case 'file':
-				path = cls.path(str(param)) if param else cls.os_path
 				if cls.is_dir(path):
 					cls.cloud_server({
-						'address': address or '0.0.0.0',
+						'address': address,
 						'port': port or 80,
 						'cloud': 'dir',
 						'path': path
 					})
 				elif cls.is_file(path):
 					cls.cloud_server({
-						'address': address or '0.0.0.0',
+						'address': address,
 						'port': port or 80,
 						'cloud': 'file',
 						'path': path
 					})
+			case 'socket':
+				pass
+			case 'exchange':
+				pass
 			case 'mail':
 				pass
 			case 'vpn':
@@ -11037,12 +11235,38 @@ class VOIDlang:
 
 	@classmethod
 	def cloud_handler(cls, param: dict, request: dict):
-		result = {
-			'code': 404
-		}
 		match param['cloud']:
 			case 'web':
-				pass
+				if request['path'] in param['page']:
+					page = param['page'][request['path']]
+					return page | ({'code': 200} if 'code' not in page else {})
+				if 'handler' in param:
+					return param['handler'](request)
+				path = cls.path(param['path'], request['path'][1:])
+				if cls.is_file(path):
+					return {
+						'code': 200,
+						'file': path
+					}
+				if cls.is_dir(path):
+					path_index = cls.path(path, 'index.html')
+					if cls.is_file(path_index):
+						return {
+							'code': 200,
+							'format': 'html',
+							'file': path_index
+						}
+			case 'api':
+				if request['path'] in param['response']:
+					response = param['response'][request['path']]
+					return response if 'json' in response else {'code': 200, 'json': response}
+				if 'handler' in param:
+					response = param['handler'](request)
+					return response if 'json' in response else {'code': 200, 'json': response}
+				return {
+					'code': 404,
+					'json': {'code': 404, 'reason': 'not found'}
+				}
 			case 'file':
 				if request['path'] == '/favicon.ico':
 					return {
@@ -11051,7 +11275,7 @@ class VOIDlang:
 						'data': cls.ui('file.favicon')
 					}
 				if cls.is_file(param['path']):
-					result = {
+					return {
 						'code': 200,
 						'file': param['path']
 					}
@@ -11129,12 +11353,12 @@ class VOIDlang:
 					'(back.class)': b'hide' if request['path'] == '/' else b'',
 					'(files)': b''.join(ui_list)
 					})
-				result = {
+				return {
 					'code': 200,
 					'format': 'html',
 					'data': ui
 				}
-		return result
+		return {'code': 404}
 
 	@staticmethod
 	async def cloud_handle(cls, reader, writer, param: dict):
@@ -11144,11 +11368,16 @@ class VOIDlang:
 		if socket_obj:
 			socket_obj.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
 		transport = writer.transport
+		compression = param['compression'] if 'compression' in param else False
+		cache = param['cache'] if 'cache' in param else False
+		format_text = cls.get('app.format.text')
 		try:
 			while True:
 				try:
 					header_data = await asyncio.wait_for(reader.readuntil(b'\r\n\r\n'), timeout=5.0)
-				except (asyncio.IncompleteReadError, asyncio.TimeoutError, Exception) as e:
+				except (asyncio.IncompleteReadError, asyncio.TimeoutError):
+					break
+				except Exception as e:
 					cls.error('cloud.handle.header.read', e)
 					break
 				if not header_data:
@@ -11200,28 +11429,53 @@ class VOIDlang:
 				response = cls.cloud_handler(param, request)
 				if type(response) is not bytes:
 					connection = b'keep-alive' if request['alive'] else b'close'
-					code = b'200 OK' if response['code'] == 200 else (str(response['code']) + ' ' + cls.get('cloud.code.' + str(code))).encode()
+					code = response['code']
+					code = b'200 OK' if code == 200 else (str(code) + ' ' + cls.get('cloud.code.' + str(code))).encode()
+					if 'text' in response:
+						if not 'format' in response:
+							response['format'] = 'text'
+						response['data'] = response['text'].encode()
+					elif 'json' in response:
+						response['format'] = 'json'
+						response['data'] = cls.json(response['json'], indent=None).encode()
 					if 'data' in response:
-						content_type = b'text/html; charset=utf-8' if response['format'] == 'html' else cls.get('cloud.mime.' + response['format'], 'application/octet-stream').encode()
-						length = str(len(response['data'])).encode()
-						data = [
+						data = response['data']
+						format = response['format']
+						if format in ['html', 'htm']:
+							content_type = b'text/html; charset=utf-8'
+						else:
+							content_type = cls.get('cloud.mime.' + format, 'application/octet-stream').encode()
+							if format in format_text:
+								content_type += b'; charset=utf-8'
+						content_encoding = []
+						if compression and format in format_text and 'encoding' in request and len(data) > 512:
+							if 'gzip' in request['encoding']:
+								data = cls.gzip_fast(data)
+								content_encoding = [b'Content-Encoding: gzip']
+							elif 'zstd' in request['encoding']:
+								data = cls.zstd_fast(data)
+								content_encoding = [b'Content-Encoding: zstd']
+							elif 'br' in request['encoding']:
+								data = cls.brotli_fast(data)
+								content_encoding = [b'Content-Encoding: brotli']
+						length = str(len(data)).encode()
+						header = [
 							b'HTTP/1.1 ' + code,
 							b'Connection: ' + connection,
 							b'Content-Type: ' + content_type,
 							b'Content-Length: ' + length,
-							b'Accept-Ranges: bytes',
-							b'\r\n',
-							response['data']]
-						transport.write(b'\r\n'.join(data))
+							b'Accept-Ranges: bytes'
+							] + content_encoding
+						transport.write(b'\r\n'.join(header) + b'\r\n\r\n' + data)
 					elif 'file' in response:
 						path = response['file']
 						size = os.path.getsize(path)
 						format = cls.path_extension(path).lower() if 'format' not in response else response['format']
 						if format == 'bin':
 							content_type = b'application/octet-stream'	
-						elif format in ['htm', 'html']:
+						elif format in ['html', 'htm']:
 							content_type = b'text/html; charset=utf-8'
-						elif format in cls.data['app']['format']['text']:
+						elif format in format_text:
 							content_type = b'text/plain; charset=utf-8'
 						else:
 							content_type = cls.get('cloud.mime.' + format, 'application/octet-stream').encode()	
@@ -11328,7 +11582,43 @@ class VOIDlang:
 		except KeyboardInterrupt: pass
 
 	@classmethod
-	def alive(cls, url, count: int = None , concurrency: int = None, timeout: int = 5, limit: int = None):
+	def cloud_file(cls, path: str = None):
+		cls.cloud(path, 'file')
+
+	@classmethod
+	def cloud_web(cls, param):
+		cls.cloud(param, 'web')
+
+	@classmethod
+	def cloud_api(cls, param):
+		cls.cloud(param, 'api')
+
+	@classmethod
+	def cloud_socket(cls):
+		pass
+
+	@classmethod
+	def cloud_mail(cls):
+		pass
+
+	@classmethod
+	def cloud_vpn(cls):
+		pass
+
+	@classmethod
+	def cloud_proxy(cls):
+		pass
+
+	@classmethod
+	def cloud_stream(cls):
+		pass
+
+	@classmethod
+	def cloud_desktop(cls):
+		pass
+
+	@classmethod
+	def alive(cls, url, seconds: int = None, count: int = None , concurrency: int = None, timeout: int = 5, limit: int = None):
 		request = cls.module('urllib.request')
 		statistics = cls.module('statistics')
 		futures = cls.module('concurrent.futures')
@@ -11374,42 +11664,6 @@ class VOIDlang:
 				'errors': errors
 				} | ({'message': error_message if len(error_message) > 1 else error_message[0]} if error_message else {})
 		return benchmark(url, max(count, concurrency or 0) if count and count > 0 else 1, concurrency if concurrency and concurrency > 0 else 1)
-
-	@classmethod
-	def cloud_file(cls, path: str = None):
-		cls.cloud(path, 'file')
-
-	@classmethod
-	def cloud_web(cls, param):
-		cls.cloud(param, 'web')
-
-	@classmethod
-	def cloud_api(cls, path: str = None):
-		cls.cloud(path, 'api')
-
-	@classmethod
-	def cloud_socket(cls):
-		pass
-
-	@classmethod
-	def cloud_mail(cls):
-		pass
-
-	@classmethod
-	def cloud_vpn(cls):
-		pass
-
-	@classmethod
-	def cloud_proxy(cls):
-		pass
-
-	@classmethod
-	def cloud_stream(cls):
-		pass
-
-	@classmethod
-	def cloud_desktop(cls):
-		pass
 
 	@classmethod
 	def request(cls, url: str):
