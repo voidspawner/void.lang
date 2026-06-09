@@ -11154,6 +11154,8 @@ class VOIDlang:
 			return cls.xml(sitemap, compact=compact, header=True)
 		if isinstance(sitemap, list):
 			url_list = []
+			if domain and '://' not in domain:
+				domain = 'http://' + domain
 			for url in sitemap:
 				if isinstance(url, list):
 					url = cls.get(0, url)
