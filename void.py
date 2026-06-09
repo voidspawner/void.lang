@@ -7838,7 +7838,12 @@ class VOIDlang:
 			},
 			'cloud': {
 				'mime': {"void": "application/void", "json": "application/json", "jsonl": "application/jsonl", "jsonld": "application/ld+json", "yaml": "application/x-yaml", "xml": "application/xml", "csv": "text/csv", "ini": "text/plain", "sql": "application/sql", "log": "text/plain", "bin": "application/octet-stream", "text": "text/plain", "txt": "text/plain", "pdf": "application/pdf", "djvu": "image/vnd.djvu", "doc": "application/msword", "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "xls": "application/vnd.ms-excel", "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ppt": "application/vnd.ms-powerpoint", "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "rtf": "application/rtf", "epub": "application/epub+zip", "abw": "application/x-abiword", "azw": "application/vnd.amazon.ebook", "odp": "application/vnd.oasis.opendocument.presentation", "ods": "application/vnd.oasis.opendocument.spreadsheet", "odt": "application/vnd.oasis.opendocument.text", "ics": "text/calendar", "html": "text/html", "htm": "text/html", "xhtml": "application/xhtml+xml", "css": "text/css", "ttf": "font/ttf", "otf": "font/otf", "sfnt": "font/sfnt", "woff": "font/woff", "woff2": "font/woff2", "eot": "application/vnd.ms-fontobject", "vtt": "text/vtt", "srt": "application/x-subrip", "ass": "text/x-ssa", "ssa": "text/x-ssa", "ttml": "application/ttml+xml", "sub": "text/x-microdvd", "smi": "application/x-sami", "sami": "application/x-sami", "jpeg": "image/jpeg", "jpg": "image/jpeg", "png": "image/png", "apng": "image/apng", "gif": "image/gif", "svg": "image/svg+xml", "webp": "image/webp", "heif": "image/heif", "heic": "image/heic", "tiff": "image/tiff", "tif": "image/tiff", "avif": "image/avif", "ico": "image/x-icon", "icon": "image/vnd.microsoft.icon", "icns": "image/x-icns", "mp3": "audio/mpeg", "mpa": "audio/mpeg", "mp2": "audio/mpeg", "wma": "audio/x-ms-wma", "wav": "audio/x-wav", "flac": "audio/flac", "ogg": "application/ogg", "oga": "audio/ogg", "weba": "audio/webm", "cda": "application/x-cdf", "aac": "audio/aac", "ac3": "audio/ac3", "mid": "audio/midi", "midi": "audio/x-midi", "s3m": "audio/s3m", "it": "audio/it", "mod": "audio/x-mod", "xm": "audio/xm", "mp4": "video/mp4", "mpeg": "video/mpeg", "mpg": "video/mpeg", "mpv": "video/mpeg", "webm": "video/webm", "ogx": "application/ogg", "ogv": "video/ogg", "qt": "video/quicktime", "mov": "ideo/quicktime", "m4v": "video/x-m4v", "wmv": "video/x-ms-wmv", "avi": "video/x-msvideo", "mkv": "application/x-matroska", "mjpeg": "multipart/x-mixed-replace", "ts": "video/mp2t", "gltf": "model/gltf+json", "glb": "model/gltf-binary", "obj": "model/obj", "stl": "model/stl", "fbx": "application/vnd.autodesk.fbx", "dae": "model/vnd.collada+xml", "3ds": "model/x-3ds", "ply": "model/ply", "usd": "model/vnd.usd", "usdz": "model/vnd.usdz+zip", "x3d": "model/x3d+xml", "wrl": "model/vrml", "vrml": "model/vrml", "zip": "application/zip", "gz": "application/gzip", "7z": "application/x-7z-compressed", "tar": "application/x-tar", "rar": "application/vnd.rar", "bz": "application/x-bzip", "bz2": "application/x-bzip2", "py": "applycation/x-python-code", "php": "application/x-httpd-php", "java": "application/java", "jar": "application/java-archive", "kt": "text/x-kotlin", "swift": "application/swift", "m": "text/x-objective-c", "mm": "text/x-objective-c++", "c": "text/x-csrc", "cpp": "text/x-c++src", "h": "text/x-chdr", "cs": "text/x-csharp", "rs": "text/rust", "gd": "text/x-gdscript", "js": "text/javascript", "mjs": "text/javascript", "lua": "text/x-lua", "sh": "application/x-sh", "csh": "application/x-csh", "bat": "application/x-bat", "form data": "multipart/form-data", "form mixed": "multipart/mixed", "form alternative": "multipart/alternative", "form text": "application/x-www-form-urlencoded", "m4a": "audio/mp4", "mhtml": "multipart/related"},
-				'code': {100: "Continue",101: "Switching protocols",102: "Processing",103: "Early Hints",200: "OK",201: "Created",202: "Accepted",203: "Non-Authoritative Information",204: "No Content",205: "Reset Content",206: "Partial Content",207: "Multi-Status",208: "Already Reported",226: "IM Used",300: "Multiple Choices",301: "Moved Permanently",302: "Found Redirection",303: "See Other",304: "Not Modified",305: "Use Proxy",306: "Switch Proxy",307: "Temporary Redirect",308: "Permanent Redirect",400: "Bad Request",401: "Unauthorized",402: "Payment Required",403: "Forbidden",404: "Not Found",405: "Method Not Allowed",406: "Not Acceptable",407: "Proxy Authentication Required",408: "Request Timeout",409: "Conflict",410: "Gone",411: "Length Required",412: "Precondition Failed",413: "Payload Too Large",414: "URI Too Long",415: "Unsupported Media Type",416: "Range Not Satisfiable",417: "Expectation Failed",418: "I'm a Teapot",421: "Misdirected Request",422: "Unprocessable Entity",423: "Locked",424: "Failed Dependency",425: "Too Early",426: "Upgrade Required",428: "Precondition Required",429: "Too Many Requests",431: "Request Header Fields Too Large",451: "Unavailable For Legal Reasons",500: "Internal Server Error",501: "Not Implemented",502: "Bad Gateway",503: "Service Unavailable",504: "Gateway Timeout",505: "HTTP Version Not Supported",506: "Variant Also Negotiates",507: "Insufficient Storage",508: "Loop Detected",510: "Not Extended",511: "Network Authentication Required"}
+				'code': {100: "Continue",101: "Switching protocols",102: "Processing",103: "Early Hints",200: "OK",201: "Created",202: "Accepted",203: "Non-Authoritative Information",204: "No Content",205: "Reset Content",206: "Partial Content",207: "Multi-Status",208: "Already Reported",226: "IM Used",300: "Multiple Choices",301: "Moved Permanently",302: "Found Redirection",303: "See Other",304: "Not Modified",305: "Use Proxy",306: "Switch Proxy",307: "Temporary Redirect",308: "Permanent Redirect",400: "Bad Request",401: "Unauthorized",402: "Payment Required",403: "Forbidden",404: "Not Found",405: "Method Not Allowed",406: "Not Acceptable",407: "Proxy Authentication Required",408: "Request Timeout",409: "Conflict",410: "Gone",411: "Length Required",412: "Precondition Failed",413: "Payload Too Large",414: "URI Too Long",415: "Unsupported Media Type",416: "Range Not Satisfiable",417: "Expectation Failed",418: "I'm a Teapot",421: "Misdirected Request",422: "Unprocessable Entity",423: "Locked",424: "Failed Dependency",425: "Too Early",426: "Upgrade Required",428: "Precondition Required",429: "Too Many Requests",431: "Request Header Fields Too Large",451: "Unavailable For Legal Reasons",500: "Internal Server Error",501: "Not Implemented",502: "Bad Gateway",503: "Service Unavailable",504: "Gateway Timeout",505: "HTTP Version Not Supported",506: "Variant Also Negotiates",507: "Insufficient Storage",508: "Loop Detected",510: "Not Extended",511: "Network Authentication Required"},
+				'web': {
+					'compression': {
+						'min': 512
+					}
+				}
 			},
 			'ui': {
 				'web': {
@@ -7965,7 +7970,9 @@ class VOIDlang:
   # value
 
 	@classmethod
-	def get(cls, name: str = None, default = None, storage = None):
+	def get(cls, name = None, default = None, storage = None):
+		if not isinstance(name, str):
+			name = str(name)
 		if '/' in name or '\\' in name:
 			path = cls.path_start(name)
 			path_extension = cls.path_extension(path).lower()
@@ -8467,7 +8474,27 @@ class VOIDlang:
 
 	@classmethod
 	def close(cls, pid):
-		pass
+		psutil = cls.module('psutil')
+		pid_self = os.getpid()
+		if isinstance(pid, str):
+			if pid.isdigit():
+				pid = int(pid)
+			else:
+				name = pid.lower()
+				for proccess in psutil.process_iter(['name', 'pid']):
+					try:
+						if proccess.info['name'].lower() == name and proccess.info['pid'] != pid_self:
+							proccess.terminate()
+					except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+						continue
+		if isinstance(pid, int) and pid != pid_self:
+			try:
+				process = psutil.Process(pid)
+				process.terminate()
+			except psutil.NoSuchProcess:
+				pass
+			except psutil.AccessDenied:
+				pass
 
 	@classmethod
 	def code(void, text: str):
@@ -9135,28 +9162,42 @@ class VOIDlang:
 
 	@classmethod
 	def date(cls, timestamp: float = None, format: str = ''):
-		dt = datetime.datetime.now() if timestamp is None else datetime.datetime.fromtimestamp(timestamp)
+		match format:
+			case 'full':
+				format = '(year)-(month)-(day)T(hour):(minute):(second)(timezone)'
+			case 'date':
+				format = '(year)-(month)-(day)'
+			case 'time':
+				format = '(hour):(minute):(second)'
+			case 'time.short':
+				format = '(hour.short):(minute.short):(second.short)'
+			case 'datetime':
+				format = '(year)-(month)-(day) (hour):(minute):(second)'
+			case _:
+				if not '(' in format:
+					format = f'({format})'
+		dt = datetime.datetime.now().astimezone() if timestamp is None else datetime.datetime.fromtimestamp(timestamp).astimezone()
 		timestamp = int(dt.timestamp())
+		timezone_offset = dt.strftime('%z')
 		return cls.replace(format, {
-			'(time)': timestamp,
+			'(timestamp)': timestamp,
 			'(year)': dt.year,
-			'(month)': dt.month,
-			'(day)': dt.day,
-			'(hour)': dt.hour,
-			'(minute)': dt.minute,
-			'(second)': dt.second,
+			'(month)': str(dt.month).zfill(2),
+			'(day)': str(dt.day).zfill(2),
+			'(hour)': str(dt.hour).zfill(2),
+			'(minute)': str(dt.minute).zfill(2),
+			'(second)': str(dt.second).zfill(2),
 			'(millisecond)': dt.microsecond // 1000 - timestamp * 1_000,
 			'(microsecond)': dt.microsecond - timestamp * 1_000_000,
 			'(nanosecond)': time.time_ns() - timestamp * 1_000_000_000,
 			'(weekday)': dt.weekday(),
-			'(year.full)': str(dt.year),
 			'(year.short)': str(dt.year)[-2:],
-			'(month.full)': str(dt.month).zfill(2),
-			'(day.full)': str(dt.day).zfill(2),
-			'(hour.full)': str(dt.hour).zfill(2),
-			'(minute.full)': str(dt.minute).zfill(2),
-			'(second.full)': str(dt.second).zfill(2),
-			'(seconds)': ''
+			'(month.short)': dt.month,
+			'(day.short)': dt.day,
+			'(hour.short)': dt.hour,
+			'(minute.short)': dt.minute,
+			'(second.short)': dt.second,
+			'(timezone)': f'{timezone_offset[:3]}:{timezone_offset[3:]}'
 			})
 
   # crypto
@@ -9423,10 +9464,11 @@ class VOIDlang:
 		return cls.gzip(data, 'best')
 
 	@classmethod
-	def gzip_decode(cls, data: bytes):
+	def gzip_decode(cls, data):
 		if not data: return
 		gzip = cls.module('gzip')
 		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
 			return gzip.decompress(data)
 		except: return
 
@@ -9462,10 +9504,11 @@ class VOIDlang:
 		return cls.zstd(data, 'best')
 
 	@classmethod
-	def zstd_decode(cls, data: bytes) -> bytes:
+	def zstd_decode(cls, data) -> bytes:
 		if not data: return
 		zstandard = cls.module('zstandard')
 		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
 			return zstandard.ZstdDecompressor().decompress(data)
 		except Exception as e:
 			cls.error('zstd.decode', e)
@@ -9494,10 +9537,11 @@ class VOIDlang:
 			cls.error('brotli', e)
 
 	@classmethod
-	def brotli_decode(cls, data: bytes):
+	def brotli_decode(cls, data):
 		if not data: return
 		brotli = cls.module('brotli')
 		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
 			return brotli.decompress(data)
 		except Exception as e:
 			cls.error('brotli.decode', e)
@@ -9531,10 +9575,11 @@ class VOIDlang:
 		return cls.lzma(data, 'best')
 
 	@classmethod
-	def lzma_decode(cls, data: bytes):
+	def lzma_decode(cls, data):
 		if not data: return
 		lzma = cls.module('lzma')
 		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
 			return lzma.decompress(data)
 		except: return
 
@@ -9570,7 +9615,10 @@ class VOIDlang:
 	def lz4_decode(cls, data: bytes):
 		if not data: return
 		lz4_frame = cls.module('lz4.frame')
-		return lz4_frame.decompress(data)
+		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
+			return lz4_frame.decompress(data)
+		except: return
 
 	@classmethod
 	def deflate(cls, data, compression = None):
@@ -9602,10 +9650,11 @@ class VOIDlang:
 		return cls.deflate(data, 'best')
 
 	@classmethod
-	def deflate_decode(cls, data: bytes):
+	def deflate_decode(cls, data):
 		if not data: return
 		zlib = cls.module('zlib')
 		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
 			return zlib.decompress(data, -15)
 		except: return
 
@@ -9667,33 +9716,36 @@ class VOIDlang:
 		return bytes(result)
 
 	@classmethod
-	def lzss_decode(cls, data: bytes):
+	def lzss_decode(cls, data):
 		if not data: return
-		match_min = 3
-		result = bytearray()
-		si, data_len = 0, len(data)
-		while si < data_len:
-			control = data[si]
-			si += 1
-			for bit in range(8):
-				if si >= data_len: break
-				if (control >> bit) & 1:
-					result.append(data[si])
-					si += 1
-				else:
-					if si + 1 >= data_len: break
-					packet = (data[si] << 8) | data[si+1]
-					si += 2
-					offset = (packet >> 4) + 1
-					length = (packet & 0x0F) + match_min
-					curr_res_len = len(result)
-					start_pos = curr_res_len - offset
-					if offset >= length:
-						result.extend(result[start_pos : start_pos + length])
+		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
+			match_min = 3
+			result = bytearray()
+			si, data_len = 0, len(data)
+			while si < data_len:
+				control = data[si]
+				si += 1
+				for bit in range(8):
+					if si >= data_len: break
+					if (control >> bit) & 1:
+						result.append(data[si])
+						si += 1
 					else:
-						for i in range(length):
-							result.append(result[len(result) - offset])
-		return bytes(result)
+						if si + 1 >= data_len: break
+						packet = (data[si] << 8) | data[si+1]
+						si += 2
+						offset = (packet >> 4) + 1
+						length = (packet & 0x0F) + match_min
+						curr_res_len = len(result)
+						start_pos = curr_res_len - offset
+						if offset >= length:
+							result.extend(result[start_pos : start_pos + length])
+						else:
+							for i in range(length):
+								result.append(result[len(result) - offset])
+			return bytes(result)
+		except: return
 
 	@classmethod
 	def rle(cls, data) -> bytes:
@@ -9722,6 +9774,7 @@ class VOIDlang:
 	def rle_decode(cls, data: bytes) -> bytes:
 		if not data: return
 		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
 			result = bytearray()
 			for index in range(0, len(data), 2):
 				result.extend([data[index + 1]] * data[index])
@@ -9747,9 +9800,10 @@ class VOIDlang:
 			cls.error('aes.encode', e)
 
 	@classmethod
-	def aes_decode(cls, data: bytes, key: str):
+	def aes_decode(cls, data, key: str):
 		if data is None or len(data) < 12: return
 		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
 			aes_gcm = cls.module('cryptography.hazmat.primitives.ciphers.aead', 'cryptography').AESGCM
 			hashes = cls.module('cryptography.hazmat.primitives.hashes', 'cryptography')
 			digest = hashes.Hash(hashes.SHA256())
@@ -9824,9 +9878,10 @@ class VOIDlang:
 		return cls.rsa(data, public_key, password, 'fast')
 
 	@classmethod
-	def rsa_decode(cls, data: bytes, private_key, password: str = None):
+	def rsa_decode(cls, data, private_key, password: str = None):
 		if not data: return
 		try:
+			if isinstance(data, str): data = cls.base64_decode(data)
 			serialization = cls.module('cryptography.hazmat.primitives.serialization', 'cryptography')
 			padding = cls.module('cryptography.hazmat.primitives.asymmetric.padding', 'cryptography')
 			hashes = cls.module('cryptography.hazmat.primitives.hashes', 'cryptography')
@@ -11089,6 +11144,50 @@ class VOIDlang:
 		except:
 			return None
 
+	@classmethod
+	def sitemap(cls, sitemap, domain: str = None, index: bool = False, compact: bool = True):
+		if sitemap in [True, '/', '', None]:
+			sitemap = ['/']
+		if isinstance(sitemap, str):
+			return sitemap
+		if isinstance(sitemap, dict):
+			return cls.xml(sitemap, compact=compact, header=True)
+		if isinstance(sitemap, list):
+			url_list = []
+			for url in sitemap:
+				if isinstance(url, list):
+					url = cls.get(0, url)
+					date = cls.get(1, url)
+					if not index:
+						priority = cls.get(2, url)
+						frequency = cls.get(3, url)
+				elif isinstance(url, dict):
+					url = cls.get('url', url)
+					date = cls.get('date', url)
+					if not index:
+						priority = cls.get('priority', url)
+						frequency = cls.get('frequency', url)
+				else:
+					date = None
+					if not index:
+						priority = None
+						frequency = None
+				url = str(url)
+				if url.startswith('/') and domain:
+					url = domain + (url if url != '/' else '')
+				if not isinstance(date, str):
+					date = cls.date(date if isinstance(date, (int, float)) else None, format='full')
+				if not index:
+					priority = str(priority) if priority else (1 if url in ['/', domain] else 0.8)
+					if not isinstance(frequency, str):
+						frequency = 'daily'
+					url_list.append({'loc': url, 'lastmod': date, 'priority': priority, 'changefreq': frequency})
+				else:
+					url_list.append({'loc': url, 'lastmod': date})
+			if not index:
+				return cls.xml({'urlset': {'url': url_list, '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}}, compact=compact, header=True)
+			return cls.xml({'sitemapindex': {'sitemap': url_list, '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}}, compact=compact, header=True)
+
 
 	# cloud
 
@@ -11098,6 +11197,7 @@ class VOIDlang:
 			name = cls.get('name', name, param)
 			address = cls.get('address', '0.0.0.0', param)
 			port = cls.get('port', None, param)
+			ssl = cls.get('ssl', name, param)
 			limit = cls.get('limit', 65535, param)
 			cache = cls.get('cache', False, param)
 			compression = cls.get('compression', False, param)
@@ -11105,11 +11205,16 @@ class VOIDlang:
 			handler = cls.get('handler', None, param)
 			firewall = cls.get('firewall', None, param)
 			analytics = cls.get('analytics', None, param)
+			if ssl and not (isinstance(ssl, dict) and 'certificate' in ssl and 'key' in ssl):
+				ssl = None
+			if not port:
+				port = 80 if not ssl else 443
 		elif cls.is_path(param or cls.os_path):
 			name = name or 'file'
 			path = param or cls.os_path
 			address = '0.0.0.0'
-			port = None
+			port = 80
+			ssl = None
 			limit = 65535
 			cache = False
 			compression = False
@@ -11127,31 +11232,36 @@ class VOIDlang:
 					robots = cls.get('robots', False, param)
 					sitemap = cls.get('sitemap', False, param)
 					domain = cls.get('domain', '', param)
+					ssl = cls.get('ssl', False, param)
 					if sitemap:
-						if not isinstance(sitemap, str):
-							if isinstance(sitemap, dict):
-								sitemap = cls.xml(sitemap, compact=True, header=True)
-							elif isinstance(sitemap, list):
-								url_list = []
-								for url in sitemap:
-									url_list.append({'loc': url if not url.startswith('/') else f'{domain}{url}', 'lastmod': cls.date(format='(year.full)-(month.full)-(day.full)'), 'changefreq': 'daily', 'priority': '0.8'})
-								sitemap = cls.xml({'urlset': {'url': url_list, '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}}, compact=True, header=True)
+						sitemap = cls.sitemap(sitemap, f"http{'s' if ssl else ''}://{domain}")
 						if isinstance(sitemap, str):
+							sitemap = sitemap.encode()
 							page['/sitemap.xml'] = {
 								'format': 'xml',
-								'data': sitemap.encode()
-							}
-						else:
-							sitemap = None
+								'data': sitemap
+							} | ({
+								'gzip': cls.gzip(sitemap),
+								'zstd': cls.zstd(sitemap)
+							} if len(sitemap) >= cls.get('cloud.web.compression.min') else {})
 					if robots:
-						page['/robots.txt'] = {
-							'format': 'txt',
-							'data': (robots if isinstance(robots, str) else '#' + '\n#'.join(cls.get('about.logo')) + '\n\nUser-agent: *\nDisallow:' + (f'\nSitemap: {domain}/sitemap.xml' if sitemap else '')).encode()
-						}
+						if robots == True:
+							robots = '#' + '\n#'.join(cls.get('about.logo')) + '\n\nUser-agent: *\nDisallow:' + ((f'\nSitemap: ' + ((('https' if ssl else 'http') + '://' + domain) if domain else '') + '/sitemap.xml') if sitemap else '')
+						if isinstance(robots, str):
+							robots = robots.encode()
+						if isinstance(robots, bytes):
+							page['/robots.txt'] = {
+								'format': 'txt',
+								'data': robots
+							} | ({
+								'gzip': cls.gzip(robots),
+								'zstd': cls.zstd(robots)
+							} if len(robots) >= cls.get('cloud.web.compression.min') else {})
 				if callable(handler):
 					cls.cloud_server({
 						'address': address,
-						'port': port or 80,
+						'port': port,
+						'ssl': ssl,
 						'cloud': 'web',
 						'handler': handler,
 						'compression': compression,
@@ -11163,7 +11273,8 @@ class VOIDlang:
 					if cls.is_dir(path) and cls.is_file(cls.path(path, 'index.html')):
 						cls.cloud_server({
 							'address': address,
-							'port': port or 80,
+							'port': port,
+							'ssl': ssl,
 							'cloud': 'web',
 							'path': path,
 							'compression': compression,
@@ -11173,7 +11284,8 @@ class VOIDlang:
 					elif len(page) > 0:
 						cls.cloud_server({
 							'address': address,
-							'port': port or 80,
+							'port': port,
+							'ssl': ssl,
 							'cloud': 'web',
 							'compression': compression,
 							'cache': cache,
@@ -11185,7 +11297,8 @@ class VOIDlang:
 				if callable(handler):
 					cls.cloud_server({
 						'address': address,
-						'port': port or 80,
+						'port': port,
+						'ssl': ssl,
 						'cloud': 'api',
 						'handler': handler,
 						'compression': compression,
@@ -11195,7 +11308,8 @@ class VOIDlang:
 				elif len(response) > 0:
 					cls.cloud_server({
 						'address': address,
-						'port': port or 80,
+						'port': port,
+						'ssl': ssl,
 						'cloud': 'api',
 						'compression': compression,
 						'cache': cache,
@@ -11205,14 +11319,16 @@ class VOIDlang:
 				if cls.is_dir(path):
 					cls.cloud_server({
 						'address': address,
-						'port': port or 80,
+						'port': port,
+						'ssl': ssl,
 						'cloud': 'dir',
 						'path': path
 					})
 				elif cls.is_file(path):
 					cls.cloud_server({
 						'address': address,
-						'port': port or 80,
+						'port': port,
+						'ssl': ssl,
 						'cloud': 'file',
 						'path': path
 					})
@@ -11239,23 +11355,34 @@ class VOIDlang:
 			case 'web':
 				if request['path'] in param['page']:
 					page = param['page'][request['path']]
-					return page | ({'code': 200} if 'code' not in page else {})
-				if 'handler' in param:
-					return param['handler'](request)
-				path = cls.path(param['path'], request['path'][1:])
-				if cls.is_file(path):
-					return {
-						'code': 200,
-						'file': path
-					}
-				if cls.is_dir(path):
-					path_index = cls.path(path, 'index.html')
-					if cls.is_file(path_index):
+					if isinstance(page, bytes):
 						return {
 							'code': 200,
-							'format': 'html',
-							'file': path_index
+							'data': page
 						}
+					if isinstance(page, dict):
+						if 'code' not in page:
+							page['code'] = 200
+						if 'format' not in page:
+							page['format'] = 'html'
+						return page | ({'code': 200} if 'code' not in page else {})
+				if 'handler' in param:
+					return param['handler'](request)
+				if 'path' in param:
+					path = cls.path(param['path'], request['path'][1:])
+					if cls.is_file(path):
+						return {
+							'code': 200,
+							'file': path
+						}
+					if cls.is_dir(path):
+						path_index = cls.path(path, 'index.html')
+						if cls.is_file(path_index):
+							return {
+								'code': 200,
+								'format': 'html',
+								'file': path_index
+							}
 			case 'api':
 				if request['path'] in param['response']:
 					response = param['response'][request['path']]
@@ -11369,6 +11496,7 @@ class VOIDlang:
 			socket_obj.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
 		transport = writer.transport
 		compression = param['compression'] if 'compression' in param else False
+		compression_min = cls.get('cloud.web.compression.min')
 		cache = param['cache'] if 'cache' in param else False
 		format_text = cls.get('app.format.text')
 		try:
@@ -11432,15 +11560,17 @@ class VOIDlang:
 					code = response['code']
 					code = b'200 OK' if code == 200 else (str(code) + ' ' + cls.get('cloud.code.' + str(code))).encode()
 					if 'text' in response:
-						if not 'format' in response:
-							response['format'] = 'text'
-						response['data'] = response['text'].encode()
+						data = response['text'].encode()
+						format = response['format'] if 'format' in response else 'text'
 					elif 'json' in response:
-						response['format'] = 'json'
-						response['data'] = cls.json(response['json'], indent=None).encode()
-					if 'data' in response:
+						data = cls.json(response['json'], indent=None).encode()
+						format = 'json'
+					elif 'data' in response:
 						data = response['data']
-						format = response['format']
+						format = response['format'] if 'format' in response else 'bin'
+					else:
+						data = None
+					if data:
 						if format in ['html', 'htm']:
 							content_type = b'text/html; charset=utf-8'
 						else:
@@ -11448,16 +11578,28 @@ class VOIDlang:
 							if format in format_text:
 								content_type += b'; charset=utf-8'
 						content_encoding = []
-						if compression and format in format_text and 'encoding' in request and len(data) > 512:
+						if 'encoding' in request:
 							if 'gzip' in request['encoding']:
-								data = cls.gzip_fast(data)
-								content_encoding = [b'Content-Encoding: gzip']
-							elif 'zstd' in request['encoding']:
-								data = cls.zstd_fast(data)
-								content_encoding = [b'Content-Encoding: zstd']
-							elif 'br' in request['encoding']:
-								data = cls.brotli_fast(data)
-								content_encoding = [b'Content-Encoding: brotli']
+								if 'gzip' in response:
+									data = response['gzip']
+									content_encoding = [b'Content-Encoding: gzip']
+								elif compression and format in format_text and len(data) > compression_min:
+									data = cls.gzip_fast(data)
+									content_encoding = [b'Content-Encoding: gzip']
+							if 'zstd' in request['encoding']:
+								if 'zstd' in response:
+									data = response['zstd']
+									content_encoding = [b'Content-Encoding: zstd']
+								elif compression and format in format_text and len(data) > compression_min:
+									data = cls.zstd_fast(data)
+									content_encoding = [b'Content-Encoding: zstd']
+							if 'br' in request['encoding']:
+								if 'brotli' in response:
+									data = response['brotli']
+									content_encoding = [b'Content-Encoding: br']
+								elif compression and format in format_text and len(data) > compression_min:
+									data = cls.brotli_fast(data)
+									content_encoding = [b'Content-Encoding: br']
 						length = str(len(data)).encode()
 						header = [
 							b'HTTP/1.1 ' + code,
@@ -11516,6 +11658,7 @@ class VOIDlang:
 						header = [
 							b'HTTP/1.1 ' + code,
 							b'Connection: ' + connection,
+							b'Content-Length: 0',
 							b'Accept-Ranges: bytes',
 							b'\r\n']
 						transport.write(b'\r\n'.join(header))
@@ -11546,8 +11689,8 @@ class VOIDlang:
 			processes = []
 			address_list = cls.ip_local() if param['address'] == '0.0.0.0' else [param['address']]
 			for index, address in enumerate(address_list):
-				port = '' if param['port'] == 80 else f':{port}'
-				url = 'http://' + address + port
+				port = '' if param['port'] in [80, 443] else f':{port}'
+				url = f"http{'s' if param['ssl'] else ''}://{address}{port}"
 				qr = cls.qr(url)
 				center = {'align': 'center', 'length': qr['size']}
 				if index == 0:
@@ -11573,7 +11716,21 @@ class VOIDlang:
 		async def serve():
 			async def handler(reader, writer):
 				await cls.cloud_handle(cls, reader, writer, param)
-			server = await asyncio.start_server(handler, sock=socket_main, limit=32768)
+			if param['ssl']:
+				ssl = cls.module('ssl')
+				tempfile = cls.module('tempfile')
+				certificate = cls.get('ssl.certificate', None, param)
+				key = cls.get('ssl.key', None, param)
+				ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+				with tempfile.NamedTemporaryFile(mode='w+', delete=True) as certificate_file, tempfile.NamedTemporaryFile(mode='w+', delete=True) as key_file:
+					certificate_file.write(certificate)
+					key_file.write(key)
+					certificate_file.flush()
+					key_file.flush()
+					ssl_context.load_cert_chain(certfile=certificate_file.name, keyfile=key_file.name)
+			else:
+				ssl_context = None
+			server = await asyncio.start_server(handler, sock=socket_main, limit=32768, ssl=ssl_context)
 			server.get_loop if hasattr(server, 'get_loop') else None
 			async with server:
 				await server.serve_forever()
@@ -11618,7 +11775,15 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def alive(cls, url, seconds: int = None, count: int = None , concurrency: int = None, timeout: int = 5, limit: int = None):
+	def alive(cls, url, seconds: int = None, concurrency: int = None, count: int = None, timeout: int = 5, limit: int = None):
+		if '://' not in url:
+			if cls.alive(f'https://{url}'):
+				if seconds in [None, 0] and count in [None, 0, 1] and concurrency in [None, 0, 1]:
+					return True
+				else:
+					return cls.alive(f'https://{url}', seconds, concurrency, count, timeout, limit)
+			else:
+				return cls.alive(f'http://{url}', seconds, concurrency, count, timeout, limit)
 		request = cls.module('urllib.request')
 		statistics = cls.module('statistics')
 		futures = cls.module('concurrent.futures')
@@ -11632,38 +11797,53 @@ class VOIDlang:
 				return (time.perf_counter() - t), status
 			except Exception as e:
 				return None, str(e)
-		def benchmark(url, count: int, concurrency: int):
-			times = []
-			errors = 0
-			error_message = []		
-			t = time.perf_counter()
-			with futures.ThreadPoolExecutor(max_workers=concurrency) as executor:
+		count = max(1, count or 0)
+		concurrency = min(32, (os.cpu_count() or 1) + 4) if concurrency is None and (count > 1 or (seconds or 0) > 0) else max(1, concurrency or 0)
+		count = max(1, count, concurrency)
+		times = []
+		result = []
+		errors = 0
+		error_message = []
+		time_start = time.perf_counter()
+		with futures.ThreadPoolExecutor(max_workers=concurrency) as executor:
+			if seconds and seconds > 0:
+				submitted_futures = set()
+				while time.perf_counter() - time_start < seconds:
+					while len(submitted_futures) < concurrency and (time.perf_counter() - time_start < seconds):
+						submitted_futures.add(executor.submit(fetch, url))
+					done, submitted_futures = futures.wait(submitted_futures, timeout=0.05, return_when=futures.FIRST_COMPLETED)
+					for future in done:
+						result.append(future.result())
+				if submitted_futures:
+					done, _ = futures.wait(submitted_futures)
+					for future in done:
+						result.append(future.result())
+			else:
 				result = list(executor.map(fetch, [url] * count))
-			timepast = time.perf_counter() - t
-			for latency, status in result:
-				if latency is not None and status == 200:
-					times.append(latency)
-				else:
-					errors += 1
-					if status not in error_message:
-						error_message.append(status)
-			if count == 1:
-				return not errors
-			return {
-				'url': url,
-				'count': count,
-				'concurrency': concurrency,
-				'timeout': timeout,
-				'time': round(timepast, 5),
-				'rps': round(count / timepast, 5),
-				'min': round(min(times), 5) if times else None,
-				'max': round(max(times), 5) if times else None,
-				'avg': round(statistics.mean(times), 5) if times else None,
-				'median': round(statistics.median(times), 5) if times else None,
-				'deviation': round(statistics.stdev(times), 5) if len(times) > 1 else None,
-				'errors': errors
-				} | ({'message': error_message if len(error_message) > 1 else error_message[0]} if error_message else {})
-		return benchmark(url, max(count, concurrency or 0) if count and count > 0 else 1, concurrency if concurrency and concurrency > 0 else 1)
+		timepast = time.perf_counter() - time_start
+		for latency, status in result:
+			if latency is not None and status == 200:
+				times.append(latency)
+			else:
+				errors += 1
+				if status not in error_message:
+					error_message.append(status)
+		if not seconds and count == 1:
+			return not errors			
+		return {
+			'url': url,
+			'count': len(result),
+			'concurrency': concurrency,
+			'timeout': timeout,
+			'time': round(timepast, 5),
+			'rps': round(len(result) / timepast, 5) if timepast > 0 else 0,
+			'min': round(min(times), 5) if times else None,
+			'max': round(max(times), 5) if times else None,
+			'avg': round(statistics.mean(times), 5) if times else None,
+			'median': round(statistics.median(times), 5) if times else None,
+			'deviation': round(statistics.stdev(times), 5) if len(times) > 1 else None,
+			'errors': errors
+			} | ({'message': error_message if len(error_message) > 1 else error_message[0]} if error_message else {})
 
 	@classmethod
 	def request(cls, url: str):
