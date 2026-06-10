@@ -11199,6 +11199,7 @@ class VOIDlang:
 			name = cls.get('name', name, param)
 			address = cls.get('address', '0.0.0.0', param)
 			port = cls.get('port', None, param)
+			domain = cls.get('domain', '', param)
 			ssl = cls.get('ssl', name, param)
 			limit = cls.get('limit', 65535, param)
 			cache = cls.get('cache', False, param)
@@ -11216,6 +11217,7 @@ class VOIDlang:
 			path = param or cls.os_path
 			address = '0.0.0.0'
 			port = 80
+			domain = None
 			ssl = None
 			limit = 65535
 			cache = False
@@ -11233,8 +11235,6 @@ class VOIDlang:
 					page = cls.get('page', {}, param)
 					robots = cls.get('robots', False, param)
 					sitemap = cls.get('sitemap', False, param)
-					domain = cls.get('domain', '', param)
-					ssl = cls.get('ssl', False, param)
 					if sitemap:
 						sitemap = cls.sitemap(sitemap, f"http{'s' if ssl else ''}://{domain}")
 						if isinstance(sitemap, str):
@@ -11263,6 +11263,7 @@ class VOIDlang:
 					cls.cloud_server({
 						'address': address,
 						'port': port,
+						'domain': domain,
 						'ssl': ssl,
 						'cloud': 'web',
 						'handler': handler,
@@ -11276,6 +11277,7 @@ class VOIDlang:
 						cls.cloud_server({
 							'address': address,
 							'port': port,
+							'domain': domain,
 							'ssl': ssl,
 							'cloud': 'web',
 							'path': path,
@@ -11287,6 +11289,7 @@ class VOIDlang:
 						cls.cloud_server({
 							'address': address,
 							'port': port,
+							'domain': domain,
 							'ssl': ssl,
 							'cloud': 'web',
 							'compression': compression,
@@ -11300,6 +11303,7 @@ class VOIDlang:
 					cls.cloud_server({
 						'address': address,
 						'port': port,
+						'domain': domain,
 						'ssl': ssl,
 						'cloud': 'api',
 						'handler': handler,
@@ -11311,6 +11315,7 @@ class VOIDlang:
 					cls.cloud_server({
 						'address': address,
 						'port': port,
+						'domain': domain,
 						'ssl': ssl,
 						'cloud': 'api',
 						'compression': compression,
@@ -11322,6 +11327,7 @@ class VOIDlang:
 					cls.cloud_server({
 						'address': address,
 						'port': port,
+						'domain': domain,
 						'ssl': ssl,
 						'cloud': 'dir',
 						'path': path
@@ -11330,6 +11336,7 @@ class VOIDlang:
 					cls.cloud_server({
 						'address': address,
 						'port': port,
+						'domain': domain,
 						'ssl': ssl,
 						'cloud': 'file',
 						'path': path
@@ -11494,13 +11501,19 @@ class VOIDlang:
 		asyncio = cls.module('asyncio')
 		socket = cls.module('socket')
 		socket_obj = writer.get_extra_info('socket')
+		server_ip = None
+		server_port = None
 		if socket_obj:
 			socket_obj.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+			server_ip, server_port = socket_obj.getsockname()
 		transport = writer.transport
 		compression = param['compression'] if 'compression' in param else False
 		compression_min = cls.get('cloud.web.compression.min')
 		cache = param['cache'] if 'cache' in param else False
 		format_text = cls.get('app.format.text')
+		ssl = param.get('ssl')
+		ssl_redirect = ssl and ssl.get('redirect', True)
+		domain = param.get('domain', server_ip)
 		try:
 			while True:
 				try:
@@ -11521,6 +11534,10 @@ class VOIDlang:
 				header_lines = header.split('\r\n')
 				request = {
 					'path': '/',
+					'server': {
+						'ip': server_ip,
+						'port': server_port
+					},
 					'alive': False,
 					'header': {
 						'text': header,
@@ -11529,7 +11546,9 @@ class VOIDlang:
 				}
 				for index, line in enumerate(header_lines):
 					if index == 0:
-						request['path'], _, request['query'] = (cls.unescape_url(line.split()[1])).partition('?')
+						parts = line.split()
+						request['method'] = parts[0].lower()
+						request['path'], _, request['query'] = (cls.unescape_url(parts[1])).partition('?')
 					line = line.lower()
 					if line.startswith('host:'):
 						request['host'] = line[5:].strip()
@@ -11556,6 +11575,10 @@ class VOIDlang:
 								'start': 0,
 								'end': None
 							}
+				if server_port == 80 and ssl_redirect:
+					writer.write(f"HTTP/1.1 302 Found Redirection\r\nLocation: https://{domain}{request['path']}\r\nConnection: close\r\n\r\n".encode())
+					writer.close()
+					return
 				response = cls.cloud_handler(param, request)
 				if type(response) is not bytes:
 					connection = b'keep-alive' if request['alive'] else b'close'
@@ -11681,6 +11704,17 @@ class VOIDlang:
 			socket = cls.module('socket')
 			multiprocessing = cls.module('multiprocessing')
 			workers_number = multiprocessing.cpu_count()
+			sockets = []
+			ssl = cls.get('ssl', None, param)
+			if ssl and cls.get('ssl.http', True, ssl):
+				socket_http = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+				socket_http.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+				if hasattr(socket, 'SO_REUSEPORT'):
+					socket_http.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+				socket_http.bind((param['address'], 80))
+				socket_http.setblocking(False)
+				socket_http.listen(8192)
+				sockets.append(('http', socket_http))
 			socket_main = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			socket_main.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 			if hasattr(socket, 'SO_REUSEPORT'):
@@ -11688,11 +11722,12 @@ class VOIDlang:
 			socket_main.bind((param['address'], param['port']))
 			socket_main.setblocking(False)
 			socket_main.listen(8192)
+			sockets.append(('main' if not ssl else 'https', socket_main))
 			processes = []
 			address_list = cls.ip_local() if param['address'] == '0.0.0.0' else [param['address']]
 			for index, address in enumerate(address_list):
-				port = '' if param['port'] in [80, 443] else f':{port}'
-				url = f"http{'s' if param['ssl'] else ''}://{address}{port}"
+				port = '' if (not ssl and param['port'] == 80) or (ssl and param['port'] == 443) else f':{port}'
+				url = f"http{'s' if ssl else ''}://{address}{port}"
 				qr = cls.qr(url)
 				center = {'align': 'center', 'length': qr['size']}
 				if index == 0:
@@ -11703,7 +11738,7 @@ class VOIDlang:
 				if index < len(address_list) - 1:
 					print()
 			for _ in range(workers_number):
-				process = multiprocessing.Process(target=cls.cloud_worker, args=(cls, socket_main, param))
+				process = multiprocessing.Process(target=cls.cloud_worker, args=(cls, sockets, param))
 				process.start()
 				processes.append(process)
 			try:
@@ -11713,7 +11748,7 @@ class VOIDlang:
 		except Exception as e: cls.error('cloud.server', e)
 
 	@staticmethod
-	def cloud_worker(cls, socket_main, param: dict):
+	def cloud_worker(cls, sockets, param: dict):
 		asyncio = cls.module('asyncio')
 		async def serve():
 			async def handler(reader, writer):
@@ -11732,10 +11767,15 @@ class VOIDlang:
 					ssl_context.load_cert_chain(certfile=certificate_file.name, keyfile=key_file.name)
 			else:
 				ssl_context = None
-			server = await asyncio.start_server(handler, sock=socket_main, limit=32768, ssl=ssl_context)
-			server.get_loop if hasattr(server, 'get_loop') else None
-			async with server:
-				await server.serve_forever()
+			servers = []
+			for socket_type, socket in sockets:
+				if socket_type == 'https' and ssl_context:
+					server = await asyncio.start_server(handler, sock=socket, limit=32768, ssl=ssl_context)
+				else:
+					server = await asyncio.start_server(handler, sock=socket, limit=32768)
+				server.get_loop if hasattr(server, 'get_loop') else None
+				servers.append(server)
+			await asyncio.gather(*(server.serve_forever() for server in servers))
 		try:
 			asyncio.run(serve())
 		except KeyboardInterrupt: pass
