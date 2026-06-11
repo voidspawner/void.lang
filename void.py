@@ -8459,17 +8459,29 @@ class VOIDlang:
 		return result
 
 	@classmethod
-	def open(cls, command):
+	def open(cls, command = None):
+		if command is None:
+			psutil = cls.module('psutil')
+			result = []
+			for proc in psutil.process_iter(['pid', 'name', 'status']):
+				try:
+					info = proc.info
+					result.append(info)
+				except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+					continue
+			return result
 		if isinstance(command, str):
 			command = command.split(' ')
-		process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-		text, error = process.communicate()
-		result = {
-			'code': process.returncode,
-			'pid': process.pid,
-			'text': text
-		} | ({'error': error} if error else {})
-		cls.debug('open', result)
+		try:
+			process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+			text, error = process.communicate()
+			result = {
+				'code': process.returncode,
+				'pid': process.pid,
+				'text': text
+			} | ({'error': error} if error else {})
+		except Exception as e:
+			result = {'error': str(e), 'code': -1}
 		return result
 
 	@classmethod
@@ -11871,7 +11883,7 @@ class VOIDlang:
 				if status not in error_message:
 					error_message.append(status)
 		if not seconds and count == 1:
-			return not errors			
+			return not errors
 		return {
 			'url': url,
 			'count': len(result),
