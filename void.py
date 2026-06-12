@@ -7875,6 +7875,7 @@ class VOIDlang:
 		cls.set('app.path', path)
 		cls.set('app.param', param)
 		cls.os_path = path
+		cls.os_script = os.path.abspath(__file__)
 		match platform.system():
 			case 'Windows':
 				os_type = 'windows'
@@ -7908,6 +7909,7 @@ class VOIDlang:
 				cls.is_linux = False
 				cls.newline = '\n'
 				cls.delimiter = '/'
+		cls.os_type = os_type
 		cls.set('os', os_type)
 		cls.set('app.os.type', os_type)
 		cls.set('app.os.delimiter.newline', cls.newline)
@@ -8583,6 +8585,16 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def os_alias(cls, name: str = None, command: str = None):
+		if command is None:
+			if cls.os_type == 'windows':
+				cls.file(f"{name or 'void'}.bat", f'@python3 "{cls.os_script}" %*')
+
+	@classmethod
+	def os_path(cls, path: str):
+		if cls.os_type == 'windows':
+
+	@classmethod
 	def os_limit(cls, limit: int = None):
 		if cls.is_nix:
 			resource = cls.module('resource')
@@ -9173,7 +9185,10 @@ class VOIDlang:
 		return cls.timepast(tag, digits)
 
 	@classmethod
-	def date(cls, timestamp: float = None, format: str = ''):
+	def date(cls, timestamp = None, format: str = ''):
+		if isinstance(timestamp, str):
+			format = timestamp
+			timestamp = None
 		match format:
 			case 'full':
 				format = '(year)-(month)-(day)T(hour):(minute):(second)(timezone)'
@@ -10619,6 +10634,16 @@ class VOIDlang:
   # format
 
 	@classmethod
+	def encode(cls, data, format: str = None, param = None):
+		pass
+
+	@classmethod
+	def decode(cls, data, format: str = None, param = None):
+		pass
+
+	# data
+
+	@classmethod
 	def void(cls, data, format = None, indent = '\t', level: int = 0):
 		cache_indent_key = (indent, level)
 		if cache_indent_key not in cls.cache_indent:
@@ -11156,6 +11181,8 @@ class VOIDlang:
 		except:
 			return None
 
+	# web
+
 	@classmethod
 	def sitemap(cls, sitemap, domain: str = None, index: bool = False, compact: bool = True):
 		if sitemap in [True, '/', '', None]:
@@ -11201,6 +11228,206 @@ class VOIDlang:
 			if not index:
 				return cls.xml({'urlset': {'url': url_list, '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}}, compact=compact, header=True)
 			return cls.xml({'sitemapindex': {'sitemap': url_list, '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}}, compact=compact, header=True)
+
+	# image
+
+	@classmethod
+	def bmp(cls, data):
+		pass
+
+	@classmethod
+	def bmp_decode(cls, data):
+		pass
+
+	@classmethod
+	def jpg(cls, data):
+		pass
+
+	@classmethod
+	def jpg_decode(cls, data):
+		pass
+
+	@classmethod
+	def png(cls, data):
+		pass
+
+	@classmethod
+	def png_decode(cls, data):
+		pass
+
+	@classmethod
+	def gif(cls, data):
+		pass
+
+	@classmethod
+	def gif_decode(cls, data):
+		pass
+
+	@classmethod
+	def webp(cls, data):
+		pass
+
+	@classmethod
+	def webp_decode(cls, data):
+		pass
+
+	@classmethod
+	def avif(cls, data):
+		pass
+
+	@classmethod
+	def avif_decode(cls, data):
+		pass
+
+	@classmethod
+	def tiff(cls, data):
+		pass
+
+	@classmethod
+	def tiff_decode(cls, data):
+		pass
+
+	# video
+
+	@classmethod
+	def mp4(cls, data):
+		pass
+
+	@classmethod
+	def mp4_decode(cls, data):
+		pass
+
+	@classmethod
+	def avi(cls, data):
+		pass
+
+	@classmethod
+	def avi_decode(cls, data):
+		pass
+
+	@classmethod
+	def webm(cls, data):
+		pass
+
+	@classmethod
+	def webm_decode(cls, data):
+		pass
+
+	@classmethod
+	def mov(cls, data):
+		pass
+
+	@classmethod
+	def mov_decode(cls, data):
+		pass
+
+	@classmethod
+	def ogm(cls, data):
+		pass
+
+	@classmethod
+	def ogm_decode(cls, data):
+		pass
+
+	@classmethod
+	def mkv(cls, data):
+		pass
+
+	@classmethod
+	def mkv_decode(cls, data):
+		pass
+
+	@classmethod
+	def mpeg(cls, data):
+		pass
+
+	@classmethod
+	def mpeg_decode(cls, data):
+		pass
+
+	# sound
+
+	@classmethod
+	def mp3(cls, data):
+		pass
+
+	@classmethod
+	def mp3_decode(cls, data):
+		pass
+
+	@classmethod
+	def wav(cls, data):
+		pass
+
+	@classmethod
+	def wav_decode(cls, data):
+		pass
+
+	@classmethod
+	def flac(cls, data):
+		pass
+
+	@classmethod
+	def flac_decode(cls, data):
+		pass
+
+	@classmethod
+	def aac(cls, data):
+		pass
+
+	@classmethod
+	def aac_decode(cls, data):
+		pass
+
+	@classmethod
+	def ac3(cls, data):
+		pass
+
+	@classmethod
+	def ac3_decode(cls, data):
+		pass
+
+	@classmethod
+	def ogg(cls, data):
+		pass
+
+	@classmethod
+	def ogg_decode(cls, data):
+		pass
+
+	@classmethod
+	def weba(cls, data):
+		pass
+
+	@classmethod
+	def weba_decode(cls, data):
+		pass
+
+	# subtitles
+
+	@classmethod
+	def srt(cls, data):
+		pass
+
+	@classmethod
+	def srt_decode(cls, data):
+		pass
+
+	@classmethod
+	def ass(cls, data):
+		pass
+
+	@classmethod
+	def ass_decode(cls, data):
+		pass
+
+	@classmethod
+	def webvtt(cls, data):
+		pass
+
+	@classmethod
+	def webvtt_decode(cls, data):
+		pass
 
 
 	# cloud
@@ -11681,16 +11908,40 @@ class VOIDlang:
 								b'Accept-Ranges: bytes',
 								b'\r\n']
 						transport.write(b'\r\n'.join(header))
-						file = open(path, 'rb')
-						try:
-							if 'range' in request:
-								file.seek(content_start)
-							await asyncio.get_event_loop().sendfile(transport, file)
-							await writer.drain()
-						except Exception as e:
-							cls.error('cloud.handle.file', e)
-						finally:
-							file.close()
+						if cls.os_type == 'windows':
+							try:
+								with open(path, 'rb') as file:
+									if 'range' in request:
+										file.seek(content_start)
+										remaining = content_end + 1 - content_start
+										while remaining > 0:
+											chunk_size = min(65536, remaining)
+											chunk = file.read(chunk_size)
+											if not chunk:
+												break
+											transport.write(chunk)
+											await writer.drain()
+											remaining -= len(chunk)
+									else:
+										while True:
+											chunk = file.read(65536)
+											if not chunk:
+												break
+											transport.write(chunk)
+											await writer.drain()
+							except Exception as e:
+								cls.error('cloud.handle.file.win', e)
+						else:
+							file = open(path, 'rb')
+							try:
+								if 'range' in request:
+									file.seek(content_start)
+								await asyncio.get_event_loop().sendfile(transport, file)
+								await writer.drain()
+							except Exception as e:
+								cls.error('cloud.handle.file', e)
+							finally:
+								file.close()
 					else:
 						header = [
 							b'HTTP/1.1 ' + code,
@@ -11762,6 +12013,8 @@ class VOIDlang:
 	@staticmethod
 	def cloud_worker(cls, sockets, param: dict):
 		asyncio = cls.module('asyncio')
+		if cls.os_type == 'windows':
+			asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 		async def serve():
 			async def handler(reader, writer):
 				await cls.cloud_handle(cls, reader, writer, param)
