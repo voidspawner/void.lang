@@ -257,9 +257,12 @@ python3 void.py app.zip
 > ```
 
 > [!TIP]
-> Type alias in the **``Windows``** command line
+> Type alias in the **``Windows``** command line or PowerShell
 > ```console
-> doskey void=python3 /path/to/void.py
+> doskey void=python3 c:\path\to\void.py
+> ```
+> ```console
+> function void { python3 c:\path\to\void.py @args }
 > ```
 >
 > Add alias in **``~/.bashrc``** (Linux)・**``~/.bash_profile``** (macOS)・**``~/.zshrc``** (macOS)
