@@ -8593,6 +8593,7 @@ class VOIDlang:
 	@classmethod
 	def os_path(cls, path: str):
 		if cls.os_type == 'windows':
+			pass
 
 	@classmethod
 	def os_limit(cls, limit: int = None):
@@ -11280,6 +11281,14 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def heic(cls, data):
+		pass
+
+	@classmethod
+	def heic_decode(cls, data):
+		pass
+
+	@classmethod
 	def tiff(cls, data):
 		pass
 
@@ -11759,6 +11768,14 @@ class VOIDlang:
 					header_data = await asyncio.wait_for(reader.readuntil(b'\r\n\r\n'), timeout=5.0)
 				except (asyncio.IncompleteReadError, asyncio.TimeoutError):
 					break
+				except (ConnectionResetError, ConnectionAbortedError) as e:
+					break
+				except OSError as e:
+					if e.errno in (10053, 10054):
+						pass
+					else:
+						cls.error('cloud.handle.header.read', e)
+					break
 				except Exception as e:
 					cls.error('cloud.handle.header.read', e)
 					break
@@ -11804,11 +11821,14 @@ class VOIDlang:
 					if line.startswith('accept-language:'):
 						request['language'] = line[16:].strip().split(';')[0].split(',')
 					if line.startswith('range:'):
+						request_range = {}
 						try:
 							content_range = line[6:].strip().split('=')[1]
 							part = content_range.split('-')
-							request['range']['start'] = int(part[0]) if part[0].strip() else 0
-							request['range']['end'] = int(part[1]) if len(part) > 1 and part[1].strip() else None
+							request['range'] = {
+								'start': int(part[0]) if part[0].strip() else 0,
+								'end': int(part[1]) if len(part) > 1 and part[1].strip() else None
+							}
 						except Exception:
 							request['range'] = {
 								'start': 0,
@@ -11929,6 +11949,13 @@ class VOIDlang:
 												break
 											transport.write(chunk)
 											await writer.drain()
+							except (ConnectionResetError, ConnectionAbortedError) as e:
+								pass
+							except OSError as e:
+								if e.errno in (10053, 10054):
+									pass
+								else:
+									cls.error('cloud.handle.file.win', e)
 							except Exception as e:
 								cls.error('cloud.handle.file.win', e)
 						else:
@@ -11936,8 +11963,18 @@ class VOIDlang:
 							try:
 								if 'range' in request:
 									file.seek(content_start)
-								await asyncio.get_event_loop().sendfile(transport, file)
+									count = content_end + 1 - content_start
+									await asyncio.get_event_loop().sendfile(transport, file, count=count)
+								else:
+									await asyncio.get_event_loop().sendfile(transport, file)
 								await writer.drain()
+							except (ConnectionResetError, ConnectionAbortedError) as e:
+								pass
+							except OSError as e:
+								if e.errno in (10053, 10054):
+									pass
+								else:
+									cls.error('cloud.handle.file', e)
 							except Exception as e:
 								cls.error('cloud.handle.file', e)
 							finally:
