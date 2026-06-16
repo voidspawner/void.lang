@@ -8464,7 +8464,7 @@ class VOIDlang:
 		return result
 
 	@classmethod
-	def open(cls, command = None):
+	def open(cls, command = None, wait: bool = False):
 		if command is None:
 			psutil = cls.module('psutil')
 			result = []
@@ -8475,19 +8475,30 @@ class VOIDlang:
 				except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
 					continue
 			return result
-		if isinstance(command, str):
-			command = command.split(' ')
+		if not isinstance(command, (str, list)):
+			command = str(command)
+		creation_flags = 0x08000000 if cls.os_type == 'windows' else 0
 		try:
-			process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-			text, error = process.communicate()
-			result = {
-				'code': process.returncode,
-				'pid': process.pid,
-				'text': text
-			} | ({'error': error} if error else {})
+			if wait:
+				process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, creationflags=creation_flags)
+				text, error = process.communicate()
+				result = {
+					'code': process.returncode,
+					'pid': process.pid,
+					'text': text
+				} | ({'error': error} if error else {})
+			else:
+				process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=creation_flags)
+				result = {
+					'pid': process.pid
+				}
 		except Exception as e:
 			result = {'error': str(e), 'code': -1}
 		return result
+
+	@classmethod
+	def open_wait(cls, command):
+		return cls.open(command, True)
 
 	@classmethod
 	def close(cls, pid):
@@ -10242,12 +10253,23 @@ class VOIDlang:
 		return cls.file_exists(path)
 
 	@classmethod
-	def file_remove(cls, path: str, trash: bool = False):
-		pass
+	def is_executable(cls, path: str) -> bool:
+		if not cls.file_exists(path): return False
+		if cls.os_type == 'windows':
+			return cls.path_extension(path).lower() in ('exe', 'com', 'bat', 'cmd', 'ps1', 'msc', 'vbs')
+		return os.access(path, os.X_OK)
 
 	@classmethod
-	def file_trash(cls, path: str, trash: bool = False):
-		cls.file_remove(path, trash)
+	def file_remove(cls, path: str, trash: bool = False):
+		path = cls.path(path)
+		if not cls.is_file(path): return
+		if trash:
+			pass
+		os.remove(path)
+
+	@classmethod
+	def file_trash(cls, path: str):
+		cls.file_remove(path)
 
 	@classmethod
 	def file_copy(cls, source: str, destination: str = None):
@@ -10337,7 +10359,26 @@ class VOIDlang:
 	def dir(cls, path: str = None):
 		if not path:
 			path = cls.get('app.path')
-		return os.listdir(path)
+		try:
+			return os.listdir(path)
+		except:
+			return []
+
+	@classmethod
+	def dir_file(cls, path: str = None, extension = None):
+		path = cls.path(path) if path else cls.get('app.path')
+		if isinstance(extension, str):
+			extension = (extension)
+		if extension:
+			extension = (ext.lower() for ext in extension)
+		result = []
+		for name in cls.dir(path):
+			path_sub = cls.path(path, name)
+			if cls.is_file(path_sub):
+				ext = cls.path_extension(name).lower()
+				if not extension or ext in extension:
+					result.append({'file': name, 'path': path_sub, 'extension': ext})
+		return result
 
 	@classmethod
 	def dir_create(cls, path: str, recursive: bool = True):
@@ -10416,6 +10457,98 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def dir_magic(cls, path, name: str = None):
+		path_list = [[path, name]] if not isinstance(path, list) else path
+		processed_list = {}
+		try:
+			while True:
+				for param in path_list:
+					path = param[0]
+					if not cls.is_dir(path): continue
+					name = param[1]
+					id = f'{path}:{name}'
+					if not id in processed_list:
+						processed_list[id] = {}
+					processed = processed_list[id]
+					match name:
+						case 'run':
+							names = []
+							for file in cls.dir_file(path):
+								file_name = file['file']
+								names.append(file_name)
+								if file_name not in processed:
+									result = {}
+									if cls.is_executable(file['path']):
+										result = cls.open(file['path'])
+									else:
+										match file['extension']:
+											case 'py':
+												result = cls.open(f'python3 "{file["path"]}"')
+											case 'rb':
+												result = cls.open(f'ruby "{file["path"]}"')
+											case 'js':
+												result = cls.open(f'node "{file["path"]}"')
+									if 'pid' in result:
+										processed[file_name] = result['pid']
+							for file_name in set(processed.keys()):
+								if file_name not in names:
+									cls.close(processed[file_name])
+									del processed[file_name]
+						case 'move':
+							pass
+						case 'copy':
+							pass
+						case 'unique':
+							pass
+						case 'replace':
+							pass
+						case 'zip':
+							pass
+						case 'encrypt':
+							pass
+						case 'jpg':
+							for file in cls.dir_file(path, ('avif', 'webp', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico')):
+								file_from = file['path']
+								file_to = cls.path_strip(file_from) + '.jpg'
+								result = cls.open_wait(f'ffmpeg -i "{file_from}" -q:v 4 "{file_to}"')
+								cls.file_remove(file_from)
+						case 'webp':
+							for file in cls.dir_file(path, ('jpg', 'avif', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico')):
+								file_from = file['path']
+								file_to = cls.path_strip(file_from) + '.webp'
+								result = cls.open_wait(f'ffmpeg -i "{file_from}" -quality 85 -compression_level 6 "{file_to}"')
+								cls.file_remove(file_from)
+						case 'mp4':
+							pass
+						case 'gif':
+							pass
+						case 'webm':
+							pass
+						case 'mp3':
+							pass
+						case 'action':
+							pass
+						case _:
+							pass
+				cls.wait(1)
+		except KeyboardInterrupt:
+			pass
+		except Exception as e:
+			cls.error('dir.magic', e)
+
+	@classmethod
+	def dir_magic_run(cls, path):
+		cls.dir_magic(path, 'run')
+
+	@classmethod
+	def dir_magic_jpg(cls, path):
+		cls.dir_magic(path, 'jpg')
+
+	@classmethod
+	def dir_magic_webp(cls, path):
+		cls.dir_magic(path, 'webp')
+
+	@classmethod
 	def drive(cls, path: str = None):
 		pass
 
@@ -10483,9 +10616,13 @@ class VOIDlang:
 			if isinstance(path[0], str):
 				path = str(path[0])
 				if cls.delimiter == '/' and len(path) > 0 and path[0] != '/':
-					return cls.os_path + '/' + path
+					if path.startswith('./') or path.startswith('.\\'):
+						path = path[2:]
+					return (cls.os_path + '/' + path) if len(path) else cls.os_path
 				if cls.delimiter == '\\' and len(path) > 1 and path[1] != ':':
-					return cls.os_path + '\\' + path
+					if path.startswith('./') or path.startswith('.\\'):
+						path = path[2:]
+					return (cls.os_path + '\\' + path) if len(path) else cls.os_path
 				return path
 			else:
 				path = [*path[0]]
@@ -11456,9 +11593,12 @@ class VOIDlang:
 			cache = cls.get('cache', False, param)
 			compression = cls.get('compression', False, param)
 			path = cls.get('path', None, param)
+			if name is None and cls.is_path(path):
+				name = 'file'
 			handler = cls.get('handler', None, param)
 			firewall = cls.get('firewall', None, param)
 			analytics = cls.get('analytics', None, param)
+			close = bool(cls.get('close', True, param))
 			if ssl and not (isinstance(ssl, dict) and 'certificate' in ssl and 'key' in ssl):
 				ssl = None
 			if not port:
@@ -11476,6 +11616,7 @@ class VOIDlang:
 			handler = None
 			firewall = None
 			analytics = None
+			close = True
 		else:
 			return
 		cls.os_limit(limit)
@@ -11520,7 +11661,8 @@ class VOIDlang:
 						'handler': handler,
 						'compression': compression,
 						'cache': cache,
-						'page': page
+						'page': page,
+						'close': close
 					})
 				else:
 					path = path or cls.os_path
@@ -11534,7 +11676,8 @@ class VOIDlang:
 							'path': path,
 							'compression': compression,
 							'cache': cache,
-							'page': page
+							'page': page,
+							'close': close
 						})
 					elif len(page) > 0:
 						cls.cloud_server({
@@ -11545,7 +11688,8 @@ class VOIDlang:
 							'cloud': 'web',
 							'compression': compression,
 							'cache': cache,
-							'page': page
+							'page': page,
+							'close': close
 						})						
 			case 'api':
 				if isinstance(param, dict):
@@ -11560,7 +11704,8 @@ class VOIDlang:
 						'handler': handler,
 						'compression': compression,
 						'cache': cache,
-						'response': response
+						'response': response,
+						'close': close
 					})
 				elif len(response) > 0:
 					cls.cloud_server({
@@ -11571,7 +11716,8 @@ class VOIDlang:
 						'cloud': 'api',
 						'compression': compression,
 						'cache': cache,
-						'response': response
+						'response': response,
+						'close': close
 					})
 			case 'file':
 				if cls.is_dir(path):
@@ -11581,7 +11727,8 @@ class VOIDlang:
 						'domain': domain,
 						'ssl': ssl,
 						'cloud': 'dir',
-						'path': path
+						'path': path,
+						'close': close
 					})
 				elif cls.is_file(path):
 					cls.cloud_server({
@@ -11590,7 +11737,8 @@ class VOIDlang:
 						'domain': domain,
 						'ssl': ssl,
 						'cloud': 'file',
-						'path': path
+						'path': path,
+						'close': close
 					})
 			case 'socket':
 				pass
@@ -11783,12 +11931,10 @@ class VOIDlang:
 					cls.error('cloud.handle.header.read', e)
 					break
 				if not header_data:
-					writer.close()
-					return
+					break
 				if len(header_data) > 65536:
 					writer.write(b'HTTP/1.1 431 Request Header Fields Too Large\r\n\r\n')
-					writer.close()
-					return
+					break
 				header = header_data.decode('utf-8', errors='ignore')
 				header_lines = header.split('\r\n')
 				request = {
@@ -11839,8 +11985,7 @@ class VOIDlang:
 							}
 				if server_port == 80 and ssl_redirect:
 					writer.write(f"HTTP/1.1 302 Found Redirection\r\nLocation: https://{domain}{request['path']}\r\nConnection: close\r\n\r\n".encode())
-					writer.close()
-					return
+					break
 				response = cls.cloud_handler(param, request)
 				if type(response) is not bytes:
 					connection = b'keep-alive' if request['alive'] else b'close'
@@ -11907,7 +12052,7 @@ class VOIDlang:
 						elif format in format_text:
 							content_type = b'text/plain; charset=utf-8'
 						else:
-							content_type = cls.get('cloud.mime.' + format, 'application/octet-stream').encode()	
+							content_type = cls.get('cloud.mime.' + format, 'application/octet-stream').encode()
 						if 'range' in request:
 							code = b'206 Partial Content'
 							content_start = request['range']['start']
@@ -11938,29 +12083,41 @@ class VOIDlang:
 										file.seek(content_start)
 										remaining = content_end + 1 - content_start
 										while remaining > 0:
-											chunk_size = min(65536, remaining)
+											chunk_size = min(262144, remaining)
 											chunk = file.read(chunk_size)
-											if not chunk:
+											if not chunk or writer.is_closing():
 												break
-											transport.write(chunk)
-											await writer.drain()
 											remaining -= len(chunk)
+											transport.write(chunk)
+											if transport.get_write_buffer_size() > 524288:
+												try:
+													await asyncio.wait_for(writer.drain(), timeout=15.0)
+												except asyncio.TimeoutError:
+													break
+											else:
+												await asyncio.sleep(0)
 									else:
 										while True:
-											chunk = file.read(65536)
-											if not chunk:
+											chunk = file.read(262144)
+											if not chunk or writer.is_closing():
 												break
 											transport.write(chunk)
-											await writer.drain()
+											if transport.get_write_buffer_size() > 524288:
+												try:
+													await asyncio.wait_for(writer.drain(), timeout=15.0)
+												except asyncio.TimeoutError:
+													break
+											else:
+												await asyncio.sleep(0)
 							except (ConnectionResetError, ConnectionAbortedError) as e:
-								pass
+								break
 							except OSError as e:
-								if e.errno in (10053, 10054):
-									pass
-								else:
+								if e.errno not in (10053, 10054):
 									cls.error('cloud.handle.file.win', e)
+								break
 							except Exception as e:
 								cls.error('cloud.handle.file.win', e)
+								break
 						else:
 							file = open(path, 'rb')
 							try:
@@ -11972,14 +12129,14 @@ class VOIDlang:
 									await asyncio.get_event_loop().sendfile(transport, file)
 								await writer.drain()
 							except (ConnectionResetError, ConnectionAbortedError) as e:
-								pass
+								break
 							except OSError as e:
-								if e.errno in (10053, 10054):
-									pass
-								else:
+								if e.errno not in (10053, 10054):
 									cls.error('cloud.handle.file', e)
+								break
 							except Exception as e:
 								cls.error('cloud.handle.file', e)
+								break
 							finally:
 								file.close()
 					else:
@@ -12028,26 +12185,55 @@ class VOIDlang:
 			sockets.append(('main' if not ssl else 'https', socket_main))
 			processes = []
 			address_list = cls.ip_local() if param['address'] == '0.0.0.0' else [param['address']]
-			for index, address in enumerate(address_list):
-				port = '' if (not ssl and param['port'] == 80) or (ssl and param['port'] == 443) else f':{port}'
-				url = f"http{'s' if ssl else ''}://{address}{port}"
+			width = cls.terminal().get('width')
+			gap = 4
+			qr_blocks, current_row, row_width = [], [], 0
+			for addr in address_list:
+				port = '' if (not ssl and param['port'] == 80) or (ssl and param['port'] == 443) else f':{param["port"]}'
+				url = f"http{'s' if ssl else ''}://{addr}{port}"
 				qr = cls.qr(url)
-				center = {'align': 'center', 'length': qr['size']}
-				if index == 0:
+				lines = [cls.text(url, {'align': 'center', 'length': qr['size']})] + qr['text'].split('\n')
+				qr_blocks.append((lines, max(len(l) for l in lines)))
+			def print_row(row):
+				for index in range(max(len(block[0]) for block in row)):
+					print((' ' * gap).join(block[0][index].ljust(block[1]) if index < len(block[0]) else ' ' * block[1] for block in row))
+			rows = []
+			for block in qr_blocks:
+				if row_width + block[1] + (gap if current_row else 0) > width and current_row:
+					rows.append(current_row)
+					current_row, row_width = [], 0
+				current_row.append(block)
+				row_width += block[1] + (gap if len(current_row) > 1 else 0)
+			if current_row:
+				rows.append(current_row)
+			close = param.get('close', True)
+			if rows:
+				first_row_width = sum(block[1] for block in rows[0]) + gap * (len(rows[0]) - 1)
+				format = {'align': 'center', 'length': first_row_width}
+				print(f"\n{cls.text('V O I D cloud', format)}\n")
+				for row in rows:
+					print_row(row)
 					print()
-					print(cls.text('V O I D cloud', center))
-				print(cls.text(url, center))
-				print(qr['text'])
-				if index < len(address_list) - 1:
-					print()
+				if close:
+					print(cls.text('ENTER to close', format))
 			for _ in range(workers_number):
 				process = multiprocessing.Process(target=cls.cloud_worker, args=(cls, sockets, param))
 				process.start()
 				processes.append(process)
-			try:
-				for process in processes: process.join()
-			except KeyboardInterrupt:
-				for process in processes: process.terminate()
+			if close:
+				try:
+					input()
+				except (KeyboardInterrupt, Exception):
+					pass
+				finally:
+					for process in processes: 
+						process.terminate()
+						process.join()
+			else:
+				try:
+					for process in processes: process.join()
+				except KeyboardInterrupt:
+					for process in processes: process.terminate()
 		except Exception as e: cls.error('cloud.server', e)
 
 	@staticmethod
@@ -12381,6 +12567,17 @@ class VOIDlang:
 		pass
 
 	@classmethod
+	def terminal(cls):
+		try:
+			size = os.get_terminal_size()
+			return {
+				'width': size.columns,
+				'height': size.lines
+			}
+		except OSError:
+			return {}
+
+	@classmethod
 	def clear(cls):
 		pass
 
@@ -12454,7 +12651,7 @@ class VOIDlang:
 		socket = cls.module('socket')
 		hostname = socket.gethostname()
 		addresses = socket.getaddrinfo(hostname, None)
-		ipv4 = list(set(addr[4][0] for addr in addresses if addr[0] == socket.AF_INET and addr[4][0] != '127.0.0.1'))
+		ipv4 = sorted(set(addr[4][0] for addr in addresses if addr[0] == socket.AF_INET and addr[4][0] != '127.0.0.1'))
 		return ipv4
 
 	@classmethod
