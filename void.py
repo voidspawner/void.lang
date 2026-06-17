@@ -8669,7 +8669,7 @@ class VOIDlang:
 			case 'c':
 				if cls.is_file(value):
 					path = value
-					name = cls.path_name(path)
+					name = cls.path_subname(path)
 					extension = cls.path_extension(path).lower()
 					match extension:
 						case 'c':
@@ -8763,12 +8763,16 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def strip_start(cls):
-		pass
+	def strip_start(cls, text: str, start: str = None):
+		if start is None or len(start) == 1:
+			return text.rstrip(start)
+		return text[len(start):] if text.startswith(start) else text
 
 	@classmethod
-	def strip_end(cls):
-		pass
+	def strip_end(cls, text: str, end: str = None):
+		if end is None or len(end) == 1:
+			return text.lstrip(end)
+		return text[len(end):] if text.endswith(end) else text
 
 	@classmethod	
 	def replace(cls, text: str, search, replace = None):
@@ -10281,7 +10285,11 @@ class VOIDlang:
 
 	@classmethod
 	def file_rename(cls, path: str, name: str = None):
-		pass
+		if not cls.is_file(path) or not name: return
+		try:
+			os.rename(path, cls.path(cls.path_dir(path), name))
+		except:
+			pass
 
 	@classmethod
 	def file_info(cls, path: str):
@@ -10329,19 +10337,88 @@ class VOIDlang:
 
 	@classmethod
 	def file_gzip(cls, source: str, destination: str = None, compression = None):
+		if not cls.is_path(source): return
+		shutil = cls.module('shutil')
+		gzip = cls.module('gzip')
+		tar = cls.module('tarfile')
+		if compression in ['best', None]:
+			compression = 9
+		elif compression == 'fast':
+			compression = 1
+		else:
+			try:
+				compression = max(0, min(9, int(compression)))
+			except:
+				compression = 9
+		if cls.is_file(source):
+			if not destination:
+				destination = f'{source}.gz'
+			with open(source, 'rb') as file_source:
+				with gzip.open(destination, 'wb', compresslevel=compression) as file_destination:
+					shutil.copyfileobj(file_source, file_destination)
+		elif cls.is_dir(source):
+			if not destination:
+				destination = f'{source}.tar.gz'
+			with tar.open(destination, 'w:gz', compresslevel=compression) as file:
+				file.add(source, arcname=cls.path_name(source))
+
+	@classmethod
+	def file_zip(cls, source: str, destination: str = None, compression = None):
+		source = cls.path(source)
+		if not cls.is_path(source): return
+		zip = cls.module('zipfile')
+		if compression in ['best', None]:
+			compression = 9
+		elif compression == 'fast':
+			compression = 1
+		else:
+			try:
+				compression = max(0, min(9, int(compression)))
+			except:
+				compression = 9
+		if destination is None:
+			destination = f'{source}.zip'
+		with zip.ZipFile(destination, 'w', zip.ZIP_DEFLATED, compresslevel=compression) as file:
+			if cls.is_file(source):
+				file.write(source, arcname=cls.path_name(source))
+			elif cls.is_dir(source):
+				for subpath in cls.dir(source, True):
+					if cls.is_file(subpath):
+						file.write(subpath, arcname=cls.strip_start(subpath, cls.path_strip_dir(source))[1:])
+
+	@classmethod
+	def file_void(cls, source: str, destination: str = None, compression = None, key: str = None):
 		pass
 
 	@classmethod
-	def file_zip(cls, source, destination: str = None, compression = None):
-		pass
-
-	@classmethod
-	def file_void(cls, source, destination: str = None, compression = None, key: str = None):
-		pass
-
-	@classmethod
-	def file_extract(cls, source, destination: str = None):
-		pass
+	def file_extract(cls, source: str, destination: str = None):
+		source = cls.path(source)
+		if not cls.is_file(source): return
+		extension = cls.path_extension(source).lower() if not source.endswith('.tar.gz') else 'tgz'
+		match extension:
+			case 'zip':
+				zip = cls.module('zipfile')
+				destination = cls.path(destination if destination else cls.path_dir(source))
+				cls.dir_create(cls.path_dir(destination))
+				with zip.ZipFile(source, 'r') as file:
+					file.extractall(destination)
+			case 'gz':
+				shutil = cls.module('shutil')
+				gzip = cls.module('gzip')
+				if not destination:
+					destination = cls.path_strip(source)
+				else:
+					cls.dir_create(cls.path_dir(destination))
+				if cls.path_extension(destination, 'gz'):
+					destination = cls.path_strip(destination)
+				with gzip.open(source, 'rb') as file_source:
+					with open(destination, 'wb') as file_destination:
+						shutil.copyfileobj(file_source, file_destination)
+			case 'tar' | 'tgz':
+				tar = cls.module('tarfile')
+				pass
+			case 'void':
+				pass
 
 	@classmethod
 	def link(cls, source: str, destination: str):
@@ -10356,10 +10433,16 @@ class VOIDlang:
 		return cls.link_exists(path)
 
 	@classmethod
-	def dir(cls, path: str = None):
+	def dir(cls, path: str = None, subpath: bool = False):
 		if not path:
 			path = cls.get('app.path')
 		try:
+			if subpath:
+				result = []
+				for path, _, names in os.walk(path):
+					for name in names:
+						result.append(os.path.join(path, name))						
+				return result
 			return os.listdir(path)
 		except:
 			return []
@@ -10390,75 +10473,86 @@ class VOIDlang:
 
 	@classmethod
 	def is_dir(cls, path: str) -> bool:
-		return cls.dir_exists(path)
+		return os.path.isdir(path)
 
 	@classmethod
 	def dir_remove(cls, path: str, trash: bool = False):
-		pass
+		if not cls.is_dir(path): return
 
 	@classmethod
 	def dir_trash(cls, path: str):
-		cls.dir_remove(path) 
+		cls.dir_remove(path, True)
 
 	@classmethod
 	def dir_clear(cls, path: str):
-		pass
+		if not cls.is_dir(path): return
 
 	@classmethod
 	def dir_copy(cls, source: str, destination: str = None):
+		if not cls.is_dir(source): return
 		pass
 
 	@classmethod
 	def dir_move(cls, source: str, destination: str = None):
+		if not cls.is_dir(source): return
 		pass
 
 	@classmethod
 	def dir_rename(cls, path: str, name: str = None):
+		if not cls.is_dir(path): return
 		pass
 
 	@classmethod
 	def dir_info(cls, path: str):
+		if not cls.is_dir(path): return
 		pass
 
 	@classmethod
 	def dir_size(cls, path: str):
+		if not cls.is_dir(path): return
 		return os.path.getsize(path)
 
 	@classmethod
 	def dir_time(cls, path: str):
+		if not cls.is_dir(path): return
 		return os.path.getmtime(path)
 
 	@classmethod
 	def dir_owner(cls, path: str):
-		pass
+		if not cls.is_dir(path): return
+		return cls.file_owner(path)
 
 	@classmethod
 	def dir_permission(cls, path: str):
-		pass
+		if not cls.is_dir(path): return
+		return cls.file_permission(path)
 
 	@classmethod
 	def dir_sha256(cls, path: str, content: bool = True, time: bool = True, size: bool = True, permission: bool = True):
-		pass
+		if not cls.is_dir(path): return
 
 	@classmethod
 	def dir_sha512(cls, path: str, content: bool = True, time: bool = True, size: bool = True, permission: bool = True):
-		pass
+		if not cls.is_dir(path): return
 
 	@classmethod
 	def dir_gzip(cls, source: str, destination: str = None, compression = None):
-		pass
+		if not cls.is_dir(source): return
+		cls.file_gzip(source, destination, compression)
 
 	@classmethod
-	def dir_zip(cls, source, destination: str = None, compression = None):
-		pass
+	def dir_zip(cls, source: str, destination: str = None, compression = None):
+		if not cls.is_dir(source): return
+		cls.file_zip(source, destination, compression)
 
 	@classmethod
-	def dir_void(cls, source, destination: str = None, compression = None, key: str = None):
-		pass
+	def dir_void(cls, source: str, destination: str = None, compression = None, key: str = None):
+		if not cls.is_dir(source): return
+		cls.file_void(source, destination, compression, key)
 
 	@classmethod
-	def dir_magic(cls, path, name: str = None):
-		path_list = [[path, name]] if not isinstance(path, list) else path
+	def dir_magic(cls, path, name: str = None, param = None):
+		path_list = [[path, name, param]] if not isinstance(path, list) else path
 		processed_list = {}
 		try:
 			while True:
@@ -10466,6 +10560,7 @@ class VOIDlang:
 					path = param[0]
 					if not cls.is_dir(path): continue
 					name = param[1]
+					param = param[2] if len(param) > 2 else None
 					id = f'{path}:{name}'
 					if not id in processed_list:
 						processed_list[id] = {}
@@ -10494,40 +10589,113 @@ class VOIDlang:
 								if file_name not in names:
 									cls.close(processed[file_name])
 									del processed[file_name]
-						case 'move':
-							pass
-						case 'copy':
-							pass
-						case 'unique':
-							pass
-						case 'replace':
-							pass
-						case 'zip':
-							pass
-						case 'encrypt':
-							pass
 						case 'jpg':
 							for file in cls.dir_file(path, ('avif', 'webp', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico')):
 								file_from = file['path']
 								file_to = cls.path_strip(file_from) + '.jpg'
-								result = cls.open_wait(f'ffmpeg -i "{file_from}" -q:v 4 "{file_to}"')
+								quality = round(31 - (param * 30) / 100) if isinstance(param, int) else 4
+								result = cls.open_wait(f'ffmpeg -i "{file_from}" -q:v {quality} -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
 						case 'webp':
 							for file in cls.dir_file(path, ('jpg', 'avif', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico')):
 								file_from = file['path']
 								file_to = cls.path_strip(file_from) + '.webp'
-								result = cls.open_wait(f'ffmpeg -i "{file_from}" -quality 85 -compression_level 6 "{file_to}"')
+								quality = int(param or 85)
+								result = cls.open_wait(f'ffmpeg -i "{file_from}" -quality {quality} -compression_level 6 -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
-						case 'mp4':
-							pass
 						case 'gif':
-							pass
+							for file in cls.dir_file(path):
+								file_from = file['path']
+								file_to = cls.path_strip(file_from) + '.gif'
+								extension = file['extension']
+								if extension in ('jpg', 'webp', 'avif', 'png', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico'):
+									result = cls.open_wait(f'ffmpeg -i "{file_from}" -vf "split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -threads 0 "{file_to}"')
+									cls.file_remove(file_from)
+								elif extension in ('mp4', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob'):
+									if not isinstance(param, dict): param = {}
+									fps = param.get('fps', 25)
+									scale = param.get('scale', 720)
+									result = cls.open_wait(f'ffmpeg -i "{file_from}" -vf "fps={fps},scale={scale}:-1:flags=lanczos,split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -threads 0 "{file_to}"')
+									cls.file_remove(file_from)
+						case 'mp4':
+							for file in cls.dir_file(path, ('mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
+								file_from = file['path']
+								file_to = cls.path_strip(file_from) + '.mp4'
+								result = cls.open_wait(f'ffmpeg -i "{file_from}" -threads 0 "{file_to}"')
+								cls.file_remove(file_from)
 						case 'webm':
-							pass
+							for file in cls.dir_file(path, ('mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
+								file_from = file['path']
+								file_to = cls.path_strip(file_from) + '.webm'
+								result = cls.open_wait(f'ffmpeg -i "{file_from}" -c:v libsvtav1 -preset 13 -c:a libopus -threads 0 "{file_to}"')
+								cls.file_remove(file_from)
 						case 'mp3':
-							pass
+							for file in cls.dir_file(path, ('wav', 'ac3', 'aac', 'flac', 'wma', 'ogg', 'oga', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
+								file_from = file['path']
+								file_to = cls.path_strip(file_from) + '.mp3'
+								result = cls.open_wait(f'ffmpeg -i "{file_from}" -vn -ar 48000 -q:a 0 -threads 0 "{file_to}"')
+								cls.file_remove(file_from)
+						case 'ogg':
+							for file in cls.dir_file(path, ('mp3', 'wav', 'ac3', 'aac', 'flac', 'wma', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
+								file_from = file['path']
+								file_to = cls.path_strip(file_from) + '.ogg'
+								result = cls.open_wait(f'ffmpeg -i "{file_from}" -vn -c:a libopus -b:a 510k -threads 0 "{file_to}"')
+								cls.file_remove(file_from)
+						case 'unique':
+							names = []
+							for file in cls.dir_file(path):
+								if file['file'] in processed:
+									names.append(file['file'])
+									continue
+								extension = cls.path_extension(file['file'])
+								length = int(param or 8)
+								name = f"{cls.path_strip(file['file'])}_{cls.hash(length)}.{extension}" if extension else f"{file['file']}_{cls.hash(length)}"
+								cls.file_rename(file['path'], name)
+								processed[name] = True
+								names.append(name)
+							for name in set(processed.keys()):
+								if name not in names:
+									del processed[name]
+						case 'zip':
+							key = param
+							if not key: continue
+							names = []
+							for name in cls.dir(path):
+								names.append(name)
+								if name in processed: continue
+								source = cls.path(path, name)
+								cls.file_zip(source, key)
+								cls.file_remove(source)
+								processed[cls.path_subname(name) + '.zip'] = True
+							for name in set(processed.keys()):
+								if name not in names:
+									del processed[name]
+						case 'encrypt':
+							key = param
+							if not key: continue
+							names = []
+							for name in cls.dir(path):
+								names.append(name)
+								if name in processed: continue
+								source = cls.path(path, name)
+								cls.file_void(source, key)
+								cls.file_remove(source)
+								processed[cls.path_subname(name) + '.void'] = True
+							for name in set(processed.keys()):
+								if name not in names:
+									del processed[name]
 						case 'action':
-							pass
+							action = param
+							if not action: continue
+							names = []
+							for name in cls.dir(path):
+								names.append(name)
+								if name in processed: continue
+								cls.action([[action, {'path': path, 'name': name, 'type': 'file' if cls.is_file(cls.path(path, name)) else 'dir'}]])
+								processed[name] = True
+							for name in set(processed.keys()):
+								if name not in names:
+									del processed[name]
 						case _:
 							pass
 				cls.wait(1)
@@ -10541,12 +10709,44 @@ class VOIDlang:
 		cls.dir_magic(path, 'run')
 
 	@classmethod
-	def dir_magic_jpg(cls, path):
-		cls.dir_magic(path, 'jpg')
+	def dir_magic_jpg(cls, path, param = None):
+		cls.dir_magic(path, 'jpg', param)
 
 	@classmethod
-	def dir_magic_webp(cls, path):
-		cls.dir_magic(path, 'webp')
+	def dir_magic_webp(cls, path, param = None):
+		cls.dir_magic(path, 'webp', param)
+
+	@classmethod
+	def dir_magic_gif(cls, path, param = None):
+		cls.dir_magic(path, 'gif', param)
+
+	@classmethod
+	def dir_magic_mp4(cls, path, param = None):
+		cls.dir_magic(path, 'mp4', param)
+
+	@classmethod
+	def dir_magic_webm(cls, path, param = None):
+		cls.dir_magic(path, 'webm', param)
+
+	@classmethod
+	def dir_magic_mp3(cls, path, param = None):
+		cls.dir_magic(path, 'mp3', param)
+
+	@classmethod
+	def dir_magic_unique(cls, path, length: int = 8):
+		cls.dir_magic(path, 'unique', length)
+
+	@classmethod
+	def dir_magic_zip(cls, path, param = None):
+		cls.dir_magic(path, 'zip', param)
+
+	@classmethod
+	def dir_magic_encrypt(cls, path, key: str):
+		cls.dir_magic(path, 'encrypt', key)
+
+	@classmethod
+	def dir_magic_action(cls, path, action):
+		cls.dir_magic(path, 'action', action)
 
 	@classmethod
 	def drive(cls, path: str = None):
@@ -10628,7 +10828,7 @@ class VOIDlang:
 				path = [*path[0]]
 		elif len(path) == 2:
 			match path[1]:
-				case 'file' | 'end':
+				case 'name' | 'end':
 					path = str(path[0])
 					index = path.rfind('/')
 					if index >= 0:
@@ -10636,7 +10836,8 @@ class VOIDlang:
 					index = path.rfind('\\')
 					if index >= 0:
 						return path[index+1:]
-				case 'name':
+					return path
+				case 'subname':
 					path = str(path[0])
 					index = path.rfind('/')
 					if index >= 0:
@@ -10729,12 +10930,12 @@ class VOIDlang:
 		except: return
 
 	@classmethod
-	def path_file(cls, path: str):
-		return cls.path(path, 'file')
-
-	@classmethod
 	def path_name(cls, path: str):
 		return cls.path(path, 'name')
+
+	@classmethod
+	def path_subname(cls, path: str):
+		return cls.path(path, 'subname')
 
 	@classmethod
 	def path_extension(cls, path: str, *extension):
