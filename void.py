@@ -9349,7 +9349,7 @@ class VOIDlang:
 			return False
 
 	@classmethod
-	def hash(cls, data = 32, *param):
+	def hash(cls, data = None, *param):
 		if data is None:
 			data = 32
 		if type(data) is int:
@@ -10394,7 +10394,8 @@ class VOIDlang:
 	def file_extract(cls, source: str, destination: str = None):
 		source = cls.path(source)
 		if not cls.is_file(source): return
-		extension = cls.path_extension(source).lower() if not source.endswith('.tar.gz') else 'tgz'
+		source_lower = source.lower()
+		extension = cls.path_extension(source_lower) if not source_lower.endswith('.tar.gz') else 'tgz'
 		match extension:
 			case 'zip':
 				zip = cls.module('zipfile')
@@ -10409,14 +10410,18 @@ class VOIDlang:
 					destination = cls.path_strip(source)
 				else:
 					cls.dir_create(cls.path_dir(destination))
-				if cls.path_extension(destination, 'gz'):
-					destination = cls.path_strip(destination)
 				with gzip.open(source, 'rb') as file_source:
 					with open(destination, 'wb') as file_destination:
 						shutil.copyfileobj(file_source, file_destination)
 			case 'tar' | 'tgz':
 				tar = cls.module('tarfile')
-				pass
+				if not destination:
+					destination = cls.path_dir(source)
+				else:
+					cls.dir_create(destination)
+				cls.dir_create(cls.path_dir(destination))
+				with tar.open(source, 'r:*') as file:
+					file.extractall(destination, filter='data')
 			case 'void':
 				pass
 
@@ -10465,7 +10470,13 @@ class VOIDlang:
 
 	@classmethod
 	def dir_create(cls, path: str, recursive: bool = True):
-		pass
+		if not path: return
+		if recursive:
+			os.makedirs(path, exist_ok=True)
+		else:
+			try:
+				os.mkdir(path)
+			except FileExistsError: pass
 
 	@classmethod
 	def dir_exists(cls, path: str) -> bool:
@@ -12982,6 +12993,5 @@ class VOIDlang:
 	@classmethod
 	def game_vn(cls):
 		return cls.game()
-
 
 VOIDlang.run()
