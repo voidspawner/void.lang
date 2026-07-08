@@ -4,16 +4,13 @@ import re
 import sys
 import time
 import math
-import signal
-import struct
-import string
+import locale
 import random
 import hashlib
+import warnings
 import platform
 import datetime
-import calendar
 import importlib
-import threading
 import traceback
 import subprocess
 
@@ -7766,30 +7763,41 @@ class VOIDlang:
 			cls.cache_module[name] = module
 			return module
 		except ImportError:
+			if getattr(sys, 'frozen', False):
+				cls.xx('module', 'module not packed', name)
 			if name_install is None:
 				name_install = name
+			break_packages =  ['--break-system-packages'] if cls.os_type != 'windows' else []
 			candidates = [
-				[sys.executable, '-m', 'pip', 'install', name_install] + (['--break-system-packages'] if sys.platform != 'win32' else []),
-				['pip3', 'install', name_install],
-				['pip', 'install', name_install]
+				[cls.executable, '-m', 'pip', 'install', name_install] + break_packages,
+				['pip3', 'install', name_install] + break_packages,
+				['pip', 'install', name_install] + break_packages
 			]
-			for cmd in candidates:
-				try:
-					result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-					if result.returncode == 0:
-						break
-				except Exception:
-					pass
+			for command in candidates:
+				if cls.open_wait(command)['success']: break
 			else:
 				cls.xx('module', 'not installed', name)
-			os.execv(sys.executable, [sys.executable] + sys.argv)
+			cls.open([cls.executable] + cls.arguments, None)
 			cls.exit()
 
 
   # run
 
 	@classmethod
-	def run(cls):
+	def run(cls, action = None):
+		if action:
+			if not isinstance(action, list):
+				action = [action]
+			if len(cls.arguments) > 1:
+				for func in action:
+					if func.__name__ == cls.arguments[1]:
+						func(*cls.arguments[2:])
+						return
+			cls.print({
+				'usage': f'{cls.path_name(cls.executable)} {cls.arguments[0]} <action>',
+				'action': [func.__name__ for func in action]
+				})
+			return
 		#VOIDlang.data = cls.void_decode(cls.data)
 		cls.data = {
 			'about': {
@@ -7831,7 +7839,15 @@ class VOIDlang:
 					},
 					'path': {
 						'ffmpeg': None,
-						'yt-dlp': None
+						'yt-dlp': None,
+						'ai': {
+							'omnisr': 'epoch994_OmniSR.pth',
+							'omnisr intel': 'epoch994_OmniSR.xml',
+							'stablediffusion': '',
+							'deepseek': '',
+							'qwen': '',
+							'yolo': ''
+						}
 					}
 				},
 				'ui': 'cli',
@@ -7845,6 +7861,21 @@ class VOIDlang:
 				'web': {
 					'compression': {
 						'min': 512
+					}
+				}
+			},
+			'ai': {
+				'model': {
+					'gpu': {},
+					'cpu': {
+						'epoch': {
+							'any': 'epoch994_OmniSR.pth',
+							'intel': 'epoch994_OmniSR.xml'
+						},
+						'fbcnn': {
+							'any': 'fbcnn_color.pth',
+							'intel': 'fbcnn_color.xml'		
+						}
 					}
 				}
 			},
@@ -7866,17 +7897,17 @@ class VOIDlang:
 		cls.cache_indent = {}
 		cls.cache_escape = {}
 		cls.cache_unescape = {}
-		cls.cache_symbol = {
-			'hex': set('0123456789abcdefABCDEF')
-			}
-		cls.cache_void_muliline_length = 100
-		file = sys.argv[0]
+		cls.cache_parse = {}
+		cls.executable = sys.executable
+		cls.arguments = sys.argv
+		file = cls.arguments[0]
 		path = os.getcwd()
-		param = sys.argv[1:]
+		param = cls.arguments[1:]
 		param = [cls.void_decode(text) for text in param]
 		cls.set('app.file', file)
 		cls.set('app.path', path)
 		cls.set('app.param', param)
+		cls.set('app.executable', cls.executable)
 		cls.os_path = path
 		cls.os_script = os.path.abspath(__file__)
 		match platform.system():
@@ -7917,7 +7948,22 @@ class VOIDlang:
 		cls.set('app.os.type', os_type)
 		cls.set('app.os.delimiter.newline', cls.newline)
 		cls.set('app.os.delimiter.path', cls.delimiter)
-		cls.set('language', 'ru')
+		language_locale, language_encoding = locale.getlocale()
+		if language_locale:
+			lookup_key = language_locale.split('_')[0].lower()
+			locale_unix = locale.locale_alias.get(lookup_key, language_locale)
+			locale_clean = locale_unix.split('.')[0]
+			language_full = locale_clean.replace('_', '-')
+			language_short = locale_clean.split('_')[0]
+		else:
+			language_full = 'en-US'
+			language_short = 'en'
+		cls.set('language', language_short)
+		cls.set('app.os.language', {
+			'full': language_full,
+			'short': language_short,
+			'encoding': language_encoding
+			})
 		cls.random_reseed()
 		if __name__ == '__main__':
 			if len(param) > 0:
@@ -7970,6 +8016,10 @@ class VOIDlang:
 				result = cls.get('about')
 			if result not in ['', b'', None] and cls.get('app.ui') == 'cli':
 				cls.print(result)
+
+	@classmethod
+	def argument(cls, default: str = ''):
+		return cls.arguments[1] if len(cls.arguments) > 1 else default
 
 
   # value
@@ -8349,7 +8399,7 @@ class VOIDlang:
 	@classmethod
 	def is_hex(cls, data):
 		if isinstance(data, (str, bytes)):
-			return data.isalnum() and set(data).issubset(cls.cache_symbol['hex'])
+			return data.isalnum() and set(data).issubset(set('0123456789abcdefABCDEF'))
 		return False
 
 	@classmethod
@@ -8413,7 +8463,7 @@ class VOIDlang:
 			data = [('true' if value == True else ('false' if value == False else ('none' if value is None else value))) for value in data]
 			if len(data) == 1:
 				if isinstance(data[0], (list, dict)):
-					print(cls.json(data[0]))
+					print(cls.void(data[0], indent=2))
 				else:
 					print(*data)
 			else:
@@ -8475,6 +8525,12 @@ class VOIDlang:
 				except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
 					continue
 			return result
+		if wait == None:
+			if isinstance(command, str):
+				command = command.split()
+			if isinstance(command, list) and command:
+				os.execv(command[0], command)
+			return
 		if not isinstance(command, (str, list)):
 			command = str(command)
 		creation_flags = 0x08000000 if cls.os_type == 'windows' else 0
@@ -8485,7 +8541,8 @@ class VOIDlang:
 				result = {
 					'code': process.returncode,
 					'pid': process.pid,
-					'text': text
+					'text': text,
+					'success': process.returncode == 0
 				} | ({'error': error} if error else {})
 			else:
 				process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=creation_flags)
@@ -8582,7 +8639,7 @@ class VOIDlang:
 			code = 0
 		if len(data):
 			cls.print(*data)
-		exit(code)
+		sys.exit(code)
 
 	@classmethod
 	def xx(cls, *data):
@@ -8692,6 +8749,25 @@ class VOIDlang:
 		return cls.convert(value, name_from, name_to)
 
 	@classmethod
+	def convert_neuro_model(cls, path_from: str, path_to: str = None):
+		if not cls.is_file(path_from): return
+		if cls.path_extension(path_from, 'pth'):
+			if not path_to or cls.path_extension(path_to, 'xml'):
+				if not path_to:
+					path_to = cls.path_extension_replace(path_from, 'xml')
+				torch = cls.module('torch')
+				spandrel = cls.module('spandrel')
+				openvino = cls.module('openvino')
+				warnings.filterwarnings('ignore', category=torch.jit.TracerWarning)
+				loader = spandrel.ModelLoader(device='cpu')
+				spandrel_model = loader.load_from_file(path_from)
+				spandrel_model.eval()
+				pytorch_model = spandrel_model.model
+				example_input = torch.randn(1, 3, 256, 256)
+				openvino_model = openvino.convert_model(pytorch_model, example_input=example_input)
+				openvino.save_model(openvino_model, path_to)
+
+	@classmethod
 	def clipboard(cls, data = None):
 		pass
 
@@ -8708,9 +8784,57 @@ class VOIDlang:
 		return cls.chat(text, model, character, reference)
 
 	@classmethod
-	def say(cls, text: str, voice: str = None):
-		pass
+	def say(cls, text: str, engine: str = 'edge', voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
+		if translate:
+			text = cls.translate(text)
+		match engine:
+			case 'google':
+				gtts = cls.module('gtts')
+				tts = gtts.gTTS(text=text, lang=voice or cls.get('language'))
+				if path:
+					tts.save(path)
+				else:
+					tempfile = cls.module('tempfile')
+					with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as temp, tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as temp_speed:
+						file_original = temp.name
+						file_speed = temp_speed.name
+					try:
+						tts.save(file_original)
+						if speed != 1:
+							cls.open_wait(['ffmpeg', '-y', '-i', file_original, '-filter:a', f'atempo={speed}', file_speed])
+						cls.sound_play(file_speed) 
+					finally:
+						cls.file_remove(file_original)
+						cls.file_remove(file_speed)
+			case 'edge':
+				asyncio = cls.module('asyncio')
+				if not voice:
+					voice = 'ru-RU-DmitryNeural'
+				try:
+				    loop = asyncio.get_running_loop()
+				    asyncio.ensure_future(cls.say_edge(text, voice, path, speed))
+				except RuntimeError:
+					asyncio.run(cls.say_edge(text, voice, path, speed))
+			case 'siri':
+				pass
 
+	@classmethod
+	async def say_edge(cls, text: str, voice: str, path: str = None, speed: float = 1):
+		edge_tts = cls.module('edge_tts')
+		tempfile = cls.module('tempfile')
+		with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as temp:
+			temp_file = temp.name
+		try:
+			communicate = edge_tts.Communicate(text, voice, rate=f'{"+" if speed >= 1.0 else ""}{int((speed - 1.0) * 100)}%')
+			if path:
+				await communicate.save(path)
+			else:	
+				await communicate.save(temp_file)
+				cls.sound_play(temp_file)
+		finally:
+			if not path:
+				cls.file_remove(temp_file)
+			
 	@classmethod
 	def recognize(cls, data, text: str = None):
 		pass
@@ -8800,16 +8924,67 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def parse(cls):
-		pass
+	def parse(cls, text: str, template: str = None, multiple: bool = None):
+		if template:
+			if not template in cls.cache_parse:
+				processed = template
+				escaped = re.escape(processed)
+				escaped = escaped.replace(r'\(\(\)\)', r'.*?')
+				escaped = escaped.replace(r'\(\(number\)\)', r'(-?\d+(?:\.\d+)?)')
+				escaped = escaped.replace(r'\(\(letter\)\)', r'([^\W\d_])')
+				escaped = escaped.replace(r'\(\(word\)\)', r'([^\W\d_]+)')
+				escaped = re.sub(r'\\\(\\\((\w+)\\\)\\\)', lambda m: f'(?P<{m.group(1)}>.*?)', escaped)
+				cls.cache_parse[template] = re.compile(escaped, re.DOTALL | re.UNICODE)
+			compiled_regex = cls.cache_parse[template]
+			matches = list(compiled_regex.finditer(text))
+			if not matches:
+				return [] if multiple else None
+			names = list(compiled_regex.groupindex.keys())
+			if len(names) == 1:
+				return [match.group(names[0]) for match in matches] if len(matches) > 1 or multiple else matches[0].group(names[0])
+			elif len(names) > 1:
+				return [match.groupdict() for match in matches] if len(matches) > 1 or multiple else matches[0].groupdict()
+			return [] if multiple else None
+		else:
+			return [] if multiple else None
 
 	@classmethod
 	def part(cls):
 		pass
 
 	@classmethod
-	def split(cls):
-		pass
+	def split(cls, text, delimiter = None, accurate: bool = False):
+		if not text: return []
+		if delimiter is None:
+			return text.split()
+		if isinstance(delimiter, str):
+			return text.split(delimiter)
+		if isinstance(delimiter, int):
+			if not accurate:
+				return text.split(delimiter)
+			chunks = []
+			text = text.strip()
+			while len(text) > delimiter:
+				split_pos = -1
+				search_zone = text[:delimiter]
+				match = list(re.finditer(r'[.!?|;,]\s*', search_zone))
+				if match:
+					split_pos = match[-1].end()
+				if split_pos <= delimiter // 2:
+					space_match = list(re.finditer(r'\s+', search_zone))
+					if space_match:
+						split_pos = space_match[-1].end()
+				if split_pos <= 0:
+					split_pos = delimiter
+				chunks.append(text[:split_pos].strip())
+				text = text[split_pos:].strip()        
+			if text:
+				chunks.append(text)
+			return [chunk for chunk in chunks if chunk]
+
+	@classmethod
+	def split_accurate(cls, text, delimiter = None):
+		return cls.split(text, delimiter, True)
 
 	@classmethod
 	def join(cls):
@@ -8882,7 +9057,7 @@ class VOIDlang:
 				return parse.unquote(text)
 			case 'html.image':
 				parse = cls.module('urllib.parse')
-				return parse.unquote(text, safe="=/ '")
+				return parse.unquote(text)
 			case 'void.special' | 'void.text' | 'void.newline':
 				if not cls.cache_unescape:
 					cls.cache_unescape = {
@@ -8924,8 +9099,18 @@ class VOIDlang:
 		return cls.unescape(text, 'url')
 
 	@classmethod
-	def translate(cls):
-		pass
+	def translate(cls, text: str, language_to: str = None, language_from: str = None, engine: str = 'google'):
+		if not text: return None
+		try:
+			translator = cls.module('translators')
+			if len(text) > 5000:
+				result = []
+				for part in cls.split_accurate(text, 5000):
+					result.append(translator.translate_text(part, translator=engine, from_language=language_from or 'auto', to_language=language_to or cls.get('language')))
+				return ' '.join(result)
+			return translator.translate_text(text, translator=engine, from_language=language_from or 'auto', to_language=language_to or cls.get('language'))
+		except Exception as e:
+			cls.error('translate', e)
 
 	@classmethod
 	def check(cls):
@@ -9550,6 +9735,10 @@ class VOIDlang:
 		return cls.zstd(data, 'best')
 
 	@classmethod
+	def zstandard(cls, data):
+		return cls.zstd(data, 'best')
+
+	@classmethod
 	def zstd_decode(cls, data) -> bytes:
 		if not data: return
 		zstandard = cls.module('zstandard')
@@ -9558,6 +9747,10 @@ class VOIDlang:
 			return zstandard.ZstdDecompressor().decompress(data)
 		except Exception as e:
 			cls.error('zstd.decode', e)
+
+	@classmethod
+	def zstandard_decode(cls, data) -> bytes:
+		return cls.zstd(data)
 
 	@classmethod
 	def brotli(cls, data, compression = None):
@@ -9610,6 +9803,16 @@ class VOIDlang:
 					compression = 9
 			except:
 				compression = 9
+		if compression > 8:
+			filters = [
+				{
+					"id": lzma.FILTER_LZMA2,
+					"dict_size": 536_870_912,
+					"nice_len": 273,
+					"mf": lzma.MF_BT4
+				}
+			]
+			return lzma.compress(bytes(data), filters=filters)
 		return lzma.compress(bytes(data), preset=compression)
 
 	@classmethod
@@ -10096,6 +10299,9 @@ class VOIDlang:
 					with open(path, 'r', encoding='utf-8') as file:
 						return cls.ini_decode(file.read())
 				case _:
+					if format == 'ascii' or format.startswith('iso-') or format.startswith('utf-') or format.startswith('windows-') or format.startswith('mac-') or format.startswith('cp-') or format.startswith('koi8-') or format.startswith('gb'):
+						with open(path, 'r', encoding=format) as file:
+							return file.read()
 					if format in cls.get('app.format.text'):
 						with open(path, 'r', encoding='utf-8') as file:
 							return file.read()
@@ -10266,10 +10472,14 @@ class VOIDlang:
 	@classmethod
 	def file_remove(cls, path: str, trash: bool = False):
 		path = cls.path(path)
-		if not cls.is_file(path): return
-		if trash:
-			pass
-		os.remove(path)
+		if cls.is_file(path):
+			if trash:
+				pass
+			try:
+				os.remove(path)
+			except: return
+		if cls.is_dir(path):
+			cls.dir_remove(path, trash)
 
 	@classmethod
 	def file_trash(cls, path: str):
@@ -10377,7 +10587,7 @@ class VOIDlang:
 			except:
 				compression = 9
 		if destination is None:
-			destination = f'{source}.zip'
+			destination = f'{source if not cls.is_file(source) else cls.path_strip(source)}.zip'
 		with zip.ZipFile(destination, 'w', zip.ZIP_DEFLATED, compresslevel=compression) as file:
 			if cls.is_file(source):
 				file.write(source, arcname=cls.path_name(source))
@@ -10489,6 +10699,11 @@ class VOIDlang:
 	@classmethod
 	def dir_remove(cls, path: str, trash: bool = False):
 		if not cls.is_dir(path): return
+		shutil = cls.module('shutil')
+		try:
+			shutil.rmtree(path)
+		except:
+			pass
 
 	@classmethod
 	def dir_trash(cls, path: str):
@@ -10605,14 +10820,14 @@ class VOIDlang:
 								file_from = file['path']
 								file_to = cls.path_strip(file_from) + '.jpg'
 								quality = round(31 - (param * 30) / 100) if isinstance(param, int) else 4
-								result = cls.open_wait(f'ffmpeg -i "{file_from}" -q:v {quality} -threads 0 "{file_to}"')
+								cls.open_wait(f'ffmpeg -i "{file_from}" -q:v {quality} -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
 						case 'webp':
-							for file in cls.dir_file(path, ('jpg', 'avif', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico')):
+							for file in cls.dir_file(path, ('jpg', 'avif', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico', 'mp4', 'mpeg', 'mpg', 'avi', 'webm', 'mkv', 'mov', 'qt', 'vob')):
 								file_from = file['path']
 								file_to = cls.path_strip(file_from) + '.webp'
 								quality = int(param or 85)
-								result = cls.open_wait(f'ffmpeg -i "{file_from}" -quality {quality} -compression_level 6 -threads 0 "{file_to}"')
+								cls.open_wait(f'ffmpeg -i "{file_from}" -quality {quality} -compression_level 6 -loop 0 -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
 						case 'gif':
 							for file in cls.dir_file(path):
@@ -10620,37 +10835,37 @@ class VOIDlang:
 								file_to = cls.path_strip(file_from) + '.gif'
 								extension = file['extension']
 								if extension in ('jpg', 'webp', 'avif', 'png', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico'):
-									result = cls.open_wait(f'ffmpeg -i "{file_from}" -vf "split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -threads 0 "{file_to}"')
+									cls.open_wait(f'ffmpeg -i "{file_from}" -vf "split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -threads 0 "{file_to}"')
 									cls.file_remove(file_from)
 								elif extension in ('mp4', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob'):
 									if not isinstance(param, dict): param = {}
 									fps = param.get('fps', 25)
 									scale = param.get('scale', 720)
-									result = cls.open_wait(f'ffmpeg -i "{file_from}" -vf "fps={fps},scale={scale}:-1:flags=lanczos,split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -threads 0 "{file_to}"')
+									cls.open_wait(f'ffmpeg -i "{file_from}" -vf "fps={fps},scale={scale}:-1:flags=lanczos,split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -loop 0 -threads 0 "{file_to}"')
 									cls.file_remove(file_from)
 						case 'mp4':
 							for file in cls.dir_file(path, ('mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
 								file_from = file['path']
 								file_to = cls.path_strip(file_from) + '.mp4'
-								result = cls.open_wait(f'ffmpeg -i "{file_from}" -threads 0 "{file_to}"')
+								cls.open_wait(f'ffmpeg -i "{file_from}" -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
 						case 'webm':
 							for file in cls.dir_file(path, ('mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
 								file_from = file['path']
 								file_to = cls.path_strip(file_from) + '.webm'
-								result = cls.open_wait(f'ffmpeg -i "{file_from}" -c:v libsvtav1 -preset 13 -c:a libopus -threads 0 "{file_to}"')
+								cls.open_wait(f'ffmpeg -i "{file_from}" -c:v libsvtav1 -preset 13 -c:a libopus -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
 						case 'mp3':
 							for file in cls.dir_file(path, ('wav', 'ac3', 'aac', 'flac', 'wma', 'ogg', 'oga', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
 								file_from = file['path']
 								file_to = cls.path_strip(file_from) + '.mp3'
-								result = cls.open_wait(f'ffmpeg -i "{file_from}" -vn -ar 48000 -q:a 0 -threads 0 "{file_to}"')
+								cls.open_wait(f'ffmpeg -i "{file_from}" -vn -ar 48000 -q:a 0 -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
 						case 'ogg':
 							for file in cls.dir_file(path, ('mp3', 'wav', 'ac3', 'aac', 'flac', 'wma', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
 								file_from = file['path']
 								file_to = cls.path_strip(file_from) + '.ogg'
-								result = cls.open_wait(f'ffmpeg -i "{file_from}" -vn -c:a libopus -b:a 510k -threads 0 "{file_to}"')
+								cls.open_wait(f'ffmpeg -i "{file_from}" -vn -c:a libopus -b:a 510k -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
 						case 'unique':
 							names = []
@@ -10668,33 +10883,31 @@ class VOIDlang:
 								if name not in names:
 									del processed[name]
 						case 'zip':
-							key = param
-							if not key: continue
-							names = []
+							compression = param
 							for name in cls.dir(path):
-								names.append(name)
-								if name in processed: continue
+								if cls.path_extension(name, 'zip'): continue
 								source = cls.path(path, name)
-								cls.file_zip(source, key)
+								cls.file_zip(source, None, compression)
 								cls.file_remove(source)
-								processed[cls.path_subname(name) + '.zip'] = True
-							for name in set(processed.keys()):
-								if name not in names:
-									del processed[name]
-						case 'encrypt':
-							key = param
-							if not key: continue
-							names = []
+						case 'gzip':
+							compression = param
 							for name in cls.dir(path):
-								names.append(name)
-								if name in processed: continue
+								if cls.path_extension(name, 'gz'): continue
 								source = cls.path(path, name)
-								cls.file_void(source, key)
+								cls.file_gzip(source, None, compression)
 								cls.file_remove(source)
-								processed[cls.path_subname(name) + '.void'] = True
-							for name in set(processed.keys()):
-								if name not in names:
-									del processed[name]
+						case 'void':
+							if not isinstance(param, dict):
+								compression = param
+								key = None
+							else:
+								compression = param.get('compression')
+								key = param.get('key')
+							for name in cls.dir(path):
+								if cls.path_extension(name, 'void'): continue
+								source = cls.path(path, name)
+								cls.file_void(source, None, compression, key)
+								cls.file_remove(source)
 						case 'action':
 							action = param
 							if not action: continue
@@ -10707,6 +10920,18 @@ class VOIDlang:
 							for name in set(processed.keys()):
 								if name not in names:
 									del processed[name]
+						case 'x2':
+							pass
+						case 'x4':
+							pass
+						case 'colorize':
+							pass
+						case 'translate':
+							pass
+						case 'generate':
+							pass
+						case 'manga':
+							pass
 						case _:
 							pass
 				cls.wait(1)
@@ -10956,6 +11181,14 @@ class VOIDlang:
 		return result
 
 	@classmethod
+	def path_extension_strip(cls, path: str):
+		return cls.path(path, 'strip.extension')
+
+	@classmethod
+	def path_extension_replace(cls, path: str, extension):
+		return f'{cls.path_extension_strip(path)}.{extension}'
+
+	@classmethod
 	def path_dir(cls, path: str):
 		return cls.path(path, 'dir')
 
@@ -10997,7 +11230,7 @@ class VOIDlang:
 	# data
 
 	@classmethod
-	def void(cls, data, format = None, indent = '\t', level: int = 0):
+	def void(cls, data, format = None, indent = '\t', level: int = 0, multiline_length: int = 100):
 		cache_indent_key = (indent, level)
 		if cache_indent_key not in cls.cache_indent:
 			if isinstance(indent, int):
@@ -11047,7 +11280,7 @@ class VOIDlang:
 					return f"{indent_text}'{data}" if not special_end else f"{indent_text}'{data}'"
 				case 'multiline':
 					indent_text_next = indent_text + indent
-					return f"{indent_text}'\n" + '\n'.join((indent_text_next + data[index:index+cls.cache_void_muliline_length]) for index in range(0, len(data), cls.cache_void_muliline_length))
+					return f"{indent_text}'\n" + '\n'.join((indent_text_next + data[index:index+multiline_length]) for index in range(0, len(data), cls.cache_void_muliline_length))
 				case 'newline':
 					indent_text_next = indent_text + indent
 					if special:
@@ -11367,7 +11600,7 @@ class VOIDlang:
 		return text
 
 	@classmethod
-	def json(cls, data, compact: bool = False, indent = 2, unicode: bool = True):
+	def json(cls, data, compact: bool = False, indent = '\t', unicode: bool = True):
 		try:
 			json = cls.module('json')
 			if not compact:
@@ -12250,7 +12483,8 @@ class VOIDlang:
 							b'Connection: ' + connection,
 							b'Content-Type: ' + content_type,
 							b'Content-Length: ' + length,
-							b'Accept-Ranges: bytes'
+							b'Accept-Ranges: bytes',
+							b'Access-Control-Allow-Origin: *',
 							] + content_encoding
 						transport.write(b'\r\n'.join(header) + b'\r\n\r\n' + data)
 					elif 'file' in response:
@@ -12261,10 +12495,10 @@ class VOIDlang:
 							content_type = b'application/octet-stream'	
 						elif format in ['html', 'htm']:
 							content_type = b'text/html; charset=utf-8'
-						elif format in format_text:
-							content_type = b'text/plain; charset=utf-8'
 						else:
 							content_type = cls.get('cloud.mime.' + format, 'application/octet-stream').encode()
+							if format in format_text:
+								content_type += b'; charset=utf-8'
 						if 'range' in request:
 							code = b'206 Partial Content'
 							content_start = request['range']['start']
@@ -12278,6 +12512,7 @@ class VOIDlang:
 								b'Content-Length: ' + content_length,
 								b'Content-Range: ' + content_range,
 								b'Accept-Ranges: bytes',
+								b'Access-Control-Allow-Origin: *',
 								b'\r\n']
 						else:
 							header = [
@@ -12286,6 +12521,7 @@ class VOIDlang:
 								b'Content-Type: ' + content_type,
 								b'Content-Length: ' + str(size).encode(),
 								b'Accept-Ranges: bytes',
+								b'Access-Control-Allow-Origin: *',
 								b'\r\n']
 						transport.write(b'\r\n'.join(header))
 						if cls.os_type == 'windows':
@@ -12591,21 +12827,35 @@ class VOIDlang:
 			} | ({'message': error_message if len(error_message) > 1 else error_message[0]} if error_message else {})
 
 	@classmethod
-	def request(cls, url: str):
+	def request(cls, url: str, method: str = None, header: dict = None, data = None, cookie: dict = None, agent: str = None, key: str = None, format: str = None, timeout: float = 5, info: bool = False):
 		request = cls.module('urllib.request')
 		try:
-			with request.urlopen(url, timeout=5) as response:
-				return response.read().decode('utf-8').strip()
+			with request.urlopen(request.Request(url, method=method.upper() if method else 'GET'), timeout=timeout) as response:
+				data = response.read()
+				match format.lower():
+					case 'binary' | 'bin':
+						pass
+					case _:
+						text = data.decode('utf-8' if format is None else format).strip()
+				if info:
+					result = {
+						'code': response.code,
+						'text': text,
+						'data': data
+					}
+				else:
+					result = text
 		except Exception as e:
-			return
+			result = {'code': 500, 'error': e} if info else None
+		return result
 
 	@classmethod
-	def r(cls, url: str):
-		return cls.request(url)
+	def r(cls, url: str, method: str = None, header: dict = None, data = None, cookie: dict = None, agent: str = None, key: str = None, format: str = None, timeout: float = 5, info: bool = False):
+		return cls.request(url, method, header, data, cookie, agent, key, format, timeout, info)
 
 	@classmethod
-	def url(cls, url: str):
-		return cls.request(url)
+	def url(cls, url: str, method: str = None, header: dict = None, data = None, cookie: dict = None, agent: str = None, key: str = None, format: str = None, timeout: float = 5, info: bool = False):
+		return cls.request(url, method, header, data, cookie, agent, key, format, timeout, info)
 
 	@classmethod
 	def download(cls):
@@ -12923,11 +13173,35 @@ class VOIDlang:
   # content
 
 	@classmethod
-	def image(cls):
+	def image(cls, prompt: str, path: str):
 		pass
 
 	@classmethod
-	def video(cls):
+	def image_resize(cls, path_from: str, path_to: str, scale: float = None, size = None, deblocking = True, method = None):
+		return
+
+	@classmethod
+	def image_2x(cls, path_from: str, path_to: str, deblocking = True, method = None):
+		return cls.image_resize(path_from, path_to, 2)
+
+	@classmethod
+	def image_4x(cls, path_from: str, path_to: str, deblocking = True, method = None):
+		return cls.image_resize(path_from, path_to, 4)
+
+	@classmethod
+	def image_crop(cls, path_from: str, path_to: str, param = None):
+		pass
+
+	@classmethod
+	def image_effect(cls, path_from: str, path_to: str, effect):
+		pass
+
+	@classmethod
+	def image_convert(cls, path_from: str, path_to: str, param = None):
+		pass
+
+	@classmethod
+	def video(cls, prompt: str, path: str):
 		pass
 
 	@classmethod
@@ -12935,7 +13209,7 @@ class VOIDlang:
 		return cls.video()
 
 	@classmethod
-	def clip(cls):
+	def shorts(cls):
 		return cls.video()
 
 	@classmethod
@@ -12943,15 +13217,84 @@ class VOIDlang:
 		return cls.video()
 
 	@classmethod
-	def sound(cls):
+	def video_mute(cls, path_from: str, path_to: str):
 		pass
 
 	@classmethod
-	def music(cls):
-		return cls.sound()
+	def video_volume(cls, path_from: str, path_to: str):
+		pass
 
 	@classmethod
-	def model(cls):
+	def video_speed(cls, path_from: str, path_to: str):
+		pass
+
+	@classmethod
+	def video_crop(cls, path_from: str, path_to: str):
+		pass
+
+	@classmethod
+	def video_effect(cls, path_from: str, path_to: str, effect):
+		pass
+
+	@classmethod
+	def video_convert(cls, path_from: str, path_to: str, param = None):
+		pass
+
+	@classmethod
+	def sound(cls, prompt: str, path: str):
+		pass
+
+	@classmethod
+	def music(cls, prompt: str, path: str):
+		pass
+
+	@classmethod
+	def sound_play(cls, file: str, name: str = None, speed: float = None):
+		match cls.os_type:
+			case 'windows':
+				ctypes = cls.module('ctypes')
+				winmm = ctypes.windll.winmm
+				uuid = cls.uuid(True)
+				try:
+					result_open = winmm.mciSendStringW(f'open "{file}" type mpegvideo alias {uuid}', None, 0, 0)
+					if not result_open:
+						winmm.mciSendStringW(f'set {uuid} tempo {(speed or 1) * 1000}', None, 0, 0)
+						result_play = winmm.mciSendStringW(f'play {uuid} wait', None, 0, 0)
+				finally:
+					winmm.mciSendStringW(f'close {uuid}', None, 0, 0)
+			case 'mac' | 'linux':
+				pass
+
+	@classmethod
+	def sound_stop(cls, name: str = None):
+		pass
+
+	@classmethod
+	def sound_pause(cls, name: str):
+		pass
+
+	@classmethod
+	def sound_volume(cls, path_from: str, path_to: str, volume: float):
+		pass
+
+	@classmethod
+	def sound_speed(cls, path_from: str, path_to: str, speed: float):
+		pass
+
+	@classmethod
+	def sound_crop(cls, path_from: str, path_to: str, position_from: float, position_to: float):
+		pass
+
+	@classmethod
+	def sound_effect(cls, path_from: str, path_to: str, effect):
+		pass
+
+	@classmethod
+	def sound_convert(cls, path_from: str, path_to: str, param = None):
+		pass
+
+	@classmethod
+	def model(cls, prompt: str, path: str):
 		pass
 
 	@classmethod
@@ -12971,11 +13314,11 @@ class VOIDlang:
 		return cls.book()
 
 	@classmethod
-	def comics(cls):
+	def comics(cls, prompt: str, path: str):
 		return cls.book()
 
 	@classmethod
-	def manga(cls):
+	def manga(cls, prompt: str, path: str):
 		return cls.book()
 
 	@classmethod
