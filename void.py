@@ -3,6 +3,7 @@ import os
 import re
 import sys
 import time
+import glob
 import math
 import locale
 import random
@@ -28,9 +29,9 @@ class VOIDlang:
 				python
 			version
 				time
-					1779902786
+					1785399566
 				date
-					2026 · 05 · 27
+					2026 · 07 · 30
 			license
 				name
 					V O I D license
@@ -4284,7 +4285,7 @@ class VOIDlang:
 				group
 					file
 				method
-					file_exists
+					is_file
 				action
 					none
 				alias
@@ -7780,7 +7781,6 @@ class VOIDlang:
 			cls.open([cls.executable] + cls.arguments, None)
 			cls.exit()
 
-
   # run
 
 	@classmethod
@@ -7840,14 +7840,8 @@ class VOIDlang:
 					'path': {
 						'ffmpeg': None,
 						'yt-dlp': None,
-						'ai': {
-							'omnisr': 'epoch994_OmniSR.pth',
-							'omnisr intel': 'epoch994_OmniSR.xml',
-							'stablediffusion': '',
-							'deepseek': '',
-							'qwen': '',
-							'yolo': ''
-						}
+						'python': None,
+						'void': None
 					}
 				},
 				'ui': 'cli',
@@ -7866,16 +7860,27 @@ class VOIDlang:
 			},
 			'ai': {
 				'model': {
-					'gpu': {},
-					'cpu': {
-						'epoch': {
-							'any': 'epoch994_OmniSR.pth',
-							'intel': 'epoch994_OmniSR.xml'
+					'epoch': {
+						'any': 'epoch994_omnisr.pth',
+						'intel': 'epoch994_omnisr.xml'
+					},
+					'fbcnn': {
+						'any': 'fbcnn_color.pth',
+						'intel': 'fbcnn_color.xml'
+					},
+					'ddcolor': {
+						'artistic': {
+							'any': 'ddcolor_artistic.pth',
+							'intel': 'ddcolor_artistic.xml'
 						},
-						'fbcnn': {
-							'any': 'fbcnn_color.pth',
-							'intel': 'fbcnn_color.xml'		
+						'modelscope': {
+							'any': 'ddcolor_modelscope.pth',
+							'intel': 'ddcolor_modelscope.xml'
 						}
+					},
+					'colorize': {
+						'generator': 'generator.zip',
+						'denoiser': 'net_rgb.pth'
 					}
 				}
 			},
@@ -7898,6 +7903,7 @@ class VOIDlang:
 		cls.cache_escape = {}
 		cls.cache_unescape = {}
 		cls.cache_parse = {}
+		cls.cache_colorize = {}
 		cls.executable = sys.executable
 		cls.arguments = sys.argv
 		file = cls.arguments[0]
@@ -7908,6 +7914,7 @@ class VOIDlang:
 		cls.set('app.path', path)
 		cls.set('app.param', param)
 		cls.set('app.executable', cls.executable)
+		cls.set('app.os.path.python', cls.executable)
 		cls.os_path = path
 		cls.os_script = os.path.abspath(__file__)
 		match platform.system():
@@ -7948,6 +7955,114 @@ class VOIDlang:
 		cls.set('app.os.type', os_type)
 		cls.set('app.os.delimiter.newline', cls.newline)
 		cls.set('app.os.delimiter.path', cls.delimiter)
+		cpu_info_original = platform.processor()
+		cpu_info = cpu_info_original.lower()
+		cpu_name = platform.machine().lower()
+		if 'arm' in cpu_name or 'aarch64' in cpu_name or 'arm' in cpu_info:
+			cls.cpu_type = 'apple' if cls.os_type == 'mac' else 'arm'
+		else:
+			if not cpu_info and cls.os_type in ['linux', 'mac']:
+				for line in cls.file_line('/proc/cpuinfo'):
+					if 'vendor_id' in line:
+						cpu_info = line.lower()
+						break
+			if 'intel' in cpu_info or 'genuineintel' in cpu_info:
+				cls.cpu_type = 'intel'
+			elif 'amd' in cpu_info or 'authenticamd' in cpu_info:
+				cls.cpu_type = 'amd'
+			else:
+				if 'amd64' in cpu_name or 'x86_64' in cpu_name:
+					cls.cpu_type = 'amd'
+				else:
+					cls.cpu_type = 'unknown'
+		gpu_info_original = ''
+		gpu_info = ''
+		if cls.os_type == 'windows':
+			try:
+				import winreg
+				key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, 'SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}')
+				gpu_names = []
+				vendor_ids = []
+				for index in range(32):
+					try:
+						subkey_name = winreg.EnumKey(key, index)
+					except OSError: break
+					try:
+						subkey = winreg.OpenKey(key, subkey_name)
+					except OSError: continue
+					for value_name in ('DriverDesc', 'ProviderName'):
+						try:
+							value, _ = winreg.QueryValueEx(subkey, value_name)
+							gpu_names.append(str(value))
+						except FileNotFoundError: pass
+					for value_name in ('HardwareID', 'MatchingDeviceId'):
+						try:
+							value, _ = winreg.QueryValueEx(subkey, value_name)
+							ids = []
+							for value in value if isinstance(value, (list, tuple)) else [value]:
+								if not value: continue
+								matched = re.search(r'VEN_([0-9A-Fa-f]{4})', str(value))
+								if matched: ids.append(matched.group(1).lower())
+							vendor_ids.extend(ids)
+						except FileNotFoundError: pass
+					winreg.CloseKey(subkey)
+				winreg.CloseKey(key)
+				gpu_info_original = ' '.join(gpu_names)
+				gpu_info = gpu_info_original.lower()
+				if not any(vendor in gpu_info for vendor in ('nvidia', 'amd', 'radeon', 'intel')):
+					for vendor_id in vendor_ids:
+						vendor = {
+							'10de': 'nvidia',
+							'1002': 'amd',
+							'1022': 'amd',
+							'8086': 'intel',
+						}.get(vendor_id)
+						if vendor:
+							gpu_info += f' {vendor} '
+							break
+			except Exception as e: pass
+		elif cls.os_type == 'linux':
+			try:
+				vendors = []
+				for vendor_file in glob.glob('/sys/class/drm/card*/device/vendor'):
+					try:
+						with open(vendor_file, 'r') as f:
+							vendors.append(f.read().strip().lower())
+					except Exception: pass
+				if any('0x10de' in v for v in vendors):
+					gpu_info += ' nvidia '
+				if any(v in ('0x1002', '0x1022') for v in vendors):
+					gpu_info += ' amd radeon '
+				if any('0x8086' in v for v in vendors):
+					gpu_info += ' intel '
+			except Exception: pass
+		elif cls.cpu_type == 'apple':
+			gpu_info = 'apple'
+		if 'nvidia' in gpu_info:
+			cls.gpu_type = 'nvidia'
+		elif 'amd' in gpu_info or 'radeon' in gpu_info:
+			cls.gpu_type = 'amd'
+		elif 'intel' in gpu_info:
+			cls.gpu_type = 'intel'
+		elif gpu_info  == 'apple':
+			cls.gpu_type = 'apple'
+		else:
+			cls.gpu_type = 'unknown'
+		if (cls.gpu_type == 'nvidia' and cls.os_type in ('windows', 'linux')) or (cls.gpu_type == 'amd' and cls.os_type == 'linux'):
+			cls.torch_type = 'cuda unchecked'
+		elif cls.cpu_type == 'apple':
+			cls.torch_type = 'mps'
+		elif cls.gpu_type == 'intel':
+			cls.torch_type = 'xpu'
+		elif cls.gpu_type == 'amd' and cls.os_type == 'windows':
+			cls.torch_type = 'dml'
+		else:
+			cls.pytorch_type = 'cpu'
+		cls.set('device.cpu.type', cls.cpu_type)
+		cls.set('device.cpu.info', cpu_info_original)
+		cls.set('device.gpu.type', cls.gpu_type)
+		cls.set('device.gpu.info', gpu_info_original or gpu_info)
+		cls.set('ai.torch', cls.torch_type)
 		language_locale, language_encoding = locale.getlocale()
 		if language_locale:
 			lookup_key = language_locale.split('_')[0].lower()
@@ -7969,18 +8084,18 @@ class VOIDlang:
 			if len(param) > 0:
 				name = str(param[0]).strip()
 				result = None
-				if cls.path_extension(name, 'py') and cls.file_exists(name):
+				if cls.path_extension(name, 'py') and cls.is_file(name):
 					cls.code(cls.file(name))
-				elif cls.path_extension(name, 'void', 'json', 'yaml') and cls.file_exists(name):
+				elif cls.path_extension(name, 'void', 'json', 'yaml') and cls.is_file(name):
 					result = cls.action(cls.file(name))
-				elif cls.path_extension(name, 'zip') and cls.file_exists(name):
+				elif cls.path_extension(name, 'zip') and cls.is_file(name):
 					path_extract = cls.path(cls.path_dir(name), 'void.' + cls.hash(8))
 					cls.file_extract(name, path_extract)
-					if cls.file_exists(cls.path(path_extract, 'run.void')):
+					if cls.is_file(cls.path(path_extract, 'run.void')):
 						result = cls.action(cls.file(cls.path(path_extract, 'run.void')))
-					elif cls.file_exists(cls.path(path_extract, 'run.json')):
+					elif cls.is_file(cls.path(path_extract, 'run.json')):
 						result = cls.action(cls.file(cls.path(path_extract, 'run.json')))
-					elif cls.file_exists(cls.path(path_extract, 'run.yaml')):
+					elif cls.is_file(cls.path(path_extract, 'run.yaml')):
 						result = cls.action(cls.file(cls.path(path_extract, 'run.yaml')))
 					cls.dir_remove(path_extract)
 				else:
@@ -8000,17 +8115,17 @@ class VOIDlang:
 							result = cls.action(data)
 					else:
 						result = cls.action([param])
-			elif cls.file_exists('run.void'):
+			elif cls.is_file('run.void'):
 				result = cls.action(cls.file('run.void'))
-			elif cls.file_exists('run.json'):
+			elif cls.is_file('run.json'):
 				result = cls.action(cls.file('run.json'))
-			elif cls.file_exists('run.yaml'):
+			elif cls.is_file('run.yaml'):
 				result = cls.action(cls.file('run.yaml'))
-			elif cls.file_exists('run.zip/run.void'):
+			elif cls.is_file('run.zip/run.void'):
 				result = cls.action(cls.file('run.zip/run.void'))
-			elif cls.file_exists('run.zip/run.json'):
+			elif cls.is_file('run.zip/run.json'):
 				result = cls.action(cls.file('run.zip/run.json'))
-			elif cls.file_exists('run.zip/run.yaml'):
+			elif cls.is_file('run.zip/run.yaml'):
 				result = cls.action(cls.file('run.zip/run.yaml'))
 			else:
 				result = cls.get('about')
@@ -8022,6 +8137,20 @@ class VOIDlang:
 		return cls.arguments[1] if len(cls.arguments) > 1 else default
 
 
+  # neuro
+
+	@classmethod
+	def neuro_method(cls):
+		torch_type = cls.get('ai.torch')
+		if torch_type == 'cuda unchecked':
+			cuda = cls.module('torch.cuda')
+			torch_type = 'cuda' if cuda.is_available() else 'cpu'
+			cls.set('ai.torch', torch_type)
+		if torch_type == 'cpu' and cls.get('device.cpu.type') == 'intel':
+			return 'intel'
+		return torch_type
+
+
   # value
 
 	@classmethod
@@ -8029,13 +8158,13 @@ class VOIDlang:
 		if not isinstance(name, str):
 			name = str(name)
 		if '/' in name or '\\' in name:
-			path = cls.path_start(name)
+			path = cls.path_dir(name)
 			path_extension = cls.path_extension(path).lower()
-			if path_extension in ['void', 'json', 'csv', 'yaml', 'xml', 'ini'] and cls.file_exists(path):
+			if path_extension in ['void', 'json', 'csv', 'yaml', 'xml', 'ini'] and cls.is_file(path):
 				storage = cls.file(path)
 				if not isinstance(storage, (dict, list)):
 					return default
-				name = cls.path_end(name)
+				name = cls.path_name(name)
 			else:
 				return default
 		else:
@@ -8071,13 +8200,13 @@ class VOIDlang:
 	@classmethod
 	def set(cls, name: str, data = None, storage = None):
 		if '/' in name or '\\' in name:
-			path = cls.path_start(name)
+			path = cls.path_dir(name)
 			path_extension = cls.path_extension(path).lower()
-			if path_extension in ['void', 'json', 'csv', 'yaml', 'xml', 'ini'] and cls.file_exists(path):
+			if path_extension in ['void', 'json', 'csv', 'yaml', 'xml', 'ini'] and cls.is_file(path):
 				storage = cls.file(path)
 				if not isinstance(storage, (dict, list)):
 					return default
-				name = cls.path_end(name)
+				name = cls.path_name(name)
 				storage_type = 'file'
 				storage_data = storage
 			else:
@@ -8117,13 +8246,13 @@ class VOIDlang:
 	@classmethod
 	def remove(cls, name: str, storage = None):
 		if '/' in name or '\\' in name:
-			path = cls.path_start(name)
+			path = cls.path_dir(name)
 			path_extension = cls.path_extension(path).lower()
-			if path_extension in ['void', 'json', 'csv', 'yaml', 'xml', 'ini'] and cls.file_exists(path):
+			if path_extension in ['void', 'json', 'csv', 'yaml', 'xml', 'ini'] and cls.is_file(path):
 				storage = cls.file(path)
 				if not isinstance(storage, (dict, list)):
 					return default
-				name = cls.path_end(name)
+				name = cls.path_name(name)
 				storage_type = 'file'
 				storage_data = storage
 			else:
@@ -8403,8 +8532,39 @@ class VOIDlang:
 		return False
 
 	@classmethod
+	def is_file(cls, path: str) -> bool:
+		return os.path.isfile(path)
+
+	@classmethod
+	def is_dir(cls, path: str) -> bool:
+		return os.path.isdir(path)
+
+	@classmethod
+	def is_link(cls, path: str) -> bool:
+		pass
+
+	@classmethod
 	def is_path(cls, data):
-		return isinstance(data, str) and len(data) > 0 and (cls.file_exists(data) or cls.dir_exists(data))
+		return isinstance(data, str) and len(data) > 0 and (cls.is_file(data) or cls.is_dir(data))
+
+	@classmethod
+	def is_executable(cls, path: str) -> bool:
+		if not cls.is_file(path): return False
+		if cls.os_type == 'windows':
+			return cls.path_extension(path).lower() in ('exe', 'com', 'bat', 'cmd', 'ps1', 'msc', 'vbs')
+		return os.access(path, os.X_OK)
+
+	@classmethod
+	def is_url(cls, url: str) -> bool:
+		pass
+
+	@classmethod
+	def is_email(cls, email: str) -> bool:
+		pass
+
+	@classmethod
+	def is_phone(cls, phone: str) -> bool:
+		pass
 
 	@classmethod
 	def expression_isnot(cls):
@@ -8556,6 +8716,10 @@ class VOIDlang:
 	@classmethod
 	def open_wait(cls, command):
 		return cls.open(command, True)
+
+	@classmethod
+	def open_void(cls, *data):
+		return cls.open([cls.get('app.os.path.python'), cls.get('app.os.path.void')] + [str(data) for data in data], True)
 
 	@classmethod
 	def close(cls, pid):
@@ -8726,7 +8890,7 @@ class VOIDlang:
 			case 'c':
 				if cls.is_file(value):
 					path = value
-					name = cls.path_subname(path)
+					name = cls.path_stem(path)
 					extension = cls.path_extension(path).lower()
 					match extension:
 						case 'c':
@@ -8743,6 +8907,31 @@ class VOIDlang:
 				pass
 			case 'asm':
 				pass
+			case 'pth':
+				match name_to.lower():
+					case 'intel' | 'xml':
+						torch = cls.module('torch')
+						warnings = cls.module('warnings')
+						openvino = cls.module('openvino')
+						spandrel = cls.module('spandrel')
+						spandrel_extra = cls.module('spandrel_extra_arches', 'spandrel-extra-arches')
+						spandrel_extra.install()
+						warnings.filterwarnings('ignore', category=torch.jit.TracerWarning)
+						loader = spandrel.ModelLoader(device='cpu')
+						path_from = value
+						path_to = cls.path_extension_replace(path_from, 'xml')
+						spandrel_model = loader.load_from_file(path_from)
+						spandrel_model.eval()
+						pytorch_model = spandrel_model.model
+						for module in pytorch_model.modules():
+							if isinstance(module, torch.nn.Conv2d):
+								channels = module.in_channels
+								break
+						else:
+							channels = 3
+						example_input = torch.randn(1, channels, 256, 256)
+						ov_model = openvino.convert_model(pytorch_model, example_input=example_input)
+						openvino.save_model(ov_model, path_to)
 
 	@classmethod
 	def c(cls, value, name_from = None, name_to = None):
@@ -8811,8 +9000,8 @@ class VOIDlang:
 				if not voice:
 					voice = 'ru-RU-DmitryNeural'
 				try:
-				    loop = asyncio.get_running_loop()
-				    asyncio.ensure_future(cls.say_edge(text, voice, path, speed))
+					loop = asyncio.get_running_loop()
+					asyncio.ensure_future(cls.say_edge(text, voice, path, speed))
 				except RuntimeError:
 					asyncio.run(cls.say_edge(text, voice, path, speed))
 			case 'siri':
@@ -9430,6 +9619,7 @@ class VOIDlang:
 			'(second.short)': dt.second,
 			'(timezone)': f'{timezone_offset[:3]}:{timezone_offset[3:]}'
 			})
+
 
   # crypto
 
@@ -10264,8 +10454,8 @@ class VOIDlang:
 			auto = True
 		else:
 			auto = False
-		if data == None:
-			if not cls.file_exists(path): return
+		if data is None:
+			if not cls.is_file(path): return
 			match format:
 				case 'binary':
 					with open(path, 'rb') as file:
@@ -10416,7 +10606,7 @@ class VOIDlang:
 
 	@classmethod
 	def file_line(cls, path: str, data = None):
-		return cls.file(path, data, 'line')
+		return cls.file(path, data, 'line') or []
 
 	@classmethod
 	def file_ascii(cls, path: str, data = None):
@@ -10455,21 +10645,6 @@ class VOIDlang:
 		cls.file(path, b'', 'binary')
 
 	@classmethod
-	def file_exists(cls, path: str):
-		return os.path.isfile(path)
-
-	@classmethod
-	def is_file(cls, path: str) -> bool:
-		return cls.file_exists(path)
-
-	@classmethod
-	def is_executable(cls, path: str) -> bool:
-		if not cls.file_exists(path): return False
-		if cls.os_type == 'windows':
-			return cls.path_extension(path).lower() in ('exe', 'com', 'bat', 'cmd', 'ps1', 'msc', 'vbs')
-		return os.access(path, os.X_OK)
-
-	@classmethod
 	def file_remove(cls, path: str, trash: bool = False):
 		path = cls.path(path)
 		if cls.is_file(path):
@@ -10491,8 +10666,10 @@ class VOIDlang:
 
 	@classmethod
 	def file_move(cls, source: str, destination: str = None):
-		pass
-
+		if not cls.is_file(source): return
+		shutil = cls.module('shutil')
+		shutil.move(source, destination)
+	
 	@classmethod
 	def file_rename(cls, path: str, name: str = None):
 		if not cls.is_file(path) or not name: return
@@ -10640,43 +10817,43 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def link_exists(cls, path: str):
-		pass
-
-	@classmethod
-	def is_link(cls, path: str) -> bool:
-		return cls.link_exists(path)
-
-	@classmethod
-	def dir(cls, path: str = None, subpath: bool = False):
-		if not path:
-			path = cls.get('app.path')
+	def dir(cls, path: str = None, recursive: bool = False, type: str = None):
+		path = cls.path_correct(path) if path else cls.get('app.path')
 		try:
-			if subpath:
+			if recursive:
 				result = []
-				for path, _, names in os.walk(path):
-					for name in names:
-						result.append(os.path.join(path, name))						
+				for path_recursive, dirs, files in os.walk(path):
+					if type in (None, 'dir'):
+						for name in dirs:
+							result.append(os.path.join(path_recursive[len(path)+1:], name))
+					if type in (None, 'file'):
+						for name in files:
+							result.append(os.path.join(path_recursive[len(path)+1:], name))
 				return result
+			if type == 'file':
+				return [name for name in os.listdir(path) if os.path.isfile(os.path.join(path, name))]
+			if type == 'dir':
+				return [name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))]
 			return os.listdir(path)
 		except:
 			return []
 
 	@classmethod
-	def dir_file(cls, path: str = None, extension = None):
-		path = cls.path(path) if path else cls.get('app.path')
+	def dir_file(cls, path: str = None, extension = None, recursive: bool = False):
+		if not extension:
+			return cls.dir(path, recursive=recursive, type='file')
 		if isinstance(extension, str):
-			extension = (extension)
-		if extension:
-			extension = (ext.lower() for ext in extension)
+			extension = [extension]
+		extension = [ext.lower() for ext in extension]
 		result = []
-		for name in cls.dir(path):
-			path_sub = cls.path(path, name)
-			if cls.is_file(path_sub):
-				ext = cls.path_extension(name).lower()
-				if not extension or ext in extension:
-					result.append({'file': name, 'path': path_sub, 'extension': ext})
+		for name in cls.dir(path, recursive=recursive, type='file'):
+			if cls.path_extension(name).lower() in extension:
+				result.append(name)
 		return result
+
+	@classmethod
+	def dir_dir(cls, path: str = None, recursive: bool = False):
+		return cls.dir(path, recursive=recursive, type='dir')
 
 	@classmethod
 	def dir_create(cls, path: str, recursive: bool = True):
@@ -10687,14 +10864,6 @@ class VOIDlang:
 			try:
 				os.mkdir(path)
 			except FileExistsError: pass
-
-	@classmethod
-	def dir_exists(cls, path: str) -> bool:
-		return os.path.isdir(path)
-
-	@classmethod
-	def is_dir(cls, path: str) -> bool:
-		return os.path.isdir(path)
 
 	@classmethod
 	def dir_remove(cls, path: str, trash: bool = False):
@@ -10721,7 +10890,8 @@ class VOIDlang:
 	@classmethod
 	def dir_move(cls, source: str, destination: str = None):
 		if not cls.is_dir(source): return
-		pass
+		shutil = cls.module('shutil')
+		shutil.move(cls.path(source), cls.path(destination) if cls.is_dir(destination) else destination)
 
 	@classmethod
 	def dir_rename(cls, path: str, name: str = None):
@@ -10777,16 +10947,28 @@ class VOIDlang:
 		cls.file_void(source, destination, compression, key)
 
 	@classmethod
-	def dir_magic(cls, path, name: str = None, param = None):
-		path_list = [[path, name, param]] if not isinstance(path, list) else path
+	def dir_magic(cls, path, name: str = None, param = None, move: str = None):
+		magic_list = [[path, name, param, move]] if not isinstance(path, list) else path
 		processed_list = {}
 		try:
 			while True:
-				for param in path_list:
-					path = param[0]
+				for magic in magic_list:
+					if isinstance(magic, list):
+						path = cls.get(0, None, magic)
+						name = (cls.get(1, None, magic) or cls.path_name(path)).lower()
+						param = cls.get(2, None, magic)
+						move = cls.get(3, None, magic)
+					elif isinstance(magic, dict):
+						path = cls.get('path', None, magic)
+						name = (cls.get('name', None, magic) or cls.path_name(path)).lower()
+						param = cls.get('param', None, magic)
+						move = cls.get('move', None, magic)
+					else:
+						path = str(magic)
+						name = cls.path_name(path).lower()
+						param = None
+						move = None
 					if not cls.is_dir(path): continue
-					name = param[1]
-					param = param[2] if len(param) > 2 else None
 					id = f'{path}:{name}'
 					if not id in processed_list:
 						processed_list[id] = {}
@@ -10794,21 +10976,21 @@ class VOIDlang:
 					match name:
 						case 'run':
 							names = []
-							for file in cls.dir_file(path):
-								file_name = file['file']
+							for file_name in cls.dir_file(path):
 								names.append(file_name)
 								if file_name not in processed:
+									file_path = cls.path(path, name)
 									result = {}
-									if cls.is_executable(file['path']):
-										result = cls.open(file['path'])
+									if cls.is_executable(file_path):
+										result = cls.open(file_path)
 									else:
-										match file['extension']:
+										match cls.path_extension(file_name).lower():
 											case 'py':
-												result = cls.open(f'python3 "{file["path"]}"')
+												result = cls.open(f'python3 "{file_path}"')
 											case 'rb':
-												result = cls.open(f'ruby "{file["path"]}"')
+												result = cls.open(f'ruby "{file_path}"')
 											case 'js':
-												result = cls.open(f'node "{file["path"]}"')
+												result = cls.open(f'node "{file_path}"')
 									if 'pid' in result:
 										processed[file_name] = result['pid']
 							for file_name in set(processed.keys()):
@@ -10816,24 +10998,28 @@ class VOIDlang:
 									cls.close(processed[file_name])
 									del processed[file_name]
 						case 'jpg':
-							for file in cls.dir_file(path, ('avif', 'webp', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico')):
-								file_from = file['path']
-								file_to = cls.path_strip(file_from) + '.jpg'
+							for file_name in cls.dir_file(path, ('avif', 'webp', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico')):
+								file_from = cls.path(path, file_name)
+								file_to = cls.path_extension_replace(file_from, 'jpg')
 								quality = round(31 - (param * 30) / 100) if isinstance(param, int) else 4
 								cls.open_wait(f'ffmpeg -i "{file_from}" -q:v {quality} -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
+								if move:
+									cls.file_move(file_to, move)
 						case 'webp':
-							for file in cls.dir_file(path, ('jpg', 'avif', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico', 'mp4', 'mpeg', 'mpg', 'avi', 'webm', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = file['path']
-								file_to = cls.path_strip(file_from) + '.webp'
+							for file_name in cls.dir_file(path, ('jpg', 'avif', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico', 'mp4', 'mpeg', 'mpg', 'avi', 'webm', 'mkv', 'mov', 'qt', 'vob')):
+								file_from = cls.path(path, file_name)
+								file_to = cls.path_extension_replace(file_from, 'webp')
 								quality = int(param or 85)
 								cls.open_wait(f'ffmpeg -i "{file_from}" -quality {quality} -compression_level 6 -loop 0 -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
+								if move:
+									cls.file_move(file_to, move)
 						case 'gif':
-							for file in cls.dir_file(path):
-								file_from = file['path']
-								file_to = cls.path_strip(file_from) + '.gif'
-								extension = file['extension']
+							for file_name in cls.dir_file(path):
+								file_from = cls.path(path, file_name)
+								file_to = cls.path_extension_replace(file_from, 'gif')
+								extension = cls.path_extension(file_name)
 								if extension in ('jpg', 'webp', 'avif', 'png', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico'):
 									cls.open_wait(f'ffmpeg -i "{file_from}" -vf "split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -threads 0 "{file_to}"')
 									cls.file_remove(file_from)
@@ -10843,95 +11029,160 @@ class VOIDlang:
 									scale = param.get('scale', 720)
 									cls.open_wait(f'ffmpeg -i "{file_from}" -vf "fps={fps},scale={scale}:-1:flags=lanczos,split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -loop 0 -threads 0 "{file_to}"')
 									cls.file_remove(file_from)
+								if move:
+									cls.file_move(file_to, move)
 						case 'mp4':
-							for file in cls.dir_file(path, ('mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = file['path']
-								file_to = cls.path_strip(file_from) + '.mp4'
+							for file_name in cls.dir_file(path, ('mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
+								file_from = cls.path(path, file_name)
+								file_to = cls.path_extension_replace(file_from, 'mp4')
 								cls.open_wait(f'ffmpeg -i "{file_from}" -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
+								if move:
+									cls.file_move(file_to, move)
 						case 'webm':
-							for file in cls.dir_file(path, ('mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = file['path']
-								file_to = cls.path_strip(file_from) + '.webm'
+							for file_name in cls.dir_file(path, ('mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
+								file_from = cls.path(path, file_name)
+								file_to = cls.path_extension_replace(file_from, 'webm')
 								cls.open_wait(f'ffmpeg -i "{file_from}" -c:v libsvtav1 -preset 13 -c:a libopus -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
+								if move:
+									cls.file_move(file_to, move)
 						case 'mp3':
-							for file in cls.dir_file(path, ('wav', 'ac3', 'aac', 'flac', 'wma', 'ogg', 'oga', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = file['path']
-								file_to = cls.path_strip(file_from) + '.mp3'
+							for file_name in cls.dir_file(path, ('wav', 'ac3', 'aac', 'flac', 'wma', 'ogg', 'oga', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
+								file_from = cls.path(path, file_name)
+								file_to = cls.path_extension_replace(file_from, 'mp3')
 								cls.open_wait(f'ffmpeg -i "{file_from}" -vn -ar 48000 -q:a 0 -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
+								if move:
+									cls.file_move(file_to, move)
 						case 'ogg':
-							for file in cls.dir_file(path, ('mp3', 'wav', 'ac3', 'aac', 'flac', 'wma', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = file['path']
-								file_to = cls.path_strip(file_from) + '.ogg'
+							for file_name in cls.dir_file(path, ('mp3', 'wav', 'ac3', 'aac', 'flac', 'wma', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
+								file_from = cls.path(path, file_name)
+								file_to = cls.path_extension_replace(file_from, 'ogg')
 								cls.open_wait(f'ffmpeg -i "{file_from}" -vn -c:a libopus -b:a 510k -threads 0 "{file_to}"')
 								cls.file_remove(file_from)
+								if move:
+									cls.file_move(file_to, move)
 						case 'unique':
 							names = []
-							for file in cls.dir_file(path):
-								if file['file'] in processed:
-									names.append(file['file'])
+							for file_name in cls.dir_file(path):
+								if file_name in processed:
+									names.append(file_name)
 									continue
-								extension = cls.path_extension(file['file'])
+								file_path = cls.path(path, file_name)
 								length = int(param or 8)
-								name = f"{cls.path_strip(file['file'])}_{cls.hash(length)}.{extension}" if extension else f"{file['file']}_{cls.hash(length)}"
-								cls.file_rename(file['path'], name)
-								processed[name] = True
-								names.append(name)
-							for name in set(processed.keys()):
-								if name not in names:
-									del processed[name]
+								file_name_new = cls.path_stem_append(file_name, '_' + cls.hash(length))
+								if move:
+									cls.file_move(file_path, cls.path(move, file_name_new))
+								else:
+									cls.file_rename(file_path, file_name_new)
+								processed[file_name_new] = True
+								names.append(file_name_new)
+							for file_name in set(processed.keys()):
+								if file_name not in names:
+									del processed[file_name]
 						case 'zip':
 							compression = param
-							for name in cls.dir(path):
-								if cls.path_extension(name, 'zip'): continue
-								source = cls.path(path, name)
-								cls.file_zip(source, None, compression)
+							for file_name in cls.dir(path):
+								if cls.path_extension(file_name, 'zip'): continue
+								source = cls.path(path, file_name)
+								destination = cls.path(move, (move if cls.is_dir(move) else cls.path_strip(move)) + '.zip') if move else None
+								cls.file_zip(source, destination, compression)
 								cls.file_remove(source)
 						case 'gzip':
 							compression = param
-							for name in cls.dir(path):
-								if cls.path_extension(name, 'gz'): continue
-								source = cls.path(path, name)
-								cls.file_gzip(source, None, compression)
+							for file_name in cls.dir(path):
+								if cls.path_extension(file_name, 'gz'): continue
+								source = cls.path(path, file_name)
+								destination = cls.path(move, ((move + '.tar') if cls.is_dir(move) else move) + '.gz') if move else None
+								cls.file_gzip(source, destination, compression)
 								cls.file_remove(source)
 						case 'void':
-							if not isinstance(param, dict):
-								compression = param
-								key = None
-							else:
-								compression = param.get('compression')
-								key = param.get('key')
-							for name in cls.dir(path):
-								if cls.path_extension(name, 'void'): continue
-								source = cls.path(path, name)
-								cls.file_void(source, None, compression, key)
-								cls.file_remove(source)
+							pass
 						case 'action':
 							action = param
 							if not action: continue
 							names = []
-							for name in cls.dir(path):
-								names.append(name)
-								if name in processed: continue
-								cls.action([[action, {'path': path, 'name': name, 'type': 'file' if cls.is_file(cls.path(path, name)) else 'dir'}]])
-								processed[name] = True
-							for name in set(processed.keys()):
-								if name not in names:
-									del processed[name]
+							for file_name in cls.dir(path):
+								names.append(file_name)
+								if file_name in processed: continue
+								cls.action([[action, cls.path(path, file_name)]])
+								processed[file_name] = True
+							for file_name in set(processed.keys()):
+								if file_name not in names:
+									del processed[file_name]
 						case 'x2':
-							pass
+							names = []
+							for file_name in cls.dir_file(path, ('jpg', 'jpeg', 'webp', 'png', 'gif', 'bmp')):
+								if file_name in processed:
+									names.append(file_name)
+									continue
+								file_from = cls.path(path, file_name)
+								file_name_new = cls.path_stem_append(file_name, '_x2')
+								file_to = cls.path(path, file_name_new)
+								quality = param
+								cls.x2(file_from, file_to, quality=quality)
+								cls.file_remove(file_from)
+								if move:
+									cls.file_move(file_to, move)
+								processed[file_name_new] = True
+								names.append(file_name_new)
+							for file_name in set(processed.keys()):
+								if file_name not in names:
+									del processed[file_name]
 						case 'x4':
-							pass
-						case 'colorize':
-							pass
-						case 'translate':
-							pass
-						case 'generate':
-							pass
-						case 'manga':
-							pass
+							names = []
+							for file_name in cls.dir_file(path, ('jpg', 'jpeg', 'webp', 'png', 'gif', 'bmp')):
+								if file_name in processed:
+									names.append(file_name)
+									continue
+								file_from = cls.path(path, file_name)
+								file_name_new = cls.path_stem_append(file_name, '_x4')
+								file_to = cls.path(path, file_name_new)
+								quality = param
+								cls.x4(file_from, file_to, quality=quality)
+								cls.file_remove(file_from)
+								if move:
+									cls.file_move(file_to, move)
+								processed[file_name_new] = True
+								names.append(file_name_new)
+							for file_name in set(processed.keys()):
+								if file_name not in names:
+									del processed[file_name]
+						case 'manga' | 'colorize' | 'translate':
+							extensions = ('jpg', 'jpeg', 'webp', 'png', 'gif', 'bmp')
+							names = set()
+							def process(path, file_name):
+								path_from = cls.path(path, file_name)
+								if name in ['manga', 'translate']:
+									pass
+								if name in ['manga', 'colorize']:
+									name_new = cls.path_extension_replace(cls.path_stem_append(file_name, '_color'), 'webp')
+									path_to = cls.path(path, name_new)
+									cls.open_void('image.colorize.manga', path_from, path_to, 100)
+									cls.wait(1)
+								cls.file_remove(path_from)
+								return name_new, path_to
+							for dir_name in cls.dir_dir(path):
+								names.add(dir_name)
+								if dir_name not in processed:
+									dir_path = cls.path(path, dir_name)
+									for file_name in cls.dir_file(dir_path, extensions, recursive=True):
+										process(dir_path, file_name)
+									if move:
+										cls.dir_move(dir_path, move)
+									processed[dir_name] = True
+							for file_name in cls.dir_file(path, extensions):
+								if file_name in processed:
+									names.add(file_name)
+									continue
+								name_new, path_to = process(path, file_name)
+								if move:
+									cls.file_move(path_to, move)
+								processed[name_new] = True
+								names.add(name_new)
+							for name in list(processed):
+								if name not in names: del processed[name]
 						case _:
 							pass
 				cls.wait(1)
@@ -11049,140 +11300,81 @@ class VOIDlang:
 		if len(path) == 0:
 			return cls.os_path
 		if len(path) == 1:
-			if isinstance(path[0], str):
-				path = str(path[0])
-				if cls.delimiter == '/' and len(path) > 0 and path[0] != '/':
-					if path.startswith('./') or path.startswith('.\\'):
+			path = cls.path_correct(str(path[0]))
+			if cls.delimiter == '/':
+				if len(path):
+					if path[0] != '/':
+						if path.startswith('./'):
+							path = path[2:]
+						return f'{cls.os_path}/{path}'
+					return path
+			elif len(path):
+				if len(path) > 1 and path[1] != ':':
+					if path.startswith('.\\'):
 						path = path[2:]
-					return (cls.os_path + '/' + path) if len(path) else cls.os_path
-				if cls.delimiter == '\\' and len(path) > 1 and path[1] != ':':
-					if path.startswith('./') or path.startswith('.\\'):
-						path = path[2:]
-					return (cls.os_path + '\\' + path) if len(path) else cls.os_path
+					return f'{cls.os_path}\\{path}'
 				return path
-			else:
-				path = [*path[0]]
-		elif len(path) == 2:
-			match path[1]:
-				case 'name' | 'end':
-					path = str(path[0])
-					index = path.rfind('/')
-					if index >= 0:
-						return path[index+1:]
-					index = path.rfind('\\')
-					if index >= 0:
-						return path[index+1:]
-					return path
-				case 'subname':
-					path = str(path[0])
-					index = path.rfind('/')
-					if index >= 0:
-						path = path[index+1:]
-					else:
-						index = path.rfind('\\')
-						if index >= 0:
-							path = path[index+1:]
-					index = path.rfind('.')
-					if index >= 0:
-						return path[0:index]
-					return path
-				case 'extension':
-					path = str(path[0])
-					index = path.rfind('.')
-					if index >= 0:
-						return path[index+1:]
-				case 'dir' | 'start':
-					path = str(path[0])
-					if path.rfind('.') > 0:
-						index = path.rfind('/')
-						if index > 0:
-							return path[0:index]
-						index = path.rfind('\\')
-						if index >= 0:
-							path = path[0:index]
-							if len(path) == 2 and path[1] == ':':
-								return path + '\\'
-							return path
-						return None
-					return path
-				case 'drive':
-					path = str(path[0])
-					index = path.find(':')
-					if index >= 0:
-						return path[0:index].upper()
-					if path.startswith('/mnt/') and len(path) > 5:
-						path = path[5:]
-						index = path.find('/')
-						if index >= 0:
-							return '/mnt/' + path[:index]
-						return
-					if path.startswith('/Volumes/') and len(path) > 9:
-						path = path[9:]
-						index = path.find('/')
-						if index >= 0:
-							return '/Volumes/' + path[:index]
-						return
-				case 'strip':
-					path = str(path[0])
-					index = path.rfind('.')
-					if index >= 0:
-						return path[0:index]
-					index = path.rfind('/')
-					if index > 0:
-						return path[0:index]
-					elif index == 0:
-						return '/'
-					index = path.rfind('\\')
-					if index >= 0:
-						path = path[0:index]
-						if len(path) == 2 and path[1] == ':':
-							path += '\\'
-					return path
-				case 'strip.dir':
-					path = str(path[0])
-					index = path.rfind('/')
-					if index > 0:
-						return path[0:index]
-					elif index == 0:
-						return '/'
-					index = path.rfind('\\')
-					if index >= 0:
-						path = path[0:index]
-						if len(path) == 2 and path[1] == ':':
-							path += '\\'
-					return path
-				case 'strip.extension':
-					path = str(path[0])
-					index = path.rfind('.')
-					if index >= 0:
-						return path[0:index]
-					return path
-		try:
-			path_list = []
-			for name in path:
-				if name:
-					path_list.append(str(name))
-			return cls.delimiter.join(path_list)
-		except: return
+			return cls.os_path			
+		path_list = []
+		for name in path:
+			if name:
+				name = str(name)
+				if name.endswith(cls.delimiter):
+					name = name[:-1]
+				path_list.append(name)
+		return cls.delimiter.join(path_list)
+
+	@classmethod
+	def path_correct(cls, path: str):
+		if cls.delimiter == '/':
+			return path.replace('\\', '/')
+		return path.replace('/', '\\')
 
 	@classmethod
 	def path_name(cls, path: str):
-		return cls.path(path, 'name')
+		index = path.rfind('/')
+		if index >= 0:
+			return path[index+1:]
+		index = path.rfind('\\')
+		if index >= 0:
+			return path[index+1:]
+		return path
 
 	@classmethod
-	def path_subname(cls, path: str):
-		return cls.path(path, 'subname')
+	def path_stem(cls, path: str):
+		name = cls.path_name(path)
+		return cls.path_extension_strip(name)
+
+	@classmethod
+	def path_stem_append(cls, path: str, end: str):
+		extension = cls.path_extension(path)
+		return f'{path[:-len(extension)-1]}{end}.{extension}' if extension else f'{path}{end}'
+
+	@classmethod
+	def path_stem_replace(cls, path: str, stem: str):
+		dir = cls.path_dir(path)
+		extension = cls.path_extension(path)
+		return f'{dir}{cls.delimiter}{stem}.{extension}' if extension else f'{dir}{cls.delimiter}{stem}'
 
 	@classmethod
 	def path_extension(cls, path: str, *extension):
-		result = cls.path(path, 'extension')
+		name = cls.path_name(path)
+		index = name.rfind('.')
+		result = name[index+1:] if index >= 0 else ''
 		if len(extension):
-			return result in extension
+			if isinstance(extension[0], (list, tuple, set)):
+				extension = extension[0]
+			return result.lower() in [e.lower() for e in extension]
 		return result
 
 	@classmethod
 	def path_extension_strip(cls, path: str):
-		return cls.path(path, 'strip.extension')
+		index_dot = path.rfind('.')
+		index_slash = path.rfind('/')
+		index_backslash = path.rfind('\\')
+		if index_dot >= 0 and index_dot > index_slash and index_dot > index_backslash:
+			return path[0:index_dot]
+		return path
 
 	@classmethod
 	def path_extension_replace(cls, path: str, extension):
@@ -11190,31 +11382,45 @@ class VOIDlang:
 
 	@classmethod
 	def path_dir(cls, path: str):
-		return cls.path(path, 'dir')
+		index_slash = path.rfind('/')
+		index_backslash = path.rfind('\\')
+		if index_slash >= 0:
+			if path == '/':
+				return path
+			path = path[:index_slash]
+			if path == '.':
+				return './'
+			if path == '..':
+				return '../'
+			return path
+		if index_backslash >= 0:
+			path = path[:index_backslash]
+			if (len(path) == 2 and path[1] == ':') or path in ('.', '..'):
+				return path + '\\'
+			return path
+		if len(path) == 2 and path[1] == ':':
+			return path + '\\'
+		if path == '.':
+			return '.' + cls.delimiter
+		if path == '..':
+			return '..' + cls.delimiter
+		return path
 
 	@classmethod
 	def path_drive(cls, path: str):
-		return cls.path(path, 'drive')
-
-	@classmethod
-	def path_start(cls, path: str):
-		return cls.path(path, 'start')
-
-	@classmethod
-	def path_end(cls, path: str):
-		return cls.path(path, 'end')
-
-	@classmethod
-	def path_strip(cls, path: str):
-		return cls.path(path, 'strip')
-
-	@classmethod
-	def path_strip_dir(cls, path: str):
-		return cls.path(path, 'strip.dir')
-
-	@classmethod
-	def path_strip_extension(cls, path: str):
-		return cls.path(path, 'strip.extension')
+		index_colon = path.find(':')
+		if index_colon >= 0:
+			return path[:index_colon].upper()
+		if path.startswith('/mnt/') and len(path) > 5:
+			index_slash = path.find('/', 5)
+			if index_slash > 0:
+				return path[:index_slash]
+			return path
+		if path.startswith('/Volumes/') and len(path) > 9:
+			index_slash = path.find('/', 9)
+			if index_slash > 0:
+				return path[:index_slash]
+			return path
 
 
   # format
@@ -12320,7 +12526,7 @@ class VOIDlang:
 						'file': path
 					}
 				if request['path'] != '/':
-					title = cls.path_end(request['path'])
+					title = cls.path_name(request['path'])
 					if len(title) > 30:
 						title = title[:26] + '…'
 					title = b'\xf0\x9f\x93\x81 ' + title.encode()
@@ -13177,16 +13383,565 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def image_resize(cls, path_from: str, path_to: str, scale: float = None, size = None, deblocking = True, method = None):
-		return
+	def image_resize(cls, path_from: str, path_to: str = None, scale: float = None, width: float = None, height: float = None, deblocking = None, method = None, quality: int = None):
+		if not cls.is_file(path_from): return
+		pillow_image = cls.module('PIL.Image', 'pillow')
+		image = pillow_image.open(path_from).convert('RGB')
+		image_width, image_height = image.size
+		if not scale:
+			if width:
+				scale = width / image_width
+			elif height:
+				scale = height / image_height
+			else:
+				scale = 1
+		match (method or '').lower():
+			case 'lanczos':
+				method = pillow_image.LANCZOS
+			case 'bilinear':
+				method = pillow_image.BILINEAR
+			case 'bicubic':
+				method = pillow_image.BICUBIC
+			case 'hamming':
+				method = pillow_image.HAMMING
+			case 'nearest':
+				method = pillow_image.NEAREST
+			case 'neuro':
+				method = 'neuro'
+			case _:
+				if scale >= 2:
+					method = 'neuro'
+				else:
+					method = pillow_image.LANCZOS
+		if not path_to:
+			if method != 'neuro':
+				name = '_scale'
+			else:
+				name = f'_x{scale}'
+			path_to = cls.path_stem_append(path_from, name)
+		extension = cls.path_extension(path_to).lower()
+		if deblocking or (deblocking is None and cls.path_extension(path_from, 'jpg', 'jpeg')):
+			match deblocking:
+				case True | None:
+					if method == 'neuro':
+						deblocking = 'neuro'
+					else:
+						deblocking_factor = 4 if image_width * image_height <= 300 * 300 else 3
+				case 'normal':
+					deblocking_factor = 3
+				case 'light':
+					deblocking_factor = 1
+				case 'hard':
+					deblocking_factor = 5
+				case _:
+					deblocking_factor = deblocking if isinstance(deblocking, int) else 3
+			if deblocking != 'neuro':
+				np = cls.module('numpy')
+				cv2 = cls.module('cv2', 'opencv-python')
+				image_np = np.array(image)
+				image_np = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
+				image_np = cv2.fastNlMeansDenoisingColored(image_np, None, h=deblocking_factor, hColor=deblocking_factor, templateWindowSize=7, searchWindowSize=21)
+				image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
+				image = pillow_image.fromarray(image_np)
+		if method == 'neuro':
+			method = cls.neuro_method()
+		match method:
+			case 'intel':
+				torch = cls.module('torch')
+				np = cls.module('numpy')
+				cv2 = cls.module('cv2', 'opencv-python')
+				openvino = cls.module('openvino')
+				image_upscale_scale = 4
+				core = openvino.Core()
+				image_upscale_model = core.read_model(model=cls.get('ai.model.epoch.intel'))
+				image_data = np.array(image).astype(np.float32) / 255.0
+				image_data = np.transpose(image_data, (2, 0, 1))
+				image_tensor = torch.from_numpy(image_data).unsqueeze(0)
+				pad_width = (32 - image_width % 32) % 32
+				pad_height = (32 - image_height % 32) % 32
+				if pad_width > 0 or pad_height > 0:
+					image_tensor = torch.nn.functional.pad(image_tensor, (0, pad_width, 0, pad_height), mode='reflect')
+				image_data_padded = image_tensor.numpy()
+				padded_height, padded_width = image_data_padded.shape[2], image_data_padded.shape[3]
+				if deblocking == 'neuro':
+					image_deblocking_model = core.read_model(model=cls.get('ai.model.fbcnn.intel'))
+					image_deblocking_model.reshape({0: openvino.PartialShape([1, 3, padded_height, padded_width])})
+					image_deblocking_compiled = core.compile_model(model=image_deblocking_model, device_name='CPU')
+					image_data_padded = list(image_deblocking_compiled(image_data_padded).values())[0].astype(np.float32)
+				image_upscale_model.reshape({0: openvino.PartialShape([1, 3, padded_height, padded_width])})
+				image_upscale_compiled_model = core.compile_model(model=image_upscale_model, device_name='CPU')
+				image_output_tensor = list(image_upscale_compiled_model(image_data_padded).values())[0]
+				image_output_data = np.squeeze(image_output_tensor, axis=0)
+				image_output_data = np.clip(image_output_data, 0.0, 1.0)
+				image_output_data = np.transpose(image_output_data, (1, 2, 0))
+				target_width = image_width * image_upscale_scale
+				target_height = image_height * image_upscale_scale
+				image_output_data = image_output_data[:target_height, :target_width, :]
+				image_output = (image_output_data * 255).astype(np.uint8)
+				image_output = cv2.cvtColor(image_output, cv2.COLOR_RGB2BGR)
+				if scale != image_upscale_scale:
+					final_width = image_width * scale
+					final_height = image_height * scale
+					image_output = cv2.resize(image_output, (final_width, final_height), interpolation=cv2.INTER_LANCZOS4)
+				image_param = []
+				match extension:
+					case 'jpg' | 'jpeg':
+						image_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality or 90]
+					case 'webp':
+						image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality or 90]
+					case 'png':
+						image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), quality or 9]
+				success, image_encoded = cv2.imencode(f'.{extension}', image_output, image_param)
+				if success:
+					cls.file(path_to, image_encoded.tobytes())
+			case 'cpu' | 'mps' | 'xpu' | 'dml':
+				torch = cls.module('torch')
+				np = cls.module('numpy')
+				cv2 = cls.module('cv2', 'opencv-python')
+				spandrel = cls.module('spandrel')
+				warnings = cls.module('warnings')
+				warnings.filterwarnings('ignore', category=UserWarning)
+				image_upscale_scale = 4
+				image_upscale_model = spandrel.ModelLoader(device=method).load_from_file(cls.get('ai.model.epoch.any'))
+				image_upscale_model.eval()
+				image_tensor = torch.from_numpy(np.array(image)).permute(2, 0, 1).float() / 255.0
+				image_tensor = image_tensor.unsqueeze(0)
+				with torch.no_grad():
+					if deblocking == 'neuro':
+						image_deblocking_model = spandrel.ModelLoader(device=method).load_from_file(cls.get('ai.model.fbcnn.any'))
+						image_deblocking_model.eval()
+						image_tensor = image_deblocking_model(image_tensor)
+					image_output_tensor = image_upscale_model(image_tensor)
+				image_output_tensor = image_output_tensor.squeeze(0).clamp(0, 1).permute(1, 2, 0).numpy()
+				image_output = (image_output_tensor * 255).astype(np.uint8)
+				image_output = cv2.cvtColor(image_output, cv2.COLOR_RGB2BGR)
+				if scale != image_upscale_scale:
+					final_width = image_width * scale
+					final_height = image_height * scale
+					image_output = cv2.resize(image_output, (final_width, final_height), interpolation=cv2.INTER_LANCZOS4)
+				image_param = []
+				match extension:
+					case 'jpg' | 'jpeg':
+						image_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality or 90]
+					case 'webp':
+						image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality or 90]
+					case 'png':
+						image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), quality or 9]
+				success, image_encoded = cv2.imencode(f'.{extension}', image_output, image_param)
+				if success:
+					cls.file(path_to, image_encoded.tobytes())
+			case _:
+				image_param = {}
+				match extension:
+					case 'jpg' | 'jpeg' | 'webp':
+						image_param['quality'] = quality or 90
+					case 'png':
+						image_param['compress_level'] = quality or 9
+				image.resize((int(image_width * scale), int(image_height * scale)), method).save(path_to, **image_param)
 
 	@classmethod
-	def image_2x(cls, path_from: str, path_to: str, deblocking = True, method = None):
-		return cls.image_resize(path_from, path_to, 2)
+	def image_x2(cls, path_from: str, path_to: str = None, deblocking = None, method = None, quality: int = None):
+		return cls.image_resize(path_from, path_to, 2, method='neuro')
 
 	@classmethod
-	def image_4x(cls, path_from: str, path_to: str, deblocking = True, method = None):
-		return cls.image_resize(path_from, path_to, 4)
+	def image_x4(cls, path_from: str, path_to: str = None, deblocking = None, method = None, quality: int = None):
+		return cls.image_resize(path_from, path_to, 4, method='neuro')
+
+	@classmethod
+	def x2(cls, path_from: str, path_to: str = None, deblocking = None, method = None, quality: int = None):
+		return cls.image_resize(path_from, path_to, 2, method='neuro')
+
+	@classmethod
+	def x4(cls, path_from: str, path_to: str = None, deblocking = None, method = None, quality: int = None):
+		return cls.image_resize(path_from, path_to, 4, method='neuro')
+
+	@classmethod
+	def image_colorize(cls, path_from: str, path_to: str = None, method: str = None, quality: int = None):
+		if not cls.is_file(path_from): return
+		pillow_image = cls.module('PIL.Image', 'pillow')
+		np = cls.module('numpy')
+		cv2 = cls.module('cv2', 'opencv-python')
+		image = pillow_image.open(path_from).convert('RGB')
+		image_width, image_height = image.size
+		torch = cls.module('torch')
+		if (method is None and cls.cpu_type == 'intel') or method == 'intel':
+			openvino = cls.module('openvino')
+			core = openvino.Core()
+			color_model = core.read_model(model=cls.get('ai.model.ddcolor.modelscope.intel'))
+			image_np = np.array(image)
+			image_lab = cv2.cvtColor(image_np, cv2.COLOR_RGB2LAB)
+			image_l = image_lab[:, :, 0] 
+			image_data = image_l.astype(np.float32) / 255.0
+			image_tensor = torch.from_numpy(image_data).unsqueeze(0).unsqueeze(0)
+			image_tensor = image_tensor.repeat(1, 3, 1, 1)
+			pad_width = (32 - image_width % 32) % 32
+			pad_height = (32 - image_height % 32) % 32
+			if pad_width > 0 or pad_height > 0:
+				image_tensor = torch.nn.functional.pad(image_tensor, (0, pad_width, 0, pad_height), mode='reflect')			
+			image_data_padded = image_tensor.numpy()
+			padded_height, padded_width = image_data_padded.shape[2], image_data_padded.shape[3]
+			color_model.reshape({0: openvino.PartialShape([1, 3, padded_height, padded_width])})
+			compiled_model = core.compile_model(model=color_model, device_name='CPU')
+			output_tensor = list(compiled_model(image_data_padded).values())[0]
+			output_data = np.squeeze(output_tensor, axis=0)
+			output_data = np.transpose(output_data, (1, 2, 0))
+			output_data = output_data[:image_height, :image_width, :]
+			ab_channels = (output_data + 128).clip(0, 255).astype(np.uint8)
+			final_lab = np.dstack((image_l, ab_channels))
+			final_image = cv2.cvtColor(final_lab, cv2.COLOR_LAB2BGR)
+		else:
+			warnings = cls.module('warnings')
+			warnings.filterwarnings('ignore', category=UserWarning)
+			spandrel = cls.module('spandrel')
+			spandrel_extra = cls.module('spandrel_extra_arches', 'spandrel-extra-arches')
+			spandrel_extra.install()
+			color_model = spandrel.ModelLoader(device='cpu').load_from_file(cls.get('ai.model.ddcolor.modelscope.any'))
+			color_model.eval()
+			image_np = np.array(image)
+			image_lab = cv2.cvtColor(image_np, cv2.COLOR_RGB2LAB)
+			image_l = image_lab[:, :, 0]
+			image_data = image_l.astype(np.float32) / 255.0
+			image_tensor = torch.from_numpy(image_data).unsqueeze(0).unsqueeze(0)
+			with torch.no_grad():
+				output_tensor = color_model(image_tensor)
+			output_tensor = output_tensor.squeeze(0).clamp(0, 1).permute(1, 2, 0).numpy()
+			final_image = (output_tensor * 255).astype(np.uint8)
+			final_image = cv2.cvtColor(final_image, cv2.COLOR_RGB2BGR)
+		if not path_to:
+			path_to = cls.path_extension_replace(cls.path_stem_append(path_from, '_color'), 'png')
+		image_param = []
+		extension = cls.path_extension(path_to).lower()
+		match extension:
+			case 'jpg' | 'jpeg':
+				image_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality or 90]
+			case 'webp':
+				image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality or 90]
+			case 'png':
+				image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), quality or 9]
+		success, image_encoded = cv2.imencode(f'.{extension}', final_image, image_param)
+		if success:
+			cls.file(path_to, image_encoded.tobytes())
+			return path_to
+
+	@classmethod
+	def image_colorize_manga(cls, path_from: str, path_to: str = None, quality: int = None, blend: float = 0.7, size: int = 576, denoise: bool = True, denoiser_sigma: int = 25, gpu: bool = None):
+		if not cls.is_file(path_from): return
+		np = cls.module('numpy')
+		cv2 = cls.module('cv2')
+		torch = cls.module('torch')
+		ToTensor = cls.module('torchvision.transforms', 'torchvision').ToTensor
+		nn = torch.nn
+		device = ('cuda' if torch.cuda.is_available() else 'cpu') if gpu is None else ('cuda' if gpu else 'cpu')
+		if device not in cls.cache_colorize:
+			path_generator = cls.get('ai.model.colorize.generator')
+			path_denoiser = cls.get('ai.model.colorize.denoiser')
+			IDX = [(0, 0), (0, 1), (1, 0), (1, 1)]
+			def s2d(x):
+				n, c, h, w = x.shape
+				out = x.new_zeros(n, 4 * c, h // 2, w // 2)
+				for i, (a, b) in enumerate(IDX):
+					out[:, i::4] = x[:, :, a::2, b::2]
+				return out
+			def d2s(x):
+				n, c4, h, w = x.shape
+				out = x.new_zeros(n, c4 // 4, h * 2, w * 2)
+				for i, (a, b) in enumerate(IDX):
+					out[:, :, a::2, b::2] = x[:, i::4]
+				return out
+			class _D2S(torch.autograd.Function):
+				@staticmethod
+				def forward(ctx, x):
+					return d2s(x)
+				@staticmethod
+				def backward(ctx, g):
+					return s2d(g)
+			def concat_noise(x, sigma):
+				n, c, h, w = x.shape
+				noise = sigma.view(n, 1, 1, 1).repeat(1, c, h // 2, w // 2)
+				return torch.cat((noise, s2d(x)), 1)
+			class _DnCNN(nn.Module):
+				def __init__(self, cin, cmid, nlayers):
+					super().__init__()
+					cout = 4 if cin == 5 else 12
+					layers = [nn.Conv2d(cin, cmid, 3, padding=1, bias=False), nn.ReLU(True)]
+					for _ in range(nlayers - 2):
+						layers += [nn.Conv2d(cmid, cmid, 3, padding=1, bias=False),
+								   nn.BatchNorm2d(cmid), nn.ReLU(True)]
+					layers.append(nn.Conv2d(cmid, cout, 3, padding=1, bias=False))
+					self.itermediate_dncnn = nn.Sequential(*layers)
+				def forward(self, x):
+					return self.itermediate_dncnn(x)
+			class _FFDNet(nn.Module):
+				def __init__(self, c=3):
+					super().__init__()
+					cmid, nlayers, cdown = (96, 12, 15) if c == 3 else (64, 15, 5)
+					self.intermediate_dncnn = _DnCNN(cdown, cmid, nlayers)
+				def forward(self, x, sigma):
+					return _D2S.apply(self.intermediate_dncnn(concat_noise(x, sigma)))
+			class _Denoiser:
+				def __init__(self, device, sigma=25, weights_path=path_denoiser, in_ch=3):
+					self.sigma, self.device = sigma / 255, device
+					self.model = _FFDNet(in_ch)
+					state = torch.load(weights_path, map_location='cpu')
+					if device == 'cuda':
+						self.model = nn.DataParallel(self.model, device_ids=[0]).cuda()
+					else:
+						state = {k[7:]: v for k, v in state.items()}
+					self.model.load_state_dict(state)
+					self.model.eval()
+				def get_denoised_image(self, img, sigma=None):
+					cur_sigma = (sigma / 255) if sigma is not None else self.sigma
+					if img.ndim < 3 or img.shape[2] == 1:
+						img = np.repeat(np.expand_dims(img, 2), 3, 2)
+					img = img[..., :3]
+					m = max(img.shape[0], img.shape[1])
+					if m > 1200:
+						ratio = m / 1200
+						img = cv2.resize(img, (int(img.shape[1] / ratio), int(img.shape[0] / ratio)), interpolation=cv2.INTER_AREA)
+					img = img.transpose(2, 0, 1)
+					if img.max() > 1.2:
+						img = np.float32(img / 255.)
+					img = np.expand_dims(img, 0)
+					pad_h = img.shape[2] % 2 == 1
+					pad_w = img.shape[3] % 2 == 1
+					if pad_h:
+						img = np.concatenate((img, img[:, :, -1:, :]), axis=2)
+					if pad_w:
+						img = np.concatenate((img, img[:, :, :, -1:]), axis=3)
+					dtype = torch.cuda.FloatTensor if self.device == 'cuda' else torch.FloatTensor
+					noisy = torch.Tensor(img).type(dtype)
+					nsigma = torch.FloatTensor([cur_sigma]).type(dtype)
+					with torch.no_grad():
+						out = torch.clamp(noisy - self.model(noisy, nsigma), 0., 1.)
+					if pad_h:
+						out = out[:, :, :-1, :]
+					if pad_w:
+						out = out[:, :, :, :-1]
+					res = out[0].detach().cpu().numpy()
+					res = cv2.cvtColor(res.transpose(1, 2, 0), cv2.COLOR_RGB2BGR)
+					return (res * 255.).clip(0, 255).astype(np.uint8)
+			class _SE(nn.Module):
+				def __init__(self, ch):
+					super().__init__()
+					self.global_avgpool = nn.AdaptiveAvgPool2d(1)
+					self.conv1 = nn.Conv2d(ch, ch // 16, 1)
+					self.conv2 = nn.Conv2d(ch // 16, ch, 1)
+					self.relu = nn.ReLU(True)
+					self.sigmoid = nn.Sigmoid()
+				def forward(self, x):
+					return x * self.sigmoid(self.conv2(self.relu(self.conv1(self.global_avgpool(x)))))
+			class _BottleneckX(nn.Module):
+				expansion = 4
+				def __init__(self, inplanes, planes, cardinality, stride=1, downsample=None):
+					super().__init__()
+					self.conv1 = nn.Conv2d(inplanes, planes * 2, 1, bias=False)
+					self.bn1 = nn.BatchNorm2d(planes * 2)
+					self.conv2 = nn.Conv2d(planes * 2, planes * 2, 3, stride, 1, groups=cardinality, bias=False)
+					self.bn2 = nn.BatchNorm2d(planes * 2)
+					self.conv3 = nn.Conv2d(planes * 2, planes * 4, 1, bias=False)
+					self.bn3 = nn.BatchNorm2d(planes * 4)
+					self.selayer = _SE(planes * 4)
+					self.relu = nn.ReLU(True)
+					self.downsample = downsample
+				def forward(self, x):
+					r = x if self.downsample is None else self.downsample(x)
+					x = self.relu(self.bn1(self.conv1(x)))
+					x = self.relu(self.bn2(self.conv2(x)))
+					x = self.selayer(self.bn3(self.conv3(x)))
+					return self.relu(x + r)
+			class _Encoder(nn.Module):
+				def __init__(self, block, blocks, input_channels=1, cardinality=32, num_classes=1000):
+					super().__init__()
+					self.inplanes = 64
+					self.conv1 = nn.Conv2d(input_channels, 64, 7, 2, 3, bias=False)
+					self.bn1 = nn.BatchNorm2d(64)
+					self.relu = nn.ReLU(True)
+					self.layer1 = self._make_layer(block, 64, blocks[0], cardinality)
+					self.layer2 = self._make_layer(block, 128, blocks[1], cardinality, stride=2)
+					self.layer3 = self._make_layer(block, 256, blocks[2], cardinality, stride=2)
+				def _make_layer(self, block, planes, n, cardinality, stride=1):
+					downsample = None
+					if stride != 1 or self.inplanes != planes * block.expansion:
+						downsample = nn.Sequential(
+							nn.Conv2d(self.inplanes, planes * block.expansion, 1, stride, bias=False),
+							nn.BatchNorm2d(planes * block.expansion))
+					layers = [block(self.inplanes, planes, cardinality, stride, downsample)]
+					self.inplanes = planes * block.expansion
+					layers += [block(self.inplanes, planes, cardinality) for _ in range(1, n)]
+					return nn.Sequential(*layers)
+				def forward(self, x):
+					x1 = self.relu(self.bn1(self.conv1(x)))
+					x2 = self.layer1(x1)
+					x3 = self.layer2(x2)
+					x4 = self.layer3(x3)
+					return x1, x2, x3, x4
+			class _RB(nn.Module):
+				def __init__(self, ch, cardinality=32, dilate=1):
+					super().__init__()
+					d = ch // 2
+					self.conv_reduce = nn.Conv2d(ch, d, 1, bias=False)
+					self.conv_conv = nn.Conv2d(d, d, 3, 1, dilate, dilation=dilate, groups=cardinality, bias=False)
+					self.conv_expand = nn.Conv2d(d, ch, 1, bias=False)
+					self.shortcut = nn.Sequential()
+					self.selayer = _SE(ch)
+				def forward(self, x):
+					b = nn.functional.leaky_relu(self.conv_reduce(x), 0.2, True)
+					b = nn.functional.leaky_relu(self.conv_conv(b), 0.2, True)
+					b = self.selayer(self.conv_expand(b))
+					return self.shortcut(x) + b
+			def tunnel(ch, cardinality, depth=2):
+				dilates = [1] * depth + [2] * depth + [4] * depth + [2, 1]
+				return nn.Sequential(*[_RB(ch, cardinality, d) for d in dilates])
+			def wrap(cin, ch, inner, cout):
+				return nn.Sequential(nn.Conv2d(cin, ch, 3, 1, 1), nn.LeakyReLU(0.2, True), inner, nn.Conv2d(ch, cout, 3, 1, 1), nn.PixelShuffle(2), nn.LeakyReLU(0.2, True))
+			def enc_block(cin, cout, stride):
+				return nn.Sequential(nn.Conv2d(cin, cout, 3, stride, 1), nn.LeakyReLU(0.2), nn.Conv2d(cout, cout, 3, 1, 1), nn.LeakyReLU(0.2))
+			class _Generator(nn.Module):
+				def __init__(self):
+					super().__init__()
+					self.encoder = _Encoder(_BottleneckX, [3, 4, 6, 3], input_channels=1, num_classes=370)
+					self.to0 = enc_block(5, 32, 1)
+					self.to1 = enc_block(32, 64, 2)
+					self.to2 = enc_block(64, 92, 2)
+					self.to3 = enc_block(92, 128, 2)
+					self.to4 = enc_block(128, 256, 2)
+					self.deconv_for_decoder = nn.Sequential(
+						nn.ConvTranspose2d(256, 128, 3, 2, 1, 1), nn.LeakyReLU(0.2),
+						nn.ConvTranspose2d(128, 64, 3, 2, 1, 1), nn.LeakyReLU(0.2),
+						nn.ConvTranspose2d(64, 32, 3, 1, 1, 0), nn.LeakyReLU(0.2),
+						nn.ConvTranspose2d(32, 3, 3, 1, 1, 0), nn.Tanh())
+					self.tunnel4 = wrap(1024 + 128, 512, nn.Sequential(*[_RB(512, 32, 1) for _ in range(20)]), 1024)
+					self.tunnel3 = wrap(512 + 256, 256, tunnel(256, 32, 2), 512)
+					self.tunnel2 = wrap(128 + 256 + 64, 128, tunnel(128, 32, 2), 256)
+					self.tunnel1 = wrap(64 + 32, 64, tunnel(64, 16, 1), 128)
+					self.exit = nn.Sequential(nn.Conv2d(64 + 32, 32, 3, 1, 1), nn.LeakyReLU(0.2, True), nn.Conv2d(32, 3, 1))
+				def forward(self, sketch):
+					x0 = self.to0(sketch)
+					aux = self.to3(self.to2(self.to1(x0)))
+					x1, x2, x3, x4 = self.encoder(sketch[:, 0:1])
+					out = self.tunnel4(torch.cat([x4, aux], 1))
+					x = self.tunnel3(torch.cat([out, x3], 1))
+					x = self.tunnel2(torch.cat([x, x2, x1], 1))
+					x = torch.tanh(self.exit(torch.cat([x, x0], 1)))
+					return x, self.deconv_for_decoder(out)
+			def resize_pad(img, size):
+				if img.ndim == 2:
+					img = np.expand_dims(img, 2)
+				if img.shape[2] == 1:
+					img = np.repeat(img, 3, 2)
+				if img.shape[2] == 4:
+					img = img[:, :, :3]
+				if img.shape[0] < img.shape[1]:
+					ratio = img.shape[0] / (size * 1.5)
+					width = int(np.ceil(img.shape[1] / ratio))
+					img = cv2.resize(img, (width, int(size * 1.5)), interpolation=cv2.INTER_AREA)
+					pad = (0, width + (32 - width % 32) - width)
+					img = np.pad(img, ((0, 0), (0, pad[1]), (0, 0)), 'maximum')
+				else:
+					ratio = img.shape[1] / size
+					height = int(np.ceil(img.shape[0] / ratio))
+					img = cv2.resize(img, (size, height), interpolation=cv2.INTER_AREA)
+					pad = (height + (32 - height % 32) - height, 0)
+					img = np.pad(img, ((0, pad[0]), (0, 0), (0, 0)), 'maximum')
+				if img.dtype == 'float32':
+					np.clip(img, 0, 1, out=img)
+				return img[:, :, :1], pad
+			class _Colorizator:
+				def __init__(self, device):
+					self.device = device
+					self.colorizer = _Generator().to(device)
+					self.colorizer.load_state_dict(torch.load(path_generator, map_location=device))
+					self.colorizer.eval()
+					self.denoiser = _Denoiser(device, weights_path=path_denoiser)
+				def run(self, image, size, denoise, denoiser_sigma):
+					if size % 32:
+						raise RuntimeError('size is not divisible by 32')
+					if denoise:
+						image = self.denoiser.get_denoised_image(image, sigma=denoiser_sigma)
+					image, pad = resize_pad(image, size)
+					x = ToTensor()(image).unsqueeze(0).to(self.device)
+					hint = torch.zeros(1, 4, x.shape[2], x.shape[3]).to(self.device)
+					with torch.no_grad():
+						fake, _ = self.colorizer(torch.cat([x, hint], 1))
+					result = fake[0].detach().cpu().permute(1, 2, 0) * 0.5 + 0.5
+					if pad[0]:
+						result = result[:-pad[0]]
+					if pad[1]:
+						result = result[:, :-pad[1]]
+					return result.numpy()
+			cls.cache_colorize[device] = _Colorizator(device)
+		colorizator = cls.cache_colorize[device]
+		def _merge_color_with_original_luminance(image_original, image_colorized, target_width, target_height):
+			color_up = cv2.resize(image_colorized, (target_width, target_height), interpolation=cv2.INTER_CUBIC)
+			color_up = (np.clip(color_up, 0, 1) * 255).astype(np.uint8)
+			ycc = cv2.cvtColor(color_up, cv2.COLOR_RGB2YCrCb)
+			original_y = cv2.cvtColor(image_original, cv2.COLOR_RGB2GRAY).astype(np.float32)
+			model_y = ycc[:, :, 0].astype(np.float32)
+			ycc[:, :, 0] = (blend * original_y + (1 - blend) * model_y).clip(0, 255).astype(np.uint8)
+			return cv2.cvtColor(ycc, cv2.COLOR_YCrCb2RGB)
+		image = cv2.imread(path_from, cv2.IMREAD_COLOR)
+		image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+		image_height, image_width = image.shape[0], image.shape[1]
+		image_colorized = colorizator.run(image, size, denoise, denoiser_sigma)
+		image = _merge_color_with_original_luminance(image, image_colorized, image_width, image_height)
+		image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+		if not path_to:
+			path_to = cls.path_extension_replace(cls.path_stem_append(path_from, '_color'), 'png')
+		image_param = []
+		extension = cls.path_extension(path_to).lower()
+		match extension:
+			case 'jpg' | 'jpeg':
+				image_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality or 90]
+			case 'webp':
+				image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality or 90]
+			case 'png':
+				image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), quality or 9]
+		success, image = cv2.imencode(f'.{extension}', image, image_param)
+		if success:
+			cls.file(path_to, image.tobytes())
+			return path_to
+
+	@classmethod
+	def image_text_recognize(cls, path_from: str, language: str = None, gpu: bool = False) -> list:
+		if not cls.is_file(path_from): return []
+		warnings = cls.module('warnings')
+		warnings.filterwarnings('ignore', message=".*pin_memory.*")
+		easyocr = cls.module('easyocr')
+		cv2 = cls.module('cv2')
+		np = cls.module('numpy')
+		image = cv2.imread(path_from)
+		image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+		image = cv2.convertScaleAbs(image, alpha=1.3, beta=0)
+		image = cv2.fastNlMeansDenoising(image, h=10)
+		_, image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+		reader = easyocr.Reader(['en', language or cls.get('language')], gpu=gpu, verbose=False)
+		ocr_results = reader.readtext(
+			image,
+			paragraph=True
+			)
+		blocks = []
+		for box, text in ocr_results:
+			xs = [pt[0] for pt in box]
+			ys = [pt[1] for pt in box]
+			x_min, x_max = int(min(xs)), int(max(xs))
+			y_min, y_max = int(min(ys)), int(max(ys))
+			blocks.append({
+				'box': (x_min, y_min, x_max - x_min, y_max - y_min),
+				'text': text
+			})
+		return blocks
+
+	@classmethod
+	def image_text_clear(cls, path_from: str, path_to: str, quality: int = None):
+		pass
+
+	@classmethod
+	def image_text(cls, path_from: str, path_to: str, text: list, quality: int = None):
+		pass
+
+	@classmethod
+	def image_translate(cls, path_from: str, path_to: str, language: str = None, colorize: bool = False, quality: int = None):
+		pass
 
 	@classmethod
 	def image_crop(cls, path_from: str, path_to: str, param = None):
