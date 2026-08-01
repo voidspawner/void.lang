@@ -3,17 +3,12 @@ import os
 import re
 import sys
 import time
-import glob
 import math
 import locale
 import random
-import hashlib
-import warnings
 import platform
 import datetime
 import importlib
-import traceback
-import subprocess
 
 class VOIDlang:
 
@@ -8023,6 +8018,7 @@ class VOIDlang:
 			except Exception as e: pass
 		elif cls.os_type == 'linux':
 			try:
+				import glob
 				vendors = []
 				for vendor_file in glob.glob('/sys/class/drm/card*/device/vendor'):
 					try:
@@ -8140,13 +8136,13 @@ class VOIDlang:
   # neuro
 
 	@classmethod
-	def neuro_method(cls):
+	def neuro_mode(cls, intel: bool = True):
 		torch_type = cls.get('ai.torch')
 		if torch_type == 'cuda unchecked':
 			cuda = cls.module('torch.cuda')
 			torch_type = 'cuda' if cuda.is_available() else 'cpu'
 			cls.set('ai.torch', torch_type)
-		if torch_type == 'cpu' and cls.get('device.cpu.type') == 'intel':
+		if torch_type == 'cpu' and intel and cls.get('device.cpu.type') == 'intel':
 			return 'intel'
 		return torch_type
 
@@ -8695,6 +8691,7 @@ class VOIDlang:
 			command = str(command)
 		creation_flags = 0x08000000 if cls.os_type == 'windows' else 0
 		try:
+			subprocess = cls.module('subprocess')
 			if wait:
 				process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, creationflags=creation_flags)
 				text, error = process.communicate()
@@ -8775,6 +8772,7 @@ class VOIDlang:
 	@classmethod
 	def error(cls, tag: str, *data):
 		if len(data) > 0 and isinstance(data[0], Exception):
+			traceback = cls.module('traceback')
 			exception_type, exception_value, exception_traceback = sys.exc_info()
 			traceback_details = traceback.extract_tb(exception_traceback)[-1]
 			data = [{
@@ -8936,25 +8934,6 @@ class VOIDlang:
 	@classmethod
 	def c(cls, value, name_from = None, name_to = None):
 		return cls.convert(value, name_from, name_to)
-
-	@classmethod
-	def convert_neuro_model(cls, path_from: str, path_to: str = None):
-		if not cls.is_file(path_from): return
-		if cls.path_extension(path_from, 'pth'):
-			if not path_to or cls.path_extension(path_to, 'xml'):
-				if not path_to:
-					path_to = cls.path_extension_replace(path_from, 'xml')
-				torch = cls.module('torch')
-				spandrel = cls.module('spandrel')
-				openvino = cls.module('openvino')
-				warnings.filterwarnings('ignore', category=torch.jit.TracerWarning)
-				loader = spandrel.ModelLoader(device='cpu')
-				spandrel_model = loader.load_from_file(path_from)
-				spandrel_model.eval()
-				pytorch_model = spandrel_model.model
-				example_input = torch.randn(1, 3, 256, 256)
-				openvino_model = openvino.convert_model(pytorch_model, example_input=example_input)
-				openvino.save_model(openvino_model, path_to)
 
 	@classmethod
 	def clipboard(cls, data = None):
@@ -9288,10 +9267,11 @@ class VOIDlang:
 		return cls.unescape(text, 'url')
 
 	@classmethod
-	def translate(cls, text: str, language_to: str = None, language_from: str = None, engine: str = 'google'):
-		if not text: return None
+	def translate(cls, text: str = None, language_to: str = None, language_from: str = None, engine: str = 'google'):
+		translator = cls.module('translators')
+		if not text:
+			return translator.translators_pool
 		try:
-			translator = cls.module('translators')
 			if len(text) > 5000:
 				result = []
 				for part in cls.split_accurate(text, 5000):
@@ -9689,6 +9669,7 @@ class VOIDlang:
 				return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 			case _:
 				base64 = cls.module('base64')
+				hashlib = cls.module('hashlib')
 				salt = os.urandom(32)
 				rounds = 600_000
 				key = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, rounds)
@@ -9710,6 +9691,7 @@ class VOIDlang:
 			elif password_hashed.startswith('$pbkdf2$'):
 				hmac = cls.module('hmac')
 				base64 = cls.module('base64')
+				hashlib = cls.module('hashlib')
 				_, _, rounds, salt_base64, key_base64 = password_hashed.split('$')
 				salt = base64.b64decode(salt_base64)
 				rounds = int(rounds)
@@ -9774,6 +9756,7 @@ class VOIDlang:
 			case 'pbk' | 'pbkdf' | 'pbkdf2':
 				return cls.password(str(data), 'pbkdf2')
 			case 'number' | 'digit':
+				hashlib = cls.module('hashlib')
 				result = int(hashlib.sha256(data if isinstance(data, bytes) else str(data).encode()).hexdigest(), 16)
 				if len(param) > 1 and type(param[1]) is int:
 					result = int(str(result)[:param[1]])
@@ -9789,18 +9772,21 @@ class VOIDlang:
 
 	@classmethod
 	def sha1(cls, data):
+		hashlib = cls.module('hashlib')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
 		return hashlib.sha1(data).hexdigest()
 
 	@classmethod
 	def sha256(cls, data):
+		hashlib = cls.module('hashlib')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
 		return hashlib.sha256(data).hexdigest()
 
 	@classmethod
 	def sha512(cls, data):
+		hashlib = cls.module('hashlib')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
 		return hashlib.sha512(data).hexdigest()
@@ -10448,7 +10434,7 @@ class VOIDlang:
   # file
 
 	@classmethod
-	def file(cls, path: str, data = None, format: str = None, extra = None):
+	def file(cls, path: str, data = None, format: str = None, param = None):
 		if format is None:
 			format = cls.path_extension(path).lower()
 			auto = True
@@ -10476,7 +10462,7 @@ class VOIDlang:
 					with open(path, 'r', encoding='utf-8') as file:
 						return cls.json_decode(file.read())
 				case 'csv':
-					delimiter = extra if type(extra) is str else ','
+					delimiter = param if type(param) is str else ','
 					with open(path, 'r', encoding='utf-8') as file:
 						return cls.csv_decode(file.read(), delimiter=delimiter)
 				case 'yaml':
@@ -10488,6 +10474,15 @@ class VOIDlang:
 				case 'ini':
 					with open(path, 'r', encoding='utf-8') as file:
 						return cls.ini_decode(file.read())
+				case 'pillow':
+					pillow_image = cls.module('PIL.Image', 'pillow')
+					return pillow_image.open(path)
+				case 'cv' | 'cv2':
+					cv2 = cls.module('cv2', 'opencv-python')
+					np = cls.module('numpy')
+					with open(path, 'rb') as file:
+						data = file.read()
+						return cv2.imdecode(np.frombuffer(data, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
 				case _:
 					if format == 'ascii' or format.startswith('iso-') or format.startswith('utf-') or format.startswith('windows-') or format.startswith('mac-') or format.startswith('cp-') or format.startswith('koi8-') or format.startswith('gb'):
 						with open(path, 'r', encoding=format) as file:
@@ -10511,7 +10506,7 @@ class VOIDlang:
 							except UnicodeDecodeError:
 								continue
 					try:
-						 return data.decode(format)
+						return data.decode(format)
 					except:
 						return data
 		else:
@@ -10539,7 +10534,7 @@ class VOIDlang:
 					with open(path, 'w', encoding='utf-8') as file:
 						file.write(data if data is not None else '')
 				case 'csv':
-					delimiter = extra if type(extra) is str else ','
+					delimiter = param if type(param) is str else ','
 					data = cls.csv(data, delimiter)
 					with open(path, 'w', encoding='utf-8') as file:
 						file.write(data if data is not None else '')
@@ -10556,6 +10551,108 @@ class VOIDlang:
 					data = cls.ini(data)
 					with open(path, 'w', encoding='utf-8') as file:
 						file.write(data if data is not None else '')
+				case 'jpg' | 'jpeg' | 'webp' | 'png' | 'gif' | 'avif' | 'heif' | 'heic' | 'hdr' | 'pfm' | 'tif' | 'tiff' | 'pdf' | 'ico' | 'bmp' | 'tga' | 'jp2' | 'j2k':
+					if isinstance(data, bytes):
+						with open(path, 'wb') as file:
+							file.write(data)
+					elif 'Image' in data.__class__.__name__ and data.__class__.__module__.startswith('PIL'):
+						image_param = {}
+						match format:
+							case 'jpg' | 'jpeg':
+								image_param['quality'] = int(param if param is not None else 90)
+								image_param['optimize'] = True
+								if data.mode in ('RGBA', 'LA', 'P'):
+									data = data.convert('RGB')
+							case 'webp':
+								image_param['quality'] = int(param if param is not None else 90)
+								image_param['lossless'] = image_param['quality'] == 100
+								image_param['method'] = 6
+							case 'png':
+								image_param['compress_level'] = int(param if param is not None else 9)
+								image_param['optimize'] = True
+							case 'gif':
+								image_param['optimize'] = True
+								image_param['save_all'] = True
+							case 'avif' | 'heif' | 'heic':
+								heif_module = cls.module('pillow_heif', 'pillow-heif')
+								heif_module.register_heif_opener()
+								quality = int(param if param is not None else 90)
+								if quality == 100:
+									image_param['quality'] = 100 if format == 'avif' else -1
+									image_param['chroma'] = 444
+								else:
+									image_param['quality'] = quality
+							case 'tif' | 'tiff':
+								image_param['compression'] = cls.get(str(param), 'tiff_lzw', {'lzw': 'tiff_lzw', 'jpeg': 'jpeg', 'deflate': 'tiff_deflate', 'zip': 'tiff_deflate', 'raw': 'raw'})
+							case 'pdf':
+								cls.module('PIL.Image', 'pillow').init()
+								image_param['resolution'] = float(param if param is not None else 300)
+								image_param['save_all'] = True
+								if data.mode in ('RGBA', 'LA', 'P'):
+									data = data.convert('RGB')
+							case 'ico':
+								pillow_image = cls.module('PIL.Image', 'pillow')
+								if data.mode != 'RGBA':
+									data = data.convert('RGBA')
+								sizes = param if param else [(256, 256)]
+								max_size = max(sizes, key=lambda size: size[0])[0] if isinstance(sizes, list) else 256
+								data.thumbnail((max_size, max_size), pillow_image.Resampling.LANCZOS)
+								square = pillow_image.new('RGBA', (max_size, max_size), (255, 255, 255, 0))
+								offset = ((max_size - data.width) // 2, (max_size - data.height) // 2)
+								square.paste(data, offset)
+								data = square
+								if param:
+									image_param['sizes'] = param
+							case 'jp2' | 'j2k':
+								image_param['quality_mode'] = 'dB'
+								image_param['quality_layers'] = [20 + (float(param if param is not None else 90) / 100.0) * 80]
+								image_param['format'] = 'JPEG2000'
+							case 'hdr' | 'pfm':
+								np = cls.module('numpy')
+								cv2 = cls.module('cv2', 'opencv-python')
+								if data.mode in ('RGBA', 'LA', 'P'):
+									data = data.convert('RGB')
+								data = np.array(data)
+								data = cv2.cvtColor(data, cv2.COLOR_RGB2BGR)
+								return cls.file(path, data, format, param)
+						data.save(path, **image_param)
+					elif data.__class__.__name__ == 'ndarray' and data.__class__.__module__.startswith('numpy'):
+						cv2 = cls.module('cv2', 'opencv-python')
+						np = cls.module('numpy')
+						image_param = []
+						pillow = False
+						match format:
+							case 'jpg' | 'jpeg':
+								image_param = [int(cv2.IMWRITE_JPEG_QUALITY), int(param if param is not None else 90)]
+							case 'webp':
+								quality = int(param if param is not None else 90)
+								image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality if quality < 100 else 109]
+							case 'png':
+								image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), int(param if param is not None else 9)]
+							case 'hdr' | 'pfm':
+								if data.dtype == np.uint8:
+									data = (data / 255.0).astype(np.float32)
+								elif data.dtype != np.float32:
+									data = data.astype(np.float32)
+							case 'tif' | 'tiff':
+								image_param = [int(cv2.IMWRITE_TIFF_COMPRESSION), cls.get(str(param), 5, {'lzw': 5, 'jpeg': 7, 'deflate': 8, 'zip': 8, 'raw': 1})]
+							case 'jp2' | 'j2k':
+								image_param = [int(cv2.IMWRITE_JPEG2000_COMPRESSION_X1000), max(1, min(1000, int(param if param is not None else 90) * 10))]
+							case 'gif' | 'avif' | 'heif' | 'heic' | 'pdf' | 'ico' | 'tga':
+								pillow = True
+						if pillow:
+							if np.issubdtype(data.dtype, np.floating):
+								data = (np.clip(data, 0, 1) * 255).astype(np.uint8) if data.max() <= 1.0 else np.clip(data, 0, 255).astype(np.uint8)
+							if len(data.shape) == 3:
+								if data.shape[2] == 3:
+									data = cv2.cvtColor(data, cv2.COLOR_BGR2RGB)
+								elif data.shape[2] == 4:
+									data = cv2.cvtColor(data, cv2.COLOR_BGRA2RGBA)
+							return cls.file(path, cls.module('PIL.Image', 'pillow').fromarray(data), format, param)
+						success, data = cv2.imencode(f'.{format}', data, image_param)
+						if success:
+							with open(path, 'wb') as file:
+								file.write(data.tobytes())
 				case _:
 					try:
 						if auto:
@@ -10593,48 +10690,48 @@ class VOIDlang:
 		return cls.file(path)
 
 	@classmethod
-	def file_write(cls, path: str, data = None, format: str = None, extra = None):
-		return cls.file(path, data if data is not None else b'', format, extra)
+	def file_write(cls, path: str, data = None, format: str = None, param = None):
+		return cls.file(path, data if data is not None else b'', format, param)
 
 	@classmethod
-	def file_binary(cls, path: str, data = None):
-		return cls.file(path, data, 'binary')
+	def file_binary(cls, path: str, data = None, param = None):
+		return cls.file(path, data, 'binary', param)
 
 	@classmethod
-	def file_text(cls, path: str, data = None):
-		return cls.file(path, data, 'text')
+	def file_text(cls, path: str, data = None, param = None):
+		return cls.file(path, data, 'text', param)
 
 	@classmethod
-	def file_line(cls, path: str, data = None):
-		return cls.file(path, data, 'line') or []
+	def file_line(cls, path: str, data = None, param = None):
+		return cls.file(path, data, 'line', param) or []
 
 	@classmethod
-	def file_ascii(cls, path: str, data = None):
-		return cls.file(path, data, 'ascii')
+	def file_ascii(cls, path: str, data = None, param = None):
+		return cls.file(path, data, 'ascii', param)
 
 	@classmethod
-	def file_void(cls, path: str, data = None):
-		return cls.file(path, data, 'void')
+	def file_void(cls, path: str, data = None, param = None):
+		return cls.file(path, data, 'void', param)
 
 	@classmethod
-	def file_json(cls, path: str, data = None):
-		return cls.file(path, data, 'json')
+	def file_json(cls, path: str, data = None, param = None):
+		return cls.file(path, data, 'json', param)
 
 	@classmethod
 	def file_csv(cls, path: str, data = None, delimiter: str = None):
 		return cls.file(path, data, 'csv', delimiter)
 
 	@classmethod
-	def file_yaml(cls, path: str, data = None):
-		return cls.file(path, data, 'yaml')
+	def file_yaml(cls, path: str, data = None, param = None):
+		return cls.file(path, data, 'yaml', param)
 
 	@classmethod
-	def file_xml(cls, path: str, data = None):
-		return cls.file(path, data, 'xml')
+	def file_xml(cls, path: str, data = None, param = None):
+		return cls.file(path, data, 'xml', param)
 
 	@classmethod
-	def file_ini(cls, path: str, data = None):
-		return cls.file(path, data, 'ini')
+	def file_ini(cls, path: str, data = None, param = None):
+		return cls.file(path, data, 'ini', param)
 
 	@classmethod
 	def file_create(cls, path: str):
@@ -13383,7 +13480,7 @@ class VOIDlang:
 		pass
 
 	@classmethod
-	def image_resize(cls, path_from: str, path_to: str = None, scale: float = None, width: float = None, height: float = None, deblocking = None, method = None, quality: int = None):
+	def image_resize(cls, path_from: str, path_to: str = None, scale: float = None, width: float = None, height: float = None, deblocking = None, mode = None, quality: int = None):
 		if not cls.is_file(path_from): return
 		pillow_image = cls.module('PIL.Image', 'pillow')
 		image = pillow_image.open(path_from).convert('RGB')
@@ -13395,35 +13492,27 @@ class VOIDlang:
 				scale = height / image_height
 			else:
 				scale = 1
-		match (method or '').lower():
+		match (mode or '').lower():
 			case 'lanczos':
-				method = pillow_image.LANCZOS
+				mode = pillow_image.LANCZOS
 			case 'bilinear':
-				method = pillow_image.BILINEAR
+				mode = pillow_image.BILINEAR
 			case 'bicubic':
-				method = pillow_image.BICUBIC
+				mode = pillow_image.BICUBIC
 			case 'hamming':
-				method = pillow_image.HAMMING
+				mode = pillow_image.HAMMING
 			case 'nearest':
-				method = pillow_image.NEAREST
-			case 'neuro':
-				method = 'neuro'
-			case _:
-				if scale >= 2:
-					method = 'neuro'
-				else:
-					method = pillow_image.LANCZOS
+				mode = pillow_image.NEAREST
+			case '':
+				mode = 'neuro' if scale >= 2 else pillow_image.LANCZOS
 		if not path_to:
-			if method != 'neuro':
-				name = '_scale'
-			else:
-				name = f'_x{scale}'
+			name = f'_x{scale}'
 			path_to = cls.path_stem_append(path_from, name)
 		extension = cls.path_extension(path_to).lower()
 		if deblocking or (deblocking is None and cls.path_extension(path_from, 'jpg', 'jpeg')):
 			match deblocking:
 				case True | None:
-					if method == 'neuro':
+					if mode == 'neuro':
 						deblocking = 'neuro'
 					else:
 						deblocking_factor = 4 if image_width * image_height <= 300 * 300 else 3
@@ -13443,9 +13532,9 @@ class VOIDlang:
 				image_np = cv2.fastNlMeansDenoisingColored(image_np, None, h=deblocking_factor, hColor=deblocking_factor, templateWindowSize=7, searchWindowSize=21)
 				image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
 				image = pillow_image.fromarray(image_np)
-		if method == 'neuro':
-			method = cls.neuro_method()
-		match method:
+		if mode == 'neuro':
+			mode = cls.neuro_mode()
+		match mode:
 			case 'intel':
 				torch = cls.module('torch')
 				np = cls.module('numpy')
@@ -13480,20 +13569,10 @@ class VOIDlang:
 				image_output = (image_output_data * 255).astype(np.uint8)
 				image_output = cv2.cvtColor(image_output, cv2.COLOR_RGB2BGR)
 				if scale != image_upscale_scale:
-					final_width = image_width * scale
-					final_height = image_height * scale
+					final_width = int(round(image_width * scale))
+					final_height = int(round(image_height * scale))
 					image_output = cv2.resize(image_output, (final_width, final_height), interpolation=cv2.INTER_LANCZOS4)
-				image_param = []
-				match extension:
-					case 'jpg' | 'jpeg':
-						image_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality or 90]
-					case 'webp':
-						image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality or 90]
-					case 'png':
-						image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), quality or 9]
-				success, image_encoded = cv2.imencode(f'.{extension}', image_output, image_param)
-				if success:
-					cls.file(path_to, image_encoded.tobytes())
+				cls.file(path_to, image_output, param=quality)
 			case 'cpu' | 'mps' | 'xpu' | 'dml':
 				torch = cls.module('torch')
 				np = cls.module('numpy')
@@ -13502,13 +13581,13 @@ class VOIDlang:
 				warnings = cls.module('warnings')
 				warnings.filterwarnings('ignore', category=UserWarning)
 				image_upscale_scale = 4
-				image_upscale_model = spandrel.ModelLoader(device=method).load_from_file(cls.get('ai.model.epoch.any'))
+				image_upscale_model = spandrel.ModelLoader(device=mode).load_from_file(cls.get('ai.model.epoch.any'))
 				image_upscale_model.eval()
 				image_tensor = torch.from_numpy(np.array(image)).permute(2, 0, 1).float() / 255.0
 				image_tensor = image_tensor.unsqueeze(0)
 				with torch.no_grad():
 					if deblocking == 'neuro':
-						image_deblocking_model = spandrel.ModelLoader(device=method).load_from_file(cls.get('ai.model.fbcnn.any'))
+						image_deblocking_model = spandrel.ModelLoader(device=mode).load_from_file(cls.get('ai.model.fbcnn.any'))
 						image_deblocking_model.eval()
 						image_tensor = image_deblocking_model(image_tensor)
 					image_output_tensor = image_upscale_model(image_tensor)
@@ -13516,47 +13595,31 @@ class VOIDlang:
 				image_output = (image_output_tensor * 255).astype(np.uint8)
 				image_output = cv2.cvtColor(image_output, cv2.COLOR_RGB2BGR)
 				if scale != image_upscale_scale:
-					final_width = image_width * scale
-					final_height = image_height * scale
+					final_width = int(round(image_width * scale))
+					final_height = int(round(image_height * scale))
 					image_output = cv2.resize(image_output, (final_width, final_height), interpolation=cv2.INTER_LANCZOS4)
-				image_param = []
-				match extension:
-					case 'jpg' | 'jpeg':
-						image_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality or 90]
-					case 'webp':
-						image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality or 90]
-					case 'png':
-						image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), quality or 9]
-				success, image_encoded = cv2.imencode(f'.{extension}', image_output, image_param)
-				if success:
-					cls.file(path_to, image_encoded.tobytes())
+				cls.file(path_to, image_output, param=quality)
 			case _:
-				image_param = {}
-				match extension:
-					case 'jpg' | 'jpeg' | 'webp':
-						image_param['quality'] = quality or 90
-					case 'png':
-						image_param['compress_level'] = quality or 9
-				image.resize((int(image_width * scale), int(image_height * scale)), method).save(path_to, **image_param)
+				cls.file(path_to, image.resize((int(image_width * scale), int(image_height * scale)), mode), param=quality)
 
 	@classmethod
-	def image_x2(cls, path_from: str, path_to: str = None, deblocking = None, method = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 2, method='neuro')
+	def image_x2(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
+		return cls.image_resize(path_from, path_to, 2, mode='neuro')
 
 	@classmethod
-	def image_x4(cls, path_from: str, path_to: str = None, deblocking = None, method = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 4, method='neuro')
+	def image_x4(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
+		return cls.image_resize(path_from, path_to, 4, mode='neuro')
 
 	@classmethod
-	def x2(cls, path_from: str, path_to: str = None, deblocking = None, method = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 2, method='neuro')
+	def x2(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
+		return cls.image_resize(path_from, path_to, 2, mode='neuro')
 
 	@classmethod
-	def x4(cls, path_from: str, path_to: str = None, deblocking = None, method = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 4, method='neuro')
+	def x4(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
+		return cls.image_resize(path_from, path_to, 4, mode='neuro')
 
 	@classmethod
-	def image_colorize(cls, path_from: str, path_to: str = None, method: str = None, quality: int = None):
+	def image_colorize(cls, path_from: str, path_to: str = None, mode: str = None, quality: int = None):
 		if not cls.is_file(path_from): return
 		pillow_image = cls.module('PIL.Image', 'pillow')
 		np = cls.module('numpy')
@@ -13564,75 +13627,67 @@ class VOIDlang:
 		image = pillow_image.open(path_from).convert('RGB')
 		image_width, image_height = image.size
 		torch = cls.module('torch')
-		if (method is None and cls.cpu_type == 'intel') or method == 'intel':
-			openvino = cls.module('openvino')
-			core = openvino.Core()
-			color_model = core.read_model(model=cls.get('ai.model.ddcolor.modelscope.intel'))
-			image_np = np.array(image)
-			image_lab = cv2.cvtColor(image_np, cv2.COLOR_RGB2LAB)
-			image_l = image_lab[:, :, 0] 
-			image_data = image_l.astype(np.float32) / 255.0
-			image_tensor = torch.from_numpy(image_data).unsqueeze(0).unsqueeze(0)
-			image_tensor = image_tensor.repeat(1, 3, 1, 1)
-			pad_width = (32 - image_width % 32) % 32
-			pad_height = (32 - image_height % 32) % 32
-			if pad_width > 0 or pad_height > 0:
-				image_tensor = torch.nn.functional.pad(image_tensor, (0, pad_width, 0, pad_height), mode='reflect')			
-			image_data_padded = image_tensor.numpy()
-			padded_height, padded_width = image_data_padded.shape[2], image_data_padded.shape[3]
-			color_model.reshape({0: openvino.PartialShape([1, 3, padded_height, padded_width])})
-			compiled_model = core.compile_model(model=color_model, device_name='CPU')
-			output_tensor = list(compiled_model(image_data_padded).values())[0]
-			output_data = np.squeeze(output_tensor, axis=0)
-			output_data = np.transpose(output_data, (1, 2, 0))
-			output_data = output_data[:image_height, :image_width, :]
-			ab_channels = (output_data + 128).clip(0, 255).astype(np.uint8)
-			final_lab = np.dstack((image_l, ab_channels))
-			final_image = cv2.cvtColor(final_lab, cv2.COLOR_LAB2BGR)
-		else:
-			warnings = cls.module('warnings')
-			warnings.filterwarnings('ignore', category=UserWarning)
-			spandrel = cls.module('spandrel')
-			spandrel_extra = cls.module('spandrel_extra_arches', 'spandrel-extra-arches')
-			spandrel_extra.install()
-			color_model = spandrel.ModelLoader(device='cpu').load_from_file(cls.get('ai.model.ddcolor.modelscope.any'))
-			color_model.eval()
-			image_np = np.array(image)
-			image_lab = cv2.cvtColor(image_np, cv2.COLOR_RGB2LAB)
-			image_l = image_lab[:, :, 0]
-			image_data = image_l.astype(np.float32) / 255.0
-			image_tensor = torch.from_numpy(image_data).unsqueeze(0).unsqueeze(0)
-			with torch.no_grad():
-				output_tensor = color_model(image_tensor)
-			output_tensor = output_tensor.squeeze(0).clamp(0, 1).permute(1, 2, 0).numpy()
-			final_image = (output_tensor * 255).astype(np.uint8)
-			final_image = cv2.cvtColor(final_image, cv2.COLOR_RGB2BGR)
+		if mode is None:
+			mode = cls.neuro_mode()
+		match mode:
+			case 'intel':
+				openvino = cls.module('openvino')
+				core = openvino.Core()
+				color_model = core.read_model(model=cls.get('ai.model.ddcolor.modelscope.intel'))
+				image_np = np.array(image)
+				image_lab = cv2.cvtColor(image_np, cv2.COLOR_RGB2LAB)
+				image_l = image_lab[:, :, 0] 
+				image_data = image_l.astype(np.float32) / 255.0
+				image_tensor = torch.from_numpy(image_data).unsqueeze(0).unsqueeze(0)
+				image_tensor = image_tensor.repeat(1, 3, 1, 1)
+				pad_width = (32 - image_width % 32) % 32
+				pad_height = (32 - image_height % 32) % 32
+				if pad_width > 0 or pad_height > 0:
+					image_tensor = torch.nn.functional.pad(image_tensor, (0, pad_width, 0, pad_height), mode='reflect')			
+				image_data_padded = image_tensor.numpy()
+				padded_height, padded_width = image_data_padded.shape[2], image_data_padded.shape[3]
+				color_model.reshape({0: openvino.PartialShape([1, 3, padded_height, padded_width])})
+				compiled_model = core.compile_model(model=color_model, device_name='CPU')
+				output_tensor = list(compiled_model(image_data_padded).values())[0]
+				output_data = np.squeeze(output_tensor, axis=0)
+				output_data = np.transpose(output_data, (1, 2, 0))
+				output_data = output_data[:image_height, :image_width, :]
+				ab_channels = (output_data + 128).clip(0, 255).astype(np.uint8)
+				final_lab = np.dstack((image_l, ab_channels))
+				final_image = cv2.cvtColor(final_lab, cv2.COLOR_LAB2BGR)
+			case _:
+				warnings = cls.module('warnings')
+				warnings.filterwarnings('ignore', category=UserWarning)
+				spandrel = cls.module('spandrel')
+				spandrel_extra = cls.module('spandrel_extra_arches', 'spandrel-extra-arches')
+				spandrel_extra.install()
+				color_model = spandrel.ModelLoader(device=mode).load_from_file(cls.get('ai.model.ddcolor.modelscope.any'))
+				color_model.eval()
+				image_np = np.array(image)
+				image_lab = cv2.cvtColor(image_np, cv2.COLOR_RGB2LAB)
+				image_l = image_lab[:, :, 0]
+				image_data = image_l.astype(np.float32) / 255.0
+				image_tensor = torch.from_numpy(image_data).unsqueeze(0).unsqueeze(0)
+				with torch.no_grad():
+					output_tensor = color_model(image_tensor)
+				output_tensor = output_tensor.squeeze(0).clamp(0, 1).permute(1, 2, 0).numpy()
+				final_image = (output_tensor * 255).astype(np.uint8)
+				final_image = cv2.cvtColor(final_image, cv2.COLOR_RGB2BGR)
 		if not path_to:
-			path_to = cls.path_extension_replace(cls.path_stem_append(path_from, '_color'), 'png')
-		image_param = []
-		extension = cls.path_extension(path_to).lower()
-		match extension:
-			case 'jpg' | 'jpeg':
-				image_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality or 90]
-			case 'webp':
-				image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality or 90]
-			case 'png':
-				image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), quality or 9]
-		success, image_encoded = cv2.imencode(f'.{extension}', final_image, image_param)
-		if success:
-			cls.file(path_to, image_encoded.tobytes())
-			return path_to
+			path_to = cls.path_extension_replace(cls.path_stem_append(path_from, '_color'), 'webp')
+		cls.file(path_to, final_image, param=quality)
 
 	@classmethod
-	def image_colorize_manga(cls, path_from: str, path_to: str = None, quality: int = None, blend: float = 0.7, size: int = 576, denoise: bool = True, denoiser_sigma: int = 25, gpu: bool = None):
+	def image_colorize_manga(cls, path_from: str, path_to: str = None, quality: int = None, blend: float = 0.7, size: int = 576, denoise: bool = True, denoiser_sigma: int = 25, mode: str = None):
 		if not cls.is_file(path_from): return
 		np = cls.module('numpy')
 		cv2 = cls.module('cv2')
 		torch = cls.module('torch')
 		ToTensor = cls.module('torchvision.transforms', 'torchvision').ToTensor
 		nn = torch.nn
-		device = ('cuda' if torch.cuda.is_available() else 'cpu') if gpu is None else ('cuda' if gpu else 'cpu')
-		if device not in cls.cache_colorize:
+		if mode is None:
+			mode = cls.neuro_mode(intel=False)
+		if mode not in cls.cache_colorize:
 			path_generator = cls.get('ai.model.colorize.generator')
 			path_denoiser = cls.get('ai.model.colorize.denoiser')
 			IDX = [(0, 0), (0, 1), (1, 0), (1, 1)]
@@ -13683,7 +13738,7 @@ class VOIDlang:
 					self.sigma, self.device = sigma / 255, device
 					self.model = _FFDNet(in_ch)
 					state = torch.load(weights_path, map_location='cpu')
-					if device == 'cuda':
+					if mode == 'cuda':
 						self.model = nn.DataParallel(self.model, device_ids=[0]).cuda()
 					else:
 						state = {k[7:]: v for k, v in state.items()}
@@ -13869,8 +13924,8 @@ class VOIDlang:
 					if pad[1]:
 						result = result[:, :-pad[1]]
 					return result.numpy()
-			cls.cache_colorize[device] = _Colorizator(device)
-		colorizator = cls.cache_colorize[device]
+			cls.cache_colorize[mode] = _Colorizator(mode)
+		colorizator = cls.cache_colorize[mode]
 		def _merge_color_with_original_luminance(image_original, image_colorized, target_width, target_height):
 			color_up = cv2.resize(image_colorized, (target_width, target_height), interpolation=cv2.INTER_CUBIC)
 			color_up = (np.clip(color_up, 0, 1) * 255).astype(np.uint8)
@@ -13886,23 +13941,11 @@ class VOIDlang:
 		image = _merge_color_with_original_luminance(image, image_colorized, image_width, image_height)
 		image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 		if not path_to:
-			path_to = cls.path_extension_replace(cls.path_stem_append(path_from, '_color'), 'png')
-		image_param = []
-		extension = cls.path_extension(path_to).lower()
-		match extension:
-			case 'jpg' | 'jpeg':
-				image_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality or 90]
-			case 'webp':
-				image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality or 90]
-			case 'png':
-				image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), quality or 9]
-		success, image = cv2.imencode(f'.{extension}', image, image_param)
-		if success:
-			cls.file(path_to, image.tobytes())
-			return path_to
+			path_to = cls.path_extension_replace(cls.path_stem_append(path_from, '_color'), 'webp')
+		cls.file(path_to, image, param=quality)
 
 	@classmethod
-	def image_text_recognize(cls, path_from: str, language: str = None, gpu: bool = False) -> list:
+	def image_text_recognize(cls, path_from: str, language: str = None) -> list:
 		if not cls.is_file(path_from): return []
 		warnings = cls.module('warnings')
 		warnings.filterwarnings('ignore', message=".*pin_memory.*")
@@ -13914,11 +13957,8 @@ class VOIDlang:
 		image = cv2.convertScaleAbs(image, alpha=1.3, beta=0)
 		image = cv2.fastNlMeansDenoising(image, h=10)
 		_, image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-		reader = easyocr.Reader(['en', language or cls.get('language')], gpu=gpu, verbose=False)
-		ocr_results = reader.readtext(
-			image,
-			paragraph=True
-			)
+		reader = easyocr.Reader(['en', language or cls.get('language')], gpu=cls.neuro_mode() not in ('cpu', 'intel'), verbose=False)
+		ocr_results = reader.readtext(image, paragraph=True)
 		blocks = []
 		for box, text in ocr_results:
 			xs = [pt[0] for pt in box]
