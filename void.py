@@ -8755,6 +8755,8 @@ class VOIDlang:
 			result['tag'] = str(data[1])
 		if len(data) > 2:
 			result['data'] = data[2:]
+			if len(result['data']) == 1:
+				result['data'] = result['data'][0]
 		cls.print(result)
 
 	@classmethod
@@ -10474,10 +10476,14 @@ class VOIDlang:
 				case 'ini':
 					with open(path, 'r', encoding='utf-8') as file:
 						return cls.ini_decode(file.read())
-				case 'pillow':
-					pillow_image = cls.module('PIL.Image', 'pillow')
-					return pillow_image.open(path)
-				case 'cv' | 'cv2':
+				case 'image' | 'pillow' | 'cv' | 'cv2':
+					try:
+						if format in ['image', 'pillow']:
+							pillow_image = cls.module('PIL.Image', 'pillow')
+							return pillow_image.open(path)
+					except:
+						if format == 'pillow':
+							return
 					cv2 = cls.module('cv2', 'opencv-python')
 					np = cls.module('numpy')
 					with open(path, 'rb') as file:
@@ -10551,7 +10557,7 @@ class VOIDlang:
 					data = cls.ini(data)
 					with open(path, 'w', encoding='utf-8') as file:
 						file.write(data if data is not None else '')
-				case 'jpg' | 'jpeg' | 'webp' | 'png' | 'gif' | 'avif' | 'heif' | 'heic' | 'hdr' | 'pfm' | 'tif' | 'tiff' | 'pdf' | 'ico' | 'bmp' | 'tga' | 'jp2' | 'j2k':
+				case 'jpg' | 'jpeg' | 'webp' | 'png' | 'gif' | 'avif' | 'heif' | 'heic' | 'hdr' | 'pfm' | 'tif' | 'tiff' | 'pdf' | 'ico' | 'cur' | 'icns' | 'bmp' | 'tga' | 'jp2' | 'j2k' | 'pbm' | 'pgm' | 'ppm' | 'pnm' | 'pcx':
 					if isinstance(data, bytes):
 						with open(path, 'wb') as file:
 							file.write(data)
@@ -10603,10 +10609,115 @@ class VOIDlang:
 								data = square
 								if param:
 									image_param['sizes'] = param
+							case 'cur':
+								pillow_image = cls.module('PIL.Image', 'pillow')
+								if data.mode != 'RGBA':
+									data = data.convert('RGBA')
+								width, height = data.size
+								max_size = max(width, height)
+								offset_x = (max_size - width) // 2
+								offset_y = (max_size - height) // 2
+								if param == 'center':
+									px = width / 2
+									py = height / 2
+								elif isinstance(param, (tuple, list)) and len(param) == 2:
+									px = max(0, min(float(param[0]), width - 1))
+									py = max(0, min(float(param[1]), height - 1))
+								else:
+									px, py = 0, 0
+								if width != height:
+									square = pillow_image.new('RGBA', (max_size, max_size), (0, 0, 0, 0))
+									square.paste(data, (offset_x, offset_y), mask=data)
+									data = square
+								final_size = min(max_size, 256)
+								scale = final_size / max_size
+								if max_size > 256:
+									resample = getattr(pillow_image, 'Resampling', pillow_image).LANCZOS
+									data = data.resize((final_size, final_size), resample)
+								hx = max(0, min(int((px + offset_x) * scale), final_size - 1))
+								hy = max(0, min(int((py + offset_y) * scale), final_size - 1))
+								with io.BytesIO() as buffer:
+									data.save(buffer, format='ICO', sizes=[(data.size[0], data.size[1])])
+									cursor = bytearray(buffer.getvalue())
+								if len(cursor) >= 14:
+									cursor[2] = 2
+									cursor[3] = 0
+									cursor[10] = hx & 0xFF
+									cursor[11] = (hx >> 8) & 0xFF
+									cursor[12] = hy & 0xFF
+									cursor[13] = (hy >> 8) & 0xFF
+								return cls.file_binary(path, cursor)
+							case 'icns':
+								pillow_image = cls.module('PIL.Image', 'pillow')
+								if data.mode != 'RGBA':
+									data = data.convert('RGBA')
+								width, height = data.size
+								if width != height:
+									max_size = max(width, height)
+									square = pillow_image.new('RGBA', (max_size, max_size), (0, 0, 0, 0))
+									offset_x = (max_size - width) // 2
+									offset_y = (max_size - height) // 2
+									square.paste(data, (offset_x, offset_y), mask=data)
+									data = square
+								if data.size[0] > 1024:
+									resample = getattr(pillow_image, 'Resampling', pillow_image).LANCZOS
+									data = data.resize((1024, 1024), resample)
+								with io.BytesIO() as buffer:
+									data.save(buffer, format='ICNS')
+									raw = buffer.getvalue()
+									if param:
+										struct = cls.module('struct')
+										icns_tags = {
+											b'icp4': 16,  b'is32': 16,  b's8mk': 16,
+											b'icp5': 32,  b'l321': 32,  b'l8mk': 32,  b'ic11': 32,
+											b'h321': 48,  b'h8mk': 48,
+											b'icp6': 64,  b'ic12': 64,
+											b'ic07': 128, b't321': 128, b't8mk': 128,
+											b'ic08': 256, b'ic13': 256,
+											b'ic09': 512, b'ic14': 512,
+											b'ic10': 1024,
+										}
+										if len(raw) >= 8 and raw[:4] == b'icns':
+											filtered_blocks = bytearray()
+											offset = 8
+											total_len = len(raw)
+											while offset + 8 <= total_len:
+												tag = raw[offset:offset+4]
+												block_len = struct.unpack('>I', raw[offset+4:offset+8])[0]
+												if block_len < 8 or offset + block_len > total_len: break
+												block_data = raw[offset:offset+block_len]
+												tag_size = icns_tags.get(tag)
+												if tag_size is None or tag_size in param or tag.decode() in param:
+													filtered_blocks.extend(block_data)
+												offset += block_len
+											new_total_len = 8 + len(filtered_blocks)
+											raw = bytes(b'icns' + struct.pack('>I', new_total_len) + filtered_blocks)
+									return cls.file_binary(path, raw)
 							case 'jp2' | 'j2k':
 								image_param['quality_mode'] = 'dB'
 								image_param['quality_layers'] = [20 + (float(param if param is not None else 90) / 100.0) * 80]
 								image_param['format'] = 'JPEG2000'
+							case 'pbm' | 'pgm' | 'ppm' | 'pnm' | 'pcx':
+								if data.mode in ('RGBA', 'LA'):
+									pillow_image = cls.module('PIL.Image', 'pillow')
+									bg_color = (255, 255, 255) if data.mode == 'RGBA' else 255
+									target_mode = 'RGB' if data.mode == 'RGBA' else 'L'
+									background = pillow_image.new(target_mode, data.size, bg_color)
+									background.paste(data, mask=data.split()[-1])
+									data = background
+								match format:
+									case 'pbm':
+										data = data.convert('1')
+									case 'pgm':
+										data = data.convert('L')
+									case 'ppm':
+										data = data.convert('RGB')
+									case 'pnm':
+										if data.mode not in ('1', 'L', 'RGB'):
+											data = data.convert('RGB')
+									case 'pcx':
+										if data.mode not in ('1', 'L', 'P', 'RGB'):
+											data = data.convert('RGB')
 							case 'hdr' | 'pfm':
 								np = cls.module('numpy')
 								cv2 = cls.module('cv2', 'opencv-python')
@@ -10615,7 +10726,10 @@ class VOIDlang:
 								data = np.array(data)
 								data = cv2.cvtColor(data, cv2.COLOR_RGB2BGR)
 								return cls.file(path, data, format, param)
-						data.save(path, **image_param)
+						try:
+							data.save(path, **image_param)
+						except Exception as e:
+							cls.error('file.write.pillow', e)
 					elif data.__class__.__name__ == 'ndarray' and data.__class__.__module__.startswith('numpy'):
 						cv2 = cls.module('cv2', 'opencv-python')
 						np = cls.module('numpy')
@@ -10638,21 +10752,50 @@ class VOIDlang:
 								image_param = [int(cv2.IMWRITE_TIFF_COMPRESSION), cls.get(str(param), 5, {'lzw': 5, 'jpeg': 7, 'deflate': 8, 'zip': 8, 'raw': 1})]
 							case 'jp2' | 'j2k':
 								image_param = [int(cv2.IMWRITE_JPEG2000_COMPRESSION_X1000), max(1, min(1000, int(param if param is not None else 90) * 10))]
-							case 'gif' | 'avif' | 'heif' | 'heic' | 'pdf' | 'ico' | 'tga':
+							case 'pbm' | 'pgm' | 'ppm' | 'pnm':
+								if np.issubdtype(data.dtype, np.floating):
+									data = (np.clip(data, 0.0, 1.0) * 255).astype(np.uint8)
+								elif data.dtype != np.uint8:
+									data = data.astype(np.uint8)
+								if data.ndim == 3 and data.shape[2] == 4:
+									alpha = data[:, :, 3:] / 255.0
+									bgr = data[:, :, :3]
+									white = np.ones_like(bgr, dtype=np.float32) * 255.0
+									data = (bgr * alpha + white * (1.0 - alpha)).astype(np.uint8)
+								match format:
+									case 'pbm' | 'pgm':
+										if data.ndim == 3:
+											if data.shape[2] == 1:
+												data = data[:, :, 0]
+											else:
+												data = cv2.cvtColor(data, cv2.COLOR_BGR2GRAY)
+									case 'ppm':
+										if data.ndim == 2 or (data.ndim == 3 and data.shape[2] == 1):
+											data = cv2.cvtColor(data, cv2.COLOR_GRAY2BGR)
+							case 'gif' | 'avif' | 'heif' | 'heic' | 'pdf' | 'ico' | 'cur' | 'icns' | 'pcx':
 								pillow = True
 						if pillow:
 							if np.issubdtype(data.dtype, np.floating):
 								data = (np.clip(data, 0, 1) * 255).astype(np.uint8) if data.max() <= 1.0 else np.clip(data, 0, 255).astype(np.uint8)
-							if len(data.shape) == 3:
+							elif data.dtype == np.uint16:
+								data = (data >> 8).astype(np.uint8)
+							elif data.dtype != np.uint8:
+								data = np.clip(data, 0, 255).astype(np.uint8)
+							if data.ndim == 3:
 								if data.shape[2] == 3:
 									data = cv2.cvtColor(data, cv2.COLOR_BGR2RGB)
 								elif data.shape[2] == 4:
 									data = cv2.cvtColor(data, cv2.COLOR_BGRA2RGBA)
+								elif data.shape[2] == 1:
+									data = data[:, :, 0].copy()
 							return cls.file(path, cls.module('PIL.Image', 'pillow').fromarray(data), format, param)
 						success, data = cv2.imencode(f'.{format}', data, image_param)
 						if success:
-							with open(path, 'wb') as file:
-								file.write(data.tobytes())
+							try:
+								with open(path, 'wb') as file:
+									file.write(data.tobytes())
+							except Exception as e:
+								cls.error('file.write.cv2', e)
 				case _:
 					try:
 						if auto:
