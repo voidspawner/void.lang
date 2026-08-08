@@ -7827,6 +7827,35 @@ class VOIDlang:
 					'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
 				]
 			},
+			'info': {
+				'lang': {},
+				'format': {
+					'image': [],
+					'video': [],
+					'sound': [],
+					'model': [],
+					'document': []
+				},
+				'http': {
+					'mime': {},
+					'code': {}
+				},
+				'extension': {
+					'available': {
+						'image': ('jpg', 'jpeg', 'webp', 'png', 'gif', 'avif', 'heif', 'heic', 'hdr', 'pfm', 'tif', 'tiff', 'pdf', 'ico', 'cur', 'icns', 'bmp', 'tga', 'jp2', 'j2k', 'pbm', 'pgm', 'ppm', 'pnm', 'pcx'),
+						'video': (),
+						'sound': (),
+						'model': (),
+						'data': ('void', 'json', 'csv', 'yaml', 'xml', 'ini')
+					},
+					'ffmpeg': {
+						'image': ('jpg', 'jpeg', 'webp', 'png', 'gif', 'avif', 'hdr', 'pfm', 'tif', 'tiff', 'ico', 'bmp', 'tga', 'jp2', 'j2k', 'pbm', 'pgm', 'ppm', 'pnm', 'pcx', 'exr', 'xbm', 'fits', 'qoi', 'sgi', 'dpx', 'ras', 'pam'),
+						'video': ('mp4', 'webm', 'webp', 'gif', 'mpg', 'mpeg', 'avi', 'wmv', 'mov', 'mkv', 'qt', 'vob', 'flv', 'f4v', 'm2ts', 'mts', 'ts', '3gp', '3g2', 'ogv', 'm4v', 'asf', 'rm', 'rmvb', 'm2v', 'divx', 'y4m', 'bik', 'roq', 'wtv'),
+						'sound': ('mp3', 'wav', 'mpa', 'ac3', 'aac', 'ogg', 'opus', 'flac', 'm4a', 'wma', 'alac', 'aiff', 'aif', 'ape', 'dts', 'eac3', 'amr', 'mp2', 'wv', 'caf', 'mka', 'ra'),
+						'subtitle': ('srt', 'ssa', 'ass', 'vtt', 'sub', 'idx', 'ttml', 'lrc', 'sbv', 'scc')
+					}
+				}
+			},
 			'app': {
 				'os': {
 					'delimiter': {
@@ -7836,7 +7865,31 @@ class VOIDlang:
 						'ffmpeg': None,
 						'yt-dlp': None,
 						'python': None,
-						'void': None
+						'void': None,
+						'ai': {
+							'epoch': {
+								'any': 'epoch994_omnisr.pth',
+								'intel': 'epoch994_omnisr.xml'
+							},
+							'fbcnn': {
+								'any': 'fbcnn_color.pth',
+								'intel': 'fbcnn_color.xml'
+							},
+							'ddcolor': {
+								'artistic': {
+									'any': 'ddcolor_artistic.pth',
+									'intel': 'ddcolor_artistic.xml'
+								},
+								'modelscope': {
+									'any': 'ddcolor_modelscope.pth',
+									'intel': 'ddcolor_modelscope.xml'
+								}
+							},
+							'colorize': {
+								'generator': 'generator.zip',
+								'denoiser': 'net_rgb.pth'
+							}
+						}
 					}
 				},
 				'ui': 'cli',
@@ -10481,14 +10534,28 @@ class VOIDlang:
 						if format in ['image', 'pillow']:
 							pillow_image = cls.module('PIL.Image', 'pillow')
 							return pillow_image.open(path)
-					except:
-						if format == 'pillow':
-							return
+					except: pass
 					cv2 = cls.module('cv2', 'opencv-python')
 					np = cls.module('numpy')
 					with open(path, 'rb') as file:
 						data = file.read()
-						return cv2.imdecode(np.frombuffer(data, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
+						data = cv2.imdecode(np.frombuffer(data, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
+						if data is not None and format == 'pillow':
+							if np.issubdtype(data.dtype, np.floating):
+								data = (np.clip(data, 0, 1) * 255).astype(np.uint8) if data.max() <= 1.0 else np.clip(data, 0, 255).astype(np.uint8)
+							elif data.dtype == np.uint16:
+								data = (data >> 8).astype(np.uint8)
+							elif data.dtype != np.uint8:
+								data = np.clip(data, 0, 255).astype(np.uint8)
+							if data.ndim == 3:
+								if data.shape[2] == 3:
+									data = cv2.cvtColor(data, cv2.COLOR_BGR2RGB)
+								elif data.shape[2] == 4:
+									data = cv2.cvtColor(data, cv2.COLOR_BGRA2RGBA)
+								elif data.shape[2] == 1:
+									data = data[:, :, 0].copy()
+							return pillow_image.fromarray(data)
+						return data
 				case _:
 					if format == 'ascii' or format.startswith('iso-') or format.startswith('utf-') or format.startswith('windows-') or format.startswith('mac-') or format.startswith('cp-') or format.startswith('koi8-') or format.startswith('gb'):
 						with open(path, 'r', encoding=format) as file:
@@ -10570,7 +10637,7 @@ class VOIDlang:
 								if data.mode in ('RGBA', 'LA', 'P'):
 									data = data.convert('RGB')
 							case 'webp':
-								image_param['quality'] = int(param if param is not None else 90)
+								image_param['quality'] = int(param if isinstance(param, (int, float)) else 90)
 								image_param['lossless'] = image_param['quality'] == 100
 								image_param['method'] = 6
 							case 'png':
@@ -10739,7 +10806,7 @@ class VOIDlang:
 							case 'jpg' | 'jpeg':
 								image_param = [int(cv2.IMWRITE_JPEG_QUALITY), int(param if param is not None else 90)]
 							case 'webp':
-								quality = int(param if param is not None else 90)
+								quality = int(param if isinstance(param, (int, float)) else 90)
 								image_param = [int(cv2.IMWRITE_WEBP_QUALITY), quality if quality < 100 else 109]
 							case 'png':
 								image_param = [int(cv2.IMWRITE_PNG_COMPRESSION), int(param if param is not None else 9)]
@@ -10965,9 +11032,6 @@ class VOIDlang:
 	@classmethod
 	def file_gzip(cls, source: str, destination: str = None, compression = None):
 		if not cls.is_path(source): return
-		shutil = cls.module('shutil')
-		gzip = cls.module('gzip')
-		tar = cls.module('tarfile')
 		if compression in ['best', None]:
 			compression = 9
 		elif compression == 'fast':
@@ -10978,12 +11042,15 @@ class VOIDlang:
 			except:
 				compression = 9
 		if cls.is_file(source):
+			gzip = cls.module('gzip')
+			shutil = cls.module('shutil')
 			if not destination:
 				destination = f'{source}.gz'
 			with open(source, 'rb') as file_source:
 				with gzip.open(destination, 'wb', compresslevel=compression) as file_destination:
 					shutil.copyfileobj(file_source, file_destination)
 		elif cls.is_dir(source):
+			tar = cls.module('tarfile')
 			if not destination:
 				destination = f'{source}.tar.gz'
 			with tar.open(destination, 'w:gz', compresslevel=compression) as file:
@@ -11009,13 +11076,9 @@ class VOIDlang:
 			if cls.is_file(source):
 				file.write(source, arcname=cls.path_name(source))
 			elif cls.is_dir(source):
-				for subpath in cls.dir(source, True):
-					if cls.is_file(subpath):
-						file.write(subpath, arcname=cls.strip_start(subpath, cls.path_strip_dir(source))[1:])
-
-	@classmethod
-	def file_void(cls, source: str, destination: str = None, compression = None, key: str = None):
-		pass
+				for subpath in cls.dir(source, recursive=True):
+					path = cls.path(source, subpath)
+					file.write(path, arcname=subpath + ('/' if cls.is_dir(path) else ''))
 
 	@classmethod
 	def file_extract(cls, source: str, destination: str = None):
@@ -11214,6 +11277,9 @@ class VOIDlang:
 						processed_list[id] = {}
 					processed = processed_list[id]
 					match name:
+						case 'action':
+							for file_name in cls.dir(path):
+								cls.action([[param, cls.path(path, file_name)]])
 						case 'run':
 							names = []
 							for file_name in cls.dir_file(path):
@@ -11237,160 +11303,51 @@ class VOIDlang:
 								if file_name not in names:
 									cls.close(processed[file_name])
 									del processed[file_name]
-						case 'jpg':
-							for file_name in cls.dir_file(path, ('avif', 'webp', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico')):
-								file_from = cls.path(path, file_name)
-								file_to = cls.path_extension_replace(file_from, 'jpg')
-								quality = round(31 - (param * 30) / 100) if isinstance(param, int) else 4
-								cls.open_wait(f'ffmpeg -i "{file_from}" -q:v {quality} -threads 0 "{file_to}"')
-								cls.file_remove(file_from)
-								if move:
-									cls.file_move(file_to, move)
-						case 'webp':
-							for file_name in cls.dir_file(path, ('jpg', 'avif', 'png', 'gif', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico', 'mp4', 'mpeg', 'mpg', 'avi', 'webm', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = cls.path(path, file_name)
-								file_to = cls.path_extension_replace(file_from, 'webp')
-								quality = int(param or 85)
-								cls.open_wait(f'ffmpeg -i "{file_from}" -quality {quality} -compression_level 6 -loop 0 -threads 0 "{file_to}"')
-								cls.file_remove(file_from)
-								if move:
-									cls.file_move(file_to, move)
-						case 'gif':
-							for file_name in cls.dir_file(path):
-								file_from = cls.path(path, file_name)
-								file_to = cls.path_extension_replace(file_from, 'gif')
-								extension = cls.path_extension(file_name)
-								if extension in ('jpg', 'webp', 'avif', 'png', 'bmp', 'heif', 'heic', 'tiff', 'tif', 'ico'):
-									cls.open_wait(f'ffmpeg -i "{file_from}" -vf "split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -threads 0 "{file_to}"')
-									cls.file_remove(file_from)
-								elif extension in ('mp4', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob'):
-									if not isinstance(param, dict): param = {}
-									fps = param.get('fps', 25)
-									scale = param.get('scale', 720)
-									cls.open_wait(f'ffmpeg -i "{file_from}" -vf "fps={fps},scale={scale}:-1:flags=lanczos,split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5" -loop 0 -threads 0 "{file_to}"')
-									cls.file_remove(file_from)
-								if move:
-									cls.file_move(file_to, move)
-						case 'mp4':
-							for file_name in cls.dir_file(path, ('mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = cls.path(path, file_name)
-								file_to = cls.path_extension_replace(file_from, 'mp4')
-								cls.open_wait(f'ffmpeg -i "{file_from}" -threads 0 "{file_to}"')
-								cls.file_remove(file_from)
-								if move:
-									cls.file_move(file_to, move)
-						case 'webm':
-							for file_name in cls.dir_file(path, ('mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webp', 'gif', 'apng', 'png', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = cls.path(path, file_name)
-								file_to = cls.path_extension_replace(file_from, 'webm')
-								cls.open_wait(f'ffmpeg -i "{file_from}" -c:v libsvtav1 -preset 13 -c:a libopus -threads 0 "{file_to}"')
-								cls.file_remove(file_from)
-								if move:
-									cls.file_move(file_to, move)
-						case 'mp3':
-							for file_name in cls.dir_file(path, ('wav', 'ac3', 'aac', 'flac', 'wma', 'ogg', 'oga', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = cls.path(path, file_name)
-								file_to = cls.path_extension_replace(file_from, 'mp3')
-								cls.open_wait(f'ffmpeg -i "{file_from}" -vn -ar 48000 -q:a 0 -threads 0 "{file_to}"')
-								cls.file_remove(file_from)
-								if move:
-									cls.file_move(file_to, move)
-						case 'ogg':
-							for file_name in cls.dir_file(path, ('mp3', 'wav', 'ac3', 'aac', 'flac', 'wma', 'mpa', 'mp4', 'mkv', 'mpeg', 'mpg', 'avi', 'webm', 'webp', 'mkv', 'mov', 'qt', 'vob')):
-								file_from = cls.path(path, file_name)
-								file_to = cls.path_extension_replace(file_from, 'ogg')
-								cls.open_wait(f'ffmpeg -i "{file_from}" -vn -c:a libopus -b:a 510k -threads 0 "{file_to}"')
-								cls.file_remove(file_from)
-								if move:
-									cls.file_move(file_to, move)
 						case 'unique':
 							names = []
 							for file_name in cls.dir_file(path):
 								if file_name in processed:
 									names.append(file_name)
 									continue
-								file_path = cls.path(path, file_name)
+								source = cls.path(path, file_name)
 								length = int(param or 8)
 								file_name_new = cls.path_stem_append(file_name, '_' + cls.hash(length))
 								if move:
-									cls.file_move(file_path, cls.path(move, file_name_new))
+									cls.file_move(source, cls.path(move, file_name_new))
 								else:
 									cls.file_rename(file_path, file_name_new)
 								processed[file_name_new] = True
 								names.append(file_name_new)
 							for file_name in set(processed.keys()):
-								if file_name not in names:
-									del processed[file_name]
-						case 'zip':
-							compression = param
-							for file_name in cls.dir(path):
-								if cls.path_extension(file_name, 'zip'): continue
-								source = cls.path(path, file_name)
-								destination = cls.path(move, (move if cls.is_dir(move) else cls.path_strip(move)) + '.zip') if move else None
-								cls.file_zip(source, destination, compression)
-								cls.file_remove(source)
-						case 'gzip':
-							compression = param
-							for file_name in cls.dir(path):
-								if cls.path_extension(file_name, 'gz'): continue
-								source = cls.path(path, file_name)
-								destination = cls.path(move, ((move + '.tar') if cls.is_dir(move) else move) + '.gz') if move else None
-								cls.file_gzip(source, destination, compression)
-								cls.file_remove(source)
-						case 'void':
+								if file_name not in names: del processed[file_name]
+						case 'counter':
 							pass
-						case 'action':
-							action = param
-							if not action: continue
+						case 'voice':
+							pass
+						case 'download':
+							pass
+						case 'x2' | 'x4':
 							names = []
-							for file_name in cls.dir(path):
-								names.append(file_name)
-								if file_name in processed: continue
-								cls.action([[action, cls.path(path, file_name)]])
-								processed[file_name] = True
-							for file_name in set(processed.keys()):
-								if file_name not in names:
-									del processed[file_name]
-						case 'x2':
-							names = []
-							for file_name in cls.dir_file(path, ('jpg', 'jpeg', 'webp', 'png', 'gif', 'bmp')):
+							for file_name in cls.dir_file(path, cls.get('info.extension.available.image')):
 								if file_name in processed:
 									names.append(file_name)
 									continue
 								file_from = cls.path(path, file_name)
-								file_name_new = cls.path_stem_append(file_name, '_x2')
+								file_name_new = cls.path_stem_append(file_name, f'_{name}')
 								file_to = cls.path(path, file_name_new)
 								quality = param
-								cls.x2(file_from, file_to, quality=quality)
+								if name == 'x2':
+									cls.x2(file_from, file_to, quality=quality)
+								else:
+									cls.x4(file_from, file_to, quality=quality)
 								cls.file_remove(file_from)
 								if move:
 									cls.file_move(file_to, move)
 								processed[file_name_new] = True
 								names.append(file_name_new)
 							for file_name in set(processed.keys()):
-								if file_name not in names:
-									del processed[file_name]
-						case 'x4':
-							names = []
-							for file_name in cls.dir_file(path, ('jpg', 'jpeg', 'webp', 'png', 'gif', 'bmp')):
-								if file_name in processed:
-									names.append(file_name)
-									continue
-								file_from = cls.path(path, file_name)
-								file_name_new = cls.path_stem_append(file_name, '_x4')
-								file_to = cls.path(path, file_name_new)
-								quality = param
-								cls.x4(file_from, file_to, quality=quality)
-								cls.file_remove(file_from)
-								if move:
-									cls.file_move(file_to, move)
-								processed[file_name_new] = True
-								names.append(file_name_new)
-							for file_name in set(processed.keys()):
-								if file_name not in names:
-									del processed[file_name]
+								if file_name not in names: del processed[file_name]
 						case 'manga' | 'colorize' | 'translate':
-							extensions = ('jpg', 'jpeg', 'webp', 'png', 'gif', 'bmp')
 							names = set()
 							def process(path, file_name):
 								path_from = cls.path(path, file_name)
@@ -11407,12 +11364,12 @@ class VOIDlang:
 								names.add(dir_name)
 								if dir_name not in processed:
 									dir_path = cls.path(path, dir_name)
-									for file_name in cls.dir_file(dir_path, extensions, recursive=True):
+									for file_name in cls.dir_file(dir_path, cls.get('info.extension.available.image'), recursive=True):
 										process(dir_path, file_name)
 									if move:
 										cls.dir_move(dir_path, move)
 									processed[dir_name] = True
-							for file_name in cls.dir_file(path, extensions):
+							for file_name in cls.dir_file(path, cls.get('info.extension.available.image')):
 								if file_name in processed:
 									names.add(file_name)
 									continue
@@ -11421,10 +11378,81 @@ class VOIDlang:
 									cls.file_move(path_to, move)
 								processed[name_new] = True
 								names.add(name_new)
-							for name in list(processed):
-								if name not in names: del processed[name]
+							for path_name in list(processed):
+								if path_name not in names: del processed[path_name]
+						case 'zip':
+							for path_name in cls.dir(path):
+								if cls.path_extension(path_name, 'zip'): continue
+								source = cls.path(path, path_name)
+								destination = cls.path(move, cls.path_extension_replace(path_name, 'zip')) if move else None
+								cls.file_zip(source, destination, compression=param)
+								cls.file_remove(source)
+						case 'gzip':
+							for path_name in cls.dir(path):
+								if cls.path_extension(path_name, 'gz'): continue
+								source = cls.path(path, path_name)
+								destination = cls.path(move, cls.path_extension_append(path_name, 'tar.gz' if cls.is_dir(source) else 'gz')) if move else None
+								cls.file_gzip(source, destination, compression=param)
+								cls.file_remove(source)
+						case 'void':
+							for path_name in cls.dir(path):
+								if cls.path_extension(path_name, 'void'): continue
+								source = cls.path(path, path_name)
+								destination = cls.path(move, cls.path_extension_replace(path_name, 'void')) if move else None
+								cls.file_void(source, destination, param=param)
+								cls.file_remove(source)
 						case _:
-							pass
+							extension_image = cls.get('info.extension.available.image')
+							extension_video = cls.get('info.extension.ffmpeg.video')
+							if name in extension_image:
+								for file_name in cls.dir_file(path):
+									extension = cls.path_extension(file_name).lower()
+									source = cls.path(path, file_name)
+									destination = cls.path(move if move else path, cls.path_extension_replace(file_name, name))
+									if extension in extension_image:
+										image = cls.file(source, format='image')
+										cls.file(destination, image, param=param)
+										cls.file_remove(source)
+									elif extension in extension_video:
+										filters = []
+										convert_param = {}
+										match name:
+											case 'webp':
+												convert_param = {'quality': param or 85, 'compression_level': 6, 'loop': 0} if not isinstance(param, dict) else dict(param)
+											case 'gif':
+												convert_param = {'loop': 0} if not isinstance(param, dict) else dict(param)
+												filters.append('split[s0][s1];[s0]palettegen=stats_mode=full[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5')
+											case _:
+												convert_param = {} if not isinstance(param, dict) else dict(param)
+										fps = convert_param.get('fps')
+										scale = convert_param.get('scale')
+										if fps:
+											filters.append(f"fps={fps}")
+											del convert_param['fps']
+										if scale:
+											filters.append(f"scale={scale}:-2:flags=lanczos")
+											del convert_param['scale']
+										if len(filters):
+											convert_param['vf'] = '"' + ','.join(filters) + '"'
+										convert_param = ' '.join([f'-{param_name} {param_value}' for param_name, param_value in convert_param.items()])
+										cls.open_wait(f'ffmpeg -y -i "{source}" -threads 0 {convert_param} "{destination}"')
+										cls.file_remove(source)
+							else:
+								for file_name in cls.dir_file(path):
+									extension = cls.path_extension(file_name).lower()
+									source = cls.path(path, file_name)
+									destination = cls.path(move if move else path, cls.path_extension_replace(file_name, name))
+									match name:
+										case 'webm':
+											convert_param = '-c:v libsvtav1 -preset 13 -c:a libopus' if not param else param
+										case 'mp3':
+											convert_param = '-vn -ar 48000 -q:a 0' if not param else param
+										case 'ogg':
+											convert_param = '-vn -c:a libopus -b:a 510k' if not param else param
+										case _:
+											convert_param = ''
+									cls.open_wait(f'ffmpeg -y -i "{source}" -threads 0 {convert_param} "{destination}"')
+									cls.file_remove(source)
 				cls.wait(1)
 		except KeyboardInterrupt:
 			pass
@@ -11615,6 +11643,10 @@ class VOIDlang:
 		if index_dot >= 0 and index_dot > index_slash and index_dot > index_backslash:
 			return path[0:index_dot]
 		return path
+
+	@classmethod
+	def path_extension_append(cls, path: str, extension):
+		return f'{path}.{extension}'
 
 	@classmethod
 	def path_extension_replace(cls, path: str, extension):
@@ -13625,8 +13657,10 @@ class VOIDlang:
 	@classmethod
 	def image_resize(cls, path_from: str, path_to: str = None, scale: float = None, width: float = None, height: float = None, deblocking = None, mode = None, quality: int = None):
 		if not cls.is_file(path_from): return
+		image = cls.file(path_from, format='pillow')
+		if not image: return
 		pillow_image = cls.module('PIL.Image', 'pillow')
-		image = pillow_image.open(path_from).convert('RGB')
+		image = image.convert('RGB')
 		image_width, image_height = image.size
 		if not scale:
 			if width:
@@ -13767,7 +13801,9 @@ class VOIDlang:
 		pillow_image = cls.module('PIL.Image', 'pillow')
 		np = cls.module('numpy')
 		cv2 = cls.module('cv2', 'opencv-python')
-		image = pillow_image.open(path_from).convert('RGB')
+		image = cls.file(path_from, format='pillow')
+		if not image: return
+		image = image.convert('RGB')
 		image_width, image_height = image.size
 		torch = cls.module('torch')
 		if mode is None:
@@ -14077,7 +14113,8 @@ class VOIDlang:
 			model_y = ycc[:, :, 0].astype(np.float32)
 			ycc[:, :, 0] = (blend * original_y + (1 - blend) * model_y).clip(0, 255).astype(np.uint8)
 			return cv2.cvtColor(ycc, cv2.COLOR_YCrCb2RGB)
-		image = cv2.imread(path_from, cv2.IMREAD_COLOR)
+		image = cls.file(path_from, format='cv')
+		if image is None: return
 		image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 		image_height, image_width = image.shape[0], image.shape[1]
 		image_colorized = colorizator.run(image, size, denoise, denoiser_sigma)
