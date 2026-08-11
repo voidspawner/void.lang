@@ -7862,39 +7862,43 @@ class VOIDlang:
 						'line': '\n'
 					},
 					'path': {
-						'ffmpeg': None,
-						'yt-dlp': None,
-						'python': None,
+						'ffmpeg': 'ffmpeg',
+						'yt-dlp': 'yt-dlp',
+						'python': 'python3',
 						'void': None,
 						'ai': {
 							'epoch': {
-								'any': 'epoch994_omnisr.pth',
-								'intel': 'epoch994_omnisr.xml'
+								'any': 'model/epoch994_omnisr.pth',
+								'intel': 'model/epoch994_omnisr.xml'
 							},
 							'fbcnn': {
-								'any': 'fbcnn_color.pth',
-								'intel': 'fbcnn_color.xml'
+								'any': 'model/fbcnn_color.pth',
+								'intel': 'model/fbcnn_color.xml'
 							},
 							'ddcolor': {
 								'artistic': {
-									'any': 'ddcolor_artistic.pth',
-									'intel': 'ddcolor_artistic.xml'
+									'any': 'model/ddcolor_artistic.pth',
+									'intel': 'model/ddcolor_artistic.xml'
 								},
 								'modelscope': {
-									'any': 'ddcolor_modelscope.pth',
-									'intel': 'ddcolor_modelscope.xml'
+									'any': 'model/ddcolor_modelscope.pth',
+									'intel': 'model/ddcolor_modelscope.xml'
 								}
 							},
 							'colorize': {
-								'generator': 'generator.zip',
-								'denoiser': 'net_rgb.pth'
+								'generator': 'model/generator.zip',
+								'denoiser': 'model/net_rgb.pth'
 							}
+						},
+						'font': {
+							'default': 'C:\\Windows\\Fonts\\arial.ttf',
+							'arial': 'C:\\Windows\\Fonts\\arial.ttf'
 						}
 					}
 				},
 				'ui': 'cli',
 				'format': {
-					'text': ['json', 'jsonl', 'jsonld', 'yaml', 'csv', 'ini', 'xml', 'sql', 'log', 'text', 'txt', 'vtt', 'srt', 'ass', 'ssa', 'ttml', 'sub', 'smi', 'sami', 'html', 'htm', 'xhtml', 'mhtml', 'css', 'py', 'md', 'php', 'java', 'kt', 'swift', 'm', 'mm', 'c', 'cpp', 'h', 'cs', 'rs', 'gd', 'js', 'mjs', 'lua', 'sh', 'csh', 'bat', 'svg']
+					'text': ['json', 'jsonl', 'jsonld', 'yaml', 'csv', 'ini', 'xml', 'sql', 'log', 'text', 'txt', 'vtt', 'srt', 'ass', 'ssa', 'ttml', 'sub', 'smi', 'sami', 'html', 'htm', 'xhtml', 'mhtml', 'url', 'css', 'py', 'md', 'php', 'java', 'kt', 'swift', 'm', 'mm', 'c', 'cpp', 'h', 'cs', 'rs', 'gd', 'js', 'mjs', 'lua', 'sh', 'csh', 'bat', 'svg']
 				}
 			},
 			'cloud': {
@@ -7909,26 +7913,26 @@ class VOIDlang:
 			'ai': {
 				'model': {
 					'epoch': {
-						'any': 'epoch994_omnisr.pth',
-						'intel': 'epoch994_omnisr.xml'
+						'any': 'model/epoch994_omnisr.pth',
+						'intel': 'model/epoch994_omnisr.xml'
 					},
 					'fbcnn': {
-						'any': 'fbcnn_color.pth',
-						'intel': 'fbcnn_color.xml'
+						'any': 'model/fbcnn_color.pth',
+						'intel': 'model/fbcnn_color.xml'
 					},
 					'ddcolor': {
 						'artistic': {
-							'any': 'ddcolor_artistic.pth',
-							'intel': 'ddcolor_artistic.xml'
+							'any': 'model/ddcolor_artistic.pth',
+							'intel': 'model/ddcolor_artistic.xml'
 						},
 						'modelscope': {
-							'any': 'ddcolor_modelscope.pth',
-							'intel': 'ddcolor_modelscope.xml'
+							'any': 'model/ddcolor_modelscope.pth',
+							'intel': 'model/ddcolor_modelscope.xml'
 						}
 					},
 					'colorize': {
-						'generator': 'generator.zip',
-						'denoiser': 'net_rgb.pth'
+						'generator': 'model/generator.zip',
+						'denoiser': 'model/net_rgb.pth'
 					}
 				}
 			},
@@ -9148,28 +9152,29 @@ class VOIDlang:
 
 	@classmethod
 	def parse(cls, text: str, template: str = None, multiple: bool = None):
-		if template:
-			if not template in cls.cache_parse:
-				processed = template
-				escaped = re.escape(processed)
-				escaped = escaped.replace(r'\(\(\)\)', r'.*?')
-				escaped = escaped.replace(r'\(\(number\)\)', r'(-?\d+(?:\.\d+)?)')
-				escaped = escaped.replace(r'\(\(letter\)\)', r'([^\W\d_])')
-				escaped = escaped.replace(r'\(\(word\)\)', r'([^\W\d_]+)')
-				escaped = re.sub(r'\\\(\\\((\w+)\\\)\\\)', lambda m: f'(?P<{m.group(1)}>.*?)', escaped)
-				cls.cache_parse[template] = re.compile(escaped, re.DOTALL | re.UNICODE)
-			compiled_regex = cls.cache_parse[template]
-			matches = list(compiled_regex.finditer(text))
-			if not matches:
-				return [] if multiple else None
-			names = list(compiled_regex.groupindex.keys())
-			if len(names) == 1:
-				return [match.group(names[0]) for match in matches] if len(matches) > 1 or multiple else matches[0].group(names[0])
-			elif len(names) > 1:
-				return [match.groupdict() for match in matches] if len(matches) > 1 or multiple else matches[0].groupdict()
+		if not template:
 			return [] if multiple else None
-		else:
+		if template not in cls.cache_parse:
+			processed = template
+			escaped = re.escape(processed)
+			escaped = escaped.replace(r'\(\(\)\)', r'(?:.*?)')
+			escaped = escaped.replace(r'\(\(number\)\)', r'(?P<number>-?\d+(?:\.\d+)?)')
+			escaped = escaped.replace(r'\(\(letter\)\)', r'(?P<letter>[^\W\d_])')
+			escaped = escaped.replace(r'\(\(word\)\)', r'(?P<word>[^\W\d_]+)')
+			escaped = re.sub(r'\\\(\\\((\w+)\\\)\\\)', lambda m: f'(?P<{m.group(1)}>.*?)', escaped)
+			cls.cache_parse[template] = re.compile(escaped, re.DOTALL | re.UNICODE)
+		compiled_regex = cls.cache_parse[template]
+		matches = list(compiled_regex.finditer(text))
+		if not matches:
 			return [] if multiple else None
+		names = list(compiled_regex.groupindex.keys())
+		if len(names) == 1:
+			res = [match.group(names[0]) for match in matches]
+			return res if multiple or len(matches) > 1 else res[0]
+		elif len(names) > 1:
+			res = [match.groupdict() for match in matches]
+			return res if multiple or len(matches) > 1 else res[0]
+		return [] if multiple else None
 
 	@classmethod
 	def part(cls):
@@ -11321,11 +11326,40 @@ class VOIDlang:
 							for file_name in set(processed.keys()):
 								if file_name not in names: del processed[file_name]
 						case 'counter':
-							pass
+							index = len(processed) 
+							names = []
+							files = cls.dir_file(path)
+							if len(files):
+								if not isinstance(param, dict):
+									param = {'digit': int(param) if isinstance(param, (int, float, str)) else 3}
+								prefix = param.get('name') or ''
+								digit = param.get('digit', 3)
+								index = max([int(number or 0) for number in [cls.parse(file_name, f'((number)).', multiple=False) for file_name in files]], default=0) + 1
+								for file_name in files:
+									if file_name in processed:
+										names.append(file_name)
+										continue
+									file_name_new = f'{prefix}{str(index).zfill(digit)}.{cls.path_extension(file_name)}' if prefix else cls.path_stem_append(file_name, f'_{str(index).zfill(digit)}')
+									cls.file_rename(cls.path(path, file_name), file_name_new)
+									processed[file_name_new] = True
+									names.append(file_name_new)
+									index += 1
+							for file_name in set(processed.keys()):
+								if file_name not in names: del processed[file_name]
 						case 'voice':
-							pass
+							for path_name in cls.dir_file(path, 'txt'):
+								source = cls.path(path, path_name)
+								destination = cls.path(move if move else path, cls.path_extension_replace(path_name, 'mp3'))
+								text = cls.file(source)
+								if text:
+									cls.say(text, path=destination, voice=cls.get('voice', None, param), engine=cls.get('engine', 'edge', param), speed=float(param) if isinstance(param, (int, float, str)) else cls.get('speed', 1.0, param))
+									cls.file_remove(source)
 						case 'download':
-							pass
+							for file_name in cls.dir_file(path, 'url'):
+								source = cls.path(path, file_name)
+								url = cls.get('InternetShortcut.url', None, cls.file(source, format='ini'))
+								cls.download(url, path)
+								cls.file_remove(source)
 						case 'x2' | 'x4':
 							names = []
 							for file_name in cls.dir_file(path, cls.get('info.extension.available.image')):
@@ -11336,10 +11370,7 @@ class VOIDlang:
 								file_name_new = cls.path_stem_append(file_name, f'_{name}')
 								file_to = cls.path(path, file_name_new)
 								quality = param
-								if name == 'x2':
-									cls.x2(file_from, file_to, quality=quality)
-								else:
-									cls.x4(file_from, file_to, quality=quality)
+								cls.image_resize(file_from, file_to, scale=2 if name == 'x2' else 4, mode='neuro', quality=quality)
 								cls.file_remove(file_from)
 								if move:
 									cls.file_move(file_to, move)
@@ -11347,13 +11378,30 @@ class VOIDlang:
 								names.append(file_name_new)
 							for file_name in set(processed.keys()):
 								if file_name not in names: del processed[file_name]
-						case 'manga' | 'colorize' | 'translate':
+						case 'translate':
+							extension_image = cls.get('info.extension.available.image')
+							for path_name in cls.dir_file(path, 'txt'):
+								if cls.path_stem(path_name).endswith('_translate'): continue
+								extension = cls.path(extension).lower()
+								source = cls.path(path, path_name)
+								destination = cls.path(move if move else path, cls.path_stem_append(path_name, '_translate'))
+								if extension == 'txt':
+									text = cls.file(source)
+									if text:
+										cls.file(destination, cls.translate(text))
+										cls.file_remove(source)
+								elif extension in extension_image:
+									cls.image_translate(source, destination, quality=param)
+									cls.file_remove(source)
+						case 'colorize':
+							pass
+						case 'manga' | 'manga.colorize' | 'manga.translate':
 							names = set()
 							def process(path, file_name):
 								path_from = cls.path(path, file_name)
-								if name in ['manga', 'translate']:
+								if name in ['manga', 'manga.translate']:
 									pass
-								if name in ['manga', 'colorize']:
+								if name in ['manga', 'manga.colorize']:
 									name_new = cls.path_extension_replace(cls.path_stem_append(file_name, '_color'), 'webp')
 									path_to = cls.path(path, name_new)
 									cls.open_void('image.colorize.manga', path_from, path_to, 100)
@@ -13336,12 +13384,12 @@ class VOIDlang:
 		return cls.request(url, method, header, data, cookie, agent, key, format, timeout, info)
 
 	@classmethod
-	def download(cls):
-		pass
+	def download(cls, url: str, path: str = None, param = None):
+		return cls.open_wait(f'{cls.get("app.os.path.yt-dlp")} -P "{path or cls.path()}" "{url}"')
 
 	@classmethod
-	def d(cls):
-		pass
+	def d(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param)
 
 	@classmethod
 	def cookie(cls):
@@ -13789,11 +13837,11 @@ class VOIDlang:
 
 	@classmethod
 	def x2(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 2, mode='neuro')
+		return cls.image_resize(path_from, path_to, 2, deblocking=deblocking, mode='neuro', quality=quality)
 
 	@classmethod
 	def x4(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 4, mode='neuro')
+		return cls.image_resize(path_from, path_to, 4, deblocking=deblocking, mode='neuro', quality=quality)
 
 	@classmethod
 	def image_colorize(cls, path_from: str, path_to: str = None, mode: str = None, quality: int = None):
@@ -14125,22 +14173,30 @@ class VOIDlang:
 		cls.file(path_to, image, param=quality)
 
 	@classmethod
-	def image_text_recognize(cls, path_from: str, language: str = None) -> list:
-		if not cls.is_file(path_from): return []
+	def image_text_recognize(cls, source, language = None) -> list:
+		if isinstance(source, str):
+			if not cls.is_file(source): return []
+			image = cls.file(source, format='cv')
+		elif source.__class__.__name__ == 'ndarray' and source.__class__.__module__.startswith('numpy'):
+			image = source
+		else: return		
 		warnings = cls.module('warnings')
 		warnings.filterwarnings('ignore', message=".*pin_memory.*")
 		easyocr = cls.module('easyocr')
 		cv2 = cls.module('cv2')
 		np = cls.module('numpy')
-		image = cv2.imread(path_from)
 		image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-		image = cv2.convertScaleAbs(image, alpha=1.3, beta=0)
+		image = cv2.convertScaleAbs(image, alpha=0.8, beta=0)
 		image = cv2.fastNlMeansDenoising(image, h=10)
 		_, image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-		reader = easyocr.Reader(['en', language or cls.get('language')], gpu=cls.neuro_mode() not in ('cpu', 'intel'), verbose=False)
-		ocr_results = reader.readtext(image, paragraph=True)
+		if isinstance(language, str):
+			language = language.split(',')
+		elif not isinstance(language, (list, tuple)):
+			language = ['en']
+		reader = easyocr.Reader(language, gpu=cls.neuro_mode() not in ('cpu', 'intel'), verbose=False)
+		ocr_results = reader.readtext(image, paragraph=False)
 		blocks = []
-		for box, text in ocr_results:
+		for box, text, _ in ocr_results:
 			xs = [pt[0] for pt in box]
 			ys = [pt[1] for pt in box]
 			x_min, x_max = int(min(xs)), int(max(xs))
@@ -14152,28 +14208,100 @@ class VOIDlang:
 		return blocks
 
 	@classmethod
-	def image_text_clear(cls, path_from: str, path_to: str, quality: int = None):
+	def image_text_clear(cls, source, destination: str = None, blocks: list = None, language = None, pad: int = 4, quality: int = None):
+		cv2 = cls.module('cv2')
+		if isinstance(source, str):
+			if not cls.is_file(source): return
+			image = cls.file(source, format='cv')
+			if image is None: return
+			image = cv2.imread(source)
+		elif source.__class__.__name__ == 'ndarray' and source.__class__.__module__.startswith('numpy'):
+			image = source
+		else: return
+		if not blocks:
+			blocks = cls.image_text_recognize(image, language=language)
+		np = cls.module('numpy')
+		mask = np.zeros(image.shape[:2], dtype=np.uint8)
+		for block in blocks:
+			x, y, w, h = block['box']
+			x1, y1 = max(x - pad, 0), max(y - pad, 0)
+			x2, y2 = min(x + w + pad, image.shape[1]), min(y + h + pad, image.shape[0])
+			cv2.rectangle(mask, (x1, y1), (x2, y2), 255, -1)
+		image = cv2.inpaint(image, mask, 7, cv2.INPAINT_TELEA)
+		if destination:
+			cls.file(destination, image, param=quality)
+		else:
+			return image
+
+	@classmethod
+	def image_text(cls, path_from: str, path_to: str, text, quality: int = None):
+		if not cls.is_file(path_from): return
+		cv2 = cls.module('cv2')
+		np = cls.module('numpy')
+		Image = cls.module('PIL.Image')
+		ImageDraw = cls.module('PIL.ImageDraw')
+		ImageFont = cls.module('PIL.ImageFont')
+		textwrap = cls.module('textwrap')
+		blocks = text if isinstance(text, list) else cls.image_text_recognize(path_from)
+		image = cls.file(path_from, format='cv')
+		if image is None: return
+		image = cls.image_text_clear(image, blocks=blocks)
+		pil_image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+		draw = ImageDraw.Draw(pil_image)
+		for block in blocks:
+			x, y, w, h = block['box']
+			block_text = block.get('text') if isinstance(block, dict) else None
+			if block_text is None: continue
+			font_path = cls.get('app.os.path.font.default')
+			size = h
+			while size > 6:
+				font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default()
+				avg_char_w = max(draw.textlength('W', font=font), 1)
+				wrap_width = max(1, int(w / avg_char_w))
+				lines = textwrap.wrap(block_text, width=wrap_width) or [block_text]
+				line_h = font.getbbox('Wg')[3] - font.getbbox('Wg')[1]
+				total_h = line_h * len(lines) * 1.15
+				max_line_w = max(draw.textlength(line, font=font) for line in lines)
+				if total_h <= h and max_line_w <= w:
+					break
+				size -= 1
+			else:
+				font = ImageFont.truetype(font_path, 6) if font_path else ImageFont.load_default()
+				lines = textwrap.wrap(block_text, width=max(1, w // 6)) or [block_text]
+				line_h = font.getbbox('Wg')[3] - font.getbbox('Wg')[1]
+				total_h = line_h * len(lines) * 1.15
+			cy = y + max(0, (h - total_h) / 2)
+			for line in lines:
+				line_w = draw.textlength(line, font=font)
+				cx = x + max(0, (w - line_w) / 2)
+				draw.text((cx, cy), line, font=font, fill=(0, 0, 0))
+				cy += line_h * 1.15
+		result = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
+		cls.file(path_to, result, param=quality)
+
+	@classmethod
+	def image_translate(cls, path_from: str, path_to: str, language: str = None, quality: int = None):
 		pass
 
 	@classmethod
-	def image_text(cls, path_from: str, path_to: str, text: list, quality: int = None):
-		pass
-
-	@classmethod
-	def image_translate(cls, path_from: str, path_to: str, language: str = None, colorize: bool = False, quality: int = None):
-		pass
-
-	@classmethod
-	def image_crop(cls, path_from: str, path_to: str, param = None):
+	def image_crop(cls, path_from: str, path_to: str, x: int, y: int, width: int, height: int, quality: int = None):
 		pass
 
 	@classmethod
 	def image_effect(cls, path_from: str, path_to: str, effect):
-		pass
-
-	@classmethod
-	def image_convert(cls, path_from: str, path_to: str, param = None):
-		pass
+		match effect:
+			case 'bw' | 'grayscale':
+				pass
+			case 'colorize':
+				pass
+			case 'negative':
+				pass
+			case 'noize':
+				pass
+			case 'glitch':
+				pass
+			case 'lens':
+				pass
 
 	@classmethod
 	def video(cls, prompt: str, path: str):
@@ -14209,10 +14337,6 @@ class VOIDlang:
 
 	@classmethod
 	def video_effect(cls, path_from: str, path_to: str, effect):
-		pass
-
-	@classmethod
-	def video_convert(cls, path_from: str, path_to: str, param = None):
 		pass
 
 	@classmethod
@@ -14262,10 +14386,6 @@ class VOIDlang:
 
 	@classmethod
 	def sound_effect(cls, path_from: str, path_to: str, effect):
-		pass
-
-	@classmethod
-	def sound_convert(cls, path_from: str, path_to: str, param = None):
 		pass
 
 	@classmethod
