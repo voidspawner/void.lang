@@ -7836,10 +7836,6 @@ class VOIDlang:
 					'model': [],
 					'document': []
 				},
-				'http': {
-					'mime': {},
-					'code': {}
-				},
 				'extension': {
 					'available': {
 						'image': ('jpg', 'jpeg', 'webp', 'png', 'gif', 'avif', 'heif', 'heic', 'hdr', 'pfm', 'tif', 'tiff', 'pdf', 'ico', 'cur', 'icns', 'bmp', 'tga', 'jp2', 'j2k', 'pbm', 'pgm', 'ppm', 'pnm', 'pcx'),
@@ -7853,7 +7849,17 @@ class VOIDlang:
 						'video': ('mp4', 'webm', 'webp', 'gif', 'mpg', 'mpeg', 'avi', 'wmv', 'mov', 'mkv', 'qt', 'vob', 'flv', 'f4v', 'm2ts', 'mts', 'ts', '3gp', '3g2', 'ogv', 'm4v', 'asf', 'rm', 'rmvb', 'm2v', 'divx', 'y4m', 'bik', 'roq', 'wtv'),
 						'sound': ('mp3', 'wav', 'mpa', 'ac3', 'aac', 'ogg', 'opus', 'flac', 'm4a', 'wma', 'alac', 'aiff', 'aif', 'ape', 'dts', 'eac3', 'amr', 'mp2', 'wv', 'caf', 'mka', 'ra'),
 						'subtitle': ('srt', 'ssa', 'ass', 'vtt', 'sub', 'idx', 'ttml', 'lrc', 'sbv', 'scc')
-					}
+					},
+					'yt-dlp': {
+						'video': ('mp4', 'mkv', 'webm', 'mov', 'avi', 'flv'),
+						'audio': ('mp3', 'm4a', 'wav', 'flac', 'opus', 'aac', 'ogg'),
+						'subtitles': ('srt', 'vtt', 'ass', 'lrc')
+					},
+					'text': ('json', 'jsonl', 'jsonld', 'yaml', 'csv', 'ini', 'xml', 'sql', 'log', 'text', 'txt', 'vtt', 'srt', 'ass', 'ssa', 'ttml', 'sub', 'smi', 'sami', 'html', 'htm', 'xhtml', 'mhtml', 'url', 'css', 'py', 'md', 'php', 'java', 'kt', 'swift', 'm', 'mm', 'c', 'cpp', 'h', 'cs', 'rs', 'gd', 'js', 'mjs', 'lua', 'sh', 'csh', 'bat', 'svg')
+				},
+				'http': {
+					'mime': {"void": "application/void", "json": "application/json", "jsonl": "application/jsonl", "jsonld": "application/ld+json", "yaml": "application/x-yaml", "xml": "application/xml", "csv": "text/csv", "ini": "text/plain", "sql": "application/sql", "log": "text/plain", "bin": "application/octet-stream", "text": "text/plain", "txt": "text/plain", "pdf": "application/pdf", "djvu": "image/vnd.djvu", "doc": "application/msword", "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "xls": "application/vnd.ms-excel", "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ppt": "application/vnd.ms-powerpoint", "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "rtf": "application/rtf", "epub": "application/epub+zip", "abw": "application/x-abiword", "azw": "application/vnd.amazon.ebook", "odp": "application/vnd.oasis.opendocument.presentation", "ods": "application/vnd.oasis.opendocument.spreadsheet", "odt": "application/vnd.oasis.opendocument.text", "ics": "text/calendar", "html": "text/html", "htm": "text/html", "xhtml": "application/xhtml+xml", "css": "text/css", "md": "text/markdown", "ttf": "font/ttf", "otf": "font/otf", "sfnt": "font/sfnt", "woff": "font/woff", "woff2": "font/woff2", "eot": "application/vnd.ms-fontobject", "vtt": "text/vtt", "srt": "application/x-subrip", "ass": "text/x-ssa", "ssa": "text/x-ssa", "ttml": "application/ttml+xml", "sub": "text/x-microdvd", "smi": "application/x-sami", "sami": "application/x-sami", "jpeg": "image/jpeg", "jpg": "image/jpeg", "png": "image/png", "apng": "image/apng", "gif": "image/gif", "svg": "image/svg+xml", "webp": "image/webp", "heif": "image/heif", "heic": "image/heic", "tiff": "image/tiff", "tif": "image/tiff", "avif": "image/avif", "ico": "image/x-icon", "icon": "image/vnd.microsoft.icon", "icns": "image/x-icns", "mp3": "audio/mpeg", "mpa": "audio/mpeg", "mp2": "audio/mpeg", "wma": "audio/x-ms-wma", "wav": "audio/x-wav", "flac": "audio/flac", "ogg": "application/ogg", "oga": "audio/ogg", "opus": "audio/opus", "weba": "audio/webm", "cda": "application/x-cdf", "aac": "audio/aac", "ac3": "audio/ac3", "mid": "audio/midi", "midi": "audio/x-midi", "s3m": "audio/s3m", "it": "audio/it", "mod": "audio/x-mod", "xm": "audio/xm", "mp4": "video/mp4", "mpeg": "video/mpeg", "mpg": "video/mpeg", "mpv": "video/mpeg", "webm": "video/webm", "ogx": "application/ogg", "ogv": "video/ogg", "qt": "video/quicktime", "mov": "ideo/quicktime", "m4v": "video/x-m4v", "wmv": "video/x-ms-wmv", "avi": "video/x-msvideo", "mkv": "application/x-matroska", "mjpeg": "multipart/x-mixed-replace", "ts": "video/mp2t", "gltf": "model/gltf+json", "glb": "model/gltf-binary", "obj": "model/obj", "stl": "model/stl", "fbx": "application/vnd.autodesk.fbx", "dae": "model/vnd.collada+xml", "3ds": "model/x-3ds", "ply": "model/ply", "usd": "model/vnd.usd", "usdz": "model/vnd.usdz+zip", "x3d": "model/x3d+xml", "wrl": "model/vrml", "vrml": "model/vrml", "zip": "application/zip", "gz": "application/gzip", "7z": "application/x-7z-compressed", "tar": "application/x-tar", "rar": "application/vnd.rar", "bz": "application/x-bzip", "bz2": "application/x-bzip2", "py": "applycation/x-python-code", "php": "application/x-httpd-php", "java": "application/java", "jar": "application/java-archive", "kt": "text/x-kotlin", "swift": "application/swift", "m": "text/x-objective-c", "mm": "text/x-objective-c++", "c": "text/x-csrc", "cpp": "text/x-c++src", "h": "text/x-chdr", "cs": "text/x-csharp", "rs": "text/rust", "gd": "text/x-gdscript", "js": "text/javascript", "mjs": "text/javascript", "lua": "text/x-lua", "sh": "application/x-sh", "csh": "application/x-csh", "bat": "application/x-bat", "form data": "multipart/form-data", "form mixed": "multipart/mixed", "form alternative": "multipart/alternative", "form text": "application/x-www-form-urlencoded", "m4a": "audio/mp4", "mhtml": "multipart/related"},
+					'code': {100: "Continue",101: "Switching protocols",102: "Processing",103: "Early Hints",200: "OK",201: "Created",202: "Accepted",203: "Non-Authoritative Information",204: "No Content",205: "Reset Content",206: "Partial Content",207: "Multi-Status",208: "Already Reported",226: "IM Used",300: "Multiple Choices",301: "Moved Permanently",302: "Found Redirection",303: "See Other",304: "Not Modified",305: "Use Proxy",306: "Switch Proxy",307: "Temporary Redirect",308: "Permanent Redirect",400: "Bad Request",401: "Unauthorized",402: "Payment Required",403: "Forbidden",404: "Not Found",405: "Method Not Allowed",406: "Not Acceptable",407: "Proxy Authentication Required",408: "Request Timeout",409: "Conflict",410: "Gone",411: "Length Required",412: "Precondition Failed",413: "Payload Too Large",414: "URI Too Long",415: "Unsupported Media Type",416: "Range Not Satisfiable",417: "Expectation Failed",418: "I'm a Teapot",421: "Misdirected Request",422: "Unprocessable Entity",423: "Locked",424: "Failed Dependency",425: "Too Early",426: "Upgrade Required",428: "Precondition Required",429: "Too Many Requests",431: "Request Header Fields Too Large",451: "Unavailable For Legal Reasons",500: "Internal Server Error",501: "Not Implemented",502: "Bad Gateway",503: "Service Unavailable",504: "Gateway Timeout",505: "HTTP Version Not Supported",506: "Variant Also Negotiates",507: "Insufficient Storage",508: "Loop Detected",510: "Not Extended",511: "Network Authentication Required"}
 				}
 			},
 			'app': {
@@ -7863,13 +7869,21 @@ class VOIDlang:
 					},
 					'path': {
 						'ffmpeg': 'ffmpeg',
-						'yt-dlp': 'yt-dlp',
+						'yt-dlp': {
+							'stable': 'yt-dlp',
+							'nightly': 'yt-dlp-nightly',
+							'cookie': None
+						},
 						'python': 'python3',
 						'void': None,
 						'ai': {
-							'epoch': {
-								'any': 'model/epoch994_omnisr.pth',
-								'intel': 'model/epoch994_omnisr.xml'
+							'epochx2': {
+								'any': 'model/epoch994_omnisr_x2.pth',
+								'intel': 'model/epoch994_omnisr_x2.xml'
+							},
+							'epochx4': {
+								'any': 'model/epoch994_omnisr_x4.pth',
+								'intel': 'model/epoch994_omnisr_x4.xml'
 							},
 							'fbcnn': {
 								'any': 'model/fbcnn_color.pth',
@@ -7902,13 +7916,12 @@ class VOIDlang:
 				}
 			},
 			'cloud': {
-				'mime': {"void": "application/void", "json": "application/json", "jsonl": "application/jsonl", "jsonld": "application/ld+json", "yaml": "application/x-yaml", "xml": "application/xml", "csv": "text/csv", "ini": "text/plain", "sql": "application/sql", "log": "text/plain", "bin": "application/octet-stream", "text": "text/plain", "txt": "text/plain", "pdf": "application/pdf", "djvu": "image/vnd.djvu", "doc": "application/msword", "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "xls": "application/vnd.ms-excel", "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ppt": "application/vnd.ms-powerpoint", "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "rtf": "application/rtf", "epub": "application/epub+zip", "abw": "application/x-abiword", "azw": "application/vnd.amazon.ebook", "odp": "application/vnd.oasis.opendocument.presentation", "ods": "application/vnd.oasis.opendocument.spreadsheet", "odt": "application/vnd.oasis.opendocument.text", "ics": "text/calendar", "html": "text/html", "htm": "text/html", "xhtml": "application/xhtml+xml", "css": "text/css", "md": "text/markdown", "ttf": "font/ttf", "otf": "font/otf", "sfnt": "font/sfnt", "woff": "font/woff", "woff2": "font/woff2", "eot": "application/vnd.ms-fontobject", "vtt": "text/vtt", "srt": "application/x-subrip", "ass": "text/x-ssa", "ssa": "text/x-ssa", "ttml": "application/ttml+xml", "sub": "text/x-microdvd", "smi": "application/x-sami", "sami": "application/x-sami", "jpeg": "image/jpeg", "jpg": "image/jpeg", "png": "image/png", "apng": "image/apng", "gif": "image/gif", "svg": "image/svg+xml", "webp": "image/webp", "heif": "image/heif", "heic": "image/heic", "tiff": "image/tiff", "tif": "image/tiff", "avif": "image/avif", "ico": "image/x-icon", "icon": "image/vnd.microsoft.icon", "icns": "image/x-icns", "mp3": "audio/mpeg", "mpa": "audio/mpeg", "mp2": "audio/mpeg", "wma": "audio/x-ms-wma", "wav": "audio/x-wav", "flac": "audio/flac", "ogg": "application/ogg", "oga": "audio/ogg", "weba": "audio/webm", "cda": "application/x-cdf", "aac": "audio/aac", "ac3": "audio/ac3", "mid": "audio/midi", "midi": "audio/x-midi", "s3m": "audio/s3m", "it": "audio/it", "mod": "audio/x-mod", "xm": "audio/xm", "mp4": "video/mp4", "mpeg": "video/mpeg", "mpg": "video/mpeg", "mpv": "video/mpeg", "webm": "video/webm", "ogx": "application/ogg", "ogv": "video/ogg", "qt": "video/quicktime", "mov": "ideo/quicktime", "m4v": "video/x-m4v", "wmv": "video/x-ms-wmv", "avi": "video/x-msvideo", "mkv": "application/x-matroska", "mjpeg": "multipart/x-mixed-replace", "ts": "video/mp2t", "gltf": "model/gltf+json", "glb": "model/gltf-binary", "obj": "model/obj", "stl": "model/stl", "fbx": "application/vnd.autodesk.fbx", "dae": "model/vnd.collada+xml", "3ds": "model/x-3ds", "ply": "model/ply", "usd": "model/vnd.usd", "usdz": "model/vnd.usdz+zip", "x3d": "model/x3d+xml", "wrl": "model/vrml", "vrml": "model/vrml", "zip": "application/zip", "gz": "application/gzip", "7z": "application/x-7z-compressed", "tar": "application/x-tar", "rar": "application/vnd.rar", "bz": "application/x-bzip", "bz2": "application/x-bzip2", "py": "applycation/x-python-code", "php": "application/x-httpd-php", "java": "application/java", "jar": "application/java-archive", "kt": "text/x-kotlin", "swift": "application/swift", "m": "text/x-objective-c", "mm": "text/x-objective-c++", "c": "text/x-csrc", "cpp": "text/x-c++src", "h": "text/x-chdr", "cs": "text/x-csharp", "rs": "text/rust", "gd": "text/x-gdscript", "js": "text/javascript", "mjs": "text/javascript", "lua": "text/x-lua", "sh": "application/x-sh", "csh": "application/x-csh", "bat": "application/x-bat", "form data": "multipart/form-data", "form mixed": "multipart/mixed", "form alternative": "multipart/alternative", "form text": "application/x-www-form-urlencoded", "m4a": "audio/mp4", "mhtml": "multipart/related"},
-				'code': {100: "Continue",101: "Switching protocols",102: "Processing",103: "Early Hints",200: "OK",201: "Created",202: "Accepted",203: "Non-Authoritative Information",204: "No Content",205: "Reset Content",206: "Partial Content",207: "Multi-Status",208: "Already Reported",226: "IM Used",300: "Multiple Choices",301: "Moved Permanently",302: "Found Redirection",303: "See Other",304: "Not Modified",305: "Use Proxy",306: "Switch Proxy",307: "Temporary Redirect",308: "Permanent Redirect",400: "Bad Request",401: "Unauthorized",402: "Payment Required",403: "Forbidden",404: "Not Found",405: "Method Not Allowed",406: "Not Acceptable",407: "Proxy Authentication Required",408: "Request Timeout",409: "Conflict",410: "Gone",411: "Length Required",412: "Precondition Failed",413: "Payload Too Large",414: "URI Too Long",415: "Unsupported Media Type",416: "Range Not Satisfiable",417: "Expectation Failed",418: "I'm a Teapot",421: "Misdirected Request",422: "Unprocessable Entity",423: "Locked",424: "Failed Dependency",425: "Too Early",426: "Upgrade Required",428: "Precondition Required",429: "Too Many Requests",431: "Request Header Fields Too Large",451: "Unavailable For Legal Reasons",500: "Internal Server Error",501: "Not Implemented",502: "Bad Gateway",503: "Service Unavailable",504: "Gateway Timeout",505: "HTTP Version Not Supported",506: "Variant Also Negotiates",507: "Insufficient Storage",508: "Loop Detected",510: "Not Extended",511: "Network Authentication Required"},
 				'web': {
 					'compression': {
 						'min': 512
 					}
-				}
+				},
+				'agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36 OPR/133.0.0.0 (Edition Yx 05)'
 			},
 			'ai': {
 				'model': {
@@ -8966,7 +8979,7 @@ class VOIDlang:
 				pass
 			case 'pth':
 				match name_to.lower():
-					case 'intel' | 'xml':
+					case 'intel':
 						torch = cls.module('torch')
 						warnings = cls.module('warnings')
 						openvino = cls.module('openvino')
@@ -8978,17 +8991,24 @@ class VOIDlang:
 						path_from = value
 						path_to = cls.path_extension_replace(path_from, 'xml')
 						spandrel_model = loader.load_from_file(path_from)
-						spandrel_model.eval()
-						pytorch_model = spandrel_model.model
-						for module in pytorch_model.modules():
-							if isinstance(module, torch.nn.Conv2d):
-								channels = module.in_channels
-								break
-						else:
-							channels = 3
-						example_input = torch.randn(1, channels, 256, 256)
+						pytorch_model = spandrel_model.model.to('cpu').float()
+						pytorch_model.eval()
+						in_channels = getattr(spandrel_model, 'in_channels', 3)
+						example_input = torch.randn(1, in_channels, 256, 256, device='cpu', dtype=torch.float32)
 						ov_model = openvino.convert_model(pytorch_model, example_input=example_input)
 						openvino.save_model(ov_model, path_to)
+
+						#spandrel_model.eval()
+						#pytorch_model = spandrel_model.model
+						# for module in pytorch_model.modules():
+						# 	if isinstance(module, torch.nn.Conv2d):
+						# 		channels = module.in_channels
+						# 		break
+						# else:
+						# 	channels = 3
+						# example_input = torch.randn(1, channels, 256, 256)
+						# ov_model = openvino.convert_model(pytorch_model, example_input=example_input)
+						# openvino.save_model(ov_model, path_to)
 
 	@classmethod
 	def c(cls, value, name_from = None, name_to = None):
@@ -9327,7 +9347,7 @@ class VOIDlang:
 		return cls.unescape(text, 'url')
 
 	@classmethod
-	def translate(cls, text: str = None, language_to: str = None, language_from: str = None, engine: str = 'google'):
+	def translate(cls, text: str = None, language_from: str = None, language_to: str = None, engine: str = 'google'):
 		translator = cls.module('translators')
 		if not text:
 			return translator.translators_pool
@@ -11380,18 +11400,27 @@ class VOIDlang:
 								if file_name not in names: del processed[file_name]
 						case 'translate':
 							extension_image = cls.get('info.extension.available.image')
-							for path_name in cls.dir_file(path, 'txt'):
+							if isinstance(param, dict):
+								language = param.get('language')
+								quality = param.get('quality')
+							elif isinstance(param, str):
+								language = param
+								quality = None
+							else:
+								language = None
+								quality = None								
+							for path_name in cls.dir_file(path):
 								if cls.path_stem(path_name).endswith('_translate'): continue
-								extension = cls.path(extension).lower()
+								extension = cls.path_extension(path_name).lower()
 								source = cls.path(path, path_name)
 								destination = cls.path(move if move else path, cls.path_stem_append(path_name, '_translate'))
 								if extension == 'txt':
 									text = cls.file(source)
 									if text:
-										cls.file(destination, cls.translate(text))
+										cls.file(destination, cls.translate(text, language_from=language if isinstance(language, str) else None))
 										cls.file_remove(source)
 								elif extension in extension_image:
-									cls.image_translate(source, destination, quality=param)
+									cls.image_translate(source, destination, language_from=language, quality=quality)
 									cls.file_remove(source)
 						case 'colorize':
 							pass
@@ -12961,7 +12990,7 @@ class VOIDlang:
 				if type(response) is not bytes:
 					connection = b'keep-alive' if request['alive'] else b'close'
 					code = response['code']
-					code = b'200 OK' if code == 200 else (str(code) + ' ' + cls.get('cloud.code.' + str(code))).encode()
+					code = b'200 OK' if code == 200 else (str(code) + ' ' + cls.get('info.http.code.' + str(code))).encode()
 					if 'text' in response:
 						data = response['text'].encode()
 						format = response['format'] if 'format' in response else 'text'
@@ -12977,7 +13006,7 @@ class VOIDlang:
 						if format in ['html', 'htm']:
 							content_type = b'text/html; charset=utf-8'
 						else:
-							content_type = cls.get('cloud.mime.' + format, 'application/octet-stream').encode()
+							content_type = cls.get('info.http.mime.' + format, 'application/octet-stream').encode()
 							if format in format_text:
 								content_type += b'; charset=utf-8'
 						content_encoding = []
@@ -13022,7 +13051,7 @@ class VOIDlang:
 						elif format in ['html', 'htm']:
 							content_type = b'text/html; charset=utf-8'
 						else:
-							content_type = cls.get('cloud.mime.' + format, 'application/octet-stream').encode()
+							content_type = cls.get('info.http.mime.' + format, 'application/octet-stream').encode()
 							if format in format_text:
 								content_type += b'; charset=utf-8'
 						if 'range' in request:
@@ -13356,21 +13385,65 @@ class VOIDlang:
 	def request(cls, url: str, method: str = None, header: dict = None, data = None, cookie: dict = None, agent: str = None, key: str = None, format: str = None, timeout: float = 5, info: bool = False):
 		request = cls.module('urllib.request')
 		try:
-			with request.urlopen(request.Request(url, method=method.upper() if method else 'GET'), timeout=timeout) as response:
+			header = dict(header or {})
+			header['User-Agent'] = agent or cls.get('cloud.agent')
+			if cookie:
+				header['Cookie'] = '; '.join(f'{name}={value}' for name, value in cookie.items())
+			if data is not None:
+				if isinstance(data, (dict, list)):
+					data = cls.json(data).encode('utf-8')
+					header.setdefault('Content-Type', 'application/json')
+				elif isinstance(data, str):
+					data = data.encode('utf-8')
+			with request.urlopen(request.Request(url, data=data, headers=header, method=(method.upper() if method else ('POST' if data else 'GET'))), timeout=timeout) as response:
 				data = response.read()
-				match format.lower():
-					case 'binary' | 'bin':
-						pass
-					case _:
-						text = data.decode('utf-8' if format is None else format).strip()
+				mimes = cls.get('info.http.mime')
+				header = dict(response.headers.items())
+				content_type = header.get('Content-Type', '')
+				text = None
+				charset = None
+				mime = None
+				name = None
+				extension = None
+				if content_type:
+					if 'charset' in content_type:
+						try:
+							charset = content_type.split(';')[1].split('=')[1].strip().lower()
+						except: pass
+					try:
+						mime = content_type.split(';')[0].strip().lower()
+					except: pass
+				if mime:
+					extension = next((ext for ext, m in mimes.items() if m == mime), None)
+				if format not in ('binary', 'bin'):
+					if charset or extension in cls.get('info.extension.text'):
+						text = data.decode((charset or 'utf-8') if format is None else format)
 				if info:
+					try:
+						disposition = header.get('Content-Disposition', '')
+						if 'filename=' in disposition:
+							name = disposition.split('filename=')[-1].strip('"; ')
+					except: pass
+					url = (response.url or url).split('?')[0]
+					if '#' in url:
+						url = url.split('#')[0]
+					if not name:
+						name = cls.path_name(url)
+					if name and extension and not (cls.path_extension(name) and f'://{name}' not in url):
+						name = f'{name}.{extension}'
 					result = {
 						'code': response.code,
 						'text': text,
-						'data': data
+						'charset': charset,
+						'data': data,
+						'length': len(data),
+						'mime': mime,
+						'extension': extension,
+						'header': header,
+						'name': name
 					}
 				else:
-					result = text
+					result = text if text is not None else data
 		except Exception as e:
 			result = {'code': 500, 'error': e} if info else None
 		return result
@@ -13384,12 +13457,125 @@ class VOIDlang:
 		return cls.request(url, method, header, data, cookie, agent, key, format, timeout, info)
 
 	@classmethod
-	def download(cls, url: str, path: str = None, param = None):
-		return cls.open_wait(f'{cls.get("app.os.path.yt-dlp")} -P "{path or cls.path()}" "{url}"')
+	def download(cls, url: str, path: str = None, param = None, format: str = None):
+		match format:
+			case 'file':
+				info = cls.request(url, info=True)
+				if 'error' not in info and info['length']:
+					cls.file(info['name'], info['text'] or info['data'])
+			case 'site':
+				pass
+			case _:
+				extension_video = cls.get('info.extension.yt-dlp.video')
+				extension_audio = cls.get('info.extension.yt-dlp.audio')
+				extension_subtitles = cls.get('info.extension.yt-dlp.subtitles')
+				extension = cls.path_extension(path).lower() if path else ''
+				if extension:
+					if not format:
+						if extension in extension_video:
+							format = 'video'
+						elif extension in extension_audio:
+							format = 'audio'
+							param = param or extension
+						elif extension in extension_subtitles:
+							format = 'subtitles'
+							param = param or cls.path_extension(cls.path_extension_strip(path)) if path else None
+				flag = []
+				cookie_path = cls.get('app.os.path.yt-dlp.cookie')
+				if cookie_path:
+					flag.append(f'--cookies "{cookie_path}"')
+				if extension:
+					flag.append(f'-o "{path}"')
+				else:
+					flag.append(f'-P "{path or cls.path()}"')
+				match format:
+					case 'video':
+						flag.append('-S "ext:' + ('mp4:m4a' if extension in ('mp4', '') else 'webm:opus' if extension == 'webm' else extension) + '"')
+						if param:
+							if str(param).isdigit() and str(param)[-1] == '0':
+								flag.append(f'-f "bv*[height<={param}]+ba/b"')
+							else:
+								flag.append(f'-f "{param}"')
+						else:
+							flag.append('-f "bv*+ba/b"')
+						if flag[1].startswith('-f "bv*'):
+							flag.append('--merge-output-format ' + ('mp4' if not extension else extension))
+					case 'audio' | 'sound' | 'music':
+						flag.append('-x')
+						flag.append(f'--audio-format {param or "mp3"}')
+					case 'sub' | 'subs' | 'subtitle' | 'subtitles':
+						flag.append('--write-sub --write-auto-sub --skip-download --sleep-subtitles 1')
+						if param:
+							names = [name.strip().lower() for name in str(param).split(',')]
+							langs = []
+							convert = extension
+							for name in names:
+								if name in extension_subtitles:
+									convert = name
+								else:
+									langs.append(name)
+							if langs:
+								flag.append(f'--sub-langs "{",".join(langs)}"')
+							else:
+								flag.append('--sub-langs "all"')
+							if convert:
+								flag.append(f'--convert-subs "{convert}"')
+						else:
+							flag.append('--sub-langs "all"')
+						if extension:
+							flag.append(f'-o "{cls.path_extension_strip(cls.path_extension_strip(path))}.%(ext)s"')
+					case 'info':
+						flag.append('-J')
+					case _:
+						flag.append('-S "ext:mp4:m4a"')
+				flags = ' '.join(flag)
+				result = cls.open_wait(f'{cls.get("app.os.path.yt-dlp.stable")} {flags} "{url}"')
+				if result['code'] and cls.get('app.os.path.yt-dlp.nightly'):
+					result = cls.open_wait(f'{cls.get("app.os.path.yt-dlp.nightly")} {flags} "{url}"')
+				if format == 'info' and not result['code']:
+					data = cls.json_decode(result['text'])
+					if path:
+						if not cls.path_extension(path):
+							path = cls.path(path, 'info.json')
+						cls.file(path, data)
+					else:
+						return data
 
 	@classmethod
 	def d(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param)
+
+	@classmethod
+	def download_info(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='info')
+
+	@classmethod
+	def download_video(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='video')
+
+	@classmethod
+	def download_audio(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='sound')
+
+	@classmethod
+	def download_sound(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='sound')
+
+	@classmethod
+	def download_subtitles(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='subtitles')
+
+	@classmethod
+	def download_sub(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='subtitles')
+
+	@classmethod
+	def download_file(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='file')
+
+	@classmethod
+	def download_site(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='site')
 
 	@classmethod
 	def cookie(cls):
@@ -13765,9 +13951,9 @@ class VOIDlang:
 				np = cls.module('numpy')
 				cv2 = cls.module('cv2', 'opencv-python')
 				openvino = cls.module('openvino')
-				image_upscale_scale = 4
+				image_upscale_scale = 4 if scale > 2 else 2
 				core = openvino.Core()
-				image_upscale_model = core.read_model(model=cls.get('ai.model.epoch.intel'))
+				image_upscale_model = core.read_model(model=cls.get(f'ai.model.epochx{image_upscale_scale}.intel'))
 				image_data = np.array(image).astype(np.float32) / 255.0
 				image_data = np.transpose(image_data, (2, 0, 1))
 				image_tensor = torch.from_numpy(image_data).unsqueeze(0)
@@ -13805,8 +13991,8 @@ class VOIDlang:
 				spandrel = cls.module('spandrel')
 				warnings = cls.module('warnings')
 				warnings.filterwarnings('ignore', category=UserWarning)
-				image_upscale_scale = 4
-				image_upscale_model = spandrel.ModelLoader(device=mode).load_from_file(cls.get('ai.model.epoch.any'))
+				image_upscale_scale = 4 if scale > 2 else 2
+				image_upscale_model = spandrel.ModelLoader(device=mode).load_from_file(cls.get(f'ai.model.epochx{image_upscale_scale}.any'))
 				image_upscale_model.eval()
 				image_tensor = torch.from_numpy(np.array(image)).permute(2, 0, 1).float() / 255.0
 				image_tensor = image_tensor.unsqueeze(0)
@@ -14135,7 +14321,7 @@ class VOIDlang:
 					self.colorizer.load_state_dict(torch.load(path_generator, map_location=device))
 					self.colorizer.eval()
 					self.denoiser = _Denoiser(device, weights_path=path_denoiser)
-				def run(self, image, size, denoise, denoiser_sigma):
+				def process(self, image, size, denoise, denoiser_sigma):
 					if size % 32:
 						raise RuntimeError('size is not divisible by 32')
 					if denoise:
@@ -14165,7 +14351,7 @@ class VOIDlang:
 		if image is None: return
 		image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 		image_height, image_width = image.shape[0], image.shape[1]
-		image_colorized = colorizator.run(image, size, denoise, denoiser_sigma)
+		image_colorized = colorizator.process(image, size, denoise, denoiser_sigma)
 		image = _merge_color_with_original_luminance(image, image_colorized, image_width, image_height)
 		image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 		if not path_to:
@@ -14194,9 +14380,9 @@ class VOIDlang:
 		elif not isinstance(language, (list, tuple)):
 			language = ['en']
 		reader = easyocr.Reader(language, gpu=cls.neuro_mode() not in ('cpu', 'intel'), verbose=False)
-		ocr_results = reader.readtext(image, paragraph=False)
+		ocr_results = reader.readtext(image, paragraph=True)
 		blocks = []
-		for box, text, _ in ocr_results:
+		for box, text in ocr_results:
 			xs = [pt[0] for pt in box]
 			ys = [pt[1] for pt in box]
 			x_min, x_max = int(min(xs)), int(max(xs))
@@ -14214,7 +14400,6 @@ class VOIDlang:
 			if not cls.is_file(source): return
 			image = cls.file(source, format='cv')
 			if image is None: return
-			image = cv2.imread(source)
 		elif source.__class__.__name__ == 'ndarray' and source.__class__.__module__.startswith('numpy'):
 			image = source
 		else: return
@@ -14227,14 +14412,28 @@ class VOIDlang:
 			x1, y1 = max(x - pad, 0), max(y - pad, 0)
 			x2, y2 = min(x + w + pad, image.shape[1]), min(y + h + pad, image.shape[0])
 			cv2.rectangle(mask, (x1, y1), (x2, y2), 255, -1)
-		image = cv2.inpaint(image, mask, 7, cv2.INPAINT_TELEA)
+		alpha = None
+		if image.ndim == 3 and image.shape[2] == 4:
+			alpha = image[:, :, 3]
+			bgr = image[:, :, :3]
+		elif image.ndim == 3 and image.shape[2] == 3:
+			bgr = image
+		elif image.ndim == 2:
+			bgr = image
+		else:
+			raise ValueError(f'Unsupported image shape for inpaint: {image.shape}')
+		bgr = cv2.inpaint(bgr, mask, 7, cv2.INPAINT_TELEA)
+		if alpha is not None:
+			image = cv2.merge([bgr[:, :, 0], bgr[:, :, 1], bgr[:, :, 2], alpha])
+		else:
+			image = bgr
 		if destination:
 			cls.file(destination, image, param=quality)
 		else:
 			return image
 
 	@classmethod
-	def image_text(cls, path_from: str, path_to: str, text, quality: int = None):
+	def image_text(cls, path_from: str, path_to: str, text, color = None, quality: int = None):
 		if not cls.is_file(path_from): return
 		cv2 = cls.module('cv2')
 		np = cls.module('numpy')
@@ -14248,10 +14447,21 @@ class VOIDlang:
 		image = cls.image_text_clear(image, blocks=blocks)
 		pil_image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 		draw = ImageDraw.Draw(pil_image)
+		if not color:
+			rgb_array = np.array(pil_image)
 		for block in blocks:
 			x, y, w, h = block['box']
 			block_text = block.get('text') if isinstance(block, dict) else None
 			if block_text is None: continue
+			if not color:
+				x0, y0 = max(0, x), max(0, y)
+				x1, y1 = min(rgb_array.shape[1], x + w), min(rgb_array.shape[0], y + h)
+				region = rgb_array[y0:y1, x0:x1]
+				if region.size == 0:
+					avg_luminance = 255
+				else:
+					avg_luminance = (region[..., 0] * 0.299 + region[..., 1] * 0.587 + region[..., 2] * 0.114).mean()
+				color = (0, 0, 0) if avg_luminance > 140 else (255, 255, 255)
 			font_path = cls.get('app.os.path.font.default')
 			size = h
 			while size > 6:
@@ -14274,14 +14484,27 @@ class VOIDlang:
 			for line in lines:
 				line_w = draw.textlength(line, font=font)
 				cx = x + max(0, (w - line_w) / 2)
-				draw.text((cx, cy), line, font=font, fill=(0, 0, 0))
+				draw.text((cx, cy), line, font=font, fill=color)
 				cy += line_h * 1.15
 		result = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
 		cls.file(path_to, result, param=quality)
 
 	@classmethod
-	def image_translate(cls, path_from: str, path_to: str, language: str = None, quality: int = None):
-		pass
+	def image_translate(cls, path_from: str, path_to: str, language_from = None, language_to: str = None, quality: int = None):
+		if not cls.is_file(path_from): return
+		boxes = cls.image_text_recognize(path_from, language=language_from)
+		if not boxes: return
+		text = []
+		for box in boxes:
+			text.append(box['text'])
+			text.append('.')
+		text = '\n'.join(text)
+		text = cls.translate(text, language_from=language_from if isinstance(language_from, str) else None, language_to=language_to)
+		if not text: return
+		text = text.split('\n')
+		for index, box in enumerate(boxes):
+			box['text'] = text[index * 2]
+		cls.image_text(path_from, path_to, boxes, quality=quality)
 
 	@classmethod
 	def image_crop(cls, path_from: str, path_to: str, x: int, y: int, width: int, height: int, quality: int = None):
