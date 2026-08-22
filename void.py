@@ -7860,6 +7860,9 @@ class VOIDlang:
 				'http': {
 					'mime': {"void": "application/void", "json": "application/json", "jsonl": "application/jsonl", "jsonld": "application/ld+json", "yaml": "application/x-yaml", "xml": "application/xml", "csv": "text/csv", "ini": "text/plain", "sql": "application/sql", "log": "text/plain", "bin": "application/octet-stream", "text": "text/plain", "txt": "text/plain", "pdf": "application/pdf", "djvu": "image/vnd.djvu", "doc": "application/msword", "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "xls": "application/vnd.ms-excel", "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ppt": "application/vnd.ms-powerpoint", "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "rtf": "application/rtf", "epub": "application/epub+zip", "abw": "application/x-abiword", "azw": "application/vnd.amazon.ebook", "odp": "application/vnd.oasis.opendocument.presentation", "ods": "application/vnd.oasis.opendocument.spreadsheet", "odt": "application/vnd.oasis.opendocument.text", "ics": "text/calendar", "html": "text/html", "htm": "text/html", "xhtml": "application/xhtml+xml", "css": "text/css", "md": "text/markdown", "ttf": "font/ttf", "otf": "font/otf", "sfnt": "font/sfnt", "woff": "font/woff", "woff2": "font/woff2", "eot": "application/vnd.ms-fontobject", "vtt": "text/vtt", "srt": "application/x-subrip", "ass": "text/x-ssa", "ssa": "text/x-ssa", "ttml": "application/ttml+xml", "sub": "text/x-microdvd", "smi": "application/x-sami", "sami": "application/x-sami", "jpeg": "image/jpeg", "jpg": "image/jpeg", "png": "image/png", "apng": "image/apng", "gif": "image/gif", "svg": "image/svg+xml", "webp": "image/webp", "heif": "image/heif", "heic": "image/heic", "tiff": "image/tiff", "tif": "image/tiff", "avif": "image/avif", "ico": "image/x-icon", "icon": "image/vnd.microsoft.icon", "icns": "image/x-icns", "mp3": "audio/mpeg", "mpa": "audio/mpeg", "mp2": "audio/mpeg", "wma": "audio/x-ms-wma", "wav": "audio/x-wav", "flac": "audio/flac", "ogg": "application/ogg", "oga": "audio/ogg", "opus": "audio/opus", "weba": "audio/webm", "cda": "application/x-cdf", "aac": "audio/aac", "ac3": "audio/ac3", "mid": "audio/midi", "midi": "audio/x-midi", "s3m": "audio/s3m", "it": "audio/it", "mod": "audio/x-mod", "xm": "audio/xm", "mp4": "video/mp4", "mpeg": "video/mpeg", "mpg": "video/mpeg", "mpv": "video/mpeg", "webm": "video/webm", "ogx": "application/ogg", "ogv": "video/ogg", "qt": "video/quicktime", "mov": "ideo/quicktime", "m4v": "video/x-m4v", "wmv": "video/x-ms-wmv", "avi": "video/x-msvideo", "mkv": "application/x-matroska", "mjpeg": "multipart/x-mixed-replace", "ts": "video/mp2t", "gltf": "model/gltf+json", "glb": "model/gltf-binary", "obj": "model/obj", "stl": "model/stl", "fbx": "application/vnd.autodesk.fbx", "dae": "model/vnd.collada+xml", "3ds": "model/x-3ds", "ply": "model/ply", "usd": "model/vnd.usd", "usdz": "model/vnd.usdz+zip", "x3d": "model/x3d+xml", "wrl": "model/vrml", "vrml": "model/vrml", "zip": "application/zip", "gz": "application/gzip", "7z": "application/x-7z-compressed", "tar": "application/x-tar", "rar": "application/vnd.rar", "bz": "application/x-bzip", "bz2": "application/x-bzip2", "py": "applycation/x-python-code", "php": "application/x-httpd-php", "java": "application/java", "jar": "application/java-archive", "kt": "text/x-kotlin", "swift": "application/swift", "m": "text/x-objective-c", "mm": "text/x-objective-c++", "c": "text/x-csrc", "cpp": "text/x-c++src", "h": "text/x-chdr", "cs": "text/x-csharp", "rs": "text/rust", "gd": "text/x-gdscript", "js": "text/javascript", "mjs": "text/javascript", "lua": "text/x-lua", "sh": "application/x-sh", "csh": "application/x-csh", "bat": "application/x-bat", "form data": "multipart/form-data", "form mixed": "multipart/mixed", "form alternative": "multipart/alternative", "form text": "application/x-www-form-urlencoded", "m4a": "audio/mp4", "mhtml": "multipart/related"},
 					'code': {100: "Continue",101: "Switching protocols",102: "Processing",103: "Early Hints",200: "OK",201: "Created",202: "Accepted",203: "Non-Authoritative Information",204: "No Content",205: "Reset Content",206: "Partial Content",207: "Multi-Status",208: "Already Reported",226: "IM Used",300: "Multiple Choices",301: "Moved Permanently",302: "Found Redirection",303: "See Other",304: "Not Modified",305: "Use Proxy",306: "Switch Proxy",307: "Temporary Redirect",308: "Permanent Redirect",400: "Bad Request",401: "Unauthorized",402: "Payment Required",403: "Forbidden",404: "Not Found",405: "Method Not Allowed",406: "Not Acceptable",407: "Proxy Authentication Required",408: "Request Timeout",409: "Conflict",410: "Gone",411: "Length Required",412: "Precondition Failed",413: "Payload Too Large",414: "URI Too Long",415: "Unsupported Media Type",416: "Range Not Satisfiable",417: "Expectation Failed",418: "I'm a Teapot",421: "Misdirected Request",422: "Unprocessable Entity",423: "Locked",424: "Failed Dependency",425: "Too Early",426: "Upgrade Required",428: "Precondition Required",429: "Too Many Requests",431: "Request Header Fields Too Large",451: "Unavailable For Legal Reasons",500: "Internal Server Error",501: "Not Implemented",502: "Bad Gateway",503: "Service Unavailable",504: "Gateway Timeout",505: "HTTP Version Not Supported",506: "Variant Also Negotiates",507: "Insufficient Storage",508: "Loop Detected",510: "Not Extended",511: "Network Authentication Required"}
+				},
+				'download': {
+					'language': 'en'
 				}
 			},
 			'app': {
@@ -11005,10 +11008,18 @@ class VOIDlang:
 	@classmethod
 	def file_rename(cls, path: str, name: str = None):
 		if not cls.is_file(path) or not name: return
+		path_new = cls.path_name_replace(path, name)
+		if cls.is_file(path_new):
+			cls.file_remove(path_new)
 		try:
-			os.rename(path, cls.path(cls.path_dir(path), name))
+			os.rename(path, path_new)
 		except:
-			pass
+			try:
+				cls.wait(1)
+				os.rename(path, path_new)
+			except Exception as e:
+				print(e)
+				pass
 
 	@classmethod
 	def file_info(cls, path: str):
@@ -11346,7 +11357,6 @@ class VOIDlang:
 							for file_name in set(processed.keys()):
 								if file_name not in names: del processed[file_name]
 						case 'counter':
-							index = len(processed) 
 							names = []
 							files = cls.dir_file(path)
 							if len(files):
@@ -11354,7 +11364,7 @@ class VOIDlang:
 									param = {'digit': int(param) if isinstance(param, (int, float, str)) else 3}
 								prefix = param.get('name') or ''
 								digit = param.get('digit', 3)
-								index = max([int(number or 0) for number in [cls.parse(file_name, f'((number)).', multiple=False) for file_name in files]], default=0) + 1
+								index = len(processed) + 1
 								for file_name in files:
 									if file_name in processed:
 										names.append(file_name)
@@ -11423,7 +11433,35 @@ class VOIDlang:
 									cls.image_translate(source, destination, language_from=language, quality=quality)
 									cls.file_remove(source)
 						case 'colorize':
-							pass
+							names = set()
+							def process(path, file_name):
+								path_from = cls.path(path, file_name)
+								name_new = cls.path_extension_replace(cls.path_stem_append(file_name, '_color'), 'webp')
+								path_to = cls.path(path, name_new)
+								cls.open_void('image.colorize', path_from, path_to, 100)
+								cls.wait(1)
+								cls.file_remove(path_from)
+								return name_new, path_to
+							for dir_name in cls.dir_dir(path):
+								names.add(dir_name)
+								if dir_name not in processed:
+									dir_path = cls.path(path, dir_name)
+									for file_name in cls.dir_file(dir_path, cls.get('info.extension.available.image'), recursive=True):
+										process(dir_path, file_name)
+									if move:
+										cls.dir_move(dir_path, move)
+									processed[dir_name] = True
+							for file_name in cls.dir_file(path, cls.get('info.extension.available.image')):
+								if file_name in processed:
+									names.add(file_name)
+									continue
+								name_new, path_to = process(path, file_name)
+								if move:
+									cls.file_move(path_to, move)
+								processed[name_new] = True
+								names.add(name_new)
+							for path_name in list(processed):
+								if path_name not in names: del processed[path_name]
 						case 'manga' | 'manga.colorize' | 'manga.translate':
 							names = set()
 							def process(path, file_name):
@@ -11684,6 +11722,10 @@ class VOIDlang:
 		if index >= 0:
 			return path[index+1:]
 		return path
+
+	@classmethod
+	def path_name_replace(cls, path: str, name):
+		return cls.path(cls.path_dir(path), name)
 
 	@classmethod
 	def path_stem(cls, path: str):
@@ -13453,8 +13495,77 @@ class VOIDlang:
 		return cls.request(url, method, header, data, cookie, agent, key, format, timeout, info)
 
 	@classmethod
-	def url(cls, url: str, method: str = None, header: dict = None, data = None, cookie: dict = None, agent: str = None, key: str = None, format: str = None, timeout: float = 5, info: bool = False):
-		return cls.request(url, method, header, data, cookie, agent, key, format, timeout, info)
+	def url(cls, *url) -> str:
+		parse = cls.module('urllib.parse')
+		scheme, host, fragment, has_query = '', '', '', False
+		path_parts, query = [], {}
+		for part in url:
+			if isinstance(part, dict):
+				query.update(part)
+				has_query = True
+			elif part.startswith('#'):
+				fragment = part[1:]
+			elif part.startswith('?'):
+				query.update(parse.parse_qsl(part[1:]))
+				has_query = True
+			elif has_query and not part.startswith('/'):
+				fragment = part
+			else:
+				part = parse.urlparse(part)
+				scheme, host, fragment = part.scheme or scheme, part.netloc or host, part.fragment or fragment
+				if part.path: path_parts.append(part.path)
+				if part.query: query.update(parse.parse_qsl(part.query))
+		path = '/'.join(part.strip('/') for part in path_parts if part.strip('/'))
+		if path_parts:
+			path = ('/' if path_parts[0].startswith('/') else '') + path
+			if path_parts[-1].endswith('/') and not path.endswith('/'):
+				path += '/'
+		result = f'{scheme}://{host}' if scheme else host
+		if path:
+			result += path if (not host or path.startswith('/')) else '/' + path
+		if query:
+			result += '?' + parse.urlencode(query)
+		if fragment:
+			result += '#' + fragment
+		return result
+
+	@classmethod
+	def url_protocol(cls, url: str) -> str:
+		parse = cls.module('urllib.parse') 
+		return parse.urlparse(url).scheme
+
+	@classmethod
+	def url_host(cls, url: str) -> str:
+		parse = cls.module('urllib.parse') 
+		return parse.unquote(parse.urlparse(url).hostname or '')
+
+	@classmethod
+	def url_path(cls, url: str) -> str:
+		parse = cls.module('urllib.parse') 
+		return parse.unquote(parse.urlparse(url).path)
+
+	@classmethod
+	def url_query(cls, url: str) -> dict:
+		parse = cls.module('urllib.parse') 
+		return dict(parse.parse_qsl(parse.urlparse(url).query))
+
+	@classmethod
+	def url_fragment(cls, url: str) -> str:
+		parse = cls.module('urllib.parse') 
+		return parse.unquote(parse.urlparse(url).fragment)
+
+	@classmethod
+	def url_info(cls, url: str) -> dict:
+		parse = cls.module('urllib.parse')
+		info = parse.urlparse(url)
+		return {
+			'url': url,
+			'protocol': info.scheme,
+			'host': parse.unquote(info.hostname or ''),
+			'path': parse.unquote(info.path),
+			'query': dict(parse.parse_qsl(info.query)),
+			'fragment': parse.unquote(parse.urlparse(url).fragment)
+		}
 
 	@classmethod
 	def download(cls, url: str, path: str = None, param = None, format: str = None):
@@ -13463,7 +13574,93 @@ class VOIDlang:
 				info = cls.request(url, info=True)
 				if 'error' not in info and info['length']:
 					cls.file(info['name'], info['text'] or info['data'])
+			case 'page':
+				pass
 			case 'site':
+				parse = cls.module('urllib.parse')
+				mirror = param in ('mirror', 'full', 'all') or isinstance(param, int)
+				depth = param if isinstance(param, int) else (cls.get('info.download.site.depth') or 3) if mirror else 0
+				root = path or cls.path(parse.urlparse(url).netloc)
+				base_domain = parse.urlparse(url).netloc
+				visited_pages = set()
+				visited_resources = {}
+				queue = [(url, 0)]
+				resource_pattern = re.compile(r'''(<(?:link|script|img|source|video|audio)\b[^>]*?\s(?:href|src)=)(["'])(.*?)\2''', re.IGNORECASE | re.DOTALL)
+				link_pattern = re.compile(r'''(<a\b[^>]*?\shref=)(["'])(.*?)\2''', re.IGNORECASE | re.DOTALL)
+				css_url_pattern = re.compile(r'''url\(\s*(["']?)(.*?)\1\s*\)''', re.IGNORECASE)
+				css_import_pattern = re.compile(r'''@import\s+(["'])(.*?)\1''', re.IGNORECASE)
+				def local_asset_path(absolute: str) -> str:
+					if absolute in visited_resources:
+						return visited_resources[absolute]
+					parsed = parse.urlparse(absolute)
+					name = cls.path_name(parsed.path) or 'resource'
+					rel = cls.path('assets', parsed.netloc, parsed.path.lstrip('/')) if parsed.path.strip('/') else cls.path('assets', parsed.netloc, name)
+					visited_resources[absolute] = rel
+					return rel
+				def fetch_resource(absolute: str):
+					rel = local_asset_path(absolute)
+					local_full = cls.path(root, rel)
+					if cls.path_extension(rel) == 'css':
+						info = cls.request(absolute, info=True)
+						if info and 'error' not in info and info.get('text') is not None:
+							cls.file(local_full, rewrite_css(info['text'], absolute))
+					else:
+						info = cls.request(absolute, format='binary', info=True)
+						if info and 'error' not in info and info.get('data'):
+							cls.file(local_full, info['data'])
+					return rel
+				def rewrite_css(text: str, base_url: str) -> str:
+					def repl_url(match):
+						ref = match.group(2)
+						if not ref or ref.startswith('data:'):
+							return match.group(0)
+						absolute = parse.urljoin(base_url, ref)
+						rel = fetch_resource(absolute)
+						return f'url("{rel}")'
+					def repl_import(match):
+						ref = match.group(2)
+						absolute = parse.urljoin(base_url, ref)
+						rel = fetch_resource(absolute)
+						return f'@import "{rel}"'
+					text = css_url_pattern.sub(repl_url, text)
+					text = css_import_pattern.sub(repl_import, text)
+					return text
+				while queue:
+					current_url, level = queue.pop(0)
+					if current_url in visited_pages or level > depth:
+						continue
+					visited_pages.add(current_url)
+					info = cls.request(current_url, info=True)
+					if not info or 'error' in info or info.get('text') is None:
+						continue
+					html = info['text']
+					parsed = parse.urlparse(current_url)
+					page_rel = parsed.path.lstrip('/') or 'index.html'
+					if not cls.path_extension(page_rel):
+						page_rel = cls.path(page_rel, 'index.html')
+					local_page_path = cls.path(root, page_rel)
+					def repl_resource(match):
+						prefix, quote, ref = match.group(1), match.group(2), match.group(3)
+						if not ref or ref.startswith(('data:', 'mailto:', 'javascript:', '#')):
+							return match.group(0)
+						absolute = parse.urljoin(current_url, ref)
+						rel = fetch_resource(absolute)
+						depth_up = page_rel.count('/')
+						relative_to_page = ('../' * depth_up) + rel
+						return f'{prefix}{quote}{relative_to_page}{quote}'
+					html = resource_pattern.sub(repl_resource, html)
+					if mirror and level < depth:
+						for match in link_pattern.finditer(html):
+							href = match.group(3)
+							if not href or href.startswith(('mailto:', 'javascript:', '#')):
+								continue
+							absolute_link = parse.urljoin(current_url, href).split('#')[0]
+							if parse.urlparse(absolute_link).netloc == base_domain and absolute_link not in visited_pages:
+								queue.append((absolute_link, level + 1))
+					cls.file(local_page_path, html)
+			case 'torrent':
+				pass
+			case 'magnet':
 				pass
 			case _:
 				extension_video = cls.get('info.extension.yt-dlp.video')
@@ -13504,6 +13701,7 @@ class VOIDlang:
 						flag.append('-x')
 						flag.append(f'--audio-format {param or "mp3"}')
 					case 'sub' | 'subs' | 'subtitle' | 'subtitles':
+						language_default = cls.get("info.download.language")
 						flag.append('--write-sub --write-auto-sub --skip-download --sleep-subtitles 1')
 						if param:
 							names = [name.strip().lower() for name in str(param).split(',')]
@@ -13517,11 +13715,13 @@ class VOIDlang:
 							if langs:
 								flag.append(f'--sub-langs "{",".join(langs)}"')
 							else:
-								flag.append('--sub-langs "all"')
+								flag.append(f'--sub-langs "{language_default}"')
 							if convert:
 								flag.append(f'--convert-subs "{convert}"')
 						else:
-							flag.append('--sub-langs "all"')
+							flag.append(f'--sub-langs "{language_default}"')
+							if extension:
+								flag.append(f'--convert-subs "{extension}"')
 						if extension:
 							flag.append(f'-o "{cls.path_extension_strip(cls.path_extension_strip(path))}.%(ext)s"')
 					case 'info':
@@ -13532,14 +13732,20 @@ class VOIDlang:
 				result = cls.open_wait(f'{cls.get("app.os.path.yt-dlp.stable")} {flags} "{url}"')
 				if result['code'] and cls.get('app.os.path.yt-dlp.nightly'):
 					result = cls.open_wait(f'{cls.get("app.os.path.yt-dlp.nightly")} {flags} "{url}"')
-				if format == 'info' and not result['code']:
-					data = cls.json_decode(result['text'])
-					if path:
-						if not cls.path_extension(path):
-							path = cls.path(path, 'info.json')
-						cls.file(path, data)
-					else:
-						return data
+				if not result['code']:
+					match format:
+						case 'sub' | 'subs' | 'subtitle' | 'subtitles':
+							language = cls.path_extension(cls.path_extension_strip(path))
+							if not language:
+								cls.file_rename(cls.path_stem_append(path, f'.{language_default}'), path)
+						case 'info':
+							data = cls.json_decode(result['text'])
+							if path:
+								if not cls.path_extension(path):
+									path = cls.path(path, 'info.json')
+								cls.file(path, data)
+							else:
+								return data
 
 	@classmethod
 	def d(cls, url: str, path: str = None, param = None):
@@ -13574,8 +13780,20 @@ class VOIDlang:
 		return cls.download(url, path, param, format='file')
 
 	@classmethod
+	def download_page(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='page')
+
+	@classmethod
 	def download_site(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='site')
+
+	@classmethod
+	def download_torrent(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='torrent')
+
+	@classmethod
+	def download_magnet(cls, url: str, path: str = None, param = None):
+		return cls.download(url, path, param, format='magnet')
 
 	@classmethod
 	def cookie(cls):
