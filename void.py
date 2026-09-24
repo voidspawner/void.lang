@@ -12,7 +12,7 @@ import importlib
 
 class VOIDlang:
 
-	data = r'''
+	data1 = r'''
 		about
 			type
 				code
@@ -7748,6 +7748,220 @@ class VOIDlang:
 					pb
 	'''
 
+	data = r'''
+		about
+			logo
+				'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                         '
+				'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                     '
+				'                                  ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                  '
+				'                               ∞∞∞∞∞∞∞∞∞∞∞                ∞∞∞∞∞∞∞∞∞∞                                '
+				'                              ∞∞∞∞∞∞∞∞                        ∞∞∞∞∞∞∞∞                              '
+				'                            ∞∞∞∞∞∞∞                              ∞∞∞∞∞∞∞                            '
+				'                           ∞∞∞∞∞∞                                  ∞∞∞∞∞∞                           '
+				'                          ∞∞∞∞∞      ∞∞∞∞∞∞           ∞∞∞∞∞∞        ∞∞∞∞∞∞                          '
+				'                         ∞∞∞∞∞      ∞∞∞∞∞∞∞           ∞∞∞∞∞∞∞         ∞∞∞∞∞                         '
+				'                        ∞∞∞∞∞       ∞∞∞∞∞∞             ∞∞∞∞∞           ∞∞∞∞∞                        '
+				'                       ∞∞∞∞∞∞                                          ∞∞∞∞∞                        '
+				'                       ∞∞∞∞∞           ∞∞∞∞∞           ∞∞∞∞             ∞∞∞∞∞                       '
+				'                ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞      ∞∞∞∞∞           ∞∞∞∞       ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞             '
+				'            ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          '
+				'          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞    ∞∞∞∞∞      ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          '
+				'         ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞∞∞∞∞∞∞∞∞∞      ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          '
+				'          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞∞∞∞∞∞∞∞∞         ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞           '
+				'            ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞            ∞∞                  ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞               '
+				'                 ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                    ∞∞∞∞∞∞                        '
+				'                         ∞∞∞∞∞                                       ∞∞∞∞∞∞                         '
+				'                          ∞∞∞∞∞∞                                    ∞∞∞∞∞∞                          '
+				'                           ∞∞∞∞∞∞                                 ∞∞∞∞∞∞∞                           '
+				'                            ∞∞∞∞∞∞∞                             ∞∞∞∞∞∞∞∞                            '
+				'                              ∞∞∞∞∞∞∞∞                       ∞∞∞∞∞∞∞∞∞                              '
+				'                                ∞∞∞∞∞∞∞∞∞∞                ∞∞∞∞∞∞∞∞∞∞                                '
+				'                                   ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                   '
+				'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      '
+				'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
+		info
+			lang
+				[ ]
+			format
+				image
+					[]
+				video
+					[]
+				sound
+					[]
+				model
+					[]
+				document
+					[]
+			extension
+				available
+					image
+						[jpg jpeg webp png gif avif heif heic hdr pfm tif tiff pdf ico cur icns bmp tga jp2 j2k pbm pgm ppm pnm pcx
+					video
+						[]
+					sound
+						[]
+					model
+						[]
+					data
+						[void json csv yaml xml ini
+				ffmpeg
+					image
+						[jpg jpeg webp png gif avif hdr pfm tif tiff ico bmp tga jp2 j2k pbm pgm ppm pnm pcx exr xbm fits qoi sgi dpx ras pam
+					video
+						[mp4 webm webp gif mpg mpeg avi wmv mov mkv qt vob flv f4v m2ts mts ts 3gp 3g2 ogv m4v asf rm rmvb m2v divx y4m bik roq wtv
+					sound
+						[mp3 wav mpa ac3 aac ogg opus flac m4a wma alac aiff aif ape dts eac3 amr mp2 wv caf mka ra
+					subtitles
+						[srt ssa ass vtt sub idx ttml lrc sbv scc
+				yt-dlp
+					video
+						[mp4 mkv webm mov avi flv
+					sound
+						[mp3 m4a wav flac opus aac ogg
+					subtitles
+						[srt vtt ass lrc
+				web
+					document
+						[html htm xhtml pdf
+					data
+						[xml json
+					code
+						[js mjs wasm
+					style
+						[css
+					image
+						[jpg jpeg jfif pjpeg png apng webp avif gif svg bmp ico cur
+					video
+						[mp4 m4v webm ogv ogm
+					sound
+						[mp3 aac m4a wav flac ogg oga opus weba
+					font
+						[woff woff2 ttf otf
+					text
+						[txt log csv
+				text
+					[json jsonl jsonld yaml csv ini xml sql log text txt vtt srt ass ssa ttml sub smi sami html htm xhtml mhtml url css py md php java kt swift m mm c cpp h cs rs gd js mjs lua sh csh bat svg'
+			http
+				mime
+					[void application/void  json application/json  jsonl application/jsonl  jsonld application/ld+json  yaml application/x-yaml  xml application/xml  csv text/csv  ini text/plain  sql application/sql  log text/plain  bin application/octet-stream  text text/plain  txt text/plain  pdf application/pdf  djvu image/vnd.djvu  doc application/msword  docx application/vnd.openxmlformats-officedocument.wordprocessingml.document  xls application/vnd.ms-excel  xlsx application/vnd.openxmlformats-officedocument.spreadsheetml.sheet  ppt application/vnd.ms-powerpoint  pptx application/vnd.openxmlformats-officedocument.presentationml.presentation  rtf application/rtf  epub application/epub+zip  abw application/x-abiword  azw application/vnd.amazon.ebook  odp application/vnd.oasis.opendocument.presentation  ods application/vnd.oasis.opendocument.spreadsheet  odt application/vnd.oasis.opendocument.text  ics text/calendar  html text/html  htm text/html  xhtml application/xhtml+xml  mhtml multipart/related  css text/css  md text/markdown  ttf font/ttf  otf font/otf  sfnt font/sfnt  woff font/woff  woff2 font/woff2  eot application/vnd.ms-fontobject  vtt text/vtt  srt application/x-subrip  ass text/x-ssa  ssa text/x-ssa  ttml application/ttml+xml  sub text/x-microdvd  smi application/x-sami  sami application/x-sami  jpeg image/jpeg  jpg image/jpeg  png image/png  apng image/apng  gif image/gif  svg image/svg+xml  webp image/webp  heif image/heif  heic image/heic  tiff image/tiff  tif image/tiff  avif image/avif  ico image/x-icon  icon image/vnd.microsoft.icon  icns image/x-icns  mp3 audio/mpeg  m4a audio/mp4  mpa audio/mpeg  mp2 audio/mpeg  wma audio/x-ms-wma  wav audio/x-wav  flac audio/flac  ogg application/ogg  oga audio/ogg  opus audio/opus  weba audio/webm  cda application/x-cdf  aac audio/aac  ac3 audio/ac3  mid audio/midi  midi audio/x-midi  s3m audio/s3m  it audio/it  mod audio/x-mod  xm audio/xm  mp4 video/mp4  mpeg video/mpeg  mpg video/mpeg  mpv video/mpeg  webm video/webm  ogx application/ogg  ogv video/ogg  qt video/quicktime  mov ideo/quicktime  m4v video/x-m4v  wmv video/x-ms-wmv  avi video/x-msvideo  mkv application/x-matroska  mjpeg multipart/x-mixed-replace  ts video/mp2t  gltf model/gltf+json  glb model/gltf-binary  obj model/obj  stl model/stl  fbx application/vnd.autodesk.fbx  dae model/vnd.collada+xml  3ds model/x-3ds  ply model/ply  usd model/vnd.usd  usdz model/vnd.usdz+zip  x3d model/x3d+xml  wrl model/vrml  vrml model/vrml  zip application/zip  gz application/gzip  7z application/x-7z-compressed  tar application/x-tar  rar application/vnd.rar  bz application/x-bzip  bz2 application/x-bzip2  py applycation/x-python-code  php application/x-httpd-php  java application/java  jar application/java-archive  kt text/x-kotlin  swift application/swift  m text/x-objective-c  mm text/x-objective-c++  c text/x-csrc  cpp text/x-c++src  h text/x-chdr  cs text/x-csharp  rs text/rust  gd text/x-gdscript  js application/javascript  mjs text/javascript  lua text/x-lua  sh application/x-sh  csh application/x-csh  bat application/x-bat  'form data' multipart/form-data  'form mixed' multipart/mixed  'form alternative' multipart/alternative  'form text' application/x-www-form-urlencoded
+				code
+					[100 Continue  101 Switching protocols  102 Processing  103 Early Hints  200 OK  201 Created  202 Accepted  203 Non-Authoritative Information  204 No Content  205 Reset Content  206 Partial Content  207 Multi-Status  208 Already Reported  226 IM Used  300 Multiple Choices  301 Moved Permanently  302 Found Redirection  303 See Other  304 Not Modified  305 Use Proxy  306 Switch Proxy  307 Temporary Redirect  308 Permanent Redirect  400 Bad Request  401 Unauthorized  402 Payment Required  403 Forbidden  404 Not Found  405 Method Not Allowed  406 Not Acceptable  407 Proxy Authentication Required  408 Request Timeout  409 Conflict  410 Gone  411 Length Required  412 Precondition Failed  413 Payload Too Large  414 URI Too Long  415 Unsupported Media Type  416 Range Not Satisfiable  417 Expectation Failed  418 I'm a Teapot  421 Misdirected Request  422 Unprocessable Entity  423 Locked  424 Failed Dependency  425 Too Early  426 Upgrade Required  428 Precondition Required  429 Too Many Requests  431 Request Header Fields Too Large  451 Unavailable For Legal Reasons  500 Internal Server Error  501 Not Implemented  502 Bad Gateway  503 Service Unavailable  504 Gateway Timeout  505 HTTP Version Not Supported  506 Variant Also Negotiates  507 Insufficient Storage  508 Loop Detected  510 Not Extended  511 Network Authentication Required
+			download
+				language
+					en
+		app
+			os
+				delimiter
+					line
+						'\n
+				path
+					ffmpeg
+						ffmpeg
+					yt-dlp
+						stable
+							yt-dlp
+						nightly
+							yt-dlp-nightly
+						cookie
+							none
+						runtime
+							none
+					python
+						python3
+					void
+						none
+					ai
+						epochx2
+							any
+								model/epoch994_omnisr_x2.pth
+							intel
+								model/epoch994_omnisr_x2.xml
+						epochx4
+							any
+								model/epoch994_omnisr_x4.pth
+							intel
+								model/epoch994_omnisr_x4.xml
+						fbcnn
+							any
+								model/fbcnn_color.pth
+							intel
+								model/fbcnn_color.xml
+						ddcolor
+							artistic
+								any
+									model/ddcolor_artistic.pth
+								intel
+									model/ddcolor_artistic.xml
+							modelscope
+								any
+									model/ddcolor_modelscope.pth
+								intel
+									model/ddcolor_modelscope.xml
+						colorize
+							generator
+								model/generator.zip
+							denoiser
+								model/net_rgb.pth
+					font
+						default
+							C:\Windows\Fonts\arial.ttf
+						arial
+							C:\Windows\Fonts\arial.ttf
+			ui
+				cli
+			format
+				text
+					[json jsonl jsonld yaml csv ini xml sql log text txt vtt srt ass ssa ttml sub smi sami html htm xhtml mhtml url css py md php java kt swift m mm c cpp h cs rs gd js mjs lua sh csh bat svg
+		cloud
+			web
+				compression
+					min
+						512
+			agent
+				Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36 OPR/133.0.0.0 (Edition Yx 05)
+		ai
+			model
+				epoch
+					any
+						model/epoch994_omnisr.pth
+					intel
+						model/epoch994_omnisr.xml
+				fbcnn
+					any
+						model/fbcnn_color.pth
+					intel
+						model/fbcnn_color.xml
+				ddcolor
+					artistic
+						any
+							model/ddcolor_artistic.pth
+						intel
+							model/ddcolor_artistic.xml
+					modelscope
+						any
+							model/ddcolor_modelscope.pth
+						intel
+							model/ddcolor_modelscope.xml
+				colorize
+					generator
+						model/generator.zip
+					denoiser
+						model/net_rgb.pth
+		ui
+			web
+				file
+					main
+						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
+					list
+						/Td6WFoAAATm1rRGAgAhAQwAAACPmEGc4AFoAKxdAATg7MhpOtLQhy0QJ9K+2TKhY53yvoC4EO8CGsBhsS6WSwmBvgz8+hlLBvjAzy7nCBi0bZpdZYG9FWKuctEwI8YMx2mWC9C3VlE6WYgVFrgjJwxtvgAbWW5f3D8FXaxr7nq6DDeFJvP/RgVaIRBEnHknx954VO/XEv9s6IY3HJ/Dk0oGALuD8sHYfVYmmwJCEIlYc9sNGzJj4U5u1gHnoIBkvvKF4lxngUoXg8AAHvXTFi6IJwYAAcgB6QIAAGi7fauxxGf7AgAAAAAEWVo=
+			file
+				favicon
+					/Td6WFoAAATm1rRGAgAhAQwAAACPmEGc4AItAPNdAB4cysaGkgrgIUDw9iFcJNgKryHp5bEl10Kqf9PDuSa95M+6yaR/eO3b0+eVzyRNmDPA2JnInuSpL4M3OJuWM4pkuEdvTKIqqZ3pEKy9KCL2y/sixdbcAJC/knNr6Or8OvImI6kQtfOUvjYWYJq35KZxdEgDtQRE53mfbJx01balojTapQ7Fxms7kqmeqd45luZv8nfs4BAXPZ2PrPVUCwB5SlhJ17ReOwZyqgVkSYsMaxNVCEsngbR08ysxRSQwSt4AMXqkRVPr1XASj74kN/Uc+KfBKDt2b3l8T+H8hLJvrLWDt8r8tnejZ5A9xTfGEmYBYAAA5TrqKJp0PZEAAY8CrgQAAFrnzvyxxGf7AgAAAAAEWVo=
+		t
+			[ ]
+		'''
+
   # module
 
 	@classmethod
@@ -7776,6 +7990,7 @@ class VOIDlang:
 			cls.open([cls.executable] + cls.arguments, None)
 			cls.exit()
 
+
   # run
 
 	@classmethod
@@ -7793,190 +8008,8 @@ class VOIDlang:
 				'action': [func.__name__ for func in action]
 				})
 			return
-		#VOIDlang.data = cls.void_decode(cls.data)
-		cls.data = {
-			'about': {
-				'logo': [
-					'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                         ',
-					'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                     ',
-					'                                  ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                  ',
-					'                               ∞∞∞∞∞∞∞∞∞∞∞                ∞∞∞∞∞∞∞∞∞∞                                ',
-					'                              ∞∞∞∞∞∞∞∞                        ∞∞∞∞∞∞∞∞                              ',
-					'                            ∞∞∞∞∞∞∞                              ∞∞∞∞∞∞∞                            ',
-					'                           ∞∞∞∞∞∞                                  ∞∞∞∞∞∞                           ',
-					'                          ∞∞∞∞∞      ∞∞∞∞∞∞           ∞∞∞∞∞∞        ∞∞∞∞∞∞                          ',
-					'                         ∞∞∞∞∞      ∞∞∞∞∞∞∞           ∞∞∞∞∞∞∞         ∞∞∞∞∞                         ',
-					'                        ∞∞∞∞∞       ∞∞∞∞∞∞             ∞∞∞∞∞           ∞∞∞∞∞                        ',
-					'                       ∞∞∞∞∞∞                                          ∞∞∞∞∞                        ',
-					'                       ∞∞∞∞∞           ∞∞∞∞∞           ∞∞∞∞             ∞∞∞∞∞                       ',
-					'                ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞      ∞∞∞∞∞           ∞∞∞∞       ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞             ',
-					'            ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          ',
-					'          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞    ∞∞∞∞∞      ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          ',
-					'         ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞∞∞∞∞∞∞∞∞∞      ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞          ',
-					'          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞     ∞∞∞∞∞∞∞∞∞∞∞         ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞           ',
-					'            ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞            ∞∞                  ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞               ',
-					'                 ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                    ∞∞∞∞∞∞                        ',
-					'                         ∞∞∞∞∞                                       ∞∞∞∞∞∞                         ',
-					'                          ∞∞∞∞∞∞                                    ∞∞∞∞∞∞                          ',
-					'                           ∞∞∞∞∞∞                                 ∞∞∞∞∞∞∞                           ',
-					'                            ∞∞∞∞∞∞∞                             ∞∞∞∞∞∞∞∞                            ',
-					'                              ∞∞∞∞∞∞∞∞                       ∞∞∞∞∞∞∞∞∞                              ',
-					'                                ∞∞∞∞∞∞∞∞∞∞                ∞∞∞∞∞∞∞∞∞∞                                ',
-					'                                   ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                   ',
-					'                                     ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                      ',
-					'                                          ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞                                          '
-				]
-			},
-			'info': {
-				'lang': {},
-				'format': {
-					'image': [],
-					'video': [],
-					'sound': [],
-					'model': [],
-					'document': []
-				},
-				'extension': {
-					'available': {
-						'image': ('jpg', 'jpeg', 'webp', 'png', 'gif', 'avif', 'heif', 'heic', 'hdr', 'pfm', 'tif', 'tiff', 'pdf', 'ico', 'cur', 'icns', 'bmp', 'tga', 'jp2', 'j2k', 'pbm', 'pgm', 'ppm', 'pnm', 'pcx'),
-						'video': (),
-						'sound': (),
-						'model': (),
-						'data': ('void', 'json', 'csv', 'yaml', 'xml', 'ini')
-					},
-					'ffmpeg': {
-						'image': ('jpg', 'jpeg', 'webp', 'png', 'gif', 'avif', 'hdr', 'pfm', 'tif', 'tiff', 'ico', 'bmp', 'tga', 'jp2', 'j2k', 'pbm', 'pgm', 'ppm', 'pnm', 'pcx', 'exr', 'xbm', 'fits', 'qoi', 'sgi', 'dpx', 'ras', 'pam'),
-						'video': ('mp4', 'webm', 'webp', 'gif', 'mpg', 'mpeg', 'avi', 'wmv', 'mov', 'mkv', 'qt', 'vob', 'flv', 'f4v', 'm2ts', 'mts', 'ts', '3gp', '3g2', 'ogv', 'm4v', 'asf', 'rm', 'rmvb', 'm2v', 'divx', 'y4m', 'bik', 'roq', 'wtv'),
-						'sound': ('mp3', 'wav', 'mpa', 'ac3', 'aac', 'ogg', 'opus', 'flac', 'm4a', 'wma', 'alac', 'aiff', 'aif', 'ape', 'dts', 'eac3', 'amr', 'mp2', 'wv', 'caf', 'mka', 'ra'),
-						'subtitles': ('srt', 'ssa', 'ass', 'vtt', 'sub', 'idx', 'ttml', 'lrc', 'sbv', 'scc')
-					},
-					'yt-dlp': {
-						'video': ('mp4', 'mkv', 'webm', 'mov', 'avi', 'flv'),
-						'sound': ('mp3', 'm4a', 'wav', 'flac', 'opus', 'aac', 'ogg'),
-						'subtitles': ('srt', 'vtt', 'ass', 'lrc')
-					},
-					'web': {
-						'document': ('html', 'htm', 'xhtml', 'pdf'),
-						'data': ('xml', 'json'),
-						'code': ('js', 'mjs', 'wasm'),
-						'style': ('css'),
-						'image': ('jpg', 'jpeg', 'jfif', 'pjpeg', 'png', 'apng', 'webp', 'avif', 'gif', 'svg', 'bmp', 'ico', 'cur'),
-						'video': ('mp4', 'm4v', 'webm', 'ogv', 'ogm'),
-						'sound': ('mp3', 'aac', 'm4a', 'wav', 'flac', 'ogg', 'oga', 'opus', 'weba'),
-						'font': ('woff', 'woff2', 'ttf', 'otf'),
-						'text': ('txt', 'log', 'csv')
-					},
-					'text': ('json', 'jsonl', 'jsonld', 'yaml', 'csv', 'ini', 'xml', 'sql', 'log', 'text', 'txt', 'vtt', 'srt', 'ass', 'ssa', 'ttml', 'sub', 'smi', 'sami', 'html', 'htm', 'xhtml', 'mhtml', 'url', 'css', 'py', 'md', 'php', 'java', 'kt', 'swift', 'm', 'mm', 'c', 'cpp', 'h', 'cs', 'rs', 'gd', 'js', 'mjs', 'lua', 'sh', 'csh', 'bat', 'svg')
-				},
-				'http': {
-					'mime': {"void": "application/void", "json": "application/json", "jsonl": "application/jsonl", "jsonld": "application/ld+json", "yaml": "application/x-yaml", "xml": "application/xml", "csv": "text/csv", "ini": "text/plain", "sql": "application/sql", "log": "text/plain", "bin": "application/octet-stream", "text": "text/plain", "txt": "text/plain", "pdf": "application/pdf", "djvu": "image/vnd.djvu", "doc": "application/msword", "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "xls": "application/vnd.ms-excel", "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ppt": "application/vnd.ms-powerpoint", "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "rtf": "application/rtf", "epub": "application/epub+zip", "abw": "application/x-abiword", "azw": "application/vnd.amazon.ebook", "odp": "application/vnd.oasis.opendocument.presentation", "ods": "application/vnd.oasis.opendocument.spreadsheet", "odt": "application/vnd.oasis.opendocument.text", "ics": "text/calendar", "html": "text/html", "htm": "text/html", "xhtml": "application/xhtml+xml", "css": "text/css", "md": "text/markdown", "ttf": "font/ttf", "otf": "font/otf", "sfnt": "font/sfnt", "woff": "font/woff", "woff2": "font/woff2", "eot": "application/vnd.ms-fontobject", "vtt": "text/vtt", "srt": "application/x-subrip", "ass": "text/x-ssa", "ssa": "text/x-ssa", "ttml": "application/ttml+xml", "sub": "text/x-microdvd", "smi": "application/x-sami", "sami": "application/x-sami", "jpeg": "image/jpeg", "jpg": "image/jpeg", "png": "image/png", "apng": "image/apng", "gif": "image/gif", "svg": "image/svg+xml", "webp": "image/webp", "heif": "image/heif", "heic": "image/heic", "tiff": "image/tiff", "tif": "image/tiff", "avif": "image/avif", "ico": "image/x-icon", "icon": "image/vnd.microsoft.icon", "icns": "image/x-icns", "mp3": "audio/mpeg", "mpa": "audio/mpeg", "mp2": "audio/mpeg", "wma": "audio/x-ms-wma", "wav": "audio/x-wav", "flac": "audio/flac", "ogg": "application/ogg", "oga": "audio/ogg", "opus": "audio/opus", "weba": "audio/webm", "cda": "application/x-cdf", "aac": "audio/aac", "ac3": "audio/ac3", "mid": "audio/midi", "midi": "audio/x-midi", "s3m": "audio/s3m", "it": "audio/it", "mod": "audio/x-mod", "xm": "audio/xm", "mp4": "video/mp4", "mpeg": "video/mpeg", "mpg": "video/mpeg", "mpv": "video/mpeg", "webm": "video/webm", "ogx": "application/ogg", "ogv": "video/ogg", "qt": "video/quicktime", "mov": "ideo/quicktime", "m4v": "video/x-m4v", "wmv": "video/x-ms-wmv", "avi": "video/x-msvideo", "mkv": "application/x-matroska", "mjpeg": "multipart/x-mixed-replace", "ts": "video/mp2t", "gltf": "model/gltf+json", "glb": "model/gltf-binary", "obj": "model/obj", "stl": "model/stl", "fbx": "application/vnd.autodesk.fbx", "dae": "model/vnd.collada+xml", "3ds": "model/x-3ds", "ply": "model/ply", "usd": "model/vnd.usd", "usdz": "model/vnd.usdz+zip", "x3d": "model/x3d+xml", "wrl": "model/vrml", "vrml": "model/vrml", "zip": "application/zip", "gz": "application/gzip", "7z": "application/x-7z-compressed", "tar": "application/x-tar", "rar": "application/vnd.rar", "bz": "application/x-bzip", "bz2": "application/x-bzip2", "py": "applycation/x-python-code", "php": "application/x-httpd-php", "java": "application/java", "jar": "application/java-archive", "kt": "text/x-kotlin", "swift": "application/swift", "m": "text/x-objective-c", "mm": "text/x-objective-c++", "c": "text/x-csrc", "cpp": "text/x-c++src", "h": "text/x-chdr", "cs": "text/x-csharp", "rs": "text/rust", "gd": "text/x-gdscript", "js": "application/javascript", "mjs": "text/javascript", "lua": "text/x-lua", "sh": "application/x-sh", "csh": "application/x-csh", "bat": "application/x-bat", "form data": "multipart/form-data", "form mixed": "multipart/mixed", "form alternative": "multipart/alternative", "form text": "application/x-www-form-urlencoded", "m4a": "audio/mp4", "mhtml": "multipart/related"},
-					'code': {100: "Continue",101: "Switching protocols",102: "Processing",103: "Early Hints",200: "OK",201: "Created",202: "Accepted",203: "Non-Authoritative Information",204: "No Content",205: "Reset Content",206: "Partial Content",207: "Multi-Status",208: "Already Reported",226: "IM Used",300: "Multiple Choices",301: "Moved Permanently",302: "Found Redirection",303: "See Other",304: "Not Modified",305: "Use Proxy",306: "Switch Proxy",307: "Temporary Redirect",308: "Permanent Redirect",400: "Bad Request",401: "Unauthorized",402: "Payment Required",403: "Forbidden",404: "Not Found",405: "Method Not Allowed",406: "Not Acceptable",407: "Proxy Authentication Required",408: "Request Timeout",409: "Conflict",410: "Gone",411: "Length Required",412: "Precondition Failed",413: "Payload Too Large",414: "URI Too Long",415: "Unsupported Media Type",416: "Range Not Satisfiable",417: "Expectation Failed",418: "I'm a Teapot",421: "Misdirected Request",422: "Unprocessable Entity",423: "Locked",424: "Failed Dependency",425: "Too Early",426: "Upgrade Required",428: "Precondition Required",429: "Too Many Requests",431: "Request Header Fields Too Large",451: "Unavailable For Legal Reasons",500: "Internal Server Error",501: "Not Implemented",502: "Bad Gateway",503: "Service Unavailable",504: "Gateway Timeout",505: "HTTP Version Not Supported",506: "Variant Also Negotiates",507: "Insufficient Storage",508: "Loop Detected",510: "Not Extended",511: "Network Authentication Required"}
-				},
-				'download': {
-					'language': 'en'
-				}
-			},
-			'app': {
-				'os': {
-					'delimiter': {
-						'line': '\n'
-					},
-					'path': {
-						'ffmpeg': 'ffmpeg',
-						'yt-dlp': {
-							'stable': 'yt-dlp',
-							'nightly': 'yt-dlp-nightly',
-							'cookie': None,
-							'runtime': None
-						},
-						'python': 'python3',
-						'void': None,
-						'ai': {
-							'epochx2': {
-								'any': 'model/epoch994_omnisr_x2.pth',
-								'intel': 'model/epoch994_omnisr_x2.xml'
-							},
-							'epochx4': {
-								'any': 'model/epoch994_omnisr_x4.pth',
-								'intel': 'model/epoch994_omnisr_x4.xml'
-							},
-							'fbcnn': {
-								'any': 'model/fbcnn_color.pth',
-								'intel': 'model/fbcnn_color.xml'
-							},
-							'ddcolor': {
-								'artistic': {
-									'any': 'model/ddcolor_artistic.pth',
-									'intel': 'model/ddcolor_artistic.xml'
-								},
-								'modelscope': {
-									'any': 'model/ddcolor_modelscope.pth',
-									'intel': 'model/ddcolor_modelscope.xml'
-								}
-							},
-							'colorize': {
-								'generator': 'model/generator.zip',
-								'denoiser': 'model/net_rgb.pth'
-							}
-						},
-						'font': {
-							'default': 'C:\\Windows\\Fonts\\arial.ttf',
-							'arial': 'C:\\Windows\\Fonts\\arial.ttf'
-						}
-					}
-				},
-				'ui': 'cli',
-				'format': {
-					'text': ['json', 'jsonl', 'jsonld', 'yaml', 'csv', 'ini', 'xml', 'sql', 'log', 'text', 'txt', 'vtt', 'srt', 'ass', 'ssa', 'ttml', 'sub', 'smi', 'sami', 'html', 'htm', 'xhtml', 'mhtml', 'url', 'css', 'py', 'md', 'php', 'java', 'kt', 'swift', 'm', 'mm', 'c', 'cpp', 'h', 'cs', 'rs', 'gd', 'js', 'mjs', 'lua', 'sh', 'csh', 'bat', 'svg']
-				}
-			},
-			'cloud': {
-				'web': {
-					'compression': {
-						'min': 512
-					}
-				},
-				'agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36 OPR/133.0.0.0 (Edition Yx 05)'
-			},
-			'ai': {
-				'model': {
-					'epoch': {
-						'any': 'model/epoch994_omnisr.pth',
-						'intel': 'model/epoch994_omnisr.xml'
-					},
-					'fbcnn': {
-						'any': 'model/fbcnn_color.pth',
-						'intel': 'model/fbcnn_color.xml'
-					},
-					'ddcolor': {
-						'artistic': {
-							'any': 'model/ddcolor_artistic.pth',
-							'intel': 'model/ddcolor_artistic.xml'
-						},
-						'modelscope': {
-							'any': 'model/ddcolor_modelscope.pth',
-							'intel': 'model/ddcolor_modelscope.xml'
-						}
-					},
-					'colorize': {
-						'generator': 'model/generator.zip',
-						'denoiser': 'model/net_rgb.pth'
-					}
-				}
-			},
-			'ui': {
-				'web': {
-					'file': {
-						'main': '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',
-						'list': '/Td6WFoAAATm1rRGAgAhAQwAAACPmEGc4AFoAKxdAATg7MhpOtLQhy0QJ9K+2TKhY53yvoC4EO8CGsBhsS6WSwmBvgz8+hlLBvjAzy7nCBi0bZpdZYG9FWKuctEwI8YMx2mWC9C3VlE6WYgVFrgjJwxtvgAbWW5f3D8FXaxr7nq6DDeFJvP/RgVaIRBEnHknx954VO/XEv9s6IY3HJ/Dk0oGALuD8sHYfVYmmwJCEIlYc9sNGzJj4U5u1gHnoIBkvvKF4lxngUoXg8AAHvXTFi6IJwYAAcgB6QIAAGi7fauxxGf7AgAAAAAEWVo='
-					}
-				},
-				'file': {
-					'favicon': '/Td6WFoAAATm1rRGAgAhAQwAAACPmEGc4AItAPNdAB4cysaGkgrgIUDw9iFcJNgKryHp5bEl10Kqf9PDuSa95M+6yaR/eO3b0+eVzyRNmDPA2JnInuSpL4M3OJuWM4pkuEdvTKIqqZ3pEKy9KCL2y/sixdbcAJC/knNr6Or8OvImI6kQtfOUvjYWYJq35KZxdEgDtQRE53mfbJx01balojTapQ7Fxms7kqmeqd45luZv8nfs4BAXPZ2PrPVUCwB5SlhJ17ReOwZyqgVkSYsMaxNVCEsngbR08ysxRSQwSt4AMXqkRVPr1XASj74kN/Uc+KfBKDt2b3l8T+H8hLJvrLWDt8r8tnejZ5A9xTfGEmYBYAAA5TrqKJp0PZEAAY8CrgQAAFrnzvyxxGf7AgAAAAAEWVo='
-				}
-			},
-			't': {}
-		}
+		if isinstance(cls.data, str):
+			cls.data = cls.void_decode(cls.data)[0][0][0]
 		cls.t('run')
 		cls.cache_module = {}
 		cls.cache_indent = {}
@@ -8210,7 +8243,7 @@ class VOIDlang:
 				result = cls.action(cls.file('run.zip/run.yaml'))
 			else:
 				result = cls.get('about')
-			if result not in ['', b'', None] and cls.get('app.ui') == 'cli':
+			if result not in ('', b'', None) and cls.get('app.ui') == 'cli':
 				cls.print(result)
 
 	@classmethod
@@ -8725,6 +8758,34 @@ class VOIDlang:
 		cls.print(*data, {'newline': None})
 
 	@classmethod
+	def print_page(cls, data = None, name: str = None):
+		if isinstance(data, str):
+			if cls.is_file(data):
+				extension = cls.path_extension(data).lower()
+				match extension:
+					case 'pdf':
+						webview = cls.module('webview', 'pywebview')
+						def on_loaded(window):
+							window.evaluate_js('window.print();')
+						window = webview.create_window(title='Print', url=f'file:///{cls.path(data)}', width=800, height=600)
+						window.events.loaded += on_loaded
+						webview.start(gui='edgechromium')
+					case _:
+						win32api = cls.module('win32api', 'pywin32')
+						win32print = cls.module('win32print', 'pywin32')
+						win32api.ShellExecute(0, 'printto', data, f'"{name or win32print.GetDefaultPrinter()}"', '.', 0)
+		if data is None:
+			win32print = cls.module('win32print', 'pywin32')
+			printers = win32print.EnumPrinters(win32print.PRINTER_ENUM_LOCAL | win32print.PRINTER_ENUM_CONNECTIONS)
+			result = []
+			for printer in printers:
+				result.append(printer[2])
+			return {
+				'list': result,
+				'default': win32print.GetDefaultPrinter()
+				}
+	
+	@classmethod
 	def input(cls, text: str = None):
 		return input(text if text is not None else '')
 
@@ -8957,10 +9018,19 @@ class VOIDlang:
 	def convert(cls, value, first = None, second = None):
 		match first.lower():
 			case 'windows' | 'exe':
-				pass
-				# import PyInstaller.__main__
-				# args = ['void.py', '--onefile', '--icon=my_logo.ico']
-				# PyInstaller.__main__.run(args)
+				if not cls.is_file(value): return
+				pyinstaller = cls.module('PyInstaller.__main__', 'pyinstaller')
+				param = [value, '-y', '--clean', '--onefile', '--distpath=./']
+				stem = cls.path_stem(value)
+				if isinstance(second, dict):
+					for name, value in second.items():
+						if value != False:
+							if name in ('name', 'n') and value:
+								stem = str(value)
+							param.append(f"{'-' if len(name) == 1 else '--'}{name}{('='+str(value)) if isinstance(value, (str, int, float)) else ''}")
+				pyinstaller.run(param)				
+				cls.dir_remove('build')
+				cls.file_remove(f"{stem}.spec")
 			case 'mac':
 				pass
 			case 'linux' | 'steam' | 'steamdeck' | 'steammachine':
@@ -9092,6 +9162,13 @@ class VOIDlang:
 					for _, section in value.items():
 						for name in section:
 							parse(section, name)
+			case _:
+				if cls.is_file(value) and isinstance(first, str) and first:
+					if not cls.path_extension(first):
+						first = cls.path_extension_replace(value, first)
+						data = cls.file(value)
+						if data:
+							cls.file(first, data)
 
 	@classmethod
 	def c(cls, value, name_from = None, name_to = None):
@@ -9974,33 +10051,36 @@ class VOIDlang:
 		return cls.base64(data, True)
 
 	@classmethod
-	def base64_decode(cls, data, safe: bool = False, format: str = 'text'):
-		base64 = cls.module('base64')
+	def base64_decode(cls, data, safe: bool = False, format: str = None):
+		import base64
 		if not isinstance(data, bytes):
-			data = str(data)
+			if not isinstance(data, str):
+				data = str(data)
 			if safe:
 				data = data.replace('_', '/').replace('-', '+')
 				if len(data) % 4 != 0:
-					data += '=' * (4 - len(data) % 4)
+					data += '=' * (-len(data) % 4)
 			data = data.encode()
 		try:
 			data = base64.b64decode(data)
-		except Exception as e:
-			cls.error('base64.decode', e)
-			return
-		if format not in [None, '', 'binary']:
+		except Exception as e: return
+		if format != 'binary':
 			try:
-				return data.decode('utf-8' if format == 'text' else format)
+				return data.decode('utf-8' if format in (None, '', 'text') else format)
 			except: pass
 		return data
 
 	@classmethod
-	def base64_decode_binary(cls, data, safe: bool = False):
-		return cls.base64_decode(data, safe=safe, format='binary')
+	def base64_decode_safe(cls, data, format: str = None):
+		return cls.base64_decode(data, True, format)
 
 	@classmethod
-	def base64_decode_safe(cls, data, format: str = 'text'):
-		return cls.base64_decode(data, True, format=format)
+	def base64_decode_binary(cls, data, safe: bool = False):
+		return cls.base64_decode(data, safe, 'binary')
+ 
+	@classmethod
+	def base64_decode_binary_safe(cls, data):
+		return cls.base64_decode(data, True, 'binary')
 
 	@classmethod
 	def gzip(cls, data, compression = None):
@@ -10632,13 +10712,14 @@ class VOIDlang:
 					quote = cls.get('quote', None, param)
 					if bool(cls.get('parse', False, param)):
 						parse_list, parse_list_delimiter, parse_list_quote, parse_list_clean, parse_number, parse_bool, parse_none = (True, None, None, True, True, True, True)
-					parse_list = bool(cls.get('list', False, param))
-					parse_list_delimiter = cls.get('list.delimiter', None, param)
-					parse_list_quote = cls.get('list.quote', None, param)
-					parse_list_clean = cls.get('list.clean', True, param)
-					parse_number = cls.get('number', False, param)
-					parse_bool = cls.get('bool', False, param)
-					parse_none = cls.get('none', False, param)
+					else:
+						parse_list = bool(cls.get('list', False, param))
+						parse_list_delimiter = cls.get('list.delimiter', None, param)
+						parse_list_quote = cls.get('list.quote', None, param)
+						parse_list_clean = cls.get('list.clean', True, param)
+						parse_number = cls.get('number', False, param)
+						parse_bool = cls.get('bool', False, param)
+						parse_none = cls.get('none', False, param)
 					with open(path, 'r', encoding='utf-8') as file:
 						return cls.csv_decode(file.read(), delimiter=delimiter, quote=quote, parse_list=parse_list, parse_list_delimiter=parse_list_delimiter, parse_list_quote=parse_list_quote, parse_list_clean=parse_list_clean, parse_number=parse_number, parse_bool=parse_bool, parse_none=parse_none)
 				case 'yaml':
@@ -11930,397 +12011,558 @@ class VOIDlang:
 
   # format
 
-	@classmethod
-	def encode(cls, data, format: str = None, param = None):
-		pass
-
-	@classmethod
-	def decode(cls, data, format: str = None, param = None):
-		pass
-
 	# data
 
 	@classmethod
-	def void(cls, data, format = None, indent = '\t', level: int = 0, multiline_length: int = 100):
-		cache_indent_key = (indent, level)
-		if cache_indent_key not in cls.cache_indent:
-			if isinstance(indent, int):
-				indent = ' ' * indent
-			elif not isinstance(indent, str):
-				indent = '\t'
-			indent_text = indent * level
-			cls.cache_indent[cache_indent_key] = (indent_text, indent)
-		else:
-			indent_text, indent = cls.cache_indent[cache_indent_key]
-		if data is None:
-			return indent_text + 'none'
-		elif isinstance(data, bool):
-			return indent_text + ('true' if data else 'false')
-		elif isinstance(data, (int, float)):
-			if isinstance(format, list):
-				format = next((name.removeprefix('number.') for name in format if name.startswith('number.')), format)
-			if format in ['group', 'underline', 'group.fraction', 'underline.fraction']:
-				delimiter = ' ' if format in ['group', 'group.fraction'] else '_'
-				if isinstance(data, int):
-					return f'{indent_text}{data:,}'.replace(',', delimiter)
-				data_int = int(data)
-				data_text = str(data)
-				fraction = data_text[data_text.find('.') + 1:]
-				if format in ['group.fraction', 'underline.fraction']:
-					fraction = delimiter.join(fraction[index:index+3] for index in range(0, len(fraction), 3))
-				return f'{indent_text}{data_int:,}'.replace(',', delimiter) + '.' + fraction
-			return f'{indent_text}{data}'
-		elif isinstance(data, str):
-			if not data:
-				return indent_text + "''"
-			length = len(data)
-			if '\r' in data or '\n' in data or '\t' in data:
-				data = cls.escape(data, 'void.special')
-			special = len(data) != length or (length > 1 and ((data[0] in ["'", '[']) or (data[0] == '*' and data[1] not in [' ', '\t'])))
-			special_end = special and data[-1] == "'"
-			if isinstance(format, list):
-				format = next((name.removeprefix('text.') for name in format if name.startswith('text.')), format)
-			match format:
-				case 'full':
-					if not special:
-						data = cls.escape(data, 'void.text')
-					return f"{indent_text}'{data}'"
-				case 'short':
-					if not special:
-						data = cls.escape(data, 'void.text')
-					return f"{indent_text}'{data}" if not special_end else f"{indent_text}'{data}'"
-				case 'multiline':
-					indent_text_next = indent_text + indent
-					return f"{indent_text}'\n" + '\n'.join((indent_text_next + data[index:index+multiline_length]) for index in range(0, len(data), cls.cache_void_muliline_length))
-				case 'newline':
-					indent_text_next = indent_text + indent
-					if special:
-						data = cls.escape(data, 'void.newline').split('\n')
-					return f'{indent_text}"\n' + '\n'.join([indent_text_next + text for text in data])
-				case 'list' | 'list.last':
-					if special or ' ' in data:
-						data = cls.escape(data, 'void.text')
-						if format == 'list':
-							return f"'{data}'"
-						else:
-							return f"'{data}"
-					return data
-				case _:
-					return (indent_text + data) if not special else (f"{indent_text}'{data}" if not special_end else f"{indent_text}'{data}'")
-		elif isinstance(data, list):
-			if not data:
-				return indent_text + '[]'
-			if isinstance(format, list):
-				format_list = format
-				format = next((name.removeprefix('list.') for name in format if name.startswith('list.')), format)
-			else:
-				format_list = [format] if format is not None else []
-			match format:
-				case 'line' | 'line.full':
-					result = []
-					for index, value in enumerate(data):
-						format_value = [
-							'text.list.last' if index == (len(data) - 1) and format == 'line' else 'text.list',
-							'list.line' if index == (len(data) - 1) and format == 'line' else 'list.line.full',
-							'dict.line' if index == (len(data) - 1) and format == 'line' else 'dict.line.full',
-							] + format_list
-						result.append(cls.void(value, format_value))
-					data = '[' + ' '.join(result) + (']' if format.endswith('full') else '')
-					return f'{indent_text}{data}'
-				case 'table':
-					result = []
-					lines =[]
-					size = []
-					format_value = [
-						'text.plain',
-						'list.line',
-						'dict.line',
-						] + format_list
-					for value in data:
-						if isinstance(value, list):
-							lines.append([])
-							if not size:
-								size = [0] * len(value)
-							for index, value in enumerate(value):
-								value = cls.void(value, format_value)
-								lines[-1].append(value)
-								size[index] = max(size[index], len(value))
-					for value in lines:
-						result.append('  '.join([(f'{value:<{size[index]}}' if index < len(size) - 1 else value) for index, value in enumerate(value)]))
-					data = f'\n{indent_text}'.join(result)
-					return f'{indent_text}{data}'
-				case 'column' | _:
-					format_value = [
-						'list.column',
-						'dict.column',
-						] + format_list
-					if len(data) == 1:
-						if not isinstance(data[0], (list, dict)):
-							return f'{indent_text}[' + cls.void(data[0], format_value, indent)
-						else:
-							return f'{indent_text}[\n' + cls.void(data[0], format_value, indent, level + 1)
-					result = []
-					for index, value in enumerate(data):
-						result.append(cls.void(value, format_value, indent, level))
-					return '\n'.join(result)
-		elif isinstance(data, dict):
-			if not data:
-				return indent_text + '[ ]'
-			if isinstance(format, list):
-				format_list = format
-				format = next((name.removeprefix('dict.') for name in format if name.startswith('dict.')), format)
-			else:
-				format_list = [format] if format is not None else []
-			match format:
-				case 'line' | 'line.full':
-					result = []
-					index = 0
-					for name, value in data.items():
-						format_value = [
-							'text.list.last' if index == (len(data) - 1) and format == 'line' else 'text.list',
-							'list.line' if index == (len(data) - 1) and format == 'line' else 'list.line.full',
-							'dict.line' if index == (len(data) - 1) and format == 'line' else 'dict.line.full',
-							] + format_list
-						if index == 0 and len(data) == 1:
-							return '[' + cls.void(name, format_value) + '  ' + cls.void(value, format_value) + (']' if format.endswith('full') else '')
-						result.append(cls.void(name, format_value) + ' ' + cls.void(value, format_value))
-						index += 1
-					return '[' + '  '.join(result) + (']' if format.endswith('full') else '')
-				case 'table':
-					result = {}
-					format_value = [
-						'list.line',
-						'dict.line',
-						] + format_list
-					length = 0
-					for name, value in data.items():
-						value = cls.void(value, format_value)
-						result[name] = value
-						length = max(length, len(name))
-					data = f'\n{indent_text}'.join([f'{name:<{length}}  {value}' for name, value in result.items()])
-					return f'{indent_text}{data}'
-				case 'column' | _:
-					result = []
-					format_value = [
-						'list.column',
-						'dict.column',
-						] + format_list
-					for name, value in data.items():
-						name = cls.void(name, format_value, indent, level)
-						value = cls.void(value, format_value, indent, level + 1)
-						result.append(f'{name}\n{value}')
-					return '\n'.join(result)
-		elif isinstance(data, bytes):
-			if not data:
-				return indent_text + "*''"
-			if isinstance(format, list):
-				format = next((name.removeprefix('binary.') for name in format if name.startswith('binary.')), format)
-			match format:
-				case 'raw':
-					return f'{indent_text}*{len(data)}*'.encode() + data
-				case 'text':
-					try:
-						return f"{indent_text}*'{data.decode('utf-8')}'"
-					except: pass
-				case 'hex' | 'hex.group' | 'hex.underline' | 'hex.multiline' | 'hex.multiline.group' | 'hex.multiline.underline':
-					data = data.hex().upper()
-					delimiter = None if format in ['hex', 'hex.multiline'] else (' ' if 'group' in format else '_')
-					if not format.startswith('hex.multiline'):
-						if delimiter is not None:
-							data = delimiter.join(data[index:index+4] for index in range(0, len(data), 4))
-						return f'{indent_text}*{data}'
-					else:
-						max_length = 2 * 20
-						indent_text_next = indent_text + indent
-						if delimiter is not None:
-							data = [data[index:index+max_length] for index in range(0, len(data), max_length)]
-							data = [indent_text_next + delimiter.join(line[index:index+4] for index in range(0, len(line), 4)) for line in data]
-						else:
-							data = [(indent_text_next + data[index:index+max_length]) for index in range(0, len(data), max_length)]
-						return f"{indent_text}*\n" + '\n'.join(data)
-				case 'bin' | 'bin.group' | 'bin.underline' | 'bin.multiline' | 'bin.multiline.group' | 'bin.multiline.underline':
-					data = ''.join(f'{byte:08b}' for byte in data)
-					delimiter = '' if format in ['bin', 'bin.multiline'] else (' ' if 'group' in format else '_')
-					if not format.startswith('bin.multiline'):
-						if delimiter != '':
-							data = delimiter.join(data[index:index+8] for index in range(0, len(data), 8))
-						return f'{indent_text}**{data}'
-					else:
-						max_length = 8 * 10
-						indent_text_next = indent_text + indent
-						if delimiter != '':
-							data = [data[index:index+max_length] for index in range(0, len(data), max_length)]
-							data = [indent_text_next + delimiter.join(line[index:index+8] for index in range(0, len(line), 8)) for line in data]
-						else:
-							data = [(indent_text_next + data[index:index+max_length]) for index in range(0, len(data), max_length)]
-						return f"{indent_text}**\n" + '\n'.join(data)
-					return f'{indent_text}**{data}'
-				case 'gzip' | 'gzip.fast' | 'gzip.safe' | 'gzip.fast.safe':
-					data = cls.gzip(data, 'fast' if 'fast' in format else 'best')
-				case 'zstd' | 'zstd.fast' | 'zstd.safe' | 'zstd.fast.safe':
-					data = cls.zstd(data, 'fast' if 'fast' in format else 'best')
-				case 'lzma' | 'lzma.fast' | 'lzma.safe' | 'lzma.fast.safe':
-					data = cls.lzma(data, 'fast' if 'fast' in format else 'best')
-			safe = isinstance(format, str) and format.endswith('safe')
-			data = cls.base64(data, safe)
-			return f'{indent_text}*{data}' if not cls.is_hex(data) else f'{indent_text}***{data}'
-		return cls.void(str(data), format, indent, level)
-
-	@classmethod
-	def void_decode(cls, text: str):
-		if not isinstance(text, str): return
-		text_original = text
-		text = text.strip()
-		# base
-		if not text: return ''
-		if text == 'none': return None
-		if text == 'true': return True
-		if text == 'false': return False
-		if text == '[]': return []
-		if text == '[ ]': return {}
-		if text == "''": return ''
-		if text == "*''": return b''
-		if len(text) == 1:
-			return text if not text.isdigit() else int(text)
-		# text
-		if text.startswith("'") or text.startswith('"'):
-			multiline = '\n' in text
-			if text.startswith("'"):
-				if not multiline:
-					text = text[1:-1] if text.endswith("'") and len(text) > 0 else text[1:]
-					return cls.unescape(text, 'void.text')
-				return cls.unescape(''.join(line[1:] for line in text[1:].split('\n')), 'void.special')
-			if multiline:
-				return '\n'.join(line[1:] for line in text[2:].split('\n'))
-			return text
-		# list + dict | line
-		if text.startswith('['):
-			pass
-		# binary
-		if text.startswith('*'):
-			# text
-			if text.startswith("*'") and text.endswith("'"):
-				try:
-					return text[2:-1].encode('utf-8')
-				except: return
-			# bin
-			if text.startswith('**'):
-				text = text[2:].replace(' ', '').replace('_', '').strip()
-				if '\n' in text:
-					text = ''.join(line.strip() for line in text.split('\n'))
-				return bytes(int(text[i:i+8], 2) for i in range(0, len(text), 8))
-			# hex
-			text_clean = text[1:].replace(' ', '').replace('_', '').strip()
-			if '\n' in text_clean:
-				text_clean = ''.join(line.strip() for line in text.split('\n'))
-			if cls.is_hex(text_clean) and len(text_clean) % 2 == 0:
-				try:
-					return bytes.fromhex(text_clean)
-				except ValueError: pass
-			# base64
-			data = cls.base64_decode_binary(text[1:], safe=True)
-			if data:
-				# gzip
-				if data.startswith(b'\x1f\x8b'):
-					result = cls.gzip_decode(data)
-					if result is not None: return result
-				# zstd
-				if data.startswith(b'\x28\xb5\x2f\xfd'):
-					result = cls.zstd_decode(data)
-					if result is not None: return result
-				# lzma
-				if data.startswith(b'\xfd7zXZ') or data.startswith(b'\x5d\x00'):
-					result = cls.lzma_decode(data)
-					if result is not None: return result
-				return data
-		# number
-		if re.match(r'^-?[0-9_ ]+(\.[0-9_ ]+)?$', text):
-			return cls.number(text)
-		# list + dict
-		if '\n' in text_original:
-			# table
-			lines = [line for line in text_original.split('\n') if line.strip()]
-			table_tokens = []
-			all_starts = []
-			all_ends = []
-			for line in lines:
-				tokens_with_positions = [(m.group(), m.start(), m.end()) for m in re.finditer(r'\S+', line)]
-				table_tokens.append([t[0] for t in tokens_with_positions])
-				all_starts.append([t[1] for t in tokens_with_positions])
-				all_ends.append([t[2] for t in tokens_with_positions])
-			is_table = False
-			if len(lines) > 1 and len(set(len(row) for row in table_tokens)) == 1:
-				col_count = len(table_tokens[0])
-				if col_count >= 2:
-					is_table = True
-					for col_idx in range(1, col_count):
-						start_positions = set(pos_row[col_idx] for pos_row in all_starts)
-						end_positions = set(pos_row[col_idx] for pos_row in all_ends)
-						if len(start_positions) > 1 and len(end_positions) > 1:
-							is_table = False
-							break
-			if is_table:
-				decoded_table = []
-				for row in table_tokens:
-					decoded_table.append([cls.void_decode(cell) for cell in row])
-				first_col = [row[0] for row in decoded_table]
-				unique = len(first_col) == len(set(first_col))
-				col_count = len(decoded_table[0])
-				if col_count == 2 and unique:
-					return {row[0]: row[1] for row in decoded_table}
+	def void(cls, data, indent = None, group: bool = None, binary: str = None) -> str | bytes:
+		import re
+		indent_unit = '\t' if indent is None else ' ' * indent if isinstance(indent, int) else indent
+		line_mode = indent_unit == ''
+		if group is None: group = not line_mode
+		group_sep = '_' if line_mode else ' '
+		keywords = ('true', 'false', 'none')
+		number_like = re.compile(r'^-?\d[\d_ ]*(\.[\d_ ]*)?$').match
+		bits_like = re.compile(r'^[01]+([ _][01]+)*$').match
+		b64_like = re.compile(r'^[A-Za-z0-9+/=_-]+([ ][A-Za-z0-9+/=_-]+)*$').match
+		rawbin_like = re.compile(r'^\*[0-9_]+\*').match
+		double_backslash = re.compile(r'\\(?=[\\rnt\r\n\t])').sub
+		double_backslash_quoted = re.compile(r"\\(?=[\\rnt\r\n\t']|\Z)").sub
+		fmt = binary or 'base64'
+		safe = fmt == 'safe' or fmt.endswith('.safe')
+		compress = {'gzip': cls.gzip, 'zstd': cls.zstd, 'lzma': cls.lzma}.get(fmt[:-5] if fmt.endswith('.safe') else fmt)
+		raw_segments = []
+		def escape(text, line = False, quoted = False):
+			if '\\' in text:
+				text = (double_backslash_quoted if quoted else double_backslash)(r'\\\\', text)
+			text = text.replace('\r', '\\r').replace('\n', '\\n').replace('\t', '\\t')
+			return text.replace("'", "\\'") if line else text
+		def prefixed(text, prefix):
+			if '\n' not in text:
+				return prefix + text if text else text
+			return '\n'.join(prefix + line if line else line for line in text.split('\n'))
+		def is_binary_marker_like(value):
+			if value[:1] != '*':
+				return False
+			if value[:3] == '***':
+				return bool(b64_like(value[3:]))
+			if value[:2] == '**':
+				return bool(bits_like(value[2:]))
+			return value[:2] == "*'" or bool(b64_like(value[1:])) or bool(rawbin_like(value))
+		def ends_in_dict(value):
+			while isinstance(value, list) and value:
+				value = value[-1]
+			return isinstance(value, dict)
+		def render_bytes(value):
+			if fmt == 'raw':
+				placeholder = '\x00__RAW%d__\x00' % len(raw_segments)
+				raw_segments.append((placeholder, value))
+				return '*%d*%s' % (len(value), placeholder)
+			if not value:
+				return "*''"
+			if fmt == 'hex':
+				text = cls.hex(value)
+				return '*' + (group_sep.join(text[i:i + 4] for i in range(0, len(text), 4)) if group else text)
+			if fmt == 'bin':
+				text = cls.bin(value)
+				return '**' + (group_sep.join(text[i:i + 8] for i in range(0, len(text), 8)) if group else text)
+			text = cls.base64(compress(value) if compress else value, safe=safe)
+			hex_like = text.replace(' ', '').replace('_', '')
+			return ('***' if hex_like and not hex_like.strip('0123456789ABCDEFabcdef') else '*') + text
+		def render_number(value):
+			text = str(value)
+			if not group:
+				return text
+			sign = ''
+			if text[0] == '-':
+				sign, text = '-', text[1:]
+			int_part, dot, frac_part = text.partition('.')
+			head = len(int_part) % 3 or 3
+			result = group_sep.join([int_part[:head]] + [int_part[i:i + 3] for i in range(head, len(int_part), 3)])
+			if dot:
+				result += '.' + group_sep.join(frac_part[i:i + 3] for i in range(0, len(frac_part), 3))
+			return sign + result
+		def render_scalar(value):
+			if value is True:
+				return 'true'
+			if value is False:
+				return 'false'
+			if value is None:
+				return 'none'
+			if isinstance(value, (int, float)):
+				return render_number(value)
+			return str(value)
+		def render_string(value, prefix, allow_multiline = True):
+			if not value:
+				return prefix + "''"
+			has_cr = '\r' in value
+			has_lf = '\n' in value
+			if has_lf and not has_cr and allow_multiline and value[-1] != '\n':
+				return prefix + '"\n' + prefixed(value, prefix + indent_unit)
+			if value in ("'", '[', '*'):
+				return prefix + value
+			if value == '"':
+				return prefix + (value if allow_multiline else '\'"')
+			first, last = value[0], value[-1]
+			if has_cr or has_lf or first in ' \t\'[' or last in ' \t' or value in keywords or ((first == '-' or first.isdigit()) and number_like(value)) or is_binary_marker_like(value) or (indent_unit and value.startswith(indent_unit)):
+				return prefix + "'" + escape(value) + ("'" if last in ' \t\'' else '')
+			return prefix + value
+		def render_value(value, prefix, first = False, next_is_nested = False):
+			if isinstance(value, str):
+				return render_string(value, prefix, not next_is_nested)
+			if isinstance(value, list):
+				if not value:
+					return prefix + '[]'
+				if len(value) == 1:
+					return render_value(value[0], prefix + indent_unit, first, next_is_nested)
+				return render_body(value, prefix, first, next_is_nested)
+			if isinstance(value, dict):
+				if not value:
+					return prefix + '[ ]'
+				inner = prefix + indent_unit
+				last = len(value) - 1
+				return '\n'.join(
+					(render_string(name, prefix, False) if isinstance(name, str) else prefixed(render_scalar(name), prefix)) + '\n'
+					+ render_value(item, inner, True, next_is_nested and index == last)
+					for index, (name, item) in enumerate(value.items()))
+			if isinstance(value, bytes):
+				return prefix + render_bytes(value)
+			return prefixed(render_scalar(value), prefix)
+		def render_body(lst, prefix, first, next_is_nested):
+			pieces = []
+			inner = prefix + indent_unit
+			last = len(lst) - 1
+			for index, item in enumerate(lst):
+				if index < last:
+					following = lst[index + 1]
+					nested = isinstance(following, list) and bool(following)
 				else:
-					return decoded_table
-			# column
-			has_indent = any(line.startswith('\t') or line.startswith(' ') for line in text_original.split('\n') if line.strip())
-			if has_indent:
-				lines = text_original.split('\n')
-				parsed_elements = []
-				for line in lines:
-					if not line.strip(): continue
-					lstripped = line.lstrip('\t')
-					if len(lstripped) == len(line):
-						lstripped = line.lstrip(' ')
-						indent = (len(line) - len(lstripped))
+					nested = next_is_nested
+				if index:
+					pieces.append('\n\n' if ends_in_dict(lst[index - 1]) else '\n')
+				if isinstance(item, str):
+					pieces.append(render_string(item, prefix, not nested))
+				elif isinstance(item, list):
+					pieces.append(('' if first else '\n') + render_body(item, inner, first, nested) if item else prefix + '[]')
+				else:
+					pieces.append(render_value(item, prefix, False, nested))
+				first = False
+			return ''.join(pieces)
+		def render_line_string(value, tail, in_dict_value = False):
+			if value:
+				space = ('  ' in value or value[0] in ' \t' or value[-1] in ' \t' or ' [' in value) if in_dict_value else (' ' in value)
+				if not (space or '\r' in value or '\n' in value or value[0] == '[' or ']' in value or value in keywords or is_binary_marker_like(value) or ((value[0] == '-' or value[0].isdigit()) and number_like(value))):
+					return escape(value, line = True)
+			return "'" + escape(value, line = True, quoted = True) + ("'" if not tail or value[-1:] == ' ' else '')
+		def render_line(value, tail, in_dict_value = False):
+			if isinstance(value, str):
+				return render_line_string(value, tail, in_dict_value)
+			if isinstance(value, list):
+				if not value:
+					return '[]'
+				last = len(value) - 1
+				body = '[' + ' '.join([render_line(item, tail and index == last) for index, item in enumerate(value)])
+			elif isinstance(value, dict):
+				if not value:
+					return '[ ]'
+				last = len(value) - 1
+				pair_sep = '  ' if last == 0 else ' '
+				pieces = []
+				for index, (name, item) in enumerate(value.items()):
+					item_tail = tail and index == last
+					if index and item is None:
+						pieces.append(render_line(name, item_tail))
 					else:
-						indent = len(line) - len(lstripped)					
-					content = line.strip()
-					parsed_elements.append((indent, content))
-				if not parsed_elements:
-					return []
-				base_indent = parsed_elements[0][0]
-				if all(item[0] == base_indent for item in parsed_elements):
-					return [cls.void_decode(item[1]) for item in parsed_elements]
-				result_dict = {}
-				current_key = None
-				val_lines = []
-				for indent, content in parsed_elements:
-					if indent == base_indent:
-						if current_key is not None:
-							result_dict[cls.void_decode(current_key)] = cls.void_decode('\n'.join(val_lines))
-						current_key = content
-						val_lines = []
-					else:
-						val_lines.append('\t' * (indent - base_indent - 1) + content)
-				if current_key is not None:
-					result_dict[cls.void_decode(current_key)] = cls.void_decode('\n'.join(val_lines))
-				if len(result_dict) == 1 and list(result_dict.keys())[0] == '[':
-					return [list(result_dict.values())[0]]
-				return result_dict
-			# list
-			return [cls.void_decode(line.strip()) for line in lines]
-		return text
+						pieces.append(render_line(name, False) + pair_sep + render_line(item, item_tail, True))
+				body = '[' + '  '.join(pieces)
+			elif isinstance(value, bytes):
+				return render_bytes(value)
+			else:
+				return render_scalar(value)
+			return body if tail else body + ']'
+		result = render_line(data, True) if line_mode else render_value(data, '', True)
+		if raw_segments:
+			payloads = {placeholder.encode(): payload for placeholder, payload in raw_segments}
+			return re.compile(b'|'.join(map(re.escape, payloads))).sub(lambda m: payloads[m.group()], result.encode())
+		return result
 
 	@classmethod
-	def json(cls, data, indent = '\t', unicode: bool = True):
+	def void_decode(cls, data, indent = None):
+		import re
+		indent_unit = '\t' if indent is None else ' ' * indent if isinstance(indent, int) else indent
+		unit_len = len(indent_unit)
+		raw_placeholders = {}
+		if isinstance(data, bytes):
+			raw_marker = re.compile(rb'\*([0-9]+)\*')
+			parts = []
+			pos = 0
+			while True:
+				m = raw_marker.search(data, pos)
+				if not m:
+					parts.append(data[pos:])
+					break
+				start = m.end()
+				end = start + int(m.group(1))
+				placeholder = '\x00__RAW%d__\x00' % len(raw_placeholders)
+				raw_placeholders[placeholder] = data[start:end]
+				parts += [data[pos:m.start()], placeholder.encode()]
+				pos = end
+			data = b''.join(parts).decode()
+		if not isinstance(data, str):
+			raise TypeError('expects str')
+		keywords = {'true': True, 'false': False, 'none': None}
+		number_like = re.compile(r'-?\d[\d _]*(?:\.[\d _]*)?').fullmatch
+		bits_like = re.compile(r'^[01]+([ _][01]+)*$').match
+		b64_like = re.compile(r'^[A-Za-z0-9+/=_-]+([ ][A-Za-z0-9+/=_-]+)*$').match
+		hex_like = re.compile(r'^[0-9A-Fa-f]+([ _][0-9A-Fa-f]+)*$').match
+		plain_token = re.compile(r"[^ \]\\]*(?:\\[\\rnt']?[^ \]\\]*)*").match
+		plain_run = re.compile(r"(?:(?:\\[\\rnt']?|[^ \]\['\\])[^ \]\\]*(?:\\[\\rnt']?[^ \]\\]*)*(?: (?=[^ \]\[']))?)*").match
+		quoted_token = re.compile(r"[^'\\]*(?:\\[\s\S]?[^'\\]*)*").match
+		decompressors = ((b'\x1f\x8b', cls.gzip_decode), (b'\xfd7zXZ\x00', cls.lzma_decode), (b'\x28\xb5\x2f\xfd', cls.zstd_decode))
+		def unescape(text, line = False):
+			if '\\' not in text:
+				return text
+			parts = text.split('\\\\')
+			for i, part in enumerate(parts):
+				if '\\' in part:
+					part = part.replace('\\n', '\n').replace('\\r', '\r').replace('\\t', '\t')
+					parts[i] = part.replace("\\'", "'") if line else part
+			return '\\'.join(parts)
+		def decode_base64(text):
+			raw = cls.base64_decode_binary_safe(text)
+			for magic, decompress in decompressors:
+				if raw.startswith(magic):
+					try:
+						decoded = decompress(raw)
+						if decoded is not None:
+							return decoded
+					except Exception: pass
+			return raw
+		def decode_binary(value):
+			try:
+				if value[:2] == "*'":
+					text = value[2:]
+					return unescape(text[:-1] if text[-1:] == "'" else text).encode()
+				if value[:3] == '***':
+					return decode_base64(value[3:].replace(' ', '')) if b64_like(value[3:]) else None
+				if value[:2] == '**':
+					if not bits_like(value[2:]):
+						return None
+					bits = value[2:].replace(' ', '').replace('_', '')
+					return bytes(int(bits[i:i + 8], 2) for i in range(0, len(bits) - 7, 8))
+				rest = value[1:]
+				if hex_like(rest):
+					text = rest.replace(' ', '').replace('_', '')
+					if len(text) % 2 == 0:
+						try:
+							return bytes.fromhex(text)
+						except ValueError: pass
+				return decode_base64(rest.replace(' ', '')) if b64_like(rest) else None
+			except Exception:
+				return None
+		def interpret(token):
+			if token in keywords:
+				return keywords[token]
+			head = token[:1]
+			if head == '*':
+				value = decode_binary(token)
+				if value is not None:
+					return value
+				return token
+			if (head == '-' or head.isdigit()) and number_like(token):
+				text = token.replace(' ', '').replace('_', '')
+				try:
+					return int(text)
+				except ValueError:
+					if '.' in text:
+						try:
+							return float(text)
+						except ValueError:
+							pass
+			return token
+		def resolve(value):
+			if isinstance(value, tuple):
+				return resolve(value[0])
+			if isinstance(value, str):
+				return raw_placeholders.get(value, value)
+			if isinstance(value, list):
+				return [resolve(item) for item in value]
+			if isinstance(value, dict):
+				return {name: resolve(item) for name, item in value.items()}
+			return value
+		def parse_line(s):
+			if not s:
+				raise ValueError('empty input')
+			n = len(s)
+			def first_word(values, raws, k):
+				if values[k] is Ellipsis:
+					head, rest = raws[k].split(' ', 1)
+					return interpret(head), rest
+				return values[k], None
+			def join_value(values, raws, rest, start, stop):
+				if rest is None and stop - start == 1 and values[start] is not Ellipsis:
+					return values[start]
+				if start == stop:
+					return rest if ' ' in rest else interpret(rest)
+				parts = [rest] if rest is not None else []
+				parts += [raws[k] if raws[k] is not None else str(values[k]) for k in range(start, stop)]
+				return ' '.join(parts)
+			def build(values, raws, gaps):
+				if 2 not in gaps or (len(values) == 1 and values[0] is not Ellipsis):
+					if Ellipsis not in values:
+						return values
+					result = []
+					for value, raw in zip(values, raws):
+						if value is Ellipsis:
+							result += map(interpret, raw.split(' '))
+						else:
+							result.append(value)
+					return result
+				segments = []
+				start = 0
+				for k, gap in enumerate(gaps[:len(values) - 1]):
+					if gap == 2:
+						segments.append((start, k + 1))
+						start = k + 1
+				segments.append((start, len(values)))
+				result = {}
+				start, stop = segments[0]
+				key, rest = first_word(values, raws, start)
+				if rest is None and stop - start == 1:
+					result[key] = join_value(values, raws, None, *segments[1])
+					segments = segments[2:]
+				else:
+					result[key] = join_value(values, raws, rest, start + 1, stop)
+					segments = segments[1:]
+				for start, stop in segments:
+					key, rest = first_word(values, raws, start)
+					result[key] = None if rest is None and stop - start == 1 else join_value(values, raws, rest, start + 1, stop)
+				return result
+			def parse_container(pos):
+				values = []
+				raws = []
+				gaps = []
+				while pos < n:
+					ch = s[pos]
+					if ch == ']':
+						break
+					raw = None
+					if ch == '[':
+						if s.startswith('[]', pos):
+							value = []
+							pos += 2
+						elif s.startswith('[ ]', pos):
+							value = {}
+							pos += 3
+						else:
+							value, pos = parse_container(pos + 1)
+					elif ch == "'":
+						end = quoted_token(s, pos + 1).end()
+						value = unescape(s[pos + 1:end], True)
+						pos = end + 1 if end < n else end
+					else:
+						end = plain_run(s, pos).end()
+						raw = unescape(s[pos:end], True)
+						value = Ellipsis if ' ' in raw else interpret(raw)
+						pos = end
+					values.append(value)
+					raws.append(raw)
+					if pos >= n or s[pos] != ' ':
+						break
+					if pos + 1 < n and s[pos + 1] == ' ':
+						gaps.append(2)
+						pos += 2
+					else:
+						gaps.append(1)
+						pos += 1
+				if pos < n and s[pos] == ']':
+					pos += 1
+				return build(values, raws, gaps), pos
+			if s[0] == '[':
+				if s.startswith('[]'):
+					return []
+				if s.startswith('[ ]'):
+					return {}
+				return parse_container(1)[0]
+			if s[0] == "'":
+				return unescape(s[1:quoted_token(s, 1).end()], True)
+			return interpret(unescape(s[:plain_token(s, 0).end()], True))
+		if indent_unit == '':
+			result = parse_line(data)
+			return resolve(result) if raw_placeholders else result
+		if not data:
+			raise ValueError('empty input')
+		lines = data.split('\n')
+		total = len(lines)
+		if unit_len == 1:
+			indents = [len(line) - len(line.lstrip(indent_unit)) for line in lines]
+		else:
+			def count_indent(line):
+				level = 0
+				while line.startswith(indent_unit, level * unit_len):
+					level += 1
+				return level
+			indents = [count_indent(line) for line in lines]
+		line_markers = 0
+		def ends_in_dict(value):
+			while isinstance(value, list) and value:
+				value = value[-1]
+			return isinstance(value, dict)
+		def unwrap(result):
+			nonlocal line_markers
+			if not isinstance(result, list) or len(result) != 1:
+				return result
+			layers = 0
+			current = result
+			while isinstance(current, list) and len(current) == 1:
+				layers += 1
+				current = current[0]
+			if isinstance(current, list) and current:
+				return result
+			if isinstance(current, tuple):
+				line_markers -= 1
+				current = current[0]
+			for _ in range(layers - 1):
+				current = [current]
+			return current
+		def finalize(items, boundaries):
+			if len(items) < 2:
+				return items
+			result = []
+			current = None
+			for index, item in enumerate(items):
+				if isinstance(item, dict):
+					if current is not None:
+						if index not in boundaries:
+							current.update(item)
+							continue
+						result.append(current)
+					current = item
+				else:
+					if current is not None:
+						result.append(current)
+						current = None
+					result.append(item)
+			if current is not None:
+				result.append(current)
+			return result
+		def line_value(content):
+			if content[:1] == '[':
+				if content == '[]':
+					return []
+				if content == '[ ]':
+					return {}
+				if content != '[':
+					return parse_line(content)
+			elif content[:1] == "'" and content != "'":
+				text = content[1:]
+				return unescape(text[:-1] if text[-1:] == "'" else text)
+			return interpret(content)
+		def read_multiline(pos, depth):
+			text_lines = []
+			while pos < total:
+				if not lines[pos]:
+					k = pos + 1
+					while k < total and not lines[k]:
+						k += 1
+					if k >= total:
+						return '\n'.join(text_lines), total
+					if indents[k] <= depth:
+						break
+					text_lines += [''] * (k - pos)
+					pos = k
+					continue
+				if indents[pos] <= depth:
+					break
+				text_lines.append(lines[pos][(depth + 1) * unit_len:])
+				pos += 1
+			return '\n'.join(text_lines), pos
+		def parse_level(index, depth):
+			nonlocal line_markers
+			items = []
+			boundaries = set()
+			while index < total:
+				line = lines[index]
+				if not line:
+					j = index + 1
+					while j < total and not lines[j]:
+						j += 1
+					if j >= total:
+						return finalize(items, boundaries), j
+					if not items:
+						index = j
+						continue
+					blank_count = j - index
+					needed = indents[j] - depth
+					if needed < 0:
+						return finalize(items, boundaries), index
+					after_dict = ends_in_dict(items[-1])
+					if needed == 0:
+						if after_dict and blank_count == 1:
+							boundaries.add(len(items))
+						elif depth:
+							return finalize(items, boundaries), index
+						index = j
+						continue
+					if after_dict and blank_count == needed + 1:
+						boundaries.add(len(items))
+						child, index = parse_level(j, depth + 1)
+					elif blank_count > needed:
+						return finalize(items, boundaries), index
+					elif blank_count < needed:
+						raise ValueError('invalid nesting')
+					else:
+						child, index = parse_level(index + 1, depth + 1)
+					items.append(child)
+					continue
+				level = indents[index]
+				if level < depth:
+					break
+				if level > depth:
+					if items and not isinstance(items[-1], (list, dict, tuple)):
+						name = items.pop()
+						nxt = index + 1
+						if level == depth + 1 and (nxt == total or (lines[nxt] and indents[nxt] <= depth)):
+							content = line[level * unit_len:]
+							if content != '"':
+								items.append({name: line_value(content) if content[:1] in ('[', "'") else interpret(content)})
+								index = nxt
+								continue
+						child, index = parse_level(index, depth + 1)
+						items.append({name: unwrap(child)})
+					else:
+						child, index = parse_level(index, depth + 1)
+						items.append(child)
+					continue
+				content = line[depth * unit_len:]
+				if content == '"':
+					text, end = read_multiline(index + 1, depth)
+					if text:
+						items.append(text)
+						index = end
+						continue
+					items.append('"')
+				elif content[:1] == '[' and content not in ('[', '[]', '[ ]'):
+					items.append((parse_line(content),))
+					line_markers += 1
+				else:
+					items.append(line_value(content) if content[:1] in ('[', "'") else interpret(content))
+				index += 1
+			return finalize(items, boundaries), index
+		result, pos = parse_level(0, 0)
+		if pos != total:
+			raise ValueError('invalid encoding')
+		result = unwrap(result)
+		return resolve(result) if raw_placeholders or line_markers else result
+
+	@classmethod
+	def json(cls, data, indent = '\t', separators = None, ascii: bool = False):
 		try:
 			json = cls.module('json')
-			if indent:
-				separators = (', ', ': ')
-			else:
-				separators = (',', ':')
-			return json.dumps(data, ensure_ascii=not unicode, indent=indent, separators=separators)
-		except:
-			return
+			if not separators:
+				separators = (',', ':') if indent in ('', 0) else (', ', ': ')
+			return json.dumps(data, ensure_ascii=ascii, indent=indent, separators=separators)
+		except Exception as e:
+			cls.error('json', e)
 
 	@classmethod
 	def json_decode(cls, text: str):
@@ -12328,7 +12570,7 @@ class VOIDlang:
 			json = cls.module('json')
 			return json.loads(text)
 		except Exception as e:
-			cls.error('json', e)
+			cls.error('json.decode', e)
 
 	@classmethod
 	def csv(cls, data, delimiter: str = None, quote: str = None, parse: bool = True, parse_list_delimiter: str = None, parse_list_quote: str = None, parse_bool = None, parse_none = None):
@@ -12375,23 +12617,23 @@ class VOIDlang:
 		return cls.csv_decode(text, parse_list=True, parse_number=True, parse_bool=True, parse_none=True)
 
 	@classmethod
-	def yaml(cls, data, compact: bool = False, sort: bool = False, unicode: bool = True):
+	def yaml(cls, data, indent: int = None, sort: bool = False, ascii: bool = False):
 		try:
 			yaml = cls.module('yaml', 'pyyaml')
-			return yaml.dump(data, default_flow_style=compact, sort_keys=sort, allow_unicode=unicode)
-		except:
-			return
+			return yaml.dump(data, default_flow_style=not (indent is None or indent > 0), indent=indent or 2, sort_keys=sort, allow_unicode=not ascii)
+		except Exception as e:
+			cls.error('yaml', e)
 
 	@classmethod
 	def yaml_decode(cls, text: str):
 		try:
 			yaml = cls.module('yaml', 'pyyaml')
 			return yaml.safe_load(text)
-		except:
-			return
+		except Exception as e:
+			cls.error('yaml.decode', e)
 
 	@classmethod
-	def xml(cls, data: dict, compact: bool = False, indent = 2, header = None):
+	def xml(cls, data: dict, indent = None, encoding: str = None):
 		try:
 			xml = cls.module('xml.etree.ElementTree')
 			def build(parent, data_item):
@@ -12417,19 +12659,17 @@ class VOIDlang:
 			else:
 				root_element = xml.Element('xml')
 				build(root_element, data)
-			if not compact and hasattr(xml, 'indent'):
-				if type(indent) is int:
-					indent = ' ' * indent
-				elif type(indent) is not str:
-					indent = '  '
+			if type(indent) is int:
+				indent = ' ' * max(0, indent)
+			elif type(indent) is not str:
+				indent = '  '
+			if indent and hasattr(xml, 'indent'):
 				xml.indent(root_element, space=indent, level=0)
-			if not isinstance(header, str):
-				header = '<?xml version="1.0" encoding="UTF-8" ?>' if header else ''
-			if header and not compact:
-				header += '\n'
-			return f"{header}{xml.tostring(root_element, encoding='unicode')}"
+			encoding_standard = encoding is None or encoding.lower() in ['', 'utf-8']
+			header = f'<?xml version="1.0" encoding="UTF-8"?>{'\n' if indent else ''}' if encoding_standard else ''
+			return f"{header}{xml.tostring(root_element, encoding='unicode' if encoding_standard else encoding)}"
 		except Exception as e:
-			return
+			cls.error('xml', e)
 
 	@classmethod
 	def xml_decode(cls, text: str):
@@ -12441,26 +12681,26 @@ class VOIDlang:
 				return tag
 			def build(element):
 				tag_name = clean_tag(element.tag)
-				res = {'@' + clean_tag(name): value for name, value in element.attrib.items()}
+				result = {'@' + clean_tag(name): value for name, value in element.attrib.items()}
 				children = list(element)
 				if children:
 					for child in children:
 						child_tag, child_value = build(child)
-						if child_tag in res:
-							if not isinstance(res[child_tag], list):
-								res[child_tag] = [res[child_tag]]
-							res[child_tag].append(child_value)
+						if child_tag in result:
+							if not isinstance(result[child_tag], list):
+								result[child_tag] = [result[child_tag]]
+							result[child_tag].append(child_value)
 						else:
-							res[child_tag] = child_value
+							result[child_tag] = child_value
 				else:
 					text_value = element.text.strip() if element.text else ''
 					if text_value:
-						if not res:
+						if not result:
 							return tag_name, text_value
-						res['#text'] = text_value
-				if not res and not children:
+						result['#text'] = text_value
+				if not result and not children:
 					return tag_name, None
-				return tag_name, res
+				return tag_name, result
 			root_node = xml.fromstring(text)
 			root_tag, root_data = build(root_node)
 			return {root_tag: root_data}
