@@ -7288,6 +7288,8 @@ class void:
 				[ ]
 			drive
 				[ ]
+			power
+				[ ]
 			net
 				ethernet
 					[ ]
@@ -7302,8 +7304,6 @@ class void:
 						[]
 					global
 						none
-			power
-				[ ]
 			screen
 				[ ]
 			sound
@@ -7312,7 +7312,7 @@ class void:
 				[ ]
 			camera
 				[ ]
-			gps
+			location
 				[ ]
 			accelerometer
 				[ ]
@@ -7341,6 +7341,16 @@ class void:
 				[ ]
 			gamepad
 				[ ]
+		t
+			[ ]
+		debug
+			timepast
+				run
+					false
+		log
+			[ ]
+		db
+			[ ]
 		pi
 			3.14159265358979323846
 		e
@@ -7365,12 +7375,6 @@ class void:
 			none
 		language
 			none
-		t
-			[ ]
-		debug
-			timepast
-				run
-					false
 		run
 			[]
 		action
@@ -7496,7 +7500,7 @@ class void:
 		cls.set('app.python', cls.python)
 		cls.set('app.void', os.path.abspath(__file__))
 	  # os
-		match platform.system():
+		match platform.system():	
 			case 'Windows':
 				cls.os_type = 'windows'
 				cls.is_win = True
@@ -7720,15 +7724,15 @@ class void:
   # neuro
 
 	@classmethod
-	def neuro_mode(cls, intel: bool = True):
-		torch_type = cls.get('ai.torch')
-		if torch_type == 'cuda unchecked':
+	def neuro(cls, intel: bool = True):
+		torch = cls.get('ai.torch')
+		if torch == 'cuda unchecked':
 			cuda = cls.module('torch.cuda')
-			torch_type = 'cuda' if cuda.is_available() else 'cpu'
-			cls.set('ai.torch', torch_type)
-		if torch_type == 'cpu' and intel and cls.get('device.cpu.type') == 'intel':
+			torch = 'cuda' if cuda.is_available() else 'cpu'
+			cls.set('ai.torch', torch)
+		if torch == 'cpu' and intel and cls.get('cpu') == 'intel':
 			return 'intel'
-		return torch_type
+		return torch
 
 
   # value
@@ -7778,7 +7782,7 @@ class void:
 		return storage
 
 	@classmethod
-	def set(cls, name: str, data = None, storage = None):
+	def set(cls, name, data = None, storage = None):
 		if '/' in name or '\\' in name:
 			path = cls.path_dir(name)
 			path_extension = cls.path_extension(path).lower()
@@ -7824,7 +7828,7 @@ class void:
 					cls.file(path, storage_data)
 
 	@classmethod
-	def remove(cls, name: str, storage = None):
+	def remove(cls, name, storage = None):
 		if '/' in name or '\\' in name:
 			path = cls.path_dir(name)
 			path_extension = cls.path_extension(path).lower()
@@ -7994,27 +7998,26 @@ class void:
 		return cls.text(data).encode('utf-8')
 
 	@classmethod
-	def length(cls, data, real: bool = False):
-		if real:
-			sys.getsizeof(data)
-		if data is None:
-			return 0
-		if isinstance(data, (str, list, dict, bytes)):
-			return len(data)
-		if isinstance(data, bool):
-			return 1
-		if isinstance(data, int):
-			return (data.bit_length() + 7) // 8
-		if isinstance(data, float):
-			return (sys.float_info.mant_dig + math.ceil(math.log2(sys.float_info.max_10_exp - sys.float_info.min_10_exp)) + 1) // 8
+	def length(cls, data, byte: bool = None):
+		if byte is None:
+			if data is None:
+				return 0
+			if isinstance(data, (str, list, dict, bytes)):
+				return len(data)
+			if isinstance(data, bool):
+				return 1
+			if isinstance(data, int):
+				return (data.bit_length() + 7) // 8
+			if isinstance(data, float):
+				return (sys.float_info.mant_dig + math.ceil(math.log2(sys.float_info.max_10_exp - sys.float_info.min_10_exp)) + 1) // 8
+		if byte:		
+			if isinstance(data, str):
+				return len(data.encode())
+		return sys.getsizeof(data)
 
-	@classmethod
-	def len(cls, data):
-		return cls.length(data)
-
-	@classmethod
-	def mem(cls, data):
-		return cls.length(data, True)
+	@classmethod # alias
+	def len(cls, data, byte: bool = None):
+		return cls.length(data, byte)
 
 
   # expression
@@ -8055,7 +8058,7 @@ class void:
 	def expression_modulo(cls):
 		pass
 
-	@classmethod
+	@classmethod # alias
 	def expression_mod(cls):
 		return cls.expression_modulo()
 
@@ -8063,7 +8066,7 @@ class void:
 	def expression_power(cls):
 		pass
 
-	@classmethod
+	@classmethod # alias
 	def expression_pow(cls):
 		return cls.expression_power()
 
@@ -8122,15 +8125,27 @@ class void:
 		return False
 
 	@classmethod
+	def is_bin(cls, data):
+		pass
+
+	@classmethod
 	def is_file(cls, path: str) -> bool:
 		return os.path.isfile(path)
+
+	@classmethod
+	def is_file_text(cls, path: str) -> bool:
+		pass
+
+	@classmethod
+	def is_link(cls, path: str) -> bool:
+		pass
 
 	@classmethod
 	def is_dir(cls, path: str) -> bool:
 		return os.path.isdir(path)
 
 	@classmethod
-	def is_link(cls, path: str) -> bool:
+	def is_drive(cls, path: str) -> bool:
 		pass
 
 	@classmethod
@@ -8154,6 +8169,18 @@ class void:
 
 	@classmethod
 	def is_phone(cls, phone: str) -> bool:
+		pass
+
+	@classmethod
+	def is_image(cls, path: str) -> bool:
+		pass
+
+	@classmethod
+	def is_video(cls, path: str) -> bool:
+		pass
+
+	@classmethod
+	def is_subtitles(cls, path: str) -> bool:
 		pass
 
 	@classmethod
@@ -8210,23 +8237,28 @@ class void:
 	@classmethod
 	def print(cls, *data):
 		if len(data) > 0:
+			if len(data) > 1 and data[-1] in ('', None, False):
+				data = data[:-1]
+				newline = ''
+			else:
+				newline = '\n'
 			data = [('true' if value == True else ('false' if value == False else ('none' if value is None else value))) for value in data]
 			if len(data) == 1:
 				if isinstance(data[0], (list, dict)):
-					print(cls.void(data[0], indent=2))
+					print(cls.void(data[0], indent=2), end=newline)
 				else:
-					print(*data)
+					print(*data, end=newline)
 			else:
-				print(*data)
+				print(*data, end=newline)
 		else:
 			print()
 
-	@classmethod
-	def printn(cls, *data):
-		cls.print(*data, {'newline': None})
+	@classmethod # alias
+	def p(cls, *data):
+		cls.print(*data)
 
 	@classmethod
-	def print_page(cls, data = None, name: str = None):
+	def printer(cls, data = None, name: str = None):
 		if isinstance(data, str):
 			if cls.is_file(data):
 				extension = cls.path_extension(data).lower()
@@ -8252,7 +8284,7 @@ class void:
 				'list': result,
 				'default': win32print.GetDefaultPrinter()
 				}
-	
+
 	@classmethod
 	def input(cls, text: str = None):
 		return input(text if text is not None else '')
@@ -8332,7 +8364,7 @@ class void:
 			result = {'error': str(e), 'code': -1}
 		return result
 
-	@classmethod
+	@classmethod # short
 	def open_wait(cls, command):
 		return cls.open(command, True)
 
@@ -8369,7 +8401,7 @@ class void:
 		exec(text)
 
 	@classmethod
-	def logger(cls, *data):
+	def log(cls, *data):
 		result = {}
 		if len(data) > 0:
 			result['name'] = str(data[0])
@@ -8381,16 +8413,24 @@ class void:
 				result['data'] = result['data'][0]
 		cls.print(result)
 
-	@classmethod
-	def l(cls, tag: str, *data):
-		cls.logger('info', tag, *data)
+	@classmethod # alias
+	def l(cls, *data):
+		cls.log(*data)
 
 	@classmethod
 	def debug(cls, tag: str, *data):
-		cls.logger('debug', tag, *data)
+		cls.log('debug', tag, *data)
+
+	@classmethod # alias
+	def d(cls, tag: str, *data):
+		cls.debug(tag, *data)
 
 	@classmethod
 	def warning(cls, tag: str, *data):
+		cls.logger('warning', tag, *data)
+
+	@classmethod # alias
+	def w(cls, tag: str, *data):
 		cls.logger('warning', tag, *data)
 
 	@classmethod
@@ -8406,7 +8446,20 @@ class void:
 			}]
 		else:
 			data = [str(data) for data in data]
-		cls.logger('error', tag, *data)
+		cls.log('error', tag, *data)
+
+	@classmethod
+	def fatal(cls, *data):
+		cls.log('fatal', *data)
+		cls.exit(1)
+
+	@classmethod # alias
+	def f(cls, *data):
+		cls.fatal(*data)
+
+	@classmethod # alias
+	def xx(cls, *data):
+		cls.fatal(*data)
 
 	@classmethod
 	def test(cls, name = None):
@@ -8426,16 +8479,6 @@ class void:
 		if len(data):
 			cls.print(*data)
 		sys.exit(code)
-
-	@classmethod
-	def xx(cls, *data):
-		cls.logger('fatal', *data)
-		cls.exit(1)
-
-	@classmethod
-	def fatal(cls, *data):
-		cls.logger('fatal', *data)
-		cls.exit(1)
 
 	@classmethod
 	def cli(cls, *param):
@@ -8474,7 +8517,7 @@ class void:
 	def info(cls, name: str):
 		pass
 
-	@classmethod
+	@classmethod # alias
 	def i(cls, name: str):
 		return cls.info(name)
 
@@ -8482,7 +8525,7 @@ class void:
 	def help(cls, name: str):
 		return cls.info(name)
 
-	@classmethod
+	@classmethod # alias
 	def h(cls, name: str):
 		return cls.info(name)
 
@@ -8642,7 +8685,7 @@ class void:
 						if data:
 							cls.file(first, data)
 
-	@classmethod
+	@classmethod # alias
 	def c(cls, value, name_from = None, name_to = None):
 		return cls.convert(value, name_from, name_to)
 
@@ -8658,14 +8701,16 @@ class void:
 	def chat(cls, text: str, model: str = None, character: str = None, reference = None):
 		pass
 
-	@classmethod
+	@classmethod # alias
 	def ai(cls, text: str, model: str = None, character: str = None, reference = None):
 		return cls.chat(text, model, character, reference)
 
 	@classmethod
-	def say(cls, text: str, engine: str = 'edge', voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
+	def say(cls, text: str, engine: str = None, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
 		if translate:
 			text = cls.translate(text)
+		if engine is None:
+			engine = 'edge' if cls.os_type == 'windows' else 'google'
 		match engine:
 			case 'google':
 				gtts = cls.module('gtts')
@@ -8691,14 +8736,26 @@ class void:
 					voice = 'ru-RU-DmitryNeural'
 				try:
 					loop = asyncio.get_running_loop()
-					asyncio.ensure_future(cls.say_edge(text, voice, path, speed))
+					asyncio.ensure_future(cls.say_edge_async(text, voice, path, speed))
 				except RuntimeError:
-					asyncio.run(cls.say_edge(text, voice, path, speed))
+					asyncio.run(cls.say_edge_async(text, voice, path, speed))
 			case 'siri':
 				pass
 
-	@classmethod
-	async def say_edge(cls, text: str, voice: str, path: str = None, speed: float = 1):
+	@classmethod # short
+	def say_google(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
+		cls.say(text, engine='google', voice=voice, translate=translate, path=path, speed=speed)
+
+	@classmethod # short
+	def say_edge(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
+		cls.say(text, engine='edge', voice=voice, translate=translate, path=path, speed=speed)
+
+	@classmethod # short
+	def say_siri(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
+		cls.say(text, engine='siri', voice=voice, translate=translate, path=path, speed=speed)
+
+	@classmethod # service
+	async def say_edge_async(cls, text: str, voice: str, path: str = None, speed: float = 1):
 		edge_tts = cls.module('edge_tts')
 		tempfile = cls.module('tempfile')
 		with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as temp:
@@ -8750,7 +8807,15 @@ class void:
 		pass
 
 	@classmethod
-	def upper(cls):
+	def upper(cls, format: str = None):
+		pass
+
+	@classmethod # short
+	def upper_sentence(cls):
+		pass
+
+	@classmethod # short
+	def upper_title(cls):
 		pass
 
 	@classmethod
@@ -8771,13 +8836,21 @@ class void:
 			return text.rstrip(start)
 		return text[len(start):] if text.startswith(start) else text
 
+	@classmethod # alias
+	def lstrip(cls):
+		pass
+
 	@classmethod
 	def strip_end(cls, text: str, end: str = None):
 		if end is None or len(end) == 1:
 			return text.lstrip(end)
 		return text[len(end):] if text.endswith(end) else text
 
-	@classmethod	
+	@classmethod # alias
+	def rstrip(cls):
+		pass
+
+	@classmethod
 	def replace(cls, text: str, search, replace = None):
 		if type(search) is str:
 			if replace == None:
@@ -8795,12 +8868,20 @@ class void:
 		return result
 
 	@classmethod
-	def find(cls):
+	def index(cls):
 		pass
 
+	@classmethod # alias
+	def name(cls):
+		return cls.index()
+
 	@classmethod
-	def find_end(cls):
+	def index_reverse(cls):
 		pass
+
+	@classmethod # alias
+	def name_reverse(cls):
+		return cls.index_reverse()
 
 	@classmethod
 	def parse(cls, text: str, template: str = None, multiple: bool = None):
@@ -8862,7 +8943,7 @@ class void:
 				chunks.append(text)
 			return [chunk for chunk in chunks if chunk]
 
-	@classmethod
+	@classmethod # short
 	def split_accurate(cls, text, delimiter = None):
 		return cls.split(text, delimiter, True)
 
@@ -8870,15 +8951,7 @@ class void:
 	def join(cls):
 		pass
 
-	@classmethod
-	def size(cls):
-		pass
-
-	@classmethod
-	def ago(cls, from_time: float, to_time: float = None):
-		pass
-
-	@classmethod
+	@classmethod # alias
 	def escape(cls, text: str, format: str = None):
 		match format:
 			case 'url':
@@ -8925,9 +8998,13 @@ class void:
 	def e(cls, text: str, format: str = None):
 		return cls.escape(text, format)
 
-	@classmethod
+	@classmethod # short
 	def escape_url(cls, text: str, format: str = None):
 		return cls.escape(text, 'url')
+
+	@classmethod # short
+	def escape_html(cls, text: str, format: str = None):
+		return cls.escape(text, 'html')
 
 	@classmethod
 	def unescape(cls, text: str, format: str = None):
@@ -8970,13 +9047,17 @@ class void:
 				escape = cls.cache_unescape[format]
 				return escape['pattern'].sub(lambda match: escape['map'][match.group(0)], text)
 
-	@classmethod
+	@classmethod # alias
 	def u(cls, text: str, format: str = None):
 		return cls.unescape(text, format)
 
-	@classmethod
+	@classmethod # short
 	def unescape_url(cls, text: str, format: str = None):
 		return cls.unescape(text, 'url')
+
+	@classmethod # short
+	def unescape_html(cls, text: str, format: str = None):
+		return cls.unescape(text, 'html')
 
 	@classmethod
 	def translate(cls, text: str = None, language_from: str = None, language_to: str = None, engine: str = 'google'):
@@ -8993,18 +9074,34 @@ class void:
 		except Exception as e:
 			cls.error('translate', e)
 
+	@classmethod # alias
+	def a(cls, text: str = None, language_from: str = None, language_to: str = None, engine: str = 'google'):
+		return cls.translate(text, language_from, language_to, engine)
+
 	@classmethod
-	def check(cls):
+	def spellcheck(cls):
 		pass
+
+	@classmethod # alias
+	def s(cls):
+		return cls.spellcheck()
 
 
   # list
 
 	@classmethod
+	def insert(cls):
+		pass
+
+	@classmethod # alias
 	def push(cls):
 		pass
 
 	@classmethod
+	def withdraw(cls):
+		pass
+
+	@classmethod # alias
 	def pop(cls):
 		pass
 
@@ -9014,6 +9111,14 @@ class void:
 
 	@classmethod
 	def unique(cls):
+		pass
+
+	@classmethod
+	def sort(cls):
+		pass
+
+	@classmethod # short
+	def sort_reverse(cls):
 		pass
 
 	@classmethod
@@ -9030,6 +9135,10 @@ class void:
 
 	@classmethod
 	def names(cls):
+		pass
+
+	@classmethod # alias
+	def indexes(cls):
 		pass
 
 	@classmethod
@@ -9100,18 +9209,14 @@ class void:
 		return math.ceil(value)
 
 	@classmethod
-	def log(cls, value: float, base: float = None):
+	def lg(cls, value: float, base: float = None):
 		return math.log(value) if base == None else math.log(value, base)
-
-	@classmethod
-	def ln(cls, value: float, base: float = None):
-		return cls.log(value)
 
 	@classmethod
 	def factorial(cls, value: float):
 		return math.factorial(value)
 
-	@classmethod
+	@classmethod # alias
 	def fact(cls, value: float):
 		return cls.factorial(value)
 
@@ -9129,7 +9234,7 @@ class void:
 			result.append(b * multiply + shift)
 		return result
 
-	@classmethod
+	@classmethod # alias
 	def fib(cls, value: float, multiply: float = 1, shift: float = 0):
 		return cls.fibonacci(value)
 
@@ -9154,7 +9259,7 @@ class void:
 			'total': value
 			}
 
-	@classmethod
+	@classmethod # alias
 	def g(cls, value: float, component: str = None):
 		return cls.gold(value, component)
 
@@ -9185,7 +9290,7 @@ class void:
 		return cls.sum(value) / float(len(value))
 
 	@classmethod
-	def random(cls, value = None, to = None):
+	def random(cls, value = None, to = None, length: int = None):
 		if value == None and to == None:
 			return random.random()
 		if value != None and to != None:
@@ -9208,6 +9313,22 @@ class void:
 				return random.randint(0, value)
 			return random.uniform(0, float(value))
 
+	@classmethod # short
+	def random_text(cls, length: int = None):
+		pass
+
+	@classmethod # short
+	def random_list(cls, length: int = None):
+		pass
+
+	@classmethod # short
+	def random_dict(cls, length: int = None):
+		pass
+
+	@classmethod # short
+	def random_binary(cls, length: int = None):
+		pass
+
 	@classmethod
 	def random_seed(cls, seed = None):
 		if seed == None:
@@ -9217,7 +9338,7 @@ class void:
 		random.seed(seed)
 		cls.set('app.random.seed', seed)
 
-	@classmethod
+	@classmethod # short
 	def random_reseed(cls):
 		cls.random_seed('')
 
@@ -9225,19 +9346,19 @@ class void:
   # time
 
 	@classmethod
-	def time(cls, digits: int = None):
+	def time(cls, digits: int = None) -> int | float:
 		return time.time() if digits is None else cls.number(time.time(), digits)
 
-	@classmethod
-	def timestamp(cls):
+	@classmethod # short
+	def timestamp(cls) -> int:
 		return cls.time(0)
 
-	@classmethod
-	def time_milli(cls):
+	@classmethod # short
+	def time_milli(cls) -> int:
 		return cls.time(-3)
 
-	@classmethod
-	def time_micro(cls):
+	@classmethod # short
+	def time_micro(cls) -> int:
 		return cls.time(-6)
 
 	@classmethod
@@ -9253,7 +9374,7 @@ class void:
 		time.sleep(seconds)
 
 	@classmethod
-	def timepast(cls, tag: str = '', digits: int = None):
+	def t(cls, tag: str = None, digits: int = None):
 		result = time.perf_counter()
 		if tag not in cls.data['t']:
 			cls.data['t'][tag] = result
@@ -9265,9 +9386,9 @@ class void:
 			del cls.data['t'][tag]
 		return result
 
-	@classmethod
-	def t(cls, tag: str = None, digits: int = None):
-		return cls.timepast(tag, digits)
+	@classmethod # alias
+	def timepast(cls, tag: str = None, digits: int = None):
+		return cls.t(tag, digits)
 
 	@classmethod
 	def date(cls, timestamp = None, format: str = ''):
@@ -9312,11 +9433,15 @@ class void:
 			'(timezone)': f'{timezone_offset[:3]}:{timezone_offset[3:]}'
 			})
 
+	@classmethod
+	def ago(cls, from_time: float, to_time: float = None) -> str:
+		pass
+
 
   # crypto
 
 	@classmethod
-	def encrypt(cls, data, key: str = None):
+	def encrypt(cls, data, key: str = None) -> bytes | dict:
 		if data is None:
 			data = b'n'
 		elif data == True:
@@ -9370,7 +9495,7 @@ class void:
 					return cls.json_decode(data.decode('utf-8'))
 
 	@classmethod
-	def password(cls, password: str, name: str = None):
+	def password(cls, password: str, name: str = None) -> str:
 		if not password: return None
 		match name:
 			case 'argon' | 'argon2':
@@ -9390,7 +9515,7 @@ class void:
 				return f'$pbkdf2${rounds}${salt_base64}${key_base64}'
 
 	@classmethod
-	def password_check(cls, password_hashed: str, password: str):
+	def password_check(cls, password_hashed: str, password: str) -> bool:
 		if not password_hashed or not password: return False
 		try:
 			if password_hashed.startswith('$argon2'):
@@ -9418,7 +9543,7 @@ class void:
 			return False
 
 	@classmethod
-	def hash(cls, data = None, *param):
+	def hash(cls, data = None, *param) -> str:
 		if data is None:
 			data = 32
 		if type(data) is int:
@@ -9477,53 +9602,53 @@ class void:
 				return cls.sha256(data)
 
 	@classmethod
-	def uuid(cls, clean: bool = False):
+	def uuid(cls, clean: bool = False) -> str:
 		uuid = cls.module('uuid')
 		result = uuid.uuid4()
 		return str(result) if not clean else result.hex
 
 	@classmethod
-	def sha1(cls, data):
+	def sha1(cls, data) -> str:
 		hashlib = cls.module('hashlib')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
 		return hashlib.sha1(data).hexdigest()
 
 	@classmethod
-	def sha256(cls, data):
+	def sha256(cls, data) -> str:
 		hashlib = cls.module('hashlib')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
 		return hashlib.sha256(data).hexdigest()
 
 	@classmethod
-	def sha512(cls, data):
+	def sha512(cls, data) -> str:
 		hashlib = cls.module('hashlib')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
 		return hashlib.sha512(data).hexdigest()
 
 	@classmethod
-	def crc32(cls, data):
+	def crc32(cls, data) -> int:
 		zlib = cls.module('zlib')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
 		return zlib.crc32(data)
 
 	@classmethod
-	def base64(cls, data, safe: bool = False):
+	def base64(cls, data, safe: bool = False) -> str:
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
 		base64 = cls.module('base64')
 		data = base64.b64encode(data if type(data) is bytes else str(data).encode()).decode()
 		return data if not safe else data.replace('/', '_').replace('+', '-').rstrip('=')
 
-	@classmethod
-	def base64_safe(cls, data):
+	@classmethod # short
+	def base64_safe(cls, data) -> str:
 		return cls.base64(data, True)
 
 	@classmethod
-	def base64_decode(cls, data, safe: bool = False, format: str = None):
+	def base64_decode(cls, data, safe: bool = False, format: str = None) -> bytes | str:
 		import base64
 		if not isinstance(data, bytes):
 			if not isinstance(data, str):
@@ -9542,20 +9667,20 @@ class void:
 			except: pass
 		return data
 
-	@classmethod
-	def base64_decode_safe(cls, data, format: str = None):
+	@classmethod # short
+	def base64_decode_safe(cls, data, format: str = None) -> bytes | str:
 		return cls.base64_decode(data, True, format)
 
-	@classmethod
-	def base64_decode_binary(cls, data, safe: bool = False):
+	@classmethod # short
+	def base64_decode_binary(cls, data, safe: bool = False) -> bytes:
 		return cls.base64_decode(data, safe, 'binary')
  
-	@classmethod
-	def base64_decode_binary_safe(cls, data):
+	@classmethod # short
+	def base64_decode_binary_safe(cls, data) -> bytes:
 		return cls.base64_decode(data, True, 'binary')
 
 	@classmethod
-	def gzip(cls, data, compression = None):
+	def gzip(cls, data, compression = None) -> bytes:
 		gzip = cls.module('gzip')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
@@ -9577,16 +9702,16 @@ class void:
 			temp.write(data)
 		return buffer.getvalue()
 
-	@classmethod
-	def gzip_fast(cls, data):
+	@classmethod # short
+	def gzip_fast(cls, data) -> bytes:
 		return cls.gzip(data, 'fast')
 
-	@classmethod
-	def gzip_best(cls, data):
+	@classmethod # short
+	def gzip_best(cls, data) -> bytes:
 		return cls.gzip(data, 'best')
 
 	@classmethod
-	def gzip_decode(cls, data):
+	def gzip_decode(cls, data) -> bytes:
 		if not data: return
 		gzip = cls.module('gzip')
 		try:
@@ -9595,7 +9720,7 @@ class void:
 		except: return
 
 	@classmethod
-	def zstd(cls, data, compression = None):
+	def zstd(cls, data, compression = None) -> bytes:
 		zstandard = cls.module('zstandard')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
@@ -9617,16 +9742,16 @@ class void:
 		except Exception as e:
 			cls.error('zstd', e)
 
-	@classmethod
-	def zstd_fast(cls, data):
+	@classmethod # short
+	def zstd_fast(cls, data) -> bytes:
 		return cls.zstd(data, 'fast')
 
-	@classmethod
-	def zstd_best(cls, data):
+	@classmethod # short
+	def zstd_best(cls, data) -> bytes:
 		return cls.zstd(data, 'best')
 
-	@classmethod
-	def zstandard(cls, data):
+	@classmethod # alias
+	def zstandard(cls, data) -> bytes:
 		return cls.zstd(data, 'best')
 
 	@classmethod
@@ -9639,12 +9764,12 @@ class void:
 		except Exception as e:
 			cls.error('zstd.decode', e)
 
-	@classmethod
+	@classmethod # alias
 	def zstandard_decode(cls, data) -> bytes:
 		return cls.zstd(data)
 
 	@classmethod
-	def brotli(cls, data, compression = None):
+	def brotli(cls, data, compression = None) -> bytes:
 		brotli = cls.module('brotli')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
@@ -9666,8 +9791,16 @@ class void:
 		except Exception as e:
 			cls.error('brotli', e)
 
+	@classmethod # short
+	def brotli_fast(cls, data) -> bytes:
+		return cls.brotli(data, 'fast')
+
+	@classmethod # short
+	def brotli_best(cls, data) -> bytes:
+		return cls.brotli(data, 'best')
+
 	@classmethod
-	def brotli_decode(cls, data):
+	def brotli_decode(cls, data) -> bytes:
 		if not data: return
 		brotli = cls.module('brotli')
 		try:
@@ -9677,7 +9810,7 @@ class void:
 			cls.error('brotli.decode', e)
 
 	@classmethod
-	def lzma(cls, data, compression = None):
+	def lzma(cls, data, compression = None) -> bytes:
 		lzma = cls.module('lzma')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
@@ -9709,16 +9842,16 @@ class void:
 			return lzma.compress(bytes(data), filters=filters)
 		return lzma.compress(bytes(data), preset=compression)
 
-	@classmethod
-	def lzma_fast(cls, data):
+	@classmethod # short
+	def lzma_fast(cls, data) -> bytes:
 		return cls.lzma(data, 'fast')
 
-	@classmethod
-	def lzma_best(cls, data):
+	@classmethod # short
+	def lzma_best(cls, data) -> bytes:
 		return cls.lzma(data, 'best')
 
 	@classmethod
-	def lzma_decode(cls, data):
+	def lzma_decode(cls, data) -> bytes:
 		if not data: return
 		lzma = cls.module('lzma')
 		try:
@@ -9727,7 +9860,7 @@ class void:
 		except: return
 
 	@classmethod
-	def lz4(cls, data, compression = None):
+	def lz4(cls, data, compression = None) -> bytes:
 		lz4_frame = cls.module('lz4.frame')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
@@ -9746,16 +9879,16 @@ class void:
 				compression = 16
 		return lz4_frame.compress(data, compression_level=compression)
 
-	@classmethod
-	def lz4_fast(cls, data):
+	@classmethod # short
+	def lz4_fast(cls, data) -> bytes:
 		return cls.lz4(data, 'fast')
 
-	@classmethod
-	def lz4_best(cls, data):
+	@classmethod # short
+	def lz4_best(cls, data) -> bytes:
 		return cls.lz4(data, 'best')
 
 	@classmethod
-	def lz4_decode(cls, data: bytes):
+	def lz4_decode(cls, data: bytes) -> bytes:
 		if not data: return
 		lz4_frame = cls.module('lz4.frame')
 		try:
@@ -9764,7 +9897,7 @@ class void:
 		except: return
 
 	@classmethod
-	def deflate(cls, data, compression = None):
+	def deflate(cls, data, compression = None) -> bytes:
 		zlib = cls.module('zlib')
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
@@ -9784,16 +9917,16 @@ class void:
 		compressor = zlib.compressobj(level=compression, method=zlib.DEFLATED, wbits=-15)
 		return compressor.compress(data) + compressor.flush()
 
-	@classmethod
-	def deflate_fast(cls, data):
+	@classmethod # short
+	def deflate_fast(cls, data) -> bytes:
 		return cls.deflate(data, 'fast')
 
-	@classmethod
-	def deflate_best(cls, data):
+	@classmethod # short
+	def deflate_best(cls, data) -> bytes:
 		return cls.deflate(data, 'best')
 
 	@classmethod
-	def deflate_decode(cls, data):
+	def deflate_decode(cls, data) -> bytes:
 		if not data: return
 		zlib = cls.module('zlib')
 		try:
@@ -9802,7 +9935,7 @@ class void:
 		except: return
 
 	@classmethod
-	def lzss(cls, data):
+	def lzss(cls, data) -> bytes:
 		if not data: return
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
@@ -9859,7 +9992,7 @@ class void:
 		return bytes(result)
 
 	@classmethod
-	def lzss_decode(cls, data):
+	def lzss_decode(cls, data) -> bytes:
 		if not data: return
 		try:
 			if isinstance(data, str): data = cls.base64_decode(data)
@@ -9926,7 +10059,7 @@ class void:
 			cls.error('rle.decode', e)
 
 	@classmethod
-	def aes(cls, data, key: str):
+	def aes(cls, data, key: str) -> bytes:
 		if not data: return
 		if not isinstance(data, bytes):
 			data = str(data if data is not None else '').encode()
@@ -9943,7 +10076,7 @@ class void:
 			cls.error('aes.encode', e)
 
 	@classmethod
-	def aes_decode(cls, data, key: str):
+	def aes_decode(cls, data, key: str) -> bytes:
 		if data is None or len(data) < 12: return
 		try:
 			if isinstance(data, str): data = cls.base64_decode(data)
@@ -9958,10 +10091,9 @@ class void:
 			return aes.decrypt(nonce, encrypted, None)
 		except  Exception as e:
 			cls.error('aes.decode', e)
-			return
 
 	@classmethod
-	def rsa(cls, data = None, public_key = None, password: str = None, length = None):
+	def rsa(cls, data = None, public_key = None, password: str = None, length = None) -> bytes | dict:
 		if not data: return
 		try:
 			serialization = cls.module('cryptography.hazmat.primitives.serialization', 'cryptography')
@@ -10016,12 +10148,12 @@ class void:
 		except Exception as e:
 			cls.error('rsa.encode', e)
 
-	@classmethod
-	def rsa_fast(cls, data: bytes = None, public_key = None, password: str = None):
+	@classmethod # short
+	def rsa_fast(cls, data: bytes = None, public_key = None, password: str = None) -> bytes | dict:
 		return cls.rsa(data, public_key, password, 'fast')
 
 	@classmethod
-	def rsa_decode(cls, data, private_key, password: str = None):
+	def rsa_decode(cls, data, private_key, password: str = None) -> bytes:
 		if not data: return
 		try:
 			if isinstance(data, str): data = cls.base64_decode(data)
@@ -10039,7 +10171,7 @@ class void:
 			cls.error('rsa.decode', e)
 
 	@classmethod
-	def ecdhe(cls, public_key: str = None, private_key: str = None):
+	def ecdhe(cls, public_key: str = None, private_key: str = None) -> bytes | dict:
 		try:
 			ec = cls.module('cryptography.hazmat.primitives.asymmetric.ec', 'cryptography')
 			serialization = cls.module('cryptography.hazmat.primitives.serialization', 'cryptography')
@@ -10065,7 +10197,7 @@ class void:
 			cls.error('ecdhe', e)
 
 	@classmethod
-	def barcode(cls, text = None, format: str = None):
+	def barcode(cls, text = None, format: str = None) -> dict | list:
 		try:
 			if text == None:
 				barcode = cls.module('barcode', 'python-barcode')
@@ -10136,20 +10268,22 @@ class void:
 		except Exception as e:
 			cls.error('barcode', e)
 
-	@classmethod
-	def qr(cls, text: str):
+	@classmethod # short
+	def qr(cls, text: str) -> dict:
 		return cls.barcode(text, 'qr')
 
 	@classmethod
 	def barcode_decode(cls, image, format: str = None):
 		return cls.recognize(image, format)
 
-	@classmethod
+	@classmethod # short
 	def qr_decode(cls, image):
 		return cls.barcode_decode(image, 'qr')
 
 
   # file
+
+  	# file
 
 	@classmethod
 	def file(cls, path: str, data = None, format: str = None, param = None):
@@ -10585,59 +10719,59 @@ class void:
 					except Exception as e:
 						cls.error('file.write', e)
 
-	@classmethod
+	@classmethod # short
 	def file_read(cls, path: str):
 		return cls.file(path)
 
-	@classmethod
+	@classmethod # short
 	def file_write(cls, path: str, data = None, format: str = None, param = None):
 		return cls.file(path, data if data is not None else b'', format, param)
 
-	@classmethod
+	@classmethod # short
 	def file_binary(cls, path: str, data = None, param = None):
 		return cls.file(path, data, 'binary', param)
 
-	@classmethod
+	@classmethod # short
 	def file_text(cls, path: str, data = None, param = None):
 		return cls.file(path, data, 'text', param)
 
-	@classmethod
+	@classmethod # short
 	def file_line(cls, path: str, data = None, param = None):
 		return cls.file(path, data, 'line', param) or []
 
-	@classmethod
+	@classmethod # short
 	def file_ascii(cls, path: str, data = None, param = None):
 		return cls.file(path, data, 'ascii', param)
 
-	@classmethod
+	@classmethod # short
 	def file_void(cls, path: str, data = None, param = None):
 		return cls.file(path, data, 'void', param)
 
-	@classmethod
+	@classmethod # short
 	def file_json(cls, path: str, data = None, param = None):
 		return cls.file(path, data, 'json', param)
 
-	@classmethod
+	@classmethod # short
 	def file_csv(cls, path: str, data = None, delimiter: str = None):
 		return cls.file(path, data, 'csv', delimiter)
 
-	@classmethod
+	@classmethod # short
 	def file_yaml(cls, path: str, data = None, param = None):
 		return cls.file(path, data, 'yaml', param)
 
-	@classmethod
+	@classmethod # short
 	def file_xml(cls, path: str, data = None, param = None):
 		return cls.file(path, data, 'xml', param)
 
-	@classmethod
+	@classmethod # short
 	def file_ini(cls, path: str, data = None, param = None):
 		return cls.file(path, data, 'ini', param)
 
-	@classmethod
+	@classmethod # short
 	def file_create(cls, path: str):
 		cls.file(path, b'', 'binary')
 
-	@classmethod
+	@classmethod # short
 	def file_clear(cls, path: str):
 		cls.file(path, b'', 'binary')
 
@@ -10653,9 +10787,9 @@ class void:
 		if cls.is_dir(path):
 			cls.dir_remove(path, trash)
 
-	@classmethod
+	@classmethod # short
 	def file_trash(cls, path: str):
-		cls.file_remove(path)
+		cls.file_remove(path, True)
 
 	@classmethod
 	def file_copy(cls, source: str, destination: str = None):
@@ -10813,9 +10947,13 @@ class void:
 			case 'void':
 				pass
 
+	# link
+
 	@classmethod
 	def link(cls, source: str, destination: str):
 		pass
+
+    # dir
 
 	@classmethod
 	def dir(cls, path: str = None, recursive: bool = False, type: str = None):
@@ -10852,7 +10990,7 @@ class void:
 				result.append(name)
 		return result
 
-	@classmethod
+	@classmethod # short
 	def dir_dir(cls, path: str = None, recursive: bool = False):
 		return cls.dir(path, recursive=recursive, type='dir')
 
@@ -10875,7 +11013,7 @@ class void:
 		except:
 			pass
 
-	@classmethod
+	@classmethod # short
 	def dir_trash(cls, path: str):
 		cls.dir_remove(path, True)
 
@@ -11236,49 +11374,51 @@ class void:
 		except Exception as e:
 			cls.error('dir.magic', e)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_run(cls, path):
 		cls.dir_magic(path, 'run')
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_jpg(cls, path, param = None):
 		cls.dir_magic(path, 'jpg', param)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_webp(cls, path, param = None):
 		cls.dir_magic(path, 'webp', param)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_gif(cls, path, param = None):
 		cls.dir_magic(path, 'gif', param)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_mp4(cls, path, param = None):
 		cls.dir_magic(path, 'mp4', param)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_webm(cls, path, param = None):
 		cls.dir_magic(path, 'webm', param)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_mp3(cls, path, param = None):
 		cls.dir_magic(path, 'mp3', param)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_unique(cls, path, length: int = 8):
 		cls.dir_magic(path, 'unique', length)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_zip(cls, path, param = None):
 		cls.dir_magic(path, 'zip', param)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_encrypt(cls, path, key: str):
 		cls.dir_magic(path, 'encrypt', key)
 
-	@classmethod
+	@classmethod # short
 	def dir_magic_action(cls, path, action):
 		cls.dir_magic(path, 'action', action)
+
+	# drive
 
 	@classmethod
 	def drive(cls, path: str = None):
@@ -11291,14 +11431,6 @@ class void:
 	@classmethod
 	def drive_create(cls, path: str, size, format: str = None, name: str = None):
 		pass
-
-	@classmethod
-	def drive_exists(cls, path: str):
-		pass
-
-	@classmethod
-	def is_drive(cls, path: str) -> bool:
-		return cls.drive_exists(path)
 
 	@classmethod
 	def drive_remove(cls, path: str):
@@ -11340,6 +11472,8 @@ class void:
 	def drive_os(cls, path: str = None, name: str = None):
 		pass
 
+	# path
+
 	@classmethod
 	def path(cls, *path, delimiter: str = None):
 		if len(path) == 0:
@@ -11371,7 +11505,7 @@ class void:
 				path_list.append(name)
 		return delimiter.join(path_list)
 
-	@classmethod
+	@classmethod # short
 	def path_slash(cls, *path):
 		return cls.path(*path, delimiter='/')
 
@@ -12124,7 +12258,7 @@ class void:
 		except Exception as e:
 			cls.error('csv.decode', e)
 
-	@classmethod
+	@classmethod # short
 	def csv_decode_parse(cls, text: str):
 		return cls.csv_decode(text, parse_list=True, parse_number=True, parse_bool=True, parse_none=True)
 
@@ -12296,7 +12430,7 @@ class void:
 		except Exception as e:
 			cls.error('ini.decode', e)
 
-	@classmethod
+	@classmethod # short
 	def ini_decode_parse(cls, text: str):
 		return cls.ini_decode(text, parse_list=True, parse_number=True, parse_bool=True, parse_none=True)
 
@@ -12347,214 +12481,6 @@ class void:
 			if not index:
 				return cls.xml({'urlset': {'url': url_list, '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}}, compact=compact, header=True)
 			return cls.xml({'sitemapindex': {'sitemap': url_list, '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}}, compact=compact, header=True)
-
-	# image
-
-	@classmethod
-	def bmp(cls, data):
-		pass
-
-	@classmethod
-	def bmp_decode(cls, data):
-		pass
-
-	@classmethod
-	def jpg(cls, data):
-		pass
-
-	@classmethod
-	def jpg_decode(cls, data):
-		pass
-
-	@classmethod
-	def png(cls, data):
-		pass
-
-	@classmethod
-	def png_decode(cls, data):
-		pass
-
-	@classmethod
-	def gif(cls, data):
-		pass
-
-	@classmethod
-	def gif_decode(cls, data):
-		pass
-
-	@classmethod
-	def webp(cls, data):
-		pass
-
-	@classmethod
-	def webp_decode(cls, data):
-		pass
-
-	@classmethod
-	def avif(cls, data):
-		pass
-
-	@classmethod
-	def avif_decode(cls, data):
-		pass
-
-	@classmethod
-	def heic(cls, data):
-		pass
-
-	@classmethod
-	def heic_decode(cls, data):
-		pass
-
-	@classmethod
-	def tiff(cls, data):
-		pass
-
-	@classmethod
-	def tiff_decode(cls, data):
-		pass
-
-	# video
-
-	@classmethod
-	def mp4(cls, data):
-		pass
-
-	@classmethod
-	def mp4_decode(cls, data):
-		pass
-
-	@classmethod
-	def avi(cls, data):
-		pass
-
-	@classmethod
-	def avi_decode(cls, data):
-		pass
-
-	@classmethod
-	def webm(cls, data):
-		pass
-
-	@classmethod
-	def webm_decode(cls, data):
-		pass
-
-	@classmethod
-	def mov(cls, data):
-		pass
-
-	@classmethod
-	def mov_decode(cls, data):
-		pass
-
-	@classmethod
-	def ogm(cls, data):
-		pass
-
-	@classmethod
-	def ogm_decode(cls, data):
-		pass
-
-	@classmethod
-	def mkv(cls, data):
-		pass
-
-	@classmethod
-	def mkv_decode(cls, data):
-		pass
-
-	@classmethod
-	def mpeg(cls, data):
-		pass
-
-	@classmethod
-	def mpeg_decode(cls, data):
-		pass
-
-	# sound
-
-	@classmethod
-	def mp3(cls, data):
-		pass
-
-	@classmethod
-	def mp3_decode(cls, data):
-		pass
-
-	@classmethod
-	def wav(cls, data):
-		pass
-
-	@classmethod
-	def wav_decode(cls, data):
-		pass
-
-	@classmethod
-	def flac(cls, data):
-		pass
-
-	@classmethod
-	def flac_decode(cls, data):
-		pass
-
-	@classmethod
-	def aac(cls, data):
-		pass
-
-	@classmethod
-	def aac_decode(cls, data):
-		pass
-
-	@classmethod
-	def ac3(cls, data):
-		pass
-
-	@classmethod
-	def ac3_decode(cls, data):
-		pass
-
-	@classmethod
-	def ogg(cls, data):
-		pass
-
-	@classmethod
-	def ogg_decode(cls, data):
-		pass
-
-	@classmethod
-	def weba(cls, data):
-		pass
-
-	@classmethod
-	def weba_decode(cls, data):
-		pass
-
-	# subtitles
-
-	@classmethod
-	def srt(cls, data):
-		pass
-
-	@classmethod
-	def srt_decode(cls, data):
-		pass
-
-	@classmethod
-	def ass(cls, data):
-		pass
-
-	@classmethod
-	def ass_decode(cls, data):
-		pass
-
-	@classmethod
-	def webvtt(cls, data):
-		pass
-
-	@classmethod
-	def webvtt_decode(cls, data):
-		pass
 
 
 	# cloud
@@ -12735,7 +12661,7 @@ class void:
 			case _:
 				pass
 
-	@classmethod
+	@classmethod # service
 	def cloud_handler(cls, param: dict, request: dict):
 		match param['cloud']:
 			case 'web':
@@ -12873,7 +12799,7 @@ class void:
 				}
 		return {'code': 404}
 
-	@staticmethod
+	@staticmethod # service
 	async def cloud_handle(cls, reader, writer, param: dict):
 		asyncio = cls.module('asyncio')
 		socket = cls.module('socket')
@@ -13139,7 +13065,7 @@ class void:
 				await writer.wait_closed()
 			except Exception: pass
 
-	@classmethod
+	@classmethod # service
 	def cloud_server(cls, param: dict):
 		try:
 			socket = cls.module('socket')
@@ -13217,7 +13143,7 @@ class void:
 					for process in processes: process.terminate()
 		except Exception as e: cls.error('cloud.server', e)
 
-	@staticmethod
+	@staticmethod # service
 	def cloud_worker(cls, sockets, param: dict):
 		asyncio = cls.module('asyncio')
 		if cls.os_type == 'windows':
@@ -13252,39 +13178,39 @@ class void:
 			asyncio.run(serve())
 		except KeyboardInterrupt: pass
 
-	@classmethod
+	@classmethod # short
 	def cloud_file(cls, path: str = None):
 		cls.cloud(path, 'file')
 
-	@classmethod
+	@classmethod # short
 	def cloud_web(cls, param):
 		cls.cloud(param, 'web')
 
-	@classmethod
+	@classmethod # short
 	def cloud_api(cls, param):
 		cls.cloud(param, 'api')
 
-	@classmethod
+	@classmethod # short
 	def cloud_socket(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def cloud_mail(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def cloud_vpn(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def cloud_proxy(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def cloud_stream(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def cloud_desktop(cls):
 		pass
 
@@ -13463,9 +13389,11 @@ class void:
 			result = {'code': 500, 'error': e, 'success': False} if info else None
 		return result
 
-	@classmethod
+	@classmethod # alias
 	def r(cls, url: str, method: str = None, header: dict = None, data = None, cookie: dict = None, agent: str = None, key: str = None, format: str = None, timeout: float = 5, info: bool = False):
 		return cls.request(url, method, header, data, cookie, agent, key, format, timeout, info)
+
+	# url
 
 	@classmethod
 	def url(cls, *url) -> str:
@@ -13539,6 +13467,8 @@ class void:
 			'query': dict(parse.parse_qsl(info.query)),
 			'fragment': parse.unquote(parse.urlparse(url).fragment)
 		}
+
+	# download
 
 	@classmethod
 	def download(cls, url: str, path: str = None, param = None, format: str = None):
@@ -13845,53 +13775,55 @@ class void:
 							else:
 								return data
 
-	@classmethod
+	@classmethod # alias
 	def d(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param)
 
-	@classmethod
+	@classmethod # short
 	def download_info(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='info')
 
-	@classmethod
+	@classmethod # short
 	def download_video(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='video')
 
-	@classmethod
-	def download_audio(cls, url: str, path: str = None, param = None):
-		return cls.download(url, path, param, format='sound')
-
-	@classmethod
+	@classmethod # short
 	def download_sound(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='sound')
 
-	@classmethod
+	@classmethod # alias
+	def download_audio(cls, url: str, path: str = None, param = None):
+		return cls.download_sound(url, path, param)
+
+	@classmethod # short
 	def download_subtitles(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='subtitles')
 
-	@classmethod
+	@classmethod # alias
 	def download_sub(cls, url: str, path: str = None, param = None):
-		return cls.download(url, path, param, format='subtitles')
+		return cls.download_subtitles(url, path, param)
 
-	@classmethod
+	@classmethod # short
 	def download_file(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='file')
 
-	@classmethod
+	@classmethod # short
 	def download_page(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='page')
 
-	@classmethod
+	@classmethod # short
 	def download_site(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='site')
 
-	@classmethod
+	@classmethod # short
 	def download_torrent(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='torrent')
 
-	@classmethod
+	@classmethod # short
 	def download_magnet(cls, url: str, path: str = None, param = None):
 		return cls.download(url, path, param, format='magnet')
+
+	# cookie
 
 	@classmethod
 	def cookie(cls):
@@ -13900,6 +13832,8 @@ class void:
 	@classmethod
 	def cookie_remove(cls):
 		pass
+
+	# notify
 
 	@classmethod
 	def notify(cls):
@@ -13929,79 +13863,81 @@ class void:
 	def notify_social(cls):
 		pass
 
+	# social
+
 	@classmethod
 	def social(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_google(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_yandex(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_baidu(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_youtube(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_tiktok(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_douyin(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_x(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_reddit(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_telegram(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_wechat(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_twitch(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_facebook(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_whatsapp(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_instagram(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_vk(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_line(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_linkedin(cls):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def social_steam(cls):
 		pass
 
@@ -14021,11 +13957,87 @@ class void:
 		pass
 
 	@classmethod
+	def temperature(cls, name: str = None):
+		pass
+
+	@classmethod
+	def fan(cls, name: str = None):
+		pass
+
+	@classmethod
 	def memory(cls):
 		pass
 
 	@classmethod
 	def battery(cls):
+		pass
+
+	@classmethod
+	def net(cls, info: str = None):
+		def ip_local():
+			socket = cls.module('socket')
+			hostname = socket.gethostname()
+			addresses = socket.getaddrinfo(hostname, None)
+			ipv4 = sorted(set(addr[4][0] for addr in addresses if addr[0] == socket.AF_INET and addr[4][0] != '127.0.0.1'))
+			return ipv4
+		def ip_public():
+			return cls.url('https://ident.me')
+		def ip_provider():
+			socket = cls.module('socket')
+			sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+			try:
+				sock.connect(('8.8.8.8', 8081))
+				result = sock.getsockname()[0]
+			except Exception:
+				result = '127.0.0.1'
+			finally:
+				sock.close()
+			return result
+		match info:
+			case 'local':
+				return ip_local()
+			case 'public' | 'global':
+				return ip_public()
+			case 'provider':
+				return ip_provider()
+			case _:
+				return {
+					'localhost': '127.0.0.1',
+					'local': ip_local(),
+					'public': ip_public(),
+					'provider': ip_provider()
+				}
+
+	@classmethod # short
+	def ip(cls):
+		return cls.net('ip')
+
+	@classmethod # short
+	def ip_local(cls):
+		return cls.net('local')
+
+	@classmethod # short
+	def ip_public(cls):
+		return cls.net('public')
+
+	@classmethod # alias
+	def ip_global(cls):
+		return cls.ip_public()
+
+	@classmethod # short
+	def ip_provider(cls):
+		return cls.net('provider')
+
+	@classmethod
+	def wifi(cls):
+		pass
+
+	@classmethod
+	def bluetooth(cls):
+		pass
+
+	@classmethod
+	def cellular(cls):
 		pass
 
 	@classmethod
@@ -14076,11 +14088,43 @@ class void:
 		pass
 
 	@classmethod
-	def flashlight(cls):
+	def brightness(cls):
+		pass
+
+	@classmethod
+	def volume(cls):
+		pass
+
+	@classmethod
+	def mute(cls):
+		pass
+
+	@classmethod
+	def mic(cls):
+		pass
+
+	@classmethod
+	def mic_mute(cls):
+		pass
+
+	@classmethod # alias
+	def mic_off(cls):
+		cls.mic_mute()
+
+	@classmethod
+	def camera(cls):
+		pass
+
+	@classmethod
+	def camera_off(cls):
 		pass
 
 	@classmethod
 	def location(cls):
+		pass
+
+	@classmethod # alias
+	def gps(cls):
 		pass
 
 	@classmethod
@@ -14092,6 +14136,10 @@ class void:
 		pass
 
 	@classmethod
+	def altimeter(cls):
+		pass
+
+	@classmethod
 	def compass(cls):
 		pass
 
@@ -14100,11 +14148,7 @@ class void:
 		pass
 
 	@classmethod
-	def brightness(cls):
-		pass
-
-	@classmethod
-	def volume(cls):
+	def light(cls):
 		pass
 
 	@classmethod
@@ -14128,56 +14172,6 @@ class void:
 		pass
 
 	@classmethod
-	def net(cls):
-		return {
-			'localhost': '127.0.0.1',
-			'local': cls.ip_local(),
-			'public': cls.ip_public(),
-			'provider': cls.ip_provider()
-		}
-
-	@classmethod
-	def ip_local(cls):
-		socket = cls.module('socket')
-		hostname = socket.gethostname()
-		addresses = socket.getaddrinfo(hostname, None)
-		ipv4 = sorted(set(addr[4][0] for addr in addresses if addr[0] == socket.AF_INET and addr[4][0] != '127.0.0.1'))
-		return ipv4
-
-	@classmethod
-	def ip_public(cls):
-		return cls.url('https://ident.me')
-
-	@classmethod
-	def ip_global(cls):
-		return cls.ip_public()
-
-	@classmethod
-	def ip_provider(cls):
-		socket = cls.module('socket')
-		sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		try:
-			sock.connect(('8.8.8.8', 8081))
-			result = sock.getsockname()[0]
-		except Exception:
-			result = '127.0.0.1'
-		finally:
-			sock.close()
-		return result
-
-	@classmethod
-	def wifi(cls):
-		pass
-
-	@classmethod
-	def bluetooth(cls):
-		pass
-
-	@classmethod
-	def cellular(cls):
-		pass
-
-	@classmethod
 	def keyboard(cls):
 		pass
 
@@ -14193,7 +14187,7 @@ class void:
 	def tap(cls):
 		pass
 
-	@classmethod
+	@classmethod # alias
 	def click(cls):
 		return cls.tap()
 
@@ -14260,7 +14254,7 @@ class void:
 				image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
 				image = pillow_image.fromarray(image_np)
 		if mode == 'neuro':
-			mode = cls.neuro_mode()
+			mode = cls.neuro()
 		match mode:
 			case 'intel':
 				torch = cls.module('torch')
@@ -14329,21 +14323,29 @@ class void:
 			case _:
 				cls.file(path_to, image.resize((int(image_width * scale), int(image_height * scale)), mode), param=quality)
 
-	@classmethod
+	@classmethod # short
 	def image_x2(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 2, mode='neuro')
+		return cls.image_resize(path_from, path_to, 2, deblocking=deblocking, mode='neuro', quality=quality)
 
-	@classmethod
+	@classmethod # short
 	def image_x4(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 4, mode='neuro')
+		return cls.image_resize(path_from, path_to, 4, deblocking=deblocking, mode='neuro', quality=quality)
 
 	@classmethod
 	def x2(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 2, deblocking=deblocking, mode='neuro', quality=quality)
+		extension = cls.path_extension(path_from).lower()
+		if extension in cls.get('info.extension.void.image'):
+			return cls.image_resize(path_from, path_to, 2, deblocking=deblocking, mode='neuro', quality=quality)
+		if extension in cls.get('info.extension.ffmpeg.video'):
+			return cls.video_resize(path_from, path_to, 2, deblocking=deblocking, mode='neuro', quality=quality)
 
 	@classmethod
 	def x4(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
-		return cls.image_resize(path_from, path_to, 4, deblocking=deblocking, mode='neuro', quality=quality)
+		extension = cls.path_extension(path_from).lower()
+		if extension in cls.get('info.extension.void.image'):
+			return cls.image_resize(path_from, path_to, 4, deblocking=deblocking, mode='neuro', quality=quality)
+		if extension in cls.get('info.extension.ffmpeg.video'):
+			return cls.video_resize(path_from, path_to, 4, deblocking=deblocking, mode='neuro', quality=quality)
 
 	@classmethod
 	def image_colorize(cls, path_from: str, path_to: str = None, mode: str = None, quality: int = None):
@@ -14357,7 +14359,7 @@ class void:
 		image_width, image_height = image.size
 		torch = cls.module('torch')
 		if mode is None:
-			mode = cls.neuro_mode()
+			mode = cls.neuro()
 		match mode:
 			case 'intel':
 				openvino = cls.module('openvino')
@@ -14415,7 +14417,7 @@ class void:
 		ToTensor = cls.module('torchvision.transforms', 'torchvision').ToTensor
 		nn = torch.nn
 		if mode is None:
-			mode = cls.neuro_mode(intel=False)
+			mode = cls.neuro(intel=False)
 		if mode not in cls.cache_colorize:
 			path_generator = cls.get('ai.colorize.generator')
 			path_denoiser = cls.get('ai.colorize.denoiser')
@@ -14695,7 +14697,7 @@ class void:
 			language = language.split(',')
 		elif not isinstance(language, (list, tuple)):
 			language = ['en']
-		reader = easyocr.Reader(language, gpu=cls.neuro_mode() not in ('cpu', 'intel'), verbose=False)
+		reader = easyocr.Reader(language, gpu=cls.neuro() not in ('cpu', 'intel'), verbose=False)
 		ocr_results = reader.readtext(image, paragraph=True)
 		blocks = []
 		for box, text in ocr_results:
@@ -14846,17 +14848,29 @@ class void:
 	def video(cls, prompt: str, path: str):
 		pass
 
-	@classmethod
-	def movie(cls):
+	@classmethod # short
+	def movie(cls, prompt: str, path: str):
+		return cls.video()
+
+	@classmethod # short
+	def shorts(cls, prompt: str, path: str):
+		return cls.video()
+
+	@classmethod # short
+	def anime(cls, prompt: str, path: str):
 		return cls.video()
 
 	@classmethod
-	def shorts(cls):
-		return cls.video()
+	def video_resize(cls, path_from: str, path_to: str = None, scale: float = None, width: float = None, height: float = None, deblocking = None, mode = None, quality: int = None):
+		pass
 
-	@classmethod
-	def anime(cls):
-		return cls.video()
+	@classmethod # short
+	def video_x2(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
+		return cls.video_resize(path_from, path_to, 2, deblocking=deblocking, mode='neuro', quality=quality)
+
+	@classmethod # short
+	def video_x4(cls, path_from: str, path_to: str = None, deblocking = None, mode = None, quality: int = None):
+		return cls.video_resize(path_from, path_to, 4, deblocking=deblocking, mode='neuro', quality=quality)
 
 	@classmethod
 	def video_mute(cls, path_from: str, path_to: str):
@@ -14882,7 +14896,7 @@ class void:
 	def sound(cls, prompt: str, path: str):
 		pass
 
-	@classmethod
+	@classmethod # short
 	def music(cls, prompt: str, path: str):
 		pass
 
@@ -14932,43 +14946,67 @@ class void:
 		pass
 
 	@classmethod
-	def book(cls):
-		pass
-
-	@classmethod
-	def document(cls):
+	def book(cls, prompt: str, path: str):
 		return cls.book()
 
-	@classmethod
-	def spreadsheet(cls):
+	@classmethod # short
+	def page(cls, prompt: str, path: str):
 		return cls.book()
 
-	@classmethod
-	def presentation(cls):
+	@classmethod # short
+	def cell(cls, prompt: str, path: str):
 		return cls.book()
 
-	@classmethod
+	@classmethod # short
+	def presentation(cls, prompt: str, path: str):
+		return cls.book()
+
+	@classmethod # short
+	def plan(cls, prompt: str, path: str):
+		return cls.book()
+
+	@classmethod # short
+	def article(cls, prompt: str, path: str):
+		return cls.book()
+
+	@classmethod # short
 	def comics(cls, prompt: str, path: str):
 		return cls.book()
 
-	@classmethod
+	@classmethod # short
 	def manga(cls, prompt: str, path: str):
 		return cls.book()
 
 	@classmethod
-	def game(cls):
+	def app(cls, prompt: str, path: str):
+		pass
+
+	@classmethod # short
+	def app_cli(cls, prompt: str, path: str):
+		pass
+
+	@classmethod # short
+	def app_web(cls, prompt: str, path: str):
 		pass
 
 	@classmethod
-	def game_2d(cls):
+	def game(cls, prompt: str, path: str):
+		pass
+
+	@classmethod # short
+	def game_2d(cls, prompt: str, path: str):
 		return cls.game()
 
-	@classmethod
-	def game_3d(cls):
+	@classmethod # short
+	def game_3d(cls, prompt: str, path: str):
 		return cls.game()
 
-	@classmethod
-	def game_vn(cls):
+	@classmethod # short
+	def game_vn(cls, prompt: str, path: str):
 		return cls.game()
+
+	@classmethod # alias
+	def vn(cls):
+		return cls.game_vn()
 
 void.run()
