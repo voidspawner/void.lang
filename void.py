@@ -7446,7 +7446,7 @@ class void:
 
   # module
 
-	@classmethod
+	@classmethod # service
 	def module(cls, name: str, name_install: str = None):
 		if name in cls.cache_module:
 			return cls.cache_module[name]
@@ -7723,7 +7723,7 @@ class void:
 
   # neuro
 
-	@classmethod
+	@classmethod # service
 	def neuro(cls, intel: bool = True):
 		torch = cls.get('ai.torch')
 		if torch == 'cuda unchecked':
@@ -7887,30 +7887,31 @@ class void:
 			return 'binary'
 
 	@classmethod
-	def text(cls, data, format = None):
+	def text(cls, data, param = None):
+		if isinstance(param, dict):
+			if not isinstance(data, str):
+				data = cls.text(data)
+			align = cls.get('align', 'left', param)
+			length = int(cls.get('length', 0, param))
+			fill = cls.get('fill', ' ', param)
+			if length > len(data):
+				match param['align']:
+					case 'center':
+						padding = (length - len(data)) // 2
+						data = f'{fill * padding}{data}{fill * (length - len(data) - padding)}'
+					case 'right':
+						data = f'{fill * (length - len(data))}{data}'
+					case 'left':
+						data = f'{data}{fill * (length - len(data))}'
+			elif length > 0:
+				data = data[:length]
+			return data
 		if data is None:
 			return 'none'
-		if isinstance(data, str):
-			if format and isinstance(format, dict):
-				for name in format:
-					match name:
-						case 'align':
-							if 'length' in format:
-								length = int(cls.number(format['length']))
-								if length > len(data):
-									match format['align']:
-										case 'center':
-											padding = (length - len(data)) // 2
-											data = ' ' * padding + data + ' ' * (length - len(data) - padding)
-										case 'right':
-											data = ' ' * (length - len(data)) + data
-										case 'left':
-											data = data + ' ' * (length - len(data))
-			return data
 		if isinstance(data, bool):
 			return 'true' if data else 'false'
 		if isinstance(data, (int, float)):
-			match format:
+			match param:
 				case 'time':
 					if data < 60:
 						return cls.get('text.void.time.now')
@@ -7944,11 +7945,11 @@ class void:
 			return str(data)
 		if isinstance(data, bytes):
 			try:
-				return data.decode('utf-8')
+				return data.decode(param if isinstance(param, str) else 'utf-8')
 			except:
 				return ''
 		if isinstance(data, (list, dict)):
-			return cls.json(data)
+			return cls.void(data)
 		return ''
 
 	@classmethod
@@ -7990,12 +7991,12 @@ class void:
 		return bool(data)
 
 	@classmethod
-	def binary(cls, data):
+	def binary(cls, data, encoding: str = None):
 		if isinstance(data, str):
-			return data.encode('utf-8')
+			return data.encode(encoding or 'utf-8')
 		if isinstance(data, bytes):
 			return data
-		return cls.text(data).encode('utf-8')
+		return cls.text(data).encode(encoding or 'utf-8')
 
 	@classmethod
 	def length(cls, data, byte: bool = None):
@@ -8489,31 +8490,6 @@ class void:
 		pass
 
 	@classmethod
-	def os_alias(cls, name: str = None, command: str = None):
-		if command is None:
-			if cls.os_type == 'windows':
-				cls.file(f"{name or 'void'}.bat", f'@{cls.get('app.python')} "{cls.get('app.void')}" %*')
-
-	@classmethod
-	def os_path(cls, path: str):
-		if cls.os_type == 'windows':
-			pass
-
-	@classmethod
-	def os_limit(cls, limit: int = None):
-		if cls.is_nix:
-			resource = cls.module('resource')
-			soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
-			if limit:
-				soft = min(int(limit), hard)
-				try:
-					resource.setrlimit(resource.RLIMIT_NOFILE, (soft, hard))
-				except ValueError as e:
-					cls.error('limit', e)
-			else:
-				return {'soft': soft, 'hard': hard} 
-
-	@classmethod
 	def info(cls, name: str):
 		pass
 
@@ -8558,6 +8534,21 @@ class void:
 				pass
 			case 'xbox':
 				pass
+			case 'alias':
+				if cls.os_type == 'windows':
+					cls.file(f"{value or 'void'}.bat", f'@{cls.get('app.python')} "{cls.get('app.void')}" %*')
+			case 'limit':
+				if cls.is_nix:
+					resource = cls.module('resource')
+					soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+					if limit:
+						soft = min(int(limit), hard)
+						try:
+							resource.setrlimit(resource.RLIMIT_NOFILE, (soft, hard))
+						except ValueError as e:
+							cls.error('limit', e)
+					else:
+						return {'soft': soft, 'hard': hard}
 			case 'html.image':
 				if isinstance(value, str):
 					value = value.strip()
@@ -8742,18 +8733,6 @@ class void:
 			case 'siri':
 				pass
 
-	@classmethod # short
-	def say_google(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
-		cls.say(text, engine='google', voice=voice, translate=translate, path=path, speed=speed)
-
-	@classmethod # short
-	def say_edge(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
-		cls.say(text, engine='edge', voice=voice, translate=translate, path=path, speed=speed)
-
-	@classmethod # short
-	def say_siri(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
-		cls.say(text, engine='siri', voice=voice, translate=translate, path=path, speed=speed)
-
 	@classmethod # service
 	async def say_edge_async(cls, text: str, voice: str, path: str = None, speed: float = 1):
 		edge_tts = cls.module('edge_tts')
@@ -8770,6 +8749,18 @@ class void:
 		finally:
 			if not path:
 				cls.file_remove(temp_file)
+
+	@classmethod # short
+	def say_google(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
+		cls.say(text, engine='google', voice=voice, translate=translate, path=path, speed=speed)
+
+	@classmethod # short
+	def say_edge(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
+		cls.say(text, engine='edge', voice=voice, translate=translate, path=path, speed=speed)
+
+	@classmethod # short
+	def say_siri(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1):
+		cls.say(text, engine='siri', voice=voice, translate=translate, path=path, speed=speed)
 			
 	@classmethod
 	def recognize(cls, data, text: str = None):
@@ -9432,10 +9423,6 @@ class void:
 			'(second.short)': dt.second,
 			'(timezone)': f'{timezone_offset[:3]}:{timezone_offset[3:]}'
 			})
-
-	@classmethod
-	def ago(cls, from_time: float, to_time: float = None) -> str:
-		pass
 
 
   # crypto
@@ -12483,7 +12470,9 @@ class void:
 			return cls.xml({'sitemapindex': {'sitemap': url_list, '@xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}}, compact=compact, header=True)
 
 
-	# cloud
+  # cloud
+
+  	# cloud
 
 	@classmethod
 	def cloud(cls, param = None, name: str = None):
@@ -12523,7 +12512,7 @@ class void:
 			close = True
 		else:
 			return
-		cls.os_limit(limit)
+		cls.convert(limit, 'limit')
 		match name:
 			case 'web':
 				page = {}
@@ -13227,7 +13216,7 @@ class void:
 		request = cls.module('urllib.request')
 		statistics = cls.module('statistics')
 		futures = cls.module('concurrent.futures')
-		cls.os_limit(limit or 65535)
+		cls.convert(limit or 65535, 'limit')
 		def fetch(url):
 			try:
 				t = time.perf_counter()
