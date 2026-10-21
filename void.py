@@ -7147,6 +7147,9 @@ class void:
 					[void application/void  json application/json  jsonl application/jsonl  jsonld application/ld+json  yaml application/x-yaml  xml application/xml  csv text/csv  ini text/plain  sql application/sql  log text/plain  bin application/octet-stream  text text/plain  txt text/plain  pdf application/pdf  djvu image/vnd.djvu  doc application/msword  docx application/vnd.openxmlformats-officedocument.wordprocessingml.document  xls application/vnd.ms-excel  xlsx application/vnd.openxmlformats-officedocument.spreadsheetml.sheet  ppt application/vnd.ms-powerpoint  pptx application/vnd.openxmlformats-officedocument.presentationml.presentation  rtf application/rtf  epub application/epub+zip  abw application/x-abiword  azw application/vnd.amazon.ebook  odp application/vnd.oasis.opendocument.presentation  ods application/vnd.oasis.opendocument.spreadsheet  odt application/vnd.oasis.opendocument.text  ics text/calendar  html text/html  htm text/html  xhtml application/xhtml+xml  mhtml multipart/related  css text/css  md text/markdown  ttf font/ttf  otf font/otf  sfnt font/sfnt  woff font/woff  woff2 font/woff2  eot application/vnd.ms-fontobject  vtt text/vtt  srt application/x-subrip  ass text/x-ssa  ssa text/x-ssa  ttml application/ttml+xml  sub text/x-microdvd  smi application/x-sami  sami application/x-sami  jpeg image/jpeg  jpg image/jpeg  png image/png  apng image/apng  gif image/gif  svg image/svg+xml  webp image/webp  heif image/heif  heic image/heic  tiff image/tiff  tif image/tiff  avif image/avif  ico image/x-icon  icon image/vnd.microsoft.icon  icns image/x-icns  mp3 audio/mpeg  m4a audio/mp4  mpa audio/mpeg  mp2 audio/mpeg  wma audio/x-ms-wma  wav audio/x-wav  flac audio/flac  ogg application/ogg  oga audio/ogg  opus audio/opus  weba audio/webm  cda application/x-cdf  aac audio/aac  ac3 audio/ac3  mid audio/midi  midi audio/x-midi  s3m audio/s3m  it audio/it  mod audio/x-mod  xm audio/xm  mp4 video/mp4  mpeg video/mpeg  mpg video/mpeg  mpv video/mpeg  webm video/webm  ogx application/ogg  ogv video/ogg  qt video/quicktime  mov ideo/quicktime  m4v video/x-m4v  wmv video/x-ms-wmv  avi video/x-msvideo  mkv application/x-matroska  mjpeg multipart/x-mixed-replace  ts video/mp2t  gltf model/gltf+json  glb model/gltf-binary  obj model/obj  stl model/stl  fbx application/vnd.autodesk.fbx  dae model/vnd.collada+xml  3ds model/x-3ds  ply model/ply  usd model/vnd.usd  usdz model/vnd.usdz+zip  x3d model/x3d+xml  wrl model/vrml  vrml model/vrml  zip application/zip  gz application/gzip  7z application/x-7z-compressed  tar application/x-tar  rar application/vnd.rar  bz application/x-bzip  bz2 application/x-bzip2  py applycation/x-python-code  php application/x-httpd-php  java application/java  jar application/java-archive  kt text/x-kotlin  swift application/swift  m text/x-objective-c  mm text/x-objective-c++  c text/x-csrc  cpp text/x-c++src  h text/x-chdr  cs text/x-csharp  rs text/rust  gd text/x-gdscript  js application/javascript  mjs text/javascript  lua text/x-lua  sh application/x-sh  csh application/x-csh  bat application/x-bat  'form data' multipart/form-data  'form mixed' multipart/mixed  'form alternative' multipart/alternative  'form text' application/x-www-form-urlencoded
 				code
 					[100 Continue  101 Switching protocols  102 Processing  103 Early Hints  200 OK  201 Created  202 Accepted  203 Non-Authoritative Information  204 No Content  205 Reset Content  206 Partial Content  207 Multi-Status  208 Already Reported  226 IM Used  300 Multiple Choices  301 Moved Permanently  302 Found Redirection  303 See Other  304 Not Modified  305 Use Proxy  306 Switch Proxy  307 Temporary Redirect  308 Permanent Redirect  400 Bad Request  401 Unauthorized  402 Payment Required  403 Forbidden  404 Not Found  405 Method Not Allowed  406 Not Acceptable  407 Proxy Authentication Required  408 Request Timeout  409 Conflict  410 Gone  411 Length Required  412 Precondition Failed  413 Payload Too Large  414 URI Too Long  415 Unsupported Media Type  416 Range Not Satisfiable  417 Expectation Failed  418 I'm a Teapot  421 Misdirected Request  422 Unprocessable Entity  423 Locked  424 Failed Dependency  425 Too Early  426 Upgrade Required  428 Precondition Required  429 Too Many Requests  431 Request Header Fields Too Large  451 Unavailable For Legal Reasons  500 Internal Server Error  501 Not Implemented  502 Bad Gateway  503 Service Unavailable  504 Gateway Timeout  505 HTTP Version Not Supported  506 Variant Also Negotiates  507 Insufficient Storage  508 Loop Detected  510 Not Extended  511 Network Authentication Required
+			fb2
+				genre
+					[accounting adv_animal adv_geo adv_history adv_maritime adv_western adventure antique antique_ant antique_east antique_european antique_myths antique_russian aphorism_quote architecture_book auto_regulations banking beginning_authors child_adv child_det child_education child_prose child_sf child_tale child_verse children cinema_theatre city_fantasy comp_db comp_hard comp_osnet comp_programming comp_soft comp_www computers design det_action det_classic det_crime det_espionage det_hard det_history det_irony det_police det_political detective dragon_fantasy dramaturgy economics essays fantasy_fight foreign_action foreign_adventure foreign_antique foreign_business foreign_children foreign_comp foreign_contemporary foreign_contemporary_lit foreign_desc foreign_detective foreign_dramaturgy foreign_edu foreign_fantasy foreign_home foreign_humor foreign_language foreign_love foreign_novel foreign_other foreign_poetry foreign_prose foreign_psychology foreign_publicism foreign_religion foreign_sf geo_guides geography_book global_economy historical_fantasy home home_cooking home_crafts home_diy home_entertain home_garden home_health home_pets home_sex home_sport humor humor_anecdote humor_fantasy humor_prose humor_verse industries job_hunting literature_18 literature_19 literature_20 love_contemporary love_detective love_erotica love_fantasy love_history love_sf love_short magician_book management marketing military_special music_dancing narrative newspapers nonf_biography nonf_criticism nonf_publicism nonfiction org_behavior paper_work pedagogy_book periodic personal_finance poetry popadanec popular_business prose_classic prose_counter prose_history prose_military prose_rus_classic prose_su_classics psy_alassic psy_childs psy_generic psy_personal psy_sex_and_family psy_social psy_theraphy real_estate ref_dict ref_encyc ref_guide ref_ref reference religion religion_esoterics religion_rel religion_self russian_contemporary russian_fantasy sci_biology sci_chem sci_culture sci_history sci_juris sci_linguistic sci_math sci_medicine sci_philosophy sci_phys sci_politics sci_religion sci_tech science sf sf_action sf_cyberpunk sf_detective sf_fantasy sf_heroic sf_history sf_horror sf_humor sf_social sf_space short_story sketch small_business sociology_book stock thriller upbringing_book vampire_book visual_arts unrecognised sf_epic det_maniac prose_contemporary adv_indian sci_psychology sci_business love_hard love magic_school sf_mystic fairy_fantasy nsf popadancy sf_postapocalyptic utopia sf_etc fantasy_det hronoopera sf_litrpg sf_realrpg sf_stimpank sf_technofantasy sf_fantasy_city sf_su sf_rus sf_space_opera sf_paleontological dystopian sf_irony sf_fantasy_irony gothic_novel fantasy_heroic fantasy_rus fantasy_dark boyar_anime modern_tale slavic_fantasy dark_fantasy everyday_fantasy dorama adventure_fantasy sf_industrial_magic economics_ref sci_orgchem sci_anachem sci_abstract
 		app
 			path
 				none
@@ -7747,6 +7750,11 @@ class void:
 					key
 						https://aistudio.google.com/apikey
 				model
+					argon
+						name
+							gemini-4-argon
+						price
+
 					gemini pro
 						name
 							gemini-3.1-pro-preview
@@ -7825,9 +7833,9 @@ class void:
 				none
 			book
 				creator
-					deepseek
+					deepseek flash non think
 				corrector
-					deepseek
+					deepseek flash
 				check
 					true
 				proofread
@@ -7839,21 +7847,13 @@ class void:
 				font
 					none
 				size
-					default
-						11
-					range
-						[9 13
+					11
 				leading
-					default
-						1.38
-					range
-						[1.2 1.65
+					1.38
 				margin
-					[17 20 18 16
+					20
 				mirror
 					false
-				words per page
-					none
 				format
 					A5
 				request words
@@ -8123,11 +8123,11 @@ class void:
   # run
 
 	@classmethod # service
-	def run(cls, action = None):
+	def run(cls):
 	  # data
 		if isinstance(cls.data, str):
 			cls.data = cls.void_decode(cls.data)[0][0]
-	  # speed measure
+	  # speed
 		cls.t('run')
 	  # cache
 		cls.cache_module = {}
@@ -8184,6 +8184,8 @@ class void:
 				cls.is_linux = False
 				cls.delimiter_newline = '\n'
 				cls.delimiter_path = '/'
+		cls.is_windows = cls.is_win
+		cls.is_darwin = cls.is_mac
 		cls.set('os', cls.os_type)
 		cls.set('app.os.type', cls.os_type)
 		cls.set('app.os.delimiter.newline', cls.delimiter_newline)
@@ -8289,7 +8291,7 @@ class void:
 		elif cls.gpu_type == 'amd' and cls.os_type == 'windows':
 			cls.torch_type = 'dml'
 		else:
-			cls.pytorch_type = 'cpu'
+			cls.torch_type = 'cpu'
 		cls.set('device.gpu.type', cls.gpu_type)
 		cls.set('device.gpu.info', gpu_info_original or gpu_info)
 		cls.set('ai.torch', cls.torch_type)
@@ -8851,17 +8853,19 @@ class void:
 		return isinstance(data, str) and len(data) > 0 and (cls.is_file(data) or cls.is_dir(data))
 
 	@classmethod
-	def is_runable(cls, path: str) -> bool:
+	def is_runnable(cls, path: str) -> bool:
 		if not cls.is_file(path): return False
 		if cls.is_win:
 			return cls.path_extension(path).lower() in cls.get('info.extension.run.windows')
-		elif cls.is_nix:
-			return cls.file_runable(path)
 		return os.access(path, os.X_OK)
 
 	@classmethod # alias
 	def is_executable(cls, path: str) -> bool:
-		return cls.is_runable(path)
+		return cls.is_runnable(path)
+
+	@classmethod
+	def is_command(cls, command: str) -> bool:
+		return cls.path_command(command) is not None
 
 	@classmethod
 	def is_base64(cls, data) -> bool:
@@ -8881,7 +8885,16 @@ class void:
 
 	@classmethod
 	def is_image(cls, data) -> bool:
-		pass
+		return isinstance(data, bytes) or cls.is_cv(data) or cls.is_pillow(data)
+
+	@classmethod
+	def is_cv(cls, data) -> bool:
+		return isinstance(data, bytearray)
+
+	@classmethod
+	def is_pillow(cls, data) -> bool:
+		try: return 'Image' in data.__class__.__name__ and data.__class__.__module__.startswith('PIL')
+		except: return False
 
 	@classmethod
 	def is_video(cls, data) -> bool:
@@ -8905,7 +8918,9 @@ class void:
 
 	@classmethod
 	def is_url(cls, url: str) -> bool:
-		pass
+		try:
+			return url.startswith('http://') or url.startswith('https://')
+		except: return False
 
 	@classmethod
 	def is_email(cls, email: str) -> bool:
@@ -9356,11 +9371,11 @@ class void:
 							cls.error('limit', e)
 					else:
 						return {'soft': soft, 'hard': hard}
-			case 'html.image':
+			case 'url.image':
 				if isinstance(value, str):
 					value = value.strip()
 					if value.startswith('<svg'):
-						return 'data:image/svg+xml,' + cls.escape(''.join([line.strip() for line in value.split('\n')]), 'html.image')
+						return 'data:image/svg+xml,' + cls.escape(''.join([line.strip() for line in value.split('\n')]), 'url.image')
 				elif isinstance(value, bytes):
 					pass
 			case 'c':
@@ -9489,7 +9504,118 @@ class void:
 
 	@classmethod
 	def clipboard(cls, data = None):
-		pass
+		if cls.is_win:
+			ctypes = cls.module('ctypes')
+			wintypes = cls.module('ctypes.wintypes')
+			user32 = ctypes.WinDLL('user32', use_last_error=True)
+			kernel32 = ctypes.WinDLL('kernel32', use_last_error=True)
+			CF_UNICODETEXT = 13
+			GMEM_MOVEABLE = 0x0002
+			user32.CreateWindowExW.restype = wintypes.HWND
+			user32.CreateWindowExW.argtypes = [wintypes.DWORD, wintypes.LPCWSTR, wintypes.LPCWSTR, wintypes.DWORD, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, wintypes.HWND, wintypes.HMENU, wintypes.HINSTANCE, ctypes.c_void_p]
+			user32.OpenClipboard.argtypes = [wintypes.HWND]
+			user32.OpenClipboard.restype = wintypes.BOOL
+			user32.CloseClipboard.restype = wintypes.BOOL
+			user32.EmptyClipboard.restype = wintypes.BOOL
+			user32.GetClipboardData.argtypes = [wintypes.UINT]
+			user32.GetClipboardData.restype = wintypes.HANDLE
+			user32.SetClipboardData.argtypes = [wintypes.UINT, wintypes.HANDLE]
+			user32.SetClipboardData.restype = wintypes.HANDLE
+			user32.DestroyWindow.argtypes = [wintypes.HWND]
+			user32.DestroyWindow.restype = wintypes.BOOL
+			user32.IsClipboardFormatAvailable.argtypes = [wintypes.UINT]
+			user32.IsClipboardFormatAvailable.restype = wintypes.BOOL
+			kernel32.GetModuleHandleW.argtypes = [wintypes.LPCWSTR]
+			kernel32.GetModuleHandleW.restype = wintypes.HINSTANCE
+			kernel32.GlobalAlloc.argtypes = [wintypes.UINT, ctypes.c_size_t]
+			kernel32.GlobalAlloc.restype = wintypes.HANDLE
+			kernel32.GlobalLock.argtypes = [wintypes.HANDLE]
+			kernel32.GlobalLock.restype = ctypes.c_void_p
+			kernel32.GlobalUnlock.argtypes = [wintypes.HANDLE]
+			kernel32.GlobalUnlock.restype = wintypes.BOOL
+			kernel32.GlobalFree.argtypes = [wintypes.HANDLE]
+			kernel32.GlobalFree.restype = wintypes.HANDLE
+			hwnd = user32.CreateWindowExW(0, 'STATIC', '', 0, 0, 0, 0, 0, None, None, kernel32.GetModuleHandleW(None), None)
+			if not hwnd:
+				cls.error('clipboard.hwnd', ctypes.get_last_error())
+				return
+			memory = None
+			try:
+				if data is None:
+					if not user32.OpenClipboard(hwnd):
+						cls.error('clipboard.get.user32.open', ctypes.get_last_error())
+						return
+					try:
+						if not user32.IsClipboardFormatAvailable(CF_UNICODETEXT):
+							cls.error('clipboard.get.format.unavailable', 'CF_UNICODETEXT')
+							return
+						handle = user32.GetClipboardData(CF_UNICODETEXT)
+						if not handle:
+							cls.error('clipboard.get.user32.data', ctypes.get_last_error())
+							return
+						ptr = kernel32.GlobalLock(handle)
+						if not ptr:
+							cls.error('clipboard.get.kernel32.lock', ctypes.get_last_error())
+							return
+						try: return ctypes.wstring_at(ptr)
+						finally: kernel32.GlobalUnlock(handle)
+					finally: user32.CloseClipboard()
+				buffer = ctypes.create_unicode_buffer(str(data))
+				memory = kernel32.GlobalAlloc(GMEM_MOVEABLE, ctypes.sizeof(buffer))
+				if not memory:
+					cls.error('clipboard.set.memory', ctypes.get_last_error())
+					return
+				ptr = kernel32.GlobalLock(memory)
+				if not ptr:
+					cls.error('clipboard.set.kernel32.lock', ctypes.get_last_error())
+					return
+				try:
+					ctypes.memmove(ptr, ctypes.addressof(buffer), ctypes.sizeof(buffer))
+				finally: kernel32.GlobalUnlock(memory)
+				if not user32.OpenClipboard(hwnd):
+					cls.error('clipboard.set.user32.open', ctypes.get_last_error())
+					return
+				try:
+					if not user32.EmptyClipboard():
+						cls.error('clipboard.set.user32.empty', ctypes.get_last_error())
+						return
+					if not user32.SetClipboardData(CF_UNICODETEXT, memory):
+						cls.error('clipboard.set.user32.set', ctypes.get_last_error())
+						return
+					memory = None
+				finally: user32.CloseClipboard()
+			finally:
+				if memory: kernel32.GlobalFree(memory)
+				user32.DestroyWindow(hwnd)
+		elif cls.is_nix:
+			if cls.is_mac:
+				commands = [['pbpaste']] if data is None else [['pbcopy']]
+			elif cls.is_linux:
+				if data is None:
+					commands = [
+						['wl-paste', '--no-newline'],
+						['xclip', '-selection', 'clipboard', '-o'],
+						['xsel', '--clipboard', '--output']
+					]
+				else:
+					commands = [
+						['wl-copy'],
+						['xclip', '-selection', 'clipboard', '-i'],
+						['xsel', '--clipboard', '--input']
+					]
+			else: return
+			commands = [command for command in commands if cls.is_command(command[0])]
+			if not commands:
+				cls.error('clipboard.command.unavailable')
+				return
+			for command in commands:
+				if data is not None: command += [data]
+				result = cls.open(command)
+				if result['success']: return result['text'] if data is None else None
+
+	@classmethod # alias
+	def cb(cls, data = None):
+		return cls.clipboard(data)
 
 	@classmethod
 	def sql(cls):
@@ -10039,20 +10165,55 @@ class void:
   # text
 
 	@classmethod
-	def lower(cls):
-		pass
+	def lower(cls, text: str | list) -> str | list:
+		if isinstance(text, list): return [cls.lower(text) for text in text]
+		if not isinstance(text, str): return text
+		return text.lower()
 
 	@classmethod
-	def upper(cls, format: str = None):
-		pass
+	def upper(cls, text: str | list, format: str = None) -> str | list:
+		if isinstance(text, list): return [cls.upper(text, format) for text in text]
+		if not isinstance(text, str): return text
+		if format is None: return text.upper()
+		match format:
+			case 'sentence' | 'title.first': return text.capitalize()
+			case 'title' | 'title.word': return text.title()
+			case 'odd' | 'letter.odd': parity = 1
+			case 'even' | 'letter.even': parity = 0
+			case 'invert' | 'swap': return text.swapcase()
+			case _: return text.upper()
+		result = []
+		index = 0
+		for char in text:
+			if char.isalpha():
+				index += 1
+				result.append(char.upper() if index % 2 == parity else char.lower())
+			else: result.append(char)
+		return ''.join(result)
 
 	@classmethod # short
-	def upper_sentence(cls):
-		pass
+	def upper_sentence(cls) -> str | list:
+		return cls.upper(text, 'sentence')
 
 	@classmethod # short
-	def upper_title(cls):
-		pass
+	def upper_title(cls) -> str | list:
+		return cls.upper(text, 'title')
+
+	@classmethod # short
+	def upper_odd(cls) -> str | list:
+		return cls.upper(text, 'odd')
+
+	@classmethod # short
+	def upper_even(cls) -> str | list:
+		return cls.upper(text, 'even')
+
+	@classmethod # short
+	def upper_invert(cls) -> str | list:
+		return cls.upper(text, 'invert')
+
+	@classmethod # short alias
+	def upper_swap(cls, text) -> str | list:
+		return cls.upper(text, 'swap')
 
 	@classmethod
 	def starts(cls):
@@ -10278,14 +10439,22 @@ class void:
 		return cls.sort(data, True, name)
 
 	@classmethod
-	def escape(cls, text: str, format: str = None):
+	def escape(cls, text: str, format: str = None) -> str:
+		if not isinstance(text, str): text = str(text)
 		match format:
 			case 'url':
 				parse = cls.module('urllib.parse')
 				return parse.quote(text)
-			case 'html.image':
+			case 'url.image':
 				parse = cls.module('urllib.parse')
 				return parse.quote(text, safe="=/ '")
+			case 'html':
+				html = cls.module('html')
+				return html.escape(text, quote=True)
+			case 'xml':
+				return re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]', '', text).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace("'", '&apos;')
+			case 'sql':
+				return text.replace('\x00', '').replace("'", "''")
 			case 'void.special' | 'void.text' | 'void.newline':
 				if not cls.cache_escape:
 					cls.cache_escape = {
@@ -10321,26 +10490,45 @@ class void:
 				return escape['pattern'].sub(lambda match: escape['map'][match.group(0)], text)
 
 	@classmethod # alias
-	def e(cls, text: str, format: str = None):
+	def e(cls, text: str, format: str = None) -> str:
 		return cls.escape(text, format)
 
 	@classmethod # short
-	def escape_url(cls, text: str, format: str = None):
+	def e_url(cls, text: str) -> str:
 		return cls.escape(text, 'url')
 
 	@classmethod # short
-	def escape_html(cls, text: str, format: str = None):
+	def e_html(cls, text: str) -> str:
 		return cls.escape(text, 'html')
 
+	@classmethod # short
+	def e_xml(cls, text: str) -> str:
+		return cls.escape(text, 'xml')
+
+	@classmethod # short
+	def e_sql(cls, text: str) -> str:
+		return cls.escape(text, 'sql')
+
 	@classmethod
-	def unescape(cls, text: str, format: str = None):
+	def unescape(cls, text: str, format: str = None) -> str:
+		if not isinstance(text, str): text = str(text)
 		match format:
-			case 'url':
+			case 'url' | 'url.image':
 				parse = cls.module('urllib.parse')
 				return parse.unquote(text)
-			case 'html.image':
-				parse = cls.module('urllib.parse')
-				return parse.unquote(text)
+			case 'html':
+				html = cls.module('html')
+				return html.unescape(text)
+			case 'xml':
+				def entity(found):
+					name = found.group(1)
+					if name[0] != '#':
+						return {'amp': '&', 'lt': '<', 'gt': '>', 'quot': '"', 'apos': "'"}[name]
+					code = int(name[2:], 16) if name[1] in 'xX' else int(name[1:])
+					return chr(code) if code in (9, 10, 13) or 0x20 <= code <= 0xD7FF or 0xE000 <= code <= 0xFFFD or 0x10000 <= code <= 0x10FFFF else found.group(0)
+				return re.sub(r'&(amp|lt|gt|quot|apos|#[0-9]+|#[xX][0-9a-fA-F]+);', entity, text)
+			case 'sql':
+				return text.replace("''", "'")
 			case 'void.special' | 'void.text' | 'void.newline':
 				if not cls.cache_unescape:
 					cls.cache_unescape = {
@@ -10374,16 +10562,24 @@ class void:
 				return escape['pattern'].sub(lambda match: escape['map'][match.group(0)], text)
 
 	@classmethod # alias
-	def u(cls, text: str, format: str = None):
+	def u(cls, text: str, format: str = None) -> str:
 		return cls.unescape(text, format)
 
 	@classmethod # short
-	def unescape_url(cls, text: str, format: str = None):
+	def u_url(cls, text: str) -> str:
 		return cls.unescape(text, 'url')
 
 	@classmethod # short
-	def unescape_html(cls, text: str, format: str = None):
+	def u_html(cls, text: str) -> str:
 		return cls.unescape(text, 'html')
+
+	@classmethod # short
+	def u_xml(cls, text: str) -> str:
+		return cls.unescape(text, 'xml')
+
+	@classmethod # short
+	def u_sql(cls, text: str) -> str:
+		return cls.unescape(text, 'sql')
 
 	@classmethod
 	def price(cls, value: float, currency: str = None, group: bool = True) -> str | int | float:
@@ -10401,7 +10597,7 @@ class void:
 		return parse['before'].strip() if parse['before'] else (parse['after'].strip() if parse['after'] else None)
 
 	@classmethod
-	def translate(cls, text: str = None, language_from: str = None, language_to: str = None, engine: str = 'google'):
+	def translate(cls, text: str = None, language_from: str = None, language_to: str = None, engine: str = 'google') -> str:
 		translator = cls.module('translators')
 		if not text:
 			return translator.translators_pool
@@ -10416,15 +10612,15 @@ class void:
 			cls.error('translate', e)
 
 	@classmethod # alias
-	def a(cls, text: str = None, language_from: str = None, language_to: str = None, engine: str = 'google'):
+	def a(cls, text: str = None, language_from: str = None, language_to: str = None, engine: str = 'google') -> str:
 		return cls.translate(text, language_from, language_to, engine)
 
 	@classmethod
-	def spellcheck(cls):
+	def spellcheck(cls) -> str:
 		pass
 
 	@classmethod # alias
-	def s(cls):
+	def s(cls) -> str:
 		return cls.spellcheck()
 
 
@@ -10782,6 +10978,18 @@ class void:
 		return result if not number else cls.number(result)
 
 	@classmethod # short
+	def date_utc(cls, timestamp: float = None) -> str:
+		return cls.date(timestamp, 'date', True)
+
+	@classmethod # short
+	def date_safe(cls, timestamp: float = None, utc: bool = False) -> str:
+		return cls.date(timestamp, 'date.safe', utc)
+
+	@classmethod # short
+	def date_safe_utc(cls, timestamp: float = None) -> str:
+		return cls.date(timestamp, 'date.safe', True)
+
+	@classmethod # short
 	def date_full(cls, timestamp: float = None, utc: bool = False) -> str:
 		return cls.date(timestamp, 'full', utc)
 
@@ -11026,10 +11234,14 @@ class void:
 				return cls.sha256(data)
 
 	@classmethod
-	def uuid(cls, clean: bool = False) -> str:
+	def uuid(cls, text: str = None, clean: bool = False) -> str:
 		uuid = cls.module('uuid')
-		result = uuid.uuid4()
+		result = uuid.uuid4() if text is None else uuid.uuid5(uuid.NAMESPACE_URL, text)
 		return str(result) if not clean else result.hex
+
+	@classmethod # short
+	def uuid_clean(cls, text: str = None) -> str:
+		return cls.uuid(text, True)
 
 	@classmethod
 	def sha1(cls, data) -> str:
@@ -11805,7 +12017,7 @@ class void:
 									data = data[:, :, 0].copy()
 							return pillow_image.fromarray(data)
 						return data
-				case 'pdf.text':
+				case 'pdf' | 'pdf.text':
 					pass
 				case 'epub':
 					pass
@@ -12138,7 +12350,282 @@ class void:
 				case 'pdf' | 'pdf.text':
 					pass
 				case 'fb2':
-					pass
+					if isinstance(data, str):
+						data = {'content': [{'type': 'text', 'text': data}]}
+					elif isinstance(data, list):
+						data = {'content': data}
+					elif not isinstance(data, dict):
+						return
+					notes = []
+					root = []
+					stack = []
+					anchor = []
+					used = set()
+					pictures = {}
+					cover = None
+					styles = data.get('style')
+					styles = styles if isinstance(styles, dict) else {}
+					def ident(value):
+						value = re.sub(r'[^\w.-]', '_', str(value).strip())
+						return value if re.match(r'[^\W\d]', value) else '_' + value
+					def href(value):
+						value = str(value).strip()
+						return '#' + ident(value[1:]) if value.startswith('#') else value
+					def raw(text):
+						return ''.join(str(chunk.get('text') or '') if isinstance(chunk, dict) else str(chunk) for chunk in (text if isinstance(text, list) else [text]) if chunk is not None)
+					def wrap(text, chunk):
+						text = cls.e_xml(text)
+						if not isinstance(chunk, dict): return text
+						for flag, tag in (('code', 'code'), ('bold', 'strong'), ('italic', 'emphasis'), ('strike', 'strikethrough'), ('sup', 'sup'), ('sub', 'sub')):
+							if chunk.get(flag): text = f'<{tag}>{text}</{tag}>'
+						url = chunk.get('url') or chunk.get('link')
+						if url: text = f'<a l:href="{cls.e_xml(href(url))}">{text}</a>'
+						note = chunk.get('note')
+						if note:
+							notes.append(str(note))
+							text += f'<a l:href="#n{len(notes)}" type="note">[{len(notes)}]</a>'
+						return text
+					def paragraphs(text):
+						if isinstance(text, str) and '\n' not in text and '\r' not in text:
+							line = cls.e_xml(text)
+							return [line] if line.strip() else []
+						result = ['']
+						for chunk in (text if isinstance(text, list) else [text]):
+							if chunk is None: continue
+							for index, line in enumerate(raw(chunk).replace('\r\n', '\n').replace('\r', '\n').split('\n')):
+								if index: result.append('')
+								if line: result[-1] += wrap(line, chunk)
+						return [line for line in result if line.strip()]
+					def p(text):
+						return ''.join(f'<p>{line}</p>' for line in paragraphs(text))
+					def people(value, tag):
+						result = ''
+						for person in (value if isinstance(value, list) else [value]):
+							if isinstance(person, dict):
+								xml = ''
+								for name, key in (('first-name', 'first'), ('middle-name', 'middle'), ('last-name', 'last'), ('nickname', 'name')):
+									part = str(person.get(key) or '').strip()
+									if part: xml += f'<{name}>{cls.e_xml(part)}</{name}>'
+							else:
+								part = str(person or '').strip()
+								xml = f'<nickname>{cls.e_xml(part)}</nickname>' if part else ''
+							if xml: result += f'<{tag}>{xml}</{tag}>'
+						return result
+					def listing(values, numbered, start, depth = 0):
+						result = []
+						number = start
+						for value in values:
+							if isinstance(value, list):
+								result += listing(value, numbered, start, depth + 1)
+							else:
+								mark = f'{number}.' if numbered else ('•' if depth == 0 else '–')
+								number += 1
+								result.append('<p>' + '\u00a0' * (4 * depth) + mark + '\u00a0' + ' '.join(paragraphs(value)) + '</p>')
+						return result
+					def picture(image):
+						if isinstance(image, str):
+							if len(image) < 4096 and cls.is_file(image):
+								with open(image, 'rb') as file:
+									image = file.read()
+							else:
+								image = cls.base64_decode_binary(re.sub(r'^\s*data:[^,]*,|\s+', '', image))
+						if cls.is_cv(image):
+							image = bytes(image)
+							if image.startswith(b'\xff\xd8\xff') and image.rstrip(b'\x00')[-2:] == b'\xff\xd9': return image, 'image/jpeg'
+							if image.startswith(b'\x89PNG\r\n\x1a\n') and image[-8:-4] == b'IEND': return image, 'image/png'
+							image = cls.module('PIL.Image', 'pillow').open(io.BytesIO(image))
+						if cls.is_pillow(image):
+							png = image.mode in ('1', 'P', 'PA', 'LA', 'La', 'RGBA', 'RGBa')
+							if not png and image.mode not in ('RGB', 'L'): image = image.convert('RGB')
+							buffer = io.BytesIO()
+							if png: image.save(buffer, 'PNG', optimize = True)
+							else: image.save(buffer, 'JPEG', quality = 90, optimize = True)
+							return buffer.getvalue(), 'image/png' if png else 'image/jpeg'
+					def put(item, epigraph = False):
+						if not stack:
+							node = {'title': None, 'epigraph': [], 'items': [], 'sections': []}
+							root.append(node)
+							stack.append(node)
+						node = stack[-1]
+						if epigraph and node['items']:
+							item = '<cite>' + item[10:-11] + '</cite>'
+							epigraph = False
+						if anchor and not item.startswith('<empty-line'):
+							item = re.sub(r'^<([\w-]+)', lambda found: f'<{found[1]} id="{anchor.pop()}"', item, count = 1)
+						node['epigraph' if epigraph else 'items'].append(item)
+					def put_title(lines, level):
+						level = max(1, min(int(level or 1), len(stack) + 1))
+						del stack[level - 1:]
+						node = {'title': lines, 'epigraph': [], 'items': [], 'sections': [], 'id': anchor.pop() if anchor else None}
+						if stack:
+							parent = stack[-1]
+							if parent['items']:
+								parent['sections'].append({'title': None, 'epigraph': parent['epigraph'], 'items': parent['items'], 'sections': []})
+								parent['epigraph'] = []
+								parent['items'] = []
+							parent['sections'].append(node)
+						else:
+							root.append(node)
+						stack.append(node)
+					def render(node):
+						xml = '<section' + (f' id="{node["id"]}"' if node.get('id') else '') + '>'
+						if node['title']: xml += '<title>' + ''.join(f'<p>{line}</p>' for line in node['title']) + '</title>'
+						xml += ''.join(node['epigraph']) + ''.join(node['items']) + ''.join(render(child) for child in node['sections'])
+						if not node['items'] and not node['sections']: xml += '<empty-line/>'
+						return xml + '</section>'
+					title_first = None
+					for block in data.get('content') or []:
+						if isinstance(block, str): block = {'type': 'text', 'text': block}
+						if not isinstance(block, dict):
+							if isinstance(block, str):
+								if block == 'separator': block = {'type': 'separator'}
+								elif block == 'pagebreak': block = {'type': 'pagebreak'}
+								elif block == 'pagebreak.odd': block = {'type': 'pagebreak.odd'}
+								elif block == 'pagebreak.even': block = {'type': 'pagebreak.even'}
+								elif block == 'empty': block = {'type': 'empty'}
+								elif cls.is_url(block): block = {'type': 'url', 'url': block}
+								else: block = {'type': 'text', 'text': block}
+							elif cls.is_image(block):
+								block = {'type': 'image', 'image': block, 'width': 'cover'}
+							else: continue
+						kind = str(block.get('type') or 'text')
+						text = block.get('text')
+						items = block.get('list') or block.get('table')
+						author = raw(block.get('author')).strip()
+						url = block.get('url') or block.get('link')
+						anchor.clear()
+						if block.get('id'):
+							block_id = ident(block['id'])
+							if block_id not in used and not re.fullmatch(r'n\d+', block_id):
+								used.add(block_id)
+								anchor.append(block_id)
+						match kind:
+							case 'text' | 'paragraph':
+								for line in paragraphs(text): put(f'<p>{line}</p>')
+							case 'title':
+								lines = paragraphs(text)
+								if lines:
+									if title_first is None: title_first = raw(text).replace('\n', ' ').strip()
+									put_title(lines, block.get('level'))
+							case 'separator':
+								put(f"<subtitle>{cls.e_xml(raw(text).strip() or '* * *')}</subtitle>")
+							case 'empty':
+								put('<empty-line/>')
+							case 'epigraph' | 'quote':
+								inner = p(text)
+								if url: inner += f'<p><a l:href="{cls.e_xml(href(url))}">{cls.e_xml(url)}</a></p>'
+								if inner:
+									if author: inner += f'<text-author>{cls.e_xml(author)}</text-author>'
+									if kind == 'epigraph': put(f'<epigraph>{inner}</epigraph>', True)
+									else: put(f'<cite>{inner}</cite>')
+							case 'code':
+								for line in raw(text).replace('\r\n', '\n').split('\n'):
+									line = line.replace('\t', '    ')
+									indent = len(line) - len(line.lstrip(' '))
+									put(f'<p><code>{chr(160) * indent}{cls.e_xml(line[indent:])}</code></p>' if line.strip() else '<empty-line/>')
+							case 'url' | 'link':
+								if url: put(f'<p><a l:href="{cls.e_xml(href(url))}">{cls.e_xml(raw(text).strip() or url)}</a></p>')
+							case 'poem':
+								if items:
+									stanzas = [items] if not any(isinstance(line, list) for line in items) else [stanza if isinstance(stanza, list) else [stanza] for stanza in items]
+								else:
+									stanzas = [stanza.split('\n') for stanza in re.split(r'\n\s*\n', raw(text).replace('\r\n', '\n').strip())]
+								inner = ''
+								for stanza in stanzas:
+									verses = [raw(line) for line in stanza]
+									verses = ''.join(f'<v>{cls.e_xml(line)}</v>' for line in verses if line.strip())
+									if verses: inner += f'<stanza>{verses}</stanza>'
+								if inner:
+									if author: inner += f'<text-author>{cls.e_xml(author)}</text-author>'
+									put(f'<poem>{inner}</poem>')
+							case 'image':
+								loaded = None
+								try: loaded = picture(block.get('image'))
+								except Exception: pass
+								if loaded:
+									if loaded[0] not in pictures:
+										extension = 'png' if loaded[1] == 'image/png' else 'jpg'
+										index = len(pictures) + 1
+										while f'image{index}.{extension}' in used: index += 1
+										pictures[loaded[0]] = (f'image{index}.{extension}', loaded[1])
+										used.add(pictures[loaded[0]][0])
+									picture_id = pictures[loaded[0]][0]
+									named = styles.get(block.get('style')) if block.get('style') else None
+									named = named if isinstance(named, dict) else styles.get('image')
+									width = block.get('width') or (named.get('width') if isinstance(named, dict) else None)
+									if cover is None and str(width).strip().lower() == 'cover':
+										cover = picture_id
+									else:
+										alt = block.get('alt', True)
+										alt = raw(text).replace('\n', ' ').strip() if alt is True else str(alt or '').strip()
+										put(f'<image l:href="#{picture_id}"' + (f' alt="{cls.e_xml(alt)}"' if alt else '') + '/>')
+										for line in paragraphs(text): put(f'<p><emphasis>{line}</emphasis></p>')
+							case 'list' | 'list number':
+								if isinstance(items, list):
+									number = block.get('number')
+									for line in listing(items, kind == 'list number', 1 if number is None else int(number)): put(line)
+							case 'table' | 'table header':
+								if isinstance(items, list):
+									rows = ''
+									for index, row in enumerate(items):
+										cell = 'th' if kind == 'table header' and index == 0 else 'td'
+										cells = ''.join(f"<{cell}>{' '.join(paragraphs(value))}</{cell}>" for value in (row if isinstance(row, list) else [row]))
+										if cells: rows += f'<tr>{cells}</tr>'
+									if rows:
+										if raw(text).strip(): put(f'<subtitle>{cls.e_xml(raw(text).strip())}</subtitle>')
+										put(f'<table>{rows}</table>')
+					if not root: put('<empty-line/>')
+					title = str(data.get('title') or title_first or 'Title')
+					author_xml = people(data.get('author'), 'author') or '<author><nickname>Author</nickname></author>'
+					language = str(data.get('language') or cls.get('language') or 'en')
+					stamp = cls.date_safe(data.get('timestamp') or cls.timestamp())
+					date = str(data.get('date') or '')
+					found = re.match(r'(\d{4})\D+(\d{1,2})\D+(\d{1,2})', date)
+					date = f'{found[1]}-{found[2].zfill(2)}-{found[3].zfill(2)}' if found else stamp
+					genres = cls.get('info.fb2.genre') or []
+					genre_list = data.get('genre')
+					selected = []
+					for genre in (genre_list if isinstance(genre_list, list) else [genre_list]):
+						if not genre: continue
+						genre = str(genre).strip().lower()
+						if genre in genres and genre not in selected: selected.append(genre)
+					genre_xml = ''.join(f'<genre>{genre}</genre>' for genre in selected or ['unrecognised'])
+					annotation = p(data.get('description') or data.get('annotation'))
+					keywords = data.get('keywords')
+					series = data.get('series')
+					original = data.get('original')
+					original = original if isinstance(original, dict) and original else None
+					book_id = data.get('id')
+					if not book_id:
+						names = ' '.join(re.sub(r'<[^>]+>', ' ', author_xml).split())
+						book_id = cls.uuid(f'{title}|{names}') if data.get('title') and data.get('author') else cls.uuid()
+					xml = f'<title-info>{genre_xml}{author_xml}<book-title>{cls.e_xml(title)}</book-title>'
+					if annotation: xml += f'<annotation>{annotation}</annotation>'
+					if keywords: xml += f"<keywords>{cls.e_xml(', '.join(map(str, keywords)) if isinstance(keywords, list) else keywords)}</keywords>"
+					xml += f'<date value="{date}">{date}</date>' + (f'<coverpage><image l:href="#{cover}"/></coverpage>' if cover else '') + f'<lang>{cls.e_xml(language)}</lang>'
+					if original:
+						original_language = str(original.get('language') or language)
+						xml += f'<src-lang>{cls.e_xml(original_language)}</src-lang>'
+					xml += people(data.get('translator'), 'translator')
+					if isinstance(series, dict) and series.get('name'):
+						number = series.get('number')
+						xml += f'<sequence name="{cls.e_xml(series["name"])}"' + (f' number="{int(number)}"' if str(number).isdigit() else '') + '/>'
+					xml += '</title-info>'
+					if original:
+						original_year = original.get('year')
+						xml += f"<src-title-info>{genre_xml}{people(original.get('author'), 'author') or author_xml}<book-title>{cls.e_xml(original.get('title') or title)}</book-title>" + (f'<date>{cls.e_xml(original_year)}</date>' if original_year else '') + f'<lang>{cls.e_xml(original_language)}</lang></src-title-info>'
+					xml += f"<document-info><author><nickname>{cls.e_xml(cls.get('about.author', 'void'))}</nickname></author><program-used>{cls.e_xml(cls.get('about.name', 'void'))}</program-used><date value=\"{stamp}\">{stamp}</date><id>{cls.e_xml(book_id)}</id><version>{cls.e_xml(data.get('version') or '1.0')}</version></document-info>"
+					publisher, city, isbn = data.get('publisher'), data.get('city'), data.get('isbn')
+					if publisher or city or isbn:
+						year = data.get('year') or date[:4]
+						xml += '<publish-info>' + (f'<publisher>{cls.e_xml(publisher)}</publisher>' if publisher else '') + (f'<city>{cls.e_xml(city)}</city>' if city else '') + (f'<year>{cls.e_xml(year)}</year>' if year else '') + (f'<isbn>{cls.e_xml(isbn)}</isbn>' if isbn else '') + '</publish-info>'
+					xml = f'<description>{xml}</description><body>' + ''.join(render(node) for node in root) + '</body>'
+					if notes:
+						xml += '<body name="notes"><title><p>Notes</p></title>' + ''.join(f'<section id="n{index}"><title><p>{index}</p></title><p>{cls.e_xml(note)}</p></section>' for index, note in enumerate(notes, 1)) + '</body>'
+					if pictures:
+						xml += ''.join(f'<binary id="{picture_id}" content-type="{mime}">{cls.base64(content)}</binary>' for content, (picture_id, mime) in pictures.items())
+					with open(path, 'w', encoding='utf-8', newline='') as file:
+						file.write('<?xml version="1.0" encoding="UTF-8"?>\n<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">' + xml + '</FictionBook>')
 				case 'epub':
 					pass
 				case _:
@@ -12249,6 +12736,10 @@ class void:
 						os.remove(cls.path(file))
 					except Exception as e:
 						cls.error('file.remove', e)
+
+	@classmethod # alias
+	def file_exists(cls, path: str):
+		return cls.is_file(path)
 
 	@classmethod # short
 	def file_trash(cls, path: str | list):
@@ -12442,6 +12933,10 @@ class void:
 	def link(cls, source: str, destination: str):
 		pass
 
+	@classmethod # alias
+	def link_exists(cls, path: str):
+		return cls.is_link(path)
+
 	# dir
 
 	@classmethod
@@ -12499,6 +12994,10 @@ class void:
 	@classmethod # short
 	def dir_dir(cls, path: str = None, recursive: bool = False, sort = None, reverse: bool = False, parse: str = None):
 		return cls.dir(path, recursive=recursive, sort=sort, reverse=reverse, filter='dir', parse=parse)
+
+	@classmethod # alias
+	def dir_exists(cls, path: str):
+		return cls.is_dir(path)
 	
 	@classmethod
 	def dir_change(cls, path: str):
@@ -12655,7 +13154,7 @@ class void:
 								if file_name not in processed:
 									file_path = cls.path(path, name)
 									result = {}
-									if cls.is_runable(file_path):
+									if cls.is_runnable(file_path):
 										result = cls.open(file_path)
 									else:
 										match cls.path_extension(file_name).lower():
@@ -12956,6 +13455,10 @@ class void:
 	def drive(cls, path: str = None):
 		pass
 
+	@classmethod # alias
+	def drive_exists(cls, path: str):
+		return cls.is_drive(path)
+
 	@classmethod
 	def drive_info(cls, path: str = None):
 		return cls.drive(path)
@@ -13134,7 +13637,7 @@ class void:
 		return path
 
 	@classmethod
-	def path_drive(cls, path: str):
+	def path_drive(cls, path: str) -> str:
 		index_colon = path.find(':')
 		if index_colon >= 0:
 			return path[:index_colon].upper()
@@ -13149,6 +13652,9 @@ class void:
 				return path[:index_slash]
 			return path
 
+	@classmethod
+	def path_command(cls, command: str) -> str:
+		return cls.module('shutil').which(command)
 
   # format
 
@@ -16522,14 +17028,13 @@ class void:
 		pass
 
 	@classmethod
-	def book(cls, prompt: str, path: str = None, pages: int = None, title: str = None, author: str = None, cover=None, adult: bool = None, font: str = None, size: float = None, margin=None, mirror: bool = None, words_page: int = None, format: str = None, creator: str = None, corrector: str = None):
+	def book(cls, prompt: str, path: str = None, pages: int = None, title: str = None, author = None, cover = None, adult: bool = None, font: str = None, size: float = None, margin = None, mirror: bool = None, format: str = None, creator: str = None, corrector: str = None):
 		if not pages: pages = cls.get('ai.book.pages')
 		if adult is None: adult = cls.get('ai.book.adult')
 		if not font: font = cls.get('ai.book.font')
 		if not size: size = cls.get('ai.book.size')
 		if margin is None: margin = cls.get('ai.book.margin')
 		if mirror is None: mirror = cls.get('ai.book.mirror')
-		if not words_page: words_page = cls.get('ai.book.words per page')
 		if not format: format = cls.get('ai.book.format')
 		if not creator: creator = cls.get('ai.book.creator')
 		if not corrector: corrector = cls.get('ai.book.corrector')
