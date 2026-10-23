@@ -1,3 +1,5 @@
+from __future__ import annotations # for 3.12 · expired 2028
+
 import io
 import os
 import re
@@ -23,12 +25,15 @@ class void:
 			type
 				code
 			language
-				python
+				name
+					python
+				min
+					3.12
 			version
 				time
-					1790403166
+					1792756459
 				date
-					2026 · 09 · 26
+					2026·10·23
 			license
 				name
 					V O I D license
@@ -8214,7 +8219,7 @@ class void:
 	  # gpu
 		gpu_info_original = ''
 		gpu_info = ''
-		if cls.os_type == 'windows':
+		if cls.is_win:
 			try:
 				import winreg
 				key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, 'SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}')
@@ -8288,7 +8293,7 @@ class void:
 			cls.torch_type = 'mps'
 		elif cls.gpu_type == 'intel':
 			cls.torch_type = 'xpu'
-		elif cls.gpu_type == 'amd' and cls.os_type == 'windows':
+		elif cls.gpu_type == 'amd' and cls.is_win:
 			cls.torch_type = 'dml'
 		else:
 			cls.torch_type = 'cpu'
@@ -8315,7 +8320,7 @@ class void:
 	  # time
 		cls.set('timezone', datetime.datetime.now().astimezone().tzinfo)
 	  # font
-		cls.set('font.path.default', cls.get('font.path.arial') if cls.os_type == 'windows' else cls.get(''))
+		cls.set('font.path.default', cls.get('font.path.arial') if cls.is_win else None)
 	  # random
 		cls.random_reseed()
 	  # ui
@@ -8723,92 +8728,98 @@ class void:
   # expression
 
 	@classmethod
-	def expression_plus(cls):
-		pass
+	def expression_and(cls, first, second):
+		return first and second
 
 	@classmethod
-	def expression_and(cls):
-		return cls.expression_plus()
+	def expression_or(cls, first, second):
+		return first or second
 
 	@classmethod
-	def expression_minus(cls):
-		pass
+	def expression_xor(cls, first, second):
+		return first ^ second
 
 	@classmethod
-	def expression_not(cls):
-		return cls.expression_minus()
+	def expression_not(cls, data):
+		return not data
 
 	@classmethod
-	def expression_multiply(cls):
-		pass
+	def expression_plus(cls, first, second):
+		return first + second
 
 	@classmethod
-	def expression_xor(cls):
-		return cls.expression_multiply()
+	def expression_minus(cls, first, second):
+		return first - second
 
 	@classmethod
-	def expression_divide(cls):
-		pass
+	def expression_multiply(cls, first, second):
+		return first * second
 
 	@classmethod
-	def expression_or(cls):
-		return cls.expression_divide()
+	def expression_divide(cls, first, second, digits: int = None):
+		if digits is None: return first / second
+		if digits == 0: return first // second
+		return cls.round(first / second, digits)
 
 	@classmethod
-	def expression_modulo(cls):
-		pass
+	def expression_modulo(cls, first, second):
+		return first % second
 
 	@classmethod # alias
-	def expression_mod(cls):
-		return cls.expression_modulo()
+	def expression_mod(cls, first, second):
+		return cls.expression_modulo(first, second)
 
 	@classmethod
-	def expression_power(cls):
-		pass
+	def expression_power(cls, first, second):
+		return first ** second
 
 	@classmethod # alias
-	def expression_pow(cls):
-		return cls.expression_power()
+	def expression_pow(cls, first, second):
+		return cls.expression_power(first, second)
 
 	@classmethod
-	def expression_shr(cls):
-		pass
+	def expression_shr(cls, first, second):
+		return first >> second
 
 	@classmethod
-	def expression_shl(cls):
-		pass
+	def expression_shl(cls, first, second):
+		return first << second
 
 	@classmethod
-	def expression_notequal(cls):
-		pass
+	def expression_notequal(cls, first, second) -> bool:
+		return first != second
 
 	@classmethod
-	def expression_greater(cls):
-		pass
+	def expression_greater(cls, first, second):
+		return first > second
 
 	@classmethod
-	def expression_less(cls):
-		pass
+	def expression_less(cls, first, second):
+		return first < second
 
 	@classmethod
-	def expression_greater_equal(cls):
-		pass
+	def expression_greater_equal(cls, first, second):
+		return first >= second
 
 	@classmethod
-	def expression_less_equal(cls):
-		pass
+	def expression_less_equal(cls, first, second):
+		return first <= second
 
 	@classmethod
-	def expression_in(cls):
-		pass
+	def expression_in(cls, first, second) -> bool:
+		return first in second
 
 	@classmethod
-	def expression_notin(cls):
-		pass
+	def expression_notin(cls, first, second) -> bool:
+		return not cls.expression_in(first, second)
 
 	@classmethod
-	def expression_is(cls):
-		pass
+	def expression_is(cls, data, format: str) -> bool:
+		match format:
+			case 'text':
+				pass
+			case 'number':
+				pass
 
 	@classmethod
 	def is_number(cls, data) -> bool:
@@ -8889,7 +8900,8 @@ class void:
 
 	@classmethod
 	def is_cv(cls, data) -> bool:
-		return isinstance(data, bytearray)
+		try: return data.__class__.__name__ == 'ndarray' and data.__class__.__module__.startswith('numpy')
+		except: return False
 
 	@classmethod
 	def is_pillow(cls, data) -> bool:
@@ -8935,52 +8947,52 @@ class void:
 		pass
 
 	@classmethod
-	def expression_isnot(cls):
-		pass
+	def expression_isnot(cls, data, format: str) -> bool:
+		return not cls.expression_is(data, format)
 
 	@classmethod
-	def expression_assign(cls):
-		pass
+	def expression_assign(cls, name, data):
+		cls.set(name, data)
 
 	@classmethod
-	def expression_plus_assign(cls):
-		pass
+	def expression_plus_assign(cls, name, data):
+		cls.set(name, cls.expression_plus(cls.get(name), data))
 
 	@classmethod
 	def expression_assign_plus(cls):
-		pass
+		cls.set(name, cls.expression_plus(data, cls.get(name)))
 
 	@classmethod
 	def expression_minus_assign(cls):
-		pass
+		cls.set(name, cls.expression_minus(cls.get(name), data))
 
 	@classmethod
 	def expression_assign_minus(cls):
-		pass
+		cls.set(name, cls.expression_minus(data, cls.get(name)))
 
 	@classmethod
 	def expression_multiply_assign(cls):
-		pass
+		cls.set(name, cls.expression_multiply(cls.get(name), data))
 
 	@classmethod
 	def expression_divide_assign(cls):
-		pass
+		cls.set(name, cls.expression_divide(cls.get(name), data))
 
 	@classmethod
 	def expression_modulo_assign(cls):
-		pass
+		cls.set(name, cls.expression_modulo(cls.get(name), data))
 
 	@classmethod
 	def expression_power_assign(cls):
-		pass
+		cls.set(name, cls.expression_power(cls.get(name), data))
 
 	@classmethod
 	def expression_shr_assign(cls):
-		pass
+		cls.set(name, cls.expression_shr(cls.get(name), data))
 
 	@classmethod
 	def expression_shl_assign(cls):
-		pass
+		cls.set(name, cls.expression_shl(cls.get(name), data))
 
 
   # control
@@ -9083,7 +9095,7 @@ class void:
 		return result
 
 	@classmethod
-	def open(cls, command = None, wait: bool | str = False):
+	def open(cls, command = None, wait: bool | str = False, data = None):
 		if command is None:
 			psutil = cls.module('psutil')
 			result = []
@@ -9102,12 +9114,13 @@ class void:
 			return
 		if not isinstance(command, (str, list)):
 			command = str(command)
-		creation_flags = 0x08000000 if cls.os_type == 'windows' else 0
+		creation_flags = 0x08000000 if cls.is_win else 0
 		try:
 			subprocess = cls.module('subprocess')
 			if wait:
-				process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, creationflags=creation_flags)
-				text, error = process.communicate()
+				if wait == 'silent': wait = False
+				process = subprocess.Popen(command, stdin=subprocess.PIPE if data is not None else None, stdout=subprocess.PIPE if wait else subprocess.DEVNULL, stderr=subprocess.PIPE if wait else subprocess.DEVNULL, text=True, creationflags=creation_flags)
+				text, error = process.communicate(data if isinstance(data, str) or data is None else str(data))
 				result = {
 					'code': process.returncode,
 					'pid': process.pid,
@@ -9116,16 +9129,18 @@ class void:
 				} | ({'error': error} if error else {})
 			else:
 				process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=creation_flags)
-				result = {
-					'pid': process.pid
-				}
+				result = {'pid': process.pid}
 		except Exception as e:
-			result = {'error': str(e), 'code': -1}
+			result = {'error': str(e), 'code': -1, 'success': False}
 		return result
 
 	@classmethod # short
-	def open_wait(cls, command):
-		return cls.open(command, True)
+	def open_wait(cls, command, data = None):
+		return cls.open(command, True, data)
+
+	@classmethod # short
+	def open_silent(cls, command, data = None):
+		return cls.open(command, 'silent', data)
 
 	@classmethod # short
 	def open_fast(cls, command):
@@ -9357,7 +9372,7 @@ class void:
 			case 'xbox':
 				pass
 			case 'alias':
-				if cls.os_type == 'windows':
+				if cls.is_win:
 					cls.file(f"{value or 'void'}.bat", f'@{cls.get('python.path')} "{cls.get('app.path')}" %*')
 			case 'limit':
 				if cls.is_nix:
@@ -9609,8 +9624,7 @@ class void:
 				cls.error('clipboard.command.unavailable')
 				return
 			for command in commands:
-				if data is not None: command += [data]
-				result = cls.open(command)
+				result = cls.open_wait(command) if data is None else cls.open_silent(command, data) 
 				if result['success']: return result['text'] if data is None else None
 
 	@classmethod # alias
@@ -10041,7 +10055,7 @@ class void:
 		if translate:
 			text = cls.translate(text)
 		if engine is None:
-			engine = 'edge' if cls.os_type == 'windows' else 'google'
+			engine = 'edge' if cls.is_win else 'google'
 		match engine:
 			case 'google':
 				gtts = cls.module('gtts')
@@ -10192,60 +10206,60 @@ class void:
 		return ''.join(result)
 
 	@classmethod # short
-	def upper_sentence(cls) -> str | list:
+	def upper_sentence(cls, text: str | list) -> str | list:
 		return cls.upper(text, 'sentence')
 
 	@classmethod # short
-	def upper_title(cls) -> str | list:
+	def upper_title(cls, text: str | list) -> str | list:
 		return cls.upper(text, 'title')
 
 	@classmethod # short
-	def upper_odd(cls) -> str | list:
+	def upper_odd(cls, text: str | list) -> str | list:
 		return cls.upper(text, 'odd')
 
 	@classmethod # short
-	def upper_even(cls) -> str | list:
+	def upper_even(cls, text: str | list) -> str | list:
 		return cls.upper(text, 'even')
 
 	@classmethod # short
-	def upper_invert(cls) -> str | list:
+	def upper_invert(cls, text: str | list) -> str | list:
 		return cls.upper(text, 'invert')
 
 	@classmethod # short alias
-	def upper_swap(cls, text) -> str | list:
+	def upper_swap(cls, text: str | list) -> str | list:
 		return cls.upper(text, 'swap')
 
 	@classmethod
-	def starts(cls):
+	def starts(cls, text: str | list):
 		pass
 
 	@classmethod
-	def ends(cls):
+	def ends(cls, text: str | list):
 		pass
 
 	@classmethod
-	def strip(cls):
-		pass
+	def strip(cls, text: str | list, strip: str = None):
+		return cls.strip_end(cls.strip_start(text, strip))
 
 	@classmethod
-	def strip_start(cls, text: str, start: str = None):
-		if start is None or len(start) == 1:
-			return text.rstrip(start)
-		return text[len(start):] if text.startswith(start) else text
+	def strip_start(cls, text: str | list, strip: str = None):
+		if strip is None or len(strip) == 1:
+			return text.rstrip(strip)
+		return text[len(strip):] if text.startswith(strip) else text
 
 	@classmethod # alias
-	def lstrip(cls):
-		pass
+	def lstrip(cls, text: str | list, strip: str = None):
+		return cls.strip_start(text, strip)
 
 	@classmethod
-	def strip_end(cls, text: str, end: str = None):
-		if end is None or len(end) == 1:
-			return text.lstrip(end)
-		return text[len(end):] if text.endswith(end) else text
+	def strip_end(cls, text: str | list, strip: str = None):
+		if strip is None or len(strip) == 1:
+			return text.lstrip(strip)
+		return text[len(strip):] if text.endswith(strip) else text
 
 	@classmethod # alias
-	def rstrip(cls):
-		pass
+	def rstrip(cls, text: str | list, strip: str = None):
+		return cls.strip_end(text, strip)
 
 	@classmethod
 	def replace(cls, text: str, search, replace = None):
@@ -12018,11 +12032,14 @@ class void:
 							return pillow_image.fromarray(data)
 						return data
 				case 'pdf' | 'pdf.text':
-					pass
+					with open(path, 'rb') as file:
+						return cls.pdf_decode(file.read())
 				case 'epub':
-					pass
+					with open(path, 'rb') as file:
+						return cls.epub_decode(file.read())
 				case 'fb2':
-					pass
+					with open(path, 'r', encoding='utf-8') as file:
+						return cls.fb2_decode(file.read())
 				case _:
 					if format == 'ascii' or format.startswith('iso-') or format.startswith('utf-') or format.startswith('windows-') or format.startswith('mac-') or format.startswith('cp-') or format.startswith('koi8-') or format.startswith('gb'):
 						with open(path, 'r', encoding=format) as file:
@@ -12112,7 +12129,7 @@ class void:
 					if isinstance(data, bytes):
 						with open(path, 'wb') as file:
 							file.write(data)
-					elif 'Image' in data.__class__.__name__ and data.__class__.__module__.startswith('PIL'):
+					elif cls.is_pillow(data):
 						image_param = {}
 						match format:
 							case 'jpg' | 'jpeg':
@@ -12281,7 +12298,7 @@ class void:
 							data.save(path, **image_param)
 						except Exception as e:
 							cls.error('file.write.pillow', e)
-					elif data.__class__.__name__ == 'ndarray' and data.__class__.__module__.startswith('numpy'):
+					elif cls.is_cv(data):
 						cv2 = cls.module('cv2', 'opencv-python')
 						np = cls.module('numpy')
 						image_param = []
@@ -12348,286 +12365,23 @@ class void:
 							except Exception as e:
 								cls.error('file.write.cv2', e)
 				case 'pdf' | 'pdf.text':
-					pass
+					data = cls.pdf(data)
+					if data:
+						try:
+							with open(path, 'wb') as file: file.write(data)
+						except Exception as e: cls.error('file.write.pdf', e)
 				case 'fb2':
-					if isinstance(data, str):
-						data = {'content': [{'type': 'text', 'text': data}]}
-					elif isinstance(data, list):
-						data = {'content': data}
-					elif not isinstance(data, dict):
-						return
-					notes = []
-					root = []
-					stack = []
-					anchor = []
-					used = set()
-					pictures = {}
-					cover = None
-					styles = data.get('style')
-					styles = styles if isinstance(styles, dict) else {}
-					def ident(value):
-						value = re.sub(r'[^\w.-]', '_', str(value).strip())
-						return value if re.match(r'[^\W\d]', value) else '_' + value
-					def href(value):
-						value = str(value).strip()
-						return '#' + ident(value[1:]) if value.startswith('#') else value
-					def raw(text):
-						return ''.join(str(chunk.get('text') or '') if isinstance(chunk, dict) else str(chunk) for chunk in (text if isinstance(text, list) else [text]) if chunk is not None)
-					def wrap(text, chunk):
-						text = cls.e_xml(text)
-						if not isinstance(chunk, dict): return text
-						for flag, tag in (('code', 'code'), ('bold', 'strong'), ('italic', 'emphasis'), ('strike', 'strikethrough'), ('sup', 'sup'), ('sub', 'sub')):
-							if chunk.get(flag): text = f'<{tag}>{text}</{tag}>'
-						url = chunk.get('url') or chunk.get('link')
-						if url: text = f'<a l:href="{cls.e_xml(href(url))}">{text}</a>'
-						note = chunk.get('note')
-						if note:
-							notes.append(str(note))
-							text += f'<a l:href="#n{len(notes)}" type="note">[{len(notes)}]</a>'
-						return text
-					def paragraphs(text):
-						if isinstance(text, str) and '\n' not in text and '\r' not in text:
-							line = cls.e_xml(text)
-							return [line] if line.strip() else []
-						result = ['']
-						for chunk in (text if isinstance(text, list) else [text]):
-							if chunk is None: continue
-							for index, line in enumerate(raw(chunk).replace('\r\n', '\n').replace('\r', '\n').split('\n')):
-								if index: result.append('')
-								if line: result[-1] += wrap(line, chunk)
-						return [line for line in result if line.strip()]
-					def p(text):
-						return ''.join(f'<p>{line}</p>' for line in paragraphs(text))
-					def people(value, tag):
-						result = ''
-						for person in (value if isinstance(value, list) else [value]):
-							if isinstance(person, dict):
-								xml = ''
-								for name, key in (('first-name', 'first'), ('middle-name', 'middle'), ('last-name', 'last'), ('nickname', 'name')):
-									part = str(person.get(key) or '').strip()
-									if part: xml += f'<{name}>{cls.e_xml(part)}</{name}>'
-							else:
-								part = str(person or '').strip()
-								xml = f'<nickname>{cls.e_xml(part)}</nickname>' if part else ''
-							if xml: result += f'<{tag}>{xml}</{tag}>'
-						return result
-					def listing(values, numbered, start, depth = 0):
-						result = []
-						number = start
-						for value in values:
-							if isinstance(value, list):
-								result += listing(value, numbered, start, depth + 1)
-							else:
-								mark = f'{number}.' if numbered else ('•' if depth == 0 else '–')
-								number += 1
-								result.append('<p>' + '\u00a0' * (4 * depth) + mark + '\u00a0' + ' '.join(paragraphs(value)) + '</p>')
-						return result
-					def picture(image):
-						if isinstance(image, str):
-							if len(image) < 4096 and cls.is_file(image):
-								with open(image, 'rb') as file:
-									image = file.read()
-							else:
-								image = cls.base64_decode_binary(re.sub(r'^\s*data:[^,]*,|\s+', '', image))
-						if cls.is_cv(image):
-							image = bytes(image)
-							if image.startswith(b'\xff\xd8\xff') and image.rstrip(b'\x00')[-2:] == b'\xff\xd9': return image, 'image/jpeg'
-							if image.startswith(b'\x89PNG\r\n\x1a\n') and image[-8:-4] == b'IEND': return image, 'image/png'
-							image = cls.module('PIL.Image', 'pillow').open(io.BytesIO(image))
-						if cls.is_pillow(image):
-							png = image.mode in ('1', 'P', 'PA', 'LA', 'La', 'RGBA', 'RGBa')
-							if not png and image.mode not in ('RGB', 'L'): image = image.convert('RGB')
-							buffer = io.BytesIO()
-							if png: image.save(buffer, 'PNG', optimize = True)
-							else: image.save(buffer, 'JPEG', quality = 90, optimize = True)
-							return buffer.getvalue(), 'image/png' if png else 'image/jpeg'
-					def put(item, epigraph = False):
-						if not stack:
-							node = {'title': None, 'epigraph': [], 'items': [], 'sections': []}
-							root.append(node)
-							stack.append(node)
-						node = stack[-1]
-						if epigraph and node['items']:
-							item = '<cite>' + item[10:-11] + '</cite>'
-							epigraph = False
-						if anchor and not item.startswith('<empty-line'):
-							item = re.sub(r'^<([\w-]+)', lambda found: f'<{found[1]} id="{anchor.pop()}"', item, count = 1)
-						node['epigraph' if epigraph else 'items'].append(item)
-					def put_title(lines, level):
-						level = max(1, min(int(level or 1), len(stack) + 1))
-						del stack[level - 1:]
-						node = {'title': lines, 'epigraph': [], 'items': [], 'sections': [], 'id': anchor.pop() if anchor else None}
-						if stack:
-							parent = stack[-1]
-							if parent['items']:
-								parent['sections'].append({'title': None, 'epigraph': parent['epigraph'], 'items': parent['items'], 'sections': []})
-								parent['epigraph'] = []
-								parent['items'] = []
-							parent['sections'].append(node)
-						else:
-							root.append(node)
-						stack.append(node)
-					def render(node):
-						xml = '<section' + (f' id="{node["id"]}"' if node.get('id') else '') + '>'
-						if node['title']: xml += '<title>' + ''.join(f'<p>{line}</p>' for line in node['title']) + '</title>'
-						xml += ''.join(node['epigraph']) + ''.join(node['items']) + ''.join(render(child) for child in node['sections'])
-						if not node['items'] and not node['sections']: xml += '<empty-line/>'
-						return xml + '</section>'
-					title_first = None
-					for block in data.get('content') or []:
-						if isinstance(block, str): block = {'type': 'text', 'text': block}
-						if not isinstance(block, dict):
-							if isinstance(block, str):
-								if block == 'separator': block = {'type': 'separator'}
-								elif block == 'pagebreak': block = {'type': 'pagebreak'}
-								elif block == 'pagebreak.odd': block = {'type': 'pagebreak.odd'}
-								elif block == 'pagebreak.even': block = {'type': 'pagebreak.even'}
-								elif block == 'empty': block = {'type': 'empty'}
-								elif cls.is_url(block): block = {'type': 'url', 'url': block}
-								else: block = {'type': 'text', 'text': block}
-							elif cls.is_image(block):
-								block = {'type': 'image', 'image': block, 'width': 'cover'}
-							else: continue
-						kind = str(block.get('type') or 'text')
-						text = block.get('text')
-						items = block.get('list') or block.get('table')
-						author = raw(block.get('author')).strip()
-						url = block.get('url') or block.get('link')
-						anchor.clear()
-						if block.get('id'):
-							block_id = ident(block['id'])
-							if block_id not in used and not re.fullmatch(r'n\d+', block_id):
-								used.add(block_id)
-								anchor.append(block_id)
-						match kind:
-							case 'text' | 'paragraph':
-								for line in paragraphs(text): put(f'<p>{line}</p>')
-							case 'title':
-								lines = paragraphs(text)
-								if lines:
-									if title_first is None: title_first = raw(text).replace('\n', ' ').strip()
-									put_title(lines, block.get('level'))
-							case 'separator':
-								put(f"<subtitle>{cls.e_xml(raw(text).strip() or '* * *')}</subtitle>")
-							case 'empty':
-								put('<empty-line/>')
-							case 'epigraph' | 'quote':
-								inner = p(text)
-								if url: inner += f'<p><a l:href="{cls.e_xml(href(url))}">{cls.e_xml(url)}</a></p>'
-								if inner:
-									if author: inner += f'<text-author>{cls.e_xml(author)}</text-author>'
-									if kind == 'epigraph': put(f'<epigraph>{inner}</epigraph>', True)
-									else: put(f'<cite>{inner}</cite>')
-							case 'code':
-								for line in raw(text).replace('\r\n', '\n').split('\n'):
-									line = line.replace('\t', '    ')
-									indent = len(line) - len(line.lstrip(' '))
-									put(f'<p><code>{chr(160) * indent}{cls.e_xml(line[indent:])}</code></p>' if line.strip() else '<empty-line/>')
-							case 'url' | 'link':
-								if url: put(f'<p><a l:href="{cls.e_xml(href(url))}">{cls.e_xml(raw(text).strip() or url)}</a></p>')
-							case 'poem':
-								if items:
-									stanzas = [items] if not any(isinstance(line, list) for line in items) else [stanza if isinstance(stanza, list) else [stanza] for stanza in items]
-								else:
-									stanzas = [stanza.split('\n') for stanza in re.split(r'\n\s*\n', raw(text).replace('\r\n', '\n').strip())]
-								inner = ''
-								for stanza in stanzas:
-									verses = [raw(line) for line in stanza]
-									verses = ''.join(f'<v>{cls.e_xml(line)}</v>' for line in verses if line.strip())
-									if verses: inner += f'<stanza>{verses}</stanza>'
-								if inner:
-									if author: inner += f'<text-author>{cls.e_xml(author)}</text-author>'
-									put(f'<poem>{inner}</poem>')
-							case 'image':
-								loaded = None
-								try: loaded = picture(block.get('image'))
-								except Exception: pass
-								if loaded:
-									if loaded[0] not in pictures:
-										extension = 'png' if loaded[1] == 'image/png' else 'jpg'
-										index = len(pictures) + 1
-										while f'image{index}.{extension}' in used: index += 1
-										pictures[loaded[0]] = (f'image{index}.{extension}', loaded[1])
-										used.add(pictures[loaded[0]][0])
-									picture_id = pictures[loaded[0]][0]
-									named = styles.get(block.get('style')) if block.get('style') else None
-									named = named if isinstance(named, dict) else styles.get('image')
-									width = block.get('width') or (named.get('width') if isinstance(named, dict) else None)
-									if cover is None and str(width).strip().lower() == 'cover':
-										cover = picture_id
-									else:
-										alt = block.get('alt', True)
-										alt = raw(text).replace('\n', ' ').strip() if alt is True else str(alt or '').strip()
-										put(f'<image l:href="#{picture_id}"' + (f' alt="{cls.e_xml(alt)}"' if alt else '') + '/>')
-										for line in paragraphs(text): put(f'<p><emphasis>{line}</emphasis></p>')
-							case 'list' | 'list number':
-								if isinstance(items, list):
-									number = block.get('number')
-									for line in listing(items, kind == 'list number', 1 if number is None else int(number)): put(line)
-							case 'table' | 'table header':
-								if isinstance(items, list):
-									rows = ''
-									for index, row in enumerate(items):
-										cell = 'th' if kind == 'table header' and index == 0 else 'td'
-										cells = ''.join(f"<{cell}>{' '.join(paragraphs(value))}</{cell}>" for value in (row if isinstance(row, list) else [row]))
-										if cells: rows += f'<tr>{cells}</tr>'
-									if rows:
-										if raw(text).strip(): put(f'<subtitle>{cls.e_xml(raw(text).strip())}</subtitle>')
-										put(f'<table>{rows}</table>')
-					if not root: put('<empty-line/>')
-					title = str(data.get('title') or title_first or 'Title')
-					author_xml = people(data.get('author'), 'author') or '<author><nickname>Author</nickname></author>'
-					language = str(data.get('language') or cls.get('language') or 'en')
-					stamp = cls.date_safe(data.get('timestamp') or cls.timestamp())
-					date = str(data.get('date') or '')
-					found = re.match(r'(\d{4})\D+(\d{1,2})\D+(\d{1,2})', date)
-					date = f'{found[1]}-{found[2].zfill(2)}-{found[3].zfill(2)}' if found else stamp
-					genres = cls.get('info.fb2.genre') or []
-					genre_list = data.get('genre')
-					selected = []
-					for genre in (genre_list if isinstance(genre_list, list) else [genre_list]):
-						if not genre: continue
-						genre = str(genre).strip().lower()
-						if genre in genres and genre not in selected: selected.append(genre)
-					genre_xml = ''.join(f'<genre>{genre}</genre>' for genre in selected or ['unrecognised'])
-					annotation = p(data.get('description') or data.get('annotation'))
-					keywords = data.get('keywords')
-					series = data.get('series')
-					original = data.get('original')
-					original = original if isinstance(original, dict) and original else None
-					book_id = data.get('id')
-					if not book_id:
-						names = ' '.join(re.sub(r'<[^>]+>', ' ', author_xml).split())
-						book_id = cls.uuid(f'{title}|{names}') if data.get('title') and data.get('author') else cls.uuid()
-					xml = f'<title-info>{genre_xml}{author_xml}<book-title>{cls.e_xml(title)}</book-title>'
-					if annotation: xml += f'<annotation>{annotation}</annotation>'
-					if keywords: xml += f"<keywords>{cls.e_xml(', '.join(map(str, keywords)) if isinstance(keywords, list) else keywords)}</keywords>"
-					xml += f'<date value="{date}">{date}</date>' + (f'<coverpage><image l:href="#{cover}"/></coverpage>' if cover else '') + f'<lang>{cls.e_xml(language)}</lang>'
-					if original:
-						original_language = str(original.get('language') or language)
-						xml += f'<src-lang>{cls.e_xml(original_language)}</src-lang>'
-					xml += people(data.get('translator'), 'translator')
-					if isinstance(series, dict) and series.get('name'):
-						number = series.get('number')
-						xml += f'<sequence name="{cls.e_xml(series["name"])}"' + (f' number="{int(number)}"' if str(number).isdigit() else '') + '/>'
-					xml += '</title-info>'
-					if original:
-						original_year = original.get('year')
-						xml += f"<src-title-info>{genre_xml}{people(original.get('author'), 'author') or author_xml}<book-title>{cls.e_xml(original.get('title') or title)}</book-title>" + (f'<date>{cls.e_xml(original_year)}</date>' if original_year else '') + f'<lang>{cls.e_xml(original_language)}</lang></src-title-info>'
-					xml += f"<document-info><author><nickname>{cls.e_xml(cls.get('about.author', 'void'))}</nickname></author><program-used>{cls.e_xml(cls.get('about.name', 'void'))}</program-used><date value=\"{stamp}\">{stamp}</date><id>{cls.e_xml(book_id)}</id><version>{cls.e_xml(data.get('version') or '1.0')}</version></document-info>"
-					publisher, city, isbn = data.get('publisher'), data.get('city'), data.get('isbn')
-					if publisher or city or isbn:
-						year = data.get('year') or date[:4]
-						xml += '<publish-info>' + (f'<publisher>{cls.e_xml(publisher)}</publisher>' if publisher else '') + (f'<city>{cls.e_xml(city)}</city>' if city else '') + (f'<year>{cls.e_xml(year)}</year>' if year else '') + (f'<isbn>{cls.e_xml(isbn)}</isbn>' if isbn else '') + '</publish-info>'
-					xml = f'<description>{xml}</description><body>' + ''.join(render(node) for node in root) + '</body>'
-					if notes:
-						xml += '<body name="notes"><title><p>Notes</p></title>' + ''.join(f'<section id="n{index}"><title><p>{index}</p></title><p>{cls.e_xml(note)}</p></section>' for index, note in enumerate(notes, 1)) + '</body>'
-					if pictures:
-						xml += ''.join(f'<binary id="{picture_id}" content-type="{mime}">{cls.base64(content)}</binary>' for content, (picture_id, mime) in pictures.items())
-					with open(path, 'w', encoding='utf-8', newline='') as file:
-						file.write('<?xml version="1.0" encoding="UTF-8"?>\n<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">' + xml + '</FictionBook>')
+					data = cls.fb2(data)
+					if data:
+						try:
+							with open(path, 'w', encoding='utf-8', newline='') as file: file.write(data)
+						except Exception as e: cls.error('file.write.fb2', e)
 				case 'epub':
-					pass
+					data = cls.epub(data)
+					if data:
+						try:
+							with open(path, 'wb') as file: file.write(data)
+						except Exception as e: cls.error('file.write.epub', e)
 				case _:
 					try:
 						if auto:
@@ -14474,10 +14228,380 @@ class void:
 	def ini_decode_parse(cls, text: str):
 		return cls.ini_decode(text, parse_list=True, parse_number=True, parse_bool=True, parse_none=True)
 
+	# text
+	
+	@classmethod
+	def fb2(data: str | list | dict) -> str:
+		if isinstance(data, str): data = {'content': [{'type': 'text', 'text': data}]}
+		elif isinstance(data, list): data = {'content': data}
+		elif not isinstance(data, dict): return
+		notes = []
+		root = []
+		stack = []
+		anchor = []
+		used = set()
+		pictures = {}
+		cover = None
+		headings = []
+		has_toc = False
+		styles = data.get('style')
+		styles = styles if isinstance(styles, dict) else {}
+		def ident(value):
+			value = ''.join(char if char.isalpha() or char in '0123456789_.-' else '_' for char in str(value).strip())
+			return value if value[:1].isalpha() or value[:1] == '_' else '_' + value
+		def href(value):
+			value = str(value).strip()
+			return '#' + ident(value[1:]) if value.startswith('#') else value
+		def raw(text):
+			return ''.join(str(chunk.get('text') or '') if isinstance(chunk, dict) else str(chunk) for chunk in (text if isinstance(text, list) else [text]) if chunk is not None)
+		def wrap(text, chunk):
+			text = cls.e_xml(text)
+			if not isinstance(chunk, dict): return text
+			for flag, tag in (('code', 'code'), ('bold', 'strong'), ('italic', 'emphasis'), ('strike', 'strikethrough'), ('sup', 'sup'), ('sub', 'sub')):
+				if chunk.get(flag): text = f'<{tag}>{text}</{tag}>'
+			url = chunk.get('url') or chunk.get('link')
+			if url: text = f'<a l:href="{cls.e_xml(href(url))}">{text}</a>'
+			note = chunk.get('note')
+			if note:
+				notes.append(str(note))
+				text += f'<a l:href="#n{len(notes)}" type="note">[{len(notes)}]</a>'
+			return text
+		def paragraphs(text):
+			if isinstance(text, str) and '\n' not in text and '\r' not in text:
+				line = cls.e_xml(text)
+				return [line] if line.strip() else []
+			result = ['']
+			for chunk in (text if isinstance(text, list) else [text]):
+				if chunk is None: continue
+				for index, line in enumerate(raw(chunk).replace('\r\n', '\n').replace('\r', '\n').split('\n')):
+					if index: result.append('')
+					if line: result[-1] += wrap(line, chunk)
+			return [line for line in result if line.strip()]
+		def p(text):
+			return ''.join(f'<p>{line}</p>' for line in paragraphs(text))
+		def people(value, tag):
+			result = ''
+			for person in (value if isinstance(value, list) else [value]):
+				if isinstance(person, dict):
+					first, middle, last, name = (str(person.get(key) or '').strip() for key in ('first', 'middle', 'last', 'name'))
+					if first and last:
+						xml = f'<first-name>{cls.e_xml(first)}</first-name>' + (f'<middle-name>{cls.e_xml(middle)}</middle-name>' if middle else '') + f'<last-name>{cls.e_xml(last)}</last-name>' + (f'<nickname>{cls.e_xml(name)}</nickname>' if name else '')
+					else:
+						part = name or ' '.join(filter(None, (first, middle, last)))
+						xml = f'<nickname>{cls.e_xml(part)}</nickname>' if part else ''
+				else:
+					part = str(person or '').strip()
+					xml = f'<nickname>{cls.e_xml(part)}</nickname>' if part else ''
+				if xml: result += f'<{tag}>{xml}</{tag}>'
+			return result
+		def listing(values, numbered, start, depth = 0):
+			result = []
+			number = start
+			for value in values:
+				if isinstance(value, list):
+					result += listing(value, numbered, start, depth + 1)
+				else:
+					mark = f'{number}.' if numbered else ('•' if depth == 0 else '–')
+					number += 1
+					result.append('<p>' + '\u00a0' * (4 * depth) + mark + '\u00a0' + ' '.join(paragraphs(value)) + '</p>')
+			return result
+		def picture(image):
+			if isinstance(image, str):
+				image = cls.file_binary(image) if len(image) < 4096 and cls.is_file(image) else cls.base64_decode_binary(re.sub(r'^\s*data:[^,]*,|\s+', '', image))
+			if isinstance(image, bytes) or cls.is_cv(image):
+				image = bytes(image)
+				if image.startswith(b'\xff\xd8\xff') and image.rstrip(b'\x00')[-2:] == b'\xff\xd9': return image, 'image/jpeg'
+				if image.startswith(b'\x89PNG\r\n\x1a\n') and image[-8:-4] == b'IEND': return image, 'image/png'
+				image = cls.module('PIL.Image', 'pillow').open(io.BytesIO(image))
+			if cls.is_pillow(image):
+				png = image.mode in ('1', 'P', 'PA', 'LA', 'La', 'RGBA', 'RGBa')
+				if not png and image.mode not in ('RGB', 'L'): image = image.convert('RGB')
+				buffer = io.BytesIO()
+				if png: image.save(buffer, 'PNG', optimize=True)
+				else: image.save(buffer, 'JPEG', quality=90, optimize=True)
+				return buffer.getvalue(), 'image/png' if png else 'image/jpeg'
+		def put(item, epigraph = False):
+			if not stack:
+				node = {'title': None, 'epigraph': [], 'items': [], 'sections': []}
+				root.append(node)
+				stack.append(node)
+			node = stack[-1]
+			if epigraph and node['items']:
+				item = '<cite>' + item[10:-11] + '</cite>'
+				epigraph = False
+			if anchor and isinstance(item, str) and not item.startswith('<empty-line'):
+				item = re.sub(r'^<([\w-]+)', lambda found: f'<{found[1]} id="{anchor.pop()}"', item, count = 1)
+			node['epigraph' if epigraph else 'items'].append(item)
+		def whole(value, default = 0):
+			try: return int(value)
+			except (TypeError, ValueError): return default
+		def split(node):
+			if node['items']:
+				node['sections'].append({'title': None, 'epigraph': node['epigraph'], 'items': node['items'], 'sections': [], 'page': True})
+				node['epigraph'] = []
+				node['items'] = []
+		def drop_empty():
+			if stack and not any(stack[-1][key] for key in ('title', 'epigraph', 'items', 'sections')):
+				stack.pop()
+				(stack[-1]['sections'] if stack else root).pop()
+				if stack and len(stack[-1]['sections']) == 1 and stack[-1]['sections'][0].get('page') and not stack[-1]['sections'][0]['sections']:
+					only = stack[-1]['sections'].pop()
+					stack[-1]['epigraph'], stack[-1]['items'] = only['epigraph'], only['items']
+		def put_break():
+			if stack and stack[-1]['items']:
+				if stack[-1].get('page'): stack.pop()
+				else: split(stack[-1])
+				stack.append({'title': None, 'epigraph': [], 'items': [], 'sections': [], 'page': True})
+				stack[-2]['sections'].append(stack[-1])
+		def put_title(lines, level):
+			drop_empty()
+			level = max(1, min(whole(level, 1), len(stack) + 1))
+			del stack[level - 1:]
+			node = {'title': lines, 'epigraph': [], 'items': [], 'sections': [], 'id': anchor.pop() if anchor else None}
+			if stack:
+				split(stack[-1])
+				stack[-1]['sections'].append(node)
+			else:
+				root.append(node)
+			stack.append(node)
+			return node
+		def toc_xml(label, depth):
+			entries = [heading for heading in headings if heading['include'] and (not depth or heading['level'] <= depth)]
+			if not entries: return ''
+			return (f'<subtitle>{cls.e_xml(label)}</subtitle>' if label else '') + ''.join('<p>' + '\u00a0' * (4 * (heading['level'] - 1)) + f'<a l:href="#{heading["node"]["id"]}">{cls.e_xml(heading["label"])}</a></p>' for heading in entries)
+		def render(node):
+			parts = [item() if callable(item) else item for item in node['items']]
+			parts = [part for part in parts if part]
+			if parts and parts[0].startswith('<image') and (len(parts) == 1 or parts[1].startswith('<image')): parts.insert(1, '<empty-line/>')
+			body = ''.join(parts)
+			xml = '<section' + (f' id="{node["id"]}"' if node.get('id') else '') + '>'
+			if node['title']: xml += '<title>' + ''.join(f'<p>{line}</p>' for line in node['title']) + '</title>'
+			xml += ''.join(node['epigraph']) + body + ''.join(render(child) for child in node['sections'])
+			if not body and not node['sections']: xml += '<empty-line/>'
+			return xml + '</section>'
+		title_first = None
+		for block in data.get('content') or []:
+			if not isinstance(block, dict):
+				if isinstance(block, str):
+					key = block.strip()
+					if key in ('separator', 'empty', 'toc', 'pagebreak', 'pagebreak odd', 'pagebreak even', 'pagebreak.odd', 'pagebreak.even'): block = {'type': key}
+					elif cls.is_url(key) and not re.search(r'\s', key): block = {'type': 'url', 'url': key}
+					else: block = {'type': 'text', 'text': block}
+				elif cls.is_image(block): block = {'type': 'image', 'image': block, 'width': 'cover'}
+				else: continue
+			kind = str(block.get('type') or 'text')
+			text = block.get('text')
+			items = block.get('list') or block.get('table')
+			author = raw(block.get('author')).strip()
+			url = block.get('url') or block.get('link')
+			anchor.clear()
+			if block.get('id'):
+				block_id = ident(block['id'])
+				if block_id not in used and not re.fullmatch(r'n\d+', block_id):
+					used.add(block_id)
+					anchor.append(block_id)
+			match kind:
+				case 'text' | 'paragraph':
+					for line in paragraphs(text): put(f'<p>{line}</p>')
+				case 'title':
+					lines = paragraphs(text)
+					if lines:
+						label = raw(text).replace('\n', ' ').strip()
+						if title_first is None: title_first = label
+						node = put_title(lines, block.get('level'))
+						headings.append({'node': node, 'level': len(stack), 'label': label, 'include': block.get('toc') is not False})
+				case 'pagebreak' | 'pagebreak odd' | 'pagebreak even' | 'pagebreak.odd' | 'pagebreak.even':
+					put_break()
+				case 'toc':
+					has_toc = True
+					depth = whole(block.get('level'))
+					put(lambda label = raw(text).replace('\n', ' ').strip(), depth = depth: toc_xml(label, depth))
+				case 'separator':
+					put(f"<subtitle>{cls.e_xml(raw(text).strip() or '* * *')}</subtitle>")
+				case 'empty':
+					put('<empty-line/>')
+				case 'epigraph' | 'quote':
+					inner = p(text)
+					if url: inner += f'<p><a l:href="{cls.e_xml(href(url))}">{cls.e_xml(url)}</a></p>'
+					if inner:
+						if author: inner += f'<text-author>{cls.e_xml(author)}</text-author>'
+						if kind == 'epigraph': put(f'<epigraph>{inner}</epigraph>', True)
+						else: put(f'<cite>{inner}</cite>')
+				case 'code':
+					for line in raw(text).replace('\r\n', '\n').split('\n'):
+						line = line.replace('\t', '    ')
+						indent = len(line) - len(line.lstrip(' '))
+						put(f'<p><code>{chr(160) * indent}{cls.e_xml(line[indent:])}</code></p>' if line.strip() else '<empty-line/>')
+				case 'url' | 'link':
+					if url: put(f'<p><a l:href="{cls.e_xml(href(url))}">{cls.e_xml(raw(text).strip() or url)}</a></p>')
+				case 'poem':
+					if items:
+						stanzas = [items] if not any(isinstance(line, list) for line in items) else [stanza if isinstance(stanza, list) else [stanza] for stanza in items]
+					else:
+						stanzas = [stanza.split('\n') for stanza in re.split(r'\n\s*\n', raw(text).replace('\r\n', '\n').strip())]
+					poems = []
+					for stanza in stanzas:
+						verses = [raw(line) for line in stanza]
+						verses = ''.join(f'<v>{cls.e_xml(line)}</v>' for line in verses if line.strip())
+						if verses: poems.append(f'<stanza>{verses}</stanza>')
+					for index, inner in enumerate(poems):
+						if index: put('<empty-line/>')
+						put(f'<poem>{inner}' + (f'<text-author>{cls.e_xml(author)}</text-author>' if author and index == len(poems) - 1 else '') + '</poem>')
+				case 'image':
+					loaded = None
+					try: loaded = picture(block.get('image'))
+					except Exception: pass
+					if loaded:
+						if loaded[0] not in pictures:
+							extension = 'png' if loaded[1] == 'image/png' else 'jpg'
+							index = len(pictures) + 1
+							while f'image{index}.{extension}' in used: index += 1
+							pictures[loaded[0]] = (f'image{index}.{extension}', loaded[1])
+							used.add(pictures[loaded[0]][0])
+						picture_id = pictures[loaded[0]][0]
+						named = styles.get(block.get('style')) if block.get('style') else None
+						named = named if isinstance(named, dict) else styles.get('image')
+						width = block.get('width') or (named.get('width') if isinstance(named, dict) else None)
+						if cover is None and str(width).strip().lower() == 'cover':
+							cover = picture_id
+						else:
+							alt = block.get('alt', True)
+							alt = raw(text).replace('\n', ' ').strip() if alt is True else str(alt or '').strip()
+							put(f'<image l:href="#{picture_id}"' + (f' alt="{cls.e_xml(alt)}"' if alt else '') + '/>')
+							for line in paragraphs(text): put(f'<p><emphasis>{line}</emphasis></p>')
+				case 'list' | 'list number':
+					if isinstance(items, list):
+						for line in listing(items, kind == 'list number', whole(block.get('number'), 1)): put(line)
+				case 'table' | 'table header':
+					if isinstance(items, list):
+						rows = ''
+						for index, row in enumerate(items):
+							cell = 'th' if kind == 'table header' and index == 0 else 'td'
+							cells = ''.join(f"<{cell}>{' '.join(paragraphs(value))}</{cell}>" for value in (row if isinstance(row, list) else [row]))
+							if cells: rows += f'<tr>{cells}</tr>'
+						if rows:
+							if raw(text).strip(): put(f'<subtitle>{cls.e_xml(raw(text).strip())}</subtitle>')
+							put(f'<table>{rows}</table>')
+		drop_empty()
+		if not root: put('<empty-line/>')
+		if has_toc:
+			counter = 0
+			for heading in headings:
+				if heading['include'] and not heading['node'].get('id'):
+					counter += 1
+					while f'toc{counter}' in used: counter += 1
+					heading['node']['id'] = f'toc{counter}'
+					used.add(heading['node']['id'])
+		title = str(data.get('title') or title_first or 'Title')
+		author_xml = people(data.get('author'), 'author') or '<author><nickname>Author</nickname></author>'
+		language = str(data.get('language') or cls.get('language') or 'en')
+		stamp = cls.date_safe(whole(data.get('timestamp')) or cls.timestamp())
+		date = str(data.get('date') or '')
+		found = re.match(r'(\d{4})\D+(\d{1,2})\D+(\d{1,2})', date, re.A)
+		try: found = found and int(found[1]) > 0 and 1 <= int(found[3]) <= cls.module('calendar').monthrange(int(found[1]), int(found[2]))[1] and found
+		except Exception: found = None
+		date = f'{found[1]}-{found[2].zfill(2)}-{found[3].zfill(2)}' if found else stamp
+		genres = cls.get('info.fb2.genre') or []
+		genre_list = data.get('genre')
+		selected = []
+		for genre in (genre_list if isinstance(genre_list, list) else [genre_list]):
+			if not genre: continue
+			genre = str(genre).strip().lower()
+			if genre in genres and genre not in selected: selected.append(genre)
+		genre_xml = ''.join(f'<genre>{genre}</genre>' for genre in selected or ['unrecognised'])
+		annotation = p(data.get('description') or data.get('annotation'))
+		keywords = data.get('keywords')
+		series = data.get('series')
+		original = data.get('original')
+		original = original if isinstance(original, dict) and original else None
+		book_id = data.get('id')
+		if not book_id:
+			names = ' '.join(re.sub(r'<[^>]+>', ' ', author_xml).split())
+			book_id = cls.uuid(f"{title.encode('utf-8', 'ignore').decode()}|{names}") if data.get('title') and data.get('author') else cls.uuid()
+		version = str(data.get('version') or '1.0').strip()
+		version = version if re.fullmatch(r'[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?', version, re.A) else '1.0'
+		xml = f'<title-info>{genre_xml}{author_xml}<book-title>{cls.e_xml(title)}</book-title>'
+		if annotation: xml += f'<annotation>{annotation}</annotation>'
+		if keywords: xml += f"<keywords>{cls.e_xml(', '.join(map(str, keywords)) if isinstance(keywords, list) else keywords)}</keywords>"
+		xml += f'<date value="{date}">{date}</date>' + (f'<coverpage><image l:href="#{cover}"/></coverpage>' if cover else '') + f'<lang>{cls.e_xml(language)}</lang>'
+		if original:
+			original_language = str(original.get('language') or language)
+			xml += f'<src-lang>{cls.e_xml(original_language)}</src-lang>'
+		xml += people(data.get('translator'), 'translator')
+		if isinstance(series, dict) and series.get('name'):
+			number = whole(series.get('number'), None)
+			xml += f'<sequence name="{cls.e_xml(series["name"])}"' + (f' number="{number}"' if number is not None else '') + '/>'
+		xml += '</title-info>'
+		if original:
+			original_year = original.get('year')
+			xml += f"<src-title-info>{genre_xml}{people(original.get('author'), 'author') or author_xml}<book-title>{cls.e_xml(original.get('title') or title)}</book-title>" + (f'<date>{cls.e_xml(original_year)}</date>' if original_year else '') + f'<lang>{cls.e_xml(original_language)}</lang></src-title-info>'
+		xml += f"<document-info><author><nickname>{cls.e_xml(cls.get('about.author', 'void'))}</nickname></author><program-used>{cls.e_xml(cls.get('about.name', 'void'))}</program-used><date value=\"{stamp}\">{stamp}</date><id>{cls.e_xml(book_id)}</id><version>{version}</version></document-info>"
+		publisher, city, isbn = data.get('publisher'), data.get('city'), data.get('isbn')
+		if publisher or city or isbn:
+			year = re.search(r'(?!0000)\d{4}', str(data.get('year') or date), re.A)
+			xml += '<publish-info>' + (f'<publisher>{cls.e_xml(publisher)}</publisher>' if publisher else '') + (f'<city>{cls.e_xml(city)}</city>' if city else '') + (f'<year>{year[0]}</year>' if year else '') + (f'<isbn>{cls.e_xml(isbn)}</isbn>' if isbn else '') + '</publish-info>'
+		xml = f'<description>{xml}</description><body>' + ''.join(render(node) for node in root) + '</body>'
+		if notes:
+			xml += '<body name="notes"><title><p>Notes</p></title>' + ''.join(f'<section id="n{index}"><title><p>{index}</p></title><p>{cls.e_xml(note)}</p></section>' for index, note in enumerate(notes, 1)) + '</body>'
+		if pictures:
+			xml += ''.join(f'<binary id="{picture_id}" content-type="{mime}">{cls.base64(content)}</binary>' for content, (picture_id, mime) in pictures.items())
+		return '<?xml version="1.0" encoding="UTF-8"?>\n<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">' + xml + '</FictionBook>'
+
+	def fb2_decode(text: str) -> dict:
+		pass
+
+	@classmethod
+	def epub(data: str | list | dict) -> bytes:
+		pass
+
+	def epub_decode(data: bytes) -> dict:
+		pass
+
+	@classmethod
+	def pdf(data: str | list | dict) -> str:
+		pass
+
+	def pdf_decode(text: str) -> dict:
+		pass
+
+	# image
+
+	@classmethod
+	def cv(data):
+		pass
+
+	@classmethod # alias
+	def cv2(data):
+		return cls.cv(data)
+
+	@classmethod
+	def cv_decode(data) -> bytes:
+		pass
+
+	@classmethod # alias
+	def cv2_decode(data) -> bytes:
+		return cls.cv_decode(data)
+
+	@classmethod
+	def pillow(data):
+		pass
+
+	@classmethod
+	def pillow_decode(data) -> bytes:
+		pass
+
+	# video
+
+	# sound
+
+	# subtitles
+
+	# model
+
 	# web
 
 	@classmethod
-	def sitemap(cls, sitemap, domain: str = None, index: bool = False, compact: bool = True):
+	def sitemap(cls, sitemap, domain: str = None, index: bool = False, compact: bool = True) -> str:
 		if sitemap in [True, '/', '', None]:
 			sitemap = ['/']
 		if isinstance(sitemap, str):
@@ -15025,7 +15149,7 @@ class void:
 								b'Access-Control-Allow-Origin: *',
 								b'\r\n']
 						transport.write(b'\r\n'.join(header))
-						if cls.os_type == 'windows':
+						if cls.is_win:
 							try:
 								with open(path, 'rb') as file:
 									if 'range' in request:
@@ -15188,7 +15312,7 @@ class void:
 	@staticmethod # service
 	def cloud_worker(cls, sockets, param: dict):
 		asyncio = cls.module('asyncio')
-		if cls.os_type == 'windows':
+		if cls.is_win:
 			asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 		async def serve():
 			async def handler(reader, writer):
@@ -16763,7 +16887,7 @@ class void:
 		if isinstance(source, str):
 			if not cls.is_file(source): return []
 			image = cls.file(source, format='cv')
-		elif source.__class__.__name__ == 'ndarray' and source.__class__.__module__.startswith('numpy'):
+		elif cls.is_cv(source):
 			image = source
 		else: return		
 		warnings = cls.module('warnings')
@@ -16800,7 +16924,7 @@ class void:
 			if not cls.is_file(source): return
 			image = cls.file(source, format='cv')
 			if image is None: return
-		elif source.__class__.__name__ == 'ndarray' and source.__class__.__module__.startswith('numpy'):
+		elif cls.is_cv(source):
 			image = source
 		else: return
 		if not blocks:
