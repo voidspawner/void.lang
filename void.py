@@ -7205,6 +7205,8 @@ class void:
 					sol
 				key
 					none
+				company
+					OpenAI
 				url
 					api
 						https://api.openai.com/v1/responses
@@ -7272,6 +7274,8 @@ class void:
 					deepseek flash
 				key
 					none
+				company
+					Hangzhou DeepSeek Artificial Intelligence Basic Technology Research Co., Ltd.
 				url
 					api
 						https://api.deepseek.com/chat/completions
@@ -7328,6 +7332,8 @@ class void:
 					gemma
 				key
 					none
+				company
+					Ollama Inc.
 				url
 					api
 						https://ollama.com/api/chat
@@ -7658,6 +7664,8 @@ class void:
 					sonnet
 				key
 					none
+				company
+					Anthropic, PBC
 				url
 					api
 						https://api.anthropic.com/v1/messages
@@ -7745,6 +7753,9 @@ class void:
 					gemini flash
 				key
 					none
+				company
+					Google AI
+					Google DeepMind
 				url
 					api
 						https://generativelanguage.googleapis.com/v1beta/models/(model):generateContent
@@ -7758,11 +7769,18 @@ class void:
 					argon
 						name
 							gemini-4-argon
+						description
+							Flagship reasoning model, built for complex software engineering, deep mathematical and scientific problem solving, autonomous multi-step agents, and long-decode generation up to 1M tokens.
+						context
+							1 000 000
 						price
-
+							input
+							output
 					gemini pro
 						name
 							gemini-3.1-pro-preview
+						description
+							3rd generation Pro model, built for multimodal understanding, agentic capabilities, and vibe-coding.
 						price
 							input
 								hit
@@ -7774,6 +7792,8 @@ class void:
 					gemini flash
 						name
 							gemini-3.8-flash
+						description
+							Most intelligent Flash model, engineered for long-horizon software engineering, autonomous agents, and complex enterprise workflows.
 						price
 							input
 								hit
@@ -7785,6 +7805,8 @@ class void:
 					gemini flash lite
 						name
 							gemini-3.5-flash-lite
+						description
+							A cost-efficient model, optimized for high-volume agentic tasks, translation, and simple data processing.
 						price
 							input
 								hit
@@ -7793,8 +7815,22 @@ class void:
 									$0.3
 							output
 								$2.5
+			qwen
+				company
+					Alibaba Cloud
+				model
+					qwen2-vl
+			gemma
+				company
+					Google DeepMind
 			stablediffusion
-				[ ]
+				company
+					Stability AI
+			flux
+				company
+					Black Forest Labs
+			yolo
+			llava
 			epochx2
 				any
 					model/epoch994_omnisr_x2.pth
@@ -7826,6 +7862,13 @@ class void:
 					model/generator.zip
 				denoiser
 					model/net_rgb.pth
+			voice
+				google
+					none
+				edge
+					none
+				siri
+					none
 			image
 				none
 			video
@@ -9119,8 +9162,13 @@ class void:
 			subprocess = cls.module('subprocess')
 			if wait:
 				if wait == 'silent': wait = False
-				process = subprocess.Popen(command, stdin=subprocess.PIPE if data is not None else None, stdout=subprocess.PIPE if wait else subprocess.DEVNULL, stderr=subprocess.PIPE if wait else subprocess.DEVNULL, text=True, creationflags=creation_flags)
-				text, error = process.communicate(data if isinstance(data, str) or data is None else str(data))
+				process = subprocess.Popen(command, stdin=subprocess.PIPE if data is not None else None, stdout=subprocess.PIPE if wait else subprocess.DEVNULL, stderr=subprocess.PIPE if wait else subprocess.DEVNULL, creationflags=creation_flags)
+				if not (data is None or isinstance(data, (str, bytes))):
+					data = str(data)
+				stdout_bytes, stderr_bytes = process.communicate(data.encode('utf-8') if isinstance(data, str) else data)
+				encoding = cls.module('locale').getpreferredencoding()
+				text = stdout_bytes.decode(encoding, errors='replace') if stdout_bytes else ''
+				error = stderr_bytes.decode(encoding, errors='replace') if stderr_bytes else None
 				result = {
 					'code': process.returncode,
 					'pid': process.pid,
@@ -9632,8 +9680,38 @@ class void:
 		return cls.clipboard(data)
 
 	@classmethod
-	def sql(cls):
-		pass
+	def db(cls, name: str, query = None) -> bool | int | float | str | list | dict | bytes:
+		match name:
+			case 'sql':
+				pass
+			case 'sqlite':
+				pass
+			case 'redis':
+				pass
+			case 'lmdb':
+				pass
+			case 'mongo':
+				pass
+
+	@classmethod # short
+	def sql(cls, query = None) -> bool | int | float | str | list | dict | bytes:
+		return cls.db('sql')
+
+	@classmethod # short
+	def sqlite(cls, query = None) -> bool | int | float | str | list | dict | bytes:
+		return cls.db('sqlite')
+
+	@classmethod # short
+	def redis(cls, query = None) -> bool | int | float | str | list | dict | bytes:
+		return cls.db('redis')
+
+	@classmethod # short
+	def lmdb(cls, query = None) -> bool | int | float | str | list | dict | bytes:
+		return cls.db('lmdb')
+
+	@classmethod # short
+	def mongo(cls, query = None) -> bool | int | float | str | list | dict | bytes:
+		return cls.db('mongo')
 
 	@classmethod
 	def chat(cls, text: str, model: str = None, character: str = None, reference = None, talk: list = None, info: bool = False) -> str:
@@ -10049,16 +10127,42 @@ class void:
 		return cls.chat(text, model, character, reference, talk)
 
 	@classmethod
-	def say(cls, text: str, engine: str = None, voice: str = None, translate: bool = False, path: str = None, speed: float = 1, auto: bool = True):
-		if auto and not '\n' in text and cls.is_file(text):
-			text = cls.file_text(text)
-		if translate:
-			text = cls.translate(text)
+	def say(cls, text: str = None, engine: str = None, voice: str = None, translate: bool = False, path: str = None, speed: float = 1, auto: bool = True) -> list:
+		if auto and isinstance(text, str) and not '\n' in text:
+			if cls.is_file(text):
+				text = cls.file_text(text)
+			elif cls.is_url(text):
+				text = cls.request(text)
+		if text is not None:
+			if not (isinstance(text, str) and text): return
+			if translate:
+				text = cls.translate(text)
+			if not (isinstance(text, str) and text):
+				cls.error('say.translate')
+				return
 		if engine is None:
 			engine = 'edge' if cls.is_win else 'google'
+		def ffmpeg_speed(speed: float, file_original: str, file_speed: str):
+			filters = []
+			while speed < 0.5:
+				filters.append('atempo=0.5')
+				speed /= 0.5
+			while speed > 2.0:
+				filters.append('atempo=2.0')
+				speed /= 2.0
+			if speed != 1.0:
+				filters.append(f'atempo={speed}')
+			atempo = ','.join(filters) if filters else 'atempo=1.0'
+			cls.open_wait([cls.get('ffmpeg.path'), '-y', '-i', file_original, '-filter:a', atempo, file_speed])			
 		match engine:
 			case 'google':
 				gtts = cls.module('gtts')
+				if text is None:
+					try:
+						return list(gtts.lang.tts_langs().keys())
+					except Exception as e:
+						cls.error('say.google.voices', e)
+						return {}
 				tts = gtts.gTTS(text=text, lang=voice or cls.get('language'))
 				if path:
 					tts.save(path)
@@ -10066,40 +10170,47 @@ class void:
 					tempfile = cls.module('tempfile')
 					with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as temp, tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as temp_speed:
 						file_original = temp.name
-						file_speed = temp_speed.name
+						if speed != 1:
+							file_speed = temp_speed.name
 					try:
 						tts.save(file_original)
 						if speed != 1:
-							cls.open_wait(['ffmpeg', '-y', '-i', file_original, '-filter:a', f'atempo={speed}', file_speed])
+							ffmpeg_speed(speed, file_original, file_speed)
 							cls.sound_play(file_speed)
 						else:
 							cls.sound_play(file_original)
 					finally:
 						cls.file_remove(file_original)
-						cls.file_remove(file_speed)
+						if speed != 1:
+							cls.file_remove(file_speed)
 			case 'edge':
 				asyncio = cls.module('asyncio')
 				edge_tts = cls.module('edge_tts')
-				re = cls.module('re')
+				if text is None:
+					async def voices():
+						return [voice['ShortName'] for voice in await edge_tts.list_voices()]
+					try:
+						try:
+							asyncio.get_running_loop()
+						except RuntimeError:
+							return asyncio.run(voices())
+						with cls.module('concurrent.futures').ThreadPoolExecutor(1) as executor:
+							return executor.submit(asyncio.run, voices()).result()
+					except Exception as e:
+						cls.error('voices.edge', e)
+						return []
+				if not voice:
+					voice = str(cls.get('ai.voice.edge', ''))
+					if not voice:
+						voice = next((name for name in cls.say(engine=engine) if name.startswith(cls.get('language'))), None)
+						if not voice:
+							cls.error('say.edge', 'no voice')
+							return
+						cls.set('ai.voice.edge', voice)
 				tempfile = cls.module('tempfile')
-				voice = voice or 'ru-RU-DmitryNeural'
-				rate = f'{round((speed - 1) * 100):+d}%'
-				max_len = 1000
-				chunks, current = [], ''
-				for part in re.split(r'(?<=[.!?…\n])\s+', text):
-					part = part.strip()
-					while len(part) > max_len:
-						cut = part.rfind(' ', 0, max_len)
-						cut = cut if cut > 0 else max_len
-						chunks.append(part[:cut])
-						part = part[cut:].strip()
-					if len(current) + len(part) + 1 > max_len:
-						chunks.append(current)
-						current = part
-					else:
-						current = f'{current} {part}'.strip()
-				chunks.append(current)
-				chunks = [chunk for chunk in chunks if re.search(r'\w', chunk)]
+				need_ffmpeg = (speed / max(0.5, min(float(speed), 2.0))) != 1
+				rate = f'{round((speed - 1) * 100):+d}%' if not need_ffmpeg else '+0%'
+				chunks = cls.split_accurate(text, 1000)
 				if not chunks: return
 				async def synthesize(output: str):
 					with open(output, 'wb') as file:
@@ -10113,39 +10224,100 @@ class void:
 									file.write(data)
 									break
 								except edge_tts.exceptions.NoAudioReceived:
-									if attempt == 2: raise
+									if attempt == 2:
+										cls.error('say.edge', 'no sound')
+										return
 									await asyncio.sleep(1)
 				def run(coro):
 					try:
 						asyncio.get_running_loop()
 					except RuntimeError:
 						return asyncio.run(coro)
-					from concurrent.futures import ThreadPoolExecutor
-					with ThreadPoolExecutor(1) as executor:
+					with cls.module('concurrent.futures').ThreadPoolExecutor(1) as executor:
 						return executor.submit(asyncio.run, coro).result()
 				if path:
 					run(synthesize(path))
 				else:
-					with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as temp: temp_file = temp.name
+					with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as temp: file_original = temp.name
 					try:
-						run(synthesize(temp_file))
-						cls.sound_play(temp_file)
+						run(synthesize(file_original))
+						if not need_ffmpeg:
+							if path:
+								cls.file_move(file_original, path)
+							else:
+								cls.sound_play(file_original)
+						else:
+							with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as temp_speed: file_speed = temp_speed.name
+							try:
+								ffmpeg_speed(speed, file_original, file_speed)
+								if path:
+									cls.file_move(file_speed, path)
+								else:
+									cls.sound_play(file_speed)
+							finally:
+								cls.file_remove(file_speed)
 					finally:
-						cls.file_remove(temp_file)
+						cls.file_remove(file_original)
 			case 'siri':
-				pass
+				if not cls.is_mac: return
+				if text is None:
+					try:
+						result = cls.open_wait(['say', '-v', '?'])
+						voices = []
+						for line in result.splitlines():
+							parts = line.split()
+							if parts: voices.append(parts[0])
+						return voices
+					except Exception as e:
+						cls.error('say.siri.voices', e)
+						return []
+				if not voice:
+					voice = str(cls.get('ai.voice.siri', ''))
+					if not voice:
+						voice = next((name for name in cls.say(engine=engine) if name.startswith(cls.get('language'))), None)
+						if not voice:
+							voices = cls.say(engine=engine)
+							voice = voices[0] if voices else 'Alex'
+						cls.set('ai.voice.siri', voice)
+				tempfile = cls.module('tempfile')
+				with tempfile.NamedTemporaryFile(delete=False, suffix='.txt', mode='w', encoding='utf-8') as temp_txt:
+					temp_txt.write(text)
+					file_txt = temp_txt.name
+				with tempfile.NamedTemporaryFile(delete=False, suffix='.aiff') as temp_aiff: file_aiff = temp_aiff.name
+				try:
+					cls.open_wait(['say', '-v', voice, '-f', file_txt, '-o', file_aiff])
+					if speed == 1:
+						if path:
+							cls.file_move(file_speed, path)
+						else:
+							cls.sound_play(file_aiff)
+					else:
+						with tempfile.NamedTemporaryFile(delete=False, suffix='.aiff') as temp_speed: file_speed = temp_speed.name
+						try:
+							ffmpeg_speed(speed, file_aiff, file_speed)
+							if path:
+								cls.file_move(file_speed, path)
+							else:
+								cls.sound_play(file_speed)
+						finally:
+							cls.file_remove(file_speed)
+				except Exception as e:
+					cls.error('say.siri', e)
+				finally:
+					cls.file_remove(file_txt)
+					cls.file_remove(file_aiff)
 
 	@classmethod # short
-	def say_google(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1, auto: bool = True):
-		cls.say(text, engine='google', voice=voice, translate=translate, path=path, speed=speed, auto=auto)
+	def say_google(cls, text: str = None, voice: str = None, translate: bool = False, path: str = None, speed: float = 1, auto: bool = True) -> list:
+		return cls.say(text, engine='google', voice=voice, translate=translate, path=path, speed=speed, auto=auto)
 
 	@classmethod # short
-	def say_edge(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1, auto: bool = True):
-		cls.say(text, engine='edge', voice=voice, translate=translate, path=path, speed=speed, auto=auto)
+	def say_edge(cls, text: str = None, voice: str = None, translate: bool = False, path: str = None, speed: float = 1, auto: bool = True) -> list:
+		return cls.say(text, engine='edge', voice=voice, translate=translate, path=path, speed=speed, auto=auto)
 
 	@classmethod # short
-	def say_siri(cls, text: str, voice: str = None, translate: bool = False, path: str = None, speed: float = 1, auto: bool = True):
-		cls.say(text, engine='siri', voice=voice, translate=translate, path=path, speed=speed, auto=auto)
+	def say_siri(cls, text: str = None, voice: str = None, translate: bool = False, path: str = None, speed: float = 1, auto: bool = True) -> list:
+		return cls.say(text, engine='siri', voice=voice, translate=translate, path=path, speed=speed, auto=auto)
 
 	@classmethod
 	def recognize(cls, data, text: str = None):
@@ -10179,7 +10351,7 @@ class void:
   # text
 
 	@classmethod
-	def lower(cls, text: str | list) -> str | list:
+	def lower(cls, text: str | list | bytes) -> str | list | bytes:
 		if isinstance(text, list): return [cls.lower(text) for text in text]
 		if not isinstance(text, str): return text
 		return text.lower()
@@ -10206,63 +10378,69 @@ class void:
 		return ''.join(result)
 
 	@classmethod # short
-	def upper_sentence(cls, text: str | list) -> str | list:
+	def upper_sentence(cls, text: str | list | bytes) -> str | list | bytes:
 		return cls.upper(text, 'sentence')
 
 	@classmethod # short
-	def upper_title(cls, text: str | list) -> str | list:
+	def upper_title(cls, text: str | list | bytes) -> str | list | bytes:
 		return cls.upper(text, 'title')
 
 	@classmethod # short
-	def upper_odd(cls, text: str | list) -> str | list:
+	def upper_odd(cls, text: str | list | bytes) -> str | list | bytes:
 		return cls.upper(text, 'odd')
 
 	@classmethod # short
-	def upper_even(cls, text: str | list) -> str | list:
+	def upper_even(cls, text: str | list | bytes) -> str | list | bytes:
 		return cls.upper(text, 'even')
 
 	@classmethod # short
-	def upper_invert(cls, text: str | list) -> str | list:
+	def upper_invert(cls, text: str | list | bytes) -> str | list | bytes:
 		return cls.upper(text, 'invert')
 
 	@classmethod # short alias
-	def upper_swap(cls, text: str | list) -> str | list:
+	def upper_swap(cls, text: str | bytes | list) -> str | bytes | list:
 		return cls.upper(text, 'swap')
 
 	@classmethod
-	def starts(cls, text: str | list):
+	def starts(cls, text: str | bytes | list) -> bool:
+		# str
+		# list
+		# bytes
 		pass
 
 	@classmethod
-	def ends(cls, text: str | list):
+	def ends(cls, text: str | bytes | list) -> bool:
+		# str
+		# list
+		# bytes
 		pass
 
 	@classmethod
-	def strip(cls, text: str | list, strip: str = None):
+	def strip(cls, text: str | bytes | list, strip: str | int = None) -> str | bytes | list:
 		return cls.strip_end(cls.strip_start(text, strip))
 
 	@classmethod
-	def strip_start(cls, text: str | list, strip: str = None):
+	def strip_start(cls, text: str | bytes | list, strip: str | int = None) -> str | bytes | list:
 		if strip is None or len(strip) == 1:
 			return text.rstrip(strip)
 		return text[len(strip):] if text.startswith(strip) else text
 
 	@classmethod # alias
-	def lstrip(cls, text: str | list, strip: str = None):
+	def lstrip(cls, text: str | bytes | list, strip: str | int = None) -> str | bytes | list:
 		return cls.strip_start(text, strip)
 
 	@classmethod
-	def strip_end(cls, text: str | list, strip: str = None):
+	def strip_end(cls, text: str | bytes | list, strip: str | int = None) -> str | bytes | list:
 		if strip is None or len(strip) == 1:
 			return text.lstrip(strip)
 		return text[len(strip):] if text.endswith(strip) else text
 
 	@classmethod # alias
-	def rstrip(cls, text: str | list, strip: str = None):
+	def rstrip(cls, text: str | bytes | list, strip: str | int = None) -> str | bytes | list:
 		return cls.strip_end(text, strip)
 
 	@classmethod
-	def replace(cls, text: str, search, replace = None):
+	def replace(cls, text: str, search, replace = None) -> str:
 		if type(search) is str:
 			if replace == None:
 				return text
@@ -10279,23 +10457,15 @@ class void:
 		return result
 
 	@classmethod
-	def index(cls):
+	def index(cls, text: str | list | dict | bytes, subtext, reverse: bool = False) -> int | str:
 		pass
 
-	@classmethod # alias
-	def name(cls):
-		return cls.index()
+	@classmethod # short
+	def index_reverse(cls, text: str | list | dict | bytes, subtext) -> int | str:
+		return cls.index(text, subtext, reverse=True)
 
 	@classmethod
-	def index_reverse(cls):
-		pass
-
-	@classmethod # alias
-	def name_reverse(cls):
-		return cls.index_reverse()
-
-	@classmethod
-	def parse(cls, text: str, template: str = None, multiple: bool = None):
+	def parse(cls, text: str, template: str = None, multiple: bool = None) -> str | list | dict | bytes:
 		if not template: return [] if multiple else None
 		compiled = cls.cache_parse.get(template)
 		if compiled is None:
@@ -10346,12 +10516,16 @@ class void:
 			res = [row(match) for match in matches]
 		return res if multiple or len(matches) > 1 else res[0]
 
+	@classmethod # short
+	def parse_multiple(cls, text: str, template: str = None, multiple: bool = None) -> list:
+		return cls.parse(text, template, True)
+
 	@classmethod
-	def insert(cls):
+	def insert(cls, data: str | list | dict | bytes, value, index: int = -1):
 		pass
 
 	@classmethod
-	def part(cls, data, index_from: int = None, index_to: int = None, length: int = None, extract: bool = False):
+	def part(cls, data: str | list | dict | bytes, index_from: int = None, index_to: int = None, length: int = None, extract: bool = False) -> str | list | dict | bytes:
 		pass
 
 	@classmethod # short
@@ -10359,20 +10533,20 @@ class void:
 		return cls.part(data, index_from, index_to, length)
 
 	@classmethod
-	def split(cls, text, delimiter = None, accurate: bool = False):
-		if not text: return []
+	def split(cls, data: str | list | bytes, delimiter: int | str | bytes = None, accurate: bool = False) -> list:
+		if not data: return []
 		if delimiter is None:
-			return text.split()
+			return data.split()
 		if isinstance(delimiter, str):
-			return text.split(delimiter)
+			return data.split(delimiter)
 		if isinstance(delimiter, int):
 			if not accurate:
-				return text.split(delimiter)
+				return data.split(delimiter)
 			chunks = []
-			text = text.strip()
-			while len(text) > delimiter:
+			data = data.strip()
+			while len(data) > delimiter:
 				split_pos = -1
-				search_zone = text[:delimiter]
+				search_zone = data[:delimiter]
 				match = list(re.finditer(r'[.!?|;,]\s*', search_zone))
 				if match:
 					split_pos = match[-1].end()
@@ -10382,30 +10556,46 @@ class void:
 						split_pos = space_match[-1].end()
 				if split_pos <= 0:
 					split_pos = delimiter
-				chunks.append(text[:split_pos].strip())
-				text = text[split_pos:].strip()        
-			if text:
-				chunks.append(text)
+				chunks.append(data[:split_pos].strip())
+				data = data[split_pos:].strip()        
+			if data:
+				chunks.append(data)
 			return [chunk for chunk in chunks if chunk]
 
 	@classmethod # short
-	def split_accurate(cls, text, delimiter = None):
-		return cls.split(text, delimiter, True)
+	def split_accurate(cls, data: str | list | bytes, delimiter:  int | str | bytes = None) -> list:
+		return cls.split(data, delimiter, True)
 
 	@classmethod
-	def join(cls):
+	def join(cls, data: str | list | bytes, delimiter: int | str | bytes = None) -> str | bytes:
 		pass
 
 	@classmethod
-	def reverse(cls):
-		pass
+	def reverse(cls, data: bool | int | float | str | list | dict | bytes) -> bool | int | float | str | list | dict | bytes:
+		if isinstance(data, bool):
+			return not data
+		if isinstance(data, (int, float)):
+			return -data
+		if isinstance(data, str):
+			pass
+		if isinstance(data, list):
+			pass
+		if isinstance(data, dict):
+			pass
+		if isinstance(data, bytes):
+			pass
 
 	@classmethod
-	def unique(cls):
-		pass
+	def unique(cls, data: str | list | bytes) -> str | list | bytes:
+		if isinstance(data, str):
+			pass
+		if isinstance(data, list):
+			pass
+		if isinstance(data, bytes):
+			pass
 
 	@classmethod
-	def sort(cls, data, reverse: bool = False, name = None):
+	def sort(cls, data: str | list | dict | bytes, reverse: bool = False, name = None) -> str | list | dict | bytes:
 		operator = cls.module('operator')
 		def safe_sorted(values, key=None):
 			try:
@@ -10416,6 +10606,8 @@ class void:
 					k = get(v)
 					return type(k).__name__, str(k)
 				return sorted(values, key=fallback, reverse=reverse)
+		if isinstance(data, str):
+			return ''.join(sorted(data, reverse=reverse))
 		if isinstance(data, list):
 			if name is None:
 				return safe_sorted(data)
@@ -10444,12 +10636,10 @@ class void:
 			for k in missing:
 				result[k] = data[k]
 			return result
-		if isinstance(data, str):
-			return ''.join(sorted(data, reverse=reverse))
 		return data
 
 	@classmethod # short
-	def sort_reverse(cls, data, name: str = None):
+	def sort_reverse(cls, data: str | list | dict | bytes, name = None) -> str | list | dict | bytes:
 		return cls.sort(data, True, name)
 
 	@classmethod
@@ -10596,6 +10786,30 @@ class void:
 		return cls.unescape(text, 'sql')
 
 	@classmethod
+	def letters(cls, text: str) -> int:
+		return sum(1 for letter in text if letter.isalpha())
+
+	@classmethod
+	def symbols(cls, text: str) -> int:
+		return len(text)
+
+	@classmethod
+	def words(cls, text: str) -> int:
+		return len(re.findall(r'\w+', text))
+
+	@classmethod
+	def sentences(cls, text: str) -> int:
+		if not text.strip(): return 0
+		sentences_list = re.split(r'[.!?]+', text)
+		return len([s for s in sentences_list if s.strip()])
+
+	@classmethod
+	def paragraphs(cls, text: str) -> int:
+		if not text.strip(): return 0
+		paragraphs_list = re.split(r'\n\s*\n', text)
+		return len([p for p in paragraphs_list if p.strip()])
+
+	@classmethod
 	def price(cls, value: float, currency: str = None, group: bool = True) -> str | int | float:
 		if not currency: currency = str(cls.get('currency') or '')
 		if not currency: return value
@@ -10630,49 +10844,41 @@ class void:
 		return cls.translate(text, language_from, language_to, engine)
 
 	@classmethod
-	def spellcheck(cls) -> str:
+	def spellcheck(cls, text: str, info: dict = None) -> str | dict:
 		pass
 
 	@classmethod # alias
-	def s(cls) -> str:
-		return cls.spellcheck()
+	def s(cls, text: str, info: dict = None) -> dict:
+		return cls.spellcheck(text, info)
 
 
   # list
 
-	@classmethod # alias
-	def push(cls):
-		pass
-
-	@classmethod # alias
-	def pop(cls):
+	@classmethod
+	def plain(cls, data: list) -> list:
 		pass
 
 	@classmethod
-	def plain(cls):
+	def map(cls, data: list) -> list:
 		pass
 
 	@classmethod
-	def map(cls):
+	def reduce(cls, data: list) -> list:
 		pass
 
 	@classmethod
-	def reduce(cls):
+	def filter(cls, data: list) -> list:
 		pass
 
 	@classmethod
-	def filter(cls):
-		pass
-
-	@classmethod
-	def indexes(cls, data: list):
+	def indexes(cls, data: list) -> list:
 		return list(range(len(data)))
 
 
   # dict
 
 	@classmethod
-	def associate(cls, names: list, values: list):
+	def associate(cls, names: list, values: list) -> dict:
 		if len(names) != len(values): return
 		result = {}
 		for index, name in names.items():
@@ -10680,11 +10886,11 @@ class void:
 		return result
 
 	@classmethod
-	def names(cls, data: dict):
+	def names(cls, data: dict) -> list:
 		return list(data.keys())
 
 	@classmethod
-	def values(cls, data: dict):
+	def values(cls, data: dict) -> list:
 		return list(data.values())
 
 
@@ -14231,7 +14437,7 @@ class void:
 	# text
 	
 	@classmethod
-	def fb2(data: str | list | dict) -> str:
+	def fb2(cls, data: str | list | dict) -> str:
 		if isinstance(data, str): data = {'content': [{'type': 'text', 'text': data}]}
 		elif isinstance(data, list): data = {'content': data}
 		elif not isinstance(data, dict): return
@@ -14547,47 +14753,47 @@ class void:
 			xml += ''.join(f'<binary id="{picture_id}" content-type="{mime}">{cls.base64(content)}</binary>' for content, (picture_id, mime) in pictures.items())
 		return '<?xml version="1.0" encoding="UTF-8"?>\n<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">' + xml + '</FictionBook>'
 
-	def fb2_decode(text: str) -> dict:
+	def fb2_decode(cls, text: str) -> dict:
 		pass
 
 	@classmethod
-	def epub(data: str | list | dict) -> bytes:
+	def epub(cls, data: str | list | dict) -> bytes:
 		pass
 
-	def epub_decode(data: bytes) -> dict:
+	def epub_decode(cls, data: bytes) -> dict:
 		pass
 
 	@classmethod
-	def pdf(data: str | list | dict) -> str:
+	def pdf(cls, data: str | list | dict) -> str:
 		pass
 
-	def pdf_decode(text: str) -> dict:
+	def pdf_decode(cls, text: str) -> dict:
 		pass
 
 	# image
 
 	@classmethod
-	def cv(data):
+	def cv(cls, data):
 		pass
 
 	@classmethod # alias
-	def cv2(data):
+	def cv2(cls, data):
 		return cls.cv(data)
 
 	@classmethod
-	def cv_decode(data) -> bytes:
+	def cv_decode(cls, data) -> bytes:
 		pass
 
 	@classmethod # alias
-	def cv2_decode(data) -> bytes:
+	def cv2_decode(cls, data) -> bytes:
 		return cls.cv_decode(data)
 
 	@classmethod
-	def pillow(data):
+	def pillow(cls, data):
 		pass
 
 	@classmethod
-	def pillow_decode(data) -> bytes:
+	def pillow_decode(cls, data) -> bytes:
 		pass
 
 	# video
@@ -14914,7 +15120,7 @@ class void:
 					file_list.sort()
 					root = ((request['path'] if len(request['path']) > 1 else '') + '/').encode()
 					for name, subpath in dir_list:
-						url = root + cls.escape_url(name).encode()
+						url = root + cls.e_url(name).encode()
 						ui_list.append(cls.ui('web.file.list', {
 							b'(name)': name.encode(),
 							b'(url)': url,
@@ -14926,7 +15132,7 @@ class void:
 							b'(size)': b'\xf0\x9f\x93\x81'
 							}))
 					for name, subpath in file_list:
-						url = root + cls.escape_url(name).encode()
+						url = root + cls.e_url(name).encode()
 						data_time = cls.file_time(subpath)
 						data_size = cls.file_size(subpath)
 						ui_list.append(cls.ui('web.file.list', {
@@ -15023,7 +15229,7 @@ class void:
 					if index == 0:
 						parts = line.split()
 						request['method'] = parts[0].lower()
-						request['path'], _, request['query'] = (cls.unescape_url(parts[1])).partition('?')
+						request['path'], _, request['query'] = (cls.u_url(parts[1])).partition('?')
 					line = line.lower()
 					if line.startswith('host:'):
 						request['host'] = line[5:].strip()
@@ -15878,7 +16084,7 @@ class void:
 						elif extension in extension_subtitles:
 							format = 'subtitles'
 							param = param or cls.path_extension(cls.path_extension_strip(path)) if path else None
-				flag = []
+				flag = ['--force-overwrites']
 				cookie_path = cls.get('cookie', cls.get('yt-dlp.path.cookie'), param)
 				if cookie_path:
 					flag.append(f'--cookies "{cookie_path}"')
@@ -15905,7 +16111,7 @@ class void:
 						flag.append('-x')
 						flag.append(f'--audio-format {param or "mp3"}')
 					case 'sub' | 'subs' | 'subtitle' | 'subtitles':
-						language_default = cls.get("language")
+						language_default = cls.get('language')
 						flag.append('--write-sub --write-auto-sub --skip-download --sleep-subtitles 1')
 						if param:
 							names = [name.strip().lower() for name in str(param).split(',')]
@@ -15968,6 +16174,7 @@ class void:
 								cls.file(path, data)
 							else:
 								return data
+				else: cls.error('download', format, result)
 
 	@classmethod # alias
 	def d(cls, url: str, path: str = None, param = None):
@@ -15987,6 +16194,10 @@ class void:
 
 	@classmethod # alias
 	def download_audio(cls, url: str, path: str = None, param = None):
+		return cls.download_sound(url, path, param)
+
+	@classmethod # alias
+	def download_music(cls, url: str, path: str = None, param = None):
 		return cls.download_sound(url, path, param)
 
 	@classmethod # short
@@ -17112,7 +17323,7 @@ class void:
 			case 'windows':
 				ctypes = cls.module('ctypes')
 				winmm = ctypes.windll.winmm
-				uuid = cls.uuid(True)
+				uuid = cls.uuid_clean()
 				try:
 					result_open = winmm.mciSendStringW(f'open "{file}" type mpegvideo alias {uuid}', None, 0, 0)
 					if not result_open:
@@ -17152,7 +17363,7 @@ class void:
 		pass
 
 	@classmethod
-	def book(cls, prompt: str, path: str = None, pages: int = None, title: str = None, author = None, cover = None, adult: bool = None, font: str = None, size: float = None, margin = None, mirror: bool = None, format: str = None, creator: str = None, corrector: str = None):
+	def book(cls, prompt: str, path: str = None, pages: int = None, title: str = None, subtitle: str = None, author = None, cover = None, adult: bool = None, font: str = None, size: float = None, margin = None, mirror: bool = None, format: str = None, creator: str = None, corrector: str = None):
 		if not pages: pages = cls.get('ai.book.pages')
 		if adult is None: adult = cls.get('ai.book.adult')
 		if not font: font = cls.get('ai.book.font')
@@ -17166,22 +17377,75 @@ class void:
 			'title': title,
 			'subtitle': subtitle,
 			'author': author,
-			'date': '',
-			'timestamp': '',
-			'content': [],
-			'text': '',
-			'creator': {},
-			'corrector': {},
-			'total': {
-				'token': '',
-				'time': '',
-				'price': ''
+			'date': cls.date(),
+			'timestamp': cls.timestamp(),
+			'pages': pages,
+			'adult': adult,
+			'font': font,
+			'size': size,
+			'margin': margin,
+			'mirror': mirror,
+			'format': format,
+			'book': {}, # all book
+			'text': '', # plain text from the book
+			'creator': {
+				'model': creator,
+				'tokens': {
+					'input': {
+						'hit': 0,
+						'miss': 0,
+						'write': 0,
+						'total': 0
+					},
+					'output': {
+						'regular': 0,
+						'think': 0,
+						'total': 0
+					},
+					'total': 0
+				},
+				'price': {
+					'input': 0,
+					'output': 0,
+					'total': 0
+				},
+				'time': 0
 			},
-			'symbols': '',
-			'words': '',
-			'letters': '',
-			'chapters': '',
+			'corrector': {
+				'model': corrector,
+				'tokens': {
+					'input': {
+						'hit': 0,
+						'miss': 0,
+						'write': 0,
+						'total': 0
+					},
+					'output': {
+						'regular': 0,
+						'think': 0,
+						'total': 0
+					},
+					'total': 0
+				},
+				'price': {
+					'input': 0,
+					'output': 0,
+					'total': 0
+				},
+				'time': 0
+			},
+			'tokens': 0,
+			'time': 0,
+			'price': 0,
+			'symbols': 0,
+			'letters': 0,
+			'words': 0,
+			'sentences': 0,
+			'chapters': 0,
 		}
+		# create book
+		if path:
+			cls.file(path, info['book'])
 		return info
 
 	@classmethod # short
